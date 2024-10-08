@@ -96,15 +96,15 @@ for i = 1, #perk_pool do
         end
     end
 
-    local func = function(entity_perk_item, entity_who_picked, item_name)
+    local func = function(entity_perk_item, entity_who_picked, item_name, pickup_count)
         for i, func in ipairs(funcs)do
-            func(entity_perk_item, entity_who_picked, item_name)
+            func(entity_perk_item, entity_who_picked, item_name, pickup_count)
         end
     end
 
-    local func_remove = function(entity_who_picked)
+    local func_remove = function(entity_perk_item, entity_who_picked, item_name)
         for i, func in ipairs(funcs_remove)do
-            func(entity_who_picked)
+            func(entity_perk_item, entity_who_picked, item_name)
         end
     end
 
