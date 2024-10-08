@@ -1,13 +1,18 @@
 local fuckedupenemies = dofile("mods/noita.fairmod/files/scripts/fuckedupenemies.lua")
 local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
+local input_delay = dofile("mods/noita.fairmod/files/scripts/input_delay.lua")
 
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
+
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/hamis_reworked/hamis_reworked.lua")
 end
+
+ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
+
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
@@ -18,12 +23,6 @@ function OnPlayerSpawned(player)
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
 	ModSettingSet("fairmod.plays", plays)
-
-	local controls_comp = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
-	if controls_comp and Random(0, 5) == 1 then
-		local delay = Random(0, math.min(15, plays)) -- max 0.25 seconds
-		ComponentSetValue2(controls_comp, "input_latency_frames", delay)
-	end
 
 	heartattack.OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
@@ -36,6 +35,7 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 function OnWorldPreUpdate()
 	fuckedupenemies.OnWorldPreUpdate()
 	nukes.OnWorldPreUpdate();
+	input_delay.OnWorldPreUpdate()
 end
 
 -- Copi was here
