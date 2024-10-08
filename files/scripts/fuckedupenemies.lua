@@ -72,7 +72,7 @@ function evil.OnWorldPreUpdate()
 						ComponentSetValue2(comp, "frames", -1)
 					end
 
-					GamePrint("Enemy has been modified to be uber evil")
+					--GamePrint("Enemy has been modified to be uber evil")
 				end
 				EntityAddTag(enemy, "modified_evil")
 			end
