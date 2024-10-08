@@ -16,10 +16,10 @@ function nukes.OnWorldPreUpdate()
 
 		if ( #projectiles > 0 ) then
 			for i,projectile_id in ipairs( projectiles ) do
-				local random = Random(0,10000)
-				local value = 0.1
+				local random = Random(0,100000)
+				local value = 0.01
 
-				local rand = random / 100
+				local rand = random / 1000
 
 				if rand <= value then
 					local tags = EntityGetTags( projectile_id )
