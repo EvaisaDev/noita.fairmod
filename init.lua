@@ -1,4 +1,4 @@
-local fuckedupenemies = dofile("mods/noita.fairmod/files/scripts/fuckedupenemies.lua")
+local fuckedupenemies = dofile("mods/noita.fairmod/files/scripts/fuckedupenemies.lua") ---@type fuckupenemies
 local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
 
@@ -34,7 +34,9 @@ end
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
-	fuckedupenemies.OnWorldPreUpdate()
+	if GameGetFrameNum() % 30 == 0 then
+		fuckedupenemies:OnWorldPreUpdate()
+	end
 	nukes.OnWorldPreUpdate();
 end
 
