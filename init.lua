@@ -4,6 +4,7 @@ local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 
 
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
 
 function OnPlayerSpawned()
