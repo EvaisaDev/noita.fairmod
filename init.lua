@@ -10,9 +10,25 @@ function OnModPostInit()
 end
 
 function OnPlayerSpawned(player)
+	if GameHasFlagRun("fairmod_init") then
+		return
+	end
+	GameAddFlagRun("fairmod_init")
+
+	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
+	plays = plays + 1
+	ModSettingSet("fairmod.plays", plays)
+
+	local controls_comp = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
+	if controls_comp and Random(0, 5) == 1 then
+		local delay = Random(0, math.min(15, plays)) -- max 0.25 seconds
+		ComponentSetValue2(controls_comp, "input_latency_frames", delay)
+	end
+
 	heartattack.OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
-	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x - 100, y - 100)
+	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
+	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")

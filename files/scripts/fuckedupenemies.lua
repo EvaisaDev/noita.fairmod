@@ -60,6 +60,24 @@ function evil.OnWorldPreUpdate()
 					ComponentSetValue2(animal_ai, "attack_ranged_predict", attack_ranged_predict or math.random(1,3)==1)
 					ComponentSetValue2(animal_ai, "attack_ranged_entity_count_min", attack_ranged_entity_count_min * damage_mult)
 					ComponentSetValue2(animal_ai, "attack_ranged_entity_count_max", attack_ranged_entity_count_max * damage_mult)
+
+					local item_pickupper_component = EntityGetFirstComponentIncludingDisabled(enemy, "ItemPickUpperComponent")
+					if(not item_pickupper_component)then
+						EntityAddComponent2(enemy, "ItemPickUpperComponent", {
+							is_in_npc = true,
+							pick_up_any_item_buggy = true,
+							is_immune_to_kicks = false,
+							drop_items_on_death = true,
+						})
+					else
+						ComponentSetValue2(item_pickupper_component, "is_in_npc", true)
+						ComponentSetValue2(item_pickupper_component, "pick_up_any_item_buggy", true)
+						ComponentSetValue2(item_pickupper_component, "is_immune_to_kicks", false)
+						ComponentSetValue2(item_pickupper_component, "drop_items_on_death", true)
+						
+					end
+
+
 				end
 
 				if(damage_model and headache)then
