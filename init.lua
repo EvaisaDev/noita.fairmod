@@ -7,6 +7,7 @@ local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
+ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
