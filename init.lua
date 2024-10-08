@@ -1,7 +1,7 @@
 local fuckedupenemies = dofile("mods/noita.fairmod/files/scripts/fuckedupenemies.lua")
 local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
-
+local input_delay = dofile("mods/noita.fairmod/files/scripts/input_delay.lua")
 
 
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
@@ -19,12 +19,6 @@ function OnPlayerSpawned(player)
 	plays = plays + 1
 	ModSettingSet("fairmod.plays", plays)
 
-	local controls_comp = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
-	if controls_comp and Random(0, 5) == 1 then
-		local delay = Random(0, math.min(15, plays)) -- max 0.25 seconds
-		ComponentSetValue2(controls_comp, "input_latency_frames", delay)
-	end
-
 	heartattack.OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
@@ -36,6 +30,7 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 function OnWorldPreUpdate()
 	fuckedupenemies.OnWorldPreUpdate()
 	nukes.OnWorldPreUpdate();
+	input_delay.OnWorldPreUpdate()
 end
 
 
