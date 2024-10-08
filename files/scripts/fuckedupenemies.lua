@@ -4,7 +4,7 @@
 
 local evil = {}
 
-dofile("mods/noita.fairmod/scripts/utils/utilities.lua")
+dofile("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 function evil.OnWorldPreUpdate()
 
