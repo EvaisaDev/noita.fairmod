@@ -2,6 +2,7 @@ local fuckedupenemies = dofile("mods/noita.fairmod/files/content/fuckedupenemies
 local heartattack = dofile("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
+local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -19,6 +20,8 @@ function OnPlayerSpawned(player)
 		return
 	end
 	GameAddFlagRun("fairmod_init")
+
+	tm_trainer.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
