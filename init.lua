@@ -9,6 +9,21 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/s
 
 
 function OnPlayerSpawned(player)
+	if GameHasFlagRun("fairmod_init") then
+		return
+	end
+	GameAddFlagRun("fairmod_init")
+
+	local plays = tonumber(GlobalsGetValue("fairmod.plays")) or 0
+	plays = plays + 1
+	GlobalsSetValue("fairmod.plays", tostring(plays))
+
+	local controls_comp = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
+	if controls_comp and Random(0, 5) == 1 then
+		local delay = Random(0, math.min(15, plays)) -- max 0.25 seconds
+		ComponentSetValue2(controls_comp, "input_latency_frames", delay)
+	end
+
 	heartattack.OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
