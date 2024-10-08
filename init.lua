@@ -11,7 +11,8 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/s
 function OnPlayerSpawned(player)
 	heartattack.OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
-	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x - 100, y - 100)
+	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
+	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
