@@ -3,11 +3,16 @@ local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
 local input_delay = dofile("mods/noita.fairmod/files/scripts/input_delay.lua")
 
-
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
+
+function OnModPostInit()
+	dofile_once("mods/noita.fairmod/files/content/hamis_reworked/hamis_reworked.lua")
+end
+
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
+
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
@@ -32,6 +37,5 @@ function OnWorldPreUpdate()
 	nukes.OnWorldPreUpdate();
 	input_delay.OnWorldPreUpdate()
 end
-
 
 -- Copi was here
