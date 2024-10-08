@@ -1,0 +1,130 @@
+<Entity tags="mortal,prey" name="Immortal Snail">
+  
+
+	<Base file="data/entities/base_helpless_animal.xml" >
+
+        <AnimalAIComponent 
+        	preferred_job="JobDefault"
+			attack_melee_enabled="0"
+			attack_ranged_entity_file=""
+			attack_ranged_predict="1"
+			attack_ranged_enabled="0"
+			attack_melee_enabled="0"
+			sense_creatures="1"
+			creature_detection_range_x="10000"
+			creature_detection_range_y="10000"
+			attack_melee_damage_min="0"
+			attack_melee_damage_max="0"
+			can_fly="0"
+            >
+        </AnimalAIComponent >
+		
+		<DamageModelComponent 
+			fire_probability_of_ignition="0.05"
+			hp="0.1"
+			>
+		</DamageModelComponent>
+		
+        <SpriteComponent 
+            image_file="mods/noita.fairmod/files/content/immortal_snail/sprites/snail.png" 
+            offset_x="4" 
+            offset_y="2" >
+        </SpriteComponent>
+        
+        <SpriteAnimatorComponent
+            rotate_to_surface_normal="1" >
+        </SpriteAnimatorComponent>
+
+
+		<PathFindingComponent
+		    distance_to_reach_node_x="20"
+		    distance_to_reach_node_y="20"
+			frames_to_get_stuck="60"
+			can_jump="0" >
+		</PathFindingComponent>
+
+		<PathFindingGridMarkerComponent
+			marker_work_flag="24" >
+		</PathFindingGridMarkerComponent>
+		
+		<GenomeDataComponent 
+			herd_id="helpless"
+			food_chain_rank="20"
+			is_predator="0" >
+		</GenomeDataComponent>
+		
+		<CharacterDataComponent 
+			collision_aabb_min_x="-2.6" 
+			collision_aabb_max_x="2.6" 
+			collision_aabb_min_y="-6" 
+			collision_aabb_max_y="3" 
+			buoyancy_check_offset_y="-1" 
+			mass="0.3"
+			>
+		</CharacterDataComponent>
+		
+		<CharacterPlatformingComponent 
+			jump_velocity_y="-12" 
+			run_velocity="15"  
+        	velocity_max_y="60"
+			run_animation_velocity_switching_enabled="1"
+			run_animation_velocity_switching_threshold="20">
+		</CharacterPlatformingComponent>
+		
+		<HitboxComponent 
+			_enabled="1" 
+			aabb_min_x="-4.5" 
+			aabb_max_x="4.5" 
+			aabb_min_y="-5.5" 
+			aabb_max_y="3"
+			>
+		</HitboxComponent>
+	</Base>
+	
+	<AudioComponent
+		file="data/audio/Desktop/animals.bank"
+		event_root="animals/longleg" >
+	</AudioComponent>
+
+	<Entity tags="effect_protection" >
+		
+		<InheritTransformComponent>
+		</InheritTransformComponent>	
+		
+		<GameEffectComponent
+			_tags="effect_protection_all"
+			effect="PROTECTION_ALL"
+			frames="-1"
+		>
+		</GameEffectComponent >
+
+	</Entity>
+	<AreaDamageComponent
+		circle_radius = "5"
+		damage_per_frame = "99999"
+		update_every_n_frame = "1"
+		death_cause = "Immortal Snail"
+		entities_with_tag = "player_unit"
+		damage_type = "DAMAGE_CURSE"
+		aabb_min.x="-20" 
+		aabb_min.y="-20" 
+		aabb_max.x="20" 
+		aabb_max.y="20" 
+	/>
+ 	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		execute_times="-1" >
+	</LuaComponent>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/too_far_teleport.lua"
+		execute_on_added="1"
+		execute_every_n_frame="20"
+		execute_times="-1" >
+	</LuaComponent>
+
+	<StreamingKeepAliveComponent/>	
+
+</Entity>
+

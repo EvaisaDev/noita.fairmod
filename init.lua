@@ -11,6 +11,8 @@ end
 
 function OnPlayerSpawned(player)
 	heartattack.OnPlayerSpawned(player)
+	local x, y = EntityGetTransform(player)
+	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x - 100, y - 100)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
