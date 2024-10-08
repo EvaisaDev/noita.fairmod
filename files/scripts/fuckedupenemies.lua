@@ -39,7 +39,13 @@ function evil.OnWorldPreUpdate()
 
 		for _, enemy in ipairs(enemies)do
 			if(not EntityHasTag(enemy, "modified_evil"))then
+
+				-- Copious bullshit ensues
+				local headache = math.random(1, 100) > 5
+				-- Chicanery ends
+
 				local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
+				local damage_model = EntityGetFirstComponentIncludingDisabled(enemy, "DamageModelComponent")
 
 				if(animal_ai)then
 					ComponentSetValue2(animal_ai, "attack_only_if_attacked", false)
@@ -55,7 +61,7 @@ function evil.OnWorldPreUpdate()
 					local attack_dash_damage = ComponentGetValue2(animal_ai, "attack_dash_damage")
 					local attack_dash_speed = ComponentGetValue2(animal_ai, "attack_dash_speed")
 					local attack_dash_distance = ComponentGetValue2(animal_ai, "attack_dash_distance")
-					local damage_mult = 3
+					local damage_mult = headache and 10 or 3
 					ComponentSetValue2(animal_ai, "attack_melee_damage_min", melee_damage_min * damage_mult)
 					ComponentSetValue2(animal_ai, "attack_melee_damage_max", melee_damage_max * damage_mult)
 					ComponentSetValue2(animal_ai, "attack_dash_damage", attack_dash_damage * damage_mult)
@@ -66,7 +72,22 @@ function evil.OnWorldPreUpdate()
 					ComponentSetValue2(animal_ai, "attack_ranged_entity_count_min", attack_ranged_entity_count_min * damage_mult)
 					ComponentSetValue2(animal_ai, "attack_ranged_entity_count_max", attack_ranged_entity_count_max * damage_mult)
 				end
-				
+
+				if(damage_model and headache)then
+					local hp = ComponentGetValue2(damage_model, "hp")
+					local max_hp = ComponentGetValue2(damage_model, "max_hp")
+					local hp_mult = 5
+					ComponentSetValue2(damage_model, "attack_ranged_entity_count_min", hp * hp_mult)
+					ComponentSetValue2(damage_model, "attack_ranged_entity_count_max", max_hp * hp_mult)
+					local ex, ey, er, sx, sy = EntityGetTransform(enemy)
+					EntitySetTransform(ex, ey, er, sx * 1.2, sy * 1.2)
+					-- todo add particles
+
+					local effects = { "BERSERK", "REGENERATION", "REGENERATION", "BREATH_UNDERWATER", "WET", "BLOODY", "CRITICAL_HIT_BOOST", "MELEE_COUNTER", "KNOCKBACK", "KNOCKBACK", "KNOCKBACK_IMMUNITY", "KNOCKBACK_IMMUNITY", "MOVEMENT_FASTER", "STAINS_DROP_FASTER", "SAVING_GRACE", "DAMAGE_MULTIPLIER", "RESPAWN", "PROTECTION_FIRE", "PROTECTION_RADIOACTIVITY", "PROTECTION_EXPLOSION", "PROTECTION_MELEE", "PROTECTION_ELECTRICITY", "TELEPORTITIS", "TELEPORTITIS", "TELEPORTITIS", "STAINLESS_ARMOUR", "NO_SLIME_SLOWDOWN", "MOVEMENT_FASTER_2X", "LOW_HP_DAMAGE_BOOST", "MOVEMENT_FASTER_2X", "LOW_HP_DAMAGE_BOOST", "STUN_PROTECTION_ELECTRICITY", "STUN_PROTECTION_FREEZE", "PROTECTION_ALL", "INVISIBILITY", "INVISIBILITY", "INVISIBILITY", "PROTECTION_DURING_TELEPORT", "PROTECTION_POLYMORPH", "PROTECTION_FREEZE", "FROZEN_SPEED_UP", "RAINBOW_FARTS", "PROTECTION_EDGES", "PROTECTION_PROJECTILE",}
+					for i=1, 3 do
+						GetGameEffectLoadTo(enemy, effects[math.random(1, #effects)], true)
+					end
+				end
 				EntityAddTag(enemy, "modified_evil")
 			end
 		end
