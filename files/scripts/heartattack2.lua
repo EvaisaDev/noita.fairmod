@@ -13,8 +13,6 @@ if(IngestionComp)then
 		local percentage = (ingestion_size - min) / (max - min)
 
 		local chance = math.floor(108000 * (1 - percentage))
-		
-		GamePrint(tostring(chance))
 
 		SetRandomSeed(math.random()+entity_id, GameGetFrameNum()+GetUpdatedComponentID())
 		if Random(1,chance) == 1 then
