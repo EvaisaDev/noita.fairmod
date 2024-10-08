@@ -1,6 +1,6 @@
 <Entity>
 	<LuaComponent
-		script_source_file="mods/noita.fairmod/files/scripts/nukes/play_fart.lua"
+		script_source_file="mods/noita.fairmod/files/content/nukes/scripts/play_fart.lua"
 		execute_on_added="1"
 		execute_times="1"
 	/>

@@ -43,7 +43,7 @@
       camera_shake="2" 
       explosion_radius="15" 
       explosion_sprite="data/particles/explosion_040_poof_green.xml"
-	  load_this_entity="mods/noita.fairmod/files/entities/projectiles/nuke_audio.xml"
+	  load_this_entity="mods/noita.fairmod/files/content/nukes/entities/projectiles/nuke_audio.xml"
       explosion_sprite_lifetime="0" 
       create_cell_probability="100" 
 	  create_cell_material="acid_gas"
@@ -170,7 +170,7 @@
   
 	<VariableStorageComponent
 		name="projectile_file"
-		value_string="data/entities/projectiles/deck/nuke.xml"
+		value_string="data/content/nukes/entities/projectiles/deck/nuke.xml"
 		>
 	</VariableStorageComponent>
 

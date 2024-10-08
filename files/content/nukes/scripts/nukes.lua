@@ -17,7 +17,7 @@ function nukes.OnWorldPreUpdate()
 		if ( #projectiles > 0 ) then
 			for i,projectile_id in ipairs( projectiles ) do
 				local random = Random(0,100000)
-				local value = 0.01
+				local value = 0.05
 
 				local rand = random / 1000
 
@@ -47,7 +47,7 @@ function nukes.OnWorldPreUpdate()
 						local nuke_file = "data/entities/projectiles/deck/nuke.xml"
 
 						if(Random(0, 100) < 50)then
-							nuke_file = "mods/noita.fairmod/files/entities/projectiles/nuke_useless.xml"
+							nuke_file = "mods/noita.fairmod/files/content/nukes/entities/projectiles/nuke_useless.xml"
 						end
 						
 						shoot_projectile_from_projectile( projectile_id, nuke_file, px, py, vel_x, vel_y )
