@@ -1,0 +1,148 @@
+<Entity name="portaalin jäljitelmä" tags="hm_mimic,hittable">
+
+	<HitboxComponent 
+		_tags=""
+        _enabled="1"
+		aabb_min_x="-15" 
+		aabb_min_y="-15"
+		aabb_max_x="15" 
+		aabb_max_y="15" 
+        is_enemy="1"
+	></HitboxComponent>
+
+    	<GameAreaEffectComponent
+        radius="15"
+        collide_with_tag="projectile_player"
+        frame_length="1"
+    ></GameAreaEffectComponent>
+
+    <DamageModelComponent
+        hp="1"
+    ></DamageModelComponent>
+
+	<LightComponent 
+		_tags=""
+		_enabled="1" 
+		radius="255"
+		fade_out_time="1.5" 
+		r="255"
+		g="40"
+		b="40"
+		offset_y="-16"
+	></LightComponent>
+	
+	<LightComponent 
+		_tags=""
+		_enabled="1" 
+		radius="64"
+		fade_out_time="1.5" 
+		r="255"
+		g="40"
+		b="40"
+		offset_y="-16"
+	></LightComponent>
+	
+	<ParticleEmitterComponent 
+		_tags=""
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="3"
+		lifetime_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="100"
+		count_max="100"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="15"
+		area_circle_radius.max="15"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="12"
+		emission_interval_max_frames="12"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+	<ParticleEmitterComponent 
+		_tags=""
+		emitted_material_name="spark_red"
+		gravity.y="0.0"
+		lifetime_min="3"
+		lifetime_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="1"
+		count_max="1"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="15"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="12"
+		emission_interval_max_frames="12"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="0"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+	<SpriteComponent 
+		_tags=""
+		image_file="data/buildings_gfx/teleport_center.xml" 
+		offset_x="0"
+		offset_y="0"
+		>
+	</SpriteComponent>
+
+	<!--<AudioLoopComponent
+		_tags=""
+		file="data/audio/Desktop/misc.bank"
+		event_name="misc/teleport_loop"
+		calculate_material_lowpass="0"
+		auto_play="0"
+		auto_play_if_enabled="1"
+		play_on_component_enable="1" >
+	</AudioLoopComponent>-->
+
+	<AudioLoopComponent
+		_tags=""
+		file="data/audio/Desktop/misc.bank"
+		event_name="misc/teleport_emitter_loop"
+		calculate_material_lowpass="0"
+		auto_play="0"
+		auto_play_if_enabled="1"
+		play_on_component_enable="1" >
+	</AudioLoopComponent>
+
+    <AudioComponent
+      file="data/audio/Desktop/projectiles.bank"
+      event_root="player_projectiles/tentacle_portal"
+      set_latest_event_position="1" >
+	</AudioComponent>
+
+    <LuaComponent
+		script_source_file="mods/noita.fairmod/files/entities/animals/hm_portal_mimic/humgy.lua"
+		execute_every_n_frame="5"
+		>
+	</LuaComponent>
+
+    <LuaComponent
+		script_death="mods/noita.fairmod/files/entities/animals/hm_portal_mimic/death.lua"
+		>
+	</LuaComponent>
+
+</Entity>

@@ -2,9 +2,8 @@ local fuckedupenemies = dofile("mods/noita.fairmod/files/scripts/fuckedupenemies
 local heartattack = dofile("mods/noita.fairmod/files/scripts/heartattack.lua")
 local nukes = dofile("mods/noita.fairmod/files/scripts/nukes/nukes.lua")
 
-
-
 dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
+dofile_once("mods/noita.fairmod/files/scripts/hm_portal_mimic.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
 
@@ -21,3 +20,4 @@ end
 
 
 -- Copi was here
+-- Moldos was here
