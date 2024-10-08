@@ -24,7 +24,7 @@ function evil.OnWorldPreUpdate()
 				local ex, ey = EntityGetTransform(enemy)
 				SetRandomSeed(ex, ey)
 				-- Copious bullshit ensues
-				local headache = (math.random(0, 10000) / 100) <= 0.5
+				local headache = (math.random(0, 10000) / 100) <= 2
 				-- Chicanery ends
 
 				local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
