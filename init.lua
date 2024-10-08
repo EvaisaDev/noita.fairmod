@@ -14,9 +14,9 @@ function OnPlayerSpawned(player)
 	end
 	GameAddFlagRun("fairmod_init")
 
-	local plays = tonumber(GlobalsGetValue("fairmod.plays")) or 0
+	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
-	GlobalsSetValue("fairmod.plays", tostring(plays))
+	ModSettingSet("fairmod.plays", plays)
 
 	local controls_comp = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
 	if controls_comp and Random(0, 5) == 1 then
