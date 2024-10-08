@@ -1,0 +1,92 @@
+<Entity name="$animal_longleg">
+
+	<Base file="data/entities/base_enemy_basic.xml">
+		<ItemChestComponent level="1"> </ItemChestComponent>
+
+		<SpriteAnimatorComponent
+			_enabled="0">
+		</SpriteAnimatorComponent>
+
+		<LuaComponent
+			_enabled="0"
+		>
+		</LuaComponent>
+
+		<AnimalAIComponent
+    		attack_dash_enabled="1"
+			escape_if_damaged_probability="0"
+			attack_melee_max_distance="10" 
+			sense_creatures="1"
+			needs_food="0">
+		</AnimalAIComponent>
+
+		<PathFindingComponent
+			can_jump="1">
+		</PathFindingComponent>
+
+		<SpriteComponent
+			offset_x="6"
+			offset_y="12"
+			emissive="1"
+			additive="1">
+		</SpriteComponent>
+
+		<DamageModelComponent
+			hp="20000"
+			ragdoll_filenames_file="data/ragdolls/longleg/filenames.txt"
+			ragdoll_offset_y="-6"
+			blood_sprite_directional="data/particles/bloodsplatters/bloodsplatter_directional_purple_$[1-3].xml"
+			blood_sprite_large="data/particles/bloodsplatters/bloodsplatter_purple_$[1-3].xml"
+			blood_spray_material="blood"
+			blood_spray_create_some_cosmetic="1"
+			ragdoll_fx_forced="DISINTEGRATED"
+		>
+			<damage_multipliers
+				fire="0"
+				electricity="0"
+				ice="0"
+				physics_hit="0"
+				radioactive="0"
+				poison="0"
+			></damage_multipliers>
+		</DamageModelComponent>
+
+		<CharacterPlatformingComponent
+			jump_velocity_y="-140"
+			run_velocity="25">
+		</CharacterPlatformingComponent>
+
+		<GenomeDataComponent
+			herd_id="spider">
+		</GenomeDataComponent>
+
+		<HitboxComponent
+			_enabled="1"
+			aabb_min_x="-5"
+			aabb_min_y="-6"
+			aabb_max_x="5"
+			aabb_max_y="6"
+		>
+		</HitboxComponent>
+
+		<CharacterDataComponent
+			collision_aabb_min_x="-2"
+			collision_aabb_max_x="2"
+			collision_aabb_min_y="-6"
+			collision_aabb_max_y="3"
+			mass="0.4"
+		>
+		</CharacterDataComponent>
+
+		<AudioComponent
+			file="data/audio/Desktop/animals.bank"
+			event_root="animals/ghost">
+		</AudioComponent>
+
+		<AudioComponent
+			_enabled="0"
+			file="data/audio/Desktop/animals.bank"
+			event_root="animals/ghost">
+		</AudioComponent>
+	</Base>
+</Entity>
