@@ -1,5 +1,5 @@
 local malice = {
-		OnPlayerSpawned = function(player_entity)
+	OnPlayerSpawned = function(player_entity)
 		-- synchronize death watches
 		local lcs = EntityGetComponentIncludingDisabled(player_entity, "LuaComponent", "glue_NOT") or {}
 		for i=1, #lcs do if ComponentGetValue2(lcs[i], "script_source_file") == "mods/noita.fairmod/files/scripts/heartattack2.lua" then return end end
