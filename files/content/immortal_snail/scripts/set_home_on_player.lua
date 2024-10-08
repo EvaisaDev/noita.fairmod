@@ -17,7 +17,5 @@ if(players and #players ~= 0)then
 
 	local distance = math.sqrt( (player_x - entity_x)^2 + (player_y - entity_y)^2 )
 
-	GamePrint("Distance: " .. distance)
-
 	ComponentSetValue2( ai_component, "max_distance_to_move_from_home", distance + 10 )
 end
