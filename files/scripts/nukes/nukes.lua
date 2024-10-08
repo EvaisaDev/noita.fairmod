@@ -21,8 +21,6 @@ function nukes.OnWorldPreUpdate()
 
 				local rand = random / 100
 
-				GamePrint( "Random: " .. tostring(random) .. " Value: " .. tostring(value) .. " Rand: " .. tostring(rand) )
-
 				if rand <= value then
 					local tags = EntityGetTags( projectile_id )
 					
