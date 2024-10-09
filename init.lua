@@ -5,8 +5,9 @@ local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_d
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
 
-dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
+dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
+dofile_once("mods/noita.fairmod/files/scripts/hm_portal_mimic.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/scripts/rework_spells.lua")
 
 
 function OnModPostInit()
@@ -14,7 +15,6 @@ function OnModPostInit()
 end
 
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
-
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
@@ -46,3 +46,4 @@ function OnWorldPreUpdate()
 end
 
 -- Copi was here
+-- Moldos was here
