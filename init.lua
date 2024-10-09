@@ -3,6 +3,7 @@ local heartattack = dofile("mods/noita.fairmod/files/content/heartattack/heartat
 local nukes = dofile("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
+local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -31,6 +32,7 @@ function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
 	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
+	crits.OnPlayerSpawned(player)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
