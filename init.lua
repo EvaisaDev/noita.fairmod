@@ -5,7 +5,7 @@ local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_d
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
 
-dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
+dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
