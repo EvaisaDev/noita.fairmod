@@ -7,6 +7,7 @@ local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
+dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 
@@ -16,7 +17,14 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 end
 
+--- Seed init
+function OnMagicNumbersAndWorldSeedInitialized()
+	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
+end
+
+
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
+
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
