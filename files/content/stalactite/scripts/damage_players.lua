@@ -1,6 +1,22 @@
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
+local velocity_comp = EntityGetFirstComponent(entity_id, "VelocityComponent")
+local can_damage = false;
+if(velocity_comp)then
+	local vel_x, vel_y = ComponentGetValue2(velocity_comp, "mVelocity")
+	local speed = math.sqrt(vel_x * vel_x + vel_y * vel_y)
+
+	print("speed: "..speed)
+
+	if(speed > 100)then
+		can_damage = true
+	end
+end
+
+if(not can_damage)then
+	return
+end
 local players = EntityGetInRadiusWithTag(x, y, 9, "player_unit") or {}
 
 for k, v in ipairs(players)do

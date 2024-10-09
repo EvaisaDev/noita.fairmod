@@ -19,7 +19,7 @@
 
 	<CollisionTriggerComponent
 		destroy_this_entity_when_triggered="0"
-		width="8"
+		width="12"
 		height="300"
 		radius="300"
 		required_tag="player_unit"
