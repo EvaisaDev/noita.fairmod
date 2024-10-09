@@ -14,7 +14,7 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml
 
 --- I hate doing things without a hook
 function OnModPostInit()
-	dofile_once("mods/noita.fairmod/files/content/hamis_reworked/hamis_reworked.lua")
+	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 end
 
@@ -25,6 +25,7 @@ end
 
 
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/scripts/perks.lua")
 
 
 function OnPlayerSpawned(player)
@@ -65,7 +66,8 @@ function OnPlayerSpawned(player)
 	if(damage_model_comp)then
 		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
 	end
-	
+
+	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")

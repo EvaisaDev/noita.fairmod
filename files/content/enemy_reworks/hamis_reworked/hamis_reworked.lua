@@ -7,13 +7,13 @@ local hamisits = { "data/ragdolls/longleg/head", "data/ragdolls/longleg/leg1", "
 local hamis_xml = nxml.parse(ModTextFileGetContent(hamis_file))
 
 hamis_xml:add_child(nxml.new_element("LuaComponent", {
-	script_damage_received = "mods/noita.fairmod/files/content/hamis_reworked/hamis_death.lua",
-	script_death = "mods/noita.fairmod/files/content/hamis_reworked/hamis_death.lua",
+	script_damage_received = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death.lua",
+	script_death = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death.lua",
 }))
 
 ModTextFileSetContent(hamis_file, tostring(hamis_xml))
 
-local hamis_parts = nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/hamis_reworked/hamis_part.xml"))
+local hamis_parts = nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml"))
 local base = hamis_parts:first_of("Base")
 if not base then return end
 
