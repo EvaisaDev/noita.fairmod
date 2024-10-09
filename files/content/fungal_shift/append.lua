@@ -101,29 +101,32 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 				end
 			end
 
-			local to_material = CellFactory_GetType(to.material)
+			if to.material and from.materials then
+				local to_material = CellFactory_GetType(to.material)
 
-			-- apply effects
-			for i, it in ipairs(from.materials) do
-				local from_material = CellFactory_GetType(it)
+				-- apply effects
+				for i, it in ipairs(from.materials) do
+					print('from.materials (' .. tostring(from.materials) .. ':'.. type(from.materials) .. ')')
+					local from_material = CellFactory_GetType(it)
 
-				from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(from_material)))
-				if from.name_material then
-					from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(
-					CellFactory_GetType(from.name_material))))
-				end
+					from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(from_material)))
+					if from.name_material then
+						from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(
+						CellFactory_GetType(from.name_material))))
+					end
 
-				-- convert
-				if from_material ~= to_material then
-					print(CellFactory_GetUIName(from_material) .. " -> " .. CellFactory_GetUIName(to_material))
-					ConvertMaterialEverywhere(from_material, to_material)
-					converted_any = true
+					-- convert
+					if from_material ~= to_material then
+						print(CellFactory_GetUIName(from_material) .. " -> " .. CellFactory_GetUIName(to_material))
+						ConvertMaterialEverywhere(from_material, to_material)
+						converted_any = true
 
-					-- shoot particles of new material
-					GameCreateParticle(CellFactory_GetName(from_material), x - 10, y - 10, 20, rand(-100, 100),
-						rand(-100, -30), true, true)
-					GameCreateParticle(CellFactory_GetName(from_material), x + 10, y - 10, 20, rand(-100, 100),
-						rand(-100, -30), true, true)
+						-- shoot particles of new material
+						GameCreateParticle(CellFactory_GetName(from_material), x - 10, y - 10, 20, rand(-100, 100),
+							rand(-100, -30), true, true)
+						GameCreateParticle(CellFactory_GetName(from_material), x + 10, y - 10, 20, rand(-100, 100),
+							rand(-100, -30), true, true)
+					end
 				end
 			end
 
