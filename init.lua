@@ -27,6 +27,22 @@ ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.f
 
 
 function OnPlayerSpawned(player)
+	local x, y = EntityGetTransform(player)
+
+	-- move player to a random parallel world.
+
+	SetRandomSeed(x, y)
+
+	local map_w, map_h = BiomeMapGetSize()
+	local offset_x = (map_w * 512 * Random(-3, 3))
+
+	local target_x = x + offset_x
+	local target_y = y
+
+	EntityApplyTransform(player, target_x, target_y)
+
+	----------------------------------
+	
 	if GameHasFlagRun("fairmod_init") then
 		return
 	end
@@ -39,7 +55,7 @@ function OnPlayerSpawned(player)
 	ModSettingSet("fairmod.plays", plays)
 
 	heartattack.OnPlayerSpawned(player)
-	local x, y = EntityGetTransform(player)
+
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
 	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
 	crits.OnPlayerSpawned(player)
