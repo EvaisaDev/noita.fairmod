@@ -18,6 +18,11 @@ perk_list[#perk_list+1] = {
 					if counter == 0 then
 						-- This counts as spending the extra life and will cause the ui icon to be updated
 						ComponentSetValue2(game_effect, "mCounter", counter + 1)
+						local damage_model = EntityGetFirstComponent(entity_who_picked, "DamageModelComponent")
+						if damage_model then
+							local GUI_HP_MULTIPLIER = tonumber(MagicNumbersGetValue("GUI_HP_MULTIPLIER"))
+							ComponentSetValue2(damage_model, "hp", 100 / GUI_HP_MULTIPLIER)
+						end
 						return
 					end
 				end
