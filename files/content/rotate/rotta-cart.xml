@@ -1,0 +1,7 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/rotate/rotta-cart-gfx.xml"
+		offset_x="0"
+		offset_y="0">
+	</SpriteComponent>
+</Entity>

@@ -13,7 +13,7 @@ ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/file
 
 --- I hate doing things without a hook
 function OnModPostInit()
-	dofile_once("mods/noita.fairmod/files/content/hamis_reworked/hamis_reworked.lua")
+	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 end
 
@@ -50,6 +50,8 @@ function OnPlayerSpawned(player)
 	if(damage_model_comp)then
 		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
 	end
+
+	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
