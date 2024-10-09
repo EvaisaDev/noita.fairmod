@@ -1,0 +1,21 @@
+<Entity>
+	<PhysicsBody2Component
+		update_entity_transform="1">
+	</PhysicsBody2Component>
+
+	<PhysicsImageShapeComponent
+		image_file="data/particles/guts_05.png"
+		use_sprite="1"
+		centered="1"
+		is_root="1"
+		material="meat"
+		>
+	</PhysicsImageShapeComponent>
+
+	<LuaComponent
+		script_source_file="data/scripts/particles/guts_init.lua"
+		execute_every_n_frame="1"
+		remove_after_executed="1"
+		>
+	</LuaComponent>
+</Entity>

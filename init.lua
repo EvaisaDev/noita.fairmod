@@ -35,6 +35,13 @@ function OnPlayerSpawned(player)
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
 	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
 	crits.OnPlayerSpawned(player)
+
+
+	-- enable physics damage on the player
+	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+	if(damage_model_comp)then
+		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
+	end
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")

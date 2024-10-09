@@ -71,12 +71,12 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 	ComponentSetValue2(animal_ai, "attack_dash_damage", attack_dash_damage * damage_mult)
 	ComponentSetValue2(animal_ai, "attack_dash_speed", attack_dash_speed * damage_mult)
 	ComponentSetValue2(animal_ai, "attack_dash_distance", attack_dash_distance * damage_mult)
-	local attack_ranged_use_laser_sight = ComponentGetValue2(animal_ai, "attack_ranged_use_laser_sight")
-	local attack_ranged_predict = ComponentGetValue2(animal_ai, "attack_ranged_use_laser_sight")
+	local attack_ranged_predict = ComponentGetValue2(animal_ai, "attack_ranged_predict")
+	local attack_ranged_predict = ComponentGetValue2(animal_ai, "attack_ranged_predict")
 	local attack_ranged_entity_count_min = ComponentGetValue2(animal_ai, "attack_ranged_entity_count_min")
 	local attack_ranged_entity_count_max = ComponentGetValue2(animal_ai, "attack_ranged_entity_count_max")
-	ComponentSetValue2(animal_ai, "attack_ranged_use_laser_sight",
-		attack_ranged_use_laser_sight or math.random(1, 100) > 13)
+	ComponentSetValue2(animal_ai, "attack_ranged_predict",
+		attack_ranged_predict or math.random(1, 100) > 13)
 	ComponentSetValue2(animal_ai, "attack_ranged_predict", attack_ranged_predict or math.random(1, 3) ==
 		1)
 	ComponentSetValue2(animal_ai, "attack_ranged_entity_count_min",
