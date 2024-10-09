@@ -4,6 +4,7 @@ local nukes = dofile("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
+local clipboard = dofile("mods/noita.fairmod/files/content/clipboard/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -12,6 +13,9 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
+
+-- Optional imgui dep
+imgui = load_imgui and load_imgui({mod="noita.fairmod", version="1.0.0"})
 
 --- I hate doing things without a hook
 function OnModPostInit()
@@ -44,7 +48,7 @@ function OnPlayerSpawned(player)
 	EntityApplyTransform(player, target_x, target_y)
 
 	----------------------------------
-	
+
 	if GameHasFlagRun("fairmod_init") then
 		return
 	end
@@ -59,6 +63,8 @@ function OnPlayerSpawned(player)
 	heartattack.OnPlayerSpawned(player)
 
 	crits.OnPlayerSpawned(player)
+
+	clipboard.OnPlayerSpawned(player)
 
 
 	-- enable physics damage on the player
