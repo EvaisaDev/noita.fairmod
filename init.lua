@@ -10,9 +10,10 @@ dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 
-
+--- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/hamis_reworked/hamis_reworked.lua")
+	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 end
 
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
