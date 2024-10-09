@@ -16,7 +16,7 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 end
 
-ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
+ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
