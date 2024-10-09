@@ -135,13 +135,13 @@
 	</AudioComponent>
 
     <LuaComponent
-		script_source_file="mods/noita.fairmod/files/entities/animals/hm_portal_mimic/humgy.lua"
+		script_source_file="mods/noita.fairmod/files/content/hm_portal_mimic/humgy.lua"
 		execute_every_n_frame="5"
 		>
 	</LuaComponent>
 
     <LuaComponent
-		script_death="mods/noita.fairmod/files/entities/animals/hm_portal_mimic/death.lua"
+		script_death="mods/noita.fairmod/files/content/hm_portal_mimic/death.lua"
 		>
 	</LuaComponent>
 
