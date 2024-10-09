@@ -1,0 +1,49 @@
+<Entity name="stalagtite" tags="" >
+
+	<SpriteAnimatorComponent/>
+
+	<SpriteComponent 
+		image_file="mods/noita.fairmod/files/content/stalactite/sprites/stalactite_entrance_2.png" 
+		offset_x="7"
+		offset_y="0">
+	</SpriteComponent>
+		
+    <VerletPhysicsComponent>
+    </VerletPhysicsComponent>
+
+	<MoveToSurfaceOnCreateComponent
+		lookup_radius="300"
+		verlet_min_joint_distance="14"
+		type="VERLET_ROPE_ONE_JOINT" >
+	</MoveToSurfaceOnCreateComponent>
+
+	<CollisionTriggerComponent
+		destroy_this_entity_when_triggered="0"
+		width="8"
+		height="300"
+		radius="300"
+		required_tag="player_unit"
+		>
+	</CollisionTriggerComponent>
+
+	<VariableStorageComponent
+		name="offset_x"
+		value_int="7"
+	/>
+
+	<VariableStorageComponent
+		name="offset_y"
+		value_int="40"
+	/>
+
+	<VariableStorageComponent
+		name="projectile"
+		value_string="mods/noita.fairmod/files/content/stalactite/entities/projectiles/projectile_entrance_2.xml"
+	/>
+	
+    <LuaComponent 
+		script_collision_trigger_hit="mods/noita.fairmod/files/content/stalactite/scripts/trigger.lua" 
+		execute_on_added="0">
+   	</LuaComponent>
+
+</Entity>

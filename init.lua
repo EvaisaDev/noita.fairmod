@@ -22,7 +22,9 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 end
 
-ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/mountain_hall_append.lua")
+
+ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
+
 
 function OnPlayerSpawned(player)
 	if GameHasFlagRun("fairmod_init") then
