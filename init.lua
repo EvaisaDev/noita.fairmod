@@ -24,6 +24,7 @@ end
 
 
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/scripts/perks.lua")
 
 
 function OnPlayerSpawned(player)
