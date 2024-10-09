@@ -1,0 +1,20 @@
+<Sprite
+filename="mods/noita.fairmod/files/content/gold_bananas/sprites/bananas.png"
+offset_x="23"
+offset_y="23"
+default_animation="rotate"
+ >
+
+<!-- explosion -->
+<RectAnimation
+name="rotate"
+pos_x="0"
+pos_y="0"
+frame_count="12"
+frame_width="46"
+frame_height="46"
+frame_wait="0.1"
+frames_per_row="12"
+loop="1"   >
+</RectAnimation>
+</Sprite>

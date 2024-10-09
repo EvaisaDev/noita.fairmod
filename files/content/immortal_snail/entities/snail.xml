@@ -124,7 +124,5 @@
 		execute_times="-1" >
 	</LuaComponent>
 
-	<StreamingKeepAliveComponent/>	
-
 </Entity>
 
