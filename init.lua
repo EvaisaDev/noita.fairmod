@@ -3,6 +3,7 @@ local heartattack = dofile("mods/noita.fairmod/files/content/heartattack/heartat
 local nukes = dofile("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
+local random_lag = dofile("mods/noita.fairmod/files/content/radnom_lag/radnom_lag.lua") ---@type fuckupenemies
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -39,8 +40,9 @@ function OnWorldPreUpdate()
 	if GameGetFrameNum() % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
 	end
-	nukes.OnWorldPreUpdate();
+	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
+	random_lag:OnWorldPreUpdate()
 end
 
 -- Copi was here
