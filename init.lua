@@ -5,7 +5,7 @@ local input_delay = dofile("mods/noita.fairmod/files/content/input_delay/input_d
 local tm_trainer = dofile("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile("mods/noita.fairmod/files/content/crits/init.lua")
 
-dofile_once("mods/noita.fairmod/files/scripts/coveryourselfinoil.lua")
+dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
@@ -40,6 +40,13 @@ function OnPlayerSpawned(player)
 	local _, snail_x, snail_y = RaytracePlatforms(x - 100, y - 100, x - 100, y + 500)
 	EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", snail_x, snail_y)
 	crits.OnPlayerSpawned(player)
+
+
+	-- enable physics damage on the player
+	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+	if(damage_model_comp)then
+		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
+	end
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
