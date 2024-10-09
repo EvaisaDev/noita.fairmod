@@ -11,6 +11,7 @@ dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 
 --- I hate doing things without a hook
 function OnModPostInit()
@@ -25,7 +26,6 @@ end
 
 
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
-ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/scripts/perks.lua")
 
 
 function OnPlayerSpawned(player)
