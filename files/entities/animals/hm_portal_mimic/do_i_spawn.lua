@@ -15,10 +15,3 @@ if doidoit == 2 then
     EntityLoad("data/entities/animals/noita.fairmod_hm_portal_mimic.xml", x, y)
     EntityKill(portal)
 end
-
---[[local comps = EntityGetAllComponents(portal)
-for i,v in ipairs(comps) do
-    EntitySetComponentIsEnabled(portal, v, false)
-end
-EntityLoad("data/entities/animals/noita.fairmod_hm_portal_mimic.xml", x, y)
-EntityKill(portal)]]
