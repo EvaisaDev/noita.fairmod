@@ -7,8 +7,6 @@ if(velocity_comp)then
 	local vel_x, vel_y = ComponentGetValue2(velocity_comp, "mVelocity")
 	local speed = math.sqrt(vel_x * vel_x + vel_y * vel_y)
 
-	print("speed: "..speed)
-
 	if(speed > 100)then
 		can_damage = true
 	end
