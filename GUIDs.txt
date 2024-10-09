@@ -16,10 +16,11 @@
 {8340afee-1bfb-481c-8b65-a1721703356c} bus:/reverb
 {40bdfd79-5dfd-4303-8a71-0792c637c380} bus:/ui
 {c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/nuke/fart1
-{77827162-56a5-41aa-954d-0f068f68f56e} event:/nuke/fart2
-{9529a8ae-dbcc-4b45-a1e2-1546cd44b39a} event:/nuke/fart3
-{a9bc3ec2-6be8-406e-9004-b28c8fa4f327} event:/nuke/fart4
-{5839ed79-6e2f-41d0-b16a-90ef7ae5df7d} event:/nuke/fart5
+{b384a56c-faac-461e-9710-59b3d955ea01} event:/nuke/fart2
+{a21b21ee-5c60-4606-a248-a3b22d0bbcbf} event:/nuke/fart3
+{53d38946-4d1e-4b9d-bbec-463a2b7de10e} event:/nuke/fart4
+{a5d4cb7e-f443-4251-89c2-f3dbef789d95} event:/nuke/fart5
+{b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass
 {6864bf18-2f50-4b34-aecc-63c1bdf7fdf4} parameter:/Migration Name Conflict (4)/Distance
 {ddf75d16-bdbe-4460-908b-0a29bd483835} parameter:/lowpass
