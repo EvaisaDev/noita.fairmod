@@ -1,7 +1,7 @@
 The point of this project is to make Noita a considerably worse experience.  
 Example potential features:  
 - Falling boulders
-- Completely invisible traps that insta kill the player.
+- traps that kill the player.
 - Mimics for literally everything.
 - Whatever other bullshit you can come up with.
    
