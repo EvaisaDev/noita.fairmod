@@ -20,9 +20,14 @@ for reaction in materials:each_of("Reaction") do
 		attr.output_cell2 = "cement"
 	end
 
-	if attr.input_cell1 == "[lava]" and is_water(attr.input_cell2) then
-		attr.output_cell1 = "gunpowder_unstable"
-		attr.output_cell2 = "rainbow_gas"
+	if is_water(attr.input_cell2) then
+		if attr.input_cell1 == "[lava]" then
+			attr.output_cell1 = "gunpowder_unstable"
+			attr.output_cell2 = "rainbow_gas"
+		end
+		if attr.input_cell1 == "magic_liquid_mana_regeneration" then
+			attr.output_cell1 = "lava"
+		end
 	end
 end
 
@@ -30,9 +35,10 @@ for celldata in materials:each_of("CellData") do
 	if is_water(celldata.attr.name) then
 		local graphics = celldata:first_of("Graphics")
 		if graphics then
-			graphics.attr.texture_file = "data/materials_gfx/concrete_wet.png"
+			graphics.attr.texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png"
 		else
-			celldata:add_child(nxml.new_element("Graphics", { texture_file = "data/materials_gfx/concrete_wet.png" }))
+			celldata:add_child(nxml.new_element("Graphics",
+				{ texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png" }))
 		end
 	end
 end
