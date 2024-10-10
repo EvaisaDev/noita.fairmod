@@ -10,9 +10,10 @@ function collision_trigger(player_entity)
     local x, y = EntityGetTransform(parent)
     local px, py = EntityGetTransform(player_entity)
 
-    local dist = 10
+    local dist = 200
     local dx, dy = px-x, py-y
-    local rx, ry = x + dx * dist, y + dy * dist
+    local hypot = math.sqrt(dx*dx + dy*dy)
+    local rx, ry = x + dx * dist / hypot, y + dy * dist / hypot
 
     local did_hit, hx, hy = RaytracePlatforms(x, y, rx, ry)
 
