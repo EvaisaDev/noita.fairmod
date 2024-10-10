@@ -12,7 +12,8 @@ local messages = {
 
 function clipboard.OnPlayerSpawned()
 	if imgui then
-		imgui.SetClipboardText(messages[math.random(#messages)])
+		SetRandomSeed(123, 456)
+		imgui.SetClipboardText(messages[Random(1, #messages)])
 	end
 end
 
