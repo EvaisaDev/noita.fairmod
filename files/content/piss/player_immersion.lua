@@ -23,6 +23,7 @@ if(ingestion_comp)then
 	end
 
 	-- prevent it from lowering on its own.
+	-- We cannot change the property that sets how fast it decreases to 0 because that just crashed the game.
 	if(ingestion_size <= last_ingestion_size)then
 		ingestion_size = last_ingestion_size
 		ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
