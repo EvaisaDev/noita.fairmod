@@ -1,0 +1,67 @@
+<Sprite
+	filename="mods/noita.fairmod/files/content/gamblecore/slot_001_machine.png"
+	offset_x="11"
+	offset_y="24"
+	default_animation="idle"
+>
+	<RectAnimation
+	name="idle"
+	pos_x="0"
+	pos_y="0"
+	frame_count="1"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.1"
+	frames_per_row="1"
+	loop="1"   >
+	</RectAnimation>
+
+	<RectAnimation
+	name="pull"
+	pos_x="0"
+	pos_y="0"
+	frame_count="3"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.04"
+	frames_per_row="3"
+	loop="0"   >
+	</RectAnimation>
+
+	<RectAnimation
+	name="roll"
+	pos_x="0"
+	pos_y="25"
+	frame_count="3"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.04"
+	frames_per_row="4"
+	loop="1"   >
+	</RectAnimation>
+
+	
+	<RectAnimation
+	name="win"
+	pos_x="0"
+	pos_y="50"
+	frame_count="1"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.04"
+	frames_per_row="1"
+	loop="1"   >
+	</RectAnimation>
+	
+	<RectAnimation
+	name="lose"
+	pos_x="0"
+	pos_y="75"
+	frame_count="1"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.04"
+	frames_per_row="1"
+	loop="1"   >
+	</RectAnimation>
+</Sprite>

@@ -1,0 +1,46 @@
+<Entity>
+    <SpriteComponent
+		_tags="slotmachine_sprite"
+        image_file="mods/noita.fairmod/files/content/gamblecore/slotmachine_sprite.xml"
+        rect_animation="idle"
+		z_index="1"
+    />
+
+    <SpriteAnimatorComponent
+		target_sprite_comp_name="slotmachine_sprite"
+    />
+
+	<SpriteComponent 
+		_tags="cost"
+		image_file="data/fonts/font_pixel_white.xml"
+		is_text_sprite="1"
+		offset_x="11"
+		offset_y="30"
+		update_transform="1"
+		update_transform_rotation="0"
+		text="0"
+		z_index="-1"
+	/>
+
+	<InteractableComponent
+		_tags="is_not_gambling,enough_money"
+		radius="20"
+		ui_text="Press $0 to gamble."
+		name="interact"
+	/>
+
+	<InteractableComponent
+		_enabled="0"
+		_tags="is_not_gambling,not_enough_money"
+		radius="20"
+		ui_text="Not enough gold to gamble."
+		name="not_enough_money"
+	/>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/gamblecore/slot_machine.lua"
+		script_interacting="mods/noita.fairmod/files/content/gamblecore/slot_machine.lua"
+		execute_every_n_frame="1"
+		vm_type = "SHARED_BY_MANY_COMPONENTS"
+	/>
+</Entity>

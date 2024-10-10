@@ -35,5 +35,8 @@ end
 
 --ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/gamblecore/append.lua")
 
+ModLuaFileAppend( "data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
+ModLuaFileAppend( "data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
+
 
 return gamba
