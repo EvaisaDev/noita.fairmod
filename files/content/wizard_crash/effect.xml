@@ -1,0 +1,14 @@
+<Entity>
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="CRASH"
+		frames="1"
+		>
+	</GameEffectComponent >
+
+	<LuaComponent
+		execute_times="1"
+		script_source_file="mods/noita.fairmod/files/content/wizard_crash/effect.lua" >
+	</LuaComponent>
+
+</Entity>
