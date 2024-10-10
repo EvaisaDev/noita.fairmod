@@ -9,7 +9,13 @@ local clipboard = dofile("mods/noita.fairmod/files/content/clipboard/init.lua")
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
+dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
+
+dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
+
+dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
+
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
@@ -55,6 +61,8 @@ function OnPlayerSpawned(player)
 	end
 	GameAddFlagRun("fairmod_init")
 
+	-- stuff after here only runs once on initial run start
+
 	tm_trainer.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
@@ -75,6 +83,12 @@ function OnPlayerSpawned(player)
 	end
 
 	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
+	
+	EntityAddComponent2(player, "LuaComponent", {
+		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
+		execute_every_n_frame = 1,
+		execute_on_added = true,
+	})
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
