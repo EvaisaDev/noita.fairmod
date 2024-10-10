@@ -5,7 +5,6 @@
 --  * 25x more material dropped on entity death
 
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
-local BASEMOD_PREFIX = "mods/noita.fairmod/files/content/better_props/"
 --
 
 local prop_files = {
@@ -146,11 +145,9 @@ local function fixup_prop_children(element)
 end
 
 for _, prop_file in ipairs(prop_files) do
-  local prop_xml = nxml.parse(ModTextFileGetContent(prop_file))
-
-  fixup_prop_children(prop_xml)
-  fixup_prop_children(prop_xml:first_of("Base"))
-
-  ModTextFileSetContent(prop_file, tostring(prop_xml))
+  for prop_xml in nxml.edit_file(prop_file) do
+    fixup_prop_children(prop_xml)
+    fixup_prop_children(prop_xml:first_of("Base"))
+  end
 end
 

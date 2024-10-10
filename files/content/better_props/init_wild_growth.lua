@@ -1,14 +1,11 @@
 -- Makes root growers spread a lot more
 
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
-local BASEMOD_PREFIX = "mods/noita.fairmod/files/content/better_props/"
+local BETTER_PROPS_PREFIX = "mods/noita.fairmod/files/content/better_props/"
 --
 
-local ROOTGROWER_FILE = "data/entities/props/root_grower.xml"
-local ROOTGROWER_BRANCH_FILE = "data/entities/props/root_grower_branch.xml"
-
-ModLuaFileAppend("data/scripts/props/root_grower_split.lua", BASEMOD_PREFIX .. "root_grower_split_append.lua")
-ModLuaFileAppend("data/scripts/props/root_grower_fruit.lua", BASEMOD_PREFIX .. "root_grower_fruit_append.lua")
+ModLuaFileAppend("data/scripts/props/root_grower_split.lua", BETTER_PROPS_PREFIX .. "root_grower_split_append.lua")
+ModLuaFileAppend("data/scripts/props/root_grower_fruit.lua", BETTER_PROPS_PREFIX .. "root_grower_fruit_append.lua")
 
 
 local function rootgrower_apply_changes(element)
@@ -37,10 +34,11 @@ local function rootgrower_apply_changes(element)
   end
 end
 
-local rootgrower_xml = nxml.parse(ModTextFileGetContent(ROOTGROWER_FILE))
-rootgrower_apply_changes(rootgrower_xml)
-ModTextFileSetContent(ROOTGROWER_FILE, tostring(rootgrower_xml))
 
-local rootgrower_branch_xml = nxml.parse(ModTextFileGetContent(ROOTGROWER_BRANCH_FILE))
-rootgrower_apply_changes(rootgrower_branch_xml:first_of("Base"))
-ModTextFileSetContent(ROOTGROWER_BRANCH_FILE, tostring(rootgrower_branch_xml))
+for rootgrower_xml in nxml.edit_file("data/entities/props/root_grower.xml") do
+  rootgrower_apply_changes(rootgrower_xml)
+end
+
+for rootgrower_branch_xml in nxml.edit_file("data/entities/props/root_grower_branch.xml") do
+  rootgrower_apply_changes(rootgrower_branch_xml:first_of("Base"))
+end
