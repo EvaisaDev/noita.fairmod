@@ -11,6 +11,7 @@ dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfin
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
+dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
