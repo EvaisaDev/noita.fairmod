@@ -15,6 +15,9 @@
 {9e5f6674-ecca-4cb3-9e39-050604be24e9} bus:/music_reverb
 {8340afee-1bfb-481c-8b65-a1721703356c} bus:/reverb
 {40bdfd79-5dfd-4303-8a71-0792c637c380} bus:/ui
+{9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
+{4a18f166-f0c0-467c-b874-8bc0f7361b96} event:/gamblecore/icantstopwinning
+{8dbd8a86-c11d-42d0-a796-f3ddbdedb96c} event:/gamblecore/letsgogambling
 {7c93adb7-d17f-42c6-8f23-c84b3d4625b9} event:/immersivepiss/diarrhea
 {d024882e-4a93-4b8e-9937-d476a54daaf0} event:/immersivepiss/timetotakeapiss
 {c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/nuke/fart1
