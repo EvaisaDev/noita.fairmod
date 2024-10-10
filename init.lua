@@ -10,6 +10,7 @@ dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfin
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
+dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
