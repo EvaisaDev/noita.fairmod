@@ -5,11 +5,10 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local WORLD_WIDTH = 70 * 512
 local MAX_PARALLEL = 3  -- does NOT support large numbers
 
-local pixel_scene_files = { "data/biome/_pixel_scenes.xml" }
-
-for filename in nxml.parse_file("data/biome/_pixel_scenes.xml"):first_of("PixelSceneFiles"):each_of("File") do
-  table.insert(pixel_scene_files, filename:text())
-end
+local pixel_scene_files = {
+  "data/biome_impl/spliced/lavalake2.xml",
+  "data/biome_impl/spliced/lavalake_pit_bottom.xml",
+}
 
 local function shallow_copy_table(src)
   local result = {}
@@ -43,6 +42,5 @@ end
 for _, filename in ipairs(pixel_scene_files) do
   for scene_file in nxml.edit_file(filename) do
     add_pw_scenes(scene_file:first_of("mBufferedPixelScenes"), "pos_x")
-    add_pw_scenes(scene_file:first_of("BackgroundImages"), "x")
   end
 end
