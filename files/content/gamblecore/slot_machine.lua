@@ -195,7 +195,7 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 				ComponentSetValue2(sprite_component, "rect_animation", gamble_states[state].animation)
 				EntityRefreshSprite( entity_id, sprite_component )
 
-				will_win = (not GameHasFlagRun("has_won") and Random(1, 100) < 50)
+				will_win = (not GameHasFlagRun("has_won") and Random(1, 100) < 10)
 
 				time = 0
 				if(not lets_go_gambling)then
