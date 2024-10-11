@@ -1,26 +1,10 @@
-local _OnBiomeConfigLoaded = OnBiomeConfigLoaded
-local _BiomeSetValue = BiomeSetValue
-local _SetRandomSeed = SetRandomSeed
-local _apply_modifier_if_has_none = apply_modifier_if_has_none
-local stupidity = 5
-function SetRandomSeed(...)
-	local args = { ... }
-	SetRandomSeed(args[1] + stupidity * stupidity, args[2] - stupidity)
+function has_modifiers()
+	return true
 end
-function apply_modifier_if_has_none(...)
-	stupidity = stupidity + 1
-	_apply_modifier_if_has_none(...)
+function biome_modifier_applies_to_biome()
+	return true
 end
-function OnBiomeConfigLoaded(...)
-	while stupidity > 0 do
-		print("being stupid")
-		_OnBiomeConfigLoaded(...)
-	end
-end
-function BiomeSetValue(...)
-	local thing = ({ ... })[2]
-	if thing == "mModifierUIDecorationFile" then
-		stupidity = stupidity - 1
-	end
-	_BiomeSetValue(...)
+local list = { "clouds", "the_end", "the_sky", "dragoncave", "wandcave", "wizardcave" }
+for _, v in ipairs(list) do
+	table.insert(biomes, { "data/biome/" .. v .. ".xml" })
 end

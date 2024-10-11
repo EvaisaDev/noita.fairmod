@@ -5,6 +5,7 @@ mod_settings = {}
 
 local function PatchGamesInitlua()
 	local file = "data/scripts/init.lua"
+	print("patcher")
 	local patch = "mods/noita.fairmod/files/content/biome_mods/biome_modifiers_patch.lua"
 	local file_appends = ModLuaFileGetAppends(file)
 
