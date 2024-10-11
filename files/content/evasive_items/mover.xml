@@ -1,19 +1,19 @@
 <Entity>
-    <InheritTransformComponent
-		only_position="1" >
+	<InheritTransformComponent
+		only_position="1">
 	</InheritTransformComponent>
 
-    <CollisionTriggerComponent
-      width="64"
-      height="64" 
-      radius="128"
-      required_tag="player_unit"
-      destroy_this_entity_when_triggered="0">
-  	</CollisionTriggerComponent>
+	<CollisionTriggerComponent
+		width="64"
+		height="64"
+		radius="128"
+		required_tag="player_unit"
+		destroy_this_entity_when_triggered="0">
+	</CollisionTriggerComponent>
 
-    <LuaComponent
-      script_collision_trigger_hit="mods/noita.fairmod/files/content/evasive_items/move_parent.lua"
-      execute_every_n_frame="-1" >
-    </LuaComponent>
+	<LuaComponent
+		script_collision_trigger_hit="mods/noita.fairmod/files/content/evasive_items/move_parent.lua"
+		execute_every_n_frame="-1">
+	</LuaComponent>
 
 </Entity>

@@ -1,19 +1,19 @@
-<Sprite 
-  filename="mods/noita.fairmod/files/content/rotate/rotta-cart.png" 
-  offset_x="32" 
-  offset_y="32"
-  default_animation="default" >
+<Sprite
+	filename="mods/noita.fairmod/files/content/rotate/rotta-cart.png"
+	offset_x="32"
+	offset_y="32"
+	default_animation="default">
 
-  <RectAnimation 
-    frame_count="22" 
-    frame_height="32" 
-    frame_wait="0.03" 
-    frame_width="32" 
-    frames_per_row="22" 
-    name="default" 
-    pos_x="0" 
-    pos_y="0" 
-	loop="1">
+	<RectAnimation
+		frame_count="22"
+		frame_height="32"
+		frame_wait="0.03"
+		frame_width="32"
+		frames_per_row="22"
+		name="default"
+		pos_x="0"
+		pos_y="0"
+		loop="1">
 
-  </RectAnimation>
+	</RectAnimation>
 </Sprite>

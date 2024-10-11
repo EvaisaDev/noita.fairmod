@@ -1,16 +1,16 @@
 <Entity>
-    <SpriteComponent
+	<SpriteComponent
 		_tags="slotmachine_sprite"
-        image_file="mods/noita.fairmod/files/content/gamblecore/slotmachine_sprite.xml"
-        rect_animation="idle"
+		image_file="mods/noita.fairmod/files/content/gamblecore/slotmachine_sprite.xml"
+		rect_animation="idle"
 		z_index="1"
-    />
+	/>
 
-    <SpriteAnimatorComponent
+	<SpriteAnimatorComponent
 		target_sprite_comp_name="slotmachine_sprite"
-    />
+	/>
 
-	<SpriteComponent 
+	<SpriteComponent
 		_tags="cost"
 		image_file="data/fonts/font_pixel_white.xml"
 		is_text_sprite="1"
@@ -41,6 +41,6 @@
 		script_source_file="mods/noita.fairmod/files/content/gamblecore/slot_machine.lua"
 		script_interacting="mods/noita.fairmod/files/content/gamblecore/slot_machine.lua"
 		execute_every_n_frame="1"
-		vm_type = "SHARED_BY_MANY_COMPONENTS"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
 	/>
 </Entity>

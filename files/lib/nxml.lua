@@ -802,9 +802,10 @@ end
 function XML_ELEMENT_FUNCS:each_of(element_name)
 	---@cast self element
 	local i = 1
+	local n = #self.children
 
 	return function()
-		if i <= #self.children then
+		while i <= n do
 			local child = self.children[i]
 			i = i + 1
 			if child.name == element_name then
