@@ -1,20 +1,20 @@
 local snail = EntityGetWithName("Immortal Snail")
-if(snail == nil or snail == 0 or not EntityGetIsAlive(snail))then
+if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
 	local camera_x, camera_y, camera_w, camera_h = GameGetCameraBounds()
 	local camera_center_x = camera_x + (camera_w / 2)
 	local camera_center_y = camera_y + (camera_h / 2)
 
 	SetRandomSeed(camera_x + GameGetFrameNum(), camera_y + GameGetFrameNum())
-    local tries = 0
-    local max_tries = 100
-    local max_distance_from_edge = 10
-    local valid = false
-    local new_x, new_y = 0, 0
+	local tries = 0
+	local max_tries = 100
+	local max_distance_from_edge = 10
+	local valid = false
+	local new_x, new_y = 0, 0
 
-    while (tries < max_tries and not valid) do
-        -- Generate a random position outside the camera bounds
-        local direction_x = Random(0, 1)
-		if(direction_x == 0)then
+	while tries < max_tries and not valid do
+		-- Generate a random position outside the camera bounds
+		local direction_x = Random(0, 1)
+		if direction_x == 0 then
 			direction_x = -1
 		end
 
@@ -31,11 +31,12 @@ if(snail == nil or snail == 0 or not EntityGetIsAlive(snail))then
 			new_y = hit_y - 3
 		end
 
-        tries = tries + 1
-    end
+		tries = tries + 1
+	end
 
-    if (valid) then
+	if valid then
 		EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", new_x, new_y)
 		--GamePrint("An immortal snail has spawned!")
 	end
 end
+

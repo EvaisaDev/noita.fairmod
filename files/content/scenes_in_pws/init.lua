@@ -3,44 +3,46 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 -- default map width seems to be 70
 local WORLD_WIDTH = 70 * 512
-local MAX_PARALLEL = 3  -- does NOT support large numbers
+local MAX_PARALLEL = 3 -- does NOT support large numbers
 
 local pixel_scene_files = {
-  "data/biome_impl/spliced/lavalake2.xml",
-  "data/biome_impl/spliced/lavalake_pit_bottom.xml",
+	"data/biome_impl/spliced/lavalake2.xml",
+	"data/biome_impl/spliced/lavalake_pit_bottom.xml",
 }
 
 local function shallow_copy_table(src)
-  local result = {}
-  for k,v in pairs(src) do
-    result[k] = v
-  end
-  return result
+	local result = {}
+	for k, v in pairs(src) do
+		result[k] = v
+	end
+	return result
 end
 
 local function create_pw_elements(result, element, attr_name)
-  for i=-MAX_PARALLEL, MAX_PARALLEL do
-    if i ~= 0 then
-      local attrs = shallow_copy_table(element.attr)
-      attrs[attr_name] = tonumber(attrs[attr_name]) + WORLD_WIDTH * i
+	for i = -MAX_PARALLEL, MAX_PARALLEL do
+		if i ~= 0 then
+			local attrs = shallow_copy_table(element.attr)
+			attrs[attr_name] = tonumber(attrs[attr_name]) + WORLD_WIDTH * i
 
-      table.insert(result, nxml.new_element(element.name, attrs))
-    end
-  end
+			table.insert(result, nxml.new_element(element.name, attrs))
+		end
+	end
 end
 
 local function add_pw_scenes(elem, attr_name)
-  if elem == nil then return end
+	if elem == nil then
+		return
+	end
 
-  local new_elems = {}
-  for scene in elem:each_child() do
-    create_pw_elements(new_elems, scene, attr_name)
-  end
-  elem:add_children(new_elems)
+	local new_elems = {}
+	for scene in elem:each_child() do
+		create_pw_elements(new_elems, scene, attr_name)
+	end
+	elem:add_children(new_elems)
 end
 
 for _, filename in ipairs(pixel_scene_files) do
-  for scene_file in nxml.edit_file(filename) do
-    add_pw_scenes(scene_file:first_of("mBufferedPixelScenes"), "pos_x")
-  end
+	for scene_file in nxml.edit_file(filename) do
+		add_pw_scenes(scene_file:first_of("mBufferedPixelScenes"), "pos_x")
+	end
 end
