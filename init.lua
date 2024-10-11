@@ -31,6 +31,7 @@ imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
+	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 end
 
 --- Seed init
