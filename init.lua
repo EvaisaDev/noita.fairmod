@@ -6,6 +6,7 @@ local tm_trainer = dofile_once("mods/noita.fairmod/files/content/tmtrainer/init.
 local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
+local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -37,6 +38,7 @@ end
 function OnMagicNumbersAndWorldSeedInitialized()
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
+	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
@@ -64,6 +66,7 @@ function OnPlayerSpawned(player)
 	-- stuff after here only runs once on initial run start
 
 	tm_trainer.OnPlayerSpawned(player)
+	funky_portals.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
@@ -104,3 +107,4 @@ end
 -- Copi was here
 -- Moldos was here
 -- Nathan was here
+-- Eba was here :3

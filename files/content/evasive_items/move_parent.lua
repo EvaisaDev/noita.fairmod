@@ -18,5 +18,5 @@ function collision_trigger(player_entity)
 
 	EntitySetTransform(parent, hx, hy)
 
-	GamePrint("evade" .. x .. " " .. y)
+	--GamePrint("evade" .. x .. " " .. y)
 end

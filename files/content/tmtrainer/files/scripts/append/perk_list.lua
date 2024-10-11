@@ -12,7 +12,7 @@ end
 
 local TMTRAINER_SEED = StatsGetValue("world_seed")
 
-print("TMTRAINER_SEED", tostring(TMTRAINER_SEED))
+--print("TMTRAINER_SEED", tostring(TMTRAINER_SEED))
 
 dofile("mods/noita.fairmod/files/content/tmtrainer/files/scripts/icon_list.lua")
 
