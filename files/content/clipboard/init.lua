@@ -8,6 +8,10 @@ local messages = {
 	"Beep boop",
 	"Noita is just a Terraria clone imo",
 	"Password123!",
+	"Eba is the best!!",
+	"https://github.com/Copious-Modding-Industries/copis_things",
+	"I'm using tilt controls!",
+	":3"
 }
 
 function clipboard.OnPlayerSpawned()
