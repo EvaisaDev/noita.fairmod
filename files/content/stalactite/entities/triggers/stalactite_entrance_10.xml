@@ -69,8 +69,9 @@
 	/>
 	
     <LuaComponent 
-		script_collision_trigger_hit="mods/noita.fairmod/files/content/stalactite/scripts/trigger.lua" 
-		execute_on_added="0">
+		script_source_file="mods/noita.fairmod/files/content/stalactite/scripts/trigger.lua" 
+		execute_on_added="1"
+		execute_every_n_frame="1">
    	</LuaComponent>
-
+	
 </Entity>

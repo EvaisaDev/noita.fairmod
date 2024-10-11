@@ -3,8 +3,8 @@
 	<SpriteAnimatorComponent/>
 
 	<SpriteComponent 
-		image_file="mods/noita.fairmod/files/content/stalactite/sprites/stalactite_entrance_12.png" 
-		offset_x="8"
+		image_file="mods/noita.fairmod/files/content/stalactite/sprites/generic/stalactite_generic_2.png" 
+		offset_x="5"
 		offset_y="0">
 	</SpriteComponent>
 		
@@ -55,17 +55,17 @@
 
 	<VariableStorageComponent
 		name="offset_x"
-		value_int="8"
+		value_int="5"
 	/>
 
 	<VariableStorageComponent
 		name="offset_y"
-		value_int="23"
+		value_int="10"
 	/>
 
 	<VariableStorageComponent
 		name="projectile"
-		value_string="mods/noita.fairmod/files/content/stalactite/entities/projectiles/projectile_entrance_12.xml"
+		value_string="mods/noita.fairmod/files/content/stalactite/entities/projectiles/generic/projectile_generic_2.xml"
 	/>
 	
     <LuaComponent 

@@ -15,6 +15,7 @@ dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
 dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
+dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -37,11 +38,6 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 end
-
-ModLuaFileAppend(
-	"data/scripts/biomes/mountain/mountain_hall.lua",
-	"mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua"
-)
 
 function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
