@@ -14,6 +14,7 @@ dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
 dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
 dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
+dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
