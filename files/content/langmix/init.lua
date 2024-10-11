@@ -38,13 +38,8 @@ end
 
 function mix_language(filename)
 	-- Seed with system time
-	local time_vals = {GameGetDateAndTimeUTC()}
-	local seed = 0
-	for i, v in ipairs(time_vals) do
-		if type(v) == "number" then
-			seed = seed * 10000 + v
-		end
-	end
+	local tv = {GameGetDateAndTimeUTC()}
+	local seed = tv[6] + tv[5]*60 + tv[4]*60*60
 	math.randomseed(seed)
 
 	local content = ModTextFileGetContent(filename)
