@@ -14,16 +14,20 @@ end
 
 perkluacontent = perkluacontent:gsub(escape("if( Random( 1, 100 ) <= perk_destroy_chance ) then"), escape([[
 if( Random( 1, 100 ) > perk_destroy_chance ) then
-	if( perk_id == "PERKS_LOTTERY" )then
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/letsgogamblingicantstopwinning", 0, 0)
-	else
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/icantstopwinning", 0, 0)
+	if(perk_destroy_chance < 100)then 
+		if( perk_id == "PERKS_LOTTERY" )then
+			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/letsgogamblingicantstopwinning", 0, 0)
+		else
+			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/icantstopwinning", 0, 0)
+		end
 	end
 else
-	if( perk_id == "PERKS_LOTTERY" )then
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/letsgogamblingawdangit", 0, 0)
-	else
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/awdangit", 0, 0)
+	if(perk_destroy_chance < 100)then 
+		if( perk_id == "PERKS_LOTTERY" )then
+			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/letsgogamblingawdangit", 0, 0)
+		else
+			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/awdangit", 0, 0)
+		end
 	end
 ]]))
 
