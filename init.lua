@@ -13,6 +13,7 @@ dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
 dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
+dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -22,7 +23,7 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui({mod="noita.fairmod", version="1.0.0"})
+imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 --- I hate doing things without a hook
 function OnModPostInit()
@@ -36,9 +37,10 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 end
 
-
-ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua")
-
+ModLuaFileAppend(
+	"data/scripts/biomes/mountain/mountain_hall.lua",
+	"mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua"
+)
 
 function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
@@ -76,15 +78,14 @@ function OnPlayerSpawned(player)
 
 	clipboard.OnPlayerSpawned(player)
 
-
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-	if(damage_model_comp)then
+	if damage_model_comp then
 		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
 	end
 
 	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
-	
+
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
 		execute_every_n_frame = 1,
@@ -99,7 +100,7 @@ function OnWorldPreUpdate()
 		fuckedupenemies:OnWorldPreUpdate()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
-	nukes.OnWorldPreUpdate();
+	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
 end
 
