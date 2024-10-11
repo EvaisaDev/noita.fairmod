@@ -51,7 +51,7 @@ end
 SetRandomSeed( GameGetFrameNum(), entity_id )
 
 -- get player entity
-local player = EntityGetClosestWithTag( 0, 0, "player_unit" )
+local player = EntityGetClosestWithTag( x, y, "player_unit" )
 
 if(currently_gambling)then
 	EntitySetComponentsWithTagEnabled( entity_id, "is_not_gambling", false )
@@ -60,7 +60,7 @@ else
 end
 
 -- check if player is further than 50 units away
-if(player ~= nil)then
+if(player ~= nil and player ~= 0 and not EntityGetIsAlive(player))then
 	local px, py = EntityGetTransform( player )
 	local length = math.sqrt((px - x) ^ 2 + (py - y) ^ 2)
 
