@@ -32,8 +32,6 @@ local function trigger(colliding_entity_id)
 
 	last_trigger = GameGetFrameNum()
 
-	GamePrint("triggered")
-	
 		
 	local entity = shoot_projectile( entity_id, projectile, x, y + offset_y + 2 , 0, 300, false )
 
