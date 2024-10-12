@@ -21,7 +21,7 @@ local messages = {
 	"Whuh",
 	"Huh??",
 	"Also try Noita Community Rebalance!",
-	"",
+	"Copi stinks",
 	"Hydrate yourself, NOW",
 }
 
