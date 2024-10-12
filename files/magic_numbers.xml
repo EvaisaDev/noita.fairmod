@@ -1,0 +1,9 @@
+<!--
+	DEBUG_DEMO_MODE*: Remove the option to quit the game
+-->
+
+<MagicNumbers
+	DEBUG_DEMO_MODE="1"
+	DEBUG_DEMO_MODE_RESET_TIMEOUT_FRAMES="2000000000"
+	DEBUG_DEMO_MODE_RESET_WARNING_TIME_FRAMES="0"
+	/>

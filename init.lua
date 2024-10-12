@@ -30,6 +30,8 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
+ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
+
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
@@ -110,6 +112,7 @@ function OnWorldPreUpdate()
 end
 
 -- Copi was here
+-- Dexter is here
 -- Moldos was here
 -- Nathan was here
 -- Eba was here :3
