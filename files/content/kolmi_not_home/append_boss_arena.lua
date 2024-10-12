@@ -2,7 +2,7 @@ local original_spawn_items = spawn_items
 
 function spawn_items( x, y ) 
 	
-	if(Random(1, 100) <= 20)then
+	if(Random(1, 100) <= 200)then
 		EntityLoad( "mods/noita.fairmod/files/content/kolmi_not_home/boss_longleg.xml",x - 40, y )
 		-- if game is not completed
 		if( GameHasFlagRun( "ending_game_completed" ) == false ) then

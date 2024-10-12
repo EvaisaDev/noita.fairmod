@@ -10,6 +10,7 @@ local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.l
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
 
+
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
@@ -21,6 +22,7 @@ dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mon_wands/mon_wands_init.lua")
 dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
+dofile_once("mods/noita.fairmod/files/content/portal_pool_randomizer/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -48,6 +50,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 end
+
 
 function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)

@@ -1,4 +1,4 @@
-# DialogSystem v0.3.0 for Noita
+# DialogSystem for Noita
 An example mod that uses this library can be downloaded here: https://github.com/TheHorscht/DialogSystem_example/releases
 ## Installation
 Copy the files into your mod, so the structure looks like this: `mods/yourmod/lib/DialogSystem/dialog_system.lua`
@@ -8,6 +8,23 @@ Then in your mod's init.lua, initialize the library like this:
 dofile_once("mods/yourmod/lib/DialogSystem/init.lua")("mods/yourmod/lib/DialogSystem")
 ```
 Passing in the path to to the folder containing `dialog_system.lua`.
+### Global config
+You can also pass in a table with configuration options as the second parameter to the init function:
+```lua
+dofile_once("mods/yourmod/lib/DialogSystem/init.lua")("mods/yourmod/lib/DialogSystem", {
+  disable_controls = true,
+  images = {
+    -- To be used with {@img something} in dialog text
+    something = "mods/yourmod/files/dialog_images/something.png",
+    something_else = "mods/yourmod/files/dialog_images/something_else.png",
+  },
+  sounds = {
+    -- Can then be specified as typing_sound = "new_sound"
+    new_sound = { bank = "mods/yourmod/files/dialog_sounds.bank", event = "cool_new_sound" },
+    new_sound_two = { bank = "mods/yourmod/files/dialog_sounds.bank", event = "cool_new_sound2" },
+  },
+})
+```
 ## Quick start
 Create a new entity with a LuaComponent as follows:
 ```xml
@@ -65,7 +82,8 @@ end
 -- Dofile-ing dialog_system.lua returns the dialog system
 local dialog_system = dofile_once("mods/yourmod/lib/DialogSystem/dialog_system.lua")
 ```
-It can be configured by setting the following properties on it:
+It can either be configured locally by setting the following properties on it, or globally when initializing the library (see [here](#global-config)).
+If nothing is configures, it will fall back to use the defaults.
 ```lua
 -- To add new images/icons to be used in text, this one will be usable as {@img fish}
 dialog_system.images.fish = "mods/yourmod/files/dialog_images/fish.png"
@@ -78,8 +96,10 @@ dialog_system.dialog_box_width = 300
  -- How tall the dialog box is
 dialog_system.dialog_box_height = 70
  -- How far the player has to move away from the point where it was opened for it to close automatically
+ -- if not specified, uses the InteractableComponent:radius
 dialog_system.distance_to_close = 15
-}
+-- Whether to disable the controls of the player while the dialog is open
+dialog_system.disable_controls = false
 ```
 **function** `dialog_system.open_dialog(message : message)` **returns** `dialog`
 
@@ -97,13 +117,15 @@ dialog_system.distance_to_close = 15
 - **field** `animation (string)` When specifying an XML, specifies the animation to use.
 - **field** `typing_sound (string)` Can choose between built ins ("one", "two", "three", "four", "sans").
 - **field** `options (table[option])` Table of items of type `option`
+- **field** `on_closing (function)` Will be called once the dialog starts closing.
+- **field** `on_closed (function)` Will be called after the dialog has been closed.
 
 **type** `option` A clickable option at the end of a dialog.
 - **field** `text (string)` Will be displayed if the option is enabled.
 - **field** `text_disabled (string)` Will be displayed if the option is disabled, if not provided, uses the same as `text`.
 - **field** `enabled (function|boolean)` Function/boolean whether this option should be enabled. The function gets passed a table as it's first argument,
-which allows for convenient access to common stats of the player like gold, hp etc. [See example](#option-enabled-function-example). The function will run once every 30 frames.
-- **field** `func` The function which will be called when selecting the option, if omitted, will default to `dialog.close`.
+which allows for convenient access to common stats of the player like gold, hp etc. [See example](#option-enabled-function-example). The function will run once every 30 frames. Arguments: `(stats)`.
+- **field** `func` The function which will be called when selecting the option, if omitted, will default to `dialog.close`. Arguments: `(dialog, stats)`.
 ## Option enabled function example:
 ```lua
 enabled = function(stats)

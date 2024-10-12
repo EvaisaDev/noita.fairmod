@@ -23,6 +23,10 @@ local messages = {
 	"Also try Noita Community Rebalance!",
 	"",
 	"Hydrate yourself, NOW",
+	"I love arson!",
+	"This person stinks!",
+	"It's all a conspiracy! They called me crazy! They called me crazy! I told you all! They put clams in the fucking water supply! The clams control the water supply! I'm not crazy!",
+	"To be fair, you have to have a VERY high IQ to understand Boomerang Spells. The mechanics are EXTREMELY complicated, and without a solid grasp of Noita physics, most of the spells will go over a typical user's head. There's also Boomerang Spells damage boost, which is deftly woven into its use, its sheer power draws HEAVILY from Multicast spells, for instance. The boomerang users UNDERSTAND this stuff; they have the intellectual capacity to truly APPRECIATE the perk, to realize that it's not just POWER- It says something deep about TRIGGERS. As a consequence people who dislike Boomerang Spells truly ARE clueless- of COURSE they wouldn't appreciate them, for instance, the humor in Boomerang Spells' iconic interaction with Circle of Vigor which ITSELF is a cryptic reference to old-school Wisp. I'm SMIRKING right now just IMAGINING one of those simpletons are scratching their heads in confusion as a boomerang bomb nuke unfolds itself glory on their screen. What FOOLS... how I pity them.",
 }
 
 function clipboard.OnPlayerSpawned()

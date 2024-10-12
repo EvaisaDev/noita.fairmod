@@ -1,4 +1,32 @@
-UNRELEASED:
+v0.7.3:
+- FIX: Spaces in chinese/japanese and maybe other languages would not display correctly
+
+v0.7.2:
+- Add UTF-8 support
+
+v0.7.1:
+- distance_to_close now uses InteractableComponent:radius as the default, but can still be overridden
+
+v0.7.0:
+- message:on_closed callback will now be inherited by the sub-dialogs
+- Add on_closing callback which gets called as soon as the dialog starts closing
+
+v0.6.0:
+- FIX: Previous dialog options could still be shown for a few frames after the new options came on screen
+- FIX: Controls will now be re-enabled after the on_closed callbacks, in case the entity gets killed in those
+- Add top level on_closed callback which will get called after the dialog window has been fully closed in any way
+
+v0.5.1:
+- FIX: Re-enable controls after the dialog.on_closed_callback ran
+- FIX: Old options being shown for a short amount of time after switching to new dialog
+
+v0.5.0:
+- Global config can now be specified on init, which will be used by any instance of dialog_system
+- Add config.disable_controls
+- Add stats.get_item_with_name
+- Stats are now also passed into the dialog_option.func(dialog, stats) as the second parameter
+
+v0.4.0:
 - Skip dialogue by calling open_dialog again while it's already writing its text, or in other words, press interact again while it's already writing to skip
 
 v0.3.0:

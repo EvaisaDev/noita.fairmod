@@ -9,7 +9,7 @@ local text = {
 	"*The hämis is staring off into the distance*",
 	"*Not a thought in its head*",
 	"*This is not the bossfight you expected.*",]]
-	"Thank you Mina! But our Kolmi is in another castle!",
+	"Thank you Minä! But our Kolmi is in another castle!",
 }
 
 SetRandomSeed(x + GameGetFrameNum(), y)
