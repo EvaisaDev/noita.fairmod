@@ -17,6 +17,7 @@ dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
 dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
+dofile_once("mods/noita.fairmod/files/content/mon_wands/mon_wands_init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -24,6 +25,7 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
