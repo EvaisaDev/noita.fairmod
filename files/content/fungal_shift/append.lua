@@ -1,19 +1,5 @@
 -- just fuck my shit up you know what i'm saying
-
-local filter_materials = function(mats)
-	for i = #mats, 1, -1 do
-		local mat = mats[i]
-		local tags = CellFactory_GetTags(CellFactory_GetType(mat)) or {}
-		for _, tag in ipairs(tags) do
-			if tag == "[box2d]" or tag == "[catastrophic]" or tag == "[NO_FUNGAL_SHIFT]" then
-				table.remove(mats, i)
-				break
-			end
-		end
-	end
-
-	return mats
-end
+dofile("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 fungal_shift = function(entity, x, y, debug_no_limits)
 	local parent = EntityGetParent(entity)
@@ -31,12 +17,14 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 	if (comp_worldstate ~= nil and ComponentGetValue2(comp_worldstate, "EVERYTHING_TO_GOLD")) then
 		return -- do nothing in case everything is gold
 	end
-
-	local liquids = filter_materials(CellFactory_GetAllLiquids()) or {}
-	local sands = filter_materials(CellFactory_GetAllSands()) or {}
-	local solids = filter_materials(CellFactory_GetAllSolids()) or {}
-
+	
 	SetRandomSeed(1, 1)
+
+	local liquids = MaterialsFilter(CellFactory_GetAllLiquids() or {})
+	local sands = MaterialsFilter(CellFactory_GetAllSands() or {})
+	local solids = MaterialsFilter(CellFactory_GetAllSolids() or {})
+
+
 	local function get_random_material(from)
 		if (from) then
 			local rand = Random(1, 3)

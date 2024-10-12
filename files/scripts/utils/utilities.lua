@@ -19,3 +19,30 @@ function GetEnemiesInRadius(x, y, radius)
 	
 	return entities
 end
+
+function MaterialsFilter(mats)
+	for i = #mats, 1, -1 do
+		local mat = mats[i]
+
+		if(mat:find("fading"))then
+			table.remove(mats, i)
+			goto continue
+		end
+
+		if(mat:find("molten") and Random(1, 100) < 60)then
+			table.remove(mats, i)
+			goto continue
+		end
+
+		local tags = CellFactory_GetTags(CellFactory_GetType(mat)) or {}
+		for _, tag in ipairs(tags) do
+			if tag == "[box2d]" or tag == "[catastrophic]" or tag == "[NO_FUNGAL_SHIFT]" then
+				table.remove(mats, i)
+				goto continue
+			end
+		end
+		::continue::
+	end
+
+	return mats
+end

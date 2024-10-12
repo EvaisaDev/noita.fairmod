@@ -1,0 +1,8 @@
+<Entity>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/convert_materials.lua"
+		execute_on_added="0"
+		execute_every_n_frame="4"
+		execute_times="1"
+	/>
+</Entity>

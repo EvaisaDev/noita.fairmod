@@ -1,5 +1,8 @@
 local water = CellFactory_GetType("water")
-local liquids = CellFactory_GetAllLiquids(false, false) or {}
+
+dofile("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
+local liquids = MaterialsFilter(CellFactory_GetAllLiquids(false, false) or {})
 
 local random_liquid = CellFactory_GetType(liquids[Random(1, #liquids)])
 

@@ -1,1 +1,0 @@
-ModLuaFileAppend( "data/scripts/biomes/temple_altar_top_shared.lua", "mods/noita.fairmod/files/content/portal_pool_randomizer/append_pool.lua" )
