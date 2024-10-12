@@ -46,7 +46,7 @@ function mix_language(filename)
 	local csv = tcsv.parse(content, filename)
 
 	local outrows = {
-		",en,ru,pt-br,es-es,de,fr-fr,it,pl,zh-cn,jp,ko,,NOTES – use \n for newline,max length,,,,,,,,,,",
+		[[,en,ru,pt-br,es-es,de,fr-fr,it,pl,zh-cn,jp,ko,,NOTES – use \n for newline,max length,,,,,,,,,,]],
 	}
 
 	for _, row in ipairs(csv.rows) do
