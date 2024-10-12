@@ -116,6 +116,7 @@ function OnWorldPreUpdate()
 	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
+	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 end
 
 -- Copi was here

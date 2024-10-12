@@ -1,0 +1,68 @@
+<Entity tags="runner_ai">
+
+    <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent>
+
+    <LuaComponent
+        script_source_file="mods/noita.fairmod/files/content/anything_mimics/files/ai_controller.lua"
+        execute_on_added="1"
+        execute_every_n_frame="1"
+        vm_type="ONE_PER_COMPONENT_INSTANCE"
+    ></LuaComponent>
+
+
+    <LuaComponent
+        script_source_file="mods/noita.fairmod/files/content/anything_mimics/files/IK_limb_controller.lua"
+        execute_on_added="1"
+        execute_every_n_frame="1"
+        vm_type="ONE_PER_COMPONENT_INSTANCE"
+    ></LuaComponent>   
+
+    <VariableStorageComponent
+        name="limb_length"
+        value_int = "22"
+    />
+
+    <VariableStorageComponent
+        name="update_rate"
+        value_int = "20"
+    />
+
+    <VariableStorageComponent
+        name="limb_speed"
+        value_float = "0.1"
+    />
+
+    <VariableStorageComponent
+        name="scan_angle"
+        value_int = "220"
+    />
+
+    <VariableStorageComponent
+        name="scan_distance"
+        value_int = "80"
+    />
+
+	<AudioComponent
+		_tags="enabled_in_world,enabled_in_hand"
+		file="data/audio/Desktop/animals.bank"
+		event_root="animals/mimic_potion"
+	></AudioComponent>
+
+    <!--
+    <IKLimbsAnimatorComponent>
+	</IKLimbsAnimatorComponent>
+    -->
+    <Entity name="left_limb" tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="mods/noita.fairmod/files/content/anything_mimics/files/chest_limb.xml" />  </Entity>
+    <Entity name="left_limb" tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="mods/noita.fairmod/files/content/anything_mimics/files/chest_limb.xml" />  </Entity>
+    <Entity name="right_limb" tags="ik_limb" > <InheritTransformComponent><Transform position.x="0"  position.y="0" /></InheritTransformComponent> <Base file="mods/noita.fairmod/files/content/anything_mimics/files/chest_limb.xml" />  </Entity>
+    <Entity name="right_limb" tags="ik_limb" > <InheritTransformComponent><Transform position.x="0"  position.y="0" /></InheritTransformComponent> <Base file="mods/noita.fairmod/files/content/anything_mimics/files/chest_limb.xml" />  </Entity>
+
+
+    <!--<Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>
+    <Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>
+    <Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>
+    <Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>
+    <Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>
+    <Entity tags="ik_limb" > <InheritTransformComponent><Transform position.x="0" position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/lukki_limb_long_animated.xml" />  </Entity>-->
+    <!-- <Entity name="limb_attacker"> <InheritTransformComponent><Transform position.x="0"  position.y="0" /></InheritTransformComponent> <Base file="data/entities/animals/lukki/lukki_feet/chest_limb_attacker.xml" />  </Entity>   -->
+</Entity>
