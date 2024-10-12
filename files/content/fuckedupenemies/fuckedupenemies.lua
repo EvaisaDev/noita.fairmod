@@ -88,6 +88,8 @@ end
 function evil:BuffEnemy(enemy)
 	self.scanned[enemy] = true
 
+	if(EntityHasTag(enemy, "do_not_evil"))then return end
+
 	local ex, ey = EntityGetTransform(enemy)
 	SetRandomSeed(ex, ey)
 	-- Copious bullshit ensues

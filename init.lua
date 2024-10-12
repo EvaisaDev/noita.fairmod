@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") ---@type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -18,6 +20,7 @@ dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mon_wands/mon_wands_init.lua")
+dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -26,6 +29,7 @@ ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/file
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })

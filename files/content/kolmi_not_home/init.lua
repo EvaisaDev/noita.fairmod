@@ -1,0 +1,1 @@
+ModLuaFileAppend("data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/kolmi_not_home/append_boss_arena.lua")

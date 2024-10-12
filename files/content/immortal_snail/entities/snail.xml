@@ -1,15 +1,14 @@
-<Entity tags="mortal,prey" name="Immortal Snail">
+<Entity tags="mortal,prey,do_not_evil" name="Immortal Snail">
   
 
 	<Base file="data/entities/base_helpless_animal.xml" >
 
         <AnimalAIComponent 
         	preferred_job="JobDefault"
-			attack_melee_enabled="0"
 			attack_ranged_entity_file=""
 			attack_ranged_predict="1"
 			attack_ranged_enabled="0"
-			attack_melee_enabled="0"
+			attack_melee_enabled="1"
 			sense_creatures="1"
 			creature_detection_range_x="10000"
 			creature_detection_range_y="10000"
@@ -49,8 +48,8 @@
 		
 		<GenomeDataComponent 
 			herd_id="helpless"
-			food_chain_rank="20"
-			is_predator="0" >
+			food_chain_rank="1"
+			is_predator="1" >
 		</GenomeDataComponent>
 		
 		<CharacterDataComponent 
@@ -79,8 +78,18 @@
 			aabb_max_y="3"
 			>
 		</HitboxComponent>
+
+
 	</Base>
+
 	
+	<ItemPickUpperComponent
+		is_in_npc = "1"
+		pick_up_any_item_buggy = "1"
+		is_immune_to_kicks = "1"
+		drop_items_on_death = "0"
+	/>
+
 	<AudioComponent
 		file="data/audio/Desktop/animals.bank"
 		event_root="animals/longleg" >
@@ -122,6 +131,20 @@
 		execute_on_added="1"
 		execute_every_n_frame="20"
 		execute_times="-1" >
+	</LuaComponent>
+
+	<InteractableComponent
+		ui_text="Press $0 to talk to the snail"
+		radius="30"
+		>
+	</InteractableComponent>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/immortal_snail/scripts/interact.lua"
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/interact.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		>
 	</LuaComponent>
 
 </Entity>

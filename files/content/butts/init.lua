@@ -20,6 +20,10 @@ function join_syllables(syllables)
     return table.concat(syllables, "")
 end
 
+local function trim(s)
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
 local tcsv = dofile_once("mods/noita.fairmod/files/content/langmix/tcsv.lua")
 
 local function format_csv_row(row)
@@ -63,7 +67,9 @@ local function buttsify(filename)
 
 				local new_str = join_syllables(syllables)
 
-				row[i] = new_str
+				if(trim(new_str) ~= "")then
+					row[i] = new_str
+				end
 
 				::continue::
 			end
