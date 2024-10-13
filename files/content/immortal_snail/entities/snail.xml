@@ -108,17 +108,12 @@
 		</GameEffectComponent >
 
 	</Entity>
-	<AreaDamageComponent
-		circle_radius = "5"
-		damage_per_frame = "99999"
-		update_every_n_frame = "1"
-		death_cause = "Immortal Snail"
-		entities_with_tag = "player_unit"
-		damage_type = "DAMAGE_CURSE"
-		aabb_min.x="-20" 
-		aabb_min.y="-20" 
-		aabb_max.x="20" 
-		aabb_max.y="20" 
+	
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_annihilation.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		execute_times="-1" 
 	/>
  	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"

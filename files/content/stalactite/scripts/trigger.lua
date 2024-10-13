@@ -59,12 +59,12 @@ local trigger_potential = {
 	{
 		tag = "player_unit",
 		distance = 200,
-		chance = 40
+		chance = 20
 	},
 	{
 		tag = "polymorphed_player",
 		distance = 200,
-		chance = 40
+		chance = 20
 	},
 	{
 		tag = "enemy",

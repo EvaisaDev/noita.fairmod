@@ -1,0 +1,19 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/speedrun_door/door.png"
+		offset_x="26"
+   		offset_y="45"
+		z_index="5"
+	/>
+
+	<HitboxComponent
+		_enabled="1"
+		aabb_min_x="-5"
+		aabb_min_y="-5"
+		aabb_max_x="5"
+		aabb_max_y="5"
+		is_enemy="0"
+	></HitboxComponent>
+
+	<StreamingKeepAliveComponent />
+</Entity>
