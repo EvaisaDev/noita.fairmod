@@ -57,6 +57,9 @@ end
 
 
 function OnPlayerSpawned(player)
+
+	GameRemoveFlagRun("pause_snail_ai")
+
 	local x, y = EntityGetTransform(player)
 
 	-- move player to a random parallel world.

@@ -231,22 +231,16 @@ if(not is_physics)then
     local direction_x = (target_x - x) / distance
     local direction_y = (target_y - y) / distance
 
-    --[[direction_x  = (direction_x + direction_to_target_x) / 2
-    direction_y  = (direction_y + direction_to_target_y) / 2]]
-
     local speed = 20
 
     local vel_x = direction_x * speed
     local vel_y = direction_y * speed
 
-    --GameCreateSpriteForXFrames("data/ui_gfx/debug_marker.png", x + (direction_x * 10), y + (direction_y * 10), true, 0, 0, 1, true)
-
     local velocity_comp = EntityGetFirstComponentIncludingDisabled( item, "VelocityComponent" )
     if(velocity_comp ~= nil)then
         local current_vel_x, current_vel_y = ComponentGetValueVector2( velocity_comp, "mVelocity" )
 
-        --print("old_vel: ", current_vel_x, current_vel_y)
-        
+
         vel_x = (current_vel_x * 0.8) + vel_x
         vel_y = (current_vel_y * 0.8) + vel_y
 
