@@ -50,6 +50,14 @@ local function fixup_prop_children(element)
 			end
 		end
 	end
+
+	for comp in element:each_of("ProjectileComponent") do
+		for conf in comp:each_of("config_explosion") do
+			if (conf:get("create_cell_probability") or "0") ~= "0" then
+				conf:set("create_cell_probability", "100")
+			end
+		end
+	end
 end
 
 ------------------------------------------------------------------------
