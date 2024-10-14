@@ -37,8 +37,6 @@ teleport_timer = teleport_timer or Random(200, 7200)
 -- If the entity is further than a certain threshold from the camera
 if distance_from_edge > 100 then
 
-	print("Snail teleport timer: " .. teleport_timer)
-
 	if(teleport_timer <= 0)then
 		teleport_timer = Random(200, 7200)
 		-- Try to find a valid position outside the player's camera bounds

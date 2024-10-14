@@ -1,7 +1,6 @@
 local snail = EntityGetWithName("Immortal Snail")
 snail_respawn_timer = snail_respawn_timer or 0
 if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
-	GamePrint("Snail timer: " .. snail_respawn_timer)
 	if(snail_respawn_timer <= 0)then
 
 	
