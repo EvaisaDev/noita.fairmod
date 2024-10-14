@@ -1,8 +1,9 @@
 local snail = EntityGetWithName("Immortal Snail")
 snail_respawn_timer = snail_respawn_timer or 0
 if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
+	GamePrint("Snail timer: " .. snail_respawn_timer)
 	if(snail_respawn_timer <= 0)then
-		snail_respawn_timer = Random(200, 6800)
+
 	
 		local camera_x, camera_y, camera_w, camera_h = GameGetCameraBounds()
 		local camera_center_x = camera_x + (camera_w / 2)
@@ -39,6 +40,7 @@ if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
 		end
 
 		if valid then
+			snail_respawn_timer = Random(200, 5400)
 			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", new_x, new_y)
 			print("Snail was missing, respawning.")
 		end
