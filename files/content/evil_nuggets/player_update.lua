@@ -5,6 +5,7 @@ local x, y = EntityGetTransform(entity_id)
 local radius = 128
 
 local gold = EntityGetInRadiusWithTag( x, y, radius, "gold_nugget" ) or {}
+SetRandomSeed(x, y + GameGetFrameNum())
 
 for i, entity in ipairs(gold) do
 	if(Random(1, 100) < 10 and not EntityHasTag(entity, "nugget_evilified"))then

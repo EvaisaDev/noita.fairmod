@@ -133,8 +133,6 @@
 
 	<ParticleEmitterComponent
 		emitted_material_name="radioactive_liquid_fading"
-		count_min="1"
-		count_max="2"
 		offset.x="0"
 		offset.y="0"
 		x_pos_offset_min="-1"
@@ -174,4 +172,3 @@
 	</VariableStorageComponent>
 
 </Entity>
-
