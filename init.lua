@@ -1,6 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
-local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") ---@type fuckupenemies
+local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile_once("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
@@ -9,7 +9,6 @@ local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
-
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -28,7 +27,7 @@ dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
+-- ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -36,7 +35,7 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
+imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
@@ -54,7 +53,6 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 end
-
 
 function OnPlayerSpawned(player)
 	local x, y = EntityGetTransform(player)
@@ -126,3 +124,4 @@ end
 -- Moldos was here
 -- Nathan was here
 -- Eba was here :3
+-- Lamia wasn't here
