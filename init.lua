@@ -25,6 +25,7 @@ dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scene_liquid_randomizer/init.lua")
 dofile_once("mods/noita.fairmod/files/content/speedrun_door/init.lua")
 dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
+dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
