@@ -3,7 +3,7 @@ local old_perk_spawn = perk_spawn
 perk_spawn = function( x, y, perk_id, dont_remove_other_perks_ )
 	local perk = old_perk_spawn( x, y, perk_id, dont_remove_other_perks_ )
 	SetRandomSeed( x, y )
-	local chance = 20
+	local chance = 50
 	if(Random( 1, 100) <= chance)then
 		local perk_data = get_perk_with_id( perk_list, perk_id )
 		if ( perk_data == nil ) then
@@ -23,11 +23,9 @@ perk_spawn = function( x, y, perk_id, dont_remove_other_perks_ )
 
 		local sprite_offset_animator_component = EntityGetFirstComponent( perk, "SpriteOffsetAnimatorComponent" )
 		if(sprite_offset_animator_component ~= nil)then
-			local y_amount = ComponentGetValue2( sprite_offset_animator_component, "y_amount" )
 			local y_speed = ComponentGetValue2( sprite_offset_animator_component, "y_speed" )
 
-			ComponentSetValue2( sprite_offset_animator_component, "y_amount", y_amount * Random(95,105) / 100 )
-			ComponentSetValue2( sprite_offset_animator_component, "y_speed",  y_speed * Random(95,105) / 100 )
+			ComponentSetValue2( sprite_offset_animator_component, "y_speed",  y_speed * Random(85,95) / 100 )
 		end
 		
 		local random_perk = perk_list[Random(1, #perk_list)]
@@ -58,6 +56,15 @@ perk_spawn = function( x, y, perk_id, dont_remove_other_perks_ )
 			execute_on_added = true,
 			vm_type="ONE_PER_COMPONENT_INSTANCE"
 		})
+	end
+
+	local sprite_offset_animator_component = EntityGetFirstComponent( perk, "SpriteOffsetAnimatorComponent" )
+	if(sprite_offset_animator_component ~= nil)then
+		local y_amount = ComponentGetValue2( sprite_offset_animator_component, "y_amount" )
+		local y_speed = ComponentGetValue2( sprite_offset_animator_component, "y_speed" )
+
+		ComponentSetValue2( sprite_offset_animator_component, "y_amount", y_amount * Random(95,105) / 100 )
+		ComponentSetValue2( sprite_offset_animator_component, "y_speed",  y_speed * Random(95,105) / 100 )
 	end
 
 	return perk
