@@ -55,6 +55,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
 end
 
 function OnPlayerSpawned(player)
