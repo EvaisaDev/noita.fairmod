@@ -158,5 +158,7 @@
 		>
 	</LuaComponent>
 
+	<StreamingKeepAliveComponent />
+
 </Entity>
 
