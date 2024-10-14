@@ -1,8 +1,8 @@
 local snail = EntityGetWithName("Immortal Snail")
-snail_respawn_timer = snail_respawn_timer or Random(200, 10800)
+snail_respawn_timer = snail_respawn_timer or 0
 if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
 	if(snail_respawn_timer <= 0)then
-		snail_respawn_timer = Random(200, 10800)
+		snail_respawn_timer = Random(200, 6800)
 	
 		local camera_x, camera_y, camera_w, camera_h = GameGetCameraBounds()
 		local camera_center_x = camera_x + (camera_w / 2)

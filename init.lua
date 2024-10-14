@@ -10,6 +10,7 @@ local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.l
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
 local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
+local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -95,6 +96,8 @@ function OnPlayerSpawned(player)
 	crits.OnPlayerSpawned(player)
 
 	clipboard.OnPlayerSpawned(player)
+
+	evil_nuggets.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
