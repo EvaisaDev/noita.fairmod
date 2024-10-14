@@ -1,8 +1,10 @@
 <!--
+	_DEBUG_DONT_SAVE_MAGIC_NUMBERS: So the magic numbers don't get saved on noita_dev.exe
 	DEBUG_DEMO_MODE*: Remove the option to quit the game
 -->
 
 <MagicNumbers
+	_DEBUG_DONT_SAVE_MAGIC_NUMBERS="1"
 	DEBUG_DEMO_MODE="1"
 	DEBUG_DEMO_MODE_RESET_TIMEOUT_FRAMES="2000000000"
 	DEBUG_DEMO_MODE_RESET_WARNING_TIME_FRAMES="0"
