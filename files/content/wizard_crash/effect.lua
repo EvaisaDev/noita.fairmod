@@ -1,6 +1,7 @@
 local ent = EntityGetRootEntity(GetUpdatedEntityID())
 if not EntityHasTag(ent, "player_unit") and not EntityHasTag(ent, "player_polymorphed") then
 	EntityKill(ent)
+	return
 end
 
 local x, y = EntityGetTransform(ent)
