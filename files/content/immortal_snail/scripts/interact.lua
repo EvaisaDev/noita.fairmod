@@ -7,7 +7,6 @@ dialog_system.distance_to_close = 35
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 local player = EntityGetInRadiusWithTag(x, y, 30, "player_unit")[1]
-local character_platforming_component = EntityGetFirstComponentIncludingDisabled(entity_id, "CharacterPlatformingComponent")
 
 local current_potrait = tonumber(GlobalsGetValue("current_snail_potrait",  "1"))
 
@@ -23,7 +22,7 @@ end
 
 
 if not player then
-	ComponentSetValue2(character_platforming_component, "run_velocity", 15)
+	GameRemoveFlagRun("pause_snail_ai")
 	if(gun_triggered and not gun_was_given)then
 		give_gun()
 	end
@@ -131,7 +130,7 @@ end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 
-	ComponentSetValue2(character_platforming_component, "run_velocity", 0)
+	GameAddFlagRun("pause_snail_ai")
 
 	open_dialog()
 end

@@ -36,6 +36,7 @@
 
 
 		<PathFindingComponent
+			can_walk="0"
 		    distance_to_reach_node_x="20"
 		    distance_to_reach_node_y="20"
 			frames_to_get_stuck="60"
@@ -48,7 +49,7 @@
 		
 		<GenomeDataComponent 
 			herd_id="helpless"
-			food_chain_rank="1"
+			food_chain_rank="10"
 			is_predator="1" >
 		</GenomeDataComponent>
 		
@@ -63,11 +64,19 @@
 		</CharacterDataComponent>
 		
 		<CharacterPlatformingComponent 
-			jump_velocity_y="-12" 
-			run_velocity="15"  
         	velocity_max_y="60"
+			velocity_min_y="-60"
+			velocity_max_x="60"
+			velocity_min_x="-60"
 			run_animation_velocity_switching_enabled="1"
-			run_animation_velocity_switching_threshold="20">
+			run_animation_velocity_switching_threshold="20"
+			swim_idle_buoyancy_coeff="-1"
+			swim_down_buoyancy_coeff="-1"
+			swim_up_buoyancy_coeff="-1"
+			swim_drag="1"
+			swim_extra_horizontal_drag = "1"
+			
+			>
 		</CharacterPlatformingComponent>
 		
 		<HitboxComponent 
@@ -87,7 +96,7 @@
 		is_in_npc = "1"
 		pick_up_any_item_buggy = "1"
 		is_immune_to_kicks = "1"
-		drop_items_on_death = "0"
+		drop_items_on_death = "1"
 	/>
 
 	<AudioComponent
@@ -108,19 +117,26 @@
 		</GameEffectComponent >
 
 	</Entity>
-	
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_ai.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_annihilation.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
 		execute_times="-1" 
 	/>
- 	<LuaComponent
+ 	<!--<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
 		execute_times="-1" >
-	</LuaComponent>
+	</LuaComponent>-->
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/too_far_teleport.lua"
 		execute_on_added="1"
