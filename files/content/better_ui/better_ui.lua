@@ -1,14 +1,29 @@
 
 local gui = GuiCreate()
 local w, h, cur_y
+local pending_info = {}
 
 local module = {}
 
-local function add_info(text)
-    local scale = 1
-    local tw, th = GuiGetTextDimensions(gui, text, scale)
-    GuiText(gui, w - tw - 5, cur_y, text, scale)
+local scale = 0.75
+
+local function render_info(text, x_shift)
+    local _tw, th = GuiGetTextDimensions(gui, text, scale)
+    GuiText(gui, w - x_shift - 10, cur_y, text, scale)
     cur_y = cur_y + th
+end
+
+local function add_info(text)
+    table.insert(pending_info, text)
+end
+
+local function calc_max_length()
+    local c_max = 0
+    for _, text in ipairs(pending_info) do
+        local tw, _ = GuiGetTextDimensions(gui, text, scale)
+        c_max = math.max(c_max, tw)
+    end
+    return c_max
 end
 
 function module.update()
@@ -17,6 +32,7 @@ function module.update()
 
     w, h = GuiGetScreenDimensions(gui)
     cur_y = 80
+    pending_info = {}
 
     local wse = GameGetWorldStateEntity()
     local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
@@ -39,7 +55,7 @@ function module.update()
     else
         add_info("Weather: clean")
     end
-    
+
     add_info("0 Fishing power")
 
     local x, y = GameGetCameraPos()
@@ -49,7 +65,12 @@ function module.update()
         add_info(enemy_count.." enemy nearby")
     else
         add_info(enemy_count.." enemies nearby")
-    end    
+    end
+
+    local x_shift = calc_max_length()
+    for _, text in ipairs(pending_info) do
+        render_info(text, x_shift)
+    end
 end
 
 return module
