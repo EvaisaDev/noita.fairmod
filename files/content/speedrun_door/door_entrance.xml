@@ -44,15 +44,4 @@
 		>
 	</ParticleEmitterComponent>
 
-	<HitboxComponent
-		_enabled="1"
-		aabb_min_x="-5"
-		aabb_min_y="-5"
-		aabb_max_x="5"
-		aabb_max_y="5"
-		is_enemy="0"
-	></HitboxComponent>
-
-
-	<StreamingKeepAliveComponent />
 </Entity>

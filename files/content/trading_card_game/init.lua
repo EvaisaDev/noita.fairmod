@@ -16,7 +16,6 @@ local shader_append = function(find, append)
 			local before = string.sub(file, 1, pos2)
 			local after = string.sub(file, pos2 + 1)
 			ModTextFileSetContent( path, before .. append .. after )
-			print(before .. append .. after)
 		end
 	end
 	
