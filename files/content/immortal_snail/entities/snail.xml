@@ -1,15 +1,14 @@
-<Entity tags="mortal,prey" name="Immortal Snail">
+<Entity tags="mortal,prey,do_not_evil" name="Immortal Snail">
   
 
 	<Base file="data/entities/base_helpless_animal.xml" >
 
         <AnimalAIComponent 
         	preferred_job="JobDefault"
-			attack_melee_enabled="0"
 			attack_ranged_entity_file=""
 			attack_ranged_predict="1"
 			attack_ranged_enabled="0"
-			attack_melee_enabled="0"
+			attack_melee_enabled="1"
 			sense_creatures="1"
 			creature_detection_range_x="10000"
 			creature_detection_range_y="10000"
@@ -37,6 +36,7 @@
 
 
 		<PathFindingComponent
+			can_walk="0"
 		    distance_to_reach_node_x="20"
 		    distance_to_reach_node_y="20"
 			frames_to_get_stuck="60"
@@ -49,8 +49,8 @@
 		
 		<GenomeDataComponent 
 			herd_id="helpless"
-			food_chain_rank="20"
-			is_predator="0" >
+			food_chain_rank="10"
+			is_predator="1" >
 		</GenomeDataComponent>
 		
 		<CharacterDataComponent 
@@ -64,11 +64,19 @@
 		</CharacterDataComponent>
 		
 		<CharacterPlatformingComponent 
-			jump_velocity_y="-12" 
-			run_velocity="15"  
         	velocity_max_y="60"
+			velocity_min_y="-60"
+			velocity_max_x="60"
+			velocity_min_x="-60"
 			run_animation_velocity_switching_enabled="1"
-			run_animation_velocity_switching_threshold="20">
+			run_animation_velocity_switching_threshold="20"
+			swim_idle_buoyancy_coeff="-1"
+			swim_down_buoyancy_coeff="-1"
+			swim_up_buoyancy_coeff="-1"
+			swim_drag="1"
+			swim_extra_horizontal_drag = "1"
+			
+			>
 		</CharacterPlatformingComponent>
 		
 		<HitboxComponent 
@@ -79,8 +87,18 @@
 			aabb_max_y="3"
 			>
 		</HitboxComponent>
+
+
 	</Base>
+
 	
+	<ItemPickUpperComponent
+		is_in_npc = "1"
+		pick_up_any_item_buggy = "1"
+		is_immune_to_kicks = "1"
+		drop_items_on_death = "1"
+	/>
+
 	<AudioComponent
 		file="data/audio/Desktop/animals.bank"
 		event_root="animals/longleg" >
@@ -99,30 +117,48 @@
 		</GameEffectComponent >
 
 	</Entity>
-	<AreaDamageComponent
-		circle_radius = "5"
-		damage_per_frame = "99999"
-		update_every_n_frame = "1"
-		death_cause = "Immortal Snail"
-		entities_with_tag = "player_unit"
-		damage_type = "DAMAGE_CURSE"
-		aabb_min.x="-20" 
-		aabb_min.y="-20" 
-		aabb_max.x="20" 
-		aabb_max.y="20" 
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_ai.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_annihilation.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		execute_times="-1" 
 	/>
- 	<LuaComponent
+ 	<!--<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
 		execute_times="-1" >
-	</LuaComponent>
+	</LuaComponent>-->
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/too_far_teleport.lua"
 		execute_on_added="1"
 		execute_every_n_frame="20"
 		execute_times="-1" >
 	</LuaComponent>
+
+	<InteractableComponent
+		ui_text="Press $0 to talk to the snail"
+		radius="30"
+		>
+	</InteractableComponent>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/immortal_snail/scripts/interact.lua"
+		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/interact.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		>
+	</LuaComponent>
+
+	<StreamingKeepAliveComponent />
 
 </Entity>
 

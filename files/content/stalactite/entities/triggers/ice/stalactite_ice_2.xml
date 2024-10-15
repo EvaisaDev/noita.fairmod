@@ -1,0 +1,77 @@
+<Entity name="stalagtite" tags="" >
+
+	<SpriteAnimatorComponent/>
+
+	<SpriteComponent 
+		image_file="mods/noita.fairmod/files/content/stalactite/sprites/ice/stalactite_ice_2.png" 
+		offset_x="5"
+		offset_y="0">
+	</SpriteComponent>
+		
+    <VerletPhysicsComponent>
+    </VerletPhysicsComponent>
+
+	<MoveToSurfaceOnCreateComponent
+		lookup_radius="300"
+		verlet_min_joint_distance="14"
+		type="VERLET_ROPE_ONE_JOINT" >
+	</MoveToSurfaceOnCreateComponent>
+
+	<CollisionTriggerComponent
+		destroy_this_entity_when_triggered="0"
+		width="12"
+		height="300"
+		radius="300"
+		required_tag="player_unit"
+		>
+	</CollisionTriggerComponent>
+
+	<CollisionTriggerComponent
+		destroy_this_entity_when_triggered="0"
+		width="12"
+		height="300"
+		radius="300"
+		required_tag="player_polymorphed"
+		>
+	</CollisionTriggerComponent>
+
+	<CollisionTriggerComponent
+		destroy_this_entity_when_triggered="0"
+		width="12"
+		height="300"
+		radius="300"
+		required_tag="projectile_player"
+		>
+	</CollisionTriggerComponent>
+
+	<CollisionTriggerComponent
+		destroy_this_entity_when_triggered="0"
+		width="12"
+		height="300"
+		radius="300"
+		required_tag="enemy"
+		>
+	</CollisionTriggerComponent>	
+
+	<VariableStorageComponent
+		name="offset_x"
+		value_int="5"
+	/>
+
+	<VariableStorageComponent
+		name="offset_y"
+		value_int="10"
+	/>
+
+	<VariableStorageComponent
+		name="projectile"
+		value_string="mods/noita.fairmod/files/content/stalactite/entities/projectiles/ice/projectile_ice_2.xml"
+	/>
+	
+    <LuaComponent 
+		script_source_file="mods/noita.fairmod/files/content/stalactite/scripts/trigger.lua" 
+		execute_on_added="1"
+		execute_every_n_frame="1">
+   	</LuaComponent>
+
+</Entity>

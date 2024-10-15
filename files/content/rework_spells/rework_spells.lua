@@ -12,6 +12,38 @@ local actions_to_edit = {
 			end
 		end,
 	},
+	["CHAINSAW"] = {
+		-- make this dumbass chainsaw pull the player forward.
+		action = function()
+			add_projectile("data/entities/projectiles/deck/chainsaw.xml")
+			c.fire_rate_wait = 0
+			c.spread_degrees = c.spread_degrees + 6.0
+
+			
+			shot_effects.recoil_knockback = math.min(shot_effects.recoil_knockback - 10, 0)
+
+			local entity_id = GetUpdatedEntityID()
+			local controls_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "ControlsComponent")
+			if controls_comp ~= nil then
+				local character_data_comp = EntityGetFirstComponent(entity_id, "CharacterDataComponent")
+				if character_data_comp ~= nil then
+					local velocity_x, velocity_y = ComponentGetValueVector2(character_data_comp, "mVelocity")
+					local aim_dir_x, aim_dir_y = ComponentGetValueVector2(controls_comp, "mAimingVectorNormalized")
+
+
+					
+					local target_velocity_x = velocity_x + (aim_dir_x * 100)
+					local target_velocity_y = velocity_y + (aim_dir_y * 100)
+		
+					ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
+					print("Applying velocity: " .. tostring(target_velocity_x) .. ", " .. tostring(target_velocity_y))
+				end
+			end
+			
+
+			current_reload_time = current_reload_time - ACTION_DRAW_RELOAD_TIME_INCREASE - 10
+		end,
+	}
 }
 
 local function split_string(input_str)

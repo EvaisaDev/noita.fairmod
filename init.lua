@@ -1,4 +1,6 @@
-local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") ---@type fuckupenemies
+dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+
+local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
 local input_delay = dofile_once("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
@@ -6,6 +8,9 @@ local tm_trainer = dofile_once("mods/noita.fairmod/files/content/tmtrainer/init.
 local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
+local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
+local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
+local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -15,6 +20,14 @@ dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
 dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
+dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
+dofile_once("mods/noita.fairmod/files/content/mon_wands/mon_wands_init.lua")
+dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
+dofile_once("mods/noita.fairmod/files/content/scene_liquid_randomizer/init.lua")
+dofile_once("mods/noita.fairmod/files/content/speedrun_door/init.lua")
+dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
+dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
+dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
@@ -23,28 +36,34 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
+imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
+
+ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
+	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
+	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
 end
 
-ModLuaFileAppend(
-	"data/scripts/biomes/mountain/mountain_hall.lua",
-	"mods/noita.fairmod/files/content/stalactite/scripts/mountain_hall_append.lua"
-)
-
 function OnPlayerSpawned(player)
+
+	GameRemoveFlagRun("pause_snail_ai")
+
 	local x, y = EntityGetTransform(player)
 
 	-- move player to a random parallel world.
@@ -69,6 +88,7 @@ function OnPlayerSpawned(player)
 	-- stuff after here only runs once on initial run start
 
 	tm_trainer.OnPlayerSpawned(player)
+	funky_portals.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
@@ -79,6 +99,8 @@ function OnPlayerSpawned(player)
 	crits.OnPlayerSpawned(player)
 
 	clipboard.OnPlayerSpawned(player)
+
+	evil_nuggets.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -104,8 +126,15 @@ function OnWorldPreUpdate()
 	end
 	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
+	trading_cards.update()
+	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
+	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 end
 
 -- Copi was here
+-- Dexter is here
 -- Moldos was here
 -- Nathan was here
+-- Eba was here :3
+-- Lamia wasn't here
+-- Circle was here

@@ -16,7 +16,7 @@ if(IngestionComp)then
 
 		SetRandomSeed(math.random()+entity_id, GameGetFrameNum()+GetUpdatedComponentID())
 		if Random(1,chance) == 1 then
-			GamePrint(tostring(GameGetFrameNum()))
+			--GamePrint(tostring(GameGetFrameNum()))
 			local x, y = EntityGetTransform(entity_id)
 			-- we do a little murdering
 			for i=1, 100 do

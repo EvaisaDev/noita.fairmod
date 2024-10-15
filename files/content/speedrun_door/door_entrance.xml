@@ -1,0 +1,47 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/speedrun_door/door.png"
+		offset_x="26"
+   		offset_y="45"
+		z_index="5"
+	/>
+	
+	<InteractableComponent
+		_tags="enter_door"
+		radius="20"
+		ui_text="Press $0 to enter. (Speedrunners only)"
+		name="interact"
+	/>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/speedrun_door/door_handler.lua"
+		enable_coroutines="1"
+	/>
+
+	<ParticleEmitterComponent 
+		_enabled="1"
+		offset.x="26"
+		offset.y="-35"
+		emitted_material_name="spark"
+		gravity.y="0.0"
+		lifetime_min="0.5"
+		lifetime_max="1"
+		count_min="1"
+		count_max="1"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="0"
+		cosmetic_force_create="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="2"
+		emit_cosmetic_particles="1"
+		image_animation_file="mods/noita.fairmod/files/content/speedrun_door/image_particle_emitter.png"
+		image_animation_speed="5"
+		image_animation_loop="1"
+		is_emitting="1"
+		render_back="1"
+		>
+	</ParticleEmitterComponent>
+
+</Entity>

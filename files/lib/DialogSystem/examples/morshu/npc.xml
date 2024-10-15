@@ -1,0 +1,98 @@
+<Entity>
+	<Base file="data/entities/base_helpless_animal.xml" >
+		<AnimalAIComponent 
+			preferred_job="JobDefault"
+			attack_melee_enabled="0"
+			attack_ranged_entity_file=""
+			attack_ranged_predict="1"
+			attack_ranged_enabled="0"
+			attack_melee_enabled="0"
+			sense_creatures="1"
+			creature_detection_range_x="128"
+			creature_detection_range_y="160"
+			attack_melee_damage_min="0"
+			attack_melee_damage_max="0"
+      max_distance_to_move_from_home="300"
+			can_fly="0"
+      can_walk="1"
+			>
+		</AnimalAIComponent >
+		
+		<DamageModelComponent 
+			ragdoll_filenames_file="data/ragdolls/peasant/filenames.txt" 
+			fire_probability_of_ignition="0.05"
+			hp="0.8"
+			>
+		</DamageModelComponent>
+
+    <SpriteComponent
+      image_file="mods/DialogSystem_example/files/morshu/sprite.xml"
+      offset_x="14"
+      offset_y="26"
+      z_index="1"
+      rect_animation="walk"
+      >
+    </SpriteComponent>
+
+		<PathFindingGridMarkerComponent
+			marker_work_flag="24" >
+		</PathFindingGridMarkerComponent>
+		
+		<GenomeDataComponent 
+			herd_id="helpless"
+			food_chain_rank="20"
+			is_predator="0" >
+		</GenomeDataComponent>
+		
+		<CharacterPlatformingComponent 
+			jump_velocity_y="-12" 
+			run_velocity="30"  
+			>
+		</CharacterPlatformingComponent>
+		
+		<HitboxComponent 
+			_enabled="1" 
+			aabb_min_x="-7" 
+			aabb_max_x="7" 
+			aabb_min_y="-27" 
+			aabb_max_y="0" 
+			>
+		</HitboxComponent>
+		
+		<PathFindingComponent
+			can_swim_on_surface="1"
+			can_dive="1"
+			can_walk="1"
+			>
+		</PathFindingComponent>
+		
+		<CharacterDataComponent
+			collision_aabb_min_x="-7" 
+			collision_aabb_max_x="7" 
+			collision_aabb_min_y="-27" 
+			collision_aabb_max_y="3" 
+			mass="2.4"
+			>
+		</CharacterDataComponent>
+		
+		<CameraBoundComponent
+			max_count="30"
+			distance="160000">
+		</CameraBoundComponent>
+	</Base>
+
+  <InteractableComponent
+    ui_text="Press $0 to talk to Morshu"
+    radius="15"
+    >
+  </InteractableComponent>
+
+  <LuaComponent
+    script_interacting="mods/DialogSystem_example/files/morshu/interact.lua"
+    script_source_file="mods/DialogSystem_example/files/morshu/interact.lua"
+    execute_every_n_frame="1"
+    enable_coroutines="1"
+    >
+  </LuaComponent>
+
+</Entity>

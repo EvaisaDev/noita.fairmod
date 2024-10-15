@@ -1,0 +1,30 @@
+<Entity>
+
+
+	<!--
+	<IKLimbWalkerComponent>
+	</IKLimbWalkerComponent>
+-->
+	<IKLimbComponent
+		length="22" >
+	</IKLimbComponent>
+
+	<SpriteComponent 
+		image_file="mods/noita.fairmod/files/content/anything_mimics/files/lukki_limb_dark.png" 
+		z_index="1.1"
+		offset_x="0"
+		offset_y="5"
+		update_transform="0"
+		update_transform_rotation="0" >
+	</SpriteComponent>
+
+	<SpriteComponent 
+		image_file="mods/noita.fairmod/files/content/anything_mimics/files/lukki_limb_dark.png" 
+		z_index="1.1"
+		offset_x="0"
+		offset_y="5"
+		update_transform="0"
+		update_transform_rotation="0" >
+	</SpriteComponent>
+
+</Entity>

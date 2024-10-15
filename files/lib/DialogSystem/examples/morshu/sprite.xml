@@ -1,0 +1,32 @@
+<Sprite 
+	filename="mods/DialogSystem_example/files/morshu/sprite.png"
+	offset_x="0" 
+	offset_y="0"
+	default_animation="stand"
+  >
+
+	<RectAnimation 
+		frame_count="1"
+		frame_width="27"
+		frame_height="30"
+		frame_wait="0.14"
+		frames_per_row=""
+		name="stand"
+		pos_x="27"
+		pos_y="30"
+		>
+	</RectAnimation>
+
+	<RectAnimation 
+		frame_count="4"
+		frame_width="27"
+		frame_height="30"
+		frame_wait="0.14"
+		frames_per_row="3"
+		name="walk"
+		pos_x="0"
+		pos_y="0"
+		>
+	</RectAnimation>
+
+</Sprite>
