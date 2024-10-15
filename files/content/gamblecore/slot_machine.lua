@@ -9,6 +9,8 @@ local sprite_component = EntityGetFirstComponent( entity_id, "SpriteComponent", 
 local cost_sprite = EntityGetFirstComponent( entity_id, "SpriteComponent", "cost" )
 
 current_cost = current_cost or 100
+current_winnings = current_winnings or 200
+win_chance = win_chance or 20
 
 if(debug_free)then
 	current_cost = 0
@@ -132,7 +134,7 @@ if(currently_gambling)then
 		end
 
 		if(gamble_states[state].is_win_condition)then
-			current_cost = current_cost * 2
+			
 			if(will_win)then
 				GamePrint("You won!")
 				GameAddFlagRun("has_won")
@@ -141,13 +143,16 @@ if(currently_gambling)then
 				EntityRefreshSprite( entity_id, sprite_component )
 				-- drop gold
 
-				local total = math.floor(current_cost * 2 / 5)
+				win_chance = math.max(win_chance - 1, win_chance * 0.5)
+
+				current_winnings = 200
+
 				for i = 1, 5 do
 					local nugget = EntityLoad("data/entities/items/pickup/goldnugget.xml", x, y)
 					local storage_comps = EntityGetComponent(nugget, "VariableStorageComponent") or {}
 					for k, v in pairs(storage_comps)do
 						if(ComponentGetValue2(v, "name") == "gold_value")then
-							ComponentSetValue2(v, "value_int", total) 
+							ComponentSetValue2(v, "value_int", current_winnings) 
 						end
 					end
 				end
@@ -195,7 +200,7 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 				ComponentSetValue2(sprite_component, "rect_animation", gamble_states[state].animation)
 				EntityRefreshSprite( entity_id, sprite_component )
 
-				will_win = (not GameHasFlagRun("has_won") and Random(1, 100) < 10)
+				will_win = Random(1, 1000000) / 10000 < win_chance
 
 				time = 0
 				if(not lets_go_gambling)then
@@ -204,12 +209,10 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 					lets_go_gambling = true
 				end
 				ComponentSetValue2(wallet, "money", money - current_cost)
+				current_winnings = current_winnings + (current_cost * 2)
 			end
 		end
 
-
-
-		-- remove money
 		
 	end
 end
