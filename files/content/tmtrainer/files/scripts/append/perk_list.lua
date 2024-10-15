@@ -67,109 +67,112 @@ SetRandomSeed(0, 0)
 for i = 1, #perk_pool do
     -- No need to set the random seed inside the loop
 
-    local id = "TMTRAINER_" .. i
-    local ui_name_parts = {}
-    local ui_description_parts = {}
-    local ui_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/ui_icon_" .. i .. ".png"
-    local perk_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/perk_icon_" .. i .. ".png"
-    local game_effect = ""
-    local particle_effect = ""
-    local usable_by_enemies = true
-    local stackable = true
-    local funcs = {}
-    local funcs_remove = {}
-    local funcs_enemy = {}
+	if(Random(1, 100) < 40)then
 
-    for j = 1, 2 do
-        local perk = get_random_perk()
-        local added_name = GameTextGetTranslatedOrNot(perk.ui_name) or ""
-        local added_description = GameTextGetTranslatedOrNot(perk.ui_description) or ""
+		local id = "TMTRAINER_" .. i
+		local ui_name_parts = {}
+		local ui_description_parts = {}
+		local ui_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/ui_icon_" .. i .. ".png"
+		local perk_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/perk_icon_" .. i .. ".png"
+		local game_effect = ""
+		local particle_effect = ""
+		local usable_by_enemies = true
+		local stackable = true
+		local funcs = {}
+		local funcs_remove = {}
+		local funcs_enemy = {}
 
-        -- Build name and description from random chunks
-        table.insert(ui_name_parts, get_random_chunk(added_name, 4))
-        table.insert(ui_description_parts, get_random_chunk(added_description, 10))
+		for j = 1, 2 do
+			local perk = get_random_perk()
+			local added_name = GameTextGetTranslatedOrNot(perk.ui_name) or ""
+			local added_description = GameTextGetTranslatedOrNot(perk.ui_description) or ""
 
-        -- Generate icons
-        generate_icon(i, perk.ui_icon, j == 1, "ui_icon")
-        generate_icon(i, perk.perk_icon, j == 1, "perk_icon")
+			-- Build name and description from random chunks
+			table.insert(ui_name_parts, get_random_chunk(added_name, 4))
+			table.insert(ui_description_parts, get_random_chunk(added_description, 10))
 
-        -- Update flags
-        if perk.usable_by_enemies == false then
-            usable_by_enemies = false
-        end
+			-- Generate icons
+			generate_icon(i, perk.ui_icon, j == 1, "ui_icon")
+			generate_icon(i, perk.perk_icon, j == 1, "perk_icon")
 
-        if perk.stackable == false then
-            stackable = false
-        end
+			-- Update flags
+			if perk.usable_by_enemies == false then
+				usable_by_enemies = false
+			end
 
-        -- Update game effect and particle effect
-        if perk.game_effect and perk.game_effect ~= "" then
-            if game_effect == "" or Random(0, 100) > 50 then
-                game_effect = perk.game_effect
-            end
-        end
+			if perk.stackable == false then
+				stackable = false
+			end
 
-        if perk.particle_effect and perk.particle_effect ~= "" then
-            if particle_effect == "" or Random(0, 100) > 50 then
-                particle_effect = perk.particle_effect
-            end
-        end
+			-- Update game effect and particle effect
+			if perk.game_effect and perk.game_effect ~= "" then
+				if game_effect == "" or Random(0, 100) > 50 then
+					game_effect = perk.game_effect
+				end
+			end
 
-        -- Collect functions
-        if perk.func then
-            table.insert(funcs, perk.func)
-        end
+			if perk.particle_effect and perk.particle_effect ~= "" then
+				if particle_effect == "" or Random(0, 100) > 50 then
+					particle_effect = perk.particle_effect
+				end
+			end
 
-        if perk.func_remove then
-            table.insert(funcs_remove, perk.func_remove)
-        end
+			-- Collect functions
+			if perk.func then
+				table.insert(funcs, perk.func)
+			end
 
-        if perk.func_enemy then
-            table.insert(funcs_enemy, perk.func_enemy)
-        end
-    end
+			if perk.func_remove then
+				table.insert(funcs_remove, perk.func_remove)
+			end
 
-    -- Combine name and description parts
-    local ui_name = table.concat(ui_name_parts)
-    local ui_description = table.concat(ui_description_parts)
+			if perk.func_enemy then
+				table.insert(funcs_enemy, perk.func_enemy)
+			end
+		end
 
-    -- Define the combined functions
-    local function func(entity_perk_item, entity_who_picked, item_name, pickup_count)
-        for _, f in ipairs(funcs) do
-            f(entity_perk_item, entity_who_picked, item_name, pickup_count)
-        end
-    end
+		-- Combine name and description parts
+		local ui_name = table.concat(ui_name_parts)
+		local ui_description = table.concat(ui_description_parts)
 
-    local function func_remove(entity_perk_item, entity_who_picked, item_name)
-        for _, f in ipairs(funcs_remove) do
-            f(entity_perk_item, entity_who_picked, item_name)
-        end
-    end
+		-- Define the combined functions
+		local function func(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			for _, f in ipairs(funcs) do
+				f(entity_perk_item, entity_who_picked, item_name, pickup_count)
+			end
+		end
 
-    local function func_enemy(entity_perk_item, entity_who_picked)
-        for _, f in ipairs(funcs_enemy) do
-            f(entity_perk_item, entity_who_picked)
-        end
-    end
+		local function func_remove(entity_perk_item, entity_who_picked, item_name)
+			for _, f in ipairs(funcs_remove) do
+				f(entity_perk_item, entity_who_picked, item_name)
+			end
+		end
 
-    -- Create the new perk
-    local new_perk = {
-        not_in_default_perk_pool = false,
-        id = id,
-        ui_name = ui_name,
-        ui_description = ui_description,
-        ui_icon = ui_icon,
-        perk_icon = perk_icon,
-        usable_by_enemies = usable_by_enemies,
-        stackable = stackable,
-        game_effect = game_effect,
-        particle_effect = particle_effect,
-        tmtrainer = true,
-        func = func,
-        func_remove = func_remove,
-        func_enemy = func_enemy,
-    }
+		local function func_enemy(entity_perk_item, entity_who_picked)
+			for _, f in ipairs(funcs_enemy) do
+				f(entity_perk_item, entity_who_picked)
+			end
+		end
 
-    table.insert(perk_list, new_perk)
-    TMTRAINER_INDEX = TMTRAINER_INDEX + 1
+		-- Create the new perk
+		local new_perk = {
+			not_in_default_perk_pool = false,
+			id = id,
+			ui_name = ui_name,
+			ui_description = ui_description,
+			ui_icon = ui_icon,
+			perk_icon = perk_icon,
+			usable_by_enemies = usable_by_enemies,
+			stackable = stackable,
+			game_effect = game_effect,
+			particle_effect = particle_effect,
+			tmtrainer = true,
+			func = func,
+			func_remove = func_remove,
+			func_enemy = func_enemy,
+		}
+
+		table.insert(perk_list, new_perk)
+		TMTRAINER_INDEX = TMTRAINER_INDEX + 1
+	end
 end
