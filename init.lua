@@ -29,6 +29,7 @@ dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
 dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
+dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
