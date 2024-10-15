@@ -1,0 +1,65 @@
+<Materials>
+  <CellData 
+	name="poo"  
+	ui_name="$mat_poo"
+  	tags="[sand_other],[corrodible],[soluble]"
+	burnable="0"  
+	density="6"  
+	cell_type="liquid" 
+	wang_color="ff36315f"  
+	generates_smoke="0"  
+	liquid_gravity="0.9"  
+	liquid_sand="1"  
+	liquid_stains="2"
+	liquid_stains_self="1"
+	on_fire="0"  
+	requires_oxygen="1"  
+	temperature_of_fire="10" 
+	platform_type="0"
+	hp="200"
+	>
+    <Graphics 
+	texture_file="data/materials_gfx/soil.png" 
+	color="ff36311e" >
+    </Graphics>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="FOOD_POISONING" amount="0.3" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+
+  <CellData
+	name="poo_fairmod_static"
+	ui_name="$mat_poo"
+	tags="[static],[corrodible],[alchemy],[solid],[earth]"
+	burnable="0"
+	density="10"
+	cell_type="liquid"
+	wang_color="ff4f1421"
+    durability="10"
+	generates_smoke="0"
+	liquid_gravity="1.2"
+	liquid_sand="1"
+	liquid_static="1"
+	on_fire="0"
+	requires_oxygen="1"
+	temperature_of_fire="10"
+	hp="19000" 
+	platform_type="1"
+	audio_physics_material_event="gravel"
+	audio_physics_material_wall="gravel"
+	audio_physics_material_solid="rock"
+	show_in_creative_mode="1"
+	>
+    <Graphics 
+	texture_file="data/materials_gfx/soil.png" 
+	color="ff36311e" >
+    </Graphics>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="FOOD_POISONING" amount="0.3" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>  
+</Materials>

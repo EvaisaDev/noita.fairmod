@@ -1,0 +1,17 @@
+<Entity name="cauldron_checker" serialize="1">
+	<MaterialAreaCheckerComponent
+		area_aabb.min_x="-13" 
+		area_aabb.max_x="13" 
+		area_aabb.min_y="0"   
+		area_aabb.max_y="5" 
+		update_every_x_frame="1"
+		material="poo"
+		material2="poo"
+		look_for_failure="0"
+		kill_after_message="1">
+	</MaterialAreaCheckerComponent>
+
+	<LuaComponent
+		script_material_area_checker_success="mods/noita.fairmod/files/content/cauldron/material_check.lua" >
+	</LuaComponent>
+</Entity>

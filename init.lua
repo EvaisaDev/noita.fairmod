@@ -31,6 +31,7 @@ dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua")
+dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -142,6 +143,10 @@ function OnWorldPreUpdate()
 	trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
+end
+
+function OnWorldPostUpdate()
+
 end
 
 local time_paused = 0
