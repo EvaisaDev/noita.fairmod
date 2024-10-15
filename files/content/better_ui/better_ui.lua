@@ -9,6 +9,8 @@ for content in nxml.edit_file("data/entities/animals/boss_centipede/sampo.xml") 
     }))
 end
 
+ModLuaFileAppend("data/entities/animals/boss_centipede/ending/sampo_start_ending_sequence.lua", "mods/noita.fairmod/files/content/better_ui/append/ending_sequence.lua")
+
 local gui = GuiCreate()
 local w, h, cur_y
 local pending_info = {}
@@ -43,7 +45,7 @@ local function frames_to_time(frames)
     local seconds_f = frames / 60
     local minutes = seconds_f / 60
     seconds_f = seconds_f % 60
-    return string.format("%i:%2.3f", minutes, seconds_f)
+    return string.format("%i:%02.3f", minutes, seconds_f)
 end
 
 local function add_split(label, id)
@@ -58,26 +60,16 @@ local function speedrun_splits()
     add_info("Noita Fairmod           Any%")
     add_split("The Door", "SPEEDRUN_SPLIT_DOOR")
     add_split("Sampo", "SPEEDRUN_SPLIT_SAMPO")
-    add_split("Kolmi", "SPEEDRUN_SPLIT_KOLMI")
-    add_split("The Work", "SPEEDRUN_SPLIT_WORK")
+    -- Maybe do Kolmi later
+    -- add_split("Kolmi", "SPEEDRUN_SPLIT_KOLMI")
+    add_split("Complete The Work", "SPEEDRUN_SPLIT_WORK")
     add_info("Current time: ", frames_to_time(GameGetFrameNum()))
     add_info("")
 end
 
-function module.update()
-    GuiStartFrame(gui)
-    GuiZSet(gui, 10)
-
-    w, h = GuiGetScreenDimensions(gui)
-    cur_y = 80
-    pending_info = {}
-
+local function normal_content()
     local wse = GameGetWorldStateEntity()
     local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
-
-    if GameHasFlagRun("speedrun_door_used") then
-        speedrun_splits()
-    end
 
     local time_fraction = ComponentGetValue2(wsc, "time")
 
@@ -154,6 +146,21 @@ function module.update()
 
 
         add_info("")
+    end
+end
+
+function module.update()
+    GuiStartFrame(gui)
+    GuiZSet(gui, 10)
+
+    w, h = GuiGetScreenDimensions(gui)
+    cur_y = 80
+    pending_info = {}
+
+    if GameHasFlagRun("speedrun_door_used") then
+        speedrun_splits()
+    else
+        normal_content()
     end
 
     local x_shift = calc_max_length()
