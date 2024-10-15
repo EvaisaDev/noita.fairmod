@@ -28,6 +28,7 @@ dofile_once("mods/noita.fairmod/files/content/speedrun_door/init.lua")
 dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
 dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
+dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 
@@ -166,7 +167,6 @@ end
 -- Circle was here
 
 
-
 -----##
 ----#o##
 ----###o
@@ -176,3 +176,4 @@ end
 --%--%--%
 --%--%--%
 --#--#--#
+
