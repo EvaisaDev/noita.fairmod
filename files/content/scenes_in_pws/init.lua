@@ -46,3 +46,9 @@ for _, filename in ipairs(pixel_scene_files) do
 		add_pw_scenes(scene_file:first_of("mBufferedPixelScenes"), "pos_x")
 	end
 end
+
+-- BUT ALSO, get rid of east/west indicators
+local csv = ModTextFileGetContent("data/translations/common.csv")
+csv = csv:gsub("\nbiome_east,[^\n]+", "\nbiome_east,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,")
+csv = csv:gsub("\nbiome_west,[^\n]+", "\nbiome_west,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,")
+ModTextFileSetContent("data/translations/common.csv", csv)
