@@ -8,9 +8,9 @@ local module = {}
 local scale = 0.75
 
 local function render_info(text, x_shift)
-    local _tw, th = GuiGetTextDimensions(gui, text, scale)
+    local _tw, _th = GuiGetTextDimensions(gui, text, scale)
     GuiText(gui, w - x_shift - 10, cur_y, text, scale)
-    cur_y = cur_y + th
+    cur_y = cur_y + 10
 end
 
 local function add_info(text)
@@ -71,10 +71,47 @@ function module.update()
     local times_taken_shit = tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0
 
     if times_taken_piss > 0 then
-        add_info(times_taken_piss.." pisses taken")
+        if times_taken_piss == 1 then
+            add_info(times_taken_piss.." piss taken")
+        else
+            add_info(times_taken_piss.." pisses taken")
+        end
     end
     if times_taken_shit > 0 then
-        add_info(times_taken_shit.." shits taken")
+        if times_taken_shit == 1 then
+            add_info(times_taken_shit.." shit taken")
+        else
+            add_info(times_taken_shit.." shits taken")
+        end
+    end
+    
+    if GameHasFlagRun("gamblecore_found") then
+        add_info("")
+        add_info("Gamblehelper (tm)")
+        local times_won = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) or 0
+        local times_lost_in_a_row = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0
+        if times_won == 1 then
+            add_info("Won "..times_won.. " time")
+        else
+            add_info("Won "..times_won.. " times")
+        end
+        
+        if times_lost_in_a_row == 1 then
+            add_info("Lost "..times_lost_in_a_row.." time since last win")
+        else
+            add_info("Lost "..times_lost_in_a_row.." times since last win")
+        end
+        
+        if times_lost_in_a_row > 2 then
+            local p1 = 0.1
+            local p = math.pow((1-p1), times_lost_in_a_row+1)
+            local pf = string.format("%.6f %%", p*100)
+            add_info("Probability of losing "..(times_lost_in_a_row+1).." times in row is ".. pf)
+            add_info("Keep gambling, you're due for a win!")
+        end
+
+
+        add_info("")
     end
 
     local x_shift = calc_max_length()

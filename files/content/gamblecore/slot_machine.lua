@@ -136,6 +136,10 @@ if(currently_gambling)then
 		if(gamble_states[state].is_win_condition)then
 			
 			if(will_win)then
+				-- better_ui integration
+				GlobalsSetValue("GAMBLECORE_TIMES_WON", tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) or 0) + 1))
+				GlobalsSetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")
+				
 				GamePrint("You won!")
 				GameAddFlagRun("has_won")
 				GamePlayAnimation( entity_id, "win", 1 )
@@ -158,6 +162,9 @@ if(currently_gambling)then
 				end
 
 			else
+				-- better_ui integration
+				GlobalsSetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0) + 1))
+
 				GamePrint("You lost!")
 				GamePlayAnimation( entity_id, "lose", 1 )
 				ComponentSetValue2(sprite_component, "rect_animation", "lose")
@@ -186,6 +193,9 @@ end
 function interacting( entity_who_interacted, entity_interacted, interactable_name )
 
 	if(interactable_name == "interact")then
+		-- better_ui integration
+		GameAddFlagRun("gamblecore_found")
+
 		local wallet = EntityGetFirstComponent( entity_who_interacted, "WalletComponent" )
 
 		if(wallet)then
