@@ -115,9 +115,6 @@ function teleported( from_x, from_y, to_x, to_y, portal_teleport )
 			local index = Random(1, #random_biome_list)
 	
 			EntityApplyTransform(player_entity, random_biome_list[index].x, random_biome_list[index].y)
-			--print("Moved to initial spot")
-			local valid_spot = false
-			local valid_spot_timer = 0
 			-- check if position is safe
 			delay.new(function() 
 				return DoesWorldExistAt(random_biome_list[index].x, random_biome_list[index].y, random_biome_list[index].x + 1, random_biome_list[index].y + 1)

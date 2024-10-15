@@ -69,8 +69,8 @@ local trigger_potential = {
 	},
 	{
 		tag = "player_projectile",
-		distance = 10,
-		chance = 50
+		distance = 40,
+		chance = 70
 	}
 }
 

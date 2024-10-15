@@ -1,0 +1,17 @@
+<Entity>
+	<TeleportComponent
+		target_x_is_absolute_position="1"
+		target_y_is_absolute_position="1"
+		target.x="3476" 
+		target.y="13108" 
+	></TeleportComponent>
+
+	<HitboxComponent 
+		aabb_min_x="-15" 
+		aabb_min_y="-15"
+		aabb_max_x="15" 
+		aabb_max_y="15" 
+	></HitboxComponent>
+
+	<LifetimeComponent lifetime="60"/>
+</Entity>
