@@ -11,6 +11,7 @@ local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
 local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
+local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -144,6 +145,7 @@ function OnWorldPreUpdate()
 	trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
+	better_ui.update()
 end
 
 function OnWorldPostUpdate()
