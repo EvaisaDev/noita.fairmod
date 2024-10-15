@@ -105,7 +105,7 @@ function module.update()
         if times_lost_in_a_row > 2 then
             local p1 = 0.1
             local p = math.pow((1-p1), times_lost_in_a_row+1)
-            local pf = string.format("%.6f %%", p*100)
+            local pf = string.format("%.2f %%", p*100)
             add_info("Probability of losing "..(times_lost_in_a_row+1).." times in row is ".. pf)
             add_info("Keep gambling, you're due for a win!")
         end
