@@ -1,20 +1,20 @@
 local tcsv = dofile_once("mods/noita.fairmod/files/content/langmix/tcsv.lua")
 
 local LANG_INDEX_MAP = {
-	English = 2,
-	русский = 3,
+	["English"] = 2,
+	["русский"] = 3,
 	["Português (Brasil)"] = 4,
-	Español = 5,
-	Deutsch = 6,
-	Français = 7,
-	Italiano = 8,
-	Polska = 9,
+	["Español"] = 5,
+	["Deutsch"] = 6,
+	["Français"] = 7,
+	["Italiano"] = 8,
+	["Polska"] = 9,
 	["简体中文"] = 10,
 	["日本語"] = 11,
 	["한국어"] = 12,
 }
 
-local CHANGE_CHANCE = 0.3
+local CHANGE_CHANCE = 0.15
 local IDX_SWAP_MIN = 2
 local IDX_SWAP_MAX = 9 -- Not swapping with Asian languages because of font complications
 
