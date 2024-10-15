@@ -25,6 +25,13 @@ function evil:GiveRandomEffect(enemy)
 end
 
 function evil:ItemPickUpperComponent(enemy)
+
+	EntityAddComponent2(enemy, "LuaComponent", {
+		script_source_file="mods/noita.fairmod/files/content/misc/item_dropper.lua",
+		execute_on_added=true,
+		execute_every_n_frame=0,
+		execute_times=-1
+	})
 	local item_pickupper_component = EntityGetFirstComponentIncludingDisabled(enemy, "ItemPickUpperComponent")
 	if item_pickupper_component then
 		ComponentSetValue2(item_pickupper_component, "is_in_npc", true)

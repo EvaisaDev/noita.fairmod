@@ -33,11 +33,15 @@ end
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
+local nearby_items = EntityGetInRadius(x, y, 10)
+
 -- Initialize move_x and move_y if not set
 if move_x == 0 and move_y == 0 then
     move_x = x
     move_y = y
 end
+
+
 
 -- Get the player entity
 local players = GetPlayers()
