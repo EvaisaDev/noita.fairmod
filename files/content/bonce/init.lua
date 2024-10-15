@@ -1,15 +1,5 @@
-local file = ModTextFileGetContent("mods/noita.fairmod/files/content/bonce/filenames.txt")
 local nxml = dofile("mods/noita.fairmod/files/lib/nxml.lua")
-local function mysplit(inputstr, sep)
-  if sep == nil then
-    sep = "%s"
-  end
-  local t = {}
-  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-    table.insert(t, str)
-  end
-  return t
-end
+
 local function alter(element, field)
     local mult = 1
     local value = tonumber(element:get(field))
@@ -39,9 +29,9 @@ local function visit(element)
     alter(element, "initial_jump_max_distance_y")
 end
 
-local filenames = mysplit(file, "\n")
+local filenames = dofile_once("mods/noita.fairmod/files/content/bonce/filenames.lua")
 for i, filename in ipairs(filenames) do
-    filename = "data/entities/animals/" .. filename:sub(3)
+    filename = "data/entities/animals/" .. filename
     for content in nxml.edit_file(filename) do
         content:expand_base()
         local path_finding_comp = content:first_of("PathFindingComponent")
