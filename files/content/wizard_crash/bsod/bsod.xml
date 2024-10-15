@@ -1,0 +1,90 @@
+<Entity name="bsod">
+    <LuaComponent
+        script_source_file="mods/shutdown/files/entities/misc/bsod.lua"
+        enable_coroutines="1"
+        execute_every_n_frame="-1"
+        execute_on_added="1" >
+    </LuaComponent>
+
+    <LifetimeComponent lifetime="700" />
+
+    <Entity name="bsod_background">
+        <InheritTransformComponent>
+            <Transform
+                scale.x="1000"
+                scale.y="1000"
+            >
+            </Transform>
+        </InheritTransformComponent>
+
+        <SpriteComponent
+            image_file="mods/noita.fairmod/files/content/wizard_crash/bsod/background.xml"
+            ui_is_parent="1"
+            z_index="-20000" >
+        </SpriteComponent>
+    </Entity>
+
+    <Entity name="bsod_static">
+        <InheritTransformComponent>
+        </InheritTransformComponent>
+
+        <SpriteComponent
+            image_file="mods/noita.fairmod/files/content/wizard_crash/bsod/static.xml"
+            ui_is_parent="1"
+            visible="0"
+            z_index="-20000" >
+        </SpriteComponent>
+    </Entity>
+
+    <Entity name="bsod_completed">
+        <InheritTransformComponent>
+            <Transform
+                position.x="208"
+                position.y="614" >
+            </Transform>
+        </InheritTransformComponent>
+
+        <SpriteComponent
+            image_file="mods/noita.fairmod/files/content/wizard_crash/bsod/completed.xml"
+            ui_is_parent="1"
+            visible="0"
+            rect_animation="0"
+            z_index="-20000" >
+        </SpriteComponent>
+    </Entity>
+
+    <Entity name="bsod_qr">
+        <InheritTransformComponent>
+            <Transform
+                position.x="207"
+                position.y="702" >
+            </Transform>
+        </InheritTransformComponent>
+
+        <SpriteComponent
+            image_file="mods/noita.fairmod/files/content/wizard_crash/bsod/qr_code.xml"
+            ui_is_parent="1"
+            visible="0"
+            rect_animation="0"
+            z_index="-20000" >
+        </SpriteComponent>
+    </Entity>
+
+    <Entity name="bsod_stop_code">
+        <InheritTransformComponent>
+            <Transform
+                position.x="418"
+                position.y="802" >
+            </Transform>
+        </InheritTransformComponent>
+
+        <SpriteComponent
+            image_file="mods/noita.fairmod/files/content/wizard_crash/bsod/stop_code.xml"
+            ui_is_parent="1"
+            visible="0"
+            rect_animation="0"
+            z_index="-20000" >
+        </SpriteComponent>
+    </Entity>
+
+</Entity>
