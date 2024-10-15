@@ -1,3 +1,13 @@
+-- Funni ui that is shown on the right side of the screen.
+
+local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+
+for content in nxml.edit_file("data/entities/animals/boss_centipede/sampo.xml") do
+    content:add_child(nxml.new_element("LuaComponent", {
+        script_item_picked_up="mods/noita.fairmod/files/content/better_ui/append/sampo_pickup.lua",
+        remove_after_executed="1"
+    }))
+end
 
 local gui = GuiCreate()
 local w, h, cur_y
