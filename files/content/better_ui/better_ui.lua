@@ -7,23 +7,51 @@ local module = {}
 
 local scale = 0.75
 
-local function render_info(text, x_shift)
-    local _tw, _th = GuiGetTextDimensions(gui, text, scale)
-    GuiText(gui, w - x_shift - 10, cur_y, text, scale)
-    cur_y = cur_y + 10
+local function render_info(info, x_shift)
+    GuiText(gui, w - x_shift - 10, cur_y, info.text, scale)
+    if info.text2 ~= nil then
+        local tw, _th = GuiGetTextDimensions(gui, info.text2, scale)
+        GuiText(gui, w - tw - 10, cur_y, info.text2, scale)
+    end
+    cur_y = cur_y + 9
 end
 
-local function add_info(text)
-    table.insert(pending_info, text)
+local function add_info(text, text2)
+    table.insert(pending_info, {text=text, text2=text2})
 end
 
 local function calc_max_length()
     local c_max = 0
-    for _, text in ipairs(pending_info) do
-        local tw, _ = GuiGetTextDimensions(gui, text, scale)
+    for _, info in ipairs(pending_info) do
+        local tw, _ = GuiGetTextDimensions(gui, info.text, scale)
         c_max = math.max(c_max, tw)
     end
     return c_max
+end
+
+local function frames_to_time(frames)
+    local seconds_f = frames / 60
+    local minutes = seconds_f / 60
+    seconds_f = seconds_f % 60
+    return string.format("%i:%2.3f", minutes, seconds_f)
+end
+
+local function add_split(label, id)
+    local splt = GlobalsGetValue(id, "--")
+    if splt ~= "--" then
+        splt = frames_to_time(tonumber(splt))
+    end
+    add_info(label..": ", splt)
+end
+
+local function speedrun_splits()
+    add_info("Noita Fairmod           Any%")
+    add_split("The Door", "SPEEDRUN_SPLIT_DOOR")
+    add_split("Sampo", "SPEEDRUN_SPLIT_SAMPO")
+    add_split("Kolmi", "SPEEDRUN_SPLIT_KOLMI")
+    add_split("The Work", "SPEEDRUN_SPLIT_WORK")
+    add_info("Current time: ", frames_to_time(GameGetFrameNum()))
+    add_info("")
 end
 
 function module.update()
@@ -36,6 +64,10 @@ function module.update()
 
     local wse = GameGetWorldStateEntity()
     local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+
+    if GameHasFlagRun("speedrun_door_used") then
+        speedrun_splits()
+    end
 
     local time_fraction = ComponentGetValue2(wsc, "time")
 
