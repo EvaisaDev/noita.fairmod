@@ -39,7 +39,7 @@ if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
 		end
 
 		if valid then
-			snail_respawn_timer = Random(200, 5400)
+			snail_respawn_timer = Random(60, 300)
 			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", new_x, new_y)
 			print("Snail was missing, respawning.")
 		end

@@ -30,6 +30,7 @@ dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
+dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -64,6 +65,7 @@ end
 function OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
+	GameRemoveFlagRun("draw_evil_mode_text")
 
 	local x, y = EntityGetTransform(player)
 
@@ -132,6 +134,30 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 end
 
+local time_paused = 0
+local last_pause_was_inventory = false
+function OnPausePreUpdate()
+	time_paused = time_paused + 1
+
+	if(not last_pause_was_inventory and time_paused == 5)then
+		GameAddFlagRun("draw_evil_mode_text")
+	end
+	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
+end
+
+function OnPausedChanged(is_paused, is_inventory_pause)
+	last_pause_was_inventory = is_inventory_pause
+	if(is_paused and not is_inventory_pause)then
+		-- regular pause screen
+	elseif(is_paused and is_inventory_pause)then
+		-- inventory pause screen
+	elseif(not is_paused)then
+		-- unpaused
+		GameRemoveFlagRun("draw_evil_mode_text")
+		time_paused = 0
+	end
+end
+
 -- Copi was here
 -- Dexter is here
 -- Moldos was here
@@ -139,3 +165,15 @@ end
 -- Eba was here :3
 -- Lamia wasn't here
 -- Circle was here
+
+
+-----##
+----#o##
+----###o
+---%#o##
+---%-##-%
+--%--%--%
+--%--%--%
+--%--%--%
+--#--#--#
+
