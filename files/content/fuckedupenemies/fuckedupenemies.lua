@@ -17,16 +17,7 @@ local evil = {
 	scanned = {}
 }
 
-function evil:TweakDamageModel(enemy, damage_model)
-	local hp = ComponentGetValue2(damage_model, "hp")
-	local max_hp = ComponentGetValue2(damage_model, "max_hp")
-	local hp_mult = 5
-	ComponentSetValue2(damage_model, "attack_ranged_entity_count_min", hp * hp_mult)
-	ComponentSetValue2(damage_model, "attack_ranged_entity_count_max", max_hp * hp_mult)
-	local ex, ey, er, sx, sy = EntityGetTransform(enemy)
-	EntitySetTransform(enemy, ex, ey, er, sx * 1.2, sy * 1.2)
-	-- todo add particles
-
+function evil:GiveRandomEffect(enemy)
 	for _ = 1, 3 do
 		local comp = GetGameEffectLoadTo(enemy, effects[math.random(1, #effects)], true)
 		ComponentSetValue2(comp, "frames", -1)
@@ -51,7 +42,9 @@ function evil:ItemPickUpperComponent(enemy)
 end
 
 function evil:TweakAnimalComponent(headache, animal_ai)
-	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 50) == 1)
+
+
+	--[[
 	ComponentSetValue2(animal_ai, "attack_only_if_attacked", false)
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", 200)
 	ComponentSetValue2(animal_ai, "creature_detection_range_y", 200)
@@ -82,6 +75,31 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 		attack_ranged_entity_count_min * damage_mult)
 	ComponentSetValue2(animal_ai, "attack_ranged_entity_count_max",
 		attack_ranged_entity_count_max * damage_mult)
+	]]
+	
+	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 50) == 1)
+	local attack_only_if_attacked = ComponentGetValue2(animal_ai, "attack_only_if_attacked")
+	ComponentSetValue2(animal_ai, "attack_only_if_attacked", math.random(1, 100) < 30 and attack_only_if_attacked or (not attack_only_if_attacked))
+	local creature_detection_range_x = ComponentGetValue2(animal_ai, "creature_detection_range_x")
+	local creature_detection_range_y = ComponentGetValue2(animal_ai, "creature_detection_range_y")
+	ComponentSetValue2(animal_ai, "creature_detection_range_x", creature_detection_range_x * (0.5 + Random()))
+	ComponentSetValue2(animal_ai, "creature_detection_range_y", creature_detection_range_y * (0.5 + Random()))
+	local creature_detection_angular_range_deg = ComponentGetValue2(animal_ai, "creature_detection_angular_range_deg")
+	ComponentSetValue2(animal_ai, "creature_detection_angular_range_deg", creature_detection_angular_range_deg * (0.5 + Random()))
+	local aggressiveness_min = ComponentGetValue2(animal_ai, "aggressiveness_min")
+	local aggressiveness_max = ComponentGetValue2(animal_ai, "aggressiveness_max")
+	ComponentSetValue2(animal_ai, "aggressiveness_min", aggressiveness_min * (0.5 + Random()))
+	ComponentSetValue2(animal_ai, "aggressiveness_max", aggressiveness_max * (0.5 + Random()))
+	local attack_melee_enabled = ComponentGetValue2(animal_ai, "attack_melee_enabled")
+	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 30 and attack_melee_enabled or (not attack_melee_enabled))
+	local attack_dash_enabled = ComponentGetValue2(animal_ai, "attack_dash_enabled")
+	local new_dash_enabled = math.random(1, 100) < 30 and attack_dash_enabled or (not attack_dash_enabled)
+	ComponentSetValue2(animal_ai, "attack_dash_enabled", new_dash_enabled)
+	-- not messing with their damage for now
+	if(attack_dash_enabled ~= new_dash_enabled and new_dash_enabled)then
+		local attack_melee_damage_min = ComponentGetValue2(animal_ai, "attack_melee_damage_min")
+		ComponentSetValue2(animal_ai, "attack_dash_damage", attack_melee_damage_min / 2)
+	end
 end
 
 function evil:BuffEnemy(enemy)
@@ -101,9 +119,8 @@ function evil:BuffEnemy(enemy)
 		self:ItemPickUpperComponent(enemy)
 	end
 
-	local damage_model = EntityGetFirstComponentIncludingDisabled(enemy, "DamageModelComponent")
-	if damage_model and headache then
-		self:TweakDamageModel(enemy, damage_model)
+	if headache then
+		self:GiveRandomEffect(enemy)
 	end
 end
 
