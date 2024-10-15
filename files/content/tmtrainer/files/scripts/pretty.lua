@@ -79,7 +79,6 @@ pretty_print.table = function(node)
     -- This is necessary for working with HUGE tables otherwise we run out of memory using concat on huge strings
     table.insert(output,output_str)
     output_str = table.concat(output)
-   
-    print(output_str)
+
 end
 return pretty_print

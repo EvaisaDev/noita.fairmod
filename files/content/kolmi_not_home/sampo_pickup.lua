@@ -15,5 +15,12 @@ function item_pickup( entity_item, entity_who_picked, name )
 	y = y - 50
 	EntityLoad( "data/entities/buildings/teleport_ending_victory.xml", x, y )
 
+	EntitySetComponentsWithTagEnabled( entity_item, "disabled_at_start", true )
+	EntitySetComponentsWithTagEnabled( entity_item, "enabled_at_start", false )
+	PhysicsSetStatic( entity_item, false )
+
+	GameAddFlagRun("sampo_picked")
+
+	
 
 end

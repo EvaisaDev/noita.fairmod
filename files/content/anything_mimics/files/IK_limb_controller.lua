@@ -248,7 +248,6 @@ for k, v in ipairs(limbs)do
     end
 
     if(#available_targets > 0)then
-        print("available_targets: "..tostring(#available_targets))
 
         -- get the furthest target
         local chosen_index = nil
@@ -263,22 +262,15 @@ for k, v in ipairs(limbs)do
     
 
         if(chosen_index ~= nil)then
-            --table.insert(taken_targets, chosen_target)
-            print("took target!")
-            
+
             tracked_limbs[k] = available_targets[chosen_index]
 
             table.remove(available_targets, chosen_index)
 
 
-            print("tracking limb: "..tostring(k).." to "..tostring(tracked_limbs[k][1])..", "..tostring(tracked_limbs[k][2]))
-
-            
-
             --print("tracking limb: "..tostring(k).." to "..tostring(chosen_target[1])..", "..tostring(chosen_target[2]))
         end
     else
-        print("no targets available")
 
         -- Function to convert degrees to radians
         local function deg2rad(deg)
@@ -300,21 +292,11 @@ for k, v in ipairs(limbs)do
 
         local angle = Random(-scan_angle / 2, scan_angle / 2)
 
-        print("angle: "..tostring(angle))
-
         local random_angle = deg2rad(angle)
-
-        print("angle 2: "..tostring(random_angle))
-
-        print("forward_x_normalized: "..tostring(forward_x_normalized))
-        print("forward_y_normalized: "..tostring(forward_y_normalized))
 
         -- Calculate position within forward direction and angle cone
         local angle_x, angle_y = rotateVector(forward_x_normalized, forward_y_normalized, random_angle)
-        
-        print("angle_x: "..tostring(angle_x))
-        print("angle_y: "..tostring(angle_y))
-        
+
         local x = entity_x + (angle_x * (limb_length / 2))
         local y = entity_y + (angle_y * (limb_length / 2))
 
@@ -331,7 +313,6 @@ for k, v in ipairs(limbs)do
             tracked_limbs[k] = {x, y}
         end
         
-        print("raytrace: "..tostring(hit)..", "..tostring(hit_x)..", "..tostring(hit_y))
 
     end
     ::continue::

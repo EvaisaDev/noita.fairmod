@@ -194,9 +194,6 @@ if (not is_physics) then
         end
 
         if (not is_projectile) then
-
-            print("is not projectile")
-
             if (simple_physics_component ~= nil) then
                 EntitySetComponentIsEnabled(item, simple_physics_component, true)
             else
@@ -207,14 +204,9 @@ if (not is_physics) then
                 ComponentSetValue2(item_component, "play_hover_animation", false)
             end
         else
-            print("is projectile")
-
             local lifetime = ComponentGetValue2(projectile_comp, "lifetime")
             lifetime = lifetime + (10 * 60)
             ComponentSetValue2(projectile_comp, "lifetime", lifetime)
-
-            print("lifetime set")
-
             ComponentSetValue2(projectile_comp, "die_on_low_velocity", false)
         end
         initialized = true

@@ -22,7 +22,6 @@ dofile_once("mods/noita.fairmod/files/content/lasers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worms/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stalactite/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mon_wands/mon_wands_init.lua")
-dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scene_liquid_randomizer/init.lua")
 dofile_once("mods/noita.fairmod/files/content/speedrun_door/init.lua")
 dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
@@ -59,6 +58,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
+	dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
+
 end
 
 function OnPlayerSpawned(player)
@@ -86,6 +87,14 @@ function OnPlayerSpawned(player)
 		return
 	end
 	GameAddFlagRun("fairmod_init")
+
+	SetRandomSeed(2152, 12523)
+	
+	if(Random(1, 100) <= 50)then
+		GameAddFlagRun("kolmi_not_home")
+		print("Kolmi is not home on this one.")
+		
+	end
 
 	-- stuff after here only runs once on initial run start
 

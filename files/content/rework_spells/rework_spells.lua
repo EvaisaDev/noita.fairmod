@@ -36,7 +36,6 @@ local actions_to_edit = {
 					local target_velocity_y = velocity_y + (aim_dir_y * 100)
 		
 					ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
-					print("Applying velocity: " .. tostring(target_velocity_x) .. ", " .. tostring(target_velocity_y))
 				end
 			end
 			

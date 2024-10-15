@@ -2,7 +2,8 @@ local original_spawn_items = spawn_items
 
 function spawn_items( x, y ) 
 	
-	if(Random(1, 100) <= 50)then
+	if(GameHasFlagRun("kolmi_not_home"))then
+		
 		EntityLoad( "mods/noita.fairmod/files/content/kolmi_not_home/boss_longleg.xml",x - 40, y )
 		-- if game is not completed
 		if( GameHasFlagRun( "ending_game_completed" ) == false ) then
@@ -19,7 +20,7 @@ function spawn_items( x, y )
 			end
 		end
 		
-		EntityLoad( "data/entities/animals/boss_centipede/reference_point.xml", x, y )
+		
 	else
 		original_spawn_items(x, y)
 	end

@@ -162,7 +162,7 @@ if(currently_gambling)then
 			GamePlayAnimation( entity_id, gamble_states[state].animation, 1 )
 			ComponentSetValue2(sprite_component, "rect_animation", gamble_states[state].animation)
 			EntityRefreshSprite( entity_id, sprite_component )
-			print(gamble_states[state].animation)
+
 			if(gamble_states[state].play_win_sound)then
 				if(will_win)then
 					GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/icantstopwinning", 0, 0)
