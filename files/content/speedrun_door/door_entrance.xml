@@ -1,4 +1,4 @@
-<Entity>
+<Entity serialize="1">
 	<SpriteComponent
 		image_file="mods/noita.fairmod/files/content/speedrun_door/door.png"
 		offset_x="26"
