@@ -67,6 +67,16 @@ function module.update()
         add_info(enemy_count.." enemies nearby")
     end
 
+    local times_taken_piss = tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0
+    local times_taken_shit = tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0
+
+    if times_taken_piss > 0 then
+        add_info(times_taken_piss.." pisses taken")
+    end
+    if times_taken_shit > 0 then
+        add_info(times_taken_shit.." shits taken")
+    end
+
     local x_shift = calc_max_length()
     for _, text in ipairs(pending_info) do
         render_info(text, x_shift)
