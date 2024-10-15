@@ -88,5 +88,14 @@ local effects = {
 
 		GamePrintImportant( GameTextGet( "$log_pickedup_perk", GameTextGetTranslatedOrNot( essence_name ) ), essence_desc )
 	end,
+	function()
+		local bsod = EntityLoad('mods/noita.fairmod/files/content/wizard_crash/bsod/bsod.xml')
+		local dummy_gui = GuiCreate()
+		local _, screeny = GuiGetScreenDimensions(dummy_gui)
+		GuiDestroy(dummy_gui)
+		local scale = screeny / 1080
+		EntitySetTransform(bsod, 0, 0, nil, scale, scale)
+		EntityApplyTransform(bsod, 0, 0, nil, scale, scale)
+	end
 }
 effects[Random(1, #effects)]()
