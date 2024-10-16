@@ -31,7 +31,7 @@ local ui_displays = {
     normal = {
         {
             text = function()
-                return {text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {r = 1, g = 0, b = 0}}
+                return {text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {1, 0.2, 0.2}}
             end,
             condition = function()
                 return tonumber(GlobalsGetValue("credit_card_debt", "0")) > 0
