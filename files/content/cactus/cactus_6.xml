@@ -1,0 +1,15 @@
+<Entity tags="pixelsprite,cactus">
+	<Base file="mods/noita.fairmod/files/content/cactus/base_cactus.xml" include_children="1">
+		<PixelSpriteComponent
+			image_file="data/vegetation/cactus_06.png"
+			anchor_y="122"
+		/>
+
+		<AreaDamageComponent
+			aabb_min.x="-3"
+			aabb_min.y="-5"
+			aabb_max.x="3"
+			aabb_max.y="0"
+		/>
+	</Base>
+</Entity>

@@ -1,5 +1,6 @@
 -- Script to copy pixel scenes into parallel worlds.
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 -- default map width seems to be 70
 local WORLD_WIDTH = 70 * 512
@@ -10,18 +11,10 @@ local pixel_scene_files = {
 	"data/biome_impl/spliced/lavalake_pit_bottom.xml",
 }
 
-local function shallow_copy_table(src)
-	local result = {}
-	for k, v in pairs(src) do
-		result[k] = v
-	end
-	return result
-end
-
 local function create_pw_elements(result, element, attr_name)
 	for i = -MAX_PARALLEL, MAX_PARALLEL do
 		if i ~= 0 then
-			local attrs = shallow_copy_table(element.attr)
+			local attrs = MergeTables(element.attr)
 			attrs[attr_name] = tonumber(attrs[attr_name]) + WORLD_WIDTH * i
 
 			table.insert(result, nxml.new_element(element.name, attrs))
