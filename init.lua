@@ -12,6 +12,7 @@ local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portal
 local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
+local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -34,6 +35,7 @@ dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
+
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
@@ -146,6 +148,7 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui.update()
+	loanshark.update()
 end
 
 function OnWorldPostUpdate()

@@ -103,8 +103,8 @@ end
 
 local function normal_content()
 
-    if(tonumber(GlobalsGetValue("credit_card_debt", "0")) > 0)then
-        add_info({text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {1, 0.2, 0.2, 1}})
+    if(tonumber(GlobalsGetValue("loan_shark_debt", "0")) > 0)then
+        add_info({text = "Debt: "..GlobalsGetValue("loan_shark_debt", "0"), color = {1, 0.2, 0.2, 1}})
     end
 
     local wse = GameGetWorldStateEntity()
