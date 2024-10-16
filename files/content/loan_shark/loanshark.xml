@@ -1,0 +1,34 @@
+<Entity>
+	<SpriteComponent
+		_tags="loanshark_sprite"
+		image_file="mods/noita.fairmod/files/content/loan_shark/loanshark_anim.xml"
+		rect_animation="idle"
+		z_index="2"
+	/>
+
+	<SpriteAnimatorComponent
+		target_sprite_comp_name="loanshark_sprite"
+	/>
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/loan_shark/desk.png"
+		offset_x="32"
+		offset_y="17"
+		z_index="1"
+		/>
+
+
+	<InteractableComponent
+		radius="20"
+		ui_text="Press $0 to talk."
+		name="interact"
+	/>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/loan_shark/loanshark.lua"
+		script_source_file="mods/noita.fairmod/files/content/loan_shark/loanshark.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		>
+	</LuaComponent>	
+</Entity>

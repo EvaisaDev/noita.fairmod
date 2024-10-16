@@ -127,6 +127,7 @@ local stats = setmetatable({}, {
 
 local dialog_system = {
   images = merge_table({}, config.images or {}),
+  functions = merge_table({}, config.functions or {}),
   sounds = merge_table({
     default = { bank = "data/audio/Desktop/ui.bank", event = "ui/button_select" },
     sans = { bank = "%PATH%audio/dialog_system.bank", event = "talking_sounds/sans" },
@@ -153,25 +154,37 @@ local function get_controls_entity()
   return controls_entity
 end
 
-local function is_interact_key_down()
+local function was_interact_key_pressed()
   local controls_entity = get_controls_entity()
-  local controls_component =EntityGetFirstComponentIncludingDisabled(controls_entity, "ControlsComponent")
-  return ComponentGetValue2(controls_component, "mButtonDownInteract")
+  local controls_component = EntityGetFirstComponentIncludingDisabled(controls_entity, "ControlsComponent")
+  return ComponentGetValue2(controls_component, "mButtonFrameInteract") == GameGetFrameNum()
 end
 
-gui = GuiCreate()
+local function get_image(img_name)
+  return dialog_system.images[img_name] or "%PATH%missing_image_icon.png"
+end
+
+__dialog_system_gui = __dialog_system_gui or GuiCreate()
+local gui = __dialog_system_gui
 
 local routines = {}
 
 local is_open = false
 local is_text_writing = false
 local skip_dialogue = false
+local perform_dialog_option = false
+dialog_system.is_any_dialog_open = function()
+  return GameGetFrameNum() - tonumber(GlobalsGetValue("DialogSystem_dialog_last_frame_open", "0")) <= 1
+end
+
 dialog_system.open_dialog = function(message)
   skip_dialogue = false
-  if is_open then return end
+  if dialog_system.is_any_dialog_open() then return end
   is_open = true
   -- Remove whitespace before and after every line
   message.text = message.text:gsub("^%s*", ""):gsub("\n%s*", "\n"):gsub("%s*(?:\n)", "")
+  message.typing_sound = message.typing_sound or config.typing_sound or nil
+  message.typing_sound_interval = message.typing_sound_interval or config.typing_sound_interval or 1
 
   local entity_id = GetUpdatedEntityID()
   local x, y = EntityGetTransform(entity_id)
@@ -191,15 +204,21 @@ dialog_system.open_dialog = function(message)
     local previous_message_name = dialog.message.name
     local previous_message_animation = dialog.message.animation
     local previous_message_portrait = dialog.message.portrait
+    local previous_message_portrait_overlay = dialog.message.portrait_overlay
     local previous_message_typing_sound = dialog.message.typing_sound
+	local previous_message_typing_sound_interval = dialog.message.typing_sound_interval
+    local previous_message_skippable = dialog.message.skippable
     message.parent = dialog.message
     dialog.message = message
     -- Remove whitespace before and after every line
     dialog.message.text = dialog.message.text:gsub("^%s*", ""):gsub("\n%s*", "\n"):gsub("%s*(?:\n)", "")
     dialog.message.name = message.name or previous_message_name
     dialog.message.portrait = message.portrait or previous_message_portrait
+    dialog.message.portrait_overlay = message.portrait_overlay or previous_message_portrait_overlay
     dialog.message.animation = message.animation or previous_message_animation
     dialog.message.typing_sound = message.typing_sound or previous_message_typing_sound
+	dialog.message.typing_sound_interval = message.typing_sound_interval or previous_message_typing_sound_interval
+    dialog.message.skippable = previous_message_skippable or message.skippable
     dialog.lines = {{}}
     dialog.current_line = dialog.lines[1]
     dialog.on_closing = message.on_closing or dialog.on_closing
@@ -253,7 +272,8 @@ dialog_system.open_dialog = function(message)
     if dialog.on_closing and type(dialog.on_closing) == "function" then
       dialog.on_closing()
     end
-    async(function()
+    is_text_writing = false
+    routines.closing = async(function()
       while dialog.fade_in_portrait > -1 do
         dialog.fade_in_portrait = dialog.fade_in_portrait - 1
         wait(0)
@@ -287,7 +307,8 @@ dialog_system.open_dialog = function(message)
       set_controls_enabled(false)
     end
     while is_open do
-      if is_text_writing and is_interact_key_down() then
+      local skippable = (dialog.message.skippable == true) or (dialog.message.skippable == nil)
+      if is_text_writing and was_interact_key_pressed() and skippable then
         skip_dialogue = true
         -- To resume in case of the pause command
         routines.logic.resume()
@@ -309,6 +330,12 @@ dialog_system.open_dialog = function(message)
       if dialog.fade_in_portrait > -1 then
         GuiZSetForNextWidget(gui, 1)
         GuiImage(gui, 2, x, y, dialog.message.portrait, 1, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, message.animation or "")
+        if dialog.message.portrait_overlay then
+          GuiZSetForNextWidget(gui, 0.5)
+          GuiIdPushString(gui, "portrait_overlay")
+          GuiImage(gui, 2, x, y, dialog.message.portrait_overlay, 1, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, message.animation_overlay or "")
+          GuiIdPop(gui)
+        end
         GuiZSetForNextWidget(gui, 0)
         GuiImage(gui, 3, x, y, "%PATH%transition.xml", 1, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndPause, "anim_" .. tostring(dialog.fade_in_portrait))
         GuiZSetForNextWidget(gui, -1)
@@ -336,9 +363,9 @@ dialog_system.open_dialog = function(message)
         -- -----------------
         if dialog.message.name and dialog.message.name ~= "" then
           local nameplate_padding = 2
-          local nameplate_inner_width = 70
-          local nameplate_height = 11
           local name_width, name_height = GuiGetTextDimensions(gui, dialog.message.name)
+          local nameplate_inner_width = math.max(68, name_width) + nameplate_padding
+          local nameplate_height = 11
           GuiZSetForNextWidget(gui, 2)
           GuiImageNinePiece(gui, 5, screen_width/2 - width/2, screen_height - dialog_system.dialog_box_y - height - nameplate_height - 3, nameplate_inner_width, nameplate_height)
           local diff = nameplate_inner_width - name_width + nameplate_padding
@@ -362,7 +389,8 @@ dialog_system.open_dialog = function(message)
             -- Draw an invisible version of the text just so we can get the location where it would be drawn normally
             local x, y = 0, 0
             if char_data.img then
-              GuiImage(gui, i2, -3, (i-1) * line_height + wave_offset_y, dialog_system.images[char_data.img], 0, 1, 1)
+              GuiOptionsAddForNextWidget(gui, GUI_OPTION.NonInteractive)
+              GuiImage(gui, i2, -3, (i-1) * line_height + wave_offset_y, get_image(char_data.img), 0, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, "")
               _, _, _, x, y, _ ,_ , draw_x, draw_y = GuiGetPreviousWidgetInfo(gui)
               -- To shift the next thing that gets drawn 2 pixels left
               GuiText(gui, -2, 0, "")
@@ -382,16 +410,21 @@ dialog_system.open_dialog = function(message)
             GuiOptionsAddForNextWidget(gui, GUI_OPTION.Layout_NoLayouting)
           end
           if char_data.wave then
+            wave_offset_y = math.sin(char_i * 0.5 + GameGetFrameNum() * 0.1) * 1
+          end
+          if char_data.rainbow then
             local color = Color:new((char_i * 25 + GameGetFrameNum() * 5) % 360, 0.7, 0.6)
             r, g, b = color:get_rgb()
-            wave_offset_y = math.sin(char_i * 0.5 + GameGetFrameNum() * 0.1) * 1
           end
           if char_data.blink then
             a = math.sin(GameGetFrameNum() * 0.2) *  0.3 + 0.7
           end
           if char_data.img then
             GuiColorSetForNextWidget(gui, r, g, b, a)
-            GuiImage(gui, i2, (absolute_position and 0 or -3) + shake_offset.x, (absolute_position and 0 or y_offset) + wave_offset_y + shake_offset.y, dialog_system.images[char_data.img], a, 1, 1)
+            GuiOptionsAddForNextWidget(gui, GUI_OPTION.NonInteractive)
+            GuiIdPushString(gui, "char_data.img")
+            GuiImage(gui, i2, (absolute_position and 0 or -3) + shake_offset.x, (absolute_position and 0 or y_offset) + wave_offset_y + shake_offset.y, get_image(char_data.img), a, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, "")
+            GuiIdPop(gui)
             if not absolute_position then
               GuiText(gui, -2, 0, "")
             end
@@ -412,6 +445,13 @@ dialog_system.open_dialog = function(message)
       -- /Text
       -- Dialog options
       if dialog.show_options then
+        local function activate_main_option()
+          if perform_dialog_option then
+            perform_dialog_option = false
+            return true
+          end
+          return false
+        end
         if dialog.message.options then
           local filtered_options
           -- Skip the cached result on the first call
@@ -422,7 +462,7 @@ dialog_system.open_dialog = function(message)
             local enabled = v.enabled == nil or (type(v.enabled) == "function" and throttle(v.enabled, 30, stats)) or (type(v.enabled) ~= "function" and v.enabled)
             local text_x, text_y = x + 70, y + dialog_system.dialog_box_height - (num_options - i + 1) * line_height - 7
             if enabled then
-              if GuiButton(gui, 5 + i, text_x, text_y, "[ " .. v.text .. " ]") then
+              if GuiButton(gui, 5 + i, text_x, text_y, "[ " .. v.text .. " ]") or activate_main_option() then
                 if v.func then
                   v.func(dialog, stats)
                 else
@@ -435,7 +475,7 @@ dialog_system.open_dialog = function(message)
             end
           end
         else
-          if GuiButton(gui, 6, x + 70, y + dialog_system.dialog_box_height - line_height - 7, "[ End ]") then
+          if GuiButton(gui, 6, x + 70, y + dialog_system.dialog_box_height - line_height - 7, "[ End ]") or activate_main_option() then
             dialog.close()
           end
         end
@@ -443,6 +483,7 @@ dialog_system.open_dialog = function(message)
       -- /Dialog options
       GuiIdPop(gui)
       wait(0)
+      GlobalsSetValue("DialogSystem_dialog_last_frame_open", tostring(GameGetFrameNum()))
     end
     if dialog_system.disable_controls then
       set_controls_enabled(true)
@@ -468,27 +509,34 @@ dialog_system.open_dialog = function(message)
     dialog.fade_in_portrait = 32
 
     local color = { 1, 1, 1, 1 }
-    local wave, blink, shake = false, false, false
+    local wave, blink, shake, rainbow = false, false, false, false
     local delay = 3
     local skip_char_count, chars_skipped = 0, 0
     local typing_sound = dialog.message.typing_sound
+	local typing_sound_interval = dialog.message.typing_sound_interval or 5
     local i = 1
 
     is_text_writing = true
     while i <= #dialog.message.text do
+      local prev_char = utf8.sub(dialog.message.text, i-1, i-1)
       local char = utf8.sub(dialog.message.text, i, i)
       local play_sound = false
       local do_wait = false
+      if char == "\\" then
+        goto continue
+      end
       if char == "\n" then
         table.insert(dialog.lines, {})
         dialog.current_line = dialog.lines[#dialog.lines]
-      elseif char == "~" then
+      elseif char == "~" and prev_char ~= "\\" then
         wave = not wave
-      elseif char == "*" then
+      elseif char == "^" and prev_char ~= "\\" then
+        rainbow = not rainbow
+      elseif char == "*" and prev_char ~= "\\" then
         blink = not blink
-      elseif char == "#" then
+      elseif char == "#" and prev_char ~= "\\" then
         shake = not shake
-      elseif char == "{" then
+      elseif char == "{" and prev_char ~= "\\" then
         -- Look ahead 20 characters and get that substring
         local str = utf8.sub(dialog.message.text, i, i + 20)
         local command, param1 = string.gmatch(str, "@(%w+)%s+([^}]+)")()
@@ -506,11 +554,13 @@ dialog_system.open_dialog = function(message)
             color[2] = bit.band(bit.rshift(rgb, 8), 0xFF) / 255
             color[3] = bit.band(rgb, 0xFF) / 255
           elseif command == "img" then
-            table.insert(dialog.current_line, { wave = wave, blink = blink, shake = shake, img = param1 })
+            table.insert(dialog.current_line, { wave = wave, blink = blink, shake = shake, rainbow = rainbow, img = param1 })
             play_sound = true
             do_wait = true
           elseif command == "sound" then
             typing_sound = param1
+          elseif command == "func" then
+            dialog_system.functions[param1](dialog)
           end
           i = i + string.find(str, "}") - 1
         else
@@ -518,13 +568,13 @@ dialog_system.open_dialog = function(message)
         end
       else
         local color_copy = {unpack(color)}
-        table.insert(dialog.current_line, { char = char, wave = wave, blink = blink, shake = shake, color = color_copy })
+        table.insert(dialog.current_line, { char = char, wave = wave, blink = blink, shake = shake, rainbow = rainbow, color = color_copy })
         if char ~= " " then
           play_sound = true
         end
         do_wait = true
       end
-      if typing_sound ~= "none" and play_sound and frame_last_played_sound ~= GameGetFrameNum() then
+      if typing_sound ~= "none" and i % typing_sound_interval == 0 and play_sound and frame_last_played_sound ~= GameGetFrameNum() then
         frame_last_played_sound = GameGetFrameNum()
         local bank = dialog_system.sounds[typing_sound or "default"].bank
         local event = dialog_system.sounds[typing_sound or "default"].event
@@ -539,6 +589,7 @@ dialog_system.open_dialog = function(message)
       elseif do_wait then
         chars_skipped = chars_skipped + 1
       end
+      ::continue::
       i = i + 1
     end
     if not skip_dialogue then
@@ -547,6 +598,13 @@ dialog_system.open_dialog = function(message)
     dialog.show_options = true
     dialog.has_new_options = true
     is_text_writing = false
+    while true do
+      if was_interact_key_pressed() and not skip_dialogue then
+        perform_dialog_option = true
+        break
+      end
+      wait(0)
+    end
   end)
 
   return dialog
