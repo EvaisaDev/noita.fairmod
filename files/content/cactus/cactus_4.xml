@@ -1,0 +1,26 @@
+<Entity tags="pixelsprite,cactus">
+	<Base file="mods/noita.fairmod/files/content/cactus/base_cactus.xml" include_children="1">
+		<PixelSpriteComponent
+			image_file="data/vegetation/cactus_04.png"
+		/>
+
+		<AreaDamageComponent
+			aabb_min.x="-6"
+			aabb_min.y="-91"
+			aabb_max.x="6"
+			aabb_max.y="0"
+		/>
+	</Base>
+	
+	<AreaDamageComponent
+		damage_per_frame="0.1"
+		aabb_min.x="10"
+		aabb_min.y="-62"
+		aabb_max.x="16"
+		aabb_max.y="-38"
+		damage_type="DAMAGE_DRILL"
+		death_cause="cactus"
+		entities_with_tag="player_unit"
+	/>
+
+</Entity>

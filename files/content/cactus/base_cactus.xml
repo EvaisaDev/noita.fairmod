@@ -1,0 +1,28 @@
+<Entity tags="pixelsprite">
+	<PixelSpriteComponent
+		_enabled="1"
+		image_file="data/vegetation/cactus_02.png"
+		material="cactus"
+		create_box2d_bodies="0"
+		clean_overlapping_pixels="0"
+		anchor_x="32"
+		anchor_y="123"
+	/>
+
+	<AreaDamageComponent
+		damage_per_frame="0.1"
+		aabb_min.x="-6"
+		aabb_min.y="-83"
+		aabb_max.x="6"
+		aabb_max.y="0"
+		damage_type="DAMAGE_DRILL"
+		death_cause="cactus"
+		entities_with_tag="player_unit"
+	/>
+
+	<SimplePhysicsComponent 
+		can_go_up="0"
+	/>
+
+	<VelocityComponent />
+</Entity>
