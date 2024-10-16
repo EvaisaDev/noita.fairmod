@@ -47,31 +47,7 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 
-ModTextFileSetContent("data/sss.xml", [[
-<Materials>
-
-  <CellData 
-    name="mat_legos"
-    ui_name="Legos"
-    wang_color="ff36315f"
-    liquid_sand="1"
-    cell_type="liquid"
-    >
-  </CellData>
-
-  <Reaction probability="1"
-    input_cell1="plastic_red_molten"    input_cell2="air"
-    output_cell1="mat_legos"  output_cell2="mat_legos"  
-    >
-  </Reaction>
-
-  <Graphics 
-    color="88E8BD5C" 
-    >
-  </Graphics>
-</Materials>
-]])
-ModMaterialsFileAdd("data/sss.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/legos.xml")
 
 
 local function stringsplit(inputstr, sep)
