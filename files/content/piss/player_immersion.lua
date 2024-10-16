@@ -36,6 +36,7 @@ if(ingestion_comp)then
 
 			if(piss_pressed)then
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "immersivepiss/timetotakeapiss",entity_x,entity_y)
+				GlobalsSetValue("TIMES_TOOK_PISS", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0) + 1))
 			end
 
 			GameCreateParticle( "urine", x + (scale_x * 3), y, 10, dir_x * piss_velocity, dir_y * piss_velocity, false, false, false )
@@ -49,6 +50,7 @@ if(ingestion_comp)then
 			
 			if(shit_pressed)then
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "immersivepiss/diarrhea",entity_x,entity_y)
+				GlobalsSetValue("TIMES_TOOK_SHIT", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0) + 1))
 			end
 
 			GameCreateParticle( "poo", x, y, 10, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false )
