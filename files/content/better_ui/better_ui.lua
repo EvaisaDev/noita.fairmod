@@ -117,6 +117,12 @@ local ui_displays = {
             end,
             condition = global_greater_than_zero("TIMES_TOOK_SHIT")
         },
+		{
+			text = function()
+				return "Wins while using mod: "..tostring((ModSettingGet("fairmod_win_count") or 0))
+			end,
+			condition = function() return (ModSettingGet("fairmod_win_count") or 0) > 0 end
+		},
         {
             text = "",
             condition = has_flag_run("gamblecore_found"),

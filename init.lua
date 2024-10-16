@@ -13,6 +13,7 @@ local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
+local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -137,6 +138,8 @@ end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
+
+
 function OnWorldPreUpdate()
 	if GameGetFrameNum() % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
@@ -149,6 +152,13 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui.update()
 	loanshark.update()
+	achievements.update()
+
+	if(GameHasFlagRun( "ending_game_completed" ) and not GameHasFlagRun("incremented_win_count"))then
+		GameAddFlagRun("incremented_win_count")
+		--GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
+		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
+	end
 end
 
 function OnWorldPostUpdate()
