@@ -31,7 +31,7 @@ local ui_displays = {
     normal = {
         {
             text = function()
-                return "Debt: "..GlobalsGetValue("credit_card_debt", "0")
+                return {text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {r = 1, g = 0, b = 0}}
             end,
             condition = function()
                 return tonumber(GlobalsGetValue("credit_card_debt", "0")) > 0
@@ -231,11 +231,14 @@ local function render_info(info, x_shift)
     -- Render the first text entry
     local first_entry = info[1]
     local text = ""
+	local color = {1, 1, 1, 1}
     if type(first_entry) == "string" then
         text = first_entry
     elseif type(first_entry) == "table" then
         text = first_entry.text or ""
+		color = first_entry.color or color
     end
+	GuiColorSetForNextWidget(gui, color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
     GuiText(gui, w - x_shift - 10, cur_y, text, scale)
 
     -- Render additional text entries aligned to the right
@@ -243,12 +246,15 @@ local function render_info(info, x_shift)
     for i = #info, 2, -1 do
         local entry = info[i]
         local entry_text = ""
+		local entry_color = {1, 1, 1, 1}
         if type(entry) == "string" then
             entry_text = entry
         elseif type(entry) == "table" then
             entry_text = entry.text or ""
+			entry_color = entry.color or entry_color
         end
         local tw, _ = GuiGetTextDimensions(gui, entry_text, scale)
+		GuiColorSetForNextWidget(gui, entry_color[1] or 1, entry_color[2] or 1, entry_color[3] or 1, entry_color[4] or 1)
         GuiText(gui, w - total_width - tw, cur_y, entry_text, scale)
         total_width = total_width + tw
     end
