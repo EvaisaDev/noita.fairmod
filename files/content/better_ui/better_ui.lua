@@ -27,15 +27,32 @@ local function frames_to_time(frames)
     return string.format("%i:%02.3f", minutes, seconds_f)
 end
 
+local function has_flag_run(flag)
+    return function() return GameHasFlagRun(flag) end
+end
+
+local function global_greater_than_zero(global)
+    return function() return (tonumber(GlobalsGetValue(global, "0")) or 0) > 0 end
+end
+
+local function speedrun_split(label, var)
+    return function()
+        local splt = GlobalsGetValue(var, "--")
+        if splt ~= "--" then
+            splt = frames_to_time(tonumber(splt))
+        end
+        return {label, splt}
+    
+    end
+end
+
 local ui_displays = {
     normal = {
         {
             text = function()
                 return {text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {1, 0.2, 0.2}}
             end,
-            condition = function()
-                return tonumber(GlobalsGetValue("credit_card_debt", "0")) > 0
-            end,
+            condition = global_greater_than_zero("credit_card_debt"),
         },
         {
             text = function()
@@ -87,9 +104,7 @@ local ui_displays = {
                     return times_taken_piss.." pisses taken"
                 end
             end,
-            condition = function()
-                return tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) > 0
-            end
+            condition = global_greater_than_zero("TIMES_TOOK_PISS")
         },
         {
             text = function()
@@ -100,21 +115,15 @@ local ui_displays = {
                     return times_taken_shit.." shits taken"
                 end
             end,
-            condition = function()
-                return tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) > 0
-            end
+            condition = global_greater_than_zero("TIMES_TOOK_SHIT")
         },
         {
             text = "",
-            condition = function()
-                return GameHasFlagRun("gamblecore_found")
-            end,
+            condition = has_flag_run("gamblecore_found"),
         },
         {
             text = "Gamblehelper (tm)",
-            condition = function()
-                return GameHasFlagRun("gamblecore_found")
-            end,
+            condition = has_flag_run("gamblecore_found"),
         },
         {
             text = function()
@@ -125,9 +134,7 @@ local ui_displays = {
                     return "Won "..times_won.. " times"
                 end
             end,
-            condition = function()
-                return GameHasFlagRun("gamblecore_found")
-            end,
+            condition = has_flag_run("gamblecore_found"),
         },
         {
             text = function()
@@ -138,9 +145,7 @@ local ui_displays = {
                     return "Lost "..times_lost_in_a_row.." times since last win"
                 end
             end,
-            condition = function()
-                return GameHasFlagRun("gamblecore_found")
-            end,
+            condition = has_flag_run("gamblecore_found"),
         },
         {
             text = function()
@@ -168,9 +173,7 @@ local ui_displays = {
         },
         {
             text = "",
-            condition = function()
-                return GameHasFlagRun("gamblecore_found")
-            end,
+            condition = has_flag_run("gamblecore_found"),
         },
     },
     speedrun = {
@@ -178,41 +181,17 @@ local ui_displays = {
             text = "Noita Fairmod           Any%"
         },
         {
-            text = function()
-                local splt = GlobalsGetValue("SPEEDRUN_SPLIT_DOOR", "--")
-                if splt ~= "--" then
-                    splt = frames_to_time(tonumber(splt))
-                end
-                return {"The Door: ", splt}
-            end,
+            text = speedrun_split("The Door: ", "SPEEDRUN_SPLIT_DOOR"),
         },
         {
-            text = function()
-                local splt = GlobalsGetValue("SPEEDRUN_SPLIT_SAMPO", "--")
-                if splt ~= "--" then
-                    splt = frames_to_time(tonumber(splt))
-                end
-                return {"Sampo: ", splt}
-            end,
+            text = speedrun_split("Sampo: ", "SPEEDRUN_SPLIT_SAMPO"),
         },
         -- Maybe do Kolmi later
         -- {
-        --     text = function()
-        --         local splt = GlobalsGetValue("SPEEDRUN_SPLIT_KOLMI", "--")
-        --         if splt ~= "--" then
-        --             splt = frames_to_time(tonumber(splt))
-        --         end
-        --         return {"Kolmi: ", splt}
-        --     end,
+        --     text = speedrun_split("Kolmi: ", "SPEEDRUN_SPLIT_KOLMI"),
         -- },
         {
-            text = function()
-                local splt = GlobalsGetValue("SPEEDRUN_SPLIT_WORK", "--")
-                if splt ~= "--" then
-                    splt = frames_to_time(tonumber(splt))
-                end
-                return {"Complete The Work: ", splt}
-            end,
+            text = speedrun_split("Complete The Work: ", "SPEEDRUN_SPLIT_WORK"),
         },
         {
             text = function()
