@@ -33,7 +33,7 @@ local loan_shark_goons = {
 		count = {1},
 	},
 	{
-		debt = 6000,
+		debt = 7000,
 		entity = "data/entities/animals/necromancer_super.xml",
 		count = {1},
 	},
@@ -52,6 +52,12 @@ local function GetGoon(debt)
 end
 
 module.update = function()
+
+	if(GameHasFlagRun("reset_debt_timer"))then
+		debt_timer = 0
+		GameRemoveFlagRun("reset_debt_timer")
+	end
+
 	local players = GetPlayers()
 
 	if(#players == 0)then
@@ -67,6 +73,8 @@ module.update = function()
 		local max_interval = 5 * 60 * 60
 		local min_interval = 10 * 60
 
+		-- at 10k debt the interval is 10 seconds
+		-- at 50 debt the interval is 5 minutes
 		local interval = lerp(min_interval, max_interval, 1 - math.min(1, debt / 10000))
 
 		if(debt_timer > interval)then

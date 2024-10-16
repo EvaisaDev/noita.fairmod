@@ -37,6 +37,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									return loan_shark_debt < 10000
 								end,
 								func = function(dialog)
+									GameAddFlagRun("reset_debt_timer")
 									dialog_system.dialog_box_height = 70
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
@@ -57,6 +58,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									return loan_shark_debt < 10000
 								end,
 								func = function(dialog)
+									GameAddFlagRun("reset_debt_timer")
 									dialog_system.dialog_box_height = 70
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
@@ -77,6 +79,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									return loan_shark_debt < 10000
 								end,
 								func = function(dialog)
+									GameAddFlagRun("reset_debt_timer")
 									dialog_system.dialog_box_height = 70
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
@@ -97,6 +100,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									return loan_shark_debt < 10000
 								end,
 								func = function(dialog)
+									GameAddFlagRun("reset_debt_timer")
 									dialog_system.dialog_box_height = 70
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
@@ -117,6 +121,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									return loan_shark_debt < 10000
 								end,
 								func = function(dialog)
+									GameAddFlagRun("reset_debt_timer")
 									dialog_system.dialog_box_height = 70
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
