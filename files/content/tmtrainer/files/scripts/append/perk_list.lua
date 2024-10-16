@@ -74,8 +74,8 @@ for i = 1, #perk_pool do
 		local ui_description_parts = {}
 		local ui_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/ui_icon_" .. i .. ".png"
 		local perk_icon = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/perk_icon_" .. i .. ".png"
-		local game_effect = ""
-		local particle_effect = ""
+		local game_effect = nil
+		local particle_effect = nil
 		local usable_by_enemies = true
 		local stackable = true
 		local funcs = {}
@@ -106,13 +106,15 @@ for i = 1, #perk_pool do
 
 			-- Update game effect and particle effect
 			if perk.game_effect and perk.game_effect ~= "" then
-				if game_effect == "" or Random(0, 100) > 50 then
+				if game_effect == nil or Random(0, 100) > 50 then
+	
 					game_effect = perk.game_effect
 				end
 			end
 
 			if perk.particle_effect and perk.particle_effect ~= "" then
-				if particle_effect == "" or Random(0, 100) > 50 then
+				if particle_effect == nil or Random(0, 100) > 50 then
+					print("Particle effect set to: '"..perk.particle_effect.."'")
 					particle_effect = perk.particle_effect
 				end
 			end
