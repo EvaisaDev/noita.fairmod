@@ -396,7 +396,6 @@ return {
 	"maggot_tiny/orb.xml",
 	"meatmaggot.xml",
 	"mimic_physics.xml",
-	"mimic_potion.xml",
 	"miner.xml",
 	"miner_chef.xml",
 	"miner_fire.xml",
