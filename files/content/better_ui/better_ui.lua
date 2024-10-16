@@ -50,9 +50,9 @@ local ui_displays = {
     normal = {
         {
             text = function()
-                return {text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {1, 0.2, 0.2}}
+                return {text = "Debt: "..GlobalsGetValue("loan_shark_debt", "0"), color = {1, 0.2, 0.2}}
             end,
-            condition = global_greater_than_zero("credit_card_debt"),
+            condition = global_greater_than_zero("loan_shark_debt"),
         },
         {
             text = function()
