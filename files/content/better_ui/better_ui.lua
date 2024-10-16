@@ -20,22 +20,56 @@ local module = {}
 local scale = 0.75
 
 local function render_info(info, x_shift)
-    GuiText(gui, w - x_shift - 10, cur_y, info.text, scale)
-    if info.text2 ~= nil then
-        local tw, _th = GuiGetTextDimensions(gui, info.text2, scale)
-        GuiText(gui, w - tw - 10, cur_y, info.text2, scale)
+    -- Render the first text entry
+    local first_entry = info[1]
+    local text = ""
+	local color = {1, 1, 1, 1}
+    if type(first_entry) == "string" then
+        text = first_entry
+    elseif type(first_entry) == "table" then
+        text = first_entry.text or ""
+		color = first_entry.color or {1, 1, 1, 1}
+    end
+
+	GuiColorSetForNextWidget(gui, color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
+	
+    GuiText(gui, w - x_shift - 10, cur_y, text, scale)
+
+    -- Render additional text entries aligned to the right
+    local total_width = 10
+    for i = #info, 2, -1 do
+        local entry = info[i]
+        local entry_text = ""
+		local color = {1, 1, 1, 1}
+        if type(entry) == "string" then
+            entry_text = entry
+        elseif type(entry) == "table" then
+            entry_text = entry.text or ""
+			color = entry.color or {1, 1, 1, 1}
+        end
+		GuiColorSetForNextWidget(gui, color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
+        local tw, _ = GuiGetTextDimensions(gui, entry_text, scale)
+        GuiText(gui, w - total_width - tw, cur_y, entry_text, scale)
+        total_width = total_width + tw
     end
     cur_y = cur_y + 9
 end
 
-local function add_info(text, text2)
-    table.insert(pending_info, {text=text, text2=text2})
+local function add_info(...)
+    table.insert(pending_info, {...})
 end
 
 local function calc_max_length()
     local c_max = 0
     for _, info in ipairs(pending_info) do
-        local tw, _ = GuiGetTextDimensions(gui, info.text, scale)
+        local first_entry = info[1]
+        local text = ""
+        if type(first_entry) == "string" then
+            text = first_entry
+        elseif type(first_entry) == "table" then
+            text = first_entry.text or ""
+        end
+        local tw, _ = GuiGetTextDimensions(gui, text, scale)
         c_max = math.max(c_max, tw)
     end
     return c_max
@@ -43,7 +77,7 @@ end
 
 local function frames_to_time(frames)
     local seconds_f = frames / 60
-    local minutes = seconds_f / 60
+    local minutes = math.floor(seconds_f / 60)
     seconds_f = seconds_f % 60
     return string.format("%i:%02.3f", minutes, seconds_f)
 end
@@ -68,6 +102,11 @@ local function speedrun_splits()
 end
 
 local function normal_content()
+
+    if(tonumber(GlobalsGetValue("credit_card_debt", "0")) > 0)then
+        add_info({text = "Debt: "..GlobalsGetValue("credit_card_debt", "0"), color = {1, 0.2, 0.2, 1}})
+    end
+
     local wse = GameGetWorldStateEntity()
     local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
 
@@ -164,8 +203,8 @@ function module.update()
     end
 
     local x_shift = calc_max_length()
-    for _, text in ipairs(pending_info) do
-        render_info(text, x_shift)
+    for _, info in ipairs(pending_info) do
+        render_info(info, x_shift)
     end
 end
 
