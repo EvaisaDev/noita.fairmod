@@ -66,7 +66,6 @@ ModTextFileSetContent("data/sss.xml", [[
   </Reaction>
 
   <Graphics 
-	texture_file="mods/legos/files/materials_gfx/rainbow.png" 
     color="88E8BD5C" 
     >
   </Graphics>
