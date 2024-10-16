@@ -30,6 +30,8 @@ local wormies = {
 
 local original_spawn_worm = spawn_worm
 spawn_worm = function(entity_id, pos_x, pos_y)
+	SetRandomSeed(pos_x, pos_y)
+
 	local max_amt = RandomDistribution(1, 50, 5, 2.5)
 	for i = 1, max_amt do
 		local spawn_x = pos_x + Random(-8, 8)
