@@ -15,7 +15,7 @@ local offset_from_right = 5
 local notification_width = 100
 local default_icon_size = 20
 
-local debug_no_flags = true
+local debug_no_flags = false
 
 local module = {}
 
@@ -161,10 +161,11 @@ local function CheckAchievements()
 
 	dofile("mods/noita.fairmod/files/content/achievements/achievements.lua")
 	for i, achievement in ipairs(achievements) do
-		if (not HasFlagPersistent(achievement.flag or ("achievement_" .. achievement.name)) and achievement.unlock()) then
+		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+		if (not HasFlagPersistent(flag) and achievement.unlock()) then
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
-			AddFlagPersistent(achievement.flag or ("achievement_" .. achievement.name))
+			AddFlagPersistent(flag)
 		end
 	end
 	if (debug_no_flags) then
