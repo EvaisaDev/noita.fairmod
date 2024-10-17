@@ -1,0 +1,27 @@
+<Entity>
+
+  <SpriteComponent
+    image_file="mods/noita.fairmod/files/content/bananapeel/bananapeel.png"
+    offset_x="4"
+    offset_y="5"
+  ></SpriteComponent>
+
+  <SimplePhysicsComponent
+  ></SimplePhysicsComponent>
+
+  <VelocityComponent
+  ></VelocityComponent>
+
+  <CollisionTriggerComponent
+    width="7"
+    height="10"
+    radius="5"
+    required_tag="player_unit"
+  ></CollisionTriggerComponent>
+
+  <LuaComponent
+    script_collision_trigger_hit="mods/noita.fairmod/files/content/bananapeel/bananapeel_collision_trigger_hit.lua"
+    execute_every_n_frame="-1"
+  ></LuaComponent>
+
+</Entity>
