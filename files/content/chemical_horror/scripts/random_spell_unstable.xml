@@ -1,0 +1,11 @@
+<Entity tags="reaction_entity" >
+
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/noita.fairmod/files/content/chemical_horror/scripts/random_spell_unstable.lua"
+        execute_on_added="1"
+        execute_times="1"
+    >
+	</LuaComponent>
+
+</Entity>

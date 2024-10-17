@@ -18,6 +18,7 @@ local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
+local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -61,12 +62,12 @@ ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
-	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	surface_bad:init()
 end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
