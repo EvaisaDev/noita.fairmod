@@ -14,6 +14,7 @@ local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
+local orbs_for_all = dofile_once("mods/noita.fairmod/files/content/orbs_for_all/orbs_for_all.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -143,6 +144,7 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 function OnWorldPreUpdate()
 	if GameGetFrameNum() % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
+		orbs_for_all:OnWorldPreUpdate()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
