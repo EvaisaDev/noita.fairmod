@@ -15,6 +15,7 @@ local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
+local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
@@ -78,7 +79,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
-
+	
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 
@@ -105,6 +106,8 @@ function OnPlayerSpawned(player)
 		return
 	end
 	GameAddFlagRun("fairmod_init")
+
+	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 
 	SetRandomSeed(2152, 12523)
 	
@@ -134,13 +137,13 @@ function OnPlayerSpawned(player)
 
 	legos.OnPlayerSpawned(player)
 
+	healthymimic.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then
 		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
 	end
-
-	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
