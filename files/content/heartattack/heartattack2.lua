@@ -23,6 +23,7 @@ if(IngestionComp)then
 				EntityInflictDamage(entity_id, 99999999999999999999999999999999999999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Heart Attack!", "NORMAL", 0, 0, entity_id, x, y, 0.1)
 			end
 			EntityKill(entity_id)
+			GameAddFlagRun("heart_attacked")
 		end
 	end
 end
