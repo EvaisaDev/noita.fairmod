@@ -17,6 +17,7 @@ local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local orbs_for_all = dofile_once("mods/noita.fairmod/files/content/orbs_for_all/orbs_for_all.lua")
+local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -36,7 +37,6 @@ dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
-dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 
@@ -49,6 +49,8 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
+ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
@@ -60,6 +62,7 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
+	surface_bad:init()
 end
 
 --- Seed init
@@ -74,6 +77,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
+	surface_bad:spawn()
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -149,9 +153,12 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 
 function OnWorldPreUpdate()
-	if GameGetFrameNum() % 30 == 0 then
+	local frames = GameGetFrameNum()
+	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
 		orbs_for_all:OnWorldPreUpdate()
+		surface_bad:update()
+
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
@@ -206,7 +213,7 @@ end
 -- Eba was here :3
 -- Lamia wasn't here
 -- Circle was here
-
+-- Hamis will be here
 
 -----##
 ----#o##
