@@ -18,7 +18,7 @@ local pending_info = {}
 
 local module = {}
 
-local scale = 1
+local scale = 0.75
 
 local function frames_to_time(frames)
     local seconds_f = frames / 60
