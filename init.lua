@@ -15,6 +15,7 @@ local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
+local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -159,6 +160,7 @@ function OnWorldPreUpdate()
 	better_ui.update()
 	loanshark.update()
 	achievements.update()
+	ping_attack.update()
 
 	if(GameHasFlagRun( "ending_game_completed" ) and not GameHasFlagRun("incremented_win_count"))then
 		GameAddFlagRun("incremented_win_count")
