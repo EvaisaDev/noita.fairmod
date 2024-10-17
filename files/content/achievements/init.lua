@@ -8,14 +8,15 @@ local function id()
 	return gui_id
 end
 
-local background_image = "mods/noita.fairmod/files/content/achievements/backgrounds/biggest.png"
+local background_image = "mods/noita.fairmod/files/content/achievements/backgrounds/background_steam_120x600.png"
 local default_icon = "mods/noita.fairmod/files/content/achievements/icons/no_png.png"
+local gradient = "mods/noita.fairmod/files/content/achievements/backgrounds/gradient.png"
 
 local offset_from_right = 5
 local notification_width = 100
 local default_icon_size = 20
 
-local debug_no_flags = false
+local debug_no_flags = true
 
 local module = {}
 
@@ -59,10 +60,13 @@ local function ImageCrop(x, y, width, height)
 	GuiEndAutoBoxNinePiece(notification_gui)
 	GuiAnimateEnd(notification_gui)
 
-	local bg_width, bg_height = GuiGetImageDimensions(notification_gui, background_image, 1)
+	local screen_width, screen_height = GuiGetScreenDimensions(notification_gui)
 	GuiOptionsAddForNextWidget(notification_gui, GUI_OPTION.Layout_NoLayouting)
 	GuiZSetForNextWidget(notification_gui, 1001)
-	GuiImage(notification_gui, id(), x + width - bg_width, y + height - bg_height, background_image, 1, 1)
+	GuiImage(notification_gui, id(), screen_width - 120, screen_height - 600, background_image, 1, 1)
+	GuiOptionsAddForNextWidget(notification_gui, GUI_OPTION.Layout_NoLayouting)
+	GuiZSetForNextWidget(notification_gui, 1000)
+	GuiImage(notification_gui, id(), x + width - 110, y + height - 30, gradient, 1, 1)
 	GuiEndScrollContainer(notification_gui)
 end
 
@@ -89,7 +93,7 @@ local function DrawNotifications()
 			local description_line_count = #description
 			local description_height = 7 * description_line_count
 
-			local max_height = achievement_height + name_height + description_height + 9
+			local max_height = math.max(30, achievement_height + name_height + description_height + 9)
 
 			notification.icon = notification.icon or default_icon
 			local icon_width, _ = GuiGetImageDimensions(notification_gui, notification.icon, 1)
@@ -140,6 +144,7 @@ local function DrawNotifications()
 			text_y = text_y + 0.2
 
 			for j = 1, description_line_count do
+				GuiColorSetForNextWidget(notification_gui, 0.7, 0.7, 0.7, 0.8)
 				GuiText(notification_gui, text_x, text_y, description[j], 0.7)
 				text_y = text_y + 7
 			end
