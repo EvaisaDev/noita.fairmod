@@ -4,10 +4,11 @@ dofile("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
-SetRandomSeed(x, y)
+
 
 local liquids = MaterialsFilter(CellFactory_GetAllLiquids(false, false) or {})
 
+SetRandomSeed(x, y)
 local random_liquid = CellFactory_GetType(liquids[Random(1, #liquids)])
 
 ConvertMaterialOnAreaInstantly( x, y, 75, 128, water, random_liquid, false, false )
