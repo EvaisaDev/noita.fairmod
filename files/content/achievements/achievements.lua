@@ -2,11 +2,51 @@ achievements = {
 	{
 		name = "Shitted",
 		description = "You shitted and farted!!!",
-		icon = nil,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/shitted.png",
 		flag = "achievement_shitted",
 		background = "mods/noita.fairmod/files/content/achievements/backgrounds/background_small.png",
 		unlock = function()
 			return GlobalsGetValue("TIMES_TOOK_SHIT", "0") ~= "0"
 		end,
-	}
+	},
+	{
+		name = "Time to take a piss!",
+		description = "You emptied your bladder.",
+		icon = nil,
+		flag = "achievement_pissed",
+		background = "mods/noita.fairmod/files/content/achievements/backgrounds/background_small.png",
+		unlock = function()
+			return GlobalsGetValue("TIMES_TOOK_PISS", "0") ~= "0"
+		end,
+	},
+	{
+		name = "Poop Ending",
+		description = "And thus, the world was turned to shit.",
+		icon = nil,
+		flag = "achievement_poop_ending",
+		background = "mods/noita.fairmod/files/content/achievements/backgrounds/background_small.png",
+		unlock = function()
+			return GameHasFlagRun( "poop_ending" )
+		end,
+	},
+	{
+		name = "Bankruptcy",
+		description = "Collect a debt of 10k gold or more.",
+		icon = nil,
+		flag = "achievement_debt_collector",
+		background = "mods/noita.fairmod/files/content/achievements/backgrounds/background_small.png",
+		unlock = function()
+			return tonumber(GlobalsGetValue("loan_shark_debt", "0")) >= 10000
+		end,
+	},
+	{
+		name = "Speedrunner",
+		description = "Enter the speedrun door.",
+		icon = nil,
+		flag = "achievement_speedrunner",
+		background = "mods/noita.fairmod/files/content/achievements/backgrounds/background_small.png",
+		unlock = function()
+			return GameHasFlagRun("speedrun_door_used")
+		end,
+	},
 }
