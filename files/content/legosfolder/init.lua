@@ -1,3 +1,5 @@
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/legosfolder/legos.xml")
+
 local function stringsplit(inputstr, sep)
   sep = sep or "%s"
   local t = {}
