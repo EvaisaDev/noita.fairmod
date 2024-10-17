@@ -22,6 +22,7 @@ function damage_received(damage, desc, entity_who_caused, is_fatal)
 			if new_dmg_comp then
 				ComponentSetValue2(new_dmg_comp, "invincibility_frames", 10)
 			end
+			GameAddFlagRun("FAIRMOD_GIANTSHOOTER_KILLED")
 		end
 	end
 end

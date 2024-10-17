@@ -23,7 +23,7 @@ achievements = {
 		icon = nil,
 		flag = "achievement_poop_ending",
 		unlock = function()
-			return GameHasFlagRun( "poop_ending" )
+			return GameHasFlagRun("poop_ending")
 		end,
 	},
 	{
@@ -44,4 +44,22 @@ achievements = {
 			return GameHasFlagRun("speedrun_door_used")
 		end,
 	},
+	{
+		name = "What have you done",
+		description = "What did they do",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/hamis_massacre.png",
+		flag = "achievement_hamis_killed",
+		unlock = function()
+			return (tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED")) or 0) > 5
+		end
+	},
+	{
+		name = "Too many acid",
+		description = "Did it bothered you?",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/giant_shooter.png",
+		flag = "achievement_giantshooter_killed",
+		unlock = function()
+			return GameHasFlagRun("FAIRMOD_GIANTSHOOTER_KILLED")
+		end
+	}
 }
