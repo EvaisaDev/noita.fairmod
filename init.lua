@@ -16,6 +16,7 @@ local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
+local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -35,7 +36,6 @@ dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
-dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 
@@ -59,6 +59,7 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
+	surface_bad:init()
 end
 
 --- Seed init
@@ -73,6 +74,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
+	surface_bad:spawn()
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -148,8 +150,10 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 
 function OnWorldPreUpdate()
-	if GameGetFrameNum() % 30 == 0 then
+	local frames = GameGetFrameNum()
+	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
+		surface_bad:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
