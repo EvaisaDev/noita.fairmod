@@ -1,4 +1,4 @@
-<Entity name="portaalin jäljitelmä" tags="hm_mimic,hittable">
+<Entity name="portaalin jäljitelmä" tags="hm_mimic,hittable,polymorphable_NOT,glue_NOT,necrobot_NOT,curse_NOT">
 
 	<HitboxComponent
 		_tags=""
@@ -17,8 +17,26 @@
 	></GameAreaEffectComponent>
 
 	<DamageModelComponent
-		hp="1"
+		hp="2"
+		fire_probability_of_ignition="0"
+		air_needed="0"
+		materials_damage="0"
 	></DamageModelComponent>
+
+	<GameEffectComponent 
+		effect="PROTECTION_RADIOACTIVITY"
+		frames="-1"
+	/>
+
+	<GameEffectComponent 
+		effect="STUN_PROTECTION_FREEZE"
+		frames="-1"
+	/>
+
+	<GameEffectComponent 
+		effect="STUN_PROTECTION_ELECTRICITY"
+		frames="-1"
+	/>
 
 	<LightComponent
 		_tags=""
