@@ -14,6 +14,7 @@ local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
+local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -81,8 +82,11 @@ function OnPlayerSpawned(player)
 
 	SetRandomSeed(x, y)
 
-	local map_w, map_h = BiomeMapGetSize()
-	local offset_x = (map_w * 512 * Random(-3, 3))
+	local random_pws = { -1, -1, -1, 0, 1, 1, 1 }
+	local pw_num = random_pws[Random(1, #random_pws)]
+
+	local map_w = BiomeMapGetSize()
+	local offset_x = (map_w * 512 * pw_num)
 
 	local target_x = x + offset_x
 	local target_y = y
@@ -120,6 +124,8 @@ function OnPlayerSpawned(player)
 	clipboard.OnPlayerSpawned(player)
 
 	evil_nuggets.OnPlayerSpawned(player)
+
+	legos.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
