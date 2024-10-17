@@ -120,7 +120,7 @@ achievements = {
 		name = "Degraded Game Experience",
 		description = "Why!?!> Disable nightmare.",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/nighmare_mode.png",
-		flag = "nighmare_mode",
+		flag = "achievement_nighmare_mode",
 		unlock = function()
 			return ModIsEnabled("nightmare")
 		end
@@ -129,7 +129,7 @@ achievements = {
 		name = "Just.. one.. more...",
 		description = "99% gamblers quit before big win! Next roll = $5m payout",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/gamble_fail.png",
-		flag = "gamble_fail",
+		flag = "achievement_gamble_fail",
 		unlock = function()
 			return tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) > 5
 		end
@@ -138,7 +138,7 @@ achievements = {
 		name = "Gamble God",
 		description = "Winnar is you!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/gamble_win.png",
-		flag = "gamble_win",
+		flag = "achievement_gamble_win",
 		unlock = function()
 			return tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) >= 1
 		end
@@ -147,7 +147,7 @@ achievements = {
 		name = "Gambling is Fun!",
 		description = "Next might be TWWE! Reroll more!!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny.png",
-		flag = "reroll_destiny",
+		flag = "achievement_reroll_destiny",
 		unlock = function()
 			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 1
 		end
@@ -156,7 +156,7 @@ achievements = {
 		name = "Gambling is Fun! II",
 		description = "Who knows what might be next?",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny2.png",
-		flag = "reroll_destiny2",
+		flag = "achievement_reroll_destiny2",
 		unlock = function()
 			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 3
 		end
@@ -165,7 +165,7 @@ achievements = {
 		name = "Gambling is Fun! III",
 		description = "Next achievement at 100 rerolls!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny3.png",
-		flag = "reroll_destiny3",
+		flag = "achievement_reroll_destiny3",
 		unlock = function()
 			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 5
 		end
@@ -174,7 +174,7 @@ achievements = {
 		name = "Player",
 		description = "You played the game!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/player.png",
-		flag = "player",
+		flag = "achievement_player",
 		unlock = function()
 			return GameGetFrameNum() > 25
 		end
@@ -183,7 +183,7 @@ achievements = {
 		name = "Perked Up!",
 		description = "Perk get!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/perked_up.png",
-		flag = "perked_up",
+		flag = "achievement_perked_up",
 		unlock = function()
 			return GameHasFlagRun("picked_perk_acheev")
 		end
@@ -192,11 +192,20 @@ achievements = {
 		name = "What have you done!!",
 		description = "You've doomed us all!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/holy_shit_danger.png",
-		flag = "holy_shit_danger",
+		flag = "achievement_holy_shit_danger",
 		unlock = function()
 			return GameHasFlagRun("holy_shit_danger")
 		end
 	},
+	{
+		name = "Portal Malfunction",
+		description = "Be sent to the wrong location by a portal.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/portal_malfunction.png",
+		flag = "achievement_portal_malfunction",
+		unlock = function()
+			return GameHasFlagRun("portal_malfunction")
+		end
+	}
 }
 
 
