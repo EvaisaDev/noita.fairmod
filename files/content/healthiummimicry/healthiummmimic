@@ -1,0 +1,18 @@
+<Materials>
+
+  <CellData 
+    name="healthiummimic"
+    ui_name="Healthium"
+    wang_color="ffa1f18c"
+    liquid_sand="0"
+    cell_type="liquid"
+    tags="[water],[magic_liquid],[liquid]"
+    >
+  </CellData>
+
+  <Reaction probability="100000"
+    input_cell1="purifyingpowder"    input_cell2="healthiummimic"
+    output_cell1="magic_liquid_hp_regeneration"  output_cell2="acid_gas"  
+    >
+  </Reaction>
+</Materials>
