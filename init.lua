@@ -97,7 +97,7 @@ function OnPlayerSpawned(player)
 	local target_x = x + offset_x
 	local target_y = y
 
-	-- EntityApplyTransform(player, target_x, target_y)
+	EntityApplyTransform(player, target_x, target_y)
 
 	----------------------------------
 
