@@ -48,6 +48,8 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
+ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
@@ -204,7 +206,7 @@ end
 -- Eba was here :3
 -- Lamia wasn't here
 -- Circle was here
-
+-- Hamis will be here
 
 -----##
 ----#o##
