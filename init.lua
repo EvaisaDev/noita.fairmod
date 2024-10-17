@@ -75,6 +75,8 @@ function OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
+	
+	EntitySetDamageFromMaterial(player, "mat_legos", 0.004)
 
 	local x, y = EntityGetTransform(player)
 
