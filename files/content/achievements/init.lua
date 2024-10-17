@@ -16,7 +16,7 @@ local offset_from_right = 5
 local notification_width = 100
 local default_icon_size = 20
 
-local debug_no_flags = true
+local debug_no_flags = false
 
 local module = {}
 
