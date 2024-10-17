@@ -31,6 +31,8 @@
 {a5d4cb7e-f443-4251-89c2-f3dbef789d95} event:/nuke/fart5
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
+{0efc5ea7-02a2-4e44-9772-0fea4c998af1} event:/rats/rats
+{da290cac-e139-4b99-b883-ce1fc690a283} parameter:/Distance
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass
 {6864bf18-2f50-4b34-aecc-63c1bdf7fdf4} parameter:/Migration Name Conflict (4)/Distance
 {ddf75d16-bdbe-4460-908b-0a29bd483835} parameter:/lowpass

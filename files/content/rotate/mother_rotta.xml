@@ -1,0 +1,12 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/rotate/mother_rotta_gfx.xml"
+		offset_x="0"
+		offset_y="0"
+		has_special_scale="1"
+		special_scale_x="-1">
+	</SpriteComponent>
+	<CameraBoundComponent
+		distance="2000"
+	></CameraBoundComponent>
+</Entity>

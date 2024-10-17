@@ -1,0 +1,10 @@
+<Entity>
+	<SpriteComponent
+		image_file="data/enemies_gfx/rat.xml"
+		offset_x="0"
+		offset_y="0">
+	</SpriteComponent>
+	<CameraBoundComponent
+		distance="2000"
+	></CameraBoundComponent>
+</Entity>
