@@ -8,14 +8,14 @@ local orbs_data = {
 
 local function get_scaled_health(health, orb_count)
     -- thank you Heinermann
-    return health + 2^orb_count + orb_count * (health / 3)
+    return health + 2^orb_count + orb_count * health / 3
 end
 
 function orbs_data:give_health_boost(enemy, orb_count)
     local damage_model_comp = EntityGetFirstComponent(enemy, "DamageModelComponent")
     -- if for some reason there's no damage model component, just ignore it, it's probably something weird
     if not damage_model_comp then
-        self.orb_adjusted[enemy] = 100
+        self.orb_adjusted[enemy] = 10000
         return
     end
 
@@ -37,17 +37,14 @@ function orbs_data:give_health_boost(enemy, orb_count)
 end
 
 function orbs_data:OnWorldPreUpdate()
-	local enemies = EntityGetWithTag("enemy")
-    local props = EntityGetWithTag("prop")
-    local animals = EntityGetWithTag("helpless_animal")
-    for _, prop in ipairs(props) do
-        table.insert(enemies, prop)
-    end
-    for _, animal in ipairs(animals) do
-        table.insert(enemies, animal)
-    end
+	local mortals = EntityGetWithTag("mortal")
     local orb_count = GameGetOrbCountThisRun()
-	for _, enemy in ipairs(enemies) do
+    local players = GetPlayers()
+    -- kinda sloppy but whatever, it works unless the player finds 10,000 orbs
+    for _, player in ipairs(players) do
+        orbs_data.orb_adjusted[player] = 10000
+    end
+	for _, enemy in ipairs(mortals) do
 		if not orbs_data.orb_adjusted[enemy] or orbs_data.orb_adjusted[enemy] < orb_count then
 			self:give_health_boost(enemy, orb_count)
 		end
