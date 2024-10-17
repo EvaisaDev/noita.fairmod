@@ -5,3 +5,5 @@ local M = {}
 function M.OnPlayerSpawned(player_entity)
   EntitySetDamageFromMaterial(player_entity, "mat_legos", 0.004)
 end
+
+return M
