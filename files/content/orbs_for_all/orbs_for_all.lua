@@ -8,7 +8,7 @@ local orbs_data = {
 
 local function get_scaled_health(health, orb_count)
     -- thank you Heinermann
-    return health + 2^orb_count + orb_count * health / 3
+    return health + 2^orb_count + orb_count * (health / 3)
 end
 
 function orbs_data:give_health_boost(enemy, orb_count)
