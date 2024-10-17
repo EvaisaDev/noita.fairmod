@@ -120,11 +120,11 @@ function OnPlayerSpawned(player)
 
 	crits.OnPlayerSpawned(player)
 
-	legos.OnPlayerSpawned(player)
-
 	clipboard.OnPlayerSpawned(player)
 
 	evil_nuggets.OnPlayerSpawned(player)
+
+	legos.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
