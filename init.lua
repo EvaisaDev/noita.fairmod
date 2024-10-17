@@ -15,6 +15,7 @@ local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
+local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 
@@ -48,6 +49,8 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
+ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
@@ -132,6 +135,8 @@ function OnPlayerSpawned(player)
 
 	legos.OnPlayerSpawned(player)
 
+	healthymimic.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then
@@ -208,7 +213,7 @@ end
 -- Eba was here :3
 -- Lamia wasn't here
 -- Circle was here
-
+-- Hamis will be here
 
 -----##
 ----#o##

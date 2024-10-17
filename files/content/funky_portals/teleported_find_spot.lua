@@ -31,6 +31,10 @@ function teleported( from_x, from_y, to_x, to_y, portal_teleport )
 
 	if((portal_teleport and rand < 20) or rand < 10)then
 		
+		if(portal_teleport)then
+			GameAddFlagRun("portal_malfunction")
+		end
+
 		dofile("mods/noita.fairmod/files/content/funky_portals/biome_blacklist.lua")
 		local biome_map_w, biome_map_h = BiomeMapGetSize()
 		local chunk_size = 512

@@ -54,8 +54,8 @@ achievements = {
 		end
 	},
 	{
-		name = "Too much acid",
-		description = "Did it bother you?",
+		name = "Too many acid",
+		description = "Did it bothered you?",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/giant_shooter.png",
 		flag = "achievement_giantshooter_killed",
 		unlock = function()
@@ -120,7 +120,7 @@ achievements = {
 		name = "Degraded Game Experience",
 		description = "Why!?!> Disable nightmare.",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/nighmare_mode.png",
-		flag = "nighmare_mode",
+		flag = "achievement_nighmare_mode",
 		unlock = function()
 			return ModIsEnabled("nightmare")
 		end
@@ -129,7 +129,7 @@ achievements = {
 		name = "Just.. one.. more...",
 		description = "99% gamblers quit before big win! Next roll = $5m payout",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/gamble_fail.png",
-		flag = "gamble_fail",
+		flag = "achievement_gamble_fail",
 		unlock = function()
 			return tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) > 5
 		end
@@ -138,9 +138,104 @@ achievements = {
 		name = "Gamble God",
 		description = "Winnar is you!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/gamble_win.png",
-		flag = "gamble_win",
+		flag = "achievement_gamble_win",
 		unlock = function()
 			return tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) >= 1
 		end
+	},
+	{
+		name = "Gambling is Fun!",
+		description = "Next might be TWWE! Reroll more!!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny.png",
+		flag = "achievement_reroll_destiny",
+		unlock = function()
+			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 1
+		end
+	},
+	{
+		name = "Gambling is Fun! II",
+		description = "Who knows what might be next?",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny2.png",
+		flag = "achievement_reroll_destiny2",
+		unlock = function()
+			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 3
+		end
+	},
+	{
+		name = "Gambling is Fun! III",
+		description = "Next achievement at 100 rerolls!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/reroll_destiny3.png",
+		flag = "achievement_reroll_destiny3",
+		unlock = function()
+			return tonumber(GlobalsGetValue("TEMPLE_PERK_REROLL_COUNT", "0")) >= 5
+		end
+	},
+	{
+		name = "Player",
+		description = "You played the game!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/player.png",
+		flag = "achievement_player",
+		unlock = function()
+			return GameGetFrameNum() > 25
+		end
+	},
+	{
+		name = "Perked Up!",
+		description = "Perk get!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/perked_up.png",
+		flag = "achievement_perked_up",
+		unlock = function()
+			return GameHasFlagRun("picked_perk_acheev")
+		end
+	},
+	{
+		name = "What have you done!!",
+		description = "You've doomed us all!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/holy_shit_danger.png",
+		flag = "achievement_holy_shit_danger",
+		unlock = function()
+			return GameHasFlagRun("holy_shit_danger")
+		end
+	},
+	{
+		name = "Portal Malfunction",
+		description = "Be sent to the wrong location by a portal.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/portal_malfunction.png",
+		flag = "achievement_portal_malfunction",
+		unlock = function()
+			return GameHasFlagRun("portal_malfunction")
+		end
 	}
 }
+
+
+local function romanize(num)
+    local result = ""
+    for _, value in ipairs({{1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"}, {100, "C"}, {90, "XC"}, {50, "L"}, {40, "XL"}, {10, "X"}, {9, "IX"}, {5, "V"}, {4, "IV"}, {1, "I"} }) do
+        local count = math.floor(num / value[1])
+        num = num % value[1]
+        result = result .. string.rep(value[2], count)
+    end
+    return result
+end
+
+local ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Godslayer " .. romanize(i),
+		description = (function (chars)
+			local sets = {{97, 122}, {65, 90}, {48, 57}} -- a-z, A-Z, 0-9
+			local str = {""}
+			for p = 1, chars do
+				local charset = sets[ math.random(1, #sets) ]
+				str[#str+1] = string.char(math.random(charset[1], charset[2]))
+			end
+			return table.concat(str)
+		end)(i*2),
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/god_slayer_", i, ".png"},
+		flag = "god_slayer_" .. i,
+		unlock = function()
+			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= i
+		end
+	}
+end
