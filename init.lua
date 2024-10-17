@@ -14,6 +14,7 @@ local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
+local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -36,7 +37,6 @@ dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
-dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 
 
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
