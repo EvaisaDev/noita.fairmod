@@ -9,6 +9,7 @@ local actions_to_edit = {
 				mana = mana + delta
 				draw_actions(1, true)
 				LastShootingStart = GameGetFrameNum()
+				GameAddFlagRun("hahah_fuck_your_mana")
 			end
 		end,
 	},
