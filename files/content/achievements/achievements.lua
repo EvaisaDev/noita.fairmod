@@ -46,7 +46,7 @@ achievements = {
 	},
 	{
 		name = "What have you done",
-		description = "What did they do",
+		description = "What did they do to deserve this?",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/hamis_massacre.png",
 		flag = "achievement_hamis_killed",
 		unlock = function()
@@ -54,8 +54,8 @@ achievements = {
 		end
 	},
 	{
-		name = "Too many acid",
-		description = "Did it bothered you?",
+		name = "Too much acid",
+		description = "Did it bother you?",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/giant_shooter.png",
 		flag = "achievement_giantshooter_killed",
 		unlock = function()
