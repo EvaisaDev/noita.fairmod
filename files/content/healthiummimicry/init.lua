@@ -1,4 +1,4 @@
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/legosfolder/legos.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/healthiummimicry/healthiummimic.xml")
 
 local mimichealthium = {}
 
