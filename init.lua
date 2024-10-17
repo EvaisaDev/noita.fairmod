@@ -48,8 +48,6 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/legosfolder/legos.xml")
-
 -- Optional imgui dep
 imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
 
