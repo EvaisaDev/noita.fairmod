@@ -14,7 +14,7 @@ local LANG_INDEX_MAP = {
 	["한국어"] = 12,
 }
 
-local CHANGE_CHANCE = 0.15
+local CHANGE_CHANCE = 0.1
 local IDX_SWAP_MIN = 2
 local IDX_SWAP_MAX = 9 -- Not swapping with Asian languages because of font complications
 

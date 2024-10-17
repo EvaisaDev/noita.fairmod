@@ -5,6 +5,7 @@
 --  * 25x more material dropped on entity death
 
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+nxml.error_handler = function() end
 local prop_files = dofile_once("mods/noita.fairmod/files/content/better_props/prop_files.lua") --- @type table
 
 ------------------------------------------------------------------------

@@ -23,6 +23,7 @@ function material_area_checker_success( pos_x, pos_y )
 	EntityLoad( "mods/noita.fairmod/files/content/cauldron/player_killer.xml", x, y )
 	
 	GameAddFlagRun( "ending_game_completed" )
+	GameAddFlagRun( "poop_ending" )
 
 	local world_entity_id = GameGetWorldStateEntity()
 	if( world_entity_id ~= nil ) then
