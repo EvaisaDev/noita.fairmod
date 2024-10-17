@@ -15,6 +15,7 @@ local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
 local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
+local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 
@@ -131,6 +132,8 @@ function OnPlayerSpawned(player)
 	evil_nuggets.OnPlayerSpawned(player)
 
 	legos.OnPlayerSpawned(player)
+
+	healthymimic.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
