@@ -78,7 +78,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
-
+	
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 
@@ -105,6 +105,8 @@ function OnPlayerSpawned(player)
 		return
 	end
 	GameAddFlagRun("fairmod_init")
+
+	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 
 	SetRandomSeed(2152, 12523)
 	
@@ -140,8 +142,6 @@ function OnPlayerSpawned(player)
 	if damage_model_comp then
 		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
 	end
-
-	EntityLoad("mods/noita.fairmod/files/content/rotate/rotta-cart.xml", 470, -105.100)
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
