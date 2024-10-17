@@ -81,8 +81,11 @@ function OnPlayerSpawned(player)
 
 	SetRandomSeed(x, y)
 
-	local map_w, map_h = BiomeMapGetSize()
-	local offset_x = (map_w * 512 * Random(-3, 3))
+	local random_pws = { -1, -1, -1, 0, 1, 1, 1 }
+	local pw_num = random_pws[Random(1, #random_pws)]
+
+	local map_w = BiomeMapGetSize()
+	local offset_x = (map_w * 512 * pw_num)
 
 	local target_x = x + offset_x
 	local target_y = y
