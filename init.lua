@@ -75,8 +75,6 @@ function OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
-
-	legos.OnPlayerSpawned(player)
 	
 	EntitySetDamageFromMaterial(player, "mat_legos", 0.004)
 
@@ -121,6 +119,8 @@ function OnPlayerSpawned(player)
 	heartattack.OnPlayerSpawned(player)
 
 	crits.OnPlayerSpawned(player)
+
+	legos.OnPlayerSpawned(player)
 
 	clipboard.OnPlayerSpawned(player)
 
