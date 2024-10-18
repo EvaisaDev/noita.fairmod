@@ -66,6 +66,17 @@ local function count_nearby_tags(tagname)
     return #get_any_nearby_tags(tagname)
 end
 
+local function get_ingame_time()
+    local wse = GameGetWorldStateEntity()
+    local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+    local time_fraction = ComponentGetValue2(wsc, "time")
+    return time_fraction * (24 * 60)
+end
+
+local moon_phases = {
+    "Full Moon", "Waning Gibbous", "Third Quarter", "Waning Crescent", "New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous"
+}
+
 local ui_displays = {
     normal = {
         {
@@ -76,13 +87,10 @@ local ui_displays = {
         },
         {
             text = function()
-                local wse = GameGetWorldStateEntity()
-                local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
-                local time_fraction = ComponentGetValue2(wsc, "time")
-                local time_minutes_total = time_fraction * (23 * 60)
+                local time_minutes_total = get_ingame_time()
                 local time_minutes = time_minutes_total % 60
-                local time_hours = time_minutes_total / 60
-                return string.format("Time: %2.0f:%2.0f", time_hours, time_minutes)
+                local time_hours = math.floor(time_minutes_total / 60)
+                return string.format("Time: %2.0f:%02.0f", time_hours, time_minutes)
             end,
         },
         {
@@ -112,20 +120,65 @@ local ui_displays = {
                 local wse = GameGetWorldStateEntity()
                 local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
                 local day = ComponentGetValue2(wsc, "day_count")
+                local moon_phase = moon_phases[math.fmod(day, #moon_phases) + 1]
 
-                local moon_phases = {
-                    "Full Moon", "Waning Gibbous", "Third Quarter", "Waning Crescent", "New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous"
-                }
-
-                return "Moon: " .. moon_phases[math.fmod(day, #moon_phases) + 1]
+                return "Moon: " .. moon_phase
             end,
         },
         {
             text = function()
+                -- TODO give 5 fishing power only when holding the fishing rod
+                local fishing_power = 5
+
+                local wse = GameGetWorldStateEntity()
+                local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+                local rain = ComponentGetValue2(wsc, "rain")
+                local fog = ComponentGetValue2(wsc, "fog")
+                local day = ComponentGetValue2(wsc, "day_count")
+                local moon_phase = moon_phases[math.fmod(day, #moon_phases) + 1]
+                local gametime = get_ingame_time()
+
+                -- Time modifier
+                if gametime >= 4*60 + 30 and gametime < 6*60 then
+                    fishing_power = fishing_power * 1.3
+                elseif gametime >= 9*60 and gametime < 15*60 then
+                    fishing_power = fishing_power * 0.8
+                elseif gametime >= 18*60 and gametime < 19*60 + 30 then
+                    fishing_power = fishing_power * 1.3
+                elseif gametime >= 21*60 + 18 or gametime < 2*60 + 42 then
+                    fishing_power = fishing_power * 0.8
+                end
+
+                -- rain modifier
+                if rain > 0.5 then
+                    fishing_power = fishing_power * 1.2
+                end
+
+                -- fog modifier
+                if fog > 0.5 then
+                    fishing_power = fishing_power * 1.1
+                end
+
+                -- moon phase modifier
+                if moon_phase == "Full Moon" then
+                    fishing_power = fishing_power * 1.1
+                elseif moon_phase == "Waning Gibbous" or moon_phase == "Waxing Gibbous" then
+                    fishing_power = fishing_power * 1.05
+                elseif moon_phase == "Waning Crescent" or moon_phase == "Waxing Crescent" then
+                    fishing_power = fishing_power * 0.95
+                elseif moon_phase == "New Moon" then
+                    fishing_power = fishing_power * 0.9
+                end
+
+                return tostring(math.floor(fishing_power)) .. " Fishing power"
+            end
+        },
+        {
+            text = function()
                 -- TODO get fish kills for this run or something
-                return GlobalsGetValue("fish_caught", "0").." Fishing power"
+                return GlobalsGetValue("fish_caught", "0").." fish caught"
             end,
-			condition = global_greater_than_zero("fish_caught")
+            condition = global_greater_than_zero("fish_caught")
         },
         {
             text = function()
