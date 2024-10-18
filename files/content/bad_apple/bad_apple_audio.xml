@@ -1,0 +1,9 @@
+<Entity>
+	<AudioLoopComponent
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="badapple/song"
+		auto_play="1"
+		calculate_material_lowpass="0"
+	>
+	</AudioLoopComponent>
+</Entity>
