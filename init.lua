@@ -18,6 +18,7 @@ local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
+local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -73,7 +74,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
 	dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
-
+	fishing.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
@@ -120,6 +121,7 @@ function OnPlayerSpawned(player)
 
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
+	fishing.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1

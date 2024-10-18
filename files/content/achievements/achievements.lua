@@ -205,6 +205,15 @@ achievements = {
 		unlock = function()
 			return GameHasFlagRun("portal_malfunction")
 		end
+	},
+	{
+		name = "Fishing Novice",
+		description = "You caught your first fish!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/fishing_1.png",
+		flag = "achievement_fishing_novice",
+		unlock = function()
+			return GlobalsGetValue("fish_caught", "0") ~= "0"
+		end
 	}
 }
 

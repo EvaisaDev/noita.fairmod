@@ -42,8 +42,28 @@ local function speedrun_split(label, var)
             splt = frames_to_time(tonumber(splt))
         end
         return {label, splt}
-    
+
     end
+end
+
+---@param ... string
+---@return number[]
+local function get_any_nearby_tags(...)
+    local tags = { ... }
+    local x, y = GameGetCameraPos()
+    local result = {}
+    for _, tag in ipairs(tags) do
+        result = EntityGetInRadiusWithTag(x, y, 300, tag) or {}
+
+        if #result > 0 then break end
+    end
+    return result
+end
+
+---@param tagname string
+---@return integer
+local function count_nearby_tags(tagname)
+    return #get_any_nearby_tags(tagname)
 end
 
 local ui_displays = {
@@ -71,23 +91,67 @@ local ui_displays = {
                 local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
                 local rain = ComponentGetValue2(wsc, "rain")
                 local fog = ComponentGetValue2(wsc, "fog")
-                if rain > 0.5 then
+                local wind = ComponentGetValue2(wsc, "wind")
+                local lightning = ComponentGetValue2(wsc, "lightning_count")
+
+                if lightning > 0 then
+                    return "Weather: thunderstorm"
+                elseif rain > 0.5 then
                     return "Weather: raining"
                 elseif fog > 0.5 then
                     return "Weather: foggy"
+                elseif wind > 0.5 then
+                    return "Weather: windy"
                 else
-                    return "Weather: clean"
+                    return "Weather: clear"
                 end
             end,
         },
         {
-            text = "0 Fishing power"
+            text = function()
+                local wse = GameGetWorldStateEntity()
+                local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+                local day = ComponentGetValue2(wsc, "day_count")
+
+                local moon_phases = {
+                    "Full Moon", "Waning Gibbous", "Third Quarter", "Waning Crescent", "New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous"
+                }
+
+                return "Moon: " .. moon_phases[math.fmod(day, #moon_phases) + 1]
+            end,
         },
         {
             text = function()
-                local x, y = GameGetCameraPos()
-                -- +1 to count the player.
-                local enemy_count = #(EntityGetInRadiusWithTag(x, y, 300, "enemy") or {}) + 1
+                -- TODO get fish kills for this run or something
+                return GlobalsGetValue("fish_caught", "0").." Fishing power"
+            end,
+			condition = global_greater_than_zero("fish_caught")
+        },
+        {
+            text = function()
+                -- TODO look for actual ore materials like copper
+                if count_nearby_tags("gold_nugget") ~= 0 then
+                    return "Gold detected nearby!"
+                end
+                return "No ore detected"
+            end
+        },
+        {
+            text = function()
+                -- TODO: add a rare tag to hiisi chef, mimics, santa hiisi
+                local enemy = get_any_nearby_tags("big_friend", "small_friend", "mimic_potion", "boss_dragon", "boss", "miniboss")[1]
+                if enemy ~= nil then
+                    local name = EntityGetName(enemy) -- not working??? Kolmi not showing up
+                    if name ~= nil and name ~= "" then
+                        return "Rare enemy: " .. GameTextGetTranslatedOrNot(name)
+                    end
+                end
+                return "Rare enemy: None"
+            end
+        },
+        {
+            text = function()
+                local enemy_count = count_nearby_tags("enemy")
                 if enemy_count == 1 then
                     return enemy_count.." enemy nearby"
                 else
@@ -267,7 +331,7 @@ function module.update()
     GuiZSet(gui, 10)
 
     w, h = GuiGetScreenDimensions(gui)
-    cur_y = 80
+    cur_y = 120
     pending_info = {}
 
     -- Determine which display to use

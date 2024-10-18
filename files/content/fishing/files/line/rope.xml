@@ -1,0 +1,43 @@
+<Entity tags="rope_custom,dont_connect_to_rope">
+     
+    <VerletPhysicsComponent
+    	num_points="12"
+    	stiffness="1.0"
+		velocity_dampening="0.9"
+    	resting_distance="4" 
+    	simulate_gravity="1"
+    	constrain_stretching="0"
+		collide_with_cells="0"
+	>
+    </VerletPhysicsComponent>
+
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+    <Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+	<Base file="mods/noita.fairmod/files/content/fishing/files/line/rope_part.xml" />
+
+
+	
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/fishing/files/rope_handler.lua"
+		execute_every_n_frame="1"
+    ></LuaComponent>
+	
+	<VariableStorageComponent
+        name="entity_1"
+        value_int="0"
+    ></VariableStorageComponent>
+	
+	<VariableStorageComponent
+        name="entity_2"
+        value_int="0"
+    ></VariableStorageComponent>
+</Entity>

@@ -1,0 +1,41 @@
+<Sprite
+ filename=""
+ offset_x="48"
+ offset_y="48" 
+ default_animation="small" >
+
+ <!-- stand -->
+ <RectAnimation
+  name="large"
+  pos_x="0"
+  pos_y="0"
+  frame_count="1"
+  frame_width="96"
+  frame_height="96"
+  frame_wait="0.11"
+  frames_per_row="1"
+  loop="1"   >
+ </RectAnimation>
+  <RectAnimation
+  name="medium"
+  pos_x="96"
+  pos_y="0"
+  frame_count="1"
+  frame_width="96"
+  frame_height="96"
+  frame_wait="0.11"
+  frames_per_row="1"
+  loop="1"   >
+ </RectAnimation>
+  <RectAnimation
+  name="small"
+  pos_x="192"
+  pos_y="0"
+  frame_count="1"
+  frame_width="96"
+  frame_height="96"
+  frame_wait="0.11"
+  frames_per_row="1"
+  loop="1"   >
+ </RectAnimation>
+</Sprite>
