@@ -123,7 +123,7 @@ local ui_displays = {
         {
             text = function()
                 -- TODO get fish kills for this run or something
-                return GlobalsGetValue("fish_caught", "1").." Fishing power"
+                return GlobalsGetValue("fish_caught", "0").." Fishing power"
             end,
 			condition = global_greater_than_zero("fish_caught")
         },

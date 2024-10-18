@@ -149,7 +149,7 @@ if return_bobber then
 			end
 			fish.func(fish, owner_x, owner_y)
 
-			GlobalsSetValue("fish_caught", tostring(tonumber(GlobalsGetValue("fish_caught", "1")) + 1))
+			GlobalsSetValue("fish_caught", tostring(tonumber(GlobalsGetValue("fish_caught", "0")) + 1))
 		end
 		GameAddFlagRun("kill_fishing_challenge_ui")
 		EntityKill(bobber);
