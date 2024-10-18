@@ -175,6 +175,13 @@ local ui_displays = {
         },
         {
             text = function()
+                -- TODO get fish kills for this run or something
+                return GlobalsGetValue("fish_caught", "0").." fish caught"
+            end,
+            condition = global_greater_than_zero("fish_caught")
+        },
+        {
+            text = function()
                 -- TODO look for actual ore materials like copper
                 if count_nearby_tags("gold_nugget") ~= 0 then
                     return "Gold detected nearby!"
