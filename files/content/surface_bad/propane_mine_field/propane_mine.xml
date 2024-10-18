@@ -1,0 +1,17 @@
+<Entity>
+	<Base file="data/entities/props/physics_propane_tank.xml">
+		<PhysicsBody2Component
+			auto_clean="0">
+		</PhysicsBody2Component>
+	</Base>
+	<CollisionTriggerComponent
+		height="100"
+		width="20"
+		radius="100"
+		required_tag="player_unit"
+		destroy_this_entity_when_triggered="0"
+	></CollisionTriggerComponent>
+	<LuaComponent
+		script_collision_trigger_hit="mods/noita.fairmod/files/content/surface_bad/propane_mine_field/propane_mine_trigger.lua"
+	></LuaComponent>
+</Entity>

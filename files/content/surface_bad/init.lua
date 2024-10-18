@@ -1,5 +1,5 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
-local peaceful_biomes = { "data/biome/hills.xml", "data/biome/desert.xml", "data/biome/winter.xml", "data/biome/lake.xml" }
+local peaceful_biomes = { "data/biome/hills.xml", "data/biome/desert.xml", "data/biome/lake.xml" }
 
 local rain_material_data = dofile_once("mods/noita.fairmod/files/content/surface_bad/rain_materials.lua")
 local rain_material_list = {}
@@ -19,7 +19,7 @@ function surface_bad:init()
 	ModLuaFileAppend("data/scripts/biomes/mountain/mountain_top.lua", "mods/noita.fairmod/files/content/surface_bad/mountain_append.lua")
 	ModLuaFileAppend("data/scripts/biomes/mountain_lake.lua", "mods/noita.fairmod/files/content/surface_bad/mountain_lake_append.lua")
 
-	local child = nxml.new_element("VegetationComponent", {
+	local animal_spawner = nxml.new_element("VegetationComponent", {
 		tree_probability = "0.9",
 		rand_seed = "8674.1",
 		tree_width = "30",
@@ -28,12 +28,28 @@ function surface_bad:init()
 		load_this_xml_instead = "mods/noita.fairmod/files/content/surface_bad/surface_spawner.xml",
 		tree_image_visual = "",
 	})
+	local propane_spawner = nxml.new_element("VegetationComponent", {
+		tree_probability = "0.1",
+		rand_seed = "1234",
+		tree_width = "20",
+		visual_offset_y = "-3",
+		is_visual = "1",
+		load_this_xml_instead = "mods/noita.fairmod/files/content/surface_bad/propane_mine_field/propane_mine.xml",
+	})
+
 	for _, biome in ipairs(peaceful_biomes) do
 		for xml in nxml.edit_file(biome) do
 			local mats = xml:first_of("Materials")
 			if mats then
-				mats:add_child(child)
+				mats:add_child(animal_spawner)
 			end
+		end
+	end
+	for xml in nxml.edit_file("data/biome/winter.xml") do
+		local mats = xml:first_of("Materials")
+		if mats then
+			mats:add_child(animal_spawner)
+			mats:add_child(propane_spawner)
 		end
 	end
 end
