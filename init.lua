@@ -17,6 +17,7 @@ local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
+local orbs_for_all = dofile_once("mods/noita.fairmod/files/content/orbs_for_all/orbs_for_all.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 
@@ -161,7 +162,9 @@ function OnWorldPreUpdate()
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
+		orbs_for_all:OnWorldPreUpdate()
 		surface_bad:update()
+
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
