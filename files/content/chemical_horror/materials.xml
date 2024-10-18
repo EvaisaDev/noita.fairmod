@@ -51,7 +51,7 @@
 		cell_explosion_radius_max="1"
 		cell_explosion_probability="1.1"
 		explosion_sprite="data/particles/explosion_012.xml"
-		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/scripts/random_spell_unstable.xml" 
+		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_unstable.xml" 
 		ray_energy="1"
 		>
 	</ExplosionConfig>
@@ -114,11 +114,14 @@
 		cell_explosion_radius_max="1"
 		cell_explosion_probability="1.1"
 		explosion_sprite="data/particles/explosion_012.xml"
-		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/scripts/random_spell_chaotic.xml" 
+		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.xml" 
 		ray_energy="1"
 		>
 	</ExplosionConfig>
 	</Reaction><!-- chaotic pandorium casts spells -->
+
+
+
 
 
 
@@ -139,7 +142,7 @@
 	audio_materialaudio_type="MAGICAL" 
 	>
 	<Graphics
-		texture_file="mods/noita.fairmod/files/content/chemical_horror/files/material_gfx/giga_slicing_liquid.png"
+		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/giga_slicing_liquid.png"
 	>
 	</Graphics>
 	<ParticleEffect
@@ -156,6 +159,15 @@
 	</ParticleEffect>
   </CellData> <!-- giga slicing liquid-->
 
+	<Reaction probability="31"
+	input_cell1="t_giga_slicing_liquid"	input_cell2="[fire]"
+	output_cell1="air"			output_cell2="air"
+	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_big.xml" 
+	>
+	</Reaction>
+
+
+
   <CellDataChild
 	_parent="t_giga_slicing_liquid"
     name="t_omega_slicing_liquid"
@@ -164,10 +176,17 @@
 	wang_color="afaaaabf"
 	>
 	<Graphics
-		texture_file="mods/noita.fairmod/files/content/chemical_horror/files/material_gfx/omega_slicing_liquid.png"
+		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/omega_slicing_liquid.png"
 	>
 	</Graphics>
   </CellDataChild> <!-- Omega slicing liquid-->
+
+	<Reaction probability="31"
+	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
+	output_cell1="air"			output_cell2="air"
+	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml" 
+	>
+	</Reaction>
 
 <!--
 
@@ -233,7 +252,7 @@
 			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.2" />
 		</Ingestion>
 	</StatusEffects>
-  </CellData> <!-- Deceleratium -->
+  </CellData>
   
   <CellData
 	name="cc_heftium"
@@ -272,7 +291,7 @@
 			<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.2" />
 		</Ingestion>
 	</StatusEffects>
-  </CellData><!-- Heftium -->
+  </CellData>
 	
 	
 
@@ -317,7 +336,7 @@
 			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.1" />
 		</Ingestion>
 	</StatusEffects>
-  </CellData><!-- Stillium -->
+  </CellData>
   
   <CellData
 	name="cc_explodePlayer"

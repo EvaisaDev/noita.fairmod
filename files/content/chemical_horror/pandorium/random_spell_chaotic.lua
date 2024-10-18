@@ -5,7 +5,7 @@ dofile_once("data/scripts/lib/utilities.lua") --holy shit i dont need utilities 
 -- once this works, it will be thanks to the work of Copi and Horscht, and the multiple people who are helping me on the noitacord while i stumble my way through LUA for the first time
 
 
-local spell_table = dofile_once("mods/noita.fairmod/files/content/chemical_horror/scripts/spells_table_compiler.lua")
+local spell_table = dofile_once("mods/noita.fairmod/files/content/chemical_horror/pandorium/spells_table_compiler.lua")
 
 --print(spell_table.PROJECTILES[Random(1,#spell_table.PROJECTILES)])
 
