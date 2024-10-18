@@ -35,8 +35,8 @@ function enabled_changed( rod, is_enabled )
 			local item_component = EntityGetComponentIncludingDisabled( children[1], "ItemComponent")[1];
 	
 			if(item_component ~= nil)then
-				ComponentSetValue2( item_component, "uses_remaining", ComponentGetValue2(item_component, "uses_remaining" ) + 1 )
-				GamePrint(ComponentGetValue2(item_component, "uses_remaining" ))
+				--ComponentSetValue2( item_component, "uses_remaining", ComponentGetValue2(item_component, "uses_remaining" ) + 1 )
+				--GamePrint(ComponentGetValue2(item_component, "uses_remaining" ))
 			end
 	
 			local inventory2 = EntityGetFirstComponent( EntityGetRootEntity(rod), "Inventory2Component" );

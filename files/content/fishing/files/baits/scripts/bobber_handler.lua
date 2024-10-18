@@ -40,14 +40,14 @@ if(bobber_owner == 0 and fishing_frame <= 10)then
 	EntitySetVariable(bobber, "fish_count", "int", Random(3, 7))
 	return 
 elseif(bobber_owner == 0 and fishing_frame > 10)then
-	print("Death to the bobber!")
+	--print("Death to the bobber!")
 
 	EntityKill(bobber)
 	return 
 end
 
 if(bobber_owner ~= player or player == nil)then
-	print("rawr")
+	--print("rawr")
 	rope_entity = EntityGetVariable(bobber, "rope_entity", "int")
 	if(rope_entity ~= nil and rope_entity ~= 0)then
 		EntityKill(rope_entity)
@@ -110,7 +110,7 @@ if return_bobber then
 	bobber_x = EntityGetVariable(bobber, "last_position_x", "int")
 	bobber_y = EntityGetVariable(bobber, "last_position_y", "int")
 
-	GamePrint("Returning to master.")
+	--GamePrint("Returning to master.")
 	
 	local cTime = math.max(math.min((GameGetFrameNum() - EntityGetVariable(bobber, "frame_num_start", "int")) / 20, 2),0)
 

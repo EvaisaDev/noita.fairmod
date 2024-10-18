@@ -114,7 +114,7 @@ for i = 1, #perk_pool do
 
 			if perk.particle_effect and perk.particle_effect ~= "" then
 				if particle_effect == nil or Random(0, 100) > 50 then
-					print("Particle effect set to: '"..perk.particle_effect.."'")
+					--print("Particle effect set to: '"..perk.particle_effect.."'")
 					particle_effect = perk.particle_effect
 				end
 			end

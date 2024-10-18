@@ -17,7 +17,7 @@ for k, v in pairs(bait_list)do
 			max_uses = v.max_uses,
 			action 		= function( recursion_level, iteration )
 
-				print("Bait casted!")
+				--print("Bait casted!")
 
 				c.fire_rate_wait = c.fire_rate_wait + 10
 				player = get_players()[1]
@@ -51,7 +51,7 @@ for k, v in pairs(bait_list)do
 							if(EntityHasFlag(bobber, "return_bobber") == false)then
 								EntityAddFlag(bobber, "return_bobber")
 
-								print("returning bobber")
+								--print("returning bobber")
 
 								bobber_x, bobber_y = EntityGetTransform(bobber)
 

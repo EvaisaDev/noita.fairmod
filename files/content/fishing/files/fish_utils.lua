@@ -26,7 +26,7 @@ end
 function nearest_value(table, number)
     local smallestSoFar, smallestIndex
 	for i, y in ipairs(table) do
-		print(tostring(y[1]))
+		--print(tostring(y[1]))
         if not smallestSoFar or (math.abs(number-y[1]) < smallestSoFar) then
             smallestSoFar = math.abs(number-y[1])
             smallestIndex = i
