@@ -41,6 +41,7 @@ dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
+dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 
@@ -105,6 +106,9 @@ function OnPlayerSpawned(player)
 	local target_y = y
 
 	EntityApplyTransform(player, target_x, target_y)
+
+	--snowballs test (if you can figure out how to fix snowballs to fly quicker and apply crazy knockback)
+	--EntityLoad("mods/noita.fairmod/files/content/snowman/snowman.xml", target_x + 150, target_y - 50)
 
 	----------------------------------
 
