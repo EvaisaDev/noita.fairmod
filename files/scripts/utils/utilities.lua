@@ -28,7 +28,7 @@ function MaterialsFilter(mats)
 			goto continue
 		end
 		SetRandomSeed(1, 1)
-		if (mat:find("molten") and Random(1, 100) < 30) then
+		if (mat:find("molten")--[[ and Random(1, 100) < 30]]) then
 			table.remove(mats, i)
 			goto continue
 		end

@@ -19,6 +19,7 @@
 {bd914676-22a3-473b-818c-7fc2a1e4b65d} event:/badapple/song
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
+{4bf99c55-f917-4cff-b3c8-ddf56f3e9ce1} event:/gamblecore/break
 {4a18f166-f0c0-467c-b874-8bc0f7361b96} event:/gamblecore/icantstopwinning
 {8dbd8a86-c11d-42d0-a796-f3ddbdedb96c} event:/gamblecore/letsgogambling
 {3ec05cb2-885f-4438-afed-656dbc6a6265} event:/gamblecore/letsgogamblingawdangit
