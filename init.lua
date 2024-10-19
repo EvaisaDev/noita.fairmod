@@ -9,7 +9,7 @@ local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
-local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
+--local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
 local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
@@ -155,6 +155,9 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame = 1,
 		execute_on_added = true,
 	})
+
+	-- debugging
+	--EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -168,7 +171,7 @@ function OnWorldPreUpdate()
 	end
 	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
-	trading_cards.update()
+	--trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui.update()
