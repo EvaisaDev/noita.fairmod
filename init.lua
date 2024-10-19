@@ -19,6 +19,7 @@ local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
+local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -40,10 +41,11 @@ dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
-
-
+dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
+
+
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
@@ -74,7 +76,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
 	dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
-
+	fishing.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
@@ -121,6 +123,7 @@ function OnPlayerSpawned(player)
 
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
+	fishing.OnPlayerSpawned(player)
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1

@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Users\\mail\\AppData\\LocalLow\\Nolla_Games_Noita\\data"
+		}
+	],
+	"settings": {
+		"Lua.diagnostics.disable": [
+			"lowercase-global"
+		],
+		"Lua.diagnostics.globals": [
+			"get_players",
+			"GUI_OPTION"
+		]
+	}
+}

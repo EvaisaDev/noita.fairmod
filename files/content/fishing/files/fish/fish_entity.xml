@@ -1,0 +1,49 @@
+<Entity name = "fish" tags="hittable,teleportable_NOT,item_physics,gourd,item_pickup">
+
+  <!-- physical presence -->
+
+  <PhysicsThrowableComponent
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+
+  <ProjectileComponent
+    _tags="enabled_in_world"
+    lifetime="-1"
+    penetrate_entities="1"
+  ></ProjectileComponent>
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+  
+  <!-- potion logic -->
+
+  <DamageModelComponent 
+    _tags="enabled_in_world"
+    air_needed="0" 
+    blood_material="" 
+    drop_items_on_death="0" 
+    falling_damages="0" 
+    fire_damage_amount="0.2" 
+    fire_probability_of_ignition="0" 
+	critical_damage_resistance="1"
+    hp="4.0" 
+    is_on_fire="0" 
+    materials_create_messages="0" 
+    materials_damage="1" 
+    materials_that_damage="lava"
+    materials_how_much_damage="0.001"
+    ragdoll_filenames_file=""
+    ragdoll_material=""
+  ></DamageModelComponent>
+
+  <!-- item -->
+
+	
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/throwable"
+		>
+	</AudioComponent>
+</Entity>

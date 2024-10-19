@@ -11,7 +11,4 @@
 		calculate_material_lowpass="0"
 	>
 	</AudioLoopComponent>
-	<CameraBoundComponent
-		distance="2000"
-	></CameraBoundComponent>
 </Entity>

@@ -6,7 +6,4 @@
 		has_special_scale="1"
 		special_scale_x="-1">
 	</SpriteComponent>
-	<CameraBoundComponent
-		distance="2000"
-	></CameraBoundComponent>
 </Entity>

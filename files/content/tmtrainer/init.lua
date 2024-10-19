@@ -14,11 +14,11 @@ function init.OnPlayerSpawned(player)
     dofile("data/scripts/perks/perk.lua")
     dofile("data/scripts/perks/perk_list.lua")
 
-    EntityAddComponent2(player, "LuaComponent", {
+    --[[EntityAddComponent2(player, "LuaComponent", {
         execute_every_n_frame = 1,
         execute_on_added = true,
         script_source_file = "mods/noita.fairmod/files/content/tmtrainer/files/scripts/player_update.lua",
-    });
+    });]]
 end
 
 function init.OnMagicNumbersAndWorldSeedInitialized()
