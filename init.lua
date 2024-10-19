@@ -106,6 +106,14 @@ function OnPlayerSpawned(player)
 
 	EntityApplyTransform(player, target_x, target_y)
 
+	if pw_num > 0 then
+		GamePrintImportant("You are in West ".. math.abs(pw_num))
+	elseif pw_num < 0 then
+		GamePrintImportant("You are in East ".. math.abs(pw_num))
+	elseif pw_num == 0 then
+		GamePrintImportant("You are in the main world")
+	end
+	
 	----------------------------------
 
 	if GameHasFlagRun("fairmod_init") then
