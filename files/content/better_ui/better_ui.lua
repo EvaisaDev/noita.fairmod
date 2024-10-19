@@ -81,7 +81,7 @@ local ui_displays = {
     normal = {
         {
             text = function()
-                return {text = "Debt: "..GlobalsGetValue("loan_shark_debt", "0"), color = {1, 0.2, 0.2}}
+                return {text = "Debt: "..GlobalsGetValue("loan_shark_debt", "0"), color = {1, 0.2, 0.2, 1}}
             end,
             condition = global_greater_than_zero("loan_shark_debt"),
         },
@@ -414,6 +414,11 @@ function module.update()
                     if type(text) == "string" then
                         text = {text}
                     end
+
+					if(text.text)then
+						text = {text}
+					end
+
                     table.insert(pending_info, text)
                 end
             end
