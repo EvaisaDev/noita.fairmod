@@ -216,6 +216,12 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	end
 end
 
+function OnPlayerDied(player)
+	if(not GameHasFlagRun("ending_game_completed"))then
+		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
+	end
+end
+
 -- Copi was here
 -- Dexter is here
 -- Moldos was here

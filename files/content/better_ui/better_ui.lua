@@ -240,6 +240,12 @@ local ui_displays = {
 			end,
 			condition = function() return (ModSettingGet("fairmod_win_count") or 0) > 0 end
 		},
+		{
+			text = function()
+				return "Deaths while using mod: "..tostring(ModSettingGet("fairmod.deaths") or 0)
+			end,
+			condition = function() return (ModSettingGet("fairmod.deaths") or 0) > 0 end
+		},
         {
             text = "",
             condition = has_flag_run("gamblecore_found"),
