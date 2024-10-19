@@ -29,8 +29,12 @@
 	/>
 	-->
 
+	<LifetimeComponent
+		lifetime="1800"
+	/>
+
 	<LightComponent 
-		_tags="enabled_by_liquid"
+		
 		_enabled="1" 
 		radius="255"
 		fade_out_time="1.5" 
@@ -41,7 +45,7 @@
 	></LightComponent>
 	
 	<LightComponent 
-		_tags="enabled_by_liquid"
+		
 		_enabled="1" 
 		radius="64"
 		fade_out_time="1.5" 
