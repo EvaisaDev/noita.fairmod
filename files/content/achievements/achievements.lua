@@ -1,3 +1,4 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 achievements = {
 	{
 		name = "Shitted",
@@ -113,7 +114,7 @@ achievements = {
 		icon = "mods/noita.fairmod/files/content/achievements/icons/fake_heart_attack.png",
 		flag = "achievement_fake_heart_attack",
 		unlock = function()
-			return Random(1, 108000) == 1
+			return #(GetPlayers())>1 and Random(1, 108000) == 1
 		end
 	},
 	{
