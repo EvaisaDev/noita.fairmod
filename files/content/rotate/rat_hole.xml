@@ -4,7 +4,4 @@
 		offset_x="0"
 		offset_y="0">
 	</SpriteComponent>
-	<CameraBoundComponent
-		distance="2000"
-	></CameraBoundComponent>
 </Entity>
