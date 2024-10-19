@@ -107,9 +107,6 @@ function OnPlayerSpawned(player)
 
 	EntityApplyTransform(player, target_x, target_y)
 
-	--snowballs test (if you can figure out how to fix snowballs to fly quicker and apply crazy knockback)
-	--EntityLoad("mods/noita.fairmod/files/content/snowman/snowman.xml", target_x + 150, target_y - 50)
-
 	----------------------------------
 
 	if GameHasFlagRun("fairmod_init") then

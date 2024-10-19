@@ -1,68 +1,40 @@
-<Entity tags="hittable,teleportable_NOT,item_physics,item_pickup" >
-	<Base file="data/entities/base_item_projectile.xml" />
+<Entity name="Snowball" >
 
-	<!-- physical presence -->
+	<Base file="data/entities/base_projectile.xml" >
+		<VelocityComponent
+			mass="0.05"
+			/>
+	</Base>
 
-	<PhysicsBodyComponent
-		_tags="enabled_in_world"
-		uid="1"
-		allow_sleep="1"
-		angular_damping="0"
-		fixed_rotation="0"
-		is_bullet="1"
-		linear_damping="0"
-		auto_clean="0"
-		on_death_leave_physics_body="0"
-		hax_fix_going_through_ground="1"
-	/>
-	
-	<PhysicsImageShapeComponent
-		body_id="1"
-		centered="1"
-		is_circle="1"
-		image_file="mods/noita.fairmod/files/content/snowman/snowball_med.png"
-		material="snow_b2"
-		z="1"
-	/>
-	
-	<PhysicsThrowableComponent />
-
-	<VelocityComponent
-		_tags="enabled_in_world"
-	/>
-	
-	<!-- potion logic -->
-
-	<DamageModelComponent
-		_tags="enabled_in_world"
-		air_needed="0"
-		blood_material="snow"
-		blood_spray_material="snow"
-		drop_items_on_death="0"
-		falling_damages="0"
-		fire_probability_of_ignition="0"
-		critical_damage_resistance="1"
-		hp="0.6"
-		is_on_fire="0"
-		materials_create_messages="0"
-		materials_damage="1"
-		materials_that_damage="lava,acid,fire"
-		materials_how_much_damage="0.1,0.001,0.001"
-		ragdoll_filenames_file=""
-		ragdoll_material=""
-		ui_report_damage="0"
-	/>
-
-	<ExplodeOnDamageComponent
-		_tags="enabled_in_world"
-		explode_on_death_percent="100"
-		explode_on_damage_percent="0"
-		physics_body_destruction_required="0.5"
-		physics_body_modified_death_probability="1" >
+	<ProjectileComponent
+		_enabled="1"
+		lob_min="0.8"
+		lob_max="0.9"
+		speed_min="400"
+		speed_max="500"
+		friction="1.3"
+		on_death_explode="1"
+		on_death_gfx_leave_sprite="0"
+		on_lifetime_out_explode="1"
+		explosion_dont_damage_shooter="1"
+		on_collision_die="1"
+		ragdoll_force_multiplier="10"
+		lifetime="2000"
+		hit_particle_force_multiplier="10"
+		create_shell_casing="1"
+		shell_casing_material="snow"
+		damage="0.0001"
+		go_through_this_material="snow_b2"
+		blood_count_multiplier="0"
+		damage_game_effect_entities="data/entities/misc/effect_internal_ice.xml"
+		knockback_force="20"
+		on_collision_spawn_entity="1"
+		spawn_entity="mods/noita.fairmod/files/content/snowman/snowball_item.xml"
+		>
 		<config_explosion
-			never_cache="0"
-			damage="0"
-			camera_shake="10"
+			never_cache="1"
+			damage="0.0001"
+			camera_shake="0"
 			explosion_radius="6"
 			explosion_sprite=""
 			explosion_sprite_lifetime="10"
@@ -75,56 +47,26 @@
 			physics_explosion_power.min="30"
 			physics_explosion_power.max="50"
 			shake_vegetation="1"
-			sparks_count_min="10"
-			sparks_count_max="20"
+			sparks_count_min="5"
+			sparks_count_max="10"
 			sparks_enabled="1"
 			spark_material="snow"
-			stains_enabled="1"
+			stains_enabled="0"
 			stains_radius="0"
+			light_enabled="0"
 			create_cell_material="snow"
 			create_cell_probability="100"
-			knockback_force="100"
+			knockback_force="20"
 			/>
-	</ExplodeOnDamageComponent>
-
-	<PhysicsBodyCollisionDamageComponent
-		_tags="enabled_in_world"
-		speed_threshold="0"
-	/>
-
-	<!-- item -->
-
-	<SpriteComponent
-		_tags="enabled_in_hand"
-		_enabled="0"
-		offset_x="4"
-		offset_y="4"
-		image_file="mods/noita.fairmod/files/content/snowman/snowball_med.png"
-		z_index="1"
-	/>
-
-	<ItemComponent
-		_tags="enabled_in_world"
-		item_name="Snowball"
-		max_child_items="0"
-		is_pickable="1"
-		is_equipable_forced="1"
-		ui_sprite="mods/noita.fairmod/files/content/snowman/snowball_med.png"
-		ui_description=""
-		preferred_inventory="QUICK"
-	/>
-
-	<UIInfoComponent
-		_tags="enabled_in_world"
-		name="Snowball" />
+	</ProjectileComponent>
 	
-	<AbilityComponent
-		ui_name="Snowball"
-		throw_as_item="1"
-		><gun_config
-			deck_capacity="0"
+	<SpriteComponent
+		_enabled="1"
+		alpha="1"
+		image_file="mods/noita.fairmod/files/content/snowman/snowball_med.png"
+		next_rect_animation=""
+		rect_animation=""
 		/>
-	</AbilityComponent>
 
 	<AudioComponent
 		file="data/audio/Desktop/projectiles.bank"

@@ -1,4 +1,4 @@
-<Entity name="Snowman" tags="polymorphable_NOT,curse_NOT">
+<Entity name="Snowman" tags="polymorphable_NOT,curse_NOT,snowman">
 
 	<Base file="data/entities/base_enemy_basic.xml" >
 		<ItemChestComponent level="1" > </ItemChestComponent>
