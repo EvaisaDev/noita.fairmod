@@ -41,6 +41,7 @@ dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
+dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 
