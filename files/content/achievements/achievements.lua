@@ -66,7 +66,7 @@ achievements = {
 	{
 		name = "The Things In Question",
 		description = "Peak content unlocked! :check:",
-		icon = "mods/noita.fairmod/files/content/achievements/icons/copith.png",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copis_things.png",
 		flag = "achievement_copis_things",
 		unlock = function()
 			return ModIsEnabled("copis_things")
@@ -337,7 +337,7 @@ ach_len = #achievements
 for i=1, 10 do
 	achievements[ach_len+i] = {
 		name = "Rags to Riches " .. romanize(i),
-		description = "dollar sign" .. tostring(2^i) .. ", Nice!",
+		description = "Woah $" .. tostring(2^i) .. ", Nice!",
 		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/gold_", i, ".png"},
 		flag = "gold_" .. i,
 		unlock = function()
