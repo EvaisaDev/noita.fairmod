@@ -39,9 +39,9 @@ if(ingestion_comp)then
 				GlobalsSetValue("TIMES_TOOK_PISS", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0) + 1))
 			end
 
-			GameCreateParticle( "urine", x + (scale_x * 3), y, 10, dir_x * piss_velocity, dir_y * piss_velocity, false, false, false )
+			GameCreateParticle( "urine", x + (scale_x * 3), y, 8, dir_x * piss_velocity, dir_y * piss_velocity, false, false, false )
 
-			ingestion_size = ingestion_size - 1
+			ingestion_size = ingestion_size - 4
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 		end
 
@@ -53,9 +53,9 @@ if(ingestion_comp)then
 				GlobalsSetValue("TIMES_TOOK_SHIT", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0) + 1))
 			end
 
-			GameCreateParticle( "poo", x, y, 10, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false )
+			GameCreateParticle( "poo", x, y, 8, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false )
 
-			ingestion_size = ingestion_size - 1
+			ingestion_size = ingestion_size - 4
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 		end
 
