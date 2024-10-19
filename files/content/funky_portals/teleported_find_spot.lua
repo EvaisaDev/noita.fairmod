@@ -29,7 +29,7 @@ function teleported( from_x, from_y, to_x, to_y, portal_teleport )
 
 	local rand = Random(0, 100)
 
-	if((portal_teleport and rand < 20) or rand < 10)then
+	if((portal_teleport and rand < 10) or rand < 5)then
 		
 		if(portal_teleport)then
 			GameAddFlagRun("portal_malfunction")
