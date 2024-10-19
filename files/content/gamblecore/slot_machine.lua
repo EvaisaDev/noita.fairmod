@@ -8,9 +8,10 @@ local sprite_component = EntityGetFirstComponent( entity_id, "SpriteComponent", 
 
 local cost_sprite = EntityGetFirstComponent( entity_id, "SpriteComponent", "cost" )
 
-current_cost = current_cost or 100
+local hm_visits = tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0
+current_cost = current_cost or (100 ^ (hm_visits))
 current_winnings = current_winnings or 200
-win_chance = win_chance or 20
+win_chance = tonumber(GlobalsGetValue("GAMBLECORE_WIN_CHANCE", "20"))
 
 if(debug_free)then
 	current_cost = 0
@@ -149,6 +150,8 @@ if(currently_gambling)then
 
 				win_chance = math.max(win_chance - 1, win_chance * 0.5)
 
+				GlobalsSetValue("GAMBLECORE_WIN_CHANCE", tostring(win_chance))
+
 				current_winnings = 200
 
 				for i = 1, 5 do
@@ -218,6 +221,7 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 					time = -30
 					lets_go_gambling = true
 				end
+				current_cost = current_cost * 1.5
 				ComponentSetValue2(wallet, "money", money - current_cost)
 				current_winnings = current_winnings + (current_cost * 2)
 			end
