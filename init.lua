@@ -19,6 +19,7 @@ local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimi
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
+local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -144,6 +145,8 @@ function OnPlayerSpawned(player)
 	legos.OnPlayerSpawned(player)
 
 	healthymimic.OnPlayerSpawned(player)
+
+	fire.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")

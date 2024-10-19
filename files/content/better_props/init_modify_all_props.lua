@@ -28,26 +28,26 @@ local function fixup_prop_children(element)
 	for comp in element:each_of("ParticleEmitterComponent") do
 		comp:set("create_real_particles", 1)
 		comp:set("emit_cosmetic_particles", 0)
-		elem_multiply_attr(comp, "count_min", 20)
-		elem_multiply_attr(comp, "count_max", 20)
+		elem_multiply_attr(comp, "count_min", 3)
+		elem_multiply_attr(comp, "count_max", 3)
 	end
 
 	for comp in element:each_of("DamageModelComponent") do
-		comp:set("blood_multiplier", 10)
+		comp:set("blood_multiplier", 3)
 		-- better chance to see things fly around instead of exploding immediately
-		elem_multiply_attr(comp, "hp", 3)
+		elem_multiply_attr(comp, "hp", 2)
 	end
 
 	for comp in element:each_of("MaterialInventoryComponent") do
-		comp:set("leak_pressure_min", 10)
-		comp:set("leak_pressure_max", 100)
-		comp:set("b2_force_on_leak", 5)
-		comp:set("on_death_spill", 1)
+		elem_multiply_attr(comp, "leak_pressure_min", 5)
+		elem_multiply_attr(comp, "leak_pressure_max", 5)
+		elem_multiply_attr(comp, "b2_force_on_leak", 5)
+		comp:set("on_death_spill", true)
 		comp:set("leak_on_damage_percent", 0.999)
 
 		for mat_count in comp:each_of("count_per_material_type") do
 			for mat in mat_count:each_of("Material") do
-				elem_multiply_attr(mat, "count", 25)
+				elem_multiply_attr(mat, "count", 3)
 			end
 		end
 	end
@@ -55,7 +55,7 @@ local function fixup_prop_children(element)
 	for comp in element:each_of("ProjectileComponent") do
 		for conf in comp:each_of("config_explosion") do
 			if (conf:get("create_cell_probability") or "0") ~= "0" then
-				conf:set("create_cell_probability", "100")
+				conf:set("create_cell_probability", 100)
 			end
 		end
 	end
