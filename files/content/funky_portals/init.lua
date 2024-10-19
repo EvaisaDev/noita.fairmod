@@ -11,9 +11,6 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 		}))
 	end
 
-	print(ModTextFileGetContent("data/shaders/post_final.frag"))
-
-
 end
 
 function init.OnPlayerSpawned(player)
