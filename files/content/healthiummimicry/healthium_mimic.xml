@@ -9,7 +9,7 @@
 	/>
 
 	<Reaction probability="100"
-		input_cell1="purifyingpowder" input_cell2="healthiummimic"
+		input_cell1="purifying_powder" input_cell2="healthiummimic"
 		output_cell1="magic_liquid_hp_regeneration" output_cell2="acid_gas"
 	/>
 </Materials>
