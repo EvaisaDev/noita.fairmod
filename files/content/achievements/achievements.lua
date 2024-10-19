@@ -354,7 +354,7 @@ for i=1, 10 do
 		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/damage_taken_", i, ".png"},
 		flag = "damage_taken_" .. i,
 		unlock = function()
-			return tonumber(StatsGetValue("damage_taken") * 25) >= 2^i
+			return tonumber(StatsGetValue("damage_taken") * 25) >= (2^i) * 25
 		end
 	}
 end
