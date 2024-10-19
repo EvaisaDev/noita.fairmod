@@ -41,7 +41,7 @@ if(ingestion_comp)then
 
 			GameCreateParticle( "urine", x + (scale_x * 3), y, 8, dir_x * piss_velocity, dir_y * piss_velocity, false, false, false )
 
-			ingestion_size = ingestion_size - 4
+			ingestion_size = ingestion_size - 5
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 		end
 
@@ -55,7 +55,7 @@ if(ingestion_comp)then
 
 			GameCreateParticle( "poo", x, y, 8, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false )
 
-			ingestion_size = ingestion_size - 4
+			ingestion_size = ingestion_size - 5
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 		end
 
