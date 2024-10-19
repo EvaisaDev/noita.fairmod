@@ -164,6 +164,7 @@ local function CheckAchievements()
 		AddFlagPersistent = GameAddFlagRun
 	end
 
+	local achievements_unlocked = 0
 	dofile("mods/noita.fairmod/files/content/achievements/achievements.lua")
 	for i, achievement in ipairs(achievements) do
 		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
@@ -171,8 +172,14 @@ local function CheckAchievements()
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
 			AddFlagPersistent(flag)
+		elseif(HasFlagPersistent(flag)) then
+			achievements_unlocked = achievements_unlocked + 1
 		end
 	end
+
+	GlobalsSetValue("fairmod_total_achievements", tostring(#achievements))
+	GlobalsSetValue("fairmod_achievements_unlocked", tostring(achievements_unlocked))
+	
 	if (debug_no_flags) then
 		HasFlagPersistent = persistent_flag_func_get
 		AddFlagPersistent = persistent_flag_func_set

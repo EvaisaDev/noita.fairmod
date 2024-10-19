@@ -236,6 +236,12 @@ local ui_displays = {
         },
 		{
 			text = function()
+				return table.concat({"Achievements Unlocked: ", GlobalsGetValue("fairmod_achievements_unlocked", "0"), "/", GlobalsGetValue("fairmod_total_achievements", "0")})
+			end,
+			condition = global_greater_than_zero("fairmod_achievements_unlocked")
+		},
+		{
+			text = function()
 				return "Wins while using mod: "..tostring((ModSettingGet("fairmod_win_count") or 0))
 			end,
 			condition = function() return (ModSettingGet("fairmod_win_count") or 0) > 0 end
