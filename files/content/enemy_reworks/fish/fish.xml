@@ -1,7 +1,5 @@
 <Entity name="$animal_fish" tags="mortal,hittable,enemy">
 	<Base file="data/entities/base_enemy_flying.xml">
-		<ItemChestComponent level="2"> </ItemChestComponent>
-
 		<AnimalAIComponent
 			attack_ranged_enabled="0"
 			attack_dash_enabled="1"
@@ -10,7 +8,7 @@
 		</AnimalAIComponent>
 
 		<DamageModelComponent
-			hp="2"
+			hp="0.1"
 			ragdoll_filenames_file=""
 			ragdoll_material="meat_helpless"
 			ragdoll_offset_y="0"
@@ -60,12 +58,8 @@
 			eff_hg_velocity_max_y="20"
 		>
 		</CharacterDataComponent>
-
-		<LuaComponent
-			execute_every_n_frame="-1"
-			script_death="mods/noita.fairmod/files/content/enemy_reworks/fish/fish_death.lua"
-			remove_after_executed="1">
-		</LuaComponent>
-
 	</Base>
+	<LuaComponent
+		script_death="mods/noita.fairmod/files/content/enemy_reworks/fish/fish_death.lua">
+	</LuaComponent>
 </Entity>

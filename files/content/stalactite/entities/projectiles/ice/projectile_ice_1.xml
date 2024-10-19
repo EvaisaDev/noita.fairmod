@@ -114,12 +114,13 @@
     file="data/audio/Desktop/projectiles.bank"
     event_root="player_projectiles/throwable">
   </AudioComponent>
-
+	<!--
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/stalactite/scripts/damage_players.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
 		execute_times="-1" 
 	/>
+	-->
 
 </Entity>

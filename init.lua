@@ -20,6 +20,7 @@ local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/pi
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
+local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -42,21 +43,27 @@ dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
+dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
-
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
+ModLuaFileAppend(
+	"data/scripts/gun/gun_actions.lua",
+	"mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua"
+)
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
-ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
+ModLuaFileAppend(
+	"data/scripts/projectiles/all_spells_stage.lua",
+	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
+)
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
+imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
@@ -81,7 +88,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
-	
+
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 
@@ -112,11 +119,10 @@ function OnPlayerSpawned(player)
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 
 	SetRandomSeed(2152, 12523)
-	
-	if(Random(1, 100) <= 50)then
+
+	if Random(1, 100) <= 50 then
 		GameAddFlagRun("kolmi_not_home")
 		print("Kolmi is not home on this one.")
-		
 	end
 
 	-- stuff after here only runs once on initial run start
@@ -141,6 +147,8 @@ function OnPlayerSpawned(player)
 
 	healthymimic.OnPlayerSpawned(player)
 
+	fire.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then
@@ -155,8 +163,6 @@ function OnPlayerSpawned(player)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
-
-
 
 function OnWorldPreUpdate()
 	local frames = GameGetFrameNum()
@@ -175,23 +181,21 @@ function OnWorldPreUpdate()
 	achievements.update()
 	ping_attack.update()
 
-	if(GameHasFlagRun( "ending_game_completed" ) and not GameHasFlagRun("incremented_win_count"))then
+	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
 		--GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
 	end
 end
 
-function OnWorldPostUpdate()
-
-end
+function OnWorldPostUpdate() end
 
 local time_paused = 0
 local last_pause_was_inventory = false
 function OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if(not last_pause_was_inventory and time_paused == 5)then
+	if not last_pause_was_inventory and time_paused == 5 then
 		GameAddFlagRun("draw_evil_mode_text")
 	end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
@@ -199,11 +203,11 @@ end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
-	if(is_paused and not is_inventory_pause)then
+	if is_paused and not is_inventory_pause then
 		-- regular pause screen
-	elseif(is_paused and is_inventory_pause)then
+	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
-	elseif(not is_paused)then
+	elseif not is_paused then
 		-- unpaused
 		GameRemoveFlagRun("draw_evil_mode_text")
 		time_paused = 0
@@ -228,4 +232,3 @@ end
 --%--%--%
 --%--%--%
 --#--#--#
-
