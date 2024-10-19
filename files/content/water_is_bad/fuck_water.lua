@@ -31,16 +31,16 @@ for reaction in materials:each_of("Reaction") do
 	end
 end
 
-for celldata in materials:each_of("CellData") do
-	if is_water(celldata.attr.name) then
-		local graphics = celldata:first_of("Graphics")
-		if graphics then
-			graphics.attr.texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png"
-		else
-			celldata:add_child(nxml.new_element("Graphics",
-				{ texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png" }))
-		end
-	end
-end
+-- for celldata in materials:each_of("CellData") do
+-- 	if is_water(celldata.attr.name) then
+-- 		local graphics = celldata:first_of("Graphics")
+-- 		if graphics then
+-- 			graphics.attr.texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png"
+-- 		else
+-- 			celldata:add_child(nxml.new_element("Graphics",
+-- 				{ texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png" }))
+-- 		end
+-- 	end
+-- end
 
 ModTextFileSetContent(material_file, tostring(materials))

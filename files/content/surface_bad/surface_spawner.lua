@@ -46,6 +46,7 @@ local biome_spawns = {
 		{ prob = 0.3, entity = "data/entities/props/physics_stone_03.xml" },
 		{ prob = 0.3, entity = "data/entities/props/physics_stone_04.xml" },
 		{ prob = 0.3, entity = "data/entities/props/stonepile.xml" },
+		{ prob = 0.4, entity = "mods/noita.fairmod/files/content/snowman/snowman.xml" },
 	},
 	lake = {
 		total_prob = 0,
