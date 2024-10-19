@@ -27,7 +27,8 @@ local options = {
 	NonInteractive = 2,
 	AlwaysClickable = 3,
 	NoPositionTween = 6,
-	Layout_NextSameLine = 14
+	Layout_NextSameLine = 14,
+	Layout_NoLayouting = 15
 }
 
 --- @class UI_const
