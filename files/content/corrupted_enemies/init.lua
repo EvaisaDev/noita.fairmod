@@ -119,6 +119,8 @@ do
             content = content:gsub("can_fly=\"1\"", table.concat({"can_fly=\"",tostring(can_fly),"\""}))
             content = content:gsub("\"data/enemies_gfx/scavenger_smg%.xml\"", table.concat({"\"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0",k,".xml\""}))
 
+            -- todo add a 10% chance for a corrupt enemy to be a worm
+
             ModTextFileSetContent(path, content)
 
         end
