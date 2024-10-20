@@ -23,9 +23,7 @@ if Random(1, 4) > 1 then
 
 				local distance = math.abs(ty - y) + math.abs(tx - x)
 
-				if distance < 72 then
-					table.insert(valid_targets, target)
-				end
+				if distance < 72 then table.insert(valid_targets, target) end
 			end
 
 			if #valid_targets > 0 then
@@ -64,4 +62,3 @@ if Random(1, 4) > 1 then
 		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y)
 	end
 end
-

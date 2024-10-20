@@ -25,9 +25,7 @@ for reaction in materials:each_of("Reaction") do
 			attr.output_cell1 = "gunpowder_unstable"
 			attr.output_cell2 = "rainbow_gas"
 		end
-		if attr.input_cell1 == "magic_liquid_mana_regeneration" then
-			attr.output_cell1 = "lava"
-		end
+		if attr.input_cell1 == "magic_liquid_mana_regeneration" then attr.output_cell1 = "lava" end
 	end
 end
 

@@ -23,9 +23,7 @@ local function create_pw_elements(result, element, attr_name)
 end
 
 local function add_pw_scenes(elem, attr_name)
-	if elem == nil then
-		return
-	end
+	if elem == nil then return end
 
 	local new_elems = {}
 	for scene in elem:each_child() do

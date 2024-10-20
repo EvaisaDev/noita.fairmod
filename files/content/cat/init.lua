@@ -2,9 +2,7 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
 for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do
 	local scenes = xml:first_of("mBufferedPixelScenes")
-	if scenes == nil then
-		return
-	end
+	if scenes == nil then return end
 	for i = -10, 10 do
 		scenes:add_child(nxml.new_element("PixelScene", {
 			pos_x = tostring(35840 * i - 2106),

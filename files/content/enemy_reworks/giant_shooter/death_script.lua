@@ -19,9 +19,7 @@ function damage_received(damage, desc, entity_who_caused, is_fatal)
 			local e = EntityLoad(entity_file, x + offset_x, y + offset_y)
 
 			local new_dmg_comp = EntityGetFirstComponent(e, "DamageModelComponent")
-			if new_dmg_comp then
-				ComponentSetValue2(new_dmg_comp, "invincibility_frames", 10)
-			end
+			if new_dmg_comp then ComponentSetValue2(new_dmg_comp, "invincibility_frames", 10) end
 			GameAddFlagRun("FAIRMOD_GIANTSHOOTER_KILLED")
 		end
 	end

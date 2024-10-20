@@ -1,5 +1,3 @@
-
-
 local old_LoadPixelScene = LoadPixelScene
 LoadPixelScene = function(materials_filename, colors_filename, x, y, ...)
 	if materials_filename == "data/biome_impl/snowperson.png" then
@@ -13,5 +11,5 @@ table.insert(g_small_enemies, {
 	prob = 0.05,
 	min_count = 1,
 	max_count = 1,
-	entity = "mods/noita.fairmod/files/content/snowman/snowman.xml"
+	entity = "mods/noita.fairmod/files/content/snowman/snowman.xml",
 })
