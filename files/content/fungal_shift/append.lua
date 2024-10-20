@@ -7,7 +7,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 	local frame = GameGetFrameNum()
 	local last_frame = tonumber(GlobalsGetValue("fungal_shift_last_frame", "-1000000"))
-	if frame < last_frame + 60 * 60 * 2 and not debug_no_limits then
+	if frame < last_frame + 600 and not debug_no_limits then
 		return -- short cooldown
 	end
 
