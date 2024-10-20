@@ -12,7 +12,7 @@ achievements = {
 	{
 		name = "Time to take a piss!",
 		description = "You emptied your bladder.",
-		icon = nil,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/pisser.png",
 		flag = "achievement_pissed",
 		unlock = function()
 			return GlobalsGetValue("TIMES_TOOK_PISS", "0") ~= "0"
@@ -21,7 +21,7 @@ achievements = {
 	{
 		name = "Poop Ending",
 		description = "And thus, the world was turned to shit.",
-		icon = nil,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/shitworld.png",
 		flag = "achievement_poop_ending",
 		unlock = function()
 			return GameHasFlagRun("poop_ending")
@@ -30,7 +30,7 @@ achievements = {
 	{
 		name = "Bankruptcy",
 		description = "Collect a debt of 10k gold or more.",
-		icon = nil,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/uber_debt.png",
 		flag = "achievement_debt_collector",
 		unlock = function()
 			return tonumber(GlobalsGetValue("loan_shark_debt", "0")) >= 10000
@@ -39,7 +39,7 @@ achievements = {
 	{
 		name = "Speedrunner",
 		description = "Enter the speedrun door.",
-		icon = nil,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/speedrun.png",
 		flag = "achievement_speedrunner",
 		unlock = function()
 			return GameHasFlagRun("speedrun_door_used")
@@ -233,6 +233,15 @@ achievements = {
 		unlock = function()
 			return StatsGetValue("gold_infinite") ~= "0"
 		end
+	},
+	{
+		name = "Drip Supreme",
+		description = "Unmatched Swagger",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/drip_supreme.png",
+		flag = "drip_supreme",
+		unlock = function()
+			return HasFlagPersistent( "secret_amulet_gem" ) and HasFlagPersistent( "secret_hat" )
+		end
 	}
 }
 
@@ -355,6 +364,19 @@ for i=1, 10 do
 		flag = "damage_taken_" .. i,
 		unlock = function()
 			return tonumber(StatsGetValue("damage_taken") * 25) >= (2^i) * 25
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Monster " .. romanize(i),
+		description = tostring(1024-(2^i)) .. " remain...",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png"},
+		flag = "innocent_kills_" .. i,
+		unlock = function()
+			return tonumber(GlobalsGetValue("HELPLESS_KILLS", "0")) >= (2^i)
 		end
 	}
 end
