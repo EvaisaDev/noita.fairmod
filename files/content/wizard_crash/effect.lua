@@ -1,5 +1,5 @@
 local ent = EntityGetRootEntity(GetUpdatedEntityID())
-if not EntityHasTag(ent, "player_unit") and not EntityHasTag(ent, "player_polymorphed") then
+if not EntityHasTag(ent, "player_unit") and not EntityHasTag(ent, "polymorphed_player") then
 	EntityKill(ent)
 	return
 end
