@@ -1,27 +1,30 @@
 local ps = PotionStartingLib
 
 ps.starterpotions = {
-	{	probability = 32.5, 	"water"			},
-	{	probability = 6.5, 		"mud"			},
-	{	probability = 6.5, 		"water_swamp"	},
-	{ 	probability = 6.5, 		"water_salt"	},
-	{	probability = 6.5, 		"swamp"			},
-	{	probability = 6.5, 		"snow"			},
-	{	probability = 5, 		"blood"			},
+	{	probability = 32.5, 	"cement"			},
+	{	probability = 13, 		"milk"				},
+	{	probability = 6.5, 		"diamond"			},
+	{	probability = 6.5, 		"endslime_static"	},
+	{ 	probability = 6.5, 		"beer"				},
+	{	probability = 6.5, 		"alcohol"			},
+	{	probability = 6.5, 		"oil"				},
+	{	probability = 6.5, 		"material_darkness"	},
+	{	probability = 5, 		"swamp"				},
 }
 
 ps.magicpotions = {
-	{	"acid"							},
-	{	"magic_liquid_polymorph"		},
-	{	"magic_liquid_random_polymorph"	},
-	{	"magic_liquid_berserk"			},
-	{	"magic_liquid_charm"			},
-	{	"magic_liquid_movement_faster"	},
+	{	"magic_liquid_polymorph"	},
+	{	"aa_unstable_pandorium"		},
+	{	"aa_chaotic_pandorium"		},
+	{	"t_giga_slicing_liquid"		},
+	{	"t_omega_slicing_liquid"	},
+	{	"material_confusion"		},
+	{	"magic_liquid_weakness"		},
 }
 
 ps.failpotions = {
-	{	"slime"					},
-	{	"gunpowder_unstable"	}
+	{	"magic_liquid"					},
+	{	"magic_liquid_worm_attractor"	}
 }
 
 ps.functions = {
