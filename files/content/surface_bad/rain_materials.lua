@@ -49,6 +49,7 @@ local rain_materials = {
 	fungi_creeping = {},
 	bush_seed = {},
 	fungi = {},
+	t_giga_slicing_liquid = {},
 }
 
 return rain_materials
