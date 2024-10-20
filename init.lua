@@ -45,6 +45,7 @@ dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
 dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
+dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
@@ -65,6 +66,10 @@ ModLuaFileAppend(
 imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
+
+function OnModInit()
+	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
+end
 
 --- I hate doing things without a hook
 function OnModPostInit()
@@ -230,6 +235,7 @@ end
 -- Lamia wasn't here
 -- Circle was here
 -- Hamis will be here
+-- Conga wuz here
 
 -----##
 ----#o##
