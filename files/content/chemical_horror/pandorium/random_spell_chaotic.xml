@@ -1,0 +1,261 @@
+<Entity
+    name="Goddess Pandora"
+    tags="teleportable_NOT" >
+
+    <SpriteAnimatorComponent/>
+    
+    <LifetimeComponent lifetime = "8"/>
+
+	<GenomeDataComponent herd_id = "mage_swapper"/>
+
+
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.lua"
+        execute_on_added="1"
+        execute_times="1"
+    >
+	</LuaComponent>
+
+    <CharacterDataComponent
+        buoyancy_check_offset_y="-6"
+        check_collision_max_size_x="4"
+        check_collision_max_size_y="4"
+        climb_over_y="4"
+        collision_aabb_min_x="-2"
+        collision_aabb_min_y="-7.5"
+        collision_aabb_max_x="2"
+        collision_aabb_max_y="3"
+        destroy_ground="0"
+        dont_update_velocity_and_xform="0"
+        eff_hg_b2force_multiplier="0.0035000001080334"
+        eff_hg_damage_min="10"
+        eff_hg_damage_max="95"
+        eff_hg_offset_y="1.2857199907303"
+        eff_hg_position_x="0"
+        eff_hg_position_y="5"
+        eff_hg_size_x="6.4285697937012"
+        eff_hg_size_y="5.1428599357605"
+        eff_hg_update_box2d="0"
+        eff_hg_velocity_min_x="-19.571399688721"
+        eff_hg_velocity_min_y="-40"
+        eff_hg_velocity_max_x="19.578788757324"
+        eff_hg_velocity_max_y="-11.571399688721"
+        effect_hit_ground="1"
+        fly_recharge_spd="0"
+        fly_recharge_spd_ground="0"
+        fly_time_max="0"
+        flying_in_air_wait_frames="44"
+        flying_needs_recharge="0"
+        flying_recharge_removal_frames="8"
+        gravity="0"
+        ground_stickyness="0"
+        is_on_ground="1"
+        is_on_slippery_ground="0"
+        liquid_velocity_coeff="9"
+        mFlyingTimeLeft="1000"
+        mass="1.2999999523163"
+        platforming_type="0"
+        send_transform_update_message="0" />
+
+    <CharacterPlatformingComponent
+        accel_x="0.30000001192093"
+        accel_x_air="0.10000000149012"
+        animation_to_play=""
+        animation_to_play_next=""
+        audio_liquid_splash_intensity="1"
+        fly_model_player="0"
+        fly_smooth_y="1"
+        fly_speed_change_spd="1"
+        fly_speed_max_down="90"
+        fly_speed_max_up="90"
+        fly_speed_mult="20"
+        fly_velocity_x="24.6002"
+        jump_keydown_buffer="2"
+        jump_velocity_x="0"
+        jump_velocity_y="-12"
+        keyboard_look="0"
+        mouse_look="0"
+        mouse_look_buffer="1"
+        pixel_gravity="600"
+        precision_jumping_max_duration_frames="-1"
+        run_animation_velocity_switching_enabled="1"
+        run_animation_velocity_switching_threshold="50"
+        run_velocity="12"
+        swim_down_buoyancy_coeff="0.69999998807907"
+        swim_drag="0.94999998807907"
+        swim_extra_horizontal_drag="0.89999997615814"
+        swim_idle_buoyancy_coeff="1.2000000476837"
+        swim_up_buoyancy_coeff="0.89999997615814"
+        turn_animation_frames_between="20"
+        turning_buffer="0.10000000149012"
+        velocity_min_x="-50"
+        velocity_min_y="-500"
+        velocity_max_x="50"
+        velocity_max_y="500" />
+
+    <ControlsComponent
+        enabled="0"
+        gamepad_fire_on_thumbstick_extend="0"
+        gamepad_fire_on_thumbstick_extend_threshold="0.69999998807907"
+        gamepad_indirect_aiming_enabled="0"
+        polymorph_hax="0"
+        polymorph_next_attack_frame="0" />
+
+    <GunComponent />
+
+    <Inventory2Component
+        full_inventory_slots_x="8"
+        full_inventory_slots_y="8"
+        mSavedActiveItemIndex="0"
+        quick_inventory_slots="1" />
+
+    <PlatformShooterPlayerComponent
+        aiming_reticle_distance_from_character="40"
+        alcohol_drunken_speed="0.0049999998882413"
+        blood_fungi_drunken_speed="0.0060000000521541"
+        blood_worm_drunken_speed="0.0060000000521541"
+        camera_max_distance_from_character="25"
+        center_camera_on_this_entity="1"
+        eating_area_min.x="-4"
+        eating_area_min.y="-4"
+        eating_area_max.x="4"
+        eating_area_max.y="4"
+        eating_cells_per_frame="1"
+        eating_delay_frames="30"
+        eating_probability="5"
+        move_camera_with_aim="1"
+        stoned_speed="0.10000000149012" />
+
+    <Entity
+        name="inventory_quick" >
+
+        <Entity
+            tags="teleportable_NOT,item,wand" >
+
+            <AbilityComponent
+                _enabled="0"
+                add_these_child_actions=""
+                amount_in_inventory="1"
+                base_item_file="data/entities/base_item.xml"
+                charge_wait_frames="10"
+                click_to_use="1"
+                cooldown_frames="0"
+                current_slot_durability="180"
+                drop_as_item_on_death="1"
+                entity_count="1"
+                entity_file=""
+                fast_projectile="0"
+                gun_level="1"
+                is_petris_gun="0"
+                item_recoil_max="1"
+                item_recoil_offset_coeff="1"
+                item_recoil_recovery_speed="15"
+                item_recoil_rotation_coeff="5"
+                mCastDelayStartFrame="0"
+                mChargeCount="0"
+                mIsInitialized="1"
+                mNextFrameUsable="0"
+                mReloadFramesLeft="27"
+                mReloadNextFrameUsable="0"
+                mana="1000"
+                mana_charge_speed="0"
+                mana_max="1000"
+                max_amount_in_inventory="1"
+                max_charged_actions="0"
+                never_reload="-1"
+                reload_time_frames="27"
+                rotate_hand_amount="0"
+                rotate_in_hand="1"
+                rotate_in_hand_amount="1"
+                shooting_reduces_amount_in_inventory="0"
+                simulate_throw_as_item="0"
+                slot_consumption_function="_get_gun_slot_durability_default"
+                sprite_file="data/items_gfx/handgun.xml"
+                stat_times_player_has_edited="0"
+                stat_times_player_has_shot="176"
+                swim_propel_amount="0"
+                throw_as_item="0"
+                ui_name="dw"
+                use_entity_file_as_projectile_info_proxy="0"
+                use_gun_script="1" >
+
+                <gun_config
+                    actions_per_round="1"
+                    deck_capacity="20"
+                    reload_time="27"
+                    shuffle_deck_when_empty="0" />
+
+                <gunaction_config
+                    action_ai_never_uses="0"
+                    action_description=""
+                    action_draw_many_count="0"
+                    action_id=""
+                    action_is_dangerous_blast="0"
+                    action_mana_drain="10"
+                    action_max_uses="-1"
+                    action_name=""
+                    action_never_unlimited="0"
+                    action_spawn_level=""
+                    action_spawn_manual_unlock="0"
+                    action_spawn_probability=""
+                    action_spawn_requires_flag=""
+                    action_sprite_filename=""
+                    action_type="0"
+                    action_unidentified_sprite_filename="data/ui_gfx/gun_actions/unidentified.png"
+                    blood_count_multiplier="1"
+                    bounces="0"
+                    child_speed_multiplier="1"
+                    custom_xml_file=""
+                    damage_critical_chance="0"
+                    damage_critical_multiplier="0"
+                    damage_curse_add="0"
+                    damage_drill_add="0"
+                    damage_electricity_add="0"
+                    damage_explosion_add="0"
+                    damage_fire_add="0"
+                    damage_healing_add="0"
+                    damage_ice_add="0"
+                    damage_melee_add="0"
+                    damage_null_all="0"
+                    damage_projectile_add="0"
+                    damage_slice_add="0"
+                    dampening="1"
+                    explosion_damage_to_materials="0"
+                    explosion_radius="0"
+                    extra_entities=""
+                    fire_rate_wait="9"
+                    friendly_fire="0"
+                    game_effect_entities=""
+                    gore_particles="0"
+                    gravity="0"
+                    knockback_force="0"
+                    lifetime_add="0"
+                    light="0"
+                    lightning_count="0"
+                    material=""
+                    material_amount="0"
+                    pattern_degrees="0"
+                    physics_impulse_coeff="0"
+                    projectile_file=""
+                    ragdoll_fx="0"
+                    recoil="0"
+                    reload_time="0"
+                    screenshake="0"
+                    sound_loop_tag=""
+                    speed_multiplier="1"
+                    spread_degrees="360"
+                    sprite=""
+                    state_cards_drawn="0"
+                    state_destroyed_action="0"
+                    state_discarded_action="0"
+                    state_shuffled="0"
+                    trail_material=""
+                    trail_material_amount="0" />
+            </AbilityComponent>
+
+            <ManaReloaderComponent
+                _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
+        </Entity>
+    </Entity>
+</Entity>

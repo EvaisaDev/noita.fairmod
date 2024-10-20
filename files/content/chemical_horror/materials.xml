@@ -1,0 +1,995 @@
+<Materials>
+   <CellData 
+	name="aa_unstable_pandorium"
+	ui_name="$mat_fairmod_unstable_pandorium"
+  	tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
+	burnable="0"
+	density="1"
+	cell_type="liquid"
+	wang_color="80306c22"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="150"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	>
+	<ParticleEffect
+		vel.y="-40"
+		vel_random.min_y="-20.21"
+		vel_random.max_y="-2.861"
+		vel_random.min_x="-6.667"
+		vel_random.max_x="6.667"
+		lifetime.min="0.3238"
+		lifetime.max="9.3238"
+		gravity.y="-100"
+		render_on_grid="1"
+		airflow_force="10"
+		airflow_scale="6.857"
+		draw_as_long="0"
+		friction="1.352"
+		probability="0.0343"
+	>
+	</ParticleEffect>
+	<Graphics 
+		color="44FF4E99"
+		>
+    </Graphics>
+  </CellData>
+  
+	<Reaction probability = "0.9"
+		input_cell1="aa_unstable_pandorium" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+	>
+	<ExplosionConfig
+		camera_shake="0" 
+		damage="0"
+		cell_explosion_power="5"
+		cell_explosion_damage_required="3000"
+		cell_explosion_radius_min="1"
+		cell_explosion_radius_max="1"
+		cell_explosion_probability="1.1"
+		explosion_sprite="data/particles/explosion_012.xml"
+		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_unstable.xml" 
+		ray_energy="1"
+		>
+	</ExplosionConfig>
+	</Reaction><!-- unstable pandorium casts spells -->
+
+    
+
+  <CellData 
+	name="aa_chaotic_pandorium"
+	ui_name="$mat_fairmod_chaotic_pandorium"
+  	tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
+	burnable="0"
+	density="1"
+	cell_type="liquid"
+	wang_color="8b3428a3"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="150"
+	on_fire="0"
+	requires_oxygen="0"
+	temperature_of_fire="95"
+	autoignition_temperature="10"
+	fire_hp="500"
+	liquid_stains="1"
+	>
+	<ParticleEffect
+		vel.y="-30"
+		vel_random.min_y="-30.21"
+		vel_random.max_y="-4.861"
+		vel_random.min_x="-8.667"
+		vel_random.max_x="8.667"
+		lifetime.min="0.3238"
+		lifetime.max="9.3238"
+		gravity.y="-100"
+		render_on_grid="1"
+		airflow_force="10"
+		airflow_scale="6.857"
+		draw_as_long="0"
+		friction="1.352"
+		probability="0.0543"
+	>
+	</ParticleEffect>
+	<Graphics 
+		color="44FF93EB"
+		>
+    </Graphics>
+  </CellData>
+
+	<Reaction probability = "2"
+		input_cell1="aa_chaotic_pandorium" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+	>
+	<ExplosionConfig
+		camera_shake="0" 
+		damage="0"
+		cell_explosion_power="5"
+		cell_explosion_damage_required="3000"
+		cell_explosion_radius_min="1"
+		cell_explosion_radius_max="1"
+		cell_explosion_probability="1.1"
+		explosion_sprite="data/particles/explosion_012.xml"
+		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.xml" 
+		ray_energy="1"
+		>
+	</ExplosionConfig>
+	</Reaction><!-- chaotic pandorium casts spells -->
+
+
+
+
+
+
+  <CellData
+	name="t_giga_slicing_liquid"
+	ui_name="$mat_fairmod_giga_slicing_liquid"
+	tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible]"
+	density="2.31"
+	cell_type="liquid"
+	wang_color="afaaaaaf"
+	gfx_glow="255"
+	burnable="1"
+	on_fire_flame_material="spark"
+	temperature_of_fire="100"
+	autoignition_temperature="5"
+	electrical_conductivity="1"
+	liquid_stains="3"
+	audio_materialaudio_type="MAGICAL" 
+	>
+	<Graphics
+		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/giga_slicing_liquid.png"
+	>
+	</Graphics>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		lifetime.min="0"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="-3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+  </CellData> <!-- giga slicing liquid-->
+
+	<Reaction probability="31"
+	input_cell1="t_giga_slicing_liquid"	input_cell2="[fire]"
+	output_cell1="air"			output_cell2="air"
+	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_big.xml" 
+	>
+	</Reaction>
+
+
+
+  <CellDataChild
+	_parent="t_giga_slicing_liquid"
+    name="t_omega_slicing_liquid"
+	ui_name="$mat_fairmod_omega_slicing_liquid"
+	density="2.29"
+	wang_color="afaaaabf"
+	>
+	<Graphics
+		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/omega_slicing_liquid.png"
+	>
+	</Graphics>
+  </CellDataChild> <!-- Omega slicing liquid-->
+
+	<Reaction probability="31"
+	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
+	output_cell1="[fire]"			output_cell2="air"
+	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml" 
+	>
+	</Reaction>
+
+<!--
+
+
+	
+	<CellData
+		name="cc_carbon_dioxide"
+		ui_name="$mat_cc_carbon_dioxide"
+		tags="[gas]"
+		burnable="0"
+		density="1"
+		lifetime="350"
+		cell_type="gas"
+		wang_color="7fabeea2"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="60"
+		show_in_creative_mode="1"
+		>
+	<Graphics
+		color="b3665e55" >
+    </Graphics>
+	</CellData>
+
+	
+  <CellData	
+	name="cc_deceleratium"
+	ui_name="$mat_cc_deceleratium"
+	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+	burnable="0"
+	density="4.1"
+	cell_type="liquid"
+	wang_color="806f823e" 
+	generates_smoke="0"
+	liquid_gravity="0.7"
+	liquid_sand="0"
+	gfx_glow="150"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="1"
+	status_effects="CC_MOVEMENT_SLOWER_2X"
+	audio_materialaudio_type="MAGICAL"
+	show_in_creative_mode="1"
+	>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		lifetime.min="0"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+  
+  <CellData
+	name="cc_heftium"
+	ui_name="$mat_cc_heftium"
+  	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+	burnable="0"
+	density="4.92"
+	cell_type="liquid"
+	wang_color="80776075"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="100"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="1"
+	status_effects="CC_LEVITATION_SLOWER"
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1"
+	>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		lifetime.min="0"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+	
+	
+
+  <CellData
+	name="cc_stillium"
+	ui_name="$mat_cc_stillium"
+  	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+	burnable="0"
+	density="3.091"
+	cell_type="liquid"
+	wang_color="8087be59"
+	generates_smoke="0"
+	liquid_gravity="0.8"
+	liquid_sand="0"
+	gfx_glow="100"
+	on_fire="0"
+	requires_oxygen="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="0.5"
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1"
+	>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		lifetime.min="0"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+  	<StatusEffects>
+		<Stains>
+			<StatusEffect type="CC_LEVITATION_SLOWER" />
+			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.1" />
+			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.1" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+  
+  <CellData
+	name="cc_explodePlayer"
+	ui_name="$mat_cc_explodePlayer"
+	tags="[magic_liquid],[impure],[liquid],[corrodible]"
+	burnable="1"
+	density="3.1"
+	wang_color="a8cf7a5c"
+	gfx_glow="2"
+	on_fire="0"
+	requires_oxygen="0"
+	temperature_of_fire="50"
+	autoignition_temperature="1"
+	hp="1000" 
+	cell_type="liquid"
+	liquid_gravity="2"
+	liquid_sand="0"
+	liquid_stains="2"
+	audio_materialaudio_type="MAGICAL"
+	show_in_creative_mode="1"
+	>
+	<ExplosionConfig 
+		damage="0.2"
+		cell_explosion_power="40"
+		cell_explosion_damage_required="20"
+		cell_explosion_radius_min="8"
+		explosion_sprite="data/particles/explosion_012.xml"
+		ray_energy="400000"
+		audio_event_name="explosions/gunpowder"
+		>
+	</ExplosionConfig>
+	<Graphics
+		texture_file="mods/Hydroxide/files/chemical_curiosities/materials/agitine/agitine.png"
+	>
+	</Graphics>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		lifetime.min="0"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="-3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="CC_EXPLODING" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="CC_EXPLODING" amount="0.3" />
+		</Ingestion>
+	</StatusEffects>
+	</CellData> 
+   
+   
+   <CellData
+	name="cc_nullium"
+	ui_name="$mat_cc_nullium"
+	tags="[liquid],[impure],[corrodible]"
+	density="4.63"
+	cell_type="liquid"
+	wang_color="80573235"
+	liquid_gravity="1.6"
+	liquid_sand="0"
+	gfx_glow="250"
+	liquid_stains="2"
+	audio_materialaudio_type="MAGICAL"
+	show_in_creative_mode="1"
+	>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="CC_NULLIUM" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="CC_NULLIUM" amount="0.4" />
+		</Ingestion>
+	</StatusEffects>
+	<ParticleEffect
+		vel.y="0"
+		vel_random.min_x="-15"
+		vel_random.max_x="15"
+		vel_random.min_y="-50"
+		vel_random.max_y="20"
+		render_on_grid="0"
+		probability="1.0"
+		count.min="0"
+		count.max="4"
+	>
+	</ParticleEffect>
+	</CellData>
+
+	<CellData
+		name="cc_grease"
+		ui_name="$mat_cc_grease"
+		tags="[liquid],[impure],[liquid_common]"
+		burnable="1"
+		density="0.8"
+		cell_type="liquid"
+		wang_color="e6b7a131"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		fire_hp="400"
+		liquid_sand="0"
+		liquid_stains="3"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="95"
+		autoignition_temperature="10"
+		show_in_creative_mode="1"
+		>
+		<ExplosionConfig 
+			damage="0"
+			cell_explosion_power="2"
+			cell_explosion_damage_required="1"
+			cell_explosion_radius_min="4"
+			explosion_sprite=""
+			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/grease/grease_fire.xml"
+			ray_energy="0"
+			audio_enabled="0"
+			create_cell_probability="40"
+			sparks_enabled="0"
+			light_enabled="0"
+			hole_enabled="1"
+			crack_count="0"
+			stains_enabled="0"
+			damage_mortals="0"
+			particle_effect="0"
+			camera_shake="1" 
+			>
+		</ExplosionConfig>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="OILED" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="POISONED" amount="0.03" />
+				<StatusEffect type="FOOD_POISONING" amount="0.3" />
+			</Ingestion>
+		</StatusEffects>
+
+		<Graphics
+			texture_file="mods/Hydroxide/files/chemical_curiosities/materials/grease/grease.png"
+			>
+		</Graphics>
+	</CellData>
+
+	<CellDataChild
+		_parent="ice_static"
+		_inherit_reactions="0"
+		name="cc_dormant_crystal"
+		ui_name="$mat_cc_dormant_crystal"
+		tags="[static],[alchemy],[solid]"
+		burnable="1"
+		density="8"
+		cell_type="liquid"
+		liquid_sand="1"
+		liquid_static="1"
+		wang_color="ff3b5d2c"
+		generates_smoke="0"
+		gfx_glow="255"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="50"
+		autoignition_temperature="1"
+		solid_break_to_type="diamond"
+		solid_friction="0.5"
+		electrical_conductivity="1"
+		solid_static_type="1"
+		hp="3000"
+		audio_physics_material_wall="gravel"
+		audio_physics_material_solid="glass"
+		crackability="100"
+		convert_to_box2d_material="cc_crystal_box2d"
+		show_in_creative_mode="1"
+		durability="7"
+		>
+		<ExplosionConfig 
+			damage="0"
+			cell_explosion_power="20"
+			cell_explosion_damage_required="1"
+			cell_explosion_radius_min="2"
+			explosion_sprite="data/particles/explosion_012.xml"
+			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
+			ray_energy="10"
+        >
+		</ExplosionConfig>
+		<Graphics
+			texture_file="data/materials_gfx/crystal_purple.png"	
+			color="ff74737f"
+			>
+		</Graphics>
+	</CellDataChild>
+	
+	<CellData
+		name="cc_crystal_box2d"
+		ui_name="$mat_cc_crystal_box2d"
+		tags="[box2d],[static],[corrodible],[solid],[alchemy]"
+		burnable="0"
+		density="10"
+		cell_type="solid"
+		wang_color="ee351253"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="10"
+		solid_static_type="2"
+		solid_collide_with_self="0"
+		solid_on_sleep_convert="1"
+		solid_break_to_type="cc_dormant_crystal"
+		solid_friction="0.85"
+		crackability="40"
+		platform_type="1"
+		slippery="0"
+		hp="10000"
+		gfx_glow="255"
+		audio_physics_material_wall="glass"
+		audio_physics_material_solid="glass"
+		show_in_creative_mode="1"
+		>
+		<ExplosionConfig 
+			damage="0"
+			cell_explosion_power="20"
+			cell_explosion_damage_required="1"
+			cell_explosion_radius_min="2"
+			explosion_sprite="data/particles/explosion_012.xml"
+			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
+			ray_energy="10"
+        >
+		</ExplosionConfig>
+	</CellData>
+	
+
+	<CellData
+		name="cc_dormant_crystal_molten"
+		ui_name="$mat_cc_dormant_crystal_molten"
+		tags="[liquid],[corrodible],[molten],[alchemy],[liquid_common]"
+		burnable="0"
+		density="4.78"
+		cell_type="liquid"
+		wang_color="ff88abfe"
+		generates_smoke="0"
+		liquid_gravity="0.2"
+		liquid_sand="0"
+		on_fire="0"
+		gfx_glow="20"
+		show_in_creative_mode="1"
+		audio_materialaudio_type="MAGICAL" 
+		>
+		<Graphics
+			texture_file="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/liquid_crystal.png"
+			color="20b333a3"
+			>
+		</Graphics>
+	</CellData>
+
+	<CellData
+		name="cc_antimatter_gas"
+		ui_name="$mat_cc_antimatter_gas"
+		tags="[antimatter]"
+		burnable="0"
+		density="0.1"
+		cell_type="gas"
+		wang_color="ff0c0d0e"
+		liquid_gravity="1"
+		liquid_sand="0"
+		gfx_glow="255"
+		liquid_stains="1"
+		>
+		<Graphics
+			texture_file="mods/Hydroxide/files/chemical_curiosities/materials/antimatter/antimatter.png"
+			>
+		</Graphics>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="CC_ANTIMATTER" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="CC_ANTIMATTER" amount="1.0" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData> 
+
+   <CellData
+    name="aa_hitself"
+    ui_name="$mat_aa_hitself"
+    tags="[liquid],[magic_liquid],[corrodible],[freezable],[water],[impure]"
+    burnable="0"
+    density="4"
+    cell_type="liquid"
+    wang_color="902F555"
+    generates_smoke="0"
+    liquid_gravity="1.5"
+    liquid_sand="0"
+    liquid_stains_self="0"
+    on_fire="0"
+    requires_oxygen="1"
+    temperature_of_fire="10" 
+    danger_water="1"
+    liquid_stains="1"
+	status_effects="AA_HIT_SELF"
+    liquid_sprite_stain_shaken_drop_chance="10"
+    liquid_sprite_stains_check_offset="-1" 
+    show_in_creative_mode="1"
+  >
+    <Graphics
+      color="ffcb9e9d"
+    >
+    </Graphics>
+    <StatusEffects>
+			<Ingestion>
+			<StatusEffect type="FOOD_POISONING" amount="0.1" />
+			</Ingestion>
+    </StatusEffects>
+  </CellData>
+  
+
+	 <CellData
+	name="aa_catalyst"
+	ui_name="$mat_aa_catalyst"
+  	tags="[liquid],[magic_liquid],[water],[impure]"
+	density="1.5"
+	cell_type="liquid"
+	wang_color="905a9915"
+	gfx_glow="100"
+	liquid_gravity="1.2"
+	liquid_sand="0"
+	liquid_stains="1"
+	liquid_stains_self="0"
+	show_in_creative_mode="1"
+	>
+	<Graphics
+		color="4FFFFF00"
+	>
+    </Graphics>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="ALCOHOLIC" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="INGESTION_DRUNK" amount="0.3" />
+		</Ingestion>
+	</StatusEffects>
+  </CellData>
+  
+   <CellData
+	name="aa_oil_splitting"
+	ui_name="$mat_oil"
+  	tags="[liquid],[magic_liquid],[burnable],[impure]"
+	burnable="1"
+	density="1"
+	cell_type="liquid"
+	wang_color="ff5a9914"
+	generates_smoke="0"
+	liquid_gravity="0.5"
+	fire_hp="500"
+	liquid_sand="0"
+	liquid_stains="4"
+	on_fire="0"
+	requires_oxygen="1"
+	temperature_of_fire="95"
+	autoignition_temperature="10"
+	electrical_conductivity="0"
+	liquid_sprite_stains_check_offset="1"
+	liquid_sprite_stains_status_threshold="0.2" 
+	show_in_creative_mode="1"
+	ignore_self_reaction_warning="1"
+	>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="OILED" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="POISONED" amount="0.05" />
+			<StatusEffect type="FOOD_POISONING" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+	<Graphics
+	color="e63D3728" >
+    </Graphics>
+  </CellData>
+
+  
+    <CellData
+	name="aa_light_oil"
+	ui_name="$mat_aa_light_oil"
+  	tags="[liquid],[burnable],[impure]"
+	burnable="1"
+	density="0.1"
+	cell_type="liquid"
+	wang_color="ff5a9913"
+	generates_smoke="0"
+	liquid_gravity="0.5"
+	fire_hp="500"
+	liquid_sand="0"
+	liquid_stains="4"
+	on_fire="0"
+	requires_oxygen="1"
+	temperature_of_fire="95"
+	autoignition_temperature="10"
+	electrical_conductivity="0"
+	liquid_sprite_stains_check_offset="1"
+	liquid_sprite_stains_status_threshold="0.2" 
+	show_in_creative_mode="1"
+	>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="OILED" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="POISONED" amount="0.05" />
+			<StatusEffect type="FOOD_POISONING" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+	<Graphics
+	color="e6685D45" >
+    </Graphics>
+  </CellData>
+
+  
+    <CellData
+	name="aa_heavy_oil"
+	ui_name="$mat_aa_heavy_oil"
+  	tags="[liquid],[burnable],[impure]"
+	burnable="1"
+	density="2"
+	cell_type="liquid"
+	wang_color="ff5a9912"
+	generates_smoke="0"
+	liquid_gravity="0.5"
+	fire_hp="500"
+	liquid_sand="0"
+	liquid_stains="4"
+	on_fire="0"
+	requires_oxygen="1"
+	temperature_of_fire="95"
+	autoignition_temperature="10"
+	electrical_conductivity="0"
+	liquid_sprite_stains_check_offset="1"
+	liquid_sprite_stains_status_threshold="0.2" 
+	show_in_creative_mode="1"
+	>
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="OILED" />
+		</Stains>
+		<Ingestion>
+			<StatusEffect type="POISONED" amount="0.05" />
+			<StatusEffect type="FOOD_POISONING" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+	<Graphics
+	color="e628241B" >
+    </Graphics>
+  </CellData>
+
+   <CellData 
+	name="aa_magic_plastic"
+	ui_name="$mat_aa_magic_plastic"
+  	tags="[corrodible],[magic_liquid],[meltable_to_lava],[alchemy],[slime]"
+	burnable="0"  
+	density="5"  
+	cell_type="liquid" 
+	wang_color="885a9911"  
+	generates_smoke="0"  
+	liquid_gravity="0.1"  
+	liquid_sand="0"  
+	liquid_sticks_to_ceiling="40"
+	liquid_slime="1"
+	liquid_stains="2"
+	stickyness="0.0"
+	solid_friction="1.0"
+	on_fire="0"  
+	gfx_glow="350"
+	requires_oxygen="0"  
+	temperature_of_fire="10" 
+	audio_physics_material_event="slime"
+	audio_physics_material_wall="slime"
+	audio_physics_material_solid="slime" 
+	show_in_creative_mode="1"
+	>
+    <Graphics 
+ 
+		color="FF7A0B03"
+		>
+    </Graphics>
+  </CellData>
+  
+    <CellData 
+	name="fairmod_ch_hate"
+	ui_name="$mat_fairmod_ch_hate"
+  	tags="[corrodible],[magic_liquid],[meltable_to_lava],[alchemy],[burnable],[magic_liquid],[impure]"
+	density="5"  
+	lifetime="225"
+	burnable="1"
+	fire_hp="500"
+	autoignition_temperature="10"
+	cell_type="liquid" 
+	wang_color="885a9913"  
+	generates_smoke="0"  
+	liquid_gravity="0.1"  
+	liquid_sand="0"  
+	liquid_stains="4"
+	solid_friction="0.1"
+	on_fire="0"  
+	gfx_glow="65"
+	status_effects="AA_LOVE_POTION"
+	requires_oxygen="1"  
+	temperature_of_fire="10" 
+	audio_physics_material_event="slime"
+	audio_physics_material_wall="slime"
+	audio_physics_material_solid="slime" 
+	show_in_creative_mode="1"
+	audio_materialaudio_type="MAGICAL" 
+	>
+    <Graphics 
+		texture_file="mods/Hydroxide/files/arcane_alchemy/materials/love/LOVE.png"
+		color="77FF38F1"
+		>
+    </Graphics>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		vel_random.min_x="-20"
+		vel_random.max_x="20"
+		lifetime.min="0.5"
+		lifetime.max="0.7"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="-3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+			<Ingestion>
+			<StatusEffect type="AA_LOVE_POTION" amount="0.15" />
+			</Ingestion>
+    </StatusEffects>
+  </CellData>
+
+  
+  <CellData 
+	name="fairmod_ch_crappy_offering"
+	ui_name="$mat_fairmod_ch_crappy_offering"
+  	tags="[corrodible],[magic_liquid],[meltable_to_lava],[alchemy],[magic_liquid],[impure]"
+	burnable="0"  
+	density="5"  
+	cell_type="liquid" 
+	wang_color="885a9914"  
+	generates_smoke="0"  
+	liquid_gravity="0.8"  
+	liquid_sand="0"  
+	liquid_stains="2"
+	stickyness="0.0"
+	solid_friction="1.0"
+	on_fire="0"  
+	gfx_glow="120"
+	status_effects="AA_PATH"
+	requires_oxygen="0"  
+	temperature_of_fire="10" 
+	audio_physics_material_event="slime"
+	audio_physics_material_wall="slime"
+	audio_physics_material_solid="slime" 
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1"
+	>
+    <Graphics 
+ 
+		color="60FFE86B"
+		>
+    </Graphics>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		vel_random.min_x="-20"
+		vel_random.max_x="20"
+		lifetime.min="0.5"
+		lifetime.max="0.7"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="1"
+		friction="-3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+			<Ingestion>
+			<StatusEffect type="AA_PATH" amount="0.15" />
+			</Ingestion>
+    </StatusEffects>
+  </CellData>
+
+
+  
+
+  
+  <CellData 
+	name="aa_cloning_solution"
+	ui_name="$mat_aa_cloning_solution"
+  	tags="[corrodible],[meltable_to_lava],[alchemy],[magic_liquid],[impure]"
+	burnable="0"  
+	density="0.01"  
+	cell_type="liquid" 
+	wang_color="885a9917"  
+	generates_smoke="0"  
+	liquid_gravity="0.1"  
+	liquid_sand="0"  
+	liquid_sticks_to_ceiling="40"
+	liquid_stains="2"
+	stickyness="0.0"
+	solid_friction="1.0"
+	on_fire="0"  
+	gfx_glow="200"
+	liquid_sprite_stain_shaken_drop_chance="35"
+	status_effects="AA_CLONE"
+	requires_oxygen="0"  
+	temperature_of_fire="10" 
+	audio_physics_material_event="slime"
+	audio_physics_material_wall="slime"
+	audio_physics_material_solid="slime" 
+	audio_materialaudio_type="MAGICAL" 
+	show_in_creative_mode="1"
+	>
+    <Graphics 
+		texture_file="mods/Hydroxide/files/arcane_alchemy/materials/cloning_solution/clone.png"
+		color="607F3300"
+		>
+    </Graphics>
+	<ParticleEffect
+		vel.y="17.14"
+		vel_random.min_y="-100"
+		vel_random.max_y="25.71"
+		vel_random.min_x="-20"
+		vel_random.max_x="20"
+		lifetime.min="0.5"
+		lifetime.max="0.7"
+		gravity.y="-8.57"
+		render_on_grid="1"
+		draw_as_long="0"
+		friction="-3.429"
+		probability="0.0518"
+	>
+	</ParticleEffect>
+	<StatusEffects>
+			<Ingestion>
+			<StatusEffect type="AA_CLONE" amount="0.15" />
+			</Ingestion>
+    </StatusEffects>
+  </CellData>
+ -->
+</Materials>
