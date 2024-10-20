@@ -6,7 +6,7 @@ local float_force = 300
 local float_sensor_sector = math.pi * 0.3
 
 local entity_id = GetUpdatedEntityID()
-local x, y, rot = EntityGetTransform( entity_id )
+local x, y, rot = EntityGetTransform(entity_id)
 local velcomp = EntityGetComponent(entity_id, "VelocityComponent")
 
 if velcomp == nil then return end
@@ -15,45 +15,43 @@ local nearest_polyd_player = EntityGetClosestWithTag(x, y, "polymorphed_player")
 print(tostring(nearest_player))
 print(tostring(nearest_polyd_player))
 
-
 if nearest_player <= 0 and nearest_polyd_player <= 0 then return end
 
 local player --in the event of multiplayer
 if nearest_player > 0 and nearest_polyd_player > 0 then --basically if both poly'd and non-poly'd players exist, decide which is closer
-	local A  = {EntityGetTransform(nearest_player)} --this is theory code btw, dont have a reasonable way to test this lmao
-	local B  = {EntityGetTransform(nearest_polyd_player)} --below code: compare distances and pick the one with the shortest, prioritising nearest_player
-	A.xdistance  ,  A.ydistance = x - A[1]  ,  y - A[2]
-	B.xdistance  ,  B.ydistance = x - B[1]  ,  y - B[2]
-	player = math.sqrt( A.xdistance^2 + A.ydistance^2 ) > math.sqrt( B.xdistance^2 + B.ydistance^2 ) and {id = nearest_player, x = A.xdistance, y = A.ydistance} or {id = nearest_polyd_player, x = B.xdistance, y = B.ydistance}
+	local A = { EntityGetTransform(nearest_player) } --this is theory code btw, dont have a reasonable way to test this lmao
+	local B = { EntityGetTransform(nearest_polyd_player) } --below code: compare distances and pick the one with the shortest, prioritising nearest_player
+	A.xdistance, A.ydistance = x - A[1], y - A[2]
+	B.xdistance, B.ydistance = x - B[1], y - B[2]
+	player = math.sqrt(A.xdistance ^ 2 + A.ydistance ^ 2) > math.sqrt(B.xdistance ^ 2 + B.ydistance ^ 2)
+			and { id = nearest_player, x = A.xdistance, y = A.ydistance }
+		or { id = nearest_polyd_player, x = B.xdistance, y = B.ydistance }
 else
-	player = {id = math.max(nearest_player, nearest_polyd_player)}
-	local transform = {EntityGetTransform(player.id)}
-	player.xdistance  ,  player.ydistance = x - transform[1] , y - transform[2]
+	player = { id = math.max(nearest_player, nearest_polyd_player) }
+	local transform = { EntityGetTransform(player.id) }
+	player.xdistance, player.ydistance = x - transform[1], y - transform[2]
 end
 
-if player == nil then print("wHAt the fUCK?! (both player and poly player are nil??)") return end
-
+if player == nil then
+	print("wHAt the fUCK?! (both player and poly player are nil??)")
+	return
+end
 
 --local distance = math.sqrt( a^2 + b^2 )
-
-
-
 
 --local distance = math.sqrt( a^2 + b^2 )
 local direction = 0 - math.atan2(player.ydistance, player.xdistance)
 
--- local gravity_percent = ( distance_full - distance ) / distance_full 
+-- local gravity_percent = ( distance_full - distance ) / distance_full
 -- local gravity_percent = 8
 local gravity_coeff = 160
 
 local fx = math.cos(direction) * gravity_coeff
 local fy = math.sin(direction) * gravity_coeff
 
-
-
 local velcomp1 = velcomp[1]
-local vel_x,vel_y = ComponentGetValue2(velcomp1, "mVelocity")
-ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * .8, (vel_y + fy) * .8)
+local vel_x, vel_y = ComponentGetValue2(velcomp1, "mVelocity")
+ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * 0.8, (vel_y + fy) * 0.8)
 
 --LUA: entity_id is 1210, x,y is [-35224, -150.99967956543]
 --LUA: target.id is 186, target.x,y is [-35233.02734375, -88.982971191406]
@@ -61,7 +59,6 @@ ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * .8, (vel_y + fy) * .8)
 --LUA: fx is 3.160027830635, fy is -195.97452442629
 
 --Code mostly nabbed from Evaisa's Condensed Gravity effect in CC
-
 
 --[[ 
 -- stainPercent = (Stain% * 5 + IngestionSeconds * .05) < 1.5
