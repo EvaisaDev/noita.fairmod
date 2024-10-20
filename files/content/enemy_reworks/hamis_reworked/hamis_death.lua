@@ -29,16 +29,6 @@ local function is_player_herd(entity)
 	return herd_id == "player"
 end
 
---- Sets objects value in component
---- @param component_id component_id
---- @param object_name string
---- @param objects {[string]: any}
-local function set_values_in_object(component_id, object_name, objects)
-	for field, value in pairs(objects) do
-		ComponentObjectSetValue2(component_id, object_name, field, value)
-	end
-end
-
 local function hamis_land()
 	local hamis = GetUpdatedEntityID()
 	local damage_model = EntityGetFirstComponent(hamis, "DamageModelComponent")
