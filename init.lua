@@ -1,5 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
+local colorblind_mode = dofile_once("mods/noita.fairmod/files/content/colorblind_mode/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -46,6 +47,8 @@ dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
 dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
+dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
+dofile_once("mods/noita.fairmod/files/content/permanent_self_damage/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
@@ -66,6 +69,10 @@ ModLuaFileAppend(
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
+
+function OnModInit()
+	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
+end
 
 --- I hate doing things without a hook
 function OnModPostInit()
@@ -88,6 +95,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
+	colorblind_mode.OnPlayerSpawned()
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -202,6 +210,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
+		colorblind_mode.OnPausedChanged()
 	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
 	elseif not is_paused then
@@ -225,6 +234,7 @@ end
 -- Lamia wasn't here
 -- Circle was here
 -- Hamis will be here
+-- Conga wuz here
 -- Heinermann was here
 
 -----##

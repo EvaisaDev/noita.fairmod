@@ -240,7 +240,7 @@ achievements = {
 		icon = "mods/noita.fairmod/files/content/achievements/icons/drip_supreme.png",
 		flag = "drip_supreme",
 		unlock = function()
-			return HasFlagPersistent( "secret_amulet_gem" ) and HasFlagPersistent( "secret_hat" )
+			return HasFlagPersistent("secret_amulet_gem") and HasFlagPersistent("secret_hat")
 		end,
 	},
 }
@@ -269,26 +269,26 @@ local function romanize(num)
 	return result
 end
 
-local ach_len = #achievements
-for i = 1, 10 do
-	achievements[ach_len + i] = {
-		name = "Godslayer " .. romanize(i),
-		description = (function(chars)
-			local sets = { { 97, 122 }, { 65, 90 }, { 48, 57 } } -- a-z, A-Z, 0-9
-			local str = { "" }
-			for p = 1, chars do
-				local charset = sets[math.random(1, #sets)]
-				str[#str + 1] = string.char(math.random(charset[1], charset[2]))
-			end
-			return table.concat(str)
-		end)(i * 2),
-		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/god_slayer_", i, ".png" }),
-		flag = "god_slayer_" .. i,
-		unlock = function()
-			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= i
-		end,
-	}
-end
+-- local ach_len = #achievements
+-- for i = 1, 10 do
+-- 	achievements[ach_len + i] = {
+-- 		name = "Godslayer " .. romanize(i),
+-- 		description = (function(chars)
+-- 			local sets = { { 97, 122 }, { 65, 90 }, { 48, 57 } } -- a-z, A-Z, 0-9
+-- 			local str = { "" }
+-- 			for p = 1, chars do
+-- 				local charset = sets[math.random(1, #sets)]
+-- 				str[#str + 1] = string.char(math.random(charset[1], charset[2]))
+-- 			end
+-- 			return table.concat(str)
+-- 		end)(i * 2),
+-- 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/god_slayer_", i, ".png" }),
+-- 		flag = "god_slayer_" .. i,
+-- 		unlock = function()
+-- 			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= i
+-- 		end,
+-- 	}
+-- end
 
 ach_len = #achievements
 for i = 1, 10 do
@@ -382,14 +382,14 @@ for i = 1, 10 do
 end
 
 ach_len = #achievements
-for i=1, 10 do
-	achievements[ach_len+i] = {
+for i = 1, 10 do
+	achievements[ach_len + i] = {
 		name = "Monster " .. romanize(i),
-		description = tostring(1024-(2^i)) .. " remain...",
-		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png"},
+		description = tostring(1024 - (2 ^ i)) .. " remain...",
+		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png" }),
 		flag = "innocent_kills_" .. i,
 		unlock = function()
-			return tonumber(GlobalsGetValue("HELPLESS_KILLS", "0")) >= (2^i)
-		end
+			return tonumber(GlobalsGetValue("HELPLESS_KILLS", "0")) >= (2 ^ i)
+		end,
 	}
 end

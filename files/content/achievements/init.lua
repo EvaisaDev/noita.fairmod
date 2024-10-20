@@ -1,4 +1,12 @@
+--- @alias achievement_data {name:{lines:string[], height:number}, description:{lines:string[],height:number}, icon:{path:string, width:number}, height:number}
+
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class achievement_ui:UI_class
+ui.scroll.height_max = 250
+ui.scroll.width = 110
+ui.scroll.scroll_img = "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_scrollbar.png"
+ui.scroll.scroll_img_hl = "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_scrollbar_hl.png"
+
+fairmod_achievements_displaying_window = false
 
 local notification_time = 420
 local notifications = {}
@@ -10,6 +18,8 @@ local gradient = "mods/noita.fairmod/files/content/achievements/backgrounds/grad
 local offset_from_right = 5
 local notification_width = 100
 local default_icon_size = 20
+
+local achievement_height = 0
 
 local debug_no_flags = false
 
@@ -38,12 +48,31 @@ function ui:SplitString(text, length)
 	return lines
 end
 
-function ui:ImageCrop(x, y, width, height)
-	width = width + offset_from_right
+function ui:DrawCroppedGradient(x, y, height)
+	local width = notification_width + offset_from_right
 	self:AnimateB()
 	self:AnimateAlpha(0, 0, true)
 	GuiBeginAutoBox(self.gui)
+	self:SetZ(1000)
+	GuiBeginScrollContainer(self.gui, self:id(), x, y, width, height, false, 0, 0) --- @diagnostic disable-line: invisible
+	GuiEndAutoBoxNinePiece(self.gui)
+	self:AnimateE()
 
+	self:AddOptionForNext(self.c.options.Layout_NoLayouting)
+	self:SetZ(900)
+	self:Image(x + width - 110, y + height - 30, gradient)
+	GuiEndScrollContainer(self.gui)
+end
+
+--- Draws cropped background
+--- @param x number
+--- @param y number
+--- @param height number
+function ui:DrawCroppedBackground(x, y, height)
+	local width = notification_width + offset_from_right
+	self:AnimateB()
+	self:AnimateAlpha(0, 0, true)
+	GuiBeginAutoBox(self.gui)
 	self:SetZ(1000)
 	GuiBeginScrollContainer(self.gui, self:id(), x, y, width, height, false, 0, 0) --- @diagnostic disable-line: invisible
 	GuiEndAutoBoxNinePiece(self.gui)
@@ -52,16 +81,49 @@ function ui:ImageCrop(x, y, width, height)
 	self:AddOptionForNext(self.c.options.Layout_NoLayouting)
 	self:SetZ(1001)
 	self:Image(self.dim.x - 120, self.dim.y - 600, background_image)
-	self:AddOptionForNext(self.c.options.Layout_NoLayouting)
-	self:SetZ(1000)
-	self:Image(x + width - 110, y + height - 30, gradient)
 	GuiEndScrollContainer(self.gui)
 end
 
-function ui:DrawNotifications()
-	self:StartFrame()
-	self:UpdateDimensions()
+--- Gets data about achievement
+--- @param achievement table
+--- @return achievement_data
+function ui:GetAchievementData(achievement)
+	achievement_height = 7
 
+	local name = self:SplitString(achievement.name, notification_width - default_icon_size - 8)
+	local name_line_count = #name
+	local name_height = 7 * name_line_count
+
+	local description = self:SplitString(achievement.description, notification_width - default_icon_size - 8)
+	local description_line_count = #description
+	local description_height = 7 * description_line_count
+
+	local max_height = math.max(30, achievement_height + name_height + description_height + 9)
+
+	if not achievement.icon or not ModImageDoesExist(achievement.icon) then achievement.icon = default_icon end
+
+	local icon_width = GuiGetImageDimensions(self.gui, achievement.icon, 1)
+	max_height = math.max(max_height, 28)
+
+	return {
+		name = {
+			lines = name,
+			height = name_line_count,
+		},
+		description = {
+			lines = description,
+			height = description_height,
+		},
+		icon = {
+			path = achievement.icon,
+			width = icon_width,
+		},
+		height = max_height,
+	}
+end
+
+--- Draw achievement notification
+function ui:DrawNotifications()
 	local notification_height = 0
 	for i = #notifications, 1, -1 do
 		local notification = notifications[i]
@@ -69,73 +131,28 @@ function ui:DrawNotifications()
 		if notification.time_left < 0 then
 			table.remove(notifications, i)
 		else
-			achievement_height = 7
-
-			local name = self:SplitString(notification.name, notification_width - default_icon_size - 8)
-			local name_line_count = #name
-			local name_height = 7 * name_line_count
-
-			local description = self:SplitString(notification.description, notification_width - default_icon_size - 8)
-			local description_line_count = #description
-			local description_height = 7 * description_line_count
-
-			local max_height = math.max(30, achievement_height + name_height + description_height + 9)
-
-			notification.icon = notification.icon or default_icon
-			local icon_width = GuiGetImageDimensions(self.gui, notification.icon, 1)
-			max_height = math.max(max_height, 28)
+			local achievement_data = self:GetAchievementData(notification)
 
 			local x = self.dim.x - notification_width - offset_from_right
-			local y = self.dim.y - notification_height - max_height
+			local y = self.dim.y - notification_height - achievement_data.height
 			if notification.time_left < 30 then
 				-- Lerp the notification off the screen
 				local lerp_amount = math.min(1, notification.time_left / 30)
-				y = y + (1 - lerp_amount) * max_height
+				y = y + (1 - lerp_amount) * achievement_data.height
 
 				self:SetZ(1000)
 			end
 			-- Lerp the notification onto the screen
 			local lerp_amount = math.min(1, (notification_time - notification.time_left) / 30)
-			y = y + (1 - lerp_amount) * max_height
+			y = y + (1 - lerp_amount) * achievement_data.height
 
 			-- update notification height to include the lerp and stuff
-			notification_height = notification_height + (lerp_amount * max_height)
+			notification_height = notification_height + (lerp_amount * achievement_data.height)
 
-			GuiZSet(self.gui, -999)
+			self:DrawCroppedBackground(x, y, achievement_data.height)
+			self:DrawCroppedGradient(x, y, achievement_data.height)
 
-			self:ImageCrop(x, y, notification_width, max_height)
-
-			-- add icon
-			local extra_offset = 4
-			local icon_x = x + extra_offset + (default_icon_size - icon_width) / 2
-			local icon_y = y + (max_height - icon_width) / 2
-			self:Image(icon_x, icon_y, notification.icon)
-			extra_offset = extra_offset + default_icon_size + 4
-
-			local text_x = x + extra_offset
-			local text_y = y + 4
-
-			self:Color(95 / 255, 119 / 255, 162 / 255)
-			GuiZSet(self.gui, 800)
-
-			self.text_scale = 0.8
-			self:Text(text_x, text_y, "Achievement unlocked")
-
-			text_y = text_y + achievement_height + 0.4
-
-			self.text_scale = 0.7
-			for j = 1, name_line_count do
-				self:Text(text_x, text_y, name[j])
-				text_y = text_y + 7
-			end
-
-			text_y = text_y + 0.2
-
-			for j = 1, description_line_count do
-				self:Color(0.7, 0.7, 0.7, 0.8)
-				self:Text(text_x, text_y, description[j])
-				text_y = text_y + 7
-			end
+			self:DrawAchievement(x, y, achievement_data)
 		end
 	end
 end
@@ -173,9 +190,147 @@ local function CheckAchievements()
 	end
 end
 
+--- @param x number
+--- @param y number
+--- @param achievement_data achievement_data
+function ui:DrawAchievement(x, y, achievement_data)
+	-- add icon
+	local extra_offset = 4
+	local icon_x = x + extra_offset + (default_icon_size - achievement_data.icon.width) / 2
+	local icon_y = y + (achievement_data.height - achievement_data.icon.width) / 2
+	self:SetZ(0)
+	self:Image(icon_x, icon_y, achievement_data.icon.path)
+	extra_offset = extra_offset + default_icon_size + 4
+
+	local text_x = x + extra_offset
+	local text_y = y + 4
+
+	self:Color(95 / 255, 119 / 255, 162 / 255)
+	GuiZSet(self.gui, 800)
+
+	self.text_scale = 0.8
+	self:Text(text_x, text_y, "Achievement unlocked")
+
+	text_y = text_y + 7.4
+
+	self.text_scale = 0.7
+	for j = 1, #achievement_data.name.lines do
+		self:Text(text_x, text_y, achievement_data.name.lines[j])
+		text_y = text_y + 7
+	end
+
+	text_y = text_y + 0.2
+
+	for j = 1, #achievement_data.description.lines do
+		self:Color(0.7, 0.7, 0.7, 0.8)
+		self:Text(text_x, text_y, achievement_data.description.lines[j])
+		text_y = text_y + 7
+	end
+end
+
+--- @param x number
+--- @param y number
+--- @param achievement_data achievement_data
+function ui:DrawLockedAchievements(x, y, achievement_data)
+	-- add icon
+	local extra_offset = 4
+	local icon_x = x + extra_offset + (default_icon_size - achievement_data.icon.width) / 2
+	local icon_y = y + (achievement_data.height - achievement_data.icon.width) / 2
+	self:SetZ(0)
+	self:Color(0.2, 0.2, 0.2, 1)
+	self:Image(icon_x, icon_y, achievement_data.icon.path)
+	extra_offset = extra_offset + default_icon_size + 4
+
+	local text_x = x + extra_offset
+	local text_y = y + 4
+
+	self:Color(0.7, 0.7, 0.7, 0.8)
+	GuiZSet(self.gui, 999)
+
+	self.text_scale = 0.8
+	self:Text(text_x, text_y, "Locked")
+
+	text_y = text_y + 7.4
+
+	self.text_scale = 0.7
+	for j = 1, #achievement_data.name.lines do
+		self:Text(text_x, text_y, achievement_data.name.lines[j])
+		text_y = text_y + 7
+	end
+
+	text_y = text_y + 0.2
+
+	for j = 1, #achievement_data.description.lines do
+		local line = achievement_data.description.lines[j]:gsub("%w", "?")
+		self:Color(0.7, 0.7, 0.7, 0.8)
+		self:Text(text_x, text_y, line)
+		text_y = text_y + 7
+	end
+	self:Color(0, 0, 0)
+	self:SetZ(998)
+	self:Image(x, y, "data/debug/whitebox.png", 0.3, 10, achievement_data.height / 20)
+end
+
+function ui:DrawAchievementsScrollbox()
+	local y = 0 - self.scroll.y
+	self:SetZ(1000)
+	self:Image(-10, self.scroll.height_max - 600, background_image)
+	for i = 1, #achievements do
+		local achievement = achievements[i]
+		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+		local achievement_data = self:GetAchievementData(achievement)
+		if HasFlagPersistent(flag) then
+			self:DrawAchievement(0, y, achievement_data)
+		else
+			self:DrawLockedAchievements(0, y, achievement_data)
+		end
+		y = y + achievement_data.height
+	end
+	self:Text(0, y + self.scroll.y, "")
+end
+
+function ui:DrawAchievementsWindow()
+	local x = 400
+	local y = 50
+	self:Draw9Piece(
+		x - 3,
+		y,
+		1001,
+		self.scroll.width + 6,
+		8,
+		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png"
+	)
+	local unlocked = tonumber(GlobalsGetValue("fairmod_achievements_unlocked")) or 0
+	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
+	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
+	local close_dim = self:GetTextDimension("[Close]")
+	local close_x = x + self.scroll.width - close_dim
+	local hovered = self:IsHoverBoxHovered(close_x, y, close_dim, 7)
+	if hovered then
+		self:Color(1, 1, 0.7)
+		if self:IsLeftClicked() then fairmod_achievements_displaying_window = false end
+	end
+	self:Text(close_x, y, "[Close]")
+
+	self:Text(x + 3, y, text)
+	self:ScrollBox(
+		x,
+		y + 16,
+		1001,
+		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png",
+		3,
+		3,
+		self.DrawAchievementsScrollbox
+	)
+end
+
 function ui:update()
-	self:DrawNotifications()
 	CheckAchievements()
+	self:StartFrame()
+	self:UpdateDimensions()
+	self:AddOption(self.c.options.NonInteractive)
+	self:DrawNotifications()
+	if fairmod_achievements_displaying_window then self:DrawAchievementsWindow() end
 end
 
 return ui

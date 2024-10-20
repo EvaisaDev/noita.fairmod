@@ -1,7 +1,23 @@
 dofile("data/scripts/lib/mod_settings.lua")
 local mod_id = "noita.fairmod"
 mod_settings_version = 1 -- This is a magic global that can be used to migrate settings to new mod versions. call mod_settings_get_version() before mod_settings_update() to get the old value.
-mod_settings = {}
+mod_settings = 
+{
+	{
+		category_id = "default_settings",
+		ui_name = "",
+		ui_description = "",
+		settings = {
+			{
+				id = "colorblind_mode",
+				ui_name = "Colorblindness Mode",
+				ui_description = "Makes you color blind.",
+				value_default = false,
+				scope = MOD_SETTING_SCOPE_RUNTIME,
+			},
+		},
+	},
+}
 
 local function PatchGamesInitlua()
 	local file = "data/scripts/init.lua"
