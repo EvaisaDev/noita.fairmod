@@ -1,13 +1,19 @@
-local hamisits = { "data/ragdolls/longleg/head", "data/ragdolls/longleg/leg1", "data/ragdolls/longleg/foot1",
-	"data/ragdolls/longleg/leg2", "data/ragdolls/longleg/foot2", "data/ragdolls/longleg/leg3",
-	"data/ragdolls/longleg/foot3" }
+local hamisits = {
+	"data/ragdolls/longleg/head",
+	"data/ragdolls/longleg/leg1",
+	"data/ragdolls/longleg/foot1",
+	"data/ragdolls/longleg/leg2",
+	"data/ragdolls/longleg/foot2",
+	"data/ragdolls/longleg/leg3",
+	"data/ragdolls/longleg/foot3",
+}
 
 --- @param entity entity_id
 --- @return boolean
 local function has_player_tag(entity)
 	local tags = EntityGetTags(entity)
 	if not tags then return false end
-	for _, tag in ipairs { "player_unit", "player_projectile", "projectile_player" } do
+	for _, tag in ipairs({ "player_unit", "player_projectile", "projectile_player" }) do
 		if tags:find(tag) then return true end
 	end
 	return false
@@ -60,7 +66,13 @@ end
 
 --- Sets flag if was damaged by player
 --- @type script_damage_received
-local script_damage_received = function(damage, message, entity_thats_responsible, is_fatal, projectile_thats_responsible)
+local script_damage_received = function(
+	damage,
+	message,
+	entity_thats_responsible,
+	is_fatal,
+	projectile_thats_responsible
+)
 	if not EntityGetIsAlive(entity_thats_responsible) then return end
 
 	if is_player_herd(entity_thats_responsible) or has_player_tag(entity_thats_responsible) then
@@ -74,8 +86,6 @@ damage_received = script_damage_received
 local script_death = function(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
 	local died_entity = GetUpdatedEntityID()
 
-	if GetValueBool("fairmod_damaged_by_player", false) then
-		hamis_land()
-	end
+	if GetValueBool("fairmod_damaged_by_player", false) then hamis_land() end
 end
 death = script_death

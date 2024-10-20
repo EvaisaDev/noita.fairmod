@@ -12,12 +12,18 @@ end
 local surface_bad = {
 	rain_current_material = nil,
 	rain_duration = 0,
-	rain_start_count = 0
+	rain_start_count = 0,
 }
 
 function surface_bad:init()
-	ModLuaFileAppend("data/scripts/biomes/mountain/mountain_top.lua", "mods/noita.fairmod/files/content/surface_bad/mountain_append.lua")
-	ModLuaFileAppend("data/scripts/biomes/mountain_lake.lua", "mods/noita.fairmod/files/content/surface_bad/mountain_lake_append.lua")
+	ModLuaFileAppend(
+		"data/scripts/biomes/mountain/mountain_top.lua",
+		"mods/noita.fairmod/files/content/surface_bad/mountain_append.lua"
+	)
+	ModLuaFileAppend(
+		"data/scripts/biomes/mountain_lake.lua",
+		"mods/noita.fairmod/files/content/surface_bad/mountain_lake_append.lua"
+	)
 
 	local animal_spawner = nxml.new_element("VegetationComponent", {
 		tree_probability = "0.9",
@@ -40,9 +46,7 @@ function surface_bad:init()
 	for _, biome in ipairs(peaceful_biomes) do
 		for xml in nxml.edit_file(biome) do
 			local mats = xml:first_of("Materials")
-			if mats then
-				mats:add_child(animal_spawner)
-			end
+			if mats then mats:add_child(animal_spawner) end
 		end
 	end
 	for xml in nxml.edit_file("data/biome/winter.xml") do
@@ -88,10 +92,10 @@ function surface_bad:rain_active()
 		y_vel_min = mat.y_vel_min or 1000,
 		y_vel_max = mat.y_vel_max or 1000,
 		count_min = mat.count_min or 10,
-		count_max = mat.count_max or 15
+		count_max = mat.count_max or 15,
 	})
 	EntityAddComponent2(emitter_e, "LifetimeComponent", {
-		lifetime = 30
+		lifetime = 30,
 	})
 	EntitySetTransform(emitter_e, x, y - 500)
 

@@ -27,19 +27,17 @@ if not idx then return end
 function format_csv_row(row)
 	local escaped = {}
 	for _, v in ipairs(row) do
-		if v:find(',') then
-			v = '"' .. v .. '"'
-		end
+		if v:find(",") then v = '"' .. v .. '"' end
 		v = v:gsub("\n", [[\n]])
-		escaped[#escaped+1] = v
+		escaped[#escaped + 1] = v
 	end
 	return table.concat(escaped, ",") .. ","
 end
 
 function mix_language(filename)
 	-- Seed with system time
-	local tv = {GameGetDateAndTimeUTC()}
-	local seed = tv[6] + tv[5]*60 + tv[4]*60*60
+	local tv = { GameGetDateAndTimeUTC() }
+	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
 	math.randomseed(seed)
 
 	local content = ModTextFileGetContent(filename)
@@ -59,15 +57,13 @@ function mix_language(filename)
 			end
 
 			local swap_idx = math.random(IDX_SWAP_MIN, swap_max)
-			if swap_idx >= idx then
-				swap_idx = swap_idx + 1
-			end
+			if swap_idx >= idx then swap_idx = swap_idx + 1 end
 
 			if row[swap_idx] ~= "" then
 				row[idx], row[swap_idx] = row[swap_idx], row[idx]
 			end
 		end
-		outrows[#outrows+1] = format_csv_row(row)
+		outrows[#outrows + 1] = format_csv_row(row)
 	end
 
 	ModTextFileSetContent(filename, table.concat(outrows, "\n"))

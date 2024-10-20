@@ -5,4 +5,3 @@ dofile_once("mods/noita.fairmod/files/content/fishing/files/gui_utils.lua")
 entity_id = GetUpdatedEntityID()
 
 gui = GuiCreate()
-
