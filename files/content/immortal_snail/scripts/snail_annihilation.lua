@@ -3,8 +3,8 @@ local x, y = EntityGetTransform(entity_id)
 
 local kill_radius = 5
 
-local last_player_to_kill = nil
-local last_player_to_kill_time = 0
+last_player_to_kill = last_player_to_kill or nil
+last_player_to_kill_time = last_player_to_kill_time or 0
 
 if
 	last_player_to_kill ~= nil
@@ -12,6 +12,7 @@ if
 	and EntityGetIsAlive(last_player_to_kill)
 then
 	EntityKill(last_player_to_kill)
+	return
 end
 
 local nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "player_unit") or {}

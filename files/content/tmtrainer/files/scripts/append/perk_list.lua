@@ -57,12 +57,9 @@ end
 -- Main script execution
 local TMTRAINER_INDEX = 0
 
--- Set the random seed once before the loop
-SetRandomSeed(0, 0)
-
 for i = 1, #perk_pool do
-	-- No need to set the random seed inside the loop
-
+	-- we set it in here in case some function is dumb and overrides the seed
+	SetRandomSeed(TMTRAINER_INDEX, 0)
 	if Random(1, 100) < 40 then
 		local id = "TMTRAINER_" .. i
 		local ui_name_parts = {}
@@ -95,6 +92,7 @@ for i = 1, #perk_pool do
 
 			if perk.stackable == false then stackable = false end
 
+			SetRandomSeed(TMTRAINER_INDEX, 1)
 			-- Update game effect and particle effect
 			if perk.game_effect and perk.game_effect ~= "" then
 				if game_effect == nil or Random(0, 100) > 50 then game_effect = perk.game_effect end

@@ -30,7 +30,7 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 	local perk_icon_path = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/"
 
 	-- Set the maximum number of icons to process
-	local corrupted_sprite_count = #actions + 100 -- Account for additional icons
+	local corrupted_sprite_count = (#actions) + 100 -- Account for additional icons
 
 	-- Make action (spell) icons editable
 	for i = 0, corrupted_sprite_count do
