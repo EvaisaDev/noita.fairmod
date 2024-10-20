@@ -2,7 +2,7 @@ bait_list = {
 	{
 		id = "any",
 		ui_name = "Any",
-	},	
+	},
 	{
 		id = "COMMON_GRUB",
 		ui_name = "Common Grub",

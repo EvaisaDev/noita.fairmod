@@ -21,9 +21,7 @@ local debug_no_flags = false
 local module = {}
 
 local function AddNotification(icon, name, description, sound)
-	if (sound) then
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0)
-	end
+	if sound then GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0) end
 	table.insert(notifications, { icon = icon, name = name, description = description, time_left = notification_time })
 end
 
@@ -42,9 +40,7 @@ local function SplitString(text, length)
 	end
 
 	-- Add the last line if it's not empty
-	if current_line ~= "" then
-		lines[#lines + 1] = current_line
-	end
+	if current_line ~= "" then lines[#lines + 1] = current_line end
 
 	return lines
 end
@@ -80,7 +76,7 @@ local function DrawNotifications()
 	for i = #notifications, 1, -1 do
 		local notification = notifications[i]
 		notification.time_left = notification.time_left - 1
-		if (notification.time_left < 0) then
+		if notification.time_left < 0 then
 			table.remove(notifications, i)
 		else
 			local _, achievement_height = GuiGetTextDimensions(notification_gui, "Achievement unlocked", 0.8)
@@ -104,16 +100,16 @@ local function DrawNotifications()
 			if notification.time_left < 30 then
 				-- Lerp the notification off the screen
 				local lerp_amount = math.min(1, notification.time_left / 30)
-				y = y + (1 - lerp_amount) * (max_height)
+				y = y + (1 - lerp_amount) * max_height
 
 				GuiZSetForNextWidget(notification_gui, 1000)
 			end
 			-- Lerp the notification onto the screen
 			local lerp_amount = math.min(1, (notification_time - notification.time_left) / 30)
-			y = y + (1 - lerp_amount) * (max_height)
+			y = y + (1 - lerp_amount) * max_height
 
 			-- update notification height to include the lerp and stuff
-			notification_height = notification_height + ((lerp_amount) * (max_height))
+			notification_height = notification_height + (lerp_amount * max_height)
 
 			GuiZSet(notification_gui, -999)
 
@@ -150,7 +146,6 @@ local function DrawNotifications()
 			end
 		end
 	end
-
 end
 
 local persistent_flag_func_get = HasFlagPersistent
@@ -159,7 +154,7 @@ local persistent_flag_func_set = AddFlagPersistent
 local function CheckAchievements()
 	-- we do a little debugging
 
-	if (debug_no_flags) then
+	if debug_no_flags then
 		HasFlagPersistent = GameHasFlagRun
 		AddFlagPersistent = GameAddFlagRun
 	end
@@ -167,13 +162,13 @@ local function CheckAchievements()
 	dofile("mods/noita.fairmod/files/content/achievements/achievements.lua")
 	for i, achievement in ipairs(achievements) do
 		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
-		if (not HasFlagPersistent(flag) and achievement.unlock()) then
+		if not HasFlagPersistent(flag) and achievement.unlock() then
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
 			AddFlagPersistent(flag)
 		end
 	end
-	if (debug_no_flags) then
+	if debug_no_flags then
 		HasFlagPersistent = persistent_flag_func_get
 		AddFlagPersistent = persistent_flag_func_set
 	end

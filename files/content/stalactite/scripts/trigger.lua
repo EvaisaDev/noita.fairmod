@@ -11,14 +11,14 @@ local offset_x = 0
 local offset_y = 0
 local projectile = ""
 
-if (variable_storage_comps ~= nil) then
+if variable_storage_comps ~= nil then
 	for key, comp_id in pairs(variable_storage_comps) do
 		local name = ComponentGetValue2(comp_id, "name")
-		if (name == "offset_x") then
+		if name == "offset_x" then
 			offset_x = ComponentGetValue2(comp_id, "value_int")
-		elseif (name == "offset_y") then
+		elseif name == "offset_y" then
 			offset_y = ComponentGetValue2(comp_id, "value_int")
-		elseif (name == "projectile") then
+		elseif name == "projectile" then
 			projectile = ComponentGetValue2(comp_id, "value_string")
 		end
 	end
@@ -42,36 +42,33 @@ local function trigger(colliding_entity_id)
 	end
 
 	EntityKill(entity_id)
-
 end
 
 local trigger_width = 16
 
-if (GameGetFrameNum() - last_trigger < 60) then
-	return
-end
+if GameGetFrameNum() - last_trigger < 60 then return end
 
 local trigger_potential = {
 	{
 		tag = "player_unit",
 		distance = 200,
-		chance = 20
+		chance = 20,
 	},
 	{
 		tag = "polymorphed_player",
 		distance = 200,
-		chance = 20
+		chance = 20,
 	},
 	{
 		tag = "enemy",
 		distance = 200,
-		chance = 3
+		chance = 3,
 	},
 	{
 		tag = "player_projectile",
 		distance = 40,
-		chance = 70
-	}
+		chance = 70,
+	},
 }
 
 local potential_triggers = {}
@@ -91,10 +88,10 @@ for _, trigger_t in ipairs(potential_triggers) do
 	local ex, ey = EntityGetTransform(entity)
 	local potential = trigger_t[1]
 
-	if (ex > trigger_center_x - (trigger_width / 2) and ex < trigger_center_x + (trigger_width / 2)) then
-		if (ey >= y and ey <= y + potential.distance) then
+	if ex > trigger_center_x - (trigger_width / 2) and ex < trigger_center_x + (trigger_width / 2) then
+		if ey >= y and ey <= y + potential.distance then
 			SetRandomSeed(ex, ey)
-			if (Random(1, 100) <= potential.chance) then
+			if Random(1, 100) <= potential.chance then
 				trigger(entity)
 				return
 			end

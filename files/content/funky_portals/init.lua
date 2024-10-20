@@ -2,17 +2,13 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local init = {}
 function init.OnMagicNumbersAndWorldSeedInitialized()
-
 	for entity_xml in nxml.edit_file("data/entities/buildings/teleport_liquid_powered.xml") do
 		entity_xml:add_child(nxml.new_element("LuaComponent", {
 			script_source_file = "mods/noita.fairmod/files/content/funky_portals/portal_handler.lua",
 			execute_on_added = "1",
-			execute_times = "1"
+			execute_times = "1",
 		}))
 	end
-
-	
-
 end
 
 function init.OnPlayerSpawned(player)
@@ -25,4 +21,3 @@ function init.OnPlayerSpawned(player)
 end
 
 return init
-

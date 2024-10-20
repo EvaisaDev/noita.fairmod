@@ -1,4 +1,4 @@
-perk_list[#perk_list+1] = {
+perk_list[#perk_list + 1] = {
 	id = "MINUS_LIFE",
 	ui_name = "Minus Life",
 	ui_description = "Hey what does this do?",
@@ -8,7 +8,7 @@ perk_list[#perk_list+1] = {
 	do_not_remove = true,
 	stackable = STACKABLE_YES,
 	stackable_is_rare = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
+	func = function(entity_perk_item, entity_who_picked, item_name)
 		add_halo_level(entity_who_picked, -1)
 
 		for _, child in ipairs(EntityGetAllChildren(entity_who_picked) or {}) do

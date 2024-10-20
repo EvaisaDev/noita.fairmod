@@ -14,7 +14,8 @@ function GetPlayers()
 end
 
 function GetEnemiesInRadius(x, y, radius)
-	local entities = MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
+	local entities =
+		MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
 
 	return entities
 end
@@ -23,12 +24,12 @@ function MaterialsFilter(mats)
 	for i = #mats, 1, -1 do
 		local mat = mats[i]
 
-		if (mat:find("fading")) then
+		if mat:find("fading") then
 			table.remove(mats, i)
 			goto continue
 		end
 		SetRandomSeed(1, 1)
-		if (mat:find("molten") and Random(1, 100) < 30) then
+		if mat:find("molten") and Random(1, 100) < 30 then
 			table.remove(mats, i)
 			goto continue
 		end

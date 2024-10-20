@@ -110,9 +110,7 @@ function OnPlayerSpawned(player)
 
 	----------------------------------
 
-	if GameHasFlagRun("fairmod_init") then
-		return
-	end
+	if GameHasFlagRun("fairmod_init") then return end
 	GameAddFlagRun("fairmod_init")
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
@@ -150,9 +148,7 @@ function OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-	if damage_model_comp then
-		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
-	end
+	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
@@ -194,9 +190,7 @@ local last_pause_was_inventory = false
 function OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if not last_pause_was_inventory and time_paused == 5 then
-		GameAddFlagRun("draw_evil_mode_text")
-	end
+	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
 end
 
