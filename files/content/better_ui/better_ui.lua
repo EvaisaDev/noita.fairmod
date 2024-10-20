@@ -255,18 +255,14 @@ local ui_displays = {
 			text = function()
 				return {
 					text = table.concat({
-						"Achievements Unlocked: ",
+						"Achievements: ",
 						GlobalsGetValue("fairmod_achievements_unlocked", "0"),
 						"/",
 						GlobalsGetValue("fairmod_total_achievements", "0"),
 					}),
 					tooltip = "Click to see them!",
 					on_click = function()
-						if GameHasFlagRun("fairmod_steam_achievement_window") then
-							GameRemoveFlagRun("fairmod_steam_achievement_window")
-						else
-							GameAddFlagRun("fairmod_steam_achievement_window")
-						end
+						fairmod_achievements_displaying_window = not fairmod_achievements_displaying_window
 					end,
 				}
 			end,
