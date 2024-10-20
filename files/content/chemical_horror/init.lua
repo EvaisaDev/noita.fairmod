@@ -40,6 +40,12 @@ end
 ]]
 --
 
+local translations = ModTextFileGetContent("data/translations/common.csv")
+local new_translations = ModTextFileGetContent("mods/noita.fairmod/files/content/chemical_horror/chemical_horror.csv")
+translations = translations .. "\n" .. new_translations .. "\n"
+translations = translations:gsub("\r", ""):gsub("\n\n+", "\n")
+ModTextFileSetContent("data/translations/common.csv", translations)
+
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
 
 --print("Example mod init done")
