@@ -1,4 +1,4 @@
-dofile_once( "data/scripts/lib/utilities.lua" )
+dofile_once("data/scripts/lib/utilities.lua")
 
 -- all functions below are optional and can be left out
 
@@ -37,7 +37,8 @@ function OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where
 	print( "===================================== random " .. tostring(x) )
 end
 
-]]--
+]]
+--
 
 local translations = ModTextFileGetContent("data/translations/common.csv")
 local new_translations = ModTextFileGetContent("mods/noita.fairmod/files/content/chemical_horror/chemical_horror.csv")
@@ -46,7 +47,5 @@ translations = translations:gsub("\r", ""):gsub("\n\n+", "\n")
 ModTextFileSetContent("data/translations/common.csv", translations)
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
-
-
 
 --print("Example mod init done")
