@@ -3,7 +3,7 @@
 local function has_player_tag(entity)
 	local tags = EntityGetTags(entity)
 	if not tags then return false end
-	for _, tag in ipairs { "player_unit", "player_projectile", "projectile_player" } do
+	for _, tag in ipairs({ "player_unit", "player_projectile", "projectile_player" }) do
 		if tags:find(tag) then return true end
 	end
 	return false
