@@ -3,9 +3,7 @@ dofile("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 fungal_shift = function(entity, x, y, debug_no_limits)
 	local parent = EntityGetParent(entity)
-	if parent ~= 0 then
-		entity = parent
-	end
+	if parent ~= 0 then entity = parent end
 
 	local frame = GameGetFrameNum()
 	local last_frame = tonumber(GlobalsGetValue("fungal_shift_last_frame", "-1000000"))
@@ -14,24 +12,23 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 	end
 
 	local comp_worldstate = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
-	if (comp_worldstate ~= nil and ComponentGetValue2(comp_worldstate, "EVERYTHING_TO_GOLD")) then
+	if comp_worldstate ~= nil and ComponentGetValue2(comp_worldstate, "EVERYTHING_TO_GOLD") then
 		return -- do nothing in case everything is gold
 	end
-	
+
 	SetRandomSeed(1, 1)
 
 	local liquids = MaterialsFilter(CellFactory_GetAllLiquids() or {})
 	local sands = MaterialsFilter(CellFactory_GetAllSands() or {})
 	local solids = MaterialsFilter(CellFactory_GetAllSolids() or {})
 
-
 	local function get_random_material(from)
-		if (from) then
+		if from then
 			local rand = Random(1, 3)
-			if (rand == 1) then
+			if rand == 1 then
 				local material = liquids[Random(1, #liquids)]
 				return { materials = { material }, name_material = material }
-			elseif (rand == 2) then
+			elseif rand == 2 then
 				local material = sands[Random(1, #sands)]
 				return { materials = { material }, name_material = material }
 			else
@@ -40,10 +37,10 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 			end
 		else
 			local rand = Random(1, 3)
-			if (rand == 1) then
+			if rand == 1 then
 				local material = liquids[Random(1, #liquids)]
 				return { material = material }
-			elseif (rand == 2) then
+			elseif rand == 2 then
 				local material = sands[Random(1, #sands)]
 				return { material = material }
 			else
@@ -83,9 +80,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 						to.material = random_from_array(greedy_materials)
 					end
 
-					if to.material == "grass_holy" and random_nexti(rnd, 1, 1000) ~= 1 then
-						to.material = "grass"
-					end
+					if to.material == "grass_holy" and random_nexti(rnd, 1, 1000) ~= 1 then to.material = "grass" end
 				end
 			end
 
@@ -94,13 +89,14 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 				-- apply effects
 				for i, it in ipairs(from.materials) do
-					print('from.materials (' .. tostring(from.materials) .. ':'.. type(from.materials) .. ')')
+					print("from.materials (" .. tostring(from.materials) .. ":" .. type(from.materials) .. ")")
 					local from_material = CellFactory_GetType(it)
 
 					from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(from_material)))
 					if from.name_material then
-						from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(
-						CellFactory_GetType(from.name_material))))
+						from_material_name = string.upper(
+							GameTextGetTranslatedOrNot(CellFactory_GetUIName(CellFactory_GetType(from.name_material)))
+						)
 					end
 
 					-- convert
@@ -110,10 +106,26 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 						converted_any = true
 
 						-- shoot particles of new material
-						GameCreateParticle(CellFactory_GetName(from_material), x - 10, y - 10, 20, rand(-100, 100),
-							rand(-100, -30), true, true)
-						GameCreateParticle(CellFactory_GetName(from_material), x + 10, y - 10, 20, rand(-100, 100),
-							rand(-100, -30), true, true)
+						GameCreateParticle(
+							CellFactory_GetName(from_material),
+							x - 10,
+							y - 10,
+							20,
+							rand(-100, 100),
+							rand(-100, -30),
+							true,
+							true
+						)
+						GameCreateParticle(
+							CellFactory_GetName(from_material),
+							x + 10,
+							y - 10,
+							20,
+							rand(-100, 100),
+							rand(-100, -30),
+							true,
+							true
+						)
 					end
 				end
 			end
@@ -127,7 +139,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 			GlobalsSetValue("fungal_shift_iteration", tostring(iter + 1))
 
 			-- remove tripping effect
-			EntityRemoveIngestionStatusEffect(entity, "TRIP");
+			EntityRemoveIngestionStatusEffect(entity, "TRIP")
 
 			-- audio
 			GameTriggerMusicFadeOutAndDequeueAll(5.0)
@@ -135,9 +147,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 			-- particle fx
 			local eye = EntityLoad("data/entities/particles/treble_eye.xml", x, y - 10)
-			if eye ~= 0 then
-				EntityAddChild(entity, eye)
-			end
+			if eye ~= 0 then EntityAddChild(entity, eye) end
 
 			-- log
 			local log_msg = ""
@@ -145,8 +155,11 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 				log_msg = GameTextGet("$logdesc_reality_mutation", from_material_name)
 				GamePrint(log_msg)
 			end
-			GamePrintImportant(random_from_array(log_messages), log_msg,
-				"data/ui_gfx/decorations/3piece_fungal_shift.png")
+			GamePrintImportant(
+				random_from_array(log_messages),
+				log_msg,
+				"data/ui_gfx/decorations/3piece_fungal_shift.png"
+			)
 			GlobalsSetValue("fungal_shift_last_frame", tostring(frame))
 
 			-- add ui icon
@@ -154,7 +167,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 			local children = EntityGetAllChildren(entity)
 			if children ~= nil then
 				for i, it in ipairs(children) do
-					if (EntityGetName(it) == "fungal_shift_ui_icon") then
+					if EntityGetName(it) == "fungal_shift_ui_icon" then
 						add_icon = false
 						break
 					end
@@ -163,12 +176,11 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 			if add_icon then
 				local icon_entity = EntityCreateNew("fungal_shift_ui_icon")
-				EntityAddComponent2(icon_entity, "UIIconComponent",
-					{
-						name = "$status_reality_mutation",
-						description = "$statusdesc_reality_mutation",
-						icon_sprite_file = "data/ui_gfx/status_indicators/fungal_shift.png"
-					})
+				EntityAddComponent2(icon_entity, "UIIconComponent", {
+					name = "$status_reality_mutation",
+					description = "$statusdesc_reality_mutation",
+					icon_sprite_file = "data/ui_gfx/status_indicators/fungal_shift.png",
+				})
 				EntityAddChild(entity, icon_entity)
 			end
 		end

@@ -1,5 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
+local colorblind_mode = dofile_once("mods/noita.fairmod/files/content/colorblind_mode/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -64,7 +65,7 @@ ModLuaFileAppend(
 )
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
+imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
@@ -93,6 +94,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
+	colorblind_mode.OnPlayerSpawned()
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -116,9 +118,7 @@ function OnPlayerSpawned(player)
 
 	----------------------------------
 
-	if GameHasFlagRun("fairmod_init") then
-		return
-	end
+	if GameHasFlagRun("fairmod_init") then return end
 	GameAddFlagRun("fairmod_init")
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
@@ -156,9 +156,7 @@ function OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-	if damage_model_comp then
-		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
-	end
+	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
@@ -203,9 +201,7 @@ local last_pause_was_inventory = false
 function OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if not last_pause_was_inventory and time_paused == 5 then
-		GameAddFlagRun("draw_evil_mode_text")
-	end
+	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
 end
 
@@ -213,6 +209,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
+		colorblind_mode.OnPausedChanged()
 	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
 	elseif not is_paused then
@@ -223,7 +220,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 end
 
 function OnPlayerDied(player)
-	if (not GameHasFlagRun("ending_game_completed")) then
+	if not GameHasFlagRun("ending_game_completed") then
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
 end
@@ -237,6 +234,7 @@ end
 -- Circle was here
 -- Hamis will be here
 -- Conga wuz here
+-- Heinermann was here
 
 -----##
 ----#o##

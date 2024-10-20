@@ -1,1 +1,1 @@
-ConvertEverythingToGold( "poo", "poo_fairmod_static" )
+ConvertEverythingToGold("poo", "poo_fairmod_static")

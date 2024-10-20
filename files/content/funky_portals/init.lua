@@ -2,15 +2,13 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local init = {}
 function init.OnMagicNumbersAndWorldSeedInitialized()
-
 	for entity_xml in nxml.edit_file("data/entities/buildings/teleport_liquid_powered.xml") do
 		entity_xml:add_child(nxml.new_element("LuaComponent", {
 			script_source_file = "mods/noita.fairmod/files/content/funky_portals/portal_handler.lua",
 			execute_on_added = "1",
-			execute_times = "1"
+			execute_times = "1",
 		}))
 	end
-
 end
 
 function init.OnPlayerSpawned(player)
@@ -22,33 +20,30 @@ function init.OnPlayerSpawned(player)
 	})
 end
 
-
-
 local function escape(str)
 	return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
 end
 
 local shader_append = function(find, append)
-
 	local path = "data/shaders/post_final.frag"
 
 	-- add to next line
-	local file = ModTextFileGetContent( path )
+	local file = ModTextFileGetContent(path)
 	local pos = string.find(file, escape(find))
 	if pos then
 		local pos2 = string.find(file, "\n", pos)
 		if pos2 then
 			local before = string.sub(file, 1, pos2)
 			local after = string.sub(file, pos2 + 1)
-			ModTextFileSetContent( path, before .. append .. after )
+			ModTextFileSetContent(path, before .. append .. after)
 		end
 	end
-	
-
 end
 
 -- Shader stolen from https://www.shadertoy.com/view/ftVfzh
-shader_append("varying vec2 tex_coord_fogofwar;", [[
+shader_append(
+	"varying vec2 tex_coord_fogofwar;",
+	[[
 /* VARIABLES */
 #define END_ZOOM 0.0005
 #define END_SPEED 0.002
@@ -84,9 +79,12 @@ vec4 render_pic_layer(vec2 fragCoord, vec3 color, float direction, float scale )
 
   return vec4(col) * vec4(color, 1.0); // Output to screen
 }
-]])
+]]
+)
 
-shader_append("gl_FragColor.a = 1.0;", [[
+shader_append(
+	"gl_FragColor.a = 1.0;",
+	[[
 	vec2 tex_coord_inverted = vec2(tex_coord.x, 1.0 - tex_coord.y);
 	vec4 end_color_ref = texture2D(tex_fg, tex_coord_inverted );
 
@@ -112,14 +110,12 @@ shader_append("gl_FragColor.a = 1.0;", [[
 
 		
 	}
-]])
+]]
+)
 
 GameSetPostFxTextureParameter("END_TEXTURE", "mods/noita.fairmod/files/content/funky_portals/end.png", 2, 3)
-
 
 -- doing this fixes the color channels for some reason
 local _, _, _ = ModImageMakeEditable("mods/noita.fairmod/files/content/funky_portals/end.png", 0, 0)
 
-
 return init
-

@@ -1,7 +1,23 @@
 dofile("data/scripts/lib/mod_settings.lua")
 local mod_id = "noita.fairmod"
 mod_settings_version = 1 -- This is a magic global that can be used to migrate settings to new mod versions. call mod_settings_get_version() before mod_settings_update() to get the old value.
-mod_settings = {}
+mod_settings = 
+{
+	{
+		category_id = "default_settings",
+		ui_name = "",
+		ui_description = "",
+		settings = {
+			{
+				id = "colorblind_mode",
+				ui_name = "Colorblindness Mode",
+				ui_description = "Makes you color blind.",
+				value_default = false,
+				scope = MOD_SETTING_SCOPE_RUNTIME,
+			},
+		},
+	},
+}
 
 local function PatchGamesInitlua()
 	local file = "data/scripts/init.lua"
@@ -9,19 +25,25 @@ local function PatchGamesInitlua()
 	local file_appends = ModLuaFileGetAppends(file)
 
 	for _, append in ipairs(file_appends) do
-		if append == patch then
-			return
-		end
+		if append == patch then return end
 	end
 
 	ModLuaFileAppend(file, patch)
 end
 
 local function PrintHamis()
-	local function head(text) return "\27[38;2;82;49;111m" .. text .. "\27[0m" end
-	local function eye(text) return "\27[38;2;199;239;99m" .. text .. "\27[0m" end
-	local function leg(text) return "\27[38;2;45;27;61m" .. text .. "\27[0m" end
-	local function toe(text) return "\27[38;2;102;78;129m" .. text .. "\27[0m" end
+	local function head(text)
+		return "\27[38;2;82;49;111m" .. text .. "\27[0m"
+	end
+	local function eye(text)
+		return "\27[38;2;199;239;99m" .. text .. "\27[0m"
+	end
+	local function leg(text)
+		return "\27[38;2;45;27;61m" .. text .. "\27[0m"
+	end
+	local function toe(text)
+		return "\27[38;2;102;78;129m" .. text .. "\27[0m"
+	end
 
 	print(head("         ######"))
 	print(head("         ######"))

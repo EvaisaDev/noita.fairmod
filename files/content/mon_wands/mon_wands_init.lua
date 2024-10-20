@@ -1,4 +1,3 @@
-
 local content = ModTextFileGetContent("data/entities/base_humanoid.xml")
 content = content:gsub(
 	"<Entity[^\n]*",

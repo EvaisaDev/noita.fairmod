@@ -17,4 +17,3 @@ if player_entity ~= nil then
 		PhysicsApplyForce(entity_id, dx / math.abs(dx) * urgency, dy / math.abs(dy) * urgency)
 	end
 end
-
