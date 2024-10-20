@@ -4,7 +4,7 @@
 
     <SpriteAnimatorComponent/>
     
-    <LifetimeComponent lifetime = 8/>
+    <LifetimeComponent lifetime = "8"/>
 
 	<GenomeDataComponent herd_id = "mage_swapper"/>
 
