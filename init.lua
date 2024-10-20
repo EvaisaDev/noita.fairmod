@@ -25,7 +25,6 @@ local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
-dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
 dofile_once("mods/noita.fairmod/files/content/wizard_crash/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_props/init.lua")
@@ -51,7 +50,6 @@ dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
 dofile_once("mods/noita.fairmod/files/content/permanent_self_damage/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
-ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
@@ -78,6 +76,7 @@ end
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
+	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
 end
 
