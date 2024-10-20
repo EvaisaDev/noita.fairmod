@@ -57,9 +57,10 @@ end
 
 ---starter potions, 70% chance to pull from this table
 ps.starterpotions = {
-	{	probability = 32.5, 	"aa_chaotic_pandorium"		},
-	{	probability = 6.5, 		"aa_unstable_pandorium"		},
-	{	probability = 6.5, 		"t_giga_slicing_liquid"	},
+	{	probability = 32.5, 	"water"			},
+	{	probability = 6.5, 		"mud"			},
+	{	probability = 6.5, 		"water_swamp"	},
+	{ 	probability = 6.5, 		"water_salt"	},
 	{	probability = 6.5, 		"swamp"			},
 	{	probability = 6.5, 		"snow"			},
 	{	probability = 5, 		"blood"			},
