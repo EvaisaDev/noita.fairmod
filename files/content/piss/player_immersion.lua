@@ -1,12 +1,18 @@
 local entity = GetUpdatedEntityID()
 
+dofile_once("data/scripts/debug/keycodes.lua")
+local piss_key = ModSettingGet("noita.fairmod.rebind_pee") or 19
+local shit_key = ModSettingGet("noita.fairmod.rebind_poo") or 5
+
+
+
 -- P to piss
 -- B to shit
-local piss_button = InputIsKeyDown(19)
-local shit_button = InputIsKeyDown(5)
+local piss_button = InputIsKeyDown(piss_key)
+local shit_button = InputIsKeyDown(shit_key)
 
-local piss_pressed = InputIsKeyJustDown(19)
-local shit_pressed = InputIsKeyJustDown(5)
+local piss_pressed = InputIsKeyJustDown(piss_key)
+local shit_pressed = InputIsKeyJustDown(shit_key)
 
 local x, y = EntityGetHotspot(entity, "belt_root", true, true)
 local controls_comp = EntityGetFirstComponentIncludingDisabled(entity, "ControlsComponent")
