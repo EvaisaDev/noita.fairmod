@@ -72,7 +72,7 @@ function surface_bad:rain_active()
 		return false
 	end
 
-	local player_id = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("player_polymorphed")[1]
+	local player_id = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("polymorphed_player")[1]
 	if not player_id then return true end
 
 	local x, y = EntityGetTransform(player_id)
