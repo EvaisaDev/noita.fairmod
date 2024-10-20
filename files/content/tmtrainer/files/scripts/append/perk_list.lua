@@ -4,58 +4,54 @@ dofile("mods/noita.fairmod/files/content/tmtrainer/files/scripts/icon_list.lua")
 -- Filter out perks not in the default perk pool
 local perk_pool = {}
 for _, perk in ipairs(perk_list) do
-    if not perk.not_in_default_perk_pool then
-        table.insert(perk_pool, perk)
-    end
+	if not perk.not_in_default_perk_pool then table.insert(perk_pool, perk) end
 end
 
 -- Function to get a random perk from the pool
 local function get_random_perk()
-    return perk_pool[Random(1, #perk_pool)]
+	return perk_pool[Random(1, #perk_pool)]
 end
 
 -- Function to get a random substring of specified size
 local function get_random_chunk(input, size)
-    if not input or input == "" then
-        return ""
-    end
-    local len = string.len(input)
-    if len <= size then
-        return input
-    else
-        local start_pos = Random(1, len - size + 1)
-        return string.sub(input, start_pos, start_pos + size - 1)
-    end
+	if not input or input == "" then return "" end
+	local len = string.len(input)
+	if len <= size then
+		return input
+	else
+		local start_pos = Random(1, len - size + 1)
+		return string.sub(input, start_pos, start_pos + size - 1)
+	end
 end
 
 -- Function to generate a random icon image
 local function generate_icon(index, original_icon, is_first, icon_type)
-    local icon_dir = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/"
-    local new_icon_path = icon_dir .. icon_type .. "_" .. index .. ".png"
+	local icon_dir = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/"
+	local new_icon_path = icon_dir .. icon_type .. "_" .. index .. ".png"
 
-    -- Get image IDs and dimensions
-    local original_icon_id, original_icon_width, original_icon_height = ModImageIdFromFilename(original_icon)
-    local new_icon_id, new_icon_width, new_icon_height = ModImageIdFromFilename(new_icon_path)
+	-- Get image IDs and dimensions
+	local original_icon_id, original_icon_width, original_icon_height = ModImageIdFromFilename(original_icon)
+	local new_icon_id, new_icon_width, new_icon_height = ModImageIdFromFilename(new_icon_path)
 
-    if is_first then
-        -- Copy the entire original icon onto the new icon
-        for i = 0, original_icon_width - 1 do
-            for j = 0, original_icon_height - 1 do
-                local color = ModImageGetPixel(original_icon_id, i, j)
-                ModImageSetPixel(new_icon_id, i, j, color)
-            end
-        end
-    else
-        -- Overlay random parts of the original icon onto the new icon
-        for i = 0, original_icon_width - 1 do
-            if Random(0, 100) < 30 then
-                for j = 0, original_icon_height - 1 do
-                    local color = ModImageGetPixel(original_icon_id, i, j)
-                    ModImageSetPixel(new_icon_id, i, j, color)
-                end
-            end
-        end
-    end
+	if is_first then
+		-- Copy the entire original icon onto the new icon
+		for i = 0, original_icon_width - 1 do
+			for j = 0, original_icon_height - 1 do
+				local color = ModImageGetPixel(original_icon_id, i, j)
+				ModImageSetPixel(new_icon_id, i, j, color)
+			end
+		end
+	else
+		-- Overlay random parts of the original icon onto the new icon
+		for i = 0, original_icon_width - 1 do
+			if Random(0, 100) < 30 then
+				for j = 0, original_icon_height - 1 do
+					local color = ModImageGetPixel(original_icon_id, i, j)
+					ModImageSetPixel(new_icon_id, i, j, color)
+				end
+			end
+		end
+	end
 end
 
 -- Main script execution
@@ -65,10 +61,9 @@ local TMTRAINER_INDEX = 0
 SetRandomSeed(0, 0)
 
 for i = 1, #perk_pool do
-    -- No need to set the random seed inside the loop
+	-- No need to set the random seed inside the loop
 
-	if(Random(1, 100) < 40)then
-
+	if Random(1, 100) < 40 then
 		local id = "TMTRAINER_" .. i
 		local ui_name_parts = {}
 		local ui_description_parts = {}
@@ -96,20 +91,13 @@ for i = 1, #perk_pool do
 			generate_icon(i, perk.perk_icon, j == 1, "perk_icon")
 
 			-- Update flags
-			if perk.usable_by_enemies == false then
-				usable_by_enemies = false
-			end
+			if perk.usable_by_enemies == false then usable_by_enemies = false end
 
-			if perk.stackable == false then
-				stackable = false
-			end
+			if perk.stackable == false then stackable = false end
 
 			-- Update game effect and particle effect
 			if perk.game_effect and perk.game_effect ~= "" then
-				if game_effect == nil or Random(0, 100) > 50 then
-	
-					game_effect = perk.game_effect
-				end
+				if game_effect == nil or Random(0, 100) > 50 then game_effect = perk.game_effect end
 			end
 
 			if perk.particle_effect and perk.particle_effect ~= "" then
@@ -120,17 +108,11 @@ for i = 1, #perk_pool do
 			end
 
 			-- Collect functions
-			if perk.func then
-				table.insert(funcs, perk.func)
-			end
+			if perk.func then table.insert(funcs, perk.func) end
 
-			if perk.func_remove then
-				table.insert(funcs_remove, perk.func_remove)
-			end
+			if perk.func_remove then table.insert(funcs_remove, perk.func_remove) end
 
-			if perk.func_enemy then
-				table.insert(funcs_enemy, perk.func_enemy)
-			end
+			if perk.func_enemy then table.insert(funcs_enemy, perk.func_enemy) end
 		end
 
 		-- Combine name and description parts

@@ -8,8 +8,7 @@ local bob_w = EntityGetVariable(entity_id, "fish_width", "int")
 local bob_speed_y = 0.0065
 local bob_speed_x = 0.01421
 
-
-local pos_x, pos_y = EntityGetTransform( entity_id )
+local pos_x, pos_y = EntityGetTransform(entity_id)
 
 if pos_x == 0 and pos_y == 0 then
 	-- get position from wand when starting
@@ -37,23 +36,21 @@ target_x = target_x + math.sin(time * bob_speed_x) * bob_w
 local dist_x = pos_x - target_x
 
 -- move towards target
-pos_x,pos_y = vec_lerp(pos_x, pos_y, target_x, target_y, lerp_amount)
-EntitySetTransform( entity_id, pos_x, pos_y, 0, 1, 1)
+pos_x, pos_y = vec_lerp(pos_x, pos_y, target_x, target_y, lerp_amount)
+EntitySetTransform(entity_id, pos_x, pos_y, 0, 1, 1)
 
 -- animation state
-edit_component( entity_id, "SpriteComponent", function(comp,vars)
-	
+edit_component(entity_id, "SpriteComponent", function(comp, vars)
 	-- check if changing the animation is needed based on current animation and heading
 	if dist_x < 2 then
 		--ComponentSetValue( comp, "rect_animation", mode.."right")
 
-		x, y, r = EntityGetTransform( entity_id )
+		x, y, r = EntityGetTransform(entity_id)
 
-		EntitySetTransform( entity_id, x, y, r, -1, 1 )
+		EntitySetTransform(entity_id, x, y, r, -1, 1)
 	elseif dist_x > 2 then
 		--ComponentSetValue( comp, "rect_animation", mode.."left")
-		x, y, r = EntityGetTransform( entity_id )
-		EntitySetTransform( entity_id, x, y, r, 1, 1 )
+		x, y, r = EntityGetTransform(entity_id)
+		EntitySetTransform(entity_id, x, y, r, 1, 1)
 	end
-
 end)

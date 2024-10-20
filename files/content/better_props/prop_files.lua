@@ -94,5 +94,5 @@ return {
 	"data/entities/props/suspended_tank_radioactive.xml",
 	"data/entities/props/vault_apparatus_01.xml",
 	"data/entities/props/vault_apparatus_02.xml",
-	"data/entities/projectiles/gasblob.xml",	-- root grower flower poison
+	"data/entities/projectiles/gasblob.xml", -- root grower flower poison
 }

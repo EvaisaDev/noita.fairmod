@@ -1,29 +1,27 @@
-
 local function escape(str)
 	return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
 end
 
 local shader_append = function(find, append)
-
 	local path = "data/shaders/post_final.frag"
 
 	-- add to next line
-	local file = ModTextFileGetContent( path )
+	local file = ModTextFileGetContent(path)
 	local pos = string.find(file, escape(find))
 	if pos then
 		local pos2 = string.find(file, "\n", pos)
 		if pos2 then
 			local before = string.sub(file, 1, pos2)
 			local after = string.sub(file, pos2 + 1)
-			ModTextFileSetContent( path, before .. append .. after )
+			ModTextFileSetContent(path, before .. append .. after)
 		end
 	end
-	
-
 end
 
 -- Shader stolen from https://www.shadertoy.com/view/MXS3WV
-shader_append("varying vec2 tex_coord_fogofwar;", [[
+shader_append(
+	"varying vec2 tex_coord_fogofwar;",
+	[[
 uniform sampler2D RAINBOW_TEXTURE;
 uniform sampler2D DOT_TEXTURE;
 uniform sampler2D CARD_ART_TEXTURE;
@@ -35,9 +33,12 @@ vec2 div_z(vec3 v)
 {
     return vec2(v) / v.z;
 }
-]])
+]]
+)
 
-shader_append("gl_FragColor.a = 1.0;", [[
+shader_append(
+	"gl_FragColor.a = 1.0;",
+	[[
 
 if(CARD_VISIBLE.x == 0.0) {
 	return;
@@ -112,11 +113,22 @@ combinedRGB *= cardArt.a;
 vec4 backgroundColor = vec4(color, 1.0);
 float mask = isCenterRect * cardArt.a;
 gl_FragColor = mix(backgroundColor, vec4(combinedRGB, cardArt.a), mask);
-]])
+]]
+)
 
-GameSetPostFxTextureParameter("RAINBOW_TEXTURE", "mods/noita.fairmod/files/content/trading_card_game/gradient2.png", 2, 3)
+GameSetPostFxTextureParameter(
+	"RAINBOW_TEXTURE",
+	"mods/noita.fairmod/files/content/trading_card_game/gradient2.png",
+	2,
+	3
+)
 GameSetPostFxTextureParameter("DOT_TEXTURE", "mods/noita.fairmod/files/content/trading_card_game/dots.png", 2, 3)
-GameSetPostFxTextureParameter("CARD_ART_TEXTURE", "mods/noita.fairmod/files/content/trading_card_game/card_test.png", 2, 3)
+GameSetPostFxTextureParameter(
+	"CARD_ART_TEXTURE",
+	"mods/noita.fairmod/files/content/trading_card_game/card_test.png",
+	2,
+	3
+)
 
 -- doing this fixes the color channels for some reason
 local _, _, _ = ModImageMakeEditable("mods/noita.fairmod/files/content/trading_card_game/gradient.png", 0, 0)
@@ -128,17 +140,16 @@ dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 local t = {}
 
-
 t.update = function()
 	local players = GetPlayers()
 
-	if(#players > 0)then
+	if #players > 0 then
 		--GameSetPostFxParameter("CARD_VISIBLE", 1, 0, 0, 0)
-		
+
 		local player = players[1]
 
 		local controls_component = EntityGetFirstComponent(player, "ControlsComponent")
-		if(controls_component ~= nil)then
+		if controls_component ~= nil then
 			local dir_x, dir_y = ComponentGetValue2(controls_component, "mAimingVectorNormalized")
 
 			GameSetPostFxParameter("CARD_AIM_DIRECTION", dir_x, dir_y, 0, 0)

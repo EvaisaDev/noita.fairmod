@@ -23,14 +23,14 @@ end
 --- Appends dofile_once(file) before the current file content.
 --- @param file string The file path to dofile_once
 function sm:AppendDofileOnceBefore(file)
-	local text = "dofile_once(\"" .. file .. "\")"
+	local text = 'dofile_once("' .. file .. '")'
 	self:AppendBefore(text)
 end
 
 --- Appends dofile(file) before the current file content.
 --- @param file string The file path to dofile
 function sm:AppendDofileBefore(file)
-	local text = "dofile(\"" .. file .. "\")"
+	local text = 'dofile("' .. file .. '")'
 	self:AppendBefore(text)
 end
 
@@ -69,9 +69,7 @@ end
 function sm:InsertBeforeLine(search_string, text_to_insert)
 	local lines = {}
 	for line in self.content:gmatch("[^\r\n]+") do
-		if line:find(search_string, 1, true) then
-			lines[#lines + 1] = text_to_insert
-		end
+		if line:find(search_string, 1, true) then lines[#lines + 1] = text_to_insert end
 		lines[#lines + 1] = line
 	end
 	self.content = table.concat(lines, "\n")
@@ -84,9 +82,7 @@ function sm:InsertAfterLine(search_string, text_to_insert)
 	local lines = {}
 	for line in self.content:gmatch("[^\r\n]+") do
 		lines[#lines + 1] = line
-		if line:find(search_string, 1, true) then
-			lines[#lines + 1] = text_to_insert
-		end
+		if line:find(search_string, 1, true) then lines[#lines + 1] = text_to_insert end
 	end
 	self.content = table.concat(lines, "\n")
 end
