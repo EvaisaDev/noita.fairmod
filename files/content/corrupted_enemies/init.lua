@@ -82,9 +82,9 @@ do
 
         --Generate a name
         local adjectives = {
-            "ancient", "brave", "calm", "dark", "eager", "fiery", "golden", "hidden", 
-            "icy", "jolly", "keen", "luminous", "mighty", "noble", "proud", "quiet", 
-            "radiant", "silent", "thundering", "vast", "wild", "zealous", "glorious", "mystic"
+            "Ancient", "Brave", "Calm", "Dark", "Eager", "Fiery", "Golden", "Hidden", 
+            "Icy", "Jolly", "Keen", "Luminous", "Mighty", "Noble", "Proud", "Quiet", 
+            "rRadiant", "Silent", "Thundering", "Vast", "Wild", "Zealous", "Glorious", "Mystic"
         }
         local nouns = {
             "dragon", "phoenix", "sword", "mountain", "river", "forest", "knight", "wolf", 
@@ -108,6 +108,7 @@ do
         --Generate enemy file
         do
             local can_fly = math.random(0,1)
+            --local is_worm = 1 --math.random(1,10)
 
             local path = table.concat({"data/entities/animals/noita.fairmod_enemy_corrupted_0",k,".xml"})
             local content = ModTextFileGetContent("data/entities/animals/scavenger_smg.xml")
@@ -117,7 +118,7 @@ do
             content = content:gsub("hp=\"1\"",table.concat({"hp=\"",tostring(math.random(1,40)),"\""}))
             content = content:gsub("can_fly=\"1\"", table.concat({"can_fly=\"",tostring(can_fly),"\""}))
             content = content:gsub("\"data/enemies_gfx/scavenger_smg%.xml\"", table.concat({"\"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0",k,".xml\""}))
-            
+
             ModTextFileSetContent(path, content)
 
         end
