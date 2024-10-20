@@ -1,4 +1,4 @@
-dofile_once( "data/scripts/lib/utilities.lua" )
+dofile_once("data/scripts/lib/utilities.lua")
 
 -- all functions below are optional and can be left out
 
@@ -37,10 +37,9 @@ function OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where
 	print( "===================================== random " .. tostring(x) )
 end
 
-]]--
+]]
+--
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
-
-
 
 --print("Example mod init done")
