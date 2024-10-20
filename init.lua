@@ -10,11 +10,11 @@ local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
---local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
+-- local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
-local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
+local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua") --- @type better_ui
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
-local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
+local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua") --- @type achievement_ui
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
@@ -116,9 +116,7 @@ function OnPlayerSpawned(player)
 
 	----------------------------------
 
-	if GameHasFlagRun("fairmod_init") then
-		return
-	end
+	if GameHasFlagRun("fairmod_init") then return end
 	GameAddFlagRun("fairmod_init")
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
@@ -156,9 +154,7 @@ function OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
-	if damage_model_comp then
-		ComponentSetValue2(damage_model_comp, "physics_objects_damage", true)
-	end
+	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
@@ -167,7 +163,7 @@ function OnPlayerSpawned(player)
 	})
 
 	-- debugging
-	--EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
+	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -181,17 +177,17 @@ function OnWorldPreUpdate()
 	end
 	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
-	--trading_cards.update()
+	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
-	better_ui.update()
+	better_ui:update()
 	loanshark.update()
-	achievements.update()
+	achievements:update()
 	ping_attack.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
-		--GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
+		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
 	end
 end
@@ -203,9 +199,7 @@ local last_pause_was_inventory = false
 function OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if not last_pause_was_inventory and time_paused == 5 then
-		GameAddFlagRun("draw_evil_mode_text")
-	end
+	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
 end
 
@@ -223,7 +217,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 end
 
 function OnPlayerDied(player)
-	if(not GameHasFlagRun("ending_game_completed"))then
+	if not GameHasFlagRun("ending_game_completed") then
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
 end
@@ -240,9 +234,9 @@ end
 -----##
 ----#o##
 ----###o
----%#o##
----%-##-%
---%--%--%
---%--%--%
---%--%--%
---#--#--#
+--- %#o##
+--- %-##-%
+-- %--%--%
+-- %--%--%
+-- %--%--%
+-- #--#--#

@@ -1,5 +1,5 @@
 dofile_once("data/scripts/lib/utilities.lua")
-dofile( "data/scripts/gun/gun_actions.lua" )
+dofile("data/scripts/gun/gun_actions.lua")
 
 fish_list = {
 	{
@@ -8,16 +8,14 @@ fish_list = {
 		description = "A common fish.",
 		drop_fish = true,
 		splash_screen = true,
-		sizes = {min = 0.2, max = 2.5},
+		sizes = { min = 0.2, max = 2.5 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/basic_fish.png",
-		func = function(fish, x, y)
-
-		end
+		func = function(fish, x, y) end,
 	},
 	{
 		id = "basic_fish2",
@@ -26,16 +24,14 @@ fish_list = {
 		drop_fish = true,
 		splash_screen = true,
 		always_discovered = true,
-		sizes = {min = 1.0, max = 4.5},
+		sizes = { min = 1.0, max = 4.5 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/basic_fish_2.png",
-		func = function(fish, x, y)
-
-		end
+		func = function(fish, x, y) end,
 	},
 	{
 		id = "hamis_fish",
@@ -43,16 +39,14 @@ fish_list = {
 		description = "This hämis seems to have evolved to live in water.",
 		drop_fish = true,
 		splash_screen = true,
-		sizes = {min = 1.0, max = 4.5},
+		sizes = { min = 1.0, max = 4.5 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/hamisfish.png",
-		func = function(fish, x, y)
-
-		end
+		func = function(fish, x, y) end,
 	},
 	{
 		id = "eel",
@@ -61,16 +55,14 @@ fish_list = {
 		drop_fish = true,
 		splash_screen = true,
 		always_discovered = true,
-		sizes = {min = 2.0, max = 9.0},
+		sizes = { min = 2.0, max = 9.0 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/eel.png",
-		func = function(fish, x, y)
-
-		end
+		func = function(fish, x, y) end,
 	},
 	{
 		id = "squid",
@@ -78,16 +70,14 @@ fish_list = {
 		description = "Seems to be some kind of weird Lamprey",
 		drop_fish = true,
 		splash_screen = true,
-		sizes = {min = 1.5, max = 4.0},
+		sizes = { min = 1.5, max = 4.0 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/tentacler.png",
-		func = function(fish, x, y)
-
-		end
+		func = function(fish, x, y) end,
 	},
 	{
 		id = "flask",
@@ -95,7 +85,7 @@ fish_list = {
 		description = "A potion flask with some kind of material inside.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = {min = 0.5, max = 5.0},
+		sizes = { min = 0.5, max = 5.0 },
 		price = 10000,
 		probability = 60,
 		difficulty = 5,
@@ -103,10 +93,9 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/potion.png",
 		func = function(fish, x, y)
-	
 			_, x, y = RaytraceSurfaces(x, y, x, y + 100)
 			EntityLoad("data/entities/items/pickup/potion_starting.xml", x, y)
-		end
+		end,
 	},
 	{
 		id = "wand",
@@ -114,7 +103,7 @@ fish_list = {
 		description = "You caught a wand! Very cool.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = {min = 0.5, max = 5.0},
+		sizes = { min = 0.5, max = 5.0 },
 		price = 10000,
 		probability = 40,
 		difficulty = 5,
@@ -122,10 +111,9 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/wand.png",
 		func = function(fish, x, y)
-			SetRandomSeed( x, y )
+			SetRandomSeed(x, y)
 
-			local biomes =
-			{
+			local biomes = {
 				[1] = 0,
 				[2] = 0,
 				[3] = 0,
@@ -160,23 +148,19 @@ fish_list = {
 				[32] = 6,
 				[33] = 6,
 			}
-		
-		
+
 			local biomepixel = math.floor(y / 512)
 			local biomeid = biomes[biomepixel] or 0
-			
-			if (biomepixel > 35) then
-				biomeid = 7
-			end
 
-					
-			if( biomeid < 1 ) then biomeid = 1 end
-			if( biomeid > 6 ) then biomeid = 6 end
+			if biomepixel > 35 then biomeid = 7 end
+
+			if biomeid < 1 then biomeid = 1 end
+			if biomeid > 6 then biomeid = 6 end
 
 			local item = "data/entities/items/"
 
-			local r = Random(0,100)
-			if( r <= 50 ) then 
+			local r = Random(0, 100)
+			if r <= 50 then
 				item = item .. "wand_level_0"
 			else
 				item = item .. "wand_unshuffle_0"
@@ -184,11 +168,10 @@ fish_list = {
 
 			item = item .. tostring(biomeid) .. ".xml"
 
-			
-			biomeid = (0.5 * biomeid) + ( 0.5 * biomeid * biomeid )
+			biomeid = (0.5 * biomeid) + (0.5 * biomeid * biomeid)
 
-			EntityLoad( item, x, y )
-		end
+			EntityLoad(item, x, y)
+		end,
 	},
 	{
 		id = "spell",
@@ -196,7 +179,7 @@ fish_list = {
 		description = "You caught a spell! Hope it's a good one.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = {min = 0.5, max = 5.0},
+		sizes = { min = 0.5, max = 5.0 },
 		price = 10000,
 		probability = 60,
 		difficulty = 5,
@@ -204,10 +187,9 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/spell.png",
 		func = function(fish, x, y)
-			SetRandomSeed( x, y )
+			SetRandomSeed(x, y)
 
-			local biomes =
-			{
+			local biomes = {
 				[1] = 0,
 				[2] = 0,
 				[3] = 0,
@@ -242,16 +224,12 @@ fish_list = {
 				[32] = 6,
 				[33] = 6,
 			}
-		
-		
+
 			local biomepixel = math.floor(y / 512)
 			local biomeid = biomes[biomepixel] or 0
-			
-			if (biomepixel > 35) then
-				biomeid = 7
-			end
 
-							
+			if biomepixel > 35 then biomeid = 7 end
+
 			local item = ""
 			local cardcost = 0
 
@@ -259,28 +237,32 @@ fish_list = {
 			local level = biomeid
 			biomeid = biomeid * biomeid
 
-			item = GetRandomAction( x, y, level, 0 )
+			item = GetRandomAction(x, y, level, 0)
 			cardcost = 0
 
-			for i,thisitem in ipairs( actions ) do
-				if ( string.lower( thisitem.id ) == string.lower( item ) ) then
-					price = math.max(math.floor( ( (thisitem.price * 0.30) + (70 * biomeid) ) / 10 ) * 10, 10)
+			for i, thisitem in ipairs(actions) do
+				if string.lower(thisitem.id) == string.lower(item) then
+					price = math.max(math.floor(((thisitem.price * 0.30) + (70 * biomeid)) / 10) * 10, 10)
 					cardcost = price
-					
-					if ( thisitem.spawn_requires_flag ~= nil ) then
+
+					if thisitem.spawn_requires_flag ~= nil then
 						local flag = thisitem.spawn_requires_flag
-						
-						if ( HasFlagPersistent( flag ) == false ) then
-							print( "Trying to spawn " .. tostring( thisitem.id ) .. " even though flag " .. tostring( flag ) .. " not set!!" )
+
+						if HasFlagPersistent(flag) == false then
+							print(
+								"Trying to spawn "
+									.. tostring(thisitem.id)
+									.. " even though flag "
+									.. tostring(flag)
+									.. " not set!!"
+							)
 						end
 					end
 				end
 			end
-			
 
-			CreateItemActionEntity( item, x, y )
-
-		end
+			CreateItemActionEntity(item, x, y)
+		end,
 	},
 }
 

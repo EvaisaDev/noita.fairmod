@@ -1,0 +1,14 @@
+name: Format
+on: [pull_request]
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: StyLua
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: v0.20.0
+          # CLI arguments
+          args: --check .

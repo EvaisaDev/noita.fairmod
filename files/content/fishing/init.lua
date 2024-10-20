@@ -1,14 +1,13 @@
-﻿ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
 --ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/fishing/files/gun.lua")
 
 local module = {}
 
 function module.OnMagicNumbersAndWorldSeedInitialized()
-
 	dofile("mods/noita.fairmod/files/content/fishing/definitions/bait_list.lua")
 	dofile("mods/noita.fairmod/files/content/fishing/definitions/fish_list.lua")
-	for k, v in pairs(bait_list)do
-		if(v.id ~= "any")then
+	for k, v in pairs(bait_list) do
+		if v.id ~= "any" then
 			bait_file = [[
 				<Entity name="bobber" tags="bobber" >
 					<Base file="data/entities/base_projectile.xml" >
@@ -136,14 +135,14 @@ function module.OnMagicNumbersAndWorldSeedInitialized()
 
 					<VariableStorageComponent
 						name="bait_type"
-						value_string="]]..v.id..[["
+						value_string="]] .. v.id .. [["
 					>
 					</VariableStorageComponent>
 					<SpriteComponent 
 						_tags="bait_sprite"
 						_enabled="1" 
 						alpha="1" 
-						image_file="]]..v.sprite_small..[["
+						image_file="]] .. v.sprite_small .. [["
 						offset_x = "4.5"
 						offset_y = "0"
 					>
@@ -154,28 +153,25 @@ function module.OnMagicNumbersAndWorldSeedInitialized()
 
 			--print(bait_file)
 
-			ModTextFileSetContent("mods/noita.fairmod/files/content/fishing/files/baits/entities/"..v.id..".xml", bait_file)
+			ModTextFileSetContent(
+				"mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml",
+				bait_file
+			)
 		end
 	end
-	
+
 	local function ends_with(str, ending)
 		return ending == "" or str:sub(-#ending) == ending
 	end
-
 end
 
-
-
 function module.OnPlayerSpawned(player)
-
-
 	x, y = EntityGetTransform(player)
 
 	local entity = EntityLoad("mods/noita.fairmod/files/content/fishing/files/rod/default_rod.xml", x, y)
 
 	GamePickUpInventoryItem(player, entity, false)
 end
-
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/files/content/fishing/GUIDs.txt")
 

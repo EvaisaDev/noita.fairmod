@@ -25,19 +25,25 @@ local function PatchGamesInitlua()
 	local file_appends = ModLuaFileGetAppends(file)
 
 	for _, append in ipairs(file_appends) do
-		if append == patch then
-			return
-		end
+		if append == patch then return end
 	end
 
 	ModLuaFileAppend(file, patch)
 end
 
 local function PrintHamis()
-	local function head(text) return "\27[38;2;82;49;111m" .. text .. "\27[0m" end
-	local function eye(text) return "\27[38;2;199;239;99m" .. text .. "\27[0m" end
-	local function leg(text) return "\27[38;2;45;27;61m" .. text .. "\27[0m" end
-	local function toe(text) return "\27[38;2;102;78;129m" .. text .. "\27[0m" end
+	local function head(text)
+		return "\27[38;2;82;49;111m" .. text .. "\27[0m"
+	end
+	local function eye(text)
+		return "\27[38;2;199;239;99m" .. text .. "\27[0m"
+	end
+	local function leg(text)
+		return "\27[38;2;45;27;61m" .. text .. "\27[0m"
+	end
+	local function toe(text)
+		return "\27[38;2;102;78;129m" .. text .. "\27[0m"
+	end
 
 	print(head("         ######"))
 	print(head("         ######"))

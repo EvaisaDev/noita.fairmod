@@ -11,8 +11,9 @@ local function escape(str)
 	return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
 end
 
-
-perkluacontent = perkluacontent:gsub(escape("if( Random( 1, 100 ) <= perk_destroy_chance ) then"), escape([[
+perkluacontent = perkluacontent:gsub(
+	escape("if( Random( 1, 100 ) <= perk_destroy_chance ) then"),
+	escape([[
 if( Random( 1, 100 ) > perk_destroy_chance ) then
 	if(perk_destroy_chance < 100)then 
 		if( perk_id == "PERKS_LOTTERY" )then
@@ -29,7 +30,8 @@ else
 			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/awdangit", 0, 0)
 		end
 	end
-]]))
+]])
+)
 
 ModTextFileSetContent("data/scripts/perks/perk.lua", perkluacontent)
 
@@ -37,8 +39,7 @@ gamba.PostWorldState = function()
 	--print(perkluacontent)
 end
 
-ModLuaFileAppend( "data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
-ModLuaFileAppend( "data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
-
+ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
+ModLuaFileAppend("data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
 
 return gamba
