@@ -1,10 +1,7 @@
 local entity = GetUpdatedEntityID()
 
-dofile_once("data/scripts/debug/keycodes.lua")
-local piss_key = ModSettingGet("noita.fairmod.rebind_pee") or 19
-local shit_key = ModSettingGet("noita.fairmod.rebind_poo") or 5
-
-
+local piss_key = tonumber(ModSettingGet("noita.fairmod.rebind_pee")) or 19
+local shit_key = tonumber(ModSettingGet("noita.fairmod.rebind_poo")) or 5
 
 -- P to piss
 -- B to shit
@@ -75,8 +72,8 @@ if ingestion_comp then
 
 			local character_data_comp = EntityGetFirstComponent(entity, "CharacterDataComponent")
 			if character_data_comp ~= nil then
-				local velocity_x, velocity_y = ComponentGetValueVector2(character_data_comp, "mVelocity")
-				local aim_dir_x, aim_dir_y = ComponentGetValueVector2(controls_comp, "mAimingVectorNormalized")
+				local velocity_x, velocity_y = ComponentGetValue2(character_data_comp, "mVelocity")
+				local aim_dir_x, aim_dir_y = ComponentGetValue2(controls_comp, "mAimingVectorNormalized")
 
 				local target_velocity_x = velocity_x + (aim_dir_x * 80)
 				local target_velocity_y = velocity_y + (aim_dir_y * 20)
