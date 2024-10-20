@@ -68,10 +68,6 @@ imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
-function OnModInit()
-	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
-end
-
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
@@ -90,6 +86,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/starting_inventory/tweak_inventory.lua")
 	dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 end
 
 function OnPlayerSpawned(player)
