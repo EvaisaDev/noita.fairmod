@@ -3,7 +3,7 @@ ModMaterialsFileAdd("mods/noita.fairmod/files/content/healthiummimicry/healthium
 local mimichealthium = {}
 
 function mimichealthium.OnPlayerSpawned(player_entity)
-	EntitySetDamageFromMaterial(player_entity, "healthiummimic", 0.008)
+	EntitySetDamageFromMaterial(player_entity, "healthiummimic", 0.004)
 end
 
 return mimichealthium

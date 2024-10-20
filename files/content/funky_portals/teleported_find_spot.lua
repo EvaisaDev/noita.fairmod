@@ -29,7 +29,7 @@ function teleported( from_x, from_y, to_x, to_y, portal_teleport )
 
 	local rand = Random(0, 100)
 
-	if((portal_teleport and rand < 20) or rand < 10)then
+	if((portal_teleport and rand < 10) or rand < 5)then
 		
 		if(portal_teleport)then
 			GameAddFlagRun("portal_malfunction")
@@ -181,7 +181,17 @@ function teleported( from_x, from_y, to_x, to_y, portal_teleport )
 						-- create hole
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
+							local return_portal = EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", new_x, new_y)
+							EntityAddComponent2(return_portal, "VariableStorageComponent", {
+								name="target_x",
+								value_float=from_x
+							})
+							EntityAddComponent2(return_portal, "VariableStorageComponent", {
+								name="target_y",
+								value_float=from_y
+							})
 						end)
+
 					end)
 	
 					print("Safe position found at " .. valid_positions[safe_index].x .. ", " .. valid_positions[safe_index].y)

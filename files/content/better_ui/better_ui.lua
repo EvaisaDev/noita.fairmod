@@ -1,25 +1,25 @@
 -- Funni ui that is shown on the right side of the screen.
 -- written by IQuant, Refactored by Eba
+-- Rewrited again by Lamia using his *beautiful* lib
 
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua")      --- @class better_ui:UI_class
+ui.text_scale = 0.75
 
 for content in nxml.edit_file("data/entities/animals/boss_centipede/sampo.xml") do
     content:add_child(nxml.new_element("LuaComponent", {
-        script_item_picked_up="mods/noita.fairmod/files/content/better_ui/append/sampo_pickup.lua",
-        remove_after_executed="1"
+        script_item_picked_up = "mods/noita.fairmod/files/content/better_ui/append/sampo_pickup.lua",
+        remove_after_executed = "1"
     }))
 end
 
-ModLuaFileAppend("data/entities/animals/boss_centipede/ending/sampo_start_ending_sequence.lua", "mods/noita.fairmod/files/content/better_ui/append/ending_sequence.lua")
+ModLuaFileAppend("data/entities/animals/boss_centipede/ending/sampo_start_ending_sequence.lua",
+    "mods/noita.fairmod/files/content/better_ui/append/ending_sequence.lua")
 
-local gui = GuiCreate()
-local w, h, cur_y
-local pending_info = {}
+local pending_info = {} --- @type display_entry[][]
 
-local module = {}
-
-local scale = 0.75
-
+--- @param frames number
+--- @return string
 local function frames_to_time(frames)
     local seconds_f = frames / 60
     local minutes = math.floor(seconds_f / 60)
@@ -35,19 +35,21 @@ local function global_greater_than_zero(global)
     return function() return (tonumber(GlobalsGetValue(global, "0")) or 0) > 0 end
 end
 
+--- @param label string
+--- @param var string
+--- @return fun():string[]
 local function speedrun_split(label, var)
     return function()
         local splt = GlobalsGetValue(var, "--")
         if splt ~= "--" then
             splt = frames_to_time(tonumber(splt))
         end
-        return {label, splt}
-
+        return { label, splt }
     end
 end
 
----@param ... string
----@return number[]
+--- @param ... string
+--- @return number[]
 local function get_any_nearby_tags(...)
     local tags = { ... }
     local x, y = GameGetCameraPos()
@@ -60,8 +62,8 @@ local function get_any_nearby_tags(...)
     return result
 end
 
----@param tagname string
----@return integer
+--- @param tagname string
+--- @return integer
 local function count_nearby_tags(tagname)
     return #get_any_nearby_tags(tagname)
 end
@@ -77,11 +79,14 @@ local moon_phases = {
     "Full Moon", "Waning Gibbous", "Third Quarter", "Waning Crescent", "New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous"
 }
 
+--- @class ui_displays
+--- @field normal ui_display[]
+--- @field speedrun ui_display[]
 local ui_displays = {
     normal = {
         {
             text = function()
-                return {text = "Debt: "..GlobalsGetValue("loan_shark_debt", "0"), color = {1, 0.2, 0.2}}
+                return { text = "Debt: " .. GlobalsGetValue("loan_shark_debt", "0"), color = { 1, 0.2, 0.2, 1 } }
             end,
             condition = global_greater_than_zero("loan_shark_debt"),
         },
@@ -139,13 +144,13 @@ local ui_displays = {
                 local gametime = get_ingame_time()
 
                 -- Time modifier
-                if gametime >= 4*60 + 30 and gametime < 6*60 then
+                if gametime >= 4 * 60 + 30 and gametime < 6 * 60 then
                     fishing_power = fishing_power * 1.3
-                elseif gametime >= 9*60 and gametime < 15*60 then
+                elseif gametime >= 9 * 60 and gametime < 15 * 60 then
                     fishing_power = fishing_power * 0.8
-                elseif gametime >= 18*60 and gametime < 19*60 + 30 then
+                elseif gametime >= 18 * 60 and gametime < 19 * 60 + 30 then
                     fishing_power = fishing_power * 1.3
-                elseif gametime >= 21*60 + 18 or gametime < 2*60 + 42 then
+                elseif gametime >= 21 * 60 + 18 or gametime < 2 * 60 + 42 then
                     fishing_power = fishing_power * 0.8
                 end
 
@@ -176,7 +181,7 @@ local ui_displays = {
         {
             text = function()
                 -- TODO get fish kills for this run or something
-                return GlobalsGetValue("fish_caught", "0").." fish caught"
+                return GlobalsGetValue("fish_caught", "0") .. " fish caught"
             end,
             condition = global_greater_than_zero("fish_caught")
         },
@@ -206,9 +211,9 @@ local ui_displays = {
             text = function()
                 local enemy_count = count_nearby_tags("enemy")
                 if enemy_count == 1 then
-                    return enemy_count.." enemy nearby"
+                    return enemy_count .. " enemy nearby"
                 else
-                    return enemy_count.." enemies nearby"
+                    return enemy_count .. " enemies nearby"
                 end
             end
         },
@@ -216,9 +221,9 @@ local ui_displays = {
             text = function()
                 local times_taken_piss = tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0
                 if times_taken_piss == 1 then
-                    return times_taken_piss.." piss taken"
+                    return times_taken_piss .. " piss taken"
                 else
-                    return times_taken_piss.." pisses taken"
+                    return times_taken_piss .. " pisses taken"
                 end
             end,
             condition = global_greater_than_zero("TIMES_TOOK_PISS")
@@ -227,19 +232,42 @@ local ui_displays = {
             text = function()
                 local times_taken_shit = tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0
                 if times_taken_shit == 1 then
-                    return times_taken_shit.." shit taken"
+                    return times_taken_shit .. " shit taken"
                 else
-                    return times_taken_shit.." shits taken"
+                    return times_taken_shit .. " shits taken"
                 end
             end,
             condition = global_greater_than_zero("TIMES_TOOK_SHIT")
         },
-		{
-			text = function()
-				return "Wins while using mod: "..tostring((ModSettingGet("fairmod_win_count") or 0))
-			end,
-			condition = function() return (ModSettingGet("fairmod_win_count") or 0) > 0 end
-		},
+        {
+            text = function()
+                return {
+                    text = table.concat { "Achievements Unlocked: ", GlobalsGetValue("fairmod_achievements_unlocked", "0"), "/", GlobalsGetValue(
+                        "fairmod_total_achievements", "0") },
+                    tooltip = "Click to see them!",
+                    on_click = function()
+                        if GameHasFlagRun("fairmod_steam_achievement_window") then
+                            GameRemoveFlagRun("fairmod_steam_achievement_window")
+                        else
+                            GameAddFlagRun("fairmod_steam_achievement_window")
+                        end
+                    end
+                }
+            end,
+            condition = global_greater_than_zero("fairmod_achievements_unlocked"),
+        },
+        {
+            text = function()
+                return "Wins while using mod: " .. tostring((ModSettingGet("fairmod_win_count") or 0))
+            end,
+            condition = function() return (ModSettingGet("fairmod_win_count") or 0) > 0 end
+        },
+        {
+            text = function()
+                return "Deaths while using mod: " .. tostring(ModSettingGet("fairmod.deaths") or 0)
+            end,
+            condition = function() return (ModSettingGet("fairmod.deaths") or 0) > 0 end
+        },
         {
             text = "",
             condition = has_flag_run("gamblecore_found"),
@@ -252,9 +280,9 @@ local ui_displays = {
             text = function()
                 local times_won = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) or 0
                 if times_won == 1 then
-                    return "Won "..times_won.. " time"
+                    return "Won " .. times_won .. " time"
                 else
-                    return "Won "..times_won.. " times"
+                    return "Won " .. times_won .. " times"
                 end
             end,
             condition = has_flag_run("gamblecore_found"),
@@ -263,9 +291,9 @@ local ui_displays = {
             text = function()
                 local times_lost_in_a_row = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0
                 if times_lost_in_a_row == 1 then
-                    return "Lost "..times_lost_in_a_row.." time since last win"
+                    return "Lost " .. times_lost_in_a_row .. " time since last win"
                 else
-                    return "Lost "..times_lost_in_a_row.." times since last win"
+                    return "Lost " .. times_lost_in_a_row .. " times since last win"
                 end
             end,
             condition = has_flag_run("gamblecore_found"),
@@ -275,9 +303,9 @@ local ui_displays = {
                 local times_lost_in_a_row = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0
                 if times_lost_in_a_row > 2 then
                     local p1 = 0.1
-                    local p = math.pow((1-p1), times_lost_in_a_row+1)
-                    local pf = string.format("%.2f %%", p*100)
-                    return "Probability of losing "..(times_lost_in_a_row+1).." times in row is ".. pf
+                    local p = math.pow((1 - p1), times_lost_in_a_row + 1)
+                    local pf = string.format("%.2f %%", p * 100)
+                    return "Probability of losing " .. (times_lost_in_a_row + 1) .. " times in row is " .. pf
                 else
                     return nil
                 end
@@ -318,7 +346,7 @@ local ui_displays = {
         },
         {
             text = function()
-                return {"Current time: ", frames_to_time(GameGetFrameNum())}
+                return { "Current time: ", frames_to_time(GameGetFrameNum()) }
             end,
         },
         {
@@ -329,41 +357,61 @@ local ui_displays = {
 
 local current_display = "normal"
 
-local function render_info(info, x_shift)
-    -- Render the first text entry
-    local first_entry = info[1]
+--- Draws entry
+--- @param entry_data display_entry
+function ui:draw_entry_data(entry_data)
     local text = ""
-	local color = {1, 1, 1, 1}
-    if type(first_entry) == "string" then
-        text = first_entry
-    elseif type(first_entry) == "table" then
-        text = first_entry.text or ""
-		color = first_entry.color or color
+    local color = { 1, 1, 1, 1 }
+    if type(entry_data) == "string" then
+        text = entry_data
+    elseif type(entry_data) == "table" then
+        text = entry_data.text or "" --[[@as string]]
+        color = entry_data.color or color
     end
-	GuiColorSetForNextWidget(gui, color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
-    GuiText(gui, w - x_shift - 10, cur_y, text, scale)
+    self:Color(color[1] or 1, color[2] or 1, color[3] or 1, color[4] or 1)
+    local x = self.dim.x - self.x_shift - 10
+    local text_w = self:GetTextDimension(text)
+    local hovered = self:IsHoverBoxHovered(x, self.y, text_w, 7, true)
+    if hovered then
+        if entry_data.tooltip then
+            local tp_width = self:GetTextDimension(entry_data.tooltip)
+            self:ShowTooltip(x - tp_width - 10, self.y, entry_data.tooltip)
+        end
+        if entry_data.on_click and self:IsLeftClicked() then
+            entry_data.on_click()
+        end
+    end
+    self:Text(x, self.y, text)
+end
+
+--- Draws info
+--- @param info display_entry[]
+function ui:draw_info(info)
+    -- Render the first text entry
+    self:draw_entry_data(info[1])
 
     -- Render additional text entries aligned to the right
     local total_width = 10
     for i = #info, 2, -1 do
         local entry = info[i]
         local entry_text = ""
-		local entry_color = {1, 1, 1, 1}
+        local entry_color = { 1, 1, 1, 1 }
         if type(entry) == "string" then
             entry_text = entry
         elseif type(entry) == "table" then
-            entry_text = entry.text or ""
-			entry_color = entry.color or entry_color
+            entry_text = entry.text or "" --[[@as string]]
+            entry_color = entry.color or entry_color
         end
-        local tw, _ = GuiGetTextDimensions(gui, entry_text, scale)
-		GuiColorSetForNextWidget(gui, entry_color[1] or 1, entry_color[2] or 1, entry_color[3] or 1, entry_color[4] or 1)
-        GuiText(gui, w - total_width - tw, cur_y, entry_text, scale)
+        local tw, _ = self:GetTextDimension(entry_text)
+        self:Color(entry_color[1] or 1, entry_color[2] or 1, entry_color[3] or 1, entry_color[4] or 1)
+        self:Text(self.dim.x - total_width - tw, self.y, entry_text)
         total_width = total_width + tw
     end
-    cur_y = cur_y + 9
+    self.y = self.y + 9
 end
 
-local function calc_max_length()
+--- Calculate max entry
+function ui:get_max_length()
     local c_max = 0
     for _, info in ipairs(pending_info) do
         local first_entry = info[1]
@@ -371,20 +419,48 @@ local function calc_max_length()
         if type(first_entry) == "string" then
             text = first_entry
         elseif type(first_entry) == "table" then
-            text = first_entry.text or ""
+            text = first_entry.text or "" --[[@as string]]
         end
-        local tw, _ = GuiGetTextDimensions(gui, text, scale)
+        local tw, _ = self:GetTextDimension(text)
         c_max = math.max(c_max, tw)
     end
-    return c_max
+    self.x_shift = c_max
 end
 
-function module.update()
-    GuiStartFrame(gui)
-    GuiZSet(gui, 10)
+--- Process entry before drawing
+--- @param entry ui_display
+function ui:process_entry(entry)
+    if entry.condition and not entry.condition() then return end
 
-    w, h = GuiGetScreenDimensions(gui)
-    cur_y = 120
+    local text = entry.text
+    if type(text) == "function" then
+        text = text()
+    end
+    if not text then return end
+
+    if type(text) == "string" or type(text) == "table" then
+        -- Handle text being a string or table
+        -- For consistency, wrap single strings in a table
+        if type(text) == "string" then
+            text = { text }
+        end
+
+        if (text.text) then
+            text = { text }
+        end
+
+        table.insert(pending_info, text)
+    end
+end
+
+--- Draws gui
+function ui:update()
+    self:StartFrame()
+    GuiZSet(self.gui, 10)
+
+    self:UpdateDimensions()
+
+    self.y = 120
     pending_info = {}
 
     -- Determine which display to use
@@ -396,34 +472,14 @@ function module.update()
 
     local display_entries = ui_displays[current_display]
 
-    for _, entry in ipairs(display_entries) do
-        local condition_met = true
-        if entry.condition then
-            condition_met = entry.condition()
-        end
-
-        if condition_met then
-            local text = entry.text
-            if type(text) == "function" then
-                text = text()
-            end
-            if text ~= nil then
-                if type(text) == "string" or type(text) == "table" then
-                    -- Handle text being a string or table
-                    -- For consistency, wrap single strings in a table
-                    if type(text) == "string" then
-                        text = {text}
-                    end
-                    table.insert(pending_info, text)
-                end
-            end
-        end
+    for i = 1, #display_entries do
+        self:process_entry(display_entries[i])
     end
 
-    local x_shift = calc_max_length()
-    for _, info in ipairs(pending_info) do
-        render_info(info, x_shift)
+    self:get_max_length()
+    for i = 1, #pending_info do
+        self:draw_info(pending_info[i])
     end
 end
 
-return module
+return ui

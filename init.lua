@@ -9,13 +9,13 @@ local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
 local gamblecore = dofile_once("mods/noita.fairmod/files/content/gamblecore/init.lua")
 local funky_portals = dofile_once("mods/noita.fairmod/files/content/funky_portals/init.lua")
-local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
+-- local trading_cards = dofile_once("mods/noita.fairmod/files/content/trading_card_game/init.lua")
 local evil_nuggets = dofile_once("mods/noita.fairmod/files/content/evil_nuggets/init.lua")
-local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua")
+local better_ui = dofile_once("mods/noita.fairmod/files/content/better_ui/better_ui.lua") --- @type better_ui
 local loanshark = dofile_once("mods/noita.fairmod/files/content/loan_shark/init.lua")
-local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua")
---local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
---local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
+local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/init.lua") --- @type achievement_ui
+local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
+local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
@@ -63,7 +63,7 @@ ModLuaFileAppend(
 )
 
 -- Optional imgui dep
-imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
+imgui = load_imgui and load_imgui { mod = "noita.fairmod", version = "1.0.0" }
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 
@@ -160,6 +160,9 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame = 1,
 		execute_on_added = true,
 	})
+
+	-- debugging
+	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -173,17 +176,17 @@ function OnWorldPreUpdate()
 	end
 	nukes.OnWorldPreUpdate()
 	input_delay.OnWorldPreUpdate()
-	trading_cards.update()
+	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
-	better_ui.update()
+	better_ui:update()
 	loanshark.update()
-	achievements.update()
+	achievements:update()
 	ping_attack.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
-		--GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
+		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
 	end
 end
@@ -214,6 +217,12 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	end
 end
 
+function OnPlayerDied(player)
+	if (not GameHasFlagRun("ending_game_completed")) then
+		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
+	end
+end
+
 -- Copi was here
 -- Dexter is here
 -- Moldos was here
@@ -226,9 +235,9 @@ end
 -----##
 ----#o##
 ----###o
----%#o##
----%-##-%
---%--%--%
---%--%--%
---%--%--%
---#--#--#
+--- %#o##
+--- %-##-%
+-- %--%--%
+-- %--%--%
+-- %--%--%
+-- #--#--#

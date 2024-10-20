@@ -1,3 +1,4 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 achievements = {
 	{
 		name = "Shitted",
@@ -65,7 +66,7 @@ achievements = {
 	{
 		name = "The Things In Question",
 		description = "Peak content unlocked! :check:",
-		icon = "mods/noita.fairmod/files/content/achievements/icons/copith.png",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copis_things.png",
 		flag = "achievement_copis_things",
 		unlock = function()
 			return ModIsEnabled("copis_things")
@@ -113,7 +114,7 @@ achievements = {
 		icon = "mods/noita.fairmod/files/content/achievements/icons/fake_heart_attack.png",
 		flag = "achievement_fake_heart_attack",
 		unlock = function()
-			return Random(1, 108000) == 1
+			return #(GetPlayers())>=1 and Random(1, 108000) == 1
 		end
 	},
 	{
@@ -214,6 +215,24 @@ achievements = {
 		unlock = function()
 			return GlobalsGetValue("fish_caught", "0") ~= "0"
 		end
+	},
+	{
+		name = "Baby Steps",
+		description = "You died :(",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/dead.png",
+		flag = "achievement_dead",
+		unlock = function()
+			return StatsGetValue("dead") ~= "0"
+		end
+	},
+	{
+		name = "Jeffrey Preston Bezos ",
+		description = "Approx Net Worth: $2.147B",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/infinite_gold.png",
+		flag = "achievement_infinite_gold",
+		unlock = function()
+			return StatsGetValue("gold_infinite") ~= "0"
+		end
 	}
 }
 
@@ -245,6 +264,97 @@ for i=1, 10 do
 		flag = "god_slayer_" .. i,
 		unlock = function()
 			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= i
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Fire In The Hole " .. romanize(i),
+		description = "You shot " .. tostring(2^i) .. " times!",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/shot_count_", i, ".png"},
+		flag = "shot_count_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("projectiles_shot")) >= 2^i
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "New Kicks " .. romanize(i),
+		description = "You kicked " .. tostring(2^i) .. " times!",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/kick_count_", i, ".png"},
+		flag = "kick_count_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("kicks")) >= 2^i
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Trailblazer " .. romanize(i),
+		description = "Current streak:  " .. tostring(2^i),
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/streak_", i, ".png"},
+		flag = "streak_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("streaks")) >= 2^i
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Survivor " .. romanize(i),
+		description = "Session Time:  " .. tostring(2^i),
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/session_time_", i, ".png"},
+		flag = "playtime_" .. i,
+		unlock = function()
+			return (tonumber(StatsGetValue("playtime")) >= 2^i) and #(GetPlayers())>1
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Healthy " .. romanize(i),
+		description = "That's at least " .. tostring(2^i + 100) .. "max HP!",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/max_hp_", i, ".png"},
+		flag = "hp_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("hp")) >= 2^i + 100
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Rags to Riches " .. romanize(i),
+		description = "Woah $" .. tostring(2^i) .. ", Nice!",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/gold_", i, ".png"},
+		flag = "gold_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("gold")) >= 2^i
+		end
+	}
+end
+
+ach_len = #achievements
+for i=1, 10 do
+	achievements[ach_len+i] = {
+		name = "Brittle Bones Noita " .. romanize(i),
+		description = "You've soaked up " .. tostring(2^i * 25) .. " damage!",
+		icon = table.concat{"mods/noita.fairmod/files/content/achievements/icons/damage_taken_", i, ".png"},
+		flag = "damage_taken_" .. i,
+		unlock = function()
+			return tonumber(StatsGetValue("damage_taken") * 25) >= (2^i) * 25
 		end
 	}
 end

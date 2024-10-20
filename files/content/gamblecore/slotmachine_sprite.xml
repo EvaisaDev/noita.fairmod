@@ -64,4 +64,16 @@
 	frames_per_row="1"
 	loop="1"   >
 	</RectAnimation>
+
+	<RectAnimation
+	name="broken"
+	pos_x="0"
+	pos_y="100"
+	frame_count="1"
+	frame_width="24"
+	frame_height="25"
+	frame_wait="0.04"
+	frames_per_row="1"
+	loop="1"   >
+	</RectAnimation>
 </Sprite>

@@ -8,9 +8,65 @@ local sprite_component = EntityGetFirstComponent( entity_id, "SpriteComponent", 
 
 local cost_sprite = EntityGetFirstComponent( entity_id, "SpriteComponent", "cost" )
 
-current_cost = current_cost or 100
+-- biome based cost
+
+SetRandomSeed( x, y )
+
+local biomes =
+{
+	[1] = 0,
+	[2] = 0,
+	[3] = 0,
+	[4] = 1,
+	[5] = 1,
+	[6] = 1,
+	[7] = 2,
+	[8] = 2,
+	[9] = 2,
+	[10] = 2,
+	[11] = 2,
+	[12] = 2,
+	[13] = 3,
+	[14] = 3,
+	[15] = 3,
+	[16] = 3,
+	[17] = 4,
+	[18] = 4,
+	[19] = 4,
+	[20] = 4,
+	[21] = 5,
+	[22] = 5,
+	[23] = 5,
+	[24] = 5,
+	[25] = 6,
+	[26] = 6,
+	[27] = 6,
+	[28] = 6,
+	[29] = 6,
+	[30] = 6,
+	[31] = 6,
+	[32] = 6,
+	[33] = 6,
+}
+
+
+local biomepixel = math.floor(y / 512)
+local biomeid = biomes[biomepixel] or 0
+
+if( biomeid < 1 ) then biomeid = 1 end
+if( biomeid > 6 ) then biomeid = 6 end
+
+biomeid = (0.5 * biomeid) + ( 0.5 * biomeid * biomeid )
+local biomecost = ( biomeid * 100 )
+
+--------------------
+
+current_cost = current_cost or biomecost
 current_winnings = current_winnings or 200
-win_chance = win_chance or 20
+win_chance = tonumber(GlobalsGetValue("GAMBLECORE_WIN_CHANCE", "20"))
+
+broken = broken or false
+broken_timer = broken_timer or 0
 
 if(debug_free)then
 	current_cost = 0
@@ -121,6 +177,7 @@ local gamble_states = {
 state = state or 4
 time = time or 0
 will_win = will_win or false
+will_break = will_break or false
 
 if(currently_gambling)then
 	time = time + 1
@@ -134,6 +191,9 @@ if(currently_gambling)then
 		end
 
 		if(gamble_states[state].is_win_condition)then
+			if(will_break)then
+				return
+			end
 			
 			if(will_win)then
 				-- better_ui integration
@@ -148,6 +208,8 @@ if(currently_gambling)then
 				-- drop gold
 
 				win_chance = math.max(win_chance - 1, win_chance * 0.5)
+
+				GlobalsSetValue("GAMBLECORE_WIN_CHANCE", tostring(win_chance))
 
 				current_winnings = 200
 
@@ -171,11 +233,24 @@ if(currently_gambling)then
 				EntityRefreshSprite( entity_id, sprite_component )
 			end
 		else
+			if(broken)then
+				return
+			end
 			GamePlayAnimation( entity_id, gamble_states[state].animation, 1 )
 			ComponentSetValue2(sprite_component, "rect_animation", gamble_states[state].animation)
 			EntityRefreshSprite( entity_id, sprite_component )
 
 			if(gamble_states[state].play_win_sound)then
+				if(will_break)then
+					broken = true
+
+					local explosion = EntityLoad("mods/noita.fairmod/files/content/gamblecore/explosion.xml", x, y - 12)
+	
+					EntityRemoveComponent( entity_id, cost_sprite )
+					EntityAddChild(entity_id, explosion)
+					GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/break", 0, 0)
+					return
+				end
 				if(will_win)then
 					GamePlaySound("mods/noita.fairmod/fairmod.bank", "gamblecore/icantstopwinning", 0, 0)
 				else
@@ -189,10 +264,19 @@ if(currently_gambling)then
 	
 end
 
+if(broken)then
+	broken_timer = broken_timer + 1
+	if(broken_timer == 35)then
+		GamePlayAnimation( entity_id, "broken", 1 )
+		ComponentSetValue2(sprite_component, "rect_animation", "broken")
+		EntityRefreshSprite( entity_id, sprite_component )
+	end
+end
+
 -- LETS GO GAMBLING
 function interacting( entity_who_interacted, entity_interacted, interactable_name )
 
-	if(interactable_name == "interact")then
+	if(interactable_name == "interact" and not broken and not currently_gambling)then
 		-- better_ui integration
 		GameAddFlagRun("gamblecore_found")
 
@@ -204,6 +288,13 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 				GamePrint("You don't have enough money!")
 				return
 			else
+
+				if(Random(1, 100) == 1)then
+					will_break = true
+					local interactible_component = EntityGetFirstComponent( entity_interacted, "InteractableComponent" )
+					EntityRemoveComponent( entity_interacted, interactible_component )
+				end
+
 				currently_gambling = true
 				state = 1
 				GamePlayAnimation( entity_interacted, gamble_states[state].animation, 1 )
@@ -218,6 +309,7 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
 					time = -30
 					lets_go_gambling = true
 				end
+				current_cost = math.floor(current_cost * 1.5)
 				ComponentSetValue2(wallet, "money", money - current_cost)
 				current_winnings = current_winnings + (current_cost * 2)
 			end
