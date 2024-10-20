@@ -131,15 +131,12 @@ local function create_tmtrainer_action(action_type, index)
 	local sprite = "mods/noita.fairmod/files/content/tmtrainer/files/spell_icons/" .. index .. ".png"
 	local custom_xml_file = nil
 
-    for i, added_action in ipairs(added_actions) do
-
+	for i, added_action in ipairs(added_actions) do
 		local id = added_action.id
 
 		-- if id starts with RANDOM_ we ignore it
-		if string.sub(id, 1, 7) == "RANDOM_" then
-			goto continue
-		end
-		
+		if string.sub(id, 1, 7) == "RANDOM_" then goto continue end
+
 		local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
 		local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
 
@@ -275,25 +272,25 @@ local function create_tmtrainer_action(action_type, index)
 		end
 	end
 
-    -- Create the new action
-    local new_action = {
-        id = "TMTRAINER_" .. tostring(index),
-        name = name,
-        description = description,
-        sprite = sprite,
-        type = action_type,
-        spawn_level = spawn_level,
-        spawn_probability = spawn_probability,
-        price = price,
-        mana = mana,
-        max_uses = max_uses,
-        custom_xml_file = custom_xml_file,
+	-- Create the new action
+	local new_action = {
+		id = "TMTRAINER_" .. tostring(index),
+		name = name,
+		description = description,
+		sprite = sprite,
+		type = action_type,
+		spawn_level = spawn_level,
+		spawn_probability = spawn_probability,
+		price = price,
+		mana = mana,
+		max_uses = max_uses,
+		custom_xml_file = custom_xml_file,
 		pandorium_ignore = true,
-        tm_trainer = true,
-        action = function(recursion_level, iteration)
-            action_function(recursion_level, iteration)
-        end,
-    }
+		tm_trainer = true,
+		action = function(recursion_level, iteration)
+			action_function(recursion_level, iteration)
+		end,
+	}
 
 	return new_action
 end
