@@ -48,7 +48,7 @@ for collapse_trigger in nxml.edit_file("data/entities/buildings/workshop_exit.xm
 	collision:set("width", 150)
 
 	local collision2 = nxml.new_element("CollisionTriggerComponent", MergeTables(collision.attr))
-	collision2:set("required_tag", "player_polymorphed")
+	collision2:set("required_tag", "polymorphed_player")
 
 	collapse_trigger:add_child(nxml.new_element("Entity", {}, {
 		nxml.new_element("InheritTransformComponent", {}, {

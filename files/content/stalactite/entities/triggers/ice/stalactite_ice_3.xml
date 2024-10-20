@@ -31,7 +31,7 @@
 		width="12"
 		height="300"
 		radius="300"
-		required_tag="player_polymorphed"
+		required_tag="polymorphed_player"
 		>
 	</CollisionTriggerComponent>
 
