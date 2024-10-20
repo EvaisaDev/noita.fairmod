@@ -18,4 +18,3 @@ for _, entity_file in ipairs(allowed_items) do
 end
 
 return module
-

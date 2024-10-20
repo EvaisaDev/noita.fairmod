@@ -1,8 +1,14 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local hamis_file = "data/entities/animals/longleg.xml"
-local hamisits = { "data/ragdolls/longleg/head", "data/ragdolls/longleg/leg1", "data/ragdolls/longleg/foot1",
-	"data/ragdolls/longleg/leg2", "data/ragdolls/longleg/foot2", "data/ragdolls/longleg/leg3",
-	"data/ragdolls/longleg/foot3" }
+local hamisits = {
+	"data/ragdolls/longleg/head",
+	"data/ragdolls/longleg/leg1",
+	"data/ragdolls/longleg/foot1",
+	"data/ragdolls/longleg/leg2",
+	"data/ragdolls/longleg/foot2",
+	"data/ragdolls/longleg/leg3",
+	"data/ragdolls/longleg/foot3",
+}
 
 local hamis_xml = nxml.parse(ModTextFileGetContent(hamis_file))
 
@@ -13,7 +19,8 @@ hamis_xml:add_child(nxml.new_element("LuaComponent", {
 
 ModTextFileSetContent(hamis_file, tostring(hamis_xml))
 
-local hamis_parts = nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml"))
+local hamis_parts =
+	nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml"))
 local base = hamis_parts:first_of("Base")
 if not base then return end
 

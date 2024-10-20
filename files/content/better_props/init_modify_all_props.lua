@@ -14,16 +14,12 @@ local prop_files = dofile_once("mods/noita.fairmod/files/content/better_props/pr
 ---@param name string
 ---@param multiplier number
 local function elem_multiply_attr(component, name, multiplier)
-	if component:get(name) then
-		component:set(name, tonumber(component:get(name)) * multiplier)
-	end
+	if component:get(name) then component:set(name, tonumber(component:get(name)) * multiplier) end
 end
 
 ---@param element element?
 local function fixup_prop_children(element)
-	if element == nil then
-		return
-	end
+	if element == nil then return end
 
 	for comp in element:each_of("ParticleEmitterComponent") do
 		comp:set("create_real_particles", 1)
@@ -54,9 +50,7 @@ local function fixup_prop_children(element)
 
 	for comp in element:each_of("ProjectileComponent") do
 		for conf in comp:each_of("config_explosion") do
-			if (conf:get("create_cell_probability") or "0") ~= "0" then
-				conf:set("create_cell_probability", 100)
-			end
+			if (conf:get("create_cell_probability") or "0") ~= "0" then conf:set("create_cell_probability", 100) end
 		end
 	end
 end

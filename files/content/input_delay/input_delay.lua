@@ -13,7 +13,6 @@ function input_delay.OnWorldPreUpdate()
 	local delay = math.max(0, math.min(middle + math.sin(wave) * middle, 31))
 
 	ComponentSetValue2(controls_comp, "input_latency_frames", delay)
-
 end
 
 return input_delay
