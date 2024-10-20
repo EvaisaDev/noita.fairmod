@@ -31,14 +31,11 @@ end
 function catch_ui(fish, size)
 	pos_x, pos_y = GameGetCameraPos()
 
-	size_closest = nearest_value(
-		{
-			{ fish.sizes.min, "small" },
-			{ fish.sizes.max - ((fish.sizes.max - fish.sizes.min) / 2), "medium" },
-			{ fish.sizes.max, "large" },
-		},
-		size
-	)
+	size_closest = nearest_value({
+		{ fish.sizes.min, "small" },
+		{ fish.sizes.max - ((fish.sizes.max - fish.sizes.min) / 2), "medium" },
+		{ fish.sizes.max, "large" },
+	}, size)
 	size_true = size_closest[2]
 
 	if fish.single_sprite_size then size_true = "large" end
