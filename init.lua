@@ -1,5 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
+local colorblind_mode = dofile_once("mods/noita.fairmod/files/content/colorblind_mode/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -85,8 +86,13 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 end
 
+function OnModSettingsChanged()
+	colorblind_mode.OnModSettingsChanged()
+end
+
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
+	colorblind_mode.OnPlayerSpawned()
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
