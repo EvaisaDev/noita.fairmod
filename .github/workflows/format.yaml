@@ -9,6 +9,6 @@ jobs:
         uses: JohnnyMorganz/stylua-action@v4.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: v4.0.0
+          version: v4
           # CLI arguments
           args: --check .
