@@ -255,7 +255,7 @@ local ui_displays = {
 			text = function()
 				return {
 					text = table.concat({
-						"Achievements Unlocked: ",
+						"Achievements: ",
 						GlobalsGetValue("fairmod_achievements_unlocked", "0"),
 						"/",
 						GlobalsGetValue("fairmod_total_achievements", "0"),
