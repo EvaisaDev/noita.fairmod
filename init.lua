@@ -86,10 +86,6 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 end
 
-function OnModSettingsChanged()
-	colorblind_mode.OnModSettingsChanged()
-end
-
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
 	colorblind_mode.OnPlayerSpawned()
@@ -207,6 +203,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
+		colorblind_mode.OnPausedChanged()
 	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
 	elseif not is_paused then

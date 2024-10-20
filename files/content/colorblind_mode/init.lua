@@ -37,7 +37,7 @@ shader_append("gl_FragColor.a = 1.0;", [[
 
 local module = {}
 
-module.OnModSettingsChanged = function()
+module.OnPausedChanged = function()
 	local colorblind_mode = ModSettingGet("noita.fairmod.colorblind_mode")
 	if colorblind_mode then
 		GameSetPostFxParameter("COLORBLIND_MODE_ON", 1, 0, 0, 0)
@@ -47,7 +47,7 @@ module.OnModSettingsChanged = function()
 end
 
 module.OnPlayerSpawned = function()
-	module.OnModSettingsChanged()
+	module.OnPausedChanged()
 end
 
 return module
