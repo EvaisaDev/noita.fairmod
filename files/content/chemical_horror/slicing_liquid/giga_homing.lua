@@ -6,33 +6,30 @@ local float_force = 300
 local float_sensor_sector = math.pi * 0.3
 
 local entity_id = GetUpdatedEntityID()
-local x, y, rot = EntityGetTransform( entity_id )
+local x, y, rot = EntityGetTransform(entity_id)
 local velcomp = EntityGetComponent(entity_id, "VelocityComponent")
 
 if EntityGetInRadiusWithTag(x, y, 250, "mortal") == nil then return end
 if velcomp == nil then return end
 
-
 local target = {}
 target.id = EntityGetClosestWithTag(x, y, "mortal")
-target.x,target.y = EntityGetTransform(target.id)
+target.x, target.y = EntityGetTransform(target.id)
 
-local a,b = x - target.x , y - target.y
+local a, b = x - target.x, y - target.y
 --local distance = math.sqrt( a^2 + b^2 )
 local direction = 0 - math.atan2(b, a)
 
--- local gravity_percent = ( distance_full - distance ) / distance_full 
+-- local gravity_percent = ( distance_full - distance ) / distance_full
 -- local gravity_percent = 8
 local gravity_coeff = 72
 
 local fx = math.cos(direction) * gravity_coeff
 local fy = math.sin(direction) * gravity_coeff
 
-
-
 local velcomp1 = velcomp[1]
-local vel_x,vel_y = ComponentGetValue2(velcomp1, "mVelocity")
-ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * .9, (vel_y + fy) * .9)
+local vel_x, vel_y = ComponentGetValue2(velcomp1, "mVelocity")
+ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * 0.9, (vel_y + fy) * 0.9)
 
 --LUA: entity_id is 1210, x,y is [-35224, -150.99967956543]
 --LUA: target.id is 186, target.x,y is [-35233.02734375, -88.982971191406]
@@ -40,7 +37,6 @@ ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * .9, (vel_y + fy) * .9)
 --LUA: fx is 3.160027830635, fy is -195.97452442629
 
 --Code mostly nabbed from Evaisa's Condensed Gravity effect in CC
-
 
 --[[ 
 -- stainPercent = (Stain% * 5 + IngestionSeconds * .05) < 1.5
