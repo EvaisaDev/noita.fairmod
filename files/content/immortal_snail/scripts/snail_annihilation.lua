@@ -5,7 +5,7 @@ local kill_radius = 5
 
 local player_killed_by_snail = tonumber(GlobalsGetValue("PlayerKilledBySnail", "0"))
 
-if player_killed_by_snail ~= 0 and EntityGetIsAlive(player_killed_by_snail)then
+if player_killed_by_snail ~= 0 and EntityGetIsAlive(player_killed_by_snail) then
 	EntityKill(player_killed_by_snail)
 	return
 end
