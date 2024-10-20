@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player,disc_bullet_big" >
+<Entity name="The oncoming storm." tags="projectile_player,disc_bullet_big" >
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -101,14 +101,14 @@
     </MusicEnergyAffectorComponent>
 
 	<LuaComponent
-		script_source_file="data/scripts/projectiles/disc_bullet_bigger_trajectory.lua"
+		script_source_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/omega_homing.lua"
 		execute_every_n_frame="3"
 		>
 	</LuaComponent>
 	
 	<LuaComponent
 		script_source_file="data/scripts/projectiles/disc_bullet_big_damage.lua"
-		execute_every_n_frame="8"
+		execute_every_n_frame="4"
 		remove_after_executed="1"
 		>
 	</LuaComponent>
@@ -123,7 +123,7 @@
 		update_every_n_frame="1"
 		entities_with_tag="hittable"
 		damage_type="DAMAGE_SLICE"
-		death_cause="bzzt!"
+		death_cause="Omega Slicing Liquid, coming soon to a Chemical Curiosity near you!"
 		_enabled="0"
 		>
 	</AreaDamageComponent>

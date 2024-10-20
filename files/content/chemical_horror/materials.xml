@@ -183,7 +183,7 @@
 
 	<Reaction probability="31"
 	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
-	output_cell1="air"			output_cell2="air"
+	output_cell1="[fire]"			output_cell2="air"
 	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml" 
 	>
 	</Reaction>
