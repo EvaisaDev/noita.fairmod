@@ -6,9 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: StyLua
-        uses: JohnnyMorganz/stylua-action@v4.0.0
+        uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: v4
+          version: v4.0.0
           # CLI arguments
           args: --check .
