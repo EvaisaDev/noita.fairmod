@@ -140,7 +140,6 @@ local function create_tmtrainer_action(action_type, index)
 		local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
 		local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
 
-		
 		-- Build name and description from random chunks
 		table.insert(name_parts, get_random_chunk(added_name, 4))
 		table.insert(description_parts, get_random_chunk(added_description, 10))
@@ -181,9 +180,9 @@ local function create_tmtrainer_action(action_type, index)
 		then
 			custom_xml_file = added_action.custom_xml_file
 		end
-	
+
 		::continue::
-    end
+	end
 
 	-- Combine name and description parts
 	local name = table.concat(name_parts)
