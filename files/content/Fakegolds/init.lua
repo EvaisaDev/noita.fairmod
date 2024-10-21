@@ -16,7 +16,7 @@ local mats = {
 	"templeslab_static",
 }
 function thegold.OnMagicNumbersAndWorldSeedInitialized()
-	content = content:gsub('"gold"', '"'..mats[Random(1, #mats)]..'"')
+	content = content:gsub('"gold"', '"' .. mats[Random(1, #mats)] .. '"')
 	ModTextFileSetContent("data/biome/gold.xml", content)
 end
 
