@@ -1,6 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
-local colorblind_mode = dofile_once("mods/noita.fairmod/files/content/colorblind_mode/init.lua")
+local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -96,7 +96,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
-	colorblind_mode.OnPlayerSpawned()
+	funny_settings.OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -216,7 +216,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
-		colorblind_mode.OnPausedChanged()
+		funny_settings.OnPausedChanged()
 	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
 	elseif not is_paused then
