@@ -82,6 +82,7 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
