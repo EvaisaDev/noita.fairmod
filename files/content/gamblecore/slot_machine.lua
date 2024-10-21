@@ -80,7 +80,7 @@ if cost_sprite then
 	local cost = tonumber(cost_pruned)
 	if cost then
 		if current_cost ~= cost then
-			local cost_text = "$"..tostring(current_cost)
+			local cost_text = "$" .. tostring(current_cost)
 			ComponentSetValue2(cost_sprite, "text", cost_text)
 
 			-- deranged bullshit because noita treats $ as a translation token always
@@ -188,8 +188,6 @@ if currently_gambling then
 
 				GlobalsSetValue("GAMBLECORE_WIN_CHANCE", tostring(win_chance))
 
-
-
 				for i = 1, 5 do
 					local nugget = EntityLoad("data/entities/items/pickup/goldnugget.xml", x, y)
 					local storage_comps = EntityGetComponent(nugget, "VariableStorageComponent") or {}
@@ -208,7 +206,6 @@ if currently_gambling then
 					tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0) + 1)
 				)
 
-				
 				GamePrint("You lost! Current jackpot: $" .. tostring(current_winnings))
 				GamePlayAnimation(entity_id, "lose", 1)
 				ComponentSetValue2(sprite_component, "rect_animation", "lose")
