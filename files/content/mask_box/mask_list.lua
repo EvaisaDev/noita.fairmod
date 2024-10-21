@@ -32,8 +32,8 @@ mask_list = {
     },
 }
 
-function ChooseRandomMask()
-    SetRandomSeed(GameGetFrameNum(),GameGetFrameNum() + 99)
+function ChooseRandomMask(x,y)
+    SetRandomSeed(GameGetFrameNum() + x + y,GameGetFrameNum() + y + x)
     local poolsize = 0
     for k=1,#mask_list do
         poolsize = poolsize + mask_list[k].weight
