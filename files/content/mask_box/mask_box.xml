@@ -13,7 +13,7 @@
 
 	<InteractableComponent
 		radius="15"
-		ui_text="The Mask Box\nPress $0 to take a random mask!"
+		ui_text="Press $0 to take a random mask!"
 		name="This text will never shows up in-game lol"
 	>
 	</InteractableComponent>
