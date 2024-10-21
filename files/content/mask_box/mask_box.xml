@@ -1,0 +1,25 @@
+<Entity>
+
+	<VelocityComponent />
+
+    <SimplePhysicsComponent/>
+
+	<SpriteComponent
+		z_index="1"
+		image_file="mods/noita.fairmod/files/content/mask_box/mask_box.png"
+		offset_x="24"
+		offset_y="47" >
+	</SpriteComponent>
+
+	<InteractableComponent
+		radius="15"
+		ui_text="The Mask Box\nPress $0 to take a random mask!"
+		name="This text will never shows up in-game lol"
+	>
+	</InteractableComponent>
+
+    <LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/mask_box/mask_take.lua" >
+    </LuaComponent>
+</Entity>
+
