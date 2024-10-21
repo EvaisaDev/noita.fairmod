@@ -2,6 +2,24 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("data/scripts/items/init_potion.lua")
 
+
+
+
+
+
+
+--dont do stuff here dinguses and dingi, go to "content/starting_inventory/potion_append.lua"- which overwrites the default values here without the unnecessary clutter
+
+
+
+
+
+
+
+
+
+
+
 --PotionStartingLib global table
 PotionStartingLib = {}
 local ps = PotionStartingLib --rename it here so it doesnt look ugly for the rest of the script
