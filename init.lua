@@ -22,6 +22,7 @@ local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/in
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
+local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -87,6 +88,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/kolmi_not_home/init.lua")
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
+	fakegold.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
