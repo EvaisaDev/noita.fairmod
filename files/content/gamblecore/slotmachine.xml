@@ -18,7 +18,8 @@
 		offset_y="30"
 		update_transform="1"
 		update_transform_rotation="0"
-		text="0"
+		text="$0"
+		emissive="1"
 		z_index="-1"
 	/>
 
