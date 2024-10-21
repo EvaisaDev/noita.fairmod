@@ -117,6 +117,7 @@ function OnPlayerSpawned(player)
 
 	if GameHasFlagRun("fairmod_init") then return end
 	GameAddFlagRun("fairmod_init")
+	-- stuff after here only runs once on initial run start
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 
@@ -126,8 +127,6 @@ function OnPlayerSpawned(player)
 		GameAddFlagRun("kolmi_not_home")
 		print("Kolmi is not home on this one.")
 	end
-
-	-- stuff after here only runs once on initial run start
 
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
@@ -159,6 +158,11 @@ function OnPlayerSpawned(player)
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
 		execute_every_n_frame = 1,
 		execute_on_added = true,
+	})
+
+	EntityAddComponent2(player, "LuaComponent", {
+		script_source_file = "mods/noita.fairmod/files/content/betterthrow/adjust.lua",
+		execute_every_n_frame = 1,
 	})
 
 	-- debugging
