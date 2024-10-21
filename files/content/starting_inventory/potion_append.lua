@@ -39,6 +39,15 @@ ps.one_in_millions = { -- "key" must be from 1 to 100000
 
 ps.functions = {
 	function()
+		if
+			ps.CompareTables({ ps.LOCAL.month, ps.LOCAL.day }, { 5, 1 })
+			or ps.CompareTables({ ps.LOCAL.month, ps.LOCAL.day }, { 4, 30 }) and (Random(0, 100) <= 20)
+			or ps.LOCAL.jussi and (Random(0, 100) <= 20)
+		then
+			return "just_death"
+		end
+	end,
+	function()
 		if Random(1, 5) < 4 then
 			local materials = nil
 			if Random(0, 1) == 1 then
