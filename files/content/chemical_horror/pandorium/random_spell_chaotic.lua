@@ -25,9 +25,18 @@ local gun = EntityGetAllChildren(inventory_comp)[1]
 ---- Build Wand ----
 
 local spell_formula = ""
-
+print("d")
 local function add_spell(spellType, position)
-	local spell_id = spell_table[spellType][Random(1, #spell_table[spellType])] --Nathan Seal of Unapproval
+	print("adding spell")
+	local pool
+	if spell_table.TMTRAINER[spellType] ~= nil and Randomf() < spell_table.TMTRAINER.probability then 
+		pool = "TMTRAINER"
+	else
+		pool = "NORMAL"
+	end
+
+	local spell_id = spell_table[pool][spellType][Random(1, #spell_table[pool][spellType])] --Nathan Seal of Unapproval
+	
 	local spell = EntityCreateNew(spell_id)
 	EntityAddChild(gun, spell)
 

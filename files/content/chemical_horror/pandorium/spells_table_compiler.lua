@@ -1,19 +1,33 @@
 dofile("data/scripts/gun/gun.lua")
+print("a")
 
 local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
 
 local chaotic = {
-	PROJECTILES = {},
 
-	STATIC_PROJECTILES = {},
+	NORMAL = {
+		PROJECTILES = {},
 
-	MODIFIERS = {},
+		STATIC_PROJECTILES = {},
 
-	MATERIALS = {},
+		MODIFIERS = {},
 
-	UTILITY = {},
+		MATERIALS = {},
 
-	GLIMMERS = {},
+		UTILITY = {},
+
+		GLIMMERS = {},
+	},
+
+	TMTRAINER = {
+		PROJECTILES = {},
+	
+		STATIC_PROJECTILES = {},
+	
+		MODIFIERS = {},
+
+		probability = 0
+	},
 
 	data = {
 		month = month,
@@ -25,9 +39,9 @@ function IsValidProjectile(spell)
 	--if true then return true end --crying and shaking rn, this line of code stumped me for like an hour cuz i forgot it existed :sob:
 
 	if ("," .. spell.spawn_level .. ","):find(",[012456],") then --[[print(spell.id .. " IS VALID")]]
-		return true
+		return true --fancy string shenanigans here and in the modifier script grabbed from Nathan and other lovel ppl from noitacord
 	end
-	--fancy string shenanigans here and in the modifier script grabbed from Nathan and other lovel ppl from noitacord
+	
 	return false
 end
 
@@ -39,25 +53,43 @@ function IsValidModifier(spell)
 	return false
 end
 
+local function file_spell(data)
+end
+
+
+local tmtrainer
+
+
 for k, data in pairs(actions) do
+	print("b")
 	if data.pandorium_ignore then goto continue end
+	
+	if data.tm_trainer then  --It's a surprise tool that will helps us later!
+		if data.type == 0 then table.insert(chaotic.TMTRAINER.PROJECTILES, data.id)
+		elseif data.type == 1 then table.insert(chaotic.TMTRAINER.STATIC_PROJECTILES, data.id)
+		elseif data.type == 2 then table.insert(chaotic.TMTRAINER.MODIFIERS, data.id)
+		elseif data.type == 4 then table.insert(chaotic.TMTRAINER.STATIC_PROJECTILES, data.id) end
+		tmtrainer = true
+		goto continue
+	end
+	print("c")
+	
 	if data.id:find("NUKE") then goto continue end
-	if data.type == 0 and IsValidProjectile(data) then table.insert(chaotic.PROJECTILES, data.id) end
-	if data.type == 1 and IsValidProjectile(data) then table.insert(chaotic.STATIC_PROJECTILES, data.id) end
-	if data.type == 2 and IsValidModifier(data) then table.insert(chaotic.MODIFIERS, data.id) end
-	if data.type == 4 and IsValidProjectile(data) then table.insert(chaotic.STATIC_PROJECTILES, data.id) end
+	if data.type == 0 and IsValidProjectile(data) then table.insert(chaotic.NORMAL.PROJECTILES, data.id)
+	elseif data.type == 1 and IsValidProjectile(data) then table.insert(chaotic.NORMAL.STATIC_PROJECTILES, data.id)
+	elseif data.type == 2 and IsValidModifier(data) then table.insert(chaotic.NORMAL.MODIFIERS, data.id)
+	elseif data.type == 4 and IsValidProjectile(data) then table.insert(chaotic.NORMAL.STATIC_PROJECTILES, data.id) end
 	--if data.type == 6 and IsValidProjectile(data) then table.insert(chaotic.UTILITY, data.id) end
-	if string.find(data.id, "COLOUR") then table.insert(chaotic.GLIMMERS, data.id) end
+	if string.find(data.id, "COLOUR") then table.insert(chaotic.NORMAL.GLIMMERS, data.id) end
 	::continue::
 end
 
---[[ 
-for k,v in pairs(chaotic) do
-    for a,b in pairs(v) do
-        print(b .. " ADDED TO " .. k)
-    end
-end
- ]]
+if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("cpand_tmtrainer_chance") or .1 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
+
+
+
+
+--unused funni stuff
 
 local include = {
 	COPITH_SUMMON_HAMIS = true,
