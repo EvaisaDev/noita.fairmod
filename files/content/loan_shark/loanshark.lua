@@ -243,13 +243,13 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 							},
 						})
 					else
-						SetRandomSeed(GameGetFrameNum() + y,y*x)
-						if Random(1,4) == 1 then
+						SetRandomSeed(GameGetFrameNum() + y, y * x)
+						if Random(1, 4) == 1 then
 							local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
-							CreateItemActionEntity( GetRandomAction( GameGetFrameNum(),y, 10, 1), x, y )
+							CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
 							GameAddFlagRun("fairmod_trickortreat_rewarded")
 						else
-							EntityLoad("data/entities/projectiles/bomb.xml",x,y)
+							EntityLoad("data/entities/projectiles/bomb.xml", x, y)
 						end
 						dialog.close()
 					end
