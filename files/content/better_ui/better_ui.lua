@@ -343,7 +343,7 @@ local ui_displays = {
 			condition = has_flag_run("gamblecore_found"),
 		},
 		{
-			text = "Hair follicles: 0"
+			text = "Hair follicles: 0",
 		},
 	},
 	speedrun = {

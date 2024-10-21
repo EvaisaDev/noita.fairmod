@@ -230,6 +230,32 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				end,
 			},
 			{
+				text = "Trick or treat!",
+				enabled = GameHasFlagRun("fairmod_halloween_mask"),
+				func = function(dialog)
+					if GameHasFlagRun("fairmod_trickortreat_rewarded") then
+						dialog.show({
+							text = "You've gotten your treat kid, now scram! \\*blub\\*",
+							options = {
+								{
+									text = "Leave",
+								},
+							},
+						})
+					else
+						SetRandomSeed(GameGetFrameNum() + y, y * x)
+						if Random(1, 4) == 1 then
+							local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
+							CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+							GameAddFlagRun("fairmod_trickortreat_rewarded")
+						else
+							EntityLoad("data/entities/projectiles/bomb.xml", x, y)
+						end
+						dialog.close()
+					end
+				end,
+			},
+			{
 				text = "Leave",
 			},
 		},
