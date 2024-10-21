@@ -49,6 +49,7 @@ dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
 dofile_once("mods/noita.fairmod/files/content/permanent_self_damage/init.lua")
+dofile_once("mods/noita.fairmod/files/content/mask_box/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
