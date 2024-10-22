@@ -2,6 +2,24 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("data/scripts/items/init_potion.lua")
 
+
+
+
+
+
+
+--dont do stuff here dinguses and dingi, go to "content/starting_inventory/potion_append.lua"- which overwrites the default values here without the unnecessary clutter
+
+
+
+
+
+
+
+
+
+
+
 --PotionStartingLib global table
 PotionStartingLib = {}
 local ps = PotionStartingLib --rename it here so it doesnt look ugly for the rest of the script
@@ -136,8 +154,8 @@ function init(entity_id) --mostly vanilla function
 	local x, y = EntityGetTransform(entity_id)
 	ps.CorrectTables() --add default probabilities
 
-	--ps.TEST(100000) --1 billion took about 45 minutes for me to render so 100k-10mil should be good enough for regular tests (probs still super excessive tbh lmao)
-	--default value of 10000000 (ten million) takes approx 40 seconds for me, so it should be a good testing value (decrease to like, 100k or 1mil for faster testing ig, 100k should be basically instant)
+	--use this function to test potion probabilities. 100k is fast, 10 mil takes about 50 seconds to generate
+	--ps.TEST(100000)
 
 	local n_of_deaths = tonumber(StatsGlobalGetValue("death_count"))
 	if n_of_deaths >= 1 then
@@ -152,6 +170,9 @@ function init(entity_id) --mostly vanilla function
 
 	init_potion(entity_id, potion_material)
 end
+
+
+
 
 --Handy script for mass-generating potion outcomes and displaying them neatly in the console
 function ps.TEST(num)

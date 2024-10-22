@@ -153,6 +153,16 @@ local function build_settings()
 					is_waiting_for_input = false,
 					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
+				{
+					id = "cpand_tmtrainer_chance",
+					ui_name = "Chaotic Pandorium TMTrainer Chance",
+					ui_description = "Probability for Chaotic Pandorium to use TMT spells\nRanges 0-10%",
+					value_default = 0.05,
+					value_min = 0.0,
+					value_max = 0.3,
+					value_display_multiplier = 100,
+					value_display_formatting = " $0%",
+				},
 			},
 		},
 	}
