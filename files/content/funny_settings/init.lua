@@ -18,11 +18,13 @@ local shader_append = function(find, append)
 	end
 end
 
+
 shader_append(
 	"varying vec2 tex_coord_fogofwar;",
 	[[
 uniform vec4 COLORBLIND_MODE_ON;
-]]
+uniform vec4 INVERT_Y_AXIS_ON;
+	]]
 )
 
 shader_append(
@@ -39,6 +41,16 @@ shader_append(
 ]]
 )
 
+shader_append(
+	"vec2 tex_coord_glow = tex_coord_glow_;",
+	[[
+	if(INVERT_Y_AXIS_ON.x == 1.0) {
+		tex_coord = vec2(tex_coord.x, 1.0 - tex_coord.y);
+	}
+]]
+)
+
+
 local module = {}
 
 module.OnPausedChanged = function()
@@ -47,6 +59,13 @@ module.OnPausedChanged = function()
 		GameSetPostFxParameter("COLORBLIND_MODE_ON", 1, 0, 0, 0)
 	else
 		GameSetPostFxParameter("COLORBLIND_MODE_ON", 0, 0, 0, 0)
+	end
+
+	local invert_y_axis = ModSettingGet("noita.fairmod.invert_y_axis")
+	if invert_y_axis then
+		GameSetPostFxParameter("INVERT_Y_AXIS_ON", 1, 0, 0, 0)
+	else
+		GameSetPostFxParameter("INVERT_Y_AXIS_ON", 0, 0, 0, 0)
 	end
 end
 

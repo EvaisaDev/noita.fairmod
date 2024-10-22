@@ -122,6 +122,13 @@ local function build_settings()
 					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
 				{
+					id = "invert_y_axis",
+					ui_name = "Invert Y Axis",
+					ui_description = "Down is up and up is down.",
+					value_default = false,
+					scope = MOD_SETTING_SCOPE_RUNTIME,
+				},
+				{
 					id = "arachnophilia_mode",
 					ui_name = "Arachnophilia Mode",
 					ui_description = "You will encounter so many spiders.",
