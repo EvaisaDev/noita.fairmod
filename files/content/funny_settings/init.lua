@@ -54,7 +54,7 @@ module.OnPlayerSpawned = function(player)
 	module.OnPausedChanged()
 
 	if GameHasFlagRun("fairmod_init") then return end
-	
+
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/funny_settings/scripts/player_update.lua",
 		execute_every_n_frame = 1,

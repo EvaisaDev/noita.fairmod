@@ -1,43 +1,39 @@
-
-
 local player = GetUpdatedEntityID()
 local x, y = EntityGetTransform(player)
 
-
-if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
-
+if ModSettingGet("noita.fairmod.arachnophilia_mode") then
 	local spider_chance = 50
 
 	local spider_list = {
 		{
 			path = "data/entities/animals/longleg.xml", -- hämis
 			weight = 100,
-			required_mountains = 0 -- how many mountains does the player need to have visited
+			required_mountains = 0, -- how many mountains does the player need to have visited
 		},
 		{
 			path = "data/entities/animals/lukki/lukki_tiny.xml", -- hämis
 			weight = 60,
-			required_mountains = 1 -- how many mountains does the player need to have visited
+			required_mountains = 1, -- how many mountains does the player need to have visited
 		},
 		{
 			path = "data/entities/animals/lukki/lukki.xml", -- hämis
 			weight = 40,
-			required_mountains = 3 -- how many mountains does the player need to have visited
+			required_mountains = 3, -- how many mountains does the player need to have visited
 		},
 		{
 			path = "data/entities/animals/lukki/lukki_longleg.xml", -- hämis
 			weight = 30,
-			required_mountains = 4 -- how many mountains does the player need to have visited
+			required_mountains = 4, -- how many mountains does the player need to have visited
 		},
 		{
 			path = "data/entities/animals/lukki/lukki_creepy_long.xml", -- hämis
 			weight = 2,
-			required_mountains = 6 -- how many mountains does the player need to have visited
+			required_mountains = 6, -- how many mountains does the player need to have visited
 		},
 		{
 			path = "data/entities/animals/lukki/lukki_dark.xml", -- hämis
 			weight = 1,
-			required_mountains = 7 -- how many mountains does the player need to have visited
+			required_mountains = 7, -- how many mountains does the player need to have visited
 		},
 	}
 
@@ -55,9 +51,7 @@ if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
 		end
 
 		-- Return nil if no spiders are available
-		if total_weight == 0 then
-			return nil
-		end
+		if total_weight == 0 then return nil end
 
 		-- Randomly select a spider based on weight
 		local random_pick = Random(1, total_weight)
@@ -65,9 +59,7 @@ if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
 
 		for _, spider in ipairs(available_spiders) do
 			accumulated_weight = accumulated_weight + spider.weight
-			if accumulated_weight >= random_pick then
-				return spider
-			end
+			if accumulated_weight >= random_pick then return spider end
 		end
 
 		return nil
@@ -81,7 +73,6 @@ if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
 			goto continue
 		end
 		if not EntityHasTag(enemy, "spider_check_finished") then
-
 			local genome_comp = EntityGetFirstComponent(enemy, "GenomeDataComponent")
 
 			if genome_comp ~= nil then
@@ -89,7 +80,7 @@ if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
 				if genome == "spider" then
 					EntityAddTag(enemy, "spider_check_finished")
 					goto continue
-				end	
+				end
 			end
 
 			local ex, ey = EntityGetTransform(enemy)
@@ -101,7 +92,6 @@ if(ModSettingGet("noita.fairmod.arachnophilia_mode"))then
 
 				EntityAddTag(enemy, "spider_check_finished")
 			end
-			
 		end
 		::continue::
 	end
