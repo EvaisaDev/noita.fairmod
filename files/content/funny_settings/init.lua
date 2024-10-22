@@ -25,6 +25,7 @@ shader_append(
 uniform vec4 COLORBLIND_MODE_ON;
 uniform vec4 INVERT_Y_AXIS_ON;
 uniform vec4 LOWER_RESOLUTION_RENDERING_ON;
+uniform vec4 _8_BIT_COLOR_ON;
 	]]
 )
 
@@ -38,6 +39,11 @@ shader_append(
 		// regamma
 		float gammaGray = sqrt(gray);
 		gl_FragColor.rgb = vec3(gammaGray, gammaGray, gammaGray);
+	}
+	if(_8_BIT_COLOR_ON.x == 1.0) {
+		gl_FragColor.r = floor(gl_FragColor.r * 3.0) / 3.0;
+		gl_FragColor.g = floor(gl_FragColor.g * 7.0) / 7.0;
+		gl_FragColor.b = floor(gl_FragColor.b * 7.0) / 7.0;
 	}
 ]]
 )
@@ -84,6 +90,13 @@ module.OnPausedChanged = function()
 		GameSetPostFxParameter("LOWER_RESOLUTION_RENDERING_ON", 1, 0, 0, 0)
 	else
 		GameSetPostFxParameter("LOWER_RESOLUTION_RENDERING_ON", 0, 0, 0, 0)
+	end
+
+	local _8_bit_color = ModSettingGet("noita.fairmod.8_bit_color")
+	if _8_bit_color then
+		GameSetPostFxParameter("_8_BIT_COLOR_ON", 1, 0, 0, 0)
+	else
+		GameSetPostFxParameter("_8_BIT_COLOR_ON", 0, 0, 0, 0)
 	end
 end
 

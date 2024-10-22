@@ -23,7 +23,7 @@ delay.update()
 
 function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 	local player_entity = GetUpdatedEntityID()
-	SetRandomSeed(from_x + to_x + GameGetFrameNum(), from_y + to_y * GameGetFrameNum())
+	SetRandomSeed((from_x + to_x) * GameGetFrameNum(), (from_y + to_y) * GameGetFrameNum())
 
 	local rand = Random(0, 100)
 
@@ -46,11 +46,6 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 		local positions = {}
 
 		local a, b, c, d, e, f = GameGetDateAndTimeLocal()
-
-		local time = a + b + c + d + e + f
-		local frame = GameGetFrameNum()
-
-		SetRandomSeed(time + frame, time * frame)
 
 		-- iterate through biome map pixels
 		for x = 0, biome_map_w - 1 do

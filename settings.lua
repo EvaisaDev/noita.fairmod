@@ -129,6 +129,13 @@ local function build_settings()
 					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
 				{
+					id = "8_bit_color",
+					ui_name = "8-Bit Color Mode",
+					ui_description = "Will render the game in glorious 8-bit color!",
+					value_default = false,
+					scope = MOD_SETTING_SCOPE_RUNTIME,
+				},
+				{
 					id = "invert_y_axis",
 					ui_name = "Invert Y Axis",
 					ui_description = "Down is up and up is down.",
