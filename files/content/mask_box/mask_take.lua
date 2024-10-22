@@ -10,6 +10,10 @@ function interacting(player_id, shrine_id, interactable_name)
 	ComponentSetValue2(comp, "image_file", mask_option)
 	EntitySetComponentIsEnabled(player_id, comp, true)
 	EntityRefreshSprite(player_id, comp)
+	local scomps = EntityGetComponentIncludingDisabled(player_id, "SpriteComponent")
+	for k = 1, #scomps do
+		EntityRefreshSprite(player_id, scomps[k])
+	end
 	GameAddFlagRun("fairmod_halloween_mask")
 
 	--ComponentSetValue2(comp,"rect_animation","stand")
