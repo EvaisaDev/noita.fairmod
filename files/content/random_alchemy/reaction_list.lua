@@ -46,6 +46,10 @@ local reactions = {
 		input_cell1 = "sand_static",
 		input_cell2 = "[lava]",
 	},
+	{
+		input_cell1 = "[lava]",
+		input_cell2 = "urine",
+	},
 }
 
 return reactions
