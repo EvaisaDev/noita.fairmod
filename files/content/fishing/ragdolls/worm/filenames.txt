@@ -1,0 +1,5 @@
+mods/noita.fairmod/files/content/fishing/ragdolls/worm/eel0.png
+mods/noita.fairmod/files/content/fishing/ragdolls/worm/eel1.png
+mods/noita.fairmod/files/content/fishing/ragdolls/worm/eel2.png
+mods/noita.fairmod/files/content/fishing/ragdolls/worm/eel3.png
+mods/noita.fairmod/files/content/fishing/ragdolls/worm/eel4.png
