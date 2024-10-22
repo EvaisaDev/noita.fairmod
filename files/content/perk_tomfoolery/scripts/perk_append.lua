@@ -23,7 +23,7 @@ perk_spawn = function(x, y, perk_id, dont_remove_other_perks_)
 		if sprite_offset_animator_component ~= nil then
 			local y_speed = ComponentGetValue2(sprite_offset_animator_component, "y_speed")
 
-			ComponentSetValue2(sprite_offset_animator_component, "y_speed", y_speed * Random(85, 95) / 100)
+			ComponentSetValue2(sprite_offset_animator_component, "y_speed", y_speed * Random(95, 105) / 100)
 		end
 
 		local random_perk = perk_list[Random(1, #perk_list)]
@@ -56,6 +56,7 @@ perk_spawn = function(x, y, perk_id, dont_remove_other_perks_)
 		})
 	end
 
+	--[[
 	local sprite_offset_animator_component = EntityGetFirstComponent(perk, "SpriteOffsetAnimatorComponent")
 	if sprite_offset_animator_component ~= nil then
 		local y_amount = ComponentGetValue2(sprite_offset_animator_component, "y_amount")
@@ -64,6 +65,7 @@ perk_spawn = function(x, y, perk_id, dont_remove_other_perks_)
 		ComponentSetValue2(sprite_offset_animator_component, "y_amount", y_amount * Random(95, 105) / 100)
 		ComponentSetValue2(sprite_offset_animator_component, "y_speed", y_speed * Random(95, 105) / 100)
 	end
+	]]
 
 	return perk
 end
