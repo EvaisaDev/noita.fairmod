@@ -25,9 +25,7 @@ local gun = EntityGetAllChildren(inventory_comp)[1]
 ---- Build Wand ----
 
 local spell_formula = ""
-print("d")
 local function add_spell(spellType, position)
-	print("adding spell")
 	local pool
 	if spell_table.TMTRAINER[spellType] ~= nil and Randomf() < spell_table.TMTRAINER.probability then 
 		pool = "TMTRAINER"

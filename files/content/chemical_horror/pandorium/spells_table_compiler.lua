@@ -1,5 +1,4 @@
 dofile("data/scripts/gun/gun.lua")
-print("a")
 
 local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
 
@@ -61,7 +60,6 @@ local tmtrainer
 
 
 for k, data in pairs(actions) do
-	print("b")
 	if data.pandorium_ignore then goto continue end
 	
 	if data.tm_trainer then  --It's a surprise tool that will helps us later!
@@ -72,7 +70,6 @@ for k, data in pairs(actions) do
 		tmtrainer = true
 		goto continue
 	end
-	print("c")
 	
 	if data.id:find("NUKE") then goto continue end
 	if data.type == 0 and IsValidProjectile(data) then table.insert(chaotic.NORMAL.PROJECTILES, data.id)
@@ -84,7 +81,7 @@ for k, data in pairs(actions) do
 	::continue::
 end
 
-if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("cpand_tmtrainer_chance") or .1 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
+if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("cpand_tmtrainer_chance") or .05 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
 
 
 
