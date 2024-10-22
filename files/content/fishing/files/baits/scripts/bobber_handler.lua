@@ -225,7 +225,7 @@ if return_bobber and not GameHasFlagRun("allow_catch_fish") and EntityHasFlag(bo
 	)
 	GamePlaySound(
 		"data/audio/Desktop/materials.bank",
-		"collision/chain_break	",
+		"collision/chain_break",
 		owner_x + (direction_sound_x * 1.2),
 		owner_y + (direction_sound_y * 1.2)
 	)

@@ -9,10 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: StyLua
-        uses: JohnnyMorganz/stylua-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: v0.20.0
-          # CLI arguments
-          args: --color Always --check .
+          fetch-depth: 0
+      - name: Install StyLua
+        run: |
+          curl -LO https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-linux-x86_64.zip
+          unzip -d /usr/local/bin stylua-linux-x86_64.zip
+      - name: Run StyLua
+        shell: bash
+        run: |
+          git fetch origin main:main
+          git diff --name-only --diff-filter=AM main...HEAD -- \*.lua |
+            xargs --no-run-if-empty stylua --check --color always

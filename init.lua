@@ -1,6 +1,6 @@
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
-local colorblind_mode = dofile_once("mods/noita.fairmod/files/content/colorblind_mode/init.lua")
+local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
@@ -50,6 +50,8 @@ dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
 dofile_once("mods/noita.fairmod/files/content/permanent_self_damage/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mask_box/init.lua")
+dofile_once("mods/noita.fairmod/files/content/bananapeel/init.lua")
+dofile_once("mods/noita.fairmod/files/content/spooky_skeleton/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/gold_bananas/materials.xml")
@@ -80,6 +82,7 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
@@ -94,7 +97,7 @@ end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
-	colorblind_mode.OnPlayerSpawned()
+	funny_settings.OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
@@ -170,6 +173,7 @@ function OnPlayerSpawned(player)
 
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
+	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -213,7 +217,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
-		colorblind_mode.OnPausedChanged()
+		funny_settings.OnPausedChanged()
 	elseif is_paused and is_inventory_pause then
 		-- inventory pause screen
 	elseif not is_paused then
@@ -242,12 +246,33 @@ end
 -- Seeker was here
 -- Dunk is bald
 
------##
-----#o##
-----###o
---- %#o##
---- %-##-%
--- %--%--%
--- %--%--%
--- %--%--%
--- #--#--#
+--     ##
+--    #o##
+--    ###o
+--   %#o##
+--   % ## %
+--  %  %  %
+--  %  %  %
+--  %  %  %
+--  #  #  #
+
+--            ▒▒▒▒▒▒▒▒
+--            ▒▒▒▒▒▒▒▒
+--        ▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒
+--        ▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒
+--        ▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓
+--        ▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓
+--    ░░░░▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒
+--    ░░░░▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒
+--    ░░░░    ▒▒▒▒▒▒▒▒    ░░░░
+--    ░░░░    ▒▒▒▒▒▒▒▒    ░░░░
+--░░░░        ░░░░        ░░░░
+--░░░░        ░░░░        ░░░░
+--░░░░        ░░░░        ░░░░
+--░░░░        ░░░░        ░░░░
+--░░░░        ░░░░        ▒▒▒▒
+--░░░░        ░░░░        ▒▒▒▒
+--▒▒▒▒        ▒▒▒▒
+--▒▒▒▒        ▒▒▒▒
+
+--▓▒░ Colour palette for my art 😊

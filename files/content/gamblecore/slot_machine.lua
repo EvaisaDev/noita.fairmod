@@ -8,6 +8,9 @@ local sprite_component = EntityGetFirstComponent(entity_id, "SpriteComponent", "
 
 local cost_sprite = EntityGetFirstComponent(entity_id, "SpriteComponent", "cost")
 
+gamba_gui = gamba_gui or GuiCreate()
+
+GuiStartFrame(gamba_gui)
 -- biome based cost
 
 SetRandomSeed(x, y)
@@ -72,27 +75,18 @@ currently_gambling = currently_gambling or false
 lets_go_gambling = lets_go_gambling or false
 
 if cost_sprite then
-	local cost = tonumber(ComponentGetValue2(cost_sprite, "text"))
+	local cost_text = ComponentGetValue2(cost_sprite, "text")
+	local cost_pruned = string.sub(cost_text, 2)
+	local cost = tonumber(cost_pruned)
 	if cost then
 		if current_cost ~= cost then
-			ComponentSetValue2(cost_sprite, "text", tostring(current_cost))
+			local cost_text = "$" .. tostring(current_cost)
+			ComponentSetValue2(cost_sprite, "text", cost_text)
 
-			local text = tostring(current_cost)
-			local textwidth = 0
+			-- deranged bullshit because noita treats $ as a translation token always
+			local w, h = GuiGetTextDimensions(gamba_gui, string.gsub(cost_text, "%$", "7"))
 
-			for i = 1, #text do
-				local l = string.sub(text, i, i)
-
-				if l ~= "1" then
-					textwidth = textwidth + 6
-				else
-					textwidth = textwidth + 3
-				end
-			end
-
-			local offsetx = textwidth * 0.5 - 0.5
-
-			ComponentSetValue2(cost_sprite, "offset_x", offsetx)
+			ComponentSetValue2(cost_sprite, "offset_x", w / 2)
 		end
 	end
 end
@@ -194,17 +188,17 @@ if currently_gambling then
 
 				GlobalsSetValue("GAMBLECORE_WIN_CHANCE", tostring(win_chance))
 
-				current_winnings = 200
-
 				for i = 1, 5 do
 					local nugget = EntityLoad("data/entities/items/pickup/goldnugget.xml", x, y)
 					local storage_comps = EntityGetComponent(nugget, "VariableStorageComponent") or {}
 					for k, v in pairs(storage_comps) do
 						if ComponentGetValue2(v, "name") == "gold_value" then
-							ComponentSetValue2(v, "value_int", current_winnings)
+							ComponentSetValue2(v, "value_int", math.max(math.floor(current_winnings / 5), 1))
 						end
 					end
 				end
+
+				current_winnings = 200
 			else
 				-- better_ui integration
 				GlobalsSetValue(
@@ -212,7 +206,7 @@ if currently_gambling then
 					tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0) + 1)
 				)
 
-				GamePrint("You lost!")
+				GamePrint("You lost! Current jackpot: $" .. tostring(current_winnings))
 				GamePlayAnimation(entity_id, "lose", 1)
 				ComponentSetValue2(sprite_component, "rect_animation", "lose")
 				EntityRefreshSprite(entity_id, sprite_component)
