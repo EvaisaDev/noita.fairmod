@@ -142,6 +142,11 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 	end]]
 end
 
+local pickup_blacklist = {
+	["data/entities/animals/necromancer_shop.xml"] = true,
+	["data/entities/animals/necromancer_super.xml"] = true,
+}
+
 function evil:BuffEnemy(enemy)
 	self.scanned[enemy] = true
 
@@ -153,10 +158,15 @@ function evil:BuffEnemy(enemy)
 	local headache = (math.random(0, 10000) / 100) <= 2
 	-- Chicanery ends
 
+	local file_name = EntityGetFilename(enemy)
+
 	local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
 	if animal_ai then
 		self:TweakAnimalComponent(headache, animal_ai)
-		self:ItemPickUpperComponent(enemy)
+		if(not file_name or not pickup_blacklist[file_name])then
+			self:ItemPickUpperComponent(enemy)
+		end
+		
 	end
 
 	if headache then self:GiveRandomEffect(enemy) end

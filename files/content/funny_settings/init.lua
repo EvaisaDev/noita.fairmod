@@ -24,6 +24,7 @@ shader_append(
 	[[
 uniform vec4 COLORBLIND_MODE_ON;
 uniform vec4 INVERT_Y_AXIS_ON;
+uniform vec4 LOWER_RESOLUTION_RENDERING_ON;
 	]]
 )
 
@@ -47,6 +48,16 @@ shader_append(
 	if(INVERT_Y_AXIS_ON.x == 1.0) {
 		tex_coord = vec2(tex_coord.x, 1.0 - tex_coord.y);
 	}
+	if(LOWER_RESOLUTION_RENDERING_ON.x == 1.0) {
+
+		float resolution_factor = 0.5;
+		vec2 screen_size = vec2(SCREEN_W, SCREEN_H) * resolution_factor;
+
+		tex_coord = vec2(floor(tex_coord.x * screen_size.x) / screen_size.x, floor(tex_coord.y * screen_size.y) / screen_size.y);
+		tex_coord_y_inverted = vec2(floor(tex_coord_y_inverted.x * screen_size.x) / screen_size.x, floor(tex_coord_y_inverted.y * screen_size.y) / screen_size.y);
+		tex_coord_glow = vec2(floor(tex_coord_glow.x * screen_size.x) / screen_size.x, floor(tex_coord_glow.y * screen_size.y) / screen_size.y);
+
+	}
 ]]
 )
 
@@ -66,6 +77,13 @@ module.OnPausedChanged = function()
 		GameSetPostFxParameter("INVERT_Y_AXIS_ON", 1, 0, 0, 0)
 	else
 		GameSetPostFxParameter("INVERT_Y_AXIS_ON", 0, 0, 0, 0)
+	end
+
+	local lower_resolution_rendering = ModSettingGet("noita.fairmod.lower_resolution_rendering")
+	if lower_resolution_rendering then
+		GameSetPostFxParameter("LOWER_RESOLUTION_RENDERING_ON", 1, 0, 0, 0)
+	else
+		GameSetPostFxParameter("LOWER_RESOLUTION_RENDERING_ON", 0, 0, 0, 0)
 	end
 end
 
