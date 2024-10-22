@@ -46,6 +46,9 @@ translations = translations .. "\n" .. new_translations .. "\n"
 translations = translations:gsub("\r", ""):gsub("\n\n+", "\n")
 ModTextFileSetContent("data/translations/common.csv", translations)
 
+
+
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
 
 --print("Example mod init done")

@@ -188,54 +188,30 @@
 	>
 	</Reaction>
 
-<!--
-
 
 	
-	<CellData
-		name="cc_carbon_dioxide"
-		ui_name="$mat_cc_carbon_dioxide"
-		tags="[gas]"
-		burnable="0"
-		density="1"
-		lifetime="350"
-		cell_type="gas"
-		wang_color="7fabeea2"
-		generates_smoke="0"
-		liquid_gravity="0.5"
-		liquid_sand="0"
-		on_fire="0"
-		requires_oxygen="0"
-		temperature_of_fire="60"
-		show_in_creative_mode="1"
-		>
-	<Graphics
-		color="b3665e55" >
-    </Graphics>
-	</CellData>
 
-	
-  <CellData	
-	name="cc_deceleratium"
-	ui_name="$mat_cc_deceleratium"
-	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
-	burnable="0"
-	density="4.1"
-	cell_type="liquid"
-	wang_color="806f823e" 
-	generates_smoke="0"
-	liquid_gravity="0.7"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="1"
-	status_effects="CC_MOVEMENT_SLOWER_2X"
-	audio_materialaudio_type="MAGICAL"
-	show_in_creative_mode="1"
-	>
-	<ParticleEffect
+	<CellData	
+	  name="cc_deceleratium"
+	  ui_name="$mat_fairmod_deceleratium"
+	  tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+	  burnable="0"
+	  density="4.1"
+	  cell_type="liquid"
+	  wang_color="806f823e" 
+	  generates_smoke="0"
+	  liquid_gravity="0.7"
+	  liquid_sand="0"
+	  gfx_glow="150"
+	  on_fire="0"
+	  requires_oxygen="0"
+	  liquid_stains="1"
+	  liquid_sprite_stain_shaken_drop_chance="1"
+	  status_effects="CC_MOVEMENT_SLOWER_2X"
+	  audio_materialaudio_type="MAGICAL"
+	  show_in_creative_mode="1"
+	  >
+	  <ParticleEffect
 		vel.y="17.14"
 		vel_random.min_y="-100"
 		vel_random.max_y="25.71"
@@ -245,7 +221,7 @@
 		draw_as_long="1"
 		friction="3.429"
 		probability="0.0518"
-	>
+	  >
 	</ParticleEffect>
 	<StatusEffects>
 		<Ingestion>
@@ -256,7 +232,7 @@
   
   <CellData
 	name="cc_heftium"
-	ui_name="$mat_cc_heftium"
+	ui_name="$mat_fairmod_heftium"
   	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
 	burnable="0"
 	density="4.92"
@@ -297,7 +273,7 @@
 
   <CellData
 	name="cc_stillium"
-	ui_name="$mat_cc_stillium"
+	ui_name="$mat_fairmod_stillium"
   	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
 	burnable="0"
 	density="3.091"
@@ -337,10 +313,41 @@
 		</Ingestion>
 	</StatusEffects>
   </CellData>
+
+
+
+<!--
+
+
+	
+	<CellData
+		name="cc_carbon_dioxide"
+		ui_name="$mat_fairmod_carbon_dioxide"
+		tags="[gas]"
+		burnable="0"
+		density="1"
+		lifetime="350"
+		cell_type="gas"
+		wang_color="7fabeea2"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="60"
+		show_in_creative_mode="1"
+		>
+	<Graphics
+		color="b3665e55" >
+    </Graphics>
+	</CellData>
+
+	
+
   
   <CellData
 	name="cc_explodePlayer"
-	ui_name="$mat_cc_explodePlayer"
+	ui_name="$mat_fairmod_explodePlayer"
 	tags="[magic_liquid],[impure],[liquid],[corrodible]"
 	burnable="1"
 	density="3.1"
@@ -397,7 +404,7 @@
    
    <CellData
 	name="cc_nullium"
-	ui_name="$mat_cc_nullium"
+	ui_name="$mat_fairmod_nullium"
 	tags="[liquid],[impure],[corrodible]"
 	density="4.63"
 	cell_type="liquid"
@@ -433,7 +440,7 @@
 
 	<CellData
 		name="cc_grease"
-		ui_name="$mat_cc_grease"
+		ui_name="$mat_fairmod_grease"
 		tags="[liquid],[impure],[liquid_common]"
 		burnable="1"
 		density="0.8"
@@ -490,7 +497,7 @@
 		_parent="ice_static"
 		_inherit_reactions="0"
 		name="cc_dormant_crystal"
-		ui_name="$mat_cc_dormant_crystal"
+		ui_name="$mat_fairmod_dormant_crystal"
 		tags="[static],[alchemy],[solid]"
 		burnable="1"
 		density="8"
@@ -535,7 +542,7 @@
 	
 	<CellData
 		name="cc_crystal_box2d"
-		ui_name="$mat_cc_crystal_box2d"
+		ui_name="$mat_fairmod_crystal_box2d"
 		tags="[box2d],[static],[corrodible],[solid],[alchemy]"
 		burnable="0"
 		density="10"
@@ -574,7 +581,7 @@
 
 	<CellData
 		name="cc_dormant_crystal_molten"
-		ui_name="$mat_cc_dormant_crystal_molten"
+		ui_name="$mat_fairmod_dormant_crystal_molten"
 		tags="[liquid],[corrodible],[molten],[alchemy],[liquid_common]"
 		burnable="0"
 		density="4.78"
@@ -597,7 +604,7 @@
 
 	<CellData
 		name="cc_antimatter_gas"
-		ui_name="$mat_cc_antimatter_gas"
+		ui_name="$mat_fairmod_antimatter_gas"
 		tags="[antimatter]"
 		burnable="0"
 		density="0.1"

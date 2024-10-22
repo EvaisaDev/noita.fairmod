@@ -119,6 +119,8 @@ ps.functions = {
 ---@type fun(potion_material: string, data: table)[]
 local functions2 = {}
 
+
+
 ---Function that chooses the potion material
 ---@diagnostic disable
 function ps.potion_a_materials(outcome, r_value, r_value2, data) --Variables are available as inputs in case you want to run with forced RNG. data lets you pass extra data if you want
@@ -148,6 +150,7 @@ function ps.potion_a_materials(outcome, r_value, r_value2, data) --Variables are
 
 	return tostring(outcome)
 end
+
 
 ---@diagnostic disable
 function init(entity_id) --mostly vanilla function
