@@ -141,7 +141,7 @@ local function create_tmtrainer_action(action_type, index)
 		local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
 
 		-- Build name and description from random chunks
-		table.insert(name_parts, get_random_chunk(added_name, 4))
+		table.insert(name_parts, get_random_chunk(added_name, 6))
 		table.insert(description_parts, get_random_chunk(added_description, 10))
 
 		-- Collect action functions
@@ -182,6 +182,15 @@ local function create_tmtrainer_action(action_type, index)
 		end
 
 		::continue::
+	end
+
+	for i, twitch_event in ipairs(twitch_events) do
+		local added_name = GameTextGetTranslatedOrNot(twitch_event.ui_name) or ""
+		local added_description = GameTextGetTranslatedOrNot(twitch_event.ui_description) or ""
+
+		-- Build name and description from random chunks
+		table.insert(name_parts, get_random_chunk(added_name, 6))
+		table.insert(description_parts, get_random_chunk(added_description, 10))
 	end
 
 	-- Combine name and description parts
@@ -266,7 +275,11 @@ local function create_tmtrainer_action(action_type, index)
 			for _, twitch_event in ipairs(twitch_events) do
 				seed_offset = seed_offset + 1
 				SetRandomSeed(TMTRAINER_INDEX, seed_offset)
-				_streaming_run_event(twitch_event.id)
+				local caster = EntityGetRootEntity(GetUpdatedEntityID())
+				if(EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player"))then
+					_streaming_run_event(twitch_event.id)
+				end
+				
 			end
 		end
 	end
@@ -299,8 +312,10 @@ for action_type, action_list in pairs(action_info_map) do
 	-- Ensure randomness is consistent
 
 	for _ = 1, #action_list do
-		local new_action = create_tmtrainer_action(action_type, TMTRAINER_INDEX)
-		table.insert(actions, new_action)
-		TMTRAINER_INDEX = TMTRAINER_INDEX + 1
+		if Random(1, 100) < 40 then
+			local new_action = create_tmtrainer_action(action_type, TMTRAINER_INDEX)
+			table.insert(actions, new_action)
+			TMTRAINER_INDEX = TMTRAINER_INDEX + 1
+		end
 	end
 end
