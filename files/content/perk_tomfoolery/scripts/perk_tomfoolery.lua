@@ -49,7 +49,7 @@ if sprite_component == nil or ui_info_component == nil or item_component == nil 
 if reveal_delay <= timer then
 	ComponentSetValue2(sprite_component, "image_file", actual_perk_icon)
 	ComponentSetValue2(ui_info_component, "name", actual_perk_name)
-	ComponentSetValue2(item_component, "item_name", actual_perk_desc)
+	ComponentSetValue2(item_component, "item_name", actual_perk_name)
 	ComponentSetValue2(item_component, "ui_description", actual_perk_desc)
 end
 
