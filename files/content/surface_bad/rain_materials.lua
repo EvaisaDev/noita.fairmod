@@ -50,6 +50,10 @@ local rain_materials = {
 	bush_seed = {},
 	fungi = {},
 	t_giga_slicing_liquid = {},
+	aa_chaotic_pandorium = {
+		count_min = 0,
+		count_max = 1,
+	},
 }
 
 return rain_materials
