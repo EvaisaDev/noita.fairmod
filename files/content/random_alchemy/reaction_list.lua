@@ -4,6 +4,7 @@
 --- @field output_cell1? string
 --- @field output_cell2? string
 --- @field probability? string
+--- @field [string] string
 
 --- @type random_alchemy[]
 local reactions = {

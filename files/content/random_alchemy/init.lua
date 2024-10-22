@@ -28,14 +28,10 @@ for xml in nxml.edit_file("data/materials.xml") do
 	for i = 1, #selected do
 		local selected_number = selected[i]
 		local reaction_data = reactions[selected_number]
-		local reaction = nxml.new_element("Reaction", {
-			probability = reaction_data.probability or "80",
-			input_cell1 = reaction_data.input_cell1,
-			input_cell2 = reaction_data.input_cell2,
-			output_cell1 = reaction_data.output_cell1 or random_output[Random(1, random_output_count)],
-			output_cell2 = reaction_data.output_cell2 or random_output[Random(1, random_output_count)],
-		})
-		print(tostring(reaction))
+		reaction_data.probability = reaction_data.probability or "80"
+		reaction_data.output_cell1 = reaction_data.output_cell1 or random_output[Random(1, random_output_count)]
+		reaction_data.output_cell2 = reaction_data.output_cell2 or random_output[Random(1, random_output_count)]
+		local reaction = nxml.new_element("Reaction", reaction_data)
 		xml:add_child(reaction)
 	end
 end
