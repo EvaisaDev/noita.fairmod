@@ -156,7 +156,7 @@ do
 			"Noble",
 			"Proud",
 			"Quiet",
-			"rRadiant",
+			"Radiant",
 			"Silent",
 			"Thundering",
 			"Vast",
