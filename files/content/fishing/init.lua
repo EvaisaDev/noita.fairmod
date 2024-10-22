@@ -1,4 +1,4 @@
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
+﻿ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
 --ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/fishing/files/gun.lua")
 
 local module = {}
@@ -112,6 +112,14 @@ function module.OnMagicNumbersAndWorldSeedInitialized()
 						script_source_file="mods/noita.fairmod/files/content/fishing/files/baits/scripts/bobber_handler.lua"
 						execute_on_added="1"
 						execute_every_n_frame="1"
+					>
+					</LuaComponent>
+
+					<LuaComponent
+						script_source_file="mods/noita.fairmod/files/content/fishing/files/baits/scripts/bobber_init.lua"
+						execute_on_added="0"
+						execute_every_n_frame="2"
+						execute_times="1"
 					>
 					</LuaComponent>
 				
