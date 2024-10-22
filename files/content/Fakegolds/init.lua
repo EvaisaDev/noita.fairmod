@@ -1,4 +1,6 @@
-local content = ModTextFileGetContent("data/biome/gold.xml")
+---@type nxml
+local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
+
 local thegold = {}
 
 local mats = {
@@ -16,8 +18,9 @@ local mats = {
 	"templeslab_static",
 }
 function thegold.OnMagicNumbersAndWorldSeedInitialized()
-	content = content:gsub('"gold"', '"' .. mats[Random(1, #mats)] .. '"')
-	ModTextFileSetContent("data/biome/gold.xml", content)
+	for content in nxml.edit_file("data/biome/gold.xml") do
+		content:first_of("Materials"):first_of("MaterialComponent"):set("material_name", mats[Random(1, #mats)])
+	end
 end
 
 return thegold
