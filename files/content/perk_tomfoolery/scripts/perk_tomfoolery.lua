@@ -51,6 +51,7 @@ if reveal_delay <= timer then
 	ComponentSetValue2(ui_info_component, "name", actual_perk_name)
 	ComponentSetValue2(item_component, "item_name", actual_perk_name)
 	ComponentSetValue2(item_component, "ui_description", actual_perk_desc)
+	EntityRefreshSprite(entity_id, sprite_component)
 end
 
 timer = timer + 1

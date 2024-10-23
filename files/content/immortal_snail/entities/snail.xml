@@ -1,10 +1,10 @@
 <Entity tags="mortal,prey,do_not_evil" name="Immortal Snail">
-  
 
-	<Base file="data/entities/base_helpless_animal.xml" >
 
-        <AnimalAIComponent 
-        	preferred_job="JobDefault"
+	<Base file="data/entities/base_helpless_animal.xml">
+
+		<AnimalAIComponent
+			preferred_job="JobDefault"
 			attack_ranged_entity_file=""
 			attack_ranged_predict="1"
 			attack_ranged_enabled="0"
@@ -15,56 +15,56 @@
 			attack_melee_damage_min="0"
 			attack_melee_damage_max="0"
 			can_fly="0"
-            >
-        </AnimalAIComponent >
-		
-		<DamageModelComponent 
+		>
+		</AnimalAIComponent>
+
+		<DamageModelComponent
 			fire_probability_of_ignition="0.05"
 			hp="0.1"
-			>
+		>
 		</DamageModelComponent>
-		
-        <SpriteComponent 
-            image_file="mods/noita.fairmod/files/content/immortal_snail/sprites/snail.png" 
-            offset_x="4" 
-            offset_y="2" >
-        </SpriteComponent>
-        
-        <SpriteAnimatorComponent
-            rotate_to_surface_normal="1" >
-        </SpriteAnimatorComponent>
+
+		<SpriteComponent
+			image_file="mods/noita.fairmod/files/content/immortal_snail/sprites/snail.png"
+			offset_x="4"
+			offset_y="2">
+		</SpriteComponent>
+
+		<SpriteAnimatorComponent
+			rotate_to_surface_normal="1">
+		</SpriteAnimatorComponent>
 
 
 		<PathFindingComponent
 			can_walk="0"
-		    distance_to_reach_node_x="20"
-		    distance_to_reach_node_y="20"
+			distance_to_reach_node_x="20"
+			distance_to_reach_node_y="20"
 			frames_to_get_stuck="60"
-			can_jump="0" >
+			can_jump="0">
 		</PathFindingComponent>
 
 		<PathFindingGridMarkerComponent
-			marker_work_flag="24" >
+			marker_work_flag="24">
 		</PathFindingGridMarkerComponent>
-		
-		<GenomeDataComponent 
+
+		<GenomeDataComponent
 			herd_id="helpless"
 			food_chain_rank="10"
-			is_predator="1" >
+			is_predator="1">
 		</GenomeDataComponent>
-		
-		<CharacterDataComponent 
-			collision_aabb_min_x="-2.6" 
-			collision_aabb_max_x="2.6" 
-			collision_aabb_min_y="-6" 
-			collision_aabb_max_y="3" 
-			buoyancy_check_offset_y="-1" 
+
+		<CharacterDataComponent
+			collision_aabb_min_x="-2.6"
+			collision_aabb_max_x="2.6"
+			collision_aabb_min_y="-6"
+			collision_aabb_max_y="3"
+			buoyancy_check_offset_y="-1"
 			mass="0.3"
-			>
+		>
 		</CharacterDataComponent>
-		
-		<CharacterPlatformingComponent 
-        	velocity_max_y="60"
+
+		<CharacterPlatformingComponent
+			velocity_max_y="60"
 			velocity_min_y="-60"
 			velocity_max_x="60"
 			velocity_min_x="-60"
@@ -74,49 +74,53 @@
 			swim_down_buoyancy_coeff="-1"
 			swim_up_buoyancy_coeff="-1"
 			swim_drag="1"
-			swim_extra_horizontal_drag = "1"
-			
-			>
+			swim_extra_horizontal_drag="1"
+		>
 		</CharacterPlatformingComponent>
-		
-		<HitboxComponent 
-			_enabled="1" 
-			aabb_min_x="-4.5" 
-			aabb_max_x="4.5" 
-			aabb_min_y="-5.5" 
+
+		<HitboxComponent
+			_enabled="1"
+			aabb_min_x="-4.5"
+			aabb_max_x="4.5"
+			aabb_min_y="-5.5"
 			aabb_max_y="3"
-			>
+		>
 		</HitboxComponent>
+
+		<CameraBoundComponent
+			_remove_from_base="1"
+		/>
 
 
 	</Base>
 
-	
+
 	<ItemPickUpperComponent
-		is_in_npc = "1"
-		pick_up_any_item_buggy = "1"
-		is_immune_to_kicks = "1"
-		drop_items_on_death = "1"
+		is_in_npc="1"
+		pick_up_any_item_buggy="1"
+		is_immune_to_kicks="1"
+		drop_items_on_death="1"
 	/>
 
 	<AudioComponent
 		file="data/audio/Desktop/animals.bank"
-		event_root="animals/longleg" >
+		event_root="animals/longleg">
 	</AudioComponent>
 
-	<Entity tags="effect_protection" >
-		
+	<Entity tags="effect_protection">
+
 		<InheritTransformComponent>
-		</InheritTransformComponent>	
-		
+		</InheritTransformComponent>
+
 		<GameEffectComponent
 			_tags="effect_protection_all"
 			effect="PROTECTION_ALL"
 			frames="-1"
 		>
-		</GameEffectComponent >
+		</GameEffectComponent>
 
 	</Entity>
+
 
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_ai.lua"
@@ -129,25 +133,20 @@
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_annihilation.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
-		execute_times="-1" 
+		execute_times="-1"
 	/>
- 	<!--<LuaComponent
-		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"
-		execute_on_added="1"
-		execute_every_n_frame="1"
-		execute_times="-1" >
-	</LuaComponent>-->
+
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/too_far_teleport.lua"
 		execute_on_added="1"
 		execute_every_n_frame="20"
-		execute_times="-1" >
+		execute_times="-1">
 	</LuaComponent>
 
 	<InteractableComponent
 		ui_text="Press $0 to talk to the snail"
 		radius="30"
-		>
+	>
 	</InteractableComponent>
 
 	<LuaComponent
@@ -155,17 +154,17 @@
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/interact.lua"
 		execute_every_n_frame="1"
 		enable_coroutines="1"
-		>
+		execute_on_added="1"
+	>
 	</LuaComponent>
 
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/misc/item_dropper.lua"
 		execute_on_added="1"
 		execute_every_n_frame="10"
-		execute_times="-1" >
+		execute_times="-1">
 	</LuaComponent>
 
 	<StreamingKeepAliveComponent />
 
 </Entity>
-

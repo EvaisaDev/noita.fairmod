@@ -25,6 +25,9 @@ local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lua")
 local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
+local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
+local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
+local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -56,6 +59,8 @@ dofile_once("mods/noita.fairmod/files/content/bananapeel/init.lua")
 dofile_once("mods/noita.fairmod/files/content/spooky_skeleton/init.lua")
 dofile_once("mods/noita.fairmod/files/content/gold_bananas/init.lua")
 dofile_once("mods/noita.fairmod/files/content/rat_wand/init.lua")
+dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
+dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -96,6 +101,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
+
+	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 end
 
 function OnPlayerSpawned(player)
@@ -129,6 +136,8 @@ function OnPlayerSpawned(player)
 	-- stuff after here only runs once on initial run start
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
+	-- you gain the booklet from the information kiosk
+	--dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
 
 	SetRandomSeed(2152, 12523)
 
@@ -158,6 +167,8 @@ function OnPlayerSpawned(player)
 	healthymimic.OnPlayerSpawned(player)
 
 	fire.OnPlayerSpawned(player)
+
+	information_kiosk.spawn_kiosk(target_x, target_y)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -197,6 +208,8 @@ function OnWorldPreUpdate()
 	loanshark.update()
 	achievements:update()
 	ping_attack.update()
+	cheats.update()
+	hescoming.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -234,6 +247,7 @@ function OnPlayerDied(player)
 	if not GameHasFlagRun("ending_game_completed") then
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
+	hescoming.OnPlayerDied(player)
 end
 
 -- Copi was here

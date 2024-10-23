@@ -137,13 +137,15 @@ local function create_tmtrainer_action(action_type, index)
 		-- if id starts with RANDOM_ we ignore it
 		if string.sub(id, 1, 7) == "RANDOM_" then goto continue end
 
-		local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
-		local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
+		if not reflecting then
+			local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
+			local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
 
-		-- Build name and description from random chunks
-		table.insert(name_parts, get_random_chunk(added_name, 6))
-		table.insert(description_parts, get_random_chunk(added_description, 10))
-
+			-- Build name and description from random chunks
+			table.insert(name_parts, get_random_chunk(added_name, 6))
+			table.insert(description_parts, get_random_chunk(added_description, 10))
+		end
+		
 		-- Collect action functions
 		table.insert(functions, added_action.action)
 
@@ -297,7 +299,6 @@ local function create_tmtrainer_action(action_type, index)
 		mana = mana,
 		max_uses = max_uses,
 		custom_xml_file = custom_xml_file,
-		pandorium_ignore = true,
 		tm_trainer = true,
 		action = function(recursion_level, iteration)
 			action_function(recursion_level, iteration)

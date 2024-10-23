@@ -60,6 +60,8 @@ if distance_from_edge > 100 then
 			tries = tries + 1
 		end
 
+		print("Teleporting snail to new position: " .. new_x .. ", " .. new_y)
+
 		-- If a valid position is found, update the entity's position
 		if valid then EntityApplyTransform(entity_id, new_x, new_y) end
 	else

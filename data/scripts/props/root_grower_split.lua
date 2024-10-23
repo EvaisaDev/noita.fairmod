@@ -2,7 +2,7 @@ local entity_id = GetUpdatedEntityID()
 local pos_x, pos_y = EntityGetTransform(entity_id)
 
 -- Anti-lag, since these things can multiply a lot we don't want to have too many in one spot
-for _, e in ipairs(EntityGetInRadiusWithTag(pos_x, pos_y, 15, "root")) do
+for _, e in ipairs(EntityGetInRadiusWithTag(pos_x, pos_y, 25, "root")) do
 	if e ~= entity_id then
 		EntityKill(entity_id)
 		return
@@ -17,7 +17,7 @@ if r < 0.1 then
 	pos_y = pos_y + ProceduralRandomf(pos_x, pos_y + 54, -3, 3)
 	EntityLoad("data/entities/props/root_grower.xml", pos_x, pos_y)
 	return
-elseif r < 0.9 then
+elseif r < 0.8 then
 	-- regular small branch
 	pos_x = pos_x + ProceduralRandomf(pos_x - 7, pos_y, -3, 3)
 	pos_y = pos_y + ProceduralRandomf(pos_x, pos_y, -3, 3)
