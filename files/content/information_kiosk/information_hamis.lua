@@ -8,7 +8,7 @@ SetRandomSeed(x + GameGetFrameNum(), y)
 local tips = {
 	"I think I saw a snail earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
-	"Did you know that you can get a free information booklet here?",
+	"Did you know that you can get a free information booklet \nhere?",
 	"99% of gamblers quit before they win big!",
 	"Did you know we added a helpful UI that gives you lots of info?\nPay attention to the right side of the screen!",
 	"If you see spells that looks wrong..\nIgnore them! They are clearly bugs!!",
