@@ -1,4 +1,4 @@
---- @diagnostic disable: unused-local, missing-global-doc
+--- @diagnostic disable: unused-local, missing-global-doc, undefined-global
 dofile_once("data/scripts/biomes/temple_shared.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
