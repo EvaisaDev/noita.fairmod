@@ -91,7 +91,7 @@
 	></ItemComponent>
 
 	<AbilityComponent
-		ui_name="$fairmod_booklet"
+		ui_name="$fairmod_booklet_name"
 		throw_as_item="1"
 	></AbilityComponent>
 

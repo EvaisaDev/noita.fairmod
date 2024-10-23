@@ -1,8 +1,8 @@
 --- @class instruction_booklet_gui:UI_class
 --- @field book instruction_booklet_gui_book
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua")
-GuiDestroy(ui.gui) -- trust me
 ui.dim.vx, ui.dim.vy = GuiGetScreenDimensions(ui.gui)
+GuiDestroy(ui.gui) -- trust me
 
 local pages = {
 	"mods/noita.fairmod/files/content/instruction_booklet/pages/cover.png",
@@ -101,8 +101,14 @@ function ui:draw_navigation_buttons()
 	self:TextCentered(self.x, self.y + self.book.height + 10, "Click on pages to flip", self.book.width * 2)
 	self:TextCentered(self.x, self.y + self.book.height + 20, "Press Shift for zoom", self.book.width * 2)
 
+	if self.book.flip_progress < 1 then
+		if self:IsHoverBoxHovered(self.x, self.y, self.book.width * 2, self.book.height, true) then
+			self:BlockInput()
+		end
+	end
+
 	if self:IsHoverBoxHovered(self.x, self.y, self.book.width, self.book.height, true) then
-		if self.book.flip_progress < 1 or self.book.current_page_left <= 0 then return end
+		if self.book.current_page_left <= 0 then return end
 		self:BlockInput()
 		if self:IsMouseClicked() then
 			GamePlaySound("mods/noita.fairmod/fairmod.bank", "book/page", 0, 0)
@@ -114,7 +120,7 @@ function ui:draw_navigation_buttons()
 	end
 
 	if self:IsHoverBoxHovered(self.x + self.book.width, self.y, self.book.width, self.book.height, true) then
-		if self.book.flip_progress < 1 or self.book.current_page_right >= #self.book.images then return end
+		if self.book.current_page_right >= #self.book.images then return end
 		self:BlockInput()
 		if self:IsMouseClicked() then
 			GamePlaySound("mods/noita.fairmod/fairmod.bank", "book/page", 0, 0)
@@ -181,7 +187,6 @@ function ui:draw_zoomed()
 
 	self.book.zoomed_width, self.book.zoomed_height =
 		GuiGetImageDimensions(self.gui, self.book.images[1], self.book.zoomed_scale)
-	print(self.book.zoomed_width)
 
 	local book_width = self.book.zoomed_width * 2
 
