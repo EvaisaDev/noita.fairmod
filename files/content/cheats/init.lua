@@ -16,18 +16,19 @@ module.update = function()
 
 	local key_ranges = keys.key_ranges
 
+	local last_added = ""
+
 	local was_any_pressed = false
 	for _, key_range in ipairs(key_ranges) do
 		for i = key_range[1], key_range[2] do
 			if InputIsKeyJustUp(i) then
-				current_input_text = current_input_text .. (keys.key_map[i] or "")
+				last_added = (keys.key_map[i] or "")
+				current_input_text = current_input_text .. last_added
 				was_any_pressed = true
 			end
 		end
 	end
 
-	print(current_input_text)
-	
 	if not was_any_pressed then return end
 
 	-- check if current input is at the beginning of any cheat code
@@ -44,7 +45,7 @@ module.update = function()
 	end
 
 	if not was_any_match then
-		current_input_text = ""
+		current_input_text = last_added
 	end
 
 end

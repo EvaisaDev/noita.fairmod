@@ -20,5 +20,25 @@ return {
 		description = "Wow you know the konami code, very cool.",
 		func = function(player)
 		end,
-	}
+	},
+	["athousandsnailsplease"] = {
+        name = "A thousand snails",
+        description = "Are you sure about this??",
+        func = function(player)
+			local x, y = EntityGetTransform(player)
+			SetRandomSeed(x, y)
+            for i = 1, 1000 do
+				-- choose a random non zero direction
+				local dx = Random(-1, 1)
+				local dy = Random(-1, 1)
+				if dx == 0 and dy == 0 then
+					dx = 1
+				end
+
+				local distance = Random(50, 150)
+
+				EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x + (dx * distance), y + (dy * distance))
+			end
+        end,
+    },
 }
