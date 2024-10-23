@@ -21,5 +21,7 @@ if player then
     EntityKill(player)
     EntityKill(entity_id)
     EntityLoad("mods/noita.fairmod/files/content/hescoming/gameover.xml", px, py)
+  elseif dist2 > 1000000 then -- if more than 1000 pixels away, teleport him near the player so it doesn't despawn
+    EntitySetTransform(entity_id, px + math.cos(dir) * 1000, py + math.sin(dir) * 1000)
   end
 end
