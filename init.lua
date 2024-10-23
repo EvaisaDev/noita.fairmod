@@ -133,7 +133,8 @@ function OnPlayerSpawned(player)
 	-- stuff after here only runs once on initial run start
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
-	dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
+	-- you gain the booklet from the information kiosk
+	--dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
 
 	SetRandomSeed(2152, 12523)
 

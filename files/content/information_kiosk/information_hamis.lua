@@ -16,7 +16,7 @@ local tips = {
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
 }
 
-function interacting(entity_who_interacted, entity_interacted, interactable_name)
+function interacting(player, entity_interacted, interactable_name)
 	dialog = dialog_system.open_dialog({
 		name = "Information Hämis",
 		portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
@@ -46,16 +46,45 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					return true
 				end,
 				func = function(dialog)
-					dialog.show({
-						text = "Sorry those are out of stock!\nHave a great day!!",
-						options = {
-							{
-								text = "Leave",
+
+					local item_count = 0
+					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
+						if EntityGetName(child) == "inventory_quick" then
+							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
+								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								if(ability_component)then
+									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
+									if( not use_gun_script )then
+										item_count = item_count + 1
+									end
+
+								end
+							end
+						end
+					end
+
+					if(item_count < 4)then
+						dialog.show({
+							text = "Ofcourse!! Here you go.\nHave a great day!!",
+							options = {
+								{
+									text = "Leave",
+								},
 							},
-						},
-					})
-					-- entityload the booklet
-				end,
+						})
+						local items = EntityLoad("mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml", x, y)
+						GamePickUpInventoryItem(player, items, false)
+					else
+						dialog.show({
+							text = "Your bag looks really full!\nPerhaps you should make some room first?",
+							options = {
+								{
+									text = "Leave",
+								},
+							},
+						})	
+					end
+				end,	
 			},
 			{
 				text = "Leave",
