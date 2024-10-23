@@ -16,11 +16,15 @@ module.update = function()
 
 	local key_range = keys.key_range
 
+	local was_any_pressed = false
 	for i = key_range[1], key_range[2] do
 		if InputIsKeyJustUp(i) then
 			current_input_text = current_input_text .. keys.key_map[i]
+			was_any_pressed = true
 		end
 	end
+
+	if not was_any_pressed then return end
 
 	-- check if current input is at the beginning of any cheat code
 	local was_any_match = false
