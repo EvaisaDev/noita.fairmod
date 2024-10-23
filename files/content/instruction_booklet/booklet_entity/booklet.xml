@@ -1,0 +1,105 @@
+<Entity tags="item_physics,item_pickup">
+	<UIInfoComponent
+		name="$fairmod_booklet_name"
+	></UIInfoComponent>
+
+	<DamageModelComponent
+		_tags="enabled_in_world"
+		air_needed="0"
+		blood_material=""
+		drop_items_on_death="0"
+		falling_damages="1"
+		hp="0.1"
+		ragdoll_filenames_file=""
+		ragdoll_material=""
+	></DamageModelComponent>
+
+	<PhysicsBodyCollisionDamageComponent
+		_tags="enabled_in_world"
+		speed_threshold="0.0"
+	></PhysicsBodyCollisionDamageComponent>
+
+	<ExplodeOnDamageComponent
+		_tags="enabled_in_world"
+		explode_on_death_percent="1"
+		explode_on_damage_percent="1"
+		physics_body_destruction_required="0.1"
+		physics_body_modified_death_probability="1"
+	>
+		<config_explosion
+			camera_shake="60"
+			explosion_radius="250"
+			explosion_sprite="data/particles/explosion_032.xml"
+			load_this_entity="data/entities/particles/particle_explosion/main_large.xml,data/entities/misc/loose_chunks.xml,data/entities/misc/explosion_was_here.xml"
+			explosion_sprite_lifetime="0"
+			create_cell_probability="5"
+			hole_destroy_liquid="0"
+			hole_enabled="1"
+			ray_energy="6700000"
+			damage="100"
+			particle_effect="1"
+			damage_mortals="1"
+			physics_explosion_power.min="4.5"
+			physics_explosion_power.max="9"
+			shake_vegetation="1"
+			sparks_count_max="1500"
+			sparks_count_min="1600"
+			sparks_enabled="1"
+			stains_enabled="1"
+			stains_radius="35"
+			background_lightning_count="5"
+			max_durability_to_destroy="12"
+			audio_event_name="explosions/nuke"
+		></config_explosion>
+	</ExplodeOnDamageComponent>
+
+	<PhysicsBodyComponent
+		_tags="enabled_in_world"
+		uid="1"
+		allow_sleep="1"
+		is_bullet="1"
+		auto_clean="0"
+	></PhysicsBodyComponent>
+
+	<PhysicsImageShapeComponent
+		body_id="1"
+		centered="1"
+		image_file="data/items_gfx/book_small.png"
+		material="item_box2d_meat"
+	></PhysicsImageShapeComponent>
+
+	<PhysicsThrowableComponent
+		throw_force_coeff="1.5"
+	></PhysicsThrowableComponent>
+
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		image_file="data/items_gfx/in_hand/book_in_hand.png"
+	></SpriteComponent>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name="$fairmod_booklet_name"
+		is_equipable_forced="1"
+		ui_sprite="data/items_gfx/book.png"
+		ui_description="$fairmod_booklet_desc"
+		preferred_inventory="QUICK"
+	></ItemComponent>
+
+	<AbilityComponent
+		ui_name="$fairmod_booklet_name"
+		throw_as_item="1"
+	></AbilityComponent>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.lua"
+		script_enabled_changed="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+	></LuaComponent>
+</Entity>

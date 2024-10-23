@@ -1,8 +1,8 @@
 local game_translation_file = "data/translations/common.csv"
 local append_list = {
+	"mods/noita.fairmod/files/translations/content/rat_wand.csv",
 	"mods/noita.fairmod/files/translations/content/general.csv",
 	"mods/noita.fairmod/files/translations/content/chemical_horror.csv",
-	"mods/noita.fairmod/files/translations/content/rat_wand.csv",
 }
 
 local translation = ModTextFileGetContent(game_translation_file)
