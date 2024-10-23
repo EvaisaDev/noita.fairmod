@@ -181,7 +181,7 @@
 	</Graphics>
   </CellDataChild> <!-- Omega slicing liquid-->
 
-	<Reaction probability="31"
+	<Reaction probability="16"
 	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
 	output_cell1="[fire]"			output_cell2="air"
 	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml" 
