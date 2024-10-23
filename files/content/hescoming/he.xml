@@ -1,0 +1,20 @@
+<Entity>
+
+  <SpriteComponent
+    image_file="mods/noita.fairmod/files/content/hescoming/he.png"
+    offset_x="166"
+    offset_y="120"
+  ></SpriteComponent>
+
+  <LuaComponent
+    script_source_file="mods/noita.fairmod/files/content/hescoming/he.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+
+  <AudioLoopComponent
+    file="mods/noita.fairmod/fairmod.bank"
+    event_name="hescoming/tubaloop"
+    auto_play="1"
+  ></AudioLoopComponent>
+
+</Entity>
