@@ -8,7 +8,7 @@ return {
 			ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 		end,
 	},
-	["Dupe"] = {
+	["duplicateme"] = {
         name = "Dupe",
         description = "There are two of you??",
         func = function(player)
