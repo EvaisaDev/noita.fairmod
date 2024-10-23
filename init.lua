@@ -56,6 +56,7 @@ dofile_once("mods/noita.fairmod/files/content/bananapeel/init.lua")
 dofile_once("mods/noita.fairmod/files/content/spooky_skeleton/init.lua")
 dofile_once("mods/noita.fairmod/files/content/gold_bananas/init.lua")
 dofile_once("mods/noita.fairmod/files/content/rat_wand/init.lua")
+dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
