@@ -46,6 +46,8 @@ local const = {
 --- @class (exact) UI_dimensions
 --- @field x number
 --- @field y number
+--- @field vx number virtual res x
+--- @field vy number virtual res y
 
 --- @class (exact) gui_tooltip_size_cache
 --- @field width number
@@ -75,6 +77,8 @@ local ui_class = {
 	dim = {
 		x = 640,
 		y = 360,
+		vx = 1280,
+		vy = 720,
 	},
 	gui_id = 100000,
 	tooltip_gui_id = 1000,
@@ -743,7 +747,7 @@ end
 --- @return number mouse_x, number mouse_y
 function ui_class:get_mouse_pos()
 	local mouse_screen_x, mouse_screen_y = InputGetMousePosOnScreen()
-	local mx_p, my_p = mouse_screen_x / 1280, mouse_screen_y / 720
+	local mx_p, my_p = mouse_screen_x / self.dim.vx, mouse_screen_y / self.dim.vy
 	return mx_p * self.dim.x, my_p * self.dim.y
 end
 
