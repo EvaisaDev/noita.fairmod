@@ -93,7 +93,12 @@
 	<AbilityComponent
 		ui_name="$fairmod_booklet_name"
 		throw_as_item="1"
-	></AbilityComponent>
+	>
+		<gun_config
+			deck_capacity="0"
+		></gun_config>
+
+	</AbilityComponent>
 
 	<LuaComponent
 		_tags="enabled_in_hand"
