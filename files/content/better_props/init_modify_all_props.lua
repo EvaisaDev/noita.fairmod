@@ -31,12 +31,34 @@ local function fixup_prop_children(element)
 	for comp in element:each_of("DamageModelComponent") do
 		comp:set("blood_multiplier", 3)
 		-- better chance to see things fly around instead of exploding immediately
-		elem_multiply_attr(comp, "hp", 2)
+		-- try not to modify enemy hp
+		if element:first_of("AnimalAIComponent") == nil then
+			if tonumber(comp:get("hp") or "1") < 1 then comp:set("hp", 1) end
+			elem_multiply_attr(comp, "hp", 2)
+		end
 	end
 
 	for comp in element:each_of("MaterialInventoryComponent") do
-		elem_multiply_attr(comp, "leak_pressure_min", 5)
-		elem_multiply_attr(comp, "leak_pressure_max", 5)
+		-- More sane defaults for components that don't have these set
+		-- Use normal defaults if it has b2_force_on_leak
+		if comp:get("b2_force_on_leak") ~= nil then
+			comp:apply_defaults({
+				MaterialInventoryComponent = {
+					leak_pressure_min = 0.7,
+					leak_pressure_max = 1.1,
+				}
+			})
+		else
+			comp:apply_defaults({
+				MaterialInventoryComponent = {
+					leak_pressure_min = 0.1,
+					leak_pressure_max = 0.25,
+					b2_force_on_leak = 0.2,
+				}
+			})
+		end
+		elem_multiply_attr(comp, "leak_pressure_min", 2)
+		elem_multiply_attr(comp, "leak_pressure_max", 6)
 		elem_multiply_attr(comp, "b2_force_on_leak", 5)
 		comp:set("on_death_spill", true)
 		comp:set("leak_on_damage_percent", 0.999)
