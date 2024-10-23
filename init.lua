@@ -1,8 +1,6 @@
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
-local test = dofile_once("mods/noita.fairmod/files/content/instruction_booklet/gui.lua")
-
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
@@ -131,6 +129,7 @@ function OnPlayerSpawned(player)
 	-- stuff after here only runs once on initial run start
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
+	dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
 
 	SetRandomSeed(2152, 12523)
 
@@ -207,7 +206,6 @@ function OnWorldPreUpdate()
 		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
 	end
-	test:update()
 end
 
 function OnWorldPostUpdate() end
