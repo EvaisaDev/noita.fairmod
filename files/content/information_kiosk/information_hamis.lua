@@ -47,7 +47,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Sure thing! Here you go!\nHave a great day!!",
+						text = "Sorry those are out of stock!\nHave a great day!!",
 						options = {
 							{
 								text = "Leave",
