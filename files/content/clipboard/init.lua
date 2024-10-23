@@ -1,7 +1,9 @@
 local clipboard = {}
 
-local function get_messages()
-	return {
+function clipboard.OnPlayerSpawned()
+
+
+	local messages = { --sorry, need access to TL and that isn't available during normal init, and adding in stuff separately would be weird
 		"'Unfair Noita community collab™' is my favourite mod!",
 		"Hämis",
 		"Uhh umm aahh",
@@ -36,15 +38,15 @@ local function get_messages()
 		"message.txt",
 		"\"Why so Jonkler\"\n-Sirius Black, from hit-game; LEGO Harry Potter 7",
 		"https://discord.gg/noita",
-		"https://discord.gg/erHfpxGDq6", --this is another noita link, but without "/noita"
+		"https://discord.gg/erHfpxGDq6", --this is another noitacord link, but without "/noita"
+		"https://noita.wiki.gg/",
 		"Terraria is just a Minecraft clone imo",
 		"Minecraft is just a Noita clone imo",
-		GameTextGet("$bee_movie_script")
+		GameTextGet("$bee_movie_script"), --lmao
+		"\"Wait a minute, I didn't copy this!\"\n-You, right now"
 	}
-end
 
-function clipboard.OnPlayerSpawned()
-	local messages = get_messages()
+
 	if imgui then
 		SetRandomSeed(123, 456)
 		imgui.SetClipboardText(messages[Random(1, #messages)])
