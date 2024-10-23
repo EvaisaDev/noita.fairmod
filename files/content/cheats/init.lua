@@ -14,16 +14,18 @@ module.update = function()
 	local cheat_codes = dofile_once("mods/noita.fairmod/files/content/cheats/cheat_codes.lua")
 	local keys = dofile_once("mods/noita.fairmod/files/content/cheats/misc/keyboard.lua")
 
-	local key_range = keys.key_range
+	local key_ranges = keys.key_ranges
 
 	local was_any_pressed = false
-	for i = key_range[1], key_range[2] do
-		if InputIsKeyJustUp(i) then
-			current_input_text = current_input_text .. keys.key_map[i]
-			was_any_pressed = true
+	for _, key_range in ipairs(key_ranges) do
+		for i = key_range[1], key_range[2] do
+			if InputIsKeyJustUp(i) then
+				current_input_text = current_input_text .. (keys.key_map[i] or "")
+				was_any_pressed = true
+			end
 		end
 	end
-
+	
 	if not was_any_pressed then return end
 
 	-- check if current input is at the beginning of any cheat code

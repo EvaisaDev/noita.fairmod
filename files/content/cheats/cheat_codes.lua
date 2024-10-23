@@ -7,5 +7,5 @@ return {
 			if(wallet_component == nil) then return end	
 			ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 		end,
-	}
+	},
 }
