@@ -28,14 +28,13 @@ return {
 			local x, y = EntityGetTransform(player)
 			SetRandomSeed(x, y)
             for i = 1, 1000 do
-				-- choose a random non zero direction
-				local dx = Random(-1, 1)
-				local dy = Random(-1, 1)
-				if dx == 0 and dy == 0 then
-					dx = 1
-				end
+				-- get a random angle radian
+				local angle = math.rad(Random(0, 360))
+				-- get a random direction vector
+				local dx = math.cos(angle)
+				local dy = math.sin(angle)
 
-				local distance = Random(50, 150)
+				local distance = Random(100, 150)
 
 				EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x + (dx * distance), y + (dy * distance))
 			end
