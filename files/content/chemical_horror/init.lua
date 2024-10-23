@@ -40,6 +40,10 @@ end
 ]]
 --
 
+
+
+
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
 
 --print("Example mod init done")
