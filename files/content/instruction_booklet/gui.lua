@@ -1,6 +1,7 @@
 --- @class instruction_booklet_gui:UI_class
 --- @field book instruction_booklet_gui_book
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua")
+GuiDestroy(ui.gui) -- trust me
 ui.dim.vx, ui.dim.vy = GuiGetScreenDimensions(ui.gui)
 
 local pages = {
