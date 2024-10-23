@@ -104,7 +104,8 @@
 		_tags="enabled_in_hand"
 		script_source_file="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.lua"
 		script_enabled_changed="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.lua"
+		enable_coroutines="1"
+		execute_every_n_frame="-1"
 		execute_on_added="1"
-		execute_every_n_frame="1"
 	></LuaComponent>
 </Entity>
