@@ -96,6 +96,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
+
+	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 end
 
 function OnPlayerSpawned(player)
