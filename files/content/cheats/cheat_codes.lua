@@ -21,22 +21,29 @@ return {
 		func = function(player)
 		end,
 	},
-	["athousandsnailsplease"] = {
-        name = "A thousand snails",
+	["ahundredsnailsplease"] = {
+        name = "A hundred snails",
         description = "Are you sure about this??",
         func = function(player)
 			local x, y = EntityGetTransform(player)
-			SetRandomSeed(x, y)
-            for i = 1, 1000 do
+
+            for i = 1, 100 do
 				-- get a random angle radian
 				local angle = math.rad(Random(0, 360))
 				-- get a random direction vector
 				local dx = math.cos(angle)
 				local dy = math.sin(angle)
 
-				local distance = Random(100, 150)
+				local distance = Random(100, 250)
 
-				EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", x + (dx * distance), y + (dy * distance))
+				local target_x = x + (dx * distance)
+				local target_y = y + (dy * distance)
+
+				local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+
+				if(not hit)then
+					EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", target_x, target_y)
+				end
 			end
         end,
     },
