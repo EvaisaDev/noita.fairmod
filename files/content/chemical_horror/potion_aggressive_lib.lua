@@ -9,8 +9,7 @@ local pa = PotionAggressiveLib
 
 
 
-
-
+--dont change this, change the table overwrite in the neighbouring append file
 pa.potions = 
 {
 	{

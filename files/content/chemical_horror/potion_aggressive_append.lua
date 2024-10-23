@@ -1,20 +1,55 @@
 local pa = PotionAggressiveLib
 
+
+
+
+pa.customfunctions = {
+	function (potion)
+		if Random(1, 100) == 100 then --1% chance for random material
+			local liquids = MaterialsFilter(CellFactory_GetAllLiquids() or {})
+			local sands = MaterialsFilter(CellFactory_GetAllSands() or {})
+			local solids = MaterialsFilter(CellFactory_GetAllSolids() or {})
+			local rand = Random(1, 3)
+			if rand == 1 then
+				local material = liquids[Random(1, #liquids)]
+				return { material = material }
+			elseif rand == 2 then
+				local material = sands[Random(1, #sands)]
+				return { material = material }
+			else
+				local material = solids[Random(1, #solids)]
+				return { material = material }
+			end
+		end
+
+		local r = Random(1, 20)
+		if r > 19 then --5% chance for triple potion amount
+			print("yayyyy")
+			potion.amount = potion.amount * 3
+		elseif r > 16 then --15% chance for double
+			print("nayyyy")
+			potion.amount = potion.amount * 2
+		end
+	end
+}
+
+
+
 pa.potions = 
 {
 	{
-		material="acid", --you probably shouldnt leave name blank, but it will default to "air"
-        probability=.05, --default probability is 10
+		material="acid", --you probably shouldnt leave name blank, but it will default to "air" if you do
+        probability=.2, --default probability is 10
         amount=100000, --reference to the funny 10000% acid potion mod
-		cost=800,
-		func = function (data) --function that adds funni names/descs to the acid potion
-			local itemcomp = EntityGetComponent(data.entity_id, "ItemComponent")
+		cost=800, --default cost 200
+		func = function (data) --function has no default, entirely optional
+			local itemcomp = EntityGetComponent(data.entity_id, "ItemComponent") --function that adds funni names/descs to the acid potion
 			if itemcomp == nil then return end
 			ComponentSetValue2(itemcomp[1], "item_name", "$100000_percent_acid")
 			ComponentSetValue2(itemcomp[1], "always_use_item_name_in_ui", true)
 			ComponentSetValue2(itemcomp[1], "ui_description", "$100000_percent_acid_desc")
 			ComponentSetValue2(itemcomp[1], "custom_pickup_string", GameTextGet("$100000_percent_acid_picked_up", "$100000_percent_acid"))
-		end
+		end --just an example of the sort of thing you can do
 	},
 	{
 		material="lava",
