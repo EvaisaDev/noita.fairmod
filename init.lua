@@ -24,6 +24,7 @@ local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_h
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lua")
+local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
