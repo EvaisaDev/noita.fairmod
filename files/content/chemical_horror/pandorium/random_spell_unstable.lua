@@ -42,17 +42,19 @@ function table.has_value(tab, val)
 	return false
 end
 
-dofile("data/scripts/gun/gun_actions.lua")
+dofile_once("data/scripts/gun/gun_actions.lua")
 
+print()
 for k, data in pairs(actions) do
 	if data.related_projectiles ~= nil then
 		if data.pandorium_ignore then goto continue end
+		if data.tm_trainer and Randomf() >= (ModSettingGet("cpand_tmtrainer_chance") or 0) then goto continue end
 		for k2, v in pairs(data.related_projectiles) do
 			if table.has_value(spells, v) == false then table.insert(spells, v) end
 		end
 	end
 	::continue::
 end
-if Random(1, 100) > 50 then bullet_circle(spells[Random(1, #spells)], 1, 600) end
+if Random(1, 2) > 1 then bullet_circle(spells[Random(1, #spells)], 1, 600) end
 
 EntityKill(GetUpdatedEntityID())

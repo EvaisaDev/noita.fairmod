@@ -12,8 +12,6 @@ local velcomp = EntityGetComponent(entity_id, "VelocityComponent")
 if velcomp == nil then return end
 local nearest_player = EntityGetClosestWithTag(x, y, "player_unit")
 local nearest_polyd_player = EntityGetClosestWithTag(x, y, "polymorphed_player")
-print(tostring(nearest_player))
-print(tostring(nearest_polyd_player))
 
 if nearest_player <= 0 and nearest_polyd_player <= 0 then return end
 
@@ -37,21 +35,30 @@ if player == nil then
 	return
 end
 
---local distance = math.sqrt( a^2 + b^2 )
-
---local distance = math.sqrt( a^2 + b^2 )
 local direction = 0 - math.atan2(player.ydistance, player.xdistance)
 
--- local gravity_percent = ( distance_full - distance ) / distance_full
--- local gravity_percent = 8
-local gravity_coeff = 160
+
+
+
+--[[
+local lifetime_loss = (200 - math.sqrt(player.xdistance^2 + player.ydistance^2)) * .3
+local projcomp = EntityGetComponent(entity_id, "ProjectileComponent")
+if not projcomp then return end
+ComponentSetValue2(projcomp[1], "lifetime", ComponentGetValue2(projcomp[1], "lifetime") - math.max(lifetime_loss, 0))
+--]]
+
+
+
+local gravity_multiplier = math.min(1, 400 - math.sqrt(player.xdistance^2 + player.ydistance^2) * .0025)
+
+local gravity_coeff = 75 * gravity_multiplier
 
 local fx = math.cos(direction) * gravity_coeff
 local fy = math.sin(direction) * gravity_coeff
 
 local velcomp1 = velcomp[1]
 local vel_x, vel_y = ComponentGetValue2(velcomp1, "mVelocity")
-ComponentSetValue2(velcomp1, "mVelocity", (vel_x - fx) * 0.8, (vel_y + fy) * 0.8)
+ComponentSetValue2(velcomp1, "mVelocity", (vel_x * 1.15 - fx), (vel_y * 1.15 + fy))
 
 --LUA: entity_id is 1210, x,y is [-35224, -150.99967956543]
 --LUA: target.id is 186, target.x,y is [-35233.02734375, -88.982971191406]

@@ -299,7 +299,6 @@ local function create_tmtrainer_action(action_type, index)
 		mana = mana,
 		max_uses = max_uses,
 		custom_xml_file = custom_xml_file,
-		pandorium_ignore = true,
 		tm_trainer = true,
 		action = function(recursion_level, iteration)
 			action_function(recursion_level, iteration)

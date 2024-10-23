@@ -4,7 +4,7 @@
 		<VelocityComponent
 			gravity_y="0"
 			air_friction="2"
-			mass="0.05"
+			mass="0.1"
 			>
 		</VelocityComponent>
 	</Base>
@@ -119,8 +119,8 @@
 		aabb_min.y="-15" 
 		aabb_max.x="15" 
 		aabb_max.y="15" 
-		damage_per_frame="0.9"
-		update_every_n_frame="1"
+		damage_per_frame="0.5"
+		update_every_n_frame="2"
 		entities_with_tag="hittable"
 		damage_type="DAMAGE_SLICE"
 		death_cause="Omega Slicing Liquid, coming soon to a Chemical Curiosity near you!"
@@ -130,7 +130,7 @@
 	
 	<CellEaterComponent
 		radius="13" 
-		eat_probability="40"
+		eat_probability="20"
 		>
 	</CellEaterComponent>
 	
