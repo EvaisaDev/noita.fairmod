@@ -1,3 +1,5 @@
+local helper = dofile_once("mods/noita.fairmod/files/content/enemy_reworks/death_helper.lua") --- @type enemy_reworks_helper
+
 local hamisits = {
 	"data/ragdolls/longleg/head",
 	"data/ragdolls/longleg/leg1",
@@ -7,27 +9,6 @@ local hamisits = {
 	"data/ragdolls/longleg/leg3",
 	"data/ragdolls/longleg/foot3",
 }
-
---- @param entity entity_id
---- @return boolean
-local function has_player_tag(entity)
-	local tags = EntityGetTags(entity)
-	if not tags then return false end
-	for _, tag in ipairs({ "player_unit", "player_projectile", "projectile_player" }) do
-		if tags:find(tag) then return true end
-	end
-	return false
-end
-
---- @param entity entity_id
---- @return boolean
-local function is_player_herd(entity)
-	local genome_comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
-	if not genome_comp then return false end
-	local herd_id = ComponentGetValue2(genome_comp, "herd_id")
-	if not herd_id then return false end
-	return herd_id == "player"
-end
 
 local function hamis_land()
 	local hamis = GetUpdatedEntityID()
@@ -65,9 +46,7 @@ local script_damage_received = function(
 )
 	if not EntityGetIsAlive(entity_thats_responsible) then return end
 
-	if is_player_herd(entity_thats_responsible) or has_player_tag(entity_thats_responsible) then
-		SetValueBool("fairmod_damaged_by_player", true)
-	end
+	if helper:is_player_kill(entity_thats_responsible) then SetValueBool("fairmod_damaged_by_player", true) end
 end
 damage_received = script_damage_received
 

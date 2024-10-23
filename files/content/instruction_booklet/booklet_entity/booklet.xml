@@ -64,7 +64,7 @@
 	<PhysicsImageShapeComponent
 		body_id="1"
 		centered="1"
-		image_file="data/items_gfx/book_small.png"
+		image_file="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png"
 		material="item_box2d_meat"
 	></PhysicsImageShapeComponent>
 
@@ -78,14 +78,16 @@
 
 	<SpriteComponent
 		_tags="enabled_in_hand"
-		image_file="data/items_gfx/in_hand/book_in_hand.png"
+		offset_x="20"
+		offset_y="70"
+		image_file="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png"
 	></SpriteComponent>
 
 	<ItemComponent
 		_tags="enabled_in_world"
 		item_name="$fairmod_booklet_name"
 		is_equipable_forced="1"
-		ui_sprite="data/items_gfx/book.png"
+		ui_sprite="mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_inventory.png"
 		ui_description="$fairmod_booklet_desc"
 		preferred_inventory="QUICK"
 	></ItemComponent>
@@ -93,6 +95,7 @@
 	<AbilityComponent
 		ui_name="$fairmod_booklet_name"
 		throw_as_item="1"
+		rotate_in_hand="0"
 	>
 		<gun_config
 			deck_capacity="0"

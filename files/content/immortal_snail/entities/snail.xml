@@ -87,6 +87,10 @@
 		>
 		</HitboxComponent>
 
+		<CameraBoundComponent
+			_remove_from_base="1"
+		/>
+
 
 	</Base>
 
@@ -117,6 +121,7 @@
 
 	</Entity>
 
+
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/snail_ai.lua"
 		execute_on_added="1"
@@ -130,12 +135,7 @@
 		execute_every_n_frame="1"
 		execute_times="-1"
 	/>
-	<!--<LuaComponent
-		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/set_home_on_player.lua"
-		execute_on_added="1"
-		execute_every_n_frame="1"
-		execute_times="-1" >
-	</LuaComponent>-->
+
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/immortal_snail/scripts/too_far_teleport.lua"
 		execute_on_added="1"

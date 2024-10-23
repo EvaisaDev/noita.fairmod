@@ -1,0 +1,35 @@
+<Materials>
+
+  <CellData
+    name="hescoming"
+    ui_name="He's coming"
+    tags="[static]"
+    burnable="0"
+    density="4"
+    cell_type="liquid"
+    wang_color="FF71CBDC"
+    generates_smoke="0"
+    liquid_gravity="1.0"
+    liquid_sand="1"
+    liquid_stains="1"
+    liquid_stains_self="0"
+    liquid_static="1"
+    on_fire="0"
+    requires_oxygen="1"
+    temperature_of_fire="10"
+    liquid_slime="1"
+    stickyness="1.0"
+    solid_friction="1.0"
+    >
+      <Graphics
+        texture_file="mods/noita.fairmod/files/content/hescoming/hescoming_material.png"
+        color="88E8BD5C" >
+      </Graphics>
+    <StatusEffects>
+      <Ingestion>
+        <StatusEffect type="FOOD_POISONING" amount="0.1" />
+      </Ingestion>
+    </StatusEffects>
+  </CellData>
+
+</Materials>

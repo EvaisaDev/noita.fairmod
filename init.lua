@@ -26,6 +26,7 @@ local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lua")
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
+local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -207,6 +208,7 @@ function OnWorldPreUpdate()
 	achievements:update()
 	ping_attack.update()
 	cheats.update()
+	hescoming.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -244,6 +246,7 @@ function OnPlayerDied(player)
 	if not GameHasFlagRun("ending_game_completed") then
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
+	hescoming.OnPlayerDied(player)
 end
 
 -- Copi was here
