@@ -1,0 +1,23 @@
+
+<Materials>
+	<CellDataChild
+		_parent="wood_static"
+		tags="[corrodible],[alchemy],[solid],[earth]"
+		_inherit_reactions="0"
+		name="root_growth"
+		ui_name="$mat_root"
+		durability="3"
+		wang_color="ff412D41"
+		hp="50"
+		burnable="0"
+		>
+		<Graphics
+			texture_file="data/materials_gfx/root_growth.png"
+			color="ff007540"/>
+	</CellDataChild>
+
+	<Reaction probability="80"
+		input_cell1="root_growth" input_cell2="[fire]"
+		output_cell1="air" output_cell2="[fire]"
+		/>
+</Materials>

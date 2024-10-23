@@ -3,7 +3,7 @@ local old_perk_spawn = perk_spawn
 perk_spawn = function(x, y, perk_id, dont_remove_other_perks_)
 	local perk = old_perk_spawn(x, y, perk_id, dont_remove_other_perks_)
 	SetRandomSeed(x, y)
-	local chance = 50
+	local chance = 10
 	if Random(1, 100) <= chance then
 		local perk_data = get_perk_with_id(perk_list, perk_id)
 		if perk_data == nil then
