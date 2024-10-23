@@ -25,6 +25,8 @@ module.update = function()
 			end
 		end
 	end
+
+	print(current_input_text)
 	
 	if not was_any_pressed then return end
 

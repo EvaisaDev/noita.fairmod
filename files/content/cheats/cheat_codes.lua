@@ -8,4 +8,17 @@ return {
 			ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 		end,
 	},
+	["Dupe"] = {
+        name = "Dupe",
+        description = "There are two of you??",
+        func = function(player)
+            EntitySetTransform(EntityLoad("data/entities/player_rng_items.xml", x, y), EntityGetTransform(player))
+        end,
+    },
+	["upupdowndownleftrightleftrightbaenter"] = {
+		name = "Konami Code",
+		description = "Wow you know the konami code, very cool.",
+		func = function(player)
+		end,
+	}
 }
