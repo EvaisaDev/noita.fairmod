@@ -34,6 +34,7 @@ pa.customfunctions = {
 }
 
 
+pa.default_amount = 1000 --in case you wanted to change this
 
 pa.potions = 
 {
@@ -53,7 +54,6 @@ pa.potions =
 	},
 	{
 		material="lava",
-        probability=10,
         amount=1500,
 		cost=300,
 	},

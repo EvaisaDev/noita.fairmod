@@ -41,16 +41,6 @@ end
 --
 
 
-ModTextFileSetContent("data/scripts/items/potion_aggressive.lua",	ModTextFileGetContent("mods/noita.fairmod/files/content/chemical_horror/potion_aggressive_lib.lua"))
-ModLuaFileAppend("data/scripts/items/potion_aggressive.lua", "mods/noita.fairmod/files/content/chemical_horror/potion_aggressive_append.lua")
-
-
-local translations = ModTextFileGetContent("data/translations/common.csv")
-local new_translations = ModTextFileGetContent("mods/noita.fairmod/files/content/chemical_horror/chemical_horror.csv")
-translations = translations .. "\n" .. new_translations .. "\n"
-translations = translations:gsub("\r", ""):gsub("\n\n+", "\n")
-ModTextFileSetContent("data/translations/common.csv", translations)
-
 
 
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")

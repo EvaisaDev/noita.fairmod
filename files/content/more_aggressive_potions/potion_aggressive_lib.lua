@@ -1,12 +1,10 @@
---This is a thing im trying out, location of this script is subject to change!!
-
 dofile_once("data/scripts/lib/utilities.lua")
 
 PotionAggressiveLib = {}
 
 local pa = PotionAggressiveLib
 
-
+pa.default_amount = 1000
 
 
 --dont change this, change the table overwrite in the neighbouring append file
@@ -77,7 +75,7 @@ function init( entity_id )
 	for index, v in pairs(pa.potions) do --default values
         v.material = v.material or "air"
         v.probability = v.probability or 10
-        v.amount = v.amount or 1000
+        v.amount = v.amount or pa.default_amount
         v.cost = v.cost or 200 --cost isnt used for anything yet, but who knows, someone might fix that some day
 	end
 
