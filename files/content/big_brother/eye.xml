@@ -1,0 +1,46 @@
+<Entity name="big_brother">
+	<SpriteComponent
+		_tags="character"
+		image_file="mods/noita.fairmod/files/content/big_brother/eye.png"
+		offset_x="31"
+		offset_y="12.5"
+		additive="0"
+		emissive="0"
+		z_index="-3"
+	>
+	</SpriteComponent>
+
+	<LifetimeComponent
+		lifetime="50"
+		fade_sprites="1"
+	></LifetimeComponent>
+	<Entity name="eye_pupil" tags="prop">
+		<InheritTransformComponent>
+		</InheritTransformComponent>
+
+		<SpriteComponent
+			_tags="character"
+			image_file="mods/noita.fairmod/files/content/big_brother/pupil.png"
+			offset_x="4.5"
+			offset_y="4.5"
+			additive="1"
+			emissive="1"
+			z_index="-4"
+			has_special_scale="1"
+			special_scale_x="1"
+		>
+		</SpriteComponent>
+
+		<SpriteAnimatorComponent />
+
+		<LuaComponent
+			script_source_file="mods/noita.fairmod/files/content/big_brother/eye.lua"
+			execute_every_n_frame="1"
+		>
+		</LuaComponent>
+		<LifetimeComponent
+			lifetime="50"
+			fade_sprites="1"
+		></LifetimeComponent>
+	</Entity>
+</Entity>

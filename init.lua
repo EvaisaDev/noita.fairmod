@@ -28,6 +28,7 @@ local information_kiosk = dofile_once("mods/noita.fairmod/files/content/informat
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
+local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -200,6 +201,7 @@ function OnWorldPreUpdate()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
 		surface_bad:update()
+		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
