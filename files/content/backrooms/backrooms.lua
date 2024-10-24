@@ -4,6 +4,8 @@ dofile_once("data/scripts/biome_scripts.lua")
 dofile_once("data/scripts/biome_modifiers.lua")
 dofile( "data/scripts/items/generate_shop_item.lua" )
 
+dofile("data/scripts/biomes/the_end.lua")
+
 RegisterSpawnFunction( 0xffd4845f, "load_scene_1" )
 RegisterSpawnFunction( 0xffd5cd62, "load_scene_2" )
 RegisterSpawnFunction( 0xff8dd45e, "load_scene_3" )
