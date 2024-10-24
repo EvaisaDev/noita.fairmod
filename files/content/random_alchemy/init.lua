@@ -1,8 +1,9 @@
 local reactions = dofile_once("mods/noita.fairmod/files/content/random_alchemy/reaction_list.lua") --- @type random_alchemy[]
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local random_output = dofile_once("mods/noita.fairmod/files/content/random_alchemy/random_output_list.lua") --- @type string[]
+local random_input = dofile_once("mods/noita.fairmod/files/content/random_alchemy/random_input_list.lua") --- @type string[]
 
-local random_reactions_to_add = 5
+local random_reactions_to_add = math.ceil(#reactions / 3)
 
 local function generate_unique_random_numbers(n, min, max)
 	local numbers, result = {}, {}
@@ -23,12 +24,15 @@ SetRandomSeed(GameGetFrameNum(), GameGetRealWorldTimeSinceStarted())
 
 local selected = generate_unique_random_numbers(random_reactions_to_add, 1, #reactions)
 local random_output_count = #random_output
+local random_input_count = #random_input
 
 for xml in nxml.edit_file("data/materials.xml") do
 	for i = 1, #selected do
 		local selected_number = selected[i]
 		local reaction_data = reactions[selected_number]
 		reaction_data.probability = reaction_data.probability or "80"
+		reaction_data.input_cell1 = reaction_data.input_cell1 or random_input[Random(1, random_input_count)]
+		reaction_data.input_cell2 = reaction_data.input_cell2 or random_input[Random(1, random_input_count)]
 		reaction_data.output_cell1 = reaction_data.output_cell1 or random_output[Random(1, random_output_count)]
 		reaction_data.output_cell2 = reaction_data.output_cell2 or random_output[Random(1, random_output_count)]
 		local reaction = nxml.new_element("Reaction", reaction_data)
