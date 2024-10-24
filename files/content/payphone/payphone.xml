@@ -15,6 +15,7 @@
 		script_source_file="mods/noita.fairmod/files/content/payphone/payphone.lua"
 		script_interacting="mods/noita.fairmod/files/content/payphone/payphone.lua"
 		execute_every_n_frame="1"
+		enable_coroutines="1"
 		vm_type="SHARED_BY_MANY_COMPONENTS"
 	/>
 

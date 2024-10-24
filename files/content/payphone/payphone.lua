@@ -1,7 +1,7 @@
 local ring_chance = 1
 
 local entity_id = GetUpdatedEntityID()
-local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
+dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
 
 function hangup(dialog)
@@ -14,8 +14,6 @@ end
 function disconnected(dialog)
 	is_disconnected = true
 end
-
-dialog = dialog or nil
 
 if(dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0)then
 	hangup(dialog)
