@@ -48,7 +48,7 @@ pa.potions =
 			if itemcomp == nil then return end
 			ComponentSetValue2(itemcomp[1], "item_name", "$100000_percent_acid")
 			ComponentSetValue2(itemcomp[1], "always_use_item_name_in_ui", true)
-			ComponentSetValue2(itemcomp[1], "ui_description", "$100000_percent_acid_desc")
+			ComponentSetValue2(itemcomp[1], "ui_description", GameTextGet("$100000_percent_acid_desc", "$bee_movie_script")) --low chance to just make it the entire bee movie script lmao
 			ComponentSetValue2(itemcomp[1], "custom_pickup_string", GameTextGet("$100000_percent_acid_picked_up", "$100000_percent_acid"))
 		end --just an example of the sort of thing you can do
 	},
