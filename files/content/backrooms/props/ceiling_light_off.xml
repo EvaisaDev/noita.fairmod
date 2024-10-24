@@ -1,0 +1,96 @@
+<Entity tags="hittable,teleportable_NOT,prop,prop_physics,mortal">
+	<PhysicsBody2Component 
+		is_static="0"
+		allow_sleep="1"
+		angular_damping="0.01"
+		linear_damping="0.3" 
+		fixed_rotation="0"
+		is_bullet="0"
+		init_offset_y="-3"
+		>
+	</PhysicsBody2Component>
+
+	<PhysicsImageShapeComponent 
+		body_id="100"
+		is_root="1"
+		centered="1"
+		image_file="mods/noita.fairmod/files/content/backrooms/props/ceiling_light_off.png"
+		material="ceiling_light_backrooms" >
+	</PhysicsImageShapeComponent>
+
+
+	<!-- body to wire joints -->
+	<!--
+	<PhysicsJoint2Component
+		type="REVOLUTE_JOINT_ATTACH_TO_NEARBY_SURFACE"
+		joint_id="1"
+		offset_x="-4.5"
+		offset_y="-1"
+		body1_id="100"
+		body2_id="101"
+		break_force="10"
+		break_distance="2"
+		ray_x="0"
+		ray_y="-16"
+		>
+	</PhysicsJoint2Component>
+	-->
+	<PhysicsJoint2Component
+		type="WELD_JOINT_ATTACH_TO_NEARBY_SURFACE"
+		joint_id="1"
+		offset_x="0"
+		offset_y="-1"
+		body1_id="100"
+		break_force="4"
+		break_distance="2"
+		ray_x="0"
+		ray_y="-16"
+		>
+	</PhysicsJoint2Component>
+
+	<MaterialInventoryComponent 
+		_enabled="1" 
+		drop_as_item="0" 
+		on_death_spill="1"
+		leak_on_damage_percent="1"
+		leak_pressure_min="0.1"
+		leak_pressure_max="0.7"
+		kill_when_empty="1"
+		>
+		<count_per_material_type>
+			<Material material="fire" count="100"  />
+		</count_per_material_type>
+	</MaterialInventoryComponent>
+
+	<DamageModelComponent 
+		air_needed="0" 
+		blood_material="" 
+		drop_items_on_death="0" 
+		falling_damage_damage_max="20" 
+		falling_damage_damage_min="0.6" 
+		falling_damage_height_max="250" 
+		falling_damage_height_min="10" 
+		falling_damages="0" 
+		fire_damage_amount="0.2" 
+		fire_probability_of_ignition="0" 
+		critical_damage_resistance="1"
+		hp="0.7" 
+		is_on_fire="0" 
+		materials_create_messages="0" 
+		materials_damage="0" 
+		ragdoll_filenames_file="" 
+		ragdoll_material="" 
+		ui_report_damage="0"
+		>
+		<damage_multipliers 
+			melee="10"  >
+		</damage_multipliers>
+	</DamageModelComponent>
+
+	<PhysicsBodyCollisionDamageComponent 
+		_tags="enabled_in_world" 
+		speed_threshold="120.0"
+		>
+	</PhysicsBodyCollisionDamageComponent>
+
+</Entity>

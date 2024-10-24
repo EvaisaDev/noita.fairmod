@@ -77,6 +77,8 @@ ModLuaFileAppend(
 	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
 )
 
+ModMaterialsFileAdd( "mods/noita.fairmod/files/content/backrooms/materials.xml" )
+
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
@@ -95,6 +97,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/backrooms/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
