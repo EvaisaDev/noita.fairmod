@@ -1,7 +1,7 @@
 <Sprite
 	filename="mods/noita.fairmod/files/content/dingus/dingus_bones.png"
 	offset_x="128"
-	offset_y="169"
+	offset_y="170"
 	default_animation="idle"
 >
 	<RectAnimation
