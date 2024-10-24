@@ -728,7 +728,8 @@ function ui_class:DrawButton(x, y, z, text, active, sprite, sprite_hl)
 	if not active then self:ColorGray() end
 	self:Text(x, y, text)
 	self:AddOptionForNext(self.c.options.ForceFocusable)
-	self:Draw9Piece(x - 1, y, z, self:GetTextDimension(text) + 1.5, 11, sprite, sprite_hl)
+	local width, height = self:GetTextDimension(text)
+	self:Draw9Piece(x - 1, y, z, width + 1.5, height + 1, sprite, sprite_hl)
 end
 
 -- ############################################
@@ -738,7 +739,6 @@ end
 --- update dimensions
 --- @protected
 function ui_class:UpdateDimensions()
-	GuiStartFrame(self.gui)
 	self.dim.x, self.dim.y = GuiGetScreenDimensions(self.gui)
 end
 
