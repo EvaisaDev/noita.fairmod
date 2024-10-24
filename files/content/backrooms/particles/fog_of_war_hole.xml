@@ -1,6 +1,6 @@
 <Sprite 
   default_animation="explosion" 
-  filename="mods/evaisa.spook/files/particles/fog_of_war_hole.png" 
+  filename="mods/noita.fairmod/files/content/backrooms/particles/fog_of_war_hole.png" 
   offset_x="16.5" 
   offset_y="18" >
 
