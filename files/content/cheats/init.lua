@@ -40,6 +40,7 @@ module.update = function()
 				v.func(player)
 				current_input_text = ""
 			end
+			print("current_cheat_text", current_input_text)
 			was_any_match = true
 		end
 	end

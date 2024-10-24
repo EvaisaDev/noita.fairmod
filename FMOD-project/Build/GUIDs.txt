@@ -16,6 +16,8 @@
 {8340afee-1bfb-481c-8b65-a1721703356c} bus:/reverb
 {40bdfd79-5dfd-4303-8a71-0792c637c380} bus:/ui
 {19153e3b-d00b-44fd-bf2e-bbb2c55032b1} event:/achievements/notification
+{67238d63-549c-4261-a14c-6331206c506b} event:/backrooms/flicker
+{45a9c665-d43f-411a-af46-8af30f23efe4} event:/backrooms/hum
 {bd914676-22a3-473b-818c-7fc2a1e4b65d} event:/badapple/song
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {5b276062-bc6c-45ba-bf76-3edeff3c316f} event:/book/page

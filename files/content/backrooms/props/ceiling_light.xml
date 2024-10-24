@@ -214,4 +214,12 @@
 	    draw_as_long="1"
 	></ParticleEmitterComponent>
 
+    <AudioLoopComponent
+        _enabled="1"
+        auto_play_if_enabled = "1"
+        play_on_component_enable = "1"
+        file = "mods/noita.fairmod/fairmod.bank"
+        event_name = "backrooms/hum"
+    />
+
 </Entity>
