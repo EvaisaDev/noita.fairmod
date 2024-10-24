@@ -36,7 +36,7 @@ local function format_csv_row(row)
 	return table.concat(escaped, ",") .. ","
 end
 
-local CHANGE_CHANCE = 0.3
+local CHANGE_CHANCE = 0.2
 
 local function buttsify(filename)
 	-- Seed with system time
