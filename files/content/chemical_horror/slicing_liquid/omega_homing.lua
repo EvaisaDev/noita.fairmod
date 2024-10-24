@@ -1,10 +1,5 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
-local distance_full = 400
-local float_range = 200
-local float_force = 300
-local float_sensor_sector = math.pi * 0.3
-
 local entity_id = GetUpdatedEntityID()
 local x, y, rot = EntityGetTransform(entity_id)
 local velcomp = EntityGetComponent(entity_id, "VelocityComponent")
@@ -49,16 +44,16 @@ ComponentSetValue2(projcomp[1], "lifetime", ComponentGetValue2(projcomp[1], "lif
 
 
 
-local gravity_multiplier = math.min(1, 400 - math.sqrt(player.xdistance^2 + player.ydistance^2) * .0025)
+local gravity_multiplier = math.min(1, 400 - math.sqrt(player.xdistance^2 + player.ydistance^2) * 0.0025)
 
-local gravity_coeff = 75 * gravity_multiplier
+local gravity_coeff = 60 * gravity_multiplier
 
 local fx = math.cos(direction) * gravity_coeff
 local fy = math.sin(direction) * gravity_coeff
 
 local velcomp1 = velcomp[1]
 local vel_x, vel_y = ComponentGetValue2(velcomp1, "mVelocity")
-ComponentSetValue2(velcomp1, "mVelocity", (vel_x * 1.15 - fx), (vel_y * 1.15 + fy))
+ComponentSetValue2(velcomp1, "mVelocity", (vel_x * 1.125 - fx), (vel_y * 1.125 + fy))
 
 --LUA: entity_id is 1210, x,y is [-35224, -150.99967956543]
 --LUA: target.id is 186, target.x,y is [-35233.02734375, -88.982971191406]
