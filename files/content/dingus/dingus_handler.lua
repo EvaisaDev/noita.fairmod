@@ -66,6 +66,6 @@ function interacting( entity_who_interacted, entity_interacted, interactable_nam
     ComponentSetValue2( volume_var, "value_float", volume )
 end
 
-local audio_loop = EntityGetFirstComponentIncludingDisabled( entity, "AudioLoopComponent" )
+local audio_loop = EntityGetFirstComponentIncludingDisabled( entity, "AudioLoopComponent", "music" )
 if not audio_loop then return end
 ComponentSetValue2( audio_loop, "m_volume", volume )

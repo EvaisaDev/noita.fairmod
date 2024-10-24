@@ -93,9 +93,19 @@
 	/>
 
 	<AudioLoopComponent
-		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory,music"
 		file="mods/noita.fairmod/fairmod.bank"
 		event_name="dingus/loop"
+		auto_play="1"
+		auto_play_if_enabled="1"
+		play_on_component_enable="1"
+		>
+	</AudioLoopComponent>	
+
+	<AudioLoopComponent
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="dingus/purr"
 		auto_play="1"
 		auto_play_if_enabled="1"
 		play_on_component_enable="1"
