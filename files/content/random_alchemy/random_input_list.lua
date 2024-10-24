@@ -18,6 +18,8 @@ local input = {
 	"ice_static",
 	"gold",
 	"oil",
+	"acid",
+	"acid_gas",
 }
 
 return input
