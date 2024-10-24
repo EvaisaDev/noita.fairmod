@@ -4,7 +4,9 @@
 		height="150"
 		radius="128"
 		required_tag="player_unit"
-		destroy_this_entity_when_triggered="0"/>
+		destroy_this_entity_when_triggered="0"
+		timer_for_destruction="600"
+		/>
 
 	<LuaComponent
 		script_collision_trigger_hit="mods/noita.fairmod/files/content/entrance_cart/ghost_minecart_trigger.lua"
