@@ -17,7 +17,7 @@ if player then
     if game_stats_comp then
       ComponentSetValue2(game_stats_comp, "extra_death_msg", "He")
     end
-    GamePlaySound("mods/noita.fairmob/fairmob.bank", "hescoming/reverbfart", px, py)
+    GamePlaySound("mods/noita.fairmod/fairmod.bank", "hescoming/reverbfart", px, py)
     EntityKill(player)
     EntityKill(entity_id)
     EntityLoad("mods/noita.fairmod/files/content/hescoming/gameover.xml", px, py)

@@ -1,100 +1,62 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
-last_trigger = last_trigger or -12352
-
-local entity_id = GetUpdatedEntityID()
-local x, y = EntityGetTransform(entity_id)
-
-local variable_storage_comps = EntityGetComponent(entity_id, "VariableStorageComponent")
-
-local offset_x = 0
-local offset_y = 0
-local projectile = ""
-
-if variable_storage_comps ~= nil then
-	for key, comp_id in pairs(variable_storage_comps) do
-		local name = ComponentGetValue2(comp_id, "name")
-		if name == "offset_x" then
-			offset_x = ComponentGetValue2(comp_id, "value_int")
-		elseif name == "offset_y" then
-			offset_y = ComponentGetValue2(comp_id, "value_int")
-		elseif name == "projectile" then
-			projectile = ComponentGetValue2(comp_id, "value_string")
-		end
+local function get_chance(colliding_entity_id)
+	if EntityHasTag(colliding_entity_id, "player_projectile") then
+		return 50
+	elseif EntityHasTag(colliding_entity_id, "enemy") then
+		return 4
 	end
+	return 40
 end
 
-local function trigger(colliding_entity_id)
+function should_collapse(colliding_entity_id)
+	local entity_id = GetUpdatedEntityID()
+	local x, y = EntityGetTransform(entity_id)
+
+	if EntityHasTag(entity_id, "entrance") then
+		local deaths = ModSettingGet("fairmod.deaths") or 0
+
+		-- Don't collapse any on the very first run
+		if deaths == 0 then
+			return false
+		end
+
+		-- Maybe more conditions?
+	end
+
 	local collider_x, collider_y = EntityGetTransform(colliding_entity_id)
 	SetRandomSeed(x + collider_x, y + collider_y + GameGetFrameNum())
-
-	last_trigger = GameGetFrameNum()
-
-	local entity = shoot_projectile(entity_id, projectile, x, y + offset_y + 2, 0, 300, false)
-
-	EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/misc/poof.xml", x, y)
-
-	local physics_body_component = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
-
-	if physics_body_component ~= nil then
-		local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(physics_body_component)
-		PhysicsComponentSetTransform(physics_body_component, x, y, angle, 0, 25, angular_vel)
-	end
-
-	EntityKill(entity_id)
+	return Random(1, 100) <= get_chance(colliding_entity_id)
 end
 
-local trigger_width = 16
+function collision_trigger(colliding_entity_id)
 
-if GameGetFrameNum() - last_trigger < 60 then return end
+	if should_collapse(colliding_entity_id)then
+		local entity_id = GetUpdatedEntityID()
+		local x, y = EntityGetTransform(entity_id)
 
-local trigger_potential = {
-	{
-		tag = "player_unit",
-		distance = 200,
-		chance = 20,
-	},
-	{
-		tag = "polymorphed_player",
-		distance = 200,
-		chance = 20,
-	},
-	{
-		tag = "enemy",
-		distance = 200,
-		chance = 3,
-	},
-	{
-		tag = "player_projectile",
-		distance = 40,
-		chance = 70,
-	},
-}
+		local storage = get_variable_storage_component(entity_id, "projectile")
+		local projectile = ComponentGetValue2(storage, "value_string")
 
-local potential_triggers = {}
+		local entity = shoot_projectile(entity_id, projectile, x, y + 3, 0, 300, false)
 
-local trigger_center_x = x + offset_x
+		EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/misc/poof.xml", x, y)
 
-for _, potential in ipairs(trigger_potential) do
-	local entities = EntityGetInRadiusWithTag(x, y, potential.distance, potential.tag) or {}
-	for _, entity in ipairs(entities) do
-		table.insert(potential_triggers, { potential, entity })
+		local physics_body_component = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
+		if physics_body_component ~= nil then
+			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(physics_body_component)
+			PhysicsComponentSetTransform(physics_body_component, x, y, angle, 0, 25, angular_vel)
+		end
+
+		EntityKill(entity_id)
 	end
-end
 
--- check if they are in the aabb
-for _, trigger_t in ipairs(potential_triggers) do
-	local entity = trigger_t[2]
-	local ex, ey = EntityGetTransform(entity)
-	local potential = trigger_t[1]
+	local is_projectile = EntityHasTag(colliding_entity_id, "projectile") or EntityHasTag(colliding_entity_id, "player_projectile")
 
-	if ex > trigger_center_x - (trigger_width / 2) and ex < trigger_center_x + (trigger_width / 2) then
-		if ey >= y and ey <= y + potential.distance then
-			SetRandomSeed(ex, ey)
-			if Random(1, 100) <= potential.chance then
-				trigger(entity)
-				return
-			end
+	if(is_projectile)then
+		local projectile_component = EntityGetFirstComponent(colliding_entity_id, "ProjectileComponent")
+		if(projectile_component ~= nil)then
+			ComponentSetValue2(projectile_component, "lifetime", 1)
 		end
 	end
 end

@@ -24,9 +24,12 @@ local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_h
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
 local fire = dofile_once("mods/noita.fairmod/files/content/fire/init.lua")
 local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lua")
+local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
+local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
+local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -60,6 +63,7 @@ dofile_once("mods/noita.fairmod/files/content/gold_bananas/init.lua")
 dofile_once("mods/noita.fairmod/files/content/rat_wand/init.lua")
 dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
+dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -73,6 +77,8 @@ ModLuaFileAppend(
 	"data/scripts/projectiles/all_spells_stage.lua",
 	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
 )
+
+ModMaterialsFileAdd( "mods/noita.fairmod/files/content/backrooms/materials.xml" )
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
@@ -92,6 +98,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/backrooms/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
 	funky_portals.OnMagicNumbersAndWorldSeedInitialized()
@@ -169,6 +176,8 @@ function OnPlayerSpawned(player)
 
 	information_kiosk.spawn_kiosk(target_x, target_y)
 
+	dingus.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
@@ -196,6 +205,7 @@ function OnWorldPreUpdate()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
 		surface_bad:update()
+		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()

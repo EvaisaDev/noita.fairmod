@@ -1,0 +1,31 @@
+<Materials>
+
+	<CellData
+		name="candy_fairmod"
+		ui_name="Candy"
+		wang_color="ff36d517"
+		liquid_sand="1"
+		cell_type="liquid"
+		liquid_stains="2"
+	>
+		<Graphics
+			color="88E8BD5C"
+			texture_file="mods/noita.fairmod/files/content/candy/rainbow.png" 
+		>
+		</Graphics>
+
+		<StatusEffects>
+			<Ingestion>
+				 <StatusEffect type="MOVEMENT_FASTER_2X" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+
+	</CellData>
+
+	<Reaction probability="1"
+		input_cell1="magic_liquid_berserk" input_cell2="alcohol"
+		output_cell1="candy_fairmod" output_cell2="candy_fairmod"
+	>
+	</Reaction>
+
+</Materials>
