@@ -56,4 +56,18 @@ return {
 			EntityLoad("mods/noita.fairmod/files/content/dingus/dingus.xml", x, y)
         end,
     },
+	["tacobell"] = {
+		name = "Tacobell",
+		description = "You now have infinite shit and piss, enjoy.",
+		func = function(player)
+			GameAddFlagRun("tacobell_mode")
+		end,
+	},
+	["noclip"] = {
+		name = "Noclip",
+		description = "You idiot, what did you think was gonna happen",
+		func = function(player)
+			EntityApplyTransform(player, 1547, 14900)
+		end,
+	},
 }

@@ -30,7 +30,7 @@ if ingestion_comp then
 		ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 	end
 
-	if controls_comp and ingestion_size > 0 then
+	if controls_comp and (ingestion_size > 0 or GameHasFlagRun("tacobell_mode")) then
 		local dir_x, dir_y = ComponentGetValue2(controls_comp, "mAimingVectorNormalized")
 		if piss_button then
 			local piss_velocity = 100
@@ -47,7 +47,7 @@ if ingestion_comp then
 				"urine",
 				x + (scale_x * 3),
 				y,
-				8,
+				GameHasFlagRun("tacobell_mode") and 16 or 8,
 				dir_x * piss_velocity,
 				dir_y * piss_velocity,
 				false,
@@ -59,7 +59,7 @@ if ingestion_comp then
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
 		end
 
-		if shit_button then
+		if GameHasFlagRun("tacobell_mode") or shit_button then
 			local shit_velocity = -100
 
 			if shit_pressed then
@@ -81,7 +81,7 @@ if ingestion_comp then
 				ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
 			end
 
-			GameCreateParticle("poo", x, y, 8, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false)
+			GameCreateParticle("poo", x, y, GameHasFlagRun("tacobell_mode") and 32 or 8, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false)
 
 			ingestion_size = ingestion_size - 15
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
