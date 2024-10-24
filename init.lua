@@ -27,6 +27,7 @@ local fakegold = dofile_once("mods/noita.fairmod/files/content/Fakegolds/init.lu
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
+local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -169,6 +170,8 @@ function OnPlayerSpawned(player)
 	fire.OnPlayerSpawned(player)
 
 	information_kiosk.spawn_kiosk(target_x, target_y)
+
+	--dingus.spawn_dingus(target_x, target_y)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")

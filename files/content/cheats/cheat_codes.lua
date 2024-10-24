@@ -47,4 +47,13 @@ return {
 			end
         end,
     },
+	["dingus"] = {
+        name = "Dingus",
+        description = "He looks so polite!!",
+        func = function(player)
+			local x, y = EntityGetTransform(player)
+
+			EntityLoad("mods/noita.fairmod/files/content/dingus/dingus.xml", x, y)
+        end,
+    },
 }

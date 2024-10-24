@@ -19,6 +19,10 @@
 {bd914676-22a3-473b-818c-7fc2a1e4b65d} event:/badapple/song
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {5b276062-bc6c-45ba-bf76-3edeff3c316f} event:/book/page
+{540b5473-9d8e-46f5-9070-d30554f0ae0a} event:/dingus/loop
+{2ac7e916-cd8f-431f-9b41-36c3680c0ae0} event:/dingus/meow
+{a1f08602-b751-439b-a30c-524f5002fffc} event:/dingus/purr
+{bf5fe97b-edda-464e-9373-1bdd3bf654ac} event:/dingus/riff
 {9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
 {4bf99c55-f917-4cff-b3c8-ddf56f3e9ce1} event:/gamblecore/break
 {4a18f166-f0c0-467c-b874-8bc0f7361b96} event:/gamblecore/icantstopwinning
@@ -43,6 +47,7 @@
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass
 {6864bf18-2f50-4b34-aecc-63c1bdf7fdf4} parameter:/Migration Name Conflict (4)/Distance
 {ddf75d16-bdbe-4460-908b-0a29bd483835} parameter:/lowpass
+{2bbe7a5e-fe50-4cc7-831b-04e0ebedbf57} parameter:/pitch
 {dadeda7a-c13b-484b-929e-d3c513e7173b} snapshot:/cave
 {bc5e80f9-a380-47c9-8799-3e02eea94feb} snapshot:/drugged
 {310cecea-3674-4ea8-a6ac-2a8facd05638} snapshot:/hills
