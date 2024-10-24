@@ -110,7 +110,7 @@
 	/>
 
     <SpriteComponent
-		offset_x="-5"
+		offset_x="5"
         _enabled="1"
         alpha="1"
         image_file="mods/noita.fairmod/files/content/cheats/misc/hamartial_arts_$[1-5].png"
