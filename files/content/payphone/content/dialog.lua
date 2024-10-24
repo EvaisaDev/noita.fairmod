@@ -2,18 +2,20 @@ return {
 	{
 		name = "Unknown Caller",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "default",
 		text = [[Hello!! Is your refridgerator running?]],
 		options = {
 			{
 				text = "I.. Think so?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!!]],
+						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!! {@func disconnected}
+						(They hung up...)]],
 						options = {
 							{
-								text = "Goodbye",
+								text = "...",
 								func = function(dialog)
-									dialog.close()
+									hangup()
 								end,
 							},
 						},
@@ -24,12 +26,13 @@ return {
 				text = "Who is this?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!!]],
+						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!! {@func disconnected}
+						(They hung up...)]],
 						options = {
 							{
-								text = "Goodbye",
+								text = "...",
 								func = function(dialog)
-									dialog.close()
+									hangup()
 								end,
 							},
 						},
@@ -40,12 +43,13 @@ return {
 				text = "I'm calling the police.",
 				func = function(dialog)
 					dialog.show({
-						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!!]],
+						text = [[Well you better go catch it!!! HAHAHAHAHAHA!!! {@func disconnected}
+						(They hung up...)]],
 						options = {
 							{
-								text = "Goodbye",
+								text = "...",
 								func = function(dialog)
-									dialog.close()
+									hangup()
 								end,
 							},
 						},
@@ -55,7 +59,7 @@ return {
 			{
 				text = "Goodbye",
 				func = function(dialog)
-					dialog.close()
+					hangup()
 				end,
 			},
 		},
