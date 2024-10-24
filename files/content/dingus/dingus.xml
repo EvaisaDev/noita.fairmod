@@ -1,4 +1,4 @@
-<Entity tags="hittable,teleportable_NOT,dingus,item_pickup" serialize="1" >
+<Entity name="Dingus" tags="hittable,teleportable_NOT,dingus,item_pickup" serialize="0" >
   
   <SimplePhysicsComponent
 	_tags="enabled_in_world"
@@ -55,7 +55,7 @@
   
   <AbilityComponent
 		ui_name="Dingus"
-		throw_as_item="1"
+		throw_as_item="0"
 		><gun_config
 			deck_capacity="0"
 		></gun_config>

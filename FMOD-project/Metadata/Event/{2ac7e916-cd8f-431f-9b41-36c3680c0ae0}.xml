@@ -179,7 +179,7 @@
 			<value>4</value>
 		</property>
 		<property name="targetValue">
-			<value>0.5</value>
+			<value>0.80000001192092896</value>
 		</property>
 		<relationship name="commandTarget">
 			<destination>{2bbe7a5e-fe50-4cc7-831b-04e0ebedbf57}</destination>

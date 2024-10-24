@@ -171,7 +171,7 @@ function OnPlayerSpawned(player)
 
 	information_kiosk.spawn_kiosk(target_x, target_y)
 
-	--dingus.spawn_dingus(target_x, target_y)
+	dingus.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
