@@ -14,6 +14,9 @@ local tips = {
 	"If you see spells that looks wrong..\nIgnore them! They are clearly bugs!!",
 	"Did you know you can fish up all kinds of stuff?",
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
+	"Don't drink and drive.",
+	"Happy Halloween!",
+	"Hey, if you combine Whiskey and Berserkium it makes my own patented Hamis Bars!!",
 }
 
 function interacting(player, entity_interacted, interactable_name)
