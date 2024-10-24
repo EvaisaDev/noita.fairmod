@@ -1,22 +1,24 @@
 local ring_chance = 1
 
 local entity_id = GetUpdatedEntityID()
+local x, y = EntityGetTransform(entity_id)
+dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
 
-function hangup(dialog)
+function hangup()
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/putdown", x, y)
 	dialog.close()
 	in_call = false
 	is_disconnected = false
 end
 
-function disconnected(dialog)
+function disconnected()
 	is_disconnected = true
 end
 
 if(dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0)then
-	hangup(dialog)
+	hangup()
 end
 
 dialog_system.functions.hangup = hangup
@@ -30,11 +32,28 @@ ring_end_time = ring_end_time or 0
 in_call = in_call or false
 is_disconnected = is_disconnected or false
 
-if(is_disconnected)then
-	GameEntityPlaySoundLoop(entity_id, "disconnected", 1)
+local audio_loop_disconnected = EntityGetFirstComponent(entity_id, "AudioLoopComponent", "disconnected")
+if(audio_loop_disconnected ~= nil)then
+	if(is_disconnected)then
+		ComponentSetValue2(audio_loop_disconnected, "m_volume", 1)
+		
+		GameEntityPlaySoundLoop(entity_id, "disconnected", 1)
+	else
+		ComponentSetValue2(audio_loop_disconnected, "m_volume", 0)
+	end
 end
 
-local x, y = EntityGetTransform(entity_id)
+local audio_loop_ring = EntityGetFirstComponent(entity_id, "AudioLoopComponent", "ring")
+if(audio_loop_ring ~= nil)then
+	if(ringing)then
+		ComponentSetValue2(audio_loop_ring, "m_volume", 1)
+		
+		GameEntityPlaySoundLoop(entity_id, "ring", 1)
+	else
+		ComponentSetValue2(audio_loop_ring, "m_volume", 0)
+	end
+end
+
 local players = EntityGetInRadiusWithTag(x, y, 500, "player_unit")
 
 if(players == nil or #players == 0) then
@@ -42,17 +61,13 @@ if(players == nil or #players == 0) then
 end
 
 -- random chance for the phone to ring if the player is nearby
-if(GameGetFrameNum() % 2 == 0 and not ringing and not in_call and Random(0, 100) <= ring_chance)then
+if(GameGetFrameNum() % 30 == 0 and not ringing and not in_call and Random(0, 100) <= ring_chance)then
 	ringing = true
 	ring_end_time = 60 * 15
 end
 
 if(ringing)then
 	ring_timer = ring_timer + 1
-	print("Hanging up in: " .. tostring(ring_end_time - ring_timer))
-	if(ring_timer % 220 == 0)then
-		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/ring", x, y)
-	end
 end
 
 if(not in_call and ringing and ring_timer >= ring_end_time)then

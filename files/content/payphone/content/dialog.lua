@@ -3,7 +3,7 @@ return {
 		name = "Unknown Caller",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "default",
-		text = [[Hello!! Is your refridgerator running?]],
+		text = [[Hello!! Is your refrigerator running?]],
 		options = {
 			{
 				text = "I.. Think so?",
