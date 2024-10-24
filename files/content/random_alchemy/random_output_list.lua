@@ -21,6 +21,7 @@ local output = {
 	"wood_static",
 	"gunpowder_unstable",
 	"lava",
+	"air",
 }
 
 return output

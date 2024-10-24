@@ -10,7 +10,7 @@ local input = {
 	"swamp",
 	"mud",
 	"cement",
-	"concrete",
+	"concrete_static",
 	"coal",
 	"soil",
 	"grass",
