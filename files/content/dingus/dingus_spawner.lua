@@ -1,5 +1,3 @@
-dofile("mods/Hydroxide/files/mystical_mixtures/journal/entries.lua")
-
 local player = GetUpdatedEntityID()
 
 local x, y = EntityGetTransform(player)
