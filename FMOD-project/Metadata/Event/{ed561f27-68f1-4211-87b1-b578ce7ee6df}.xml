@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{ed561f27-68f1-4211-87b1-b578ce7ee6df}">
 		<property name="name">
-			<value>riff</value>
+			<value>ring</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -34,6 +34,9 @@
 		<relationship name="parameters">
 			<destination>{d0440037-9a0e-4383-850b-b02e7c8167ab}</destination>
 			<destination>{2eabb6e3-dec8-451c-b5b5-979bb9a17259}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{91582d81-bc04-4e28-971c-5f71aeefedd7}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{7df341c2-bc0e-44c3-bfd3-ead324a86f2f}">
