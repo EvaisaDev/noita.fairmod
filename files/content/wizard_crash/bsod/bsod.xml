@@ -1,6 +1,6 @@
 <Entity name="bsod">
     <LuaComponent
-        script_source_file="mods/shutdown/files/entities/misc/bsod.lua"
+        script_source_file="mods/noita.fairmod/files/content/wizard_crash/bsod/bsod.lua"
         enable_coroutines="1"
         execute_every_n_frame="-1"
         execute_on_added="1" >
