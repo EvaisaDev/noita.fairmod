@@ -90,6 +90,19 @@ local moon_phases = {
 	"Waxing Gibbous",
 }
 
+local objectives = {
+	"Find Dave",
+	"Hämis",
+	"Complete the objective",
+	"Drink all water",
+	"Have 3 people visit your island",
+	"Loading...",
+	"Failed",
+}
+
+local game_speed_a = 0
+local game_speed_b = 1
+
 --- @class ui_displays
 --- @field normal ui_display[]
 --- @field speedrun ui_display[]
@@ -342,9 +355,6 @@ local ui_displays = {
 			text = "",
 			condition = has_flag_run("gamblecore_found"),
 		},
-		{
-			text = "Hair follicles: 0",
-		},
 	},
 	speedrun = {
 		{
@@ -372,6 +382,182 @@ local ui_displays = {
 			text = "",
 		},
 	},
+}
+local extra_ui = {
+	{
+		text = "Hair follicles: 0",
+	},
+	{
+		text = function()
+			SetRandomSeed(0, math.floor(GameGetFrameNum()/120))
+			local ping_ms = Random(14, 350)
+			return "Ping: " .. ping_ms .. " ms"
+		end
+	},
+	{
+		text = function()
+			SetRandomSeed(0, math.floor(GameGetFrameNum()/(60*3600)))
+			local objective = objectives[Random(1, #objectives)]
+			return "Current objective: " .. objective
+		end
+	},
+	{
+		text = function()
+			local player_count
+				= #EntityGetWithTag("player_unit") + #EntityGetWithTag("polymorphed_player") -- Base game
+				+ #EntityGetWithTag("client") -- Noita Arena
+				+ #EntityGetWithTag("ew_client") -- Entangled Worlds
+				+ #EntityGetWithTag("nt_ghost") -- Noita Together
+				+ #EntityGetWithTag("iota_multiplayer.player") -- Iota Multiplayer
+			return "Players connected: " .. player_count
+		end
+	},
+	{
+		text = function()
+			return "Unread messages: " .. (ModSettingGet("noita.fairmod.discord_pings") or 0)
+		end
+	},
+	{
+		text = "Best pet: Cats"
+	},
+	{
+		text = function()
+			local special_ammo = 0
+			local player = EntityGetWithTag("player_unit")[1]
+			if player then
+				local ingestion_comp = EntityGetFirstComponent(player, "IngestionComponent")
+				if ingestion_comp then
+					special_ammo = ComponentGetValue2(ingestion_comp, "ingestion_size")
+				end
+			end
+			return "Special ammo: " .. math.max(0, special_ammo)
+		end
+	},
+	{
+		text = function()
+			local enemies = EntityGetWithTag("enemy")
+			local hams = 0
+			for _, enemy in ipairs(enemies) do
+				if EntityGetFilename(enemy) == "data/entities/animals/longleg.xml" then
+					hams = hams + 1
+				end
+			end
+			return "Häppiness: " .. hams
+		end
+	},
+	{
+		text = "Noita: yes"
+	},
+	{
+		text = "You smell: Bad"
+	},
+	{
+		text = "Terraria: No"
+	},
+	{
+		text = function()
+			if GameGetFrameNum() % 60 == 0 then
+				game_speed_b = game_speed_a
+				game_speed_a = GameGetRealWorldTimeSinceStarted()
+			end
+			return "Game speed: " .. ("%.2f%%"):format(100 / (game_speed_a - game_speed_b))
+		end
+	},
+	{
+		text = function()
+			return "Language: " .. GameTextGetTranslatedOrNot("$current_language")
+		end
+	},
+	{
+		text = function()
+			return "Cool: " .. (ModIsEnabled("component-explorer") and "Yes" or "No")
+		end
+	},
+	{
+		text = function()
+			local jumps = tonumber(GlobalsGetValue("FAIRMOD_JUMPS")) or 0
+			local player = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("polymorphed_player")[1]
+			if player then
+				local controls = EntityGetFirstComponent(player, "ControlsComponent")
+				if controls and ComponentGetValue2(controls, "mButtonFrameFly") == GameGetFrameNum() then
+					jumps = jumps + 1
+					GlobalsSetValue("FAIRMOD_JUMPS", tostring(jumps))
+				end
+			end
+			return "Jumps: " .. jumps
+		end
+	},
+	{
+		text = function()
+			local dir = "Unknowable"
+			local player = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("polymorphed_player")[1]
+			if player then
+				local controls = EntityGetFirstComponent(player, "ControlsComponent")
+				if controls then
+					local dirx, diry = ComponentGetValue2(controls, "mAimingVectorNormalized")
+					if diry < -0.5 then
+						dir = "North"
+						if dirx > 0.5 then
+							dir = "Neast"
+						elseif dirx < -0.5 then
+							dir = "Worth"
+						end
+					elseif diry > 0.5 then
+						dir = "South"
+						if dirx > 0.5 then
+							dir = "Easth"
+						elseif dirx < -0.5 then
+							dir = "Woust"
+						end
+					elseif dirx > 0.5 then
+						dir = "East"
+					elseif dirx < -0.5 then
+						dir = "West"
+					else
+						dir = "None"
+					end
+				end
+			end
+			return "Direction: " .. dir
+		end
+	},
+	{
+		text = function()
+			-- Speed per second but we calculate it once every minute
+			local prev_pos_x = tonumber(GlobalsGetValue("FAIRMOD_PREVPOS_X")) or 0
+			local prev_pos_y = tonumber(GlobalsGetValue("FAIRMOD_PREVPOS_Y")) or 0
+			local last_pos_x = tonumber(GlobalsGetValue("FAIRMOD_LASTPOS_X")) or 0
+			local last_pos_y = tonumber(GlobalsGetValue("FAIRMOD_LASTPOS_Y")) or 0
+
+			-- we calculate the speed by taking the difference between two
+			-- positions every 60 seconds. this is objectively the wrong way
+			-- to do it. :)
+			if GameGetFrameNum() % (60 * 60) == 0 then
+				local player = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("polymorphed_player")[1]
+				if player then
+					prev_pos_x, prev_pos_y = last_pos_x, last_pos_y
+					last_pos_x, last_pos_y = EntityGetTransform(player)
+					GlobalsSetValue("FAIRMOD_PREVPOS_X", tostring(prev_pos_x))
+					GlobalsSetValue("FAIRMOD_PREVPOS_Y", tostring(prev_pos_y))
+					GlobalsSetValue("FAIRMOD_LASTPOS_X", tostring(last_pos_x))
+					GlobalsSetValue("FAIRMOD_LASTPOS_Y", tostring(last_pos_y))
+				end
+			end
+
+			local diff_x = prev_pos_x - last_pos_x
+			local diff_y = prev_pos_y - last_pos_y
+			local speed_per_minute = math.sqrt(diff_x^2 + diff_y^2)
+
+			return "Speed: " .. ("%.2f"):format(speed_per_minute/60)
+		end
+	},
+	{
+		text = function()
+			local _, y = GameGetCameraPos()
+			-- Don't show X position. That would spoil the PW!
+			return "Y position: " .. math.floor(y)
+		end
+	}
 }
 
 local current_display = "normal"
@@ -487,10 +673,34 @@ function ui:update()
 		self:process_entry(display_entries[i])
 	end
 
+	local extra_ui_count = tonumber(GlobalsGetValue("FAIRMOD_EXTRA_UI_COUNT")) or 0
+	for i = 1, math.min(extra_ui_count, #extra_ui) do
+		self:process_entry(extra_ui[i])
+	end
+
 	self:get_max_length()
 	for i = 1, #pending_info do
 		self:draw_info(pending_info[i])
 	end
+
+	-- Buttons for more/fewer UI. Intentionally goes off-screen so you can't
+	-- change it.
+	self.y = self.y + 4
+	local x = self.dim.x - self.x_shift - 10
+
+	local more_text = "More"
+	local _, more_w = self:GetTextDimension(more_text)
+	if self:IsButtonClicked(x, self.y, 10, more_text, "Show more info UI") then
+		extra_ui_count = math.min(extra_ui_count + 5, #extra_ui)
+	end
+
+	if extra_ui_count > 0 then
+		if self:IsButtonClicked(x + more_w + 20, self.y, 10, "[Fewer]", "Show less info UI") then
+			extra_ui_count = math.max(0, extra_ui_count - 5)
+		end
+	end
+
+	GlobalsSetValue("FAIRMOD_EXTRA_UI_COUNT", tostring(extra_ui_count))
 end
 
 return ui
