@@ -133,6 +133,11 @@ return {
 				exclusivity_group=0,
 				frames=-1,
 			})
+			EntityAddComponent2(invuln, "GameEffectComponent", {
+				effect="PROTECTION_POLYMORPH",
+				exclusivity_group=0,
+				frames=-1,
+			})
 			
 			local particles = EntityAddComponent2(player, "ParticleEmitterComponent", {
 				velocity_always_away_from_center=100,

@@ -17,6 +17,12 @@ local tips = {
 	"Don't drink and drive.",
 	"Happy Halloween!",
 	"Hey, if you combine Whiskey and Berserkium it makes my own patented Hamis Bars!!",
+	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
+	"Always pay off your debts!",
+	"Make sure to configure your settings.",
+	table.concat{"There are ", GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?"},
+	"Some enemies are really messed up! Beware!",
+	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
 }
 
 function interacting(player, entity_interacted, interactable_name)
