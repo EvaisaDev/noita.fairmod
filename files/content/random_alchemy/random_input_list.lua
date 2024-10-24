@@ -17,6 +17,7 @@ local input = {
 	"snow_static",
 	"ice_static",
 	"gold",
+	"oil",
 }
 
 return input

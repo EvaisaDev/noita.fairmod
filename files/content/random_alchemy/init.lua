@@ -3,7 +3,7 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local random_output = dofile_once("mods/noita.fairmod/files/content/random_alchemy/random_output_list.lua") --- @type string[]
 local random_input = dofile_once("mods/noita.fairmod/files/content/random_alchemy/random_input_list.lua") --- @type string[]
 
-local random_reactions_to_add = math.ceil(#reactions / 3)
+local random_reactions_to_add = math.ceil(#reactions / 4)
 
 local function generate_unique_random_numbers(n, min, max)
 	local numbers, result = {}, {}
