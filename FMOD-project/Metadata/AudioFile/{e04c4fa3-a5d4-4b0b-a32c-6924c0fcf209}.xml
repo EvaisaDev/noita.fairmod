@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{e04c4fa3-a5d4-4b0b-a32c-6924c0fcf209}">
+		<property name="assetPath">
+			<value>breath-05.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.28</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eb2a4d4a-1287-481b-8086-c8771a725107}</destination>
+		</relationship>
+	</object>
+</objects>
