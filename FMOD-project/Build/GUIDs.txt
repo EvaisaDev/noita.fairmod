@@ -42,6 +42,10 @@
 {a21b21ee-5c60-4606-a248-a3b22d0bbcbf} event:/nuke/fart3
 {53d38946-4d1e-4b9d-bbec-463a2b7de10e} event:/nuke/fart4
 {a5d4cb7e-f443-4251-89c2-f3dbef789d95} event:/nuke/fart5
+{0205183a-406d-4bb5-ad07-3716b4621518} event:/payphone/hungup
+{e94bd9c0-4b86-4e3e-a138-ea0159ea20cf} event:/payphone/pickup
+{876eb51e-6244-4a21-b16e-b5f6b05e8677} event:/payphone/putdown
+{ed561f27-68f1-4211-87b1-b578ce7ee6df} event:/payphone/ring
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
 {e64eef68-ba89-46ed-b415-1d6b80ebdf02} event:/radio/loop

@@ -261,7 +261,7 @@ function ui:DrawLockedAchievements(x, y, achievement_data)
 	text_y = text_y + 0.2
 
 	for j = 1, #achievement_data.description.lines do
-		local line = achievement_data.description.lines[j]:gsub("%w", "?")
+		local line = achievement_data.description.lines[j]:gsub("%$", "?"):gsub("%w", "?")
 		self:Color(0.7, 0.7, 0.7, 0.8)
 		self:Text(text_x, text_y, line)
 		text_y = text_y + 7
@@ -290,7 +290,7 @@ function ui:DrawAchievementsScrollbox()
 end
 
 function ui:DrawAchievementsWindow()
-	local x = 400
+	local x = 26
 	local y = 50
 	self:Draw9Piece(
 		x - 3,
@@ -327,6 +327,7 @@ end
 function ui:update()
 	CheckAchievements()
 	self:StartFrame()
+	self.text_scale = 0.7
 	self:UpdateDimensions()
 	self:AddOption(self.c.options.NonInteractive)
 	self:DrawNotifications()

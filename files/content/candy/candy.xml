@@ -1,8 +1,8 @@
 <Materials>
 
 	<CellData
-		name="candy_fairmod"
-		ui_name="Candy"
+		name="candy_fairmod_hamis"
+		ui_name="Hamis Bars"
 		wang_color="ff36d517"
 		liquid_sand="1"
 		cell_type="liquid"
@@ -10,10 +10,10 @@
 	>
 		<Graphics
 			color="88E8BD5C"
-			texture_file="mods/noita.fairmod/files/content/candy/rainbow.png" 
+			texture_file="mods/noita.fairmod/files/content/candy/hamisbar.png" 
 		>
 		</Graphics>
-
+		wa
 		<StatusEffects>
 			<Ingestion>
 				 <StatusEffect type="MOVEMENT_FASTER_2X" amount="0.2" />
@@ -21,10 +21,56 @@
 		</StatusEffects>
 
 	</CellData>
+	
+	<CellData
+		name="candy_fairmod_ambrosia"
+		ui_name="TelAmbrosia! Bars"
+		wang_color="ff36d517"
+		liquid_sand="1"
+		cell_type="liquid"
+		liquid_stains="2"
+	>
+		<Graphics
+			color="88E8BD5C"
+			texture_file="mods/noita.fairmod/files/content/candy/teleambrosia.png" 
+		>
+		</Graphics>
+
+		<StatusEffects>
+			<Ingestion>
+				 <StatusEffect type="PROTECTION_ALL" amount="0.2" />
+				 <StatusEffect type="UNSTABLE_TELEPORTATION" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+
+	</CellData>
+
+	<CellData
+		name="candy_fairmod_toxic"
+		ui_name="Toxic Drops!"
+		wang_color="ff36d517"
+		liquid_sand="1"
+		cell_type="liquid"
+		liquid_stains="2"
+	>
+		<Graphics
+			color="88E8BD5C"
+			texture_file="mods/noita.fairmod/files/content/candy/toxicdrop.png" 
+		>
+		</Graphics>
+
+		<StatusEffects>
+			<Ingestion>
+				 <StatusEffect type="RADIOACTIVE" amount="0.2" />
+				 <StatusEffect type="FOOD_POISONING" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+
+	</CellData>
 
 	<Reaction probability="1"
 		input_cell1="magic_liquid_berserk" input_cell2="alcohol"
-		output_cell1="candy_fairmod" output_cell2="candy_fairmod"
+		output_cell1="candy_fairmod_hamis" output_cell2="candy_fairmod_hamis"
 	>
 	</Reaction>
 

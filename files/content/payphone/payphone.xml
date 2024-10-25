@@ -1,0 +1,42 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/payphone/payphone.png"
+		offset_x="5"
+		offset_y="18"
+		z_index="1"
+	/>
+
+	<InteractableComponent
+		radius="20"
+		ui_text="Press $0 to answer phone"
+		name="interact"
+	/>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/payphone/payphone.lua"
+		script_interacting="mods/noita.fairmod/files/content/payphone/payphone.lua"
+		execute_every_n_frame="1"
+		execute_on_added="1"
+		enable_coroutines="1"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
+	/>
+
+	<AudioLoopComponent
+		_tags="disconnected"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="payphone/hungup"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+
+	<AudioLoopComponent
+		_tags="ring"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="payphone/ring"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+</Entity>
