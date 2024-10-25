@@ -66,7 +66,7 @@ return {
         portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
         typing_sound_interval = 5,
         typing_sound = "pop",
-        text = [[Hello.. Is this that, witch..? *blub*]],
+        text = [[Hello.. Is this that, witch..? \\*blub\\*]],
         can_call = function() -- optional
             return tonumber(GlobalsGetValue("loan_shark_debt", "0")) >= 50
         end,
@@ -75,7 +75,7 @@ return {
                 text = "Uhh, yes..? Who is this?",
                 func = function(dialog)
                     dialog.show({
-                        text = [[*blub* Just reminding you, you should pay off your debts,
+                        text = [[\\*blub\\* Just reminding you, you should pay off your debts,
 or {@color b82318}#you will regret it.#{@func disconnected}]],
                         options = {
                             {
@@ -92,7 +92,7 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
                 text = "You got the wrong number.",
                 func = function(dialog)
                     dialog.show({
-                        text = [[Oh.. I'm sorry. *blub* {@func disconnected}]],
+                        text = [[Oh.. I'm sorry. \\*blub\\* {@func disconnected}]],
                         options = {
                             {
                                 text = "...",
@@ -316,7 +316,7 @@ identity.]],
                 text = "Hello?",
                 func = function(dialog)
                     dialog.show({
-                        text = [[*heavy breathing*]],
+                        text = [[\\*heavy breathing\\*]],
                         options = {
                             {
                                 text = "Who is this?",
@@ -338,7 +338,7 @@ identity.]],
                                 text = "I'm calling the authorities.",
                                 func = function(dialog)
                                     dialog.show({
-                                        text = [[*gasp* {@func disconnected}]],
+                                        text = [[\\*gasp\\* {@func disconnected}]],
                                         options = {
                                             {
                                                 text = "Good riddance.",
