@@ -437,10 +437,9 @@ your recent cave-dwelling experiences?]],
             {
                 text = "Sure, why not.",
                 func = function(dialog)
-                    local reward_final = nil
 
                     -- Define survey functions
-                    local function survey_end(dialog)
+                    local function survey_end(dialog, reward_final)
                         local players = EntityGetWithTag("player_unit") or {}
                         if players == nil or #players == 0 then
                             return
@@ -506,22 +505,19 @@ appreciation, please accept 500 gold! {@func disconnected}]],
                                 {
                                     text = "More explosions!!",
                                     func = function(dialog)
-                                        reward_final = "nuke"
-                                        survey_end(dialog)
+                                        survey_end(dialog, "nuke")
                                     end,
                                 },
                                 {
                                     text = "Additional snails.",
                                     func = function(dialog)
-                                        reward_final = "snails"
-                                        survey_end(dialog)
+                                        survey_end(dialog, "snails")
                                     end,
                                 },
                                 {
                                     text = "Make it liminal.",
                                     func = function(dialog)
-                                        reward_final = "liminal"
-                                        survey_end(dialog)
+                                        survey_end(dialog, "liminal")
                                     end,
                                 },
                             },
