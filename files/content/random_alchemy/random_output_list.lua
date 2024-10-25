@@ -22,6 +22,8 @@ local output = {
 	"gunpowder_unstable",
 	"lava",
 	"air",
+	"fairmod_hamisium",
+	"fairmod_tntinium",
 }
 
 return output

@@ -1,0 +1,134 @@
+<Materials>
+	<!-- Minecartium -->
+	<CellData
+		name="fairmod_minecartium"
+		ui_name="Minecartium"
+		tags="[liquid],[magic_liquid],[materium_activate]"
+		wang_color="af737c9a"
+		convert_to_box2d_material="fairmod_minecartium_active"
+		gfx_glow="10"
+		hp="0.1"
+		ignore_self_reaction_warning="1">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/minecartium.png">
+		</Graphics>
+	</CellData>
+
+	<CellDataChild
+		_parent="fairmod_minecartium"
+		name="fairmod_minecartium_active"
+		tags="[liquid],[magic_liquid],[catastrophic]"
+		wang_color="af737c9b">
+	</CellDataChild>
+
+	<Reaction probability="1" direction="top"
+		input_cell1="fairmod_minecartium_active" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+		entity="data/entities/props/physics/minecart.xml">
+	</Reaction>
+
+	<!-- Hamisium -->
+	<CellData
+		name="fairmod_hamisium"
+		ui_name="Hamisium"
+		tags="[liquid],[magic_liquid],[materium_activate]"
+		wang_color="af52316f"
+		convert_to_box2d_material="fairmod_hamisium_active"
+		gfx_glow="10"
+		hp="0.1"
+		ignore_self_reaction_warning="1">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/hamisium.png">
+		</Graphics>
+	</CellData>
+
+	<CellDataChild
+		_parent="fairmod_hamisium"
+		name="fairmod_hamisium_active"
+		tags="[liquid],[magic_liquid],[catastrophic]"
+		wang_color="af523170">
+	</CellDataChild>
+
+	<Reaction probability="1" direction="top"
+		input_cell1="fairmod_hamisium_active" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+		entity="data/entities/animals/longleg.xml">
+	</Reaction>
+
+	<!-- Propanium -->
+	<CellData
+		name="fairmod_propanium"
+		ui_name="Propanium"
+		tags="[liquid],[magic_liquid],[materium_activate]"
+		wang_color="af8777ae"
+		convert_to_box2d_material="fairmod_propanium_active"
+		gfx_glow="10"
+		hp="0.1"
+		ignore_self_reaction_warning="1">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/propanium.png">
+		</Graphics>
+	</CellData>
+
+	<CellDataChild
+		_parent="fairmod_propanium"
+		name="fairmod_propanium_active"
+		tags="[liquid],[magic_liquid],[catastrophic]"
+		wang_color="af8777af">
+	</CellDataChild>
+
+	<Reaction probability="1" direction="top"
+		input_cell1="fairmod_propanium_active" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+		entity="data/entities/projectiles/propane_tank.xml">
+	</Reaction>
+
+	<!-- Tntinium -->
+	<CellData
+		name="fairmod_tntinium"
+		ui_name="Tntinium"
+		tags="[liquid],[magic_liquid],[materium_activate]"
+		wang_color="afae4444"
+		convert_to_box2d_material="fairmod_tntinium_active"
+		gfx_glow="10"
+		hp="0.1"
+		ignore_self_reaction_warning="1">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/tntinium.png">
+		</Graphics>
+	</CellData>
+
+	<CellDataChild
+		_parent="fairmod_tntinium"
+		name="fairmod_tntinium_active"
+		tags="[liquid],[magic_liquid],[catastrophic]"
+		wang_color="afae4445">
+	</CellDataChild>
+
+	<Reaction probability="1" direction="top"
+		input_cell1="fairmod_tntinium_active" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+		entity="data/entities/projectiles/tnt.xml">
+	</Reaction>
+
+	<!-- tagged reactions -->
+	<Reaction probability="1"
+		input_cell1="[materium_activate]" input_cell2="air"
+		output_cell1="[materium_activate]_active" output_cell2="air">
+	</Reaction>
+
+	<Reaction probability="1"
+		input_cell1="[materium_activate]" input_cell2="[meat]"
+		output_cell1="[materium_activate]_active" output_cell2="[meat]">
+	</Reaction>
+
+	<Reaction probability="1"
+		input_cell1="[materium_activate]" input_cell2="[blood]"
+		output_cell1="[materium_activate]_active" output_cell2="[blood]">
+	</Reaction>
+
+	<Reaction probability="1"
+		input_cell1="[materium_activate]" input_cell2="[fire]"
+		output_cell1="[materium_activate]_active" output_cell2="[fire]">
+	</Reaction>
+</Materials>

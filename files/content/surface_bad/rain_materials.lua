@@ -54,6 +54,15 @@ local rain_materials = {
 		count_min = 0,
 		count_max = 1,
 	},
+	fairmod_hamisium_active = {},
+	fairmod_propanium = {
+		count_min = 3,
+		count_max = 5,
+	},
+	fairmod_tntinium = {
+		count_min = 3,
+		count_max = 5,
+	},
 }
 
 return rain_materials
