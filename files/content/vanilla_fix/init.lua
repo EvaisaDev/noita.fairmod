@@ -1,49 +1,51 @@
+--- Lamia rewrited this file, sorry
 
-local vanilla_fix = {}
+local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local catastrophicMaterials = {
-    creepy_liquid = true, 
-    monster_powder_test = true, 
-    totallyBogusMaterial = true, 
-    t_omega_slicing_liquid = true, 
-    aa_chaotic_pandorium = true, 
-    aa_unstable_pandorium = true,
+	creepy_liquid = true,
+	monster_powder_test = true,
+	totallyBogusMaterial = true,
+	t_omega_slicing_liquid = true,
+	aa_chaotic_pandorium = true,
+	aa_unstable_pandorium = true,
 } -- Catastrophic Materials list
 
+local function add_tag(tags, tag)
+	if not tags then return tag end
+	return tags .. "," .. tag
+end
 
-local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
-
-function vanilla_fix.OnMagicNumbersAndWorldSeedInitialized() -- this is the last point where the Mod* API is available. after this materials.xml will be loaded.
-	-- this code adds tags to preexisting materials, its good for compatibility--
-	local xml = nxml.parse(ModTextFileGetContent("data/materials.xml"))
-
-	local files = ModMaterialFilesGet()
-	for _, file in ipairs(files) do --add modded materials
-		if file ~= "data/materials.xml" then
-			for _, comp in ipairs(nxml.parse(ModTextFileGetContent(file)).children) do
-				xml.children[#xml.children+1] = comp
-			end
-		end
+--- Parses an xml element
+--- @param element element
+local function parse_element(element)
+	local attr = element.attr
+	if catastrophicMaterials[attr.name] then
+		attr.tags = add_tag(attr.tags, ",[catastrophic],[NO_FUNGAL_SHIFT]")
+		print("Fairmod: Added tag [catastrophic] to " .. attr.name)
+	elseif attr.convert_to_box2d_material or attr.solid_break_to_type or attr.cell_type == "solid" then
+		attr.tags = add_tag(attr.tags, ",[NO_FUNGAL_SHIFT]")
 	end
+end
 
-	for elem in xml:each_child() do
-		local attr = elem.attr
+--- Parses a file
+--- @param file string
+local function parse_file(file)
+	local success, result = pcall(nxml.parse, ModTextFileGetContent(file))
+	if not success then
+		print("couldn't parse material file " .. file)
+		return
+	end
+	local xml = result
 
-		if catastrophicMaterials[attr.name] then
-			attr.tags = attr.tags .. ",[catastrophic]"	
-			print("Fairmod: Added tag [catastrophic] to " .. attr.name)
-		end
-        
-		if attr.convert_to_box2d_material or attr.solid_break_to_type or attr.cell_type == "solid" or string.find(attr.name, "[catastrophic]") then
-			if attr.tags then
-				attr.tags = attr.tags .. ",[NO_FUNGAL_SHIFT]"
-			else
-				attr.tags = "[NO_FUNGAL_SHIFT]"
-			end
-			--print("Fairmod: Added tag [NO_FUNGAL_SHIFT] to " .. attr.name)
+	for _, element_name in ipairs({ "CellData", "CellDataChild" }) do
+		for elem in xml:each_of(element_name) do
+			parse_element(elem)
 		end
 	end
 end
 
-
-return vanilla_fix
+local files = ModMaterialFilesGet()
+for i = 1, #files do
+	parse_file(files[i])
+end

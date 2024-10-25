@@ -30,7 +30,6 @@ local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
-local vanilla_fix = dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -112,7 +111,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
 	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
-	vanilla_fix.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 end
