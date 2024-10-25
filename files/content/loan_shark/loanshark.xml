@@ -15,7 +15,7 @@
 		offset_x="32"
 		offset_y="17"
 		z_index="1"
-		/>
+	/>
 
 
 	<InteractableComponent
@@ -29,6 +29,7 @@
 		script_source_file="mods/noita.fairmod/files/content/loan_shark/loanshark.lua"
 		execute_every_n_frame="1"
 		enable_coroutines="1"
-		>
-	</LuaComponent>	
+		execute_on_added="1"
+	>
+	</LuaComponent>
 </Entity>

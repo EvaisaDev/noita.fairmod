@@ -1,18 +1,18 @@
 <Materials>
-  <CellData
-	tags="[box2d],[gold],[alchemy]"
-  	name="gold_invisible_box2d"
-	ui_name="$mat_gold_box2d"
-	gfx_glow_color="0x0000000"
-	wang_color="ffeba241"
-	electrical_conductivity="1"
-	audio_physics_material_wall="gravel"
-	audio_physics_material_solid="gold"
-	show_in_creative_mode="1"
+	<CellData
+		tags="[box2d],[gold],[alchemy]"
+		name="gold_invisible_box2d"
+		ui_name="$mat_gold_box2d"
+		gfx_glow_color="0x0000000"
+		wang_color="ffeba241"
+		electrical_conductivity="1"
+		audio_physics_material_wall="gravel"
+		audio_physics_material_solid="gold"
+		show_in_creative_mode="1"
 	>
-  	<Graphics
-		normal_mapped="0"
-		color="00000000" >
-    </Graphics>
-  </CellData>
+		<Graphics
+			normal_mapped="0"
+			color="00000000">
+		</Graphics>
+	</CellData>
 </Materials>

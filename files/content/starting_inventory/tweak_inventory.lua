@@ -2,19 +2,30 @@ local strmanip = dofile_once("mods/noita.fairmod/files/lib/stringmanip.lua") ---
 
 local starting_wand = strmanip:new("data/scripts/gun/procedural/starting_wand.lua")
 starting_wand:AppendBefore(
-	[[local bullshit_spells = { "GRENADE_ANTI", "GRENADE_LARGE", "RUBBER_BALL", "BOUNCY_ORB", "ARROW", "CURSED_ORB", "LIGHT_BULLET" }]])
+	[[local bullshit_spells = { "GRENADE_ANTI", "GRENADE_LARGE", "RUBBER_BALL", "BOUNCY_ORB", "ARROW", "CURSED_ORB", "LIGHT_BULLET" }]]
+)
 starting_wand:ReplaceLine("AddGunAction(", [[AddGunAction(entity_id, get_random_from(bullshit_spells))]])
 starting_wand:WriteAndClose()
 
 local starting_bomb_wand = strmanip:new("data/scripts/gun/procedural/starting_bomb_wand.lua")
 starting_bomb_wand:AppendBefore(
-	[[local bullshit_spells = { "BOMB", "DYNAMITE", "MINE", "ROCKET", "GRENADE", "BLACK_HOLE_DEATH_TRIGGER", "GRENADE_TRIGGER","LASER_LUMINOUS_DRILL", "TORCH", "PEBBLE" }]])
+	[[local bullshit_spells = { "BOMB", "DYNAMITE", "MINE", "ROCKET", "GRENADE", "BLACK_HOLE_DEATH_TRIGGER", "GRENADE_TRIGGER","LASER_LUMINOUS_DRILL", "TORCH", "PEBBLE" }]]
+)
 starting_bomb_wand:ReplaceLine("AddGunAction(", [[AddGunAction(entity_id, get_random_from(bullshit_spells))]])
 starting_bomb_wand:WriteAndClose()
 
+ModTextFileSetContent(
+	"data/scripts/items/potion_starting.lua",
+	ModTextFileGetContent("mods/noita.fairmod/files/content/starting_inventory/potion_starting_lib.lua")
+)
+ModLuaFileAppend(
+	"data/scripts/items/potion_starting.lua",
+	"mods/noita.fairmod/files/content/starting_inventory/potion_append.lua"
+)
+
 local potion_starting = "data/scripts/items/potion_starting.lua"
 local content = ModTextFileGetContent(potion_starting)
-content = content .. "\ndofile_once(\"mods/noita.fairmod/files/content/starting_inventory/potion_append.lua\")"
+content = content .. '\ndofile_once("mods/noita.fairmod/files/content/starting_inventory/potion_append.lua")'
 ModTextFileSetContent(potion_starting, content)
 
 --- Split abgr
@@ -68,7 +79,7 @@ local function blend_colors(color1, color2)
 end
 
 SetRandomSeed(1, 1)
-for _, gun in ipairs { "data/items_gfx/handgun.png", "data/items_gfx/bomb_wand.png" } do
+for _, gun in ipairs({ "data/items_gfx/handgun.png", "data/items_gfx/bomb_wand.png" }) do
 	local wand_png, wand_w, wand_h = ModImageMakeEditable(gun, 0, 0)
 	for i = 0, wand_w do
 		for j = 0, wand_h do

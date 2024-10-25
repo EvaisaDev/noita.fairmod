@@ -4,11 +4,13 @@ dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 -- default map width seems to be 70
 local WORLD_WIDTH = 70 * 512
-local MAX_PARALLEL = 3 -- does NOT support large numbers
+local MAX_PARALLEL = 2 -- does NOT support large numbers
 
 local pixel_scene_files = {
 	"data/biome_impl/spliced/lavalake2.xml",
 	"data/biome_impl/spliced/lavalake_pit_bottom.xml",
+	"data/biome_impl/spliced/mountain_lake.xml",
+	"data/biome_impl/spliced/tree.xml",
 }
 
 local function create_pw_elements(result, element, attr_name)
@@ -23,9 +25,7 @@ local function create_pw_elements(result, element, attr_name)
 end
 
 local function add_pw_scenes(elem, attr_name)
-	if elem == nil then
-		return
-	end
+	if elem == nil then return end
 
 	local new_elems = {}
 	for scene in elem:each_child() do

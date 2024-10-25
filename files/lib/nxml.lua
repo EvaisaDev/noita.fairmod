@@ -169,9 +169,7 @@ function TOKENIZER_FUNCS:peek(n)
 	---@cast self tokenizer
 	n = n or 1
 	local idx = self.cur_idx + n
-	if idx >= self.len then
-		return 0
-	end
+	if idx >= self.len then return 0 end
 
 	return str_index(self.data, idx)
 end
@@ -182,9 +180,7 @@ function TOKENIZER_FUNCS:match_string(str)
 	local len = #str
 
 	for i = 0, len - 1 do
-		if self:peek(i) ~= str_index(str, i) then
-			return false
-		end
+		if self:peek(i) ~= str_index(str, i) then return false end
 	end
 	return true
 end
@@ -198,9 +194,7 @@ end
 ---@return int
 function TOKENIZER_FUNCS:cur_char()
 	---@cast self tokenizer
-	if self:eof() then
-		return 0
-	end
+	if self:eof() then return 0 end
 	return str_index(self.data, self.cur_idx)
 end
 
@@ -214,25 +208,19 @@ function TOKENIZER_FUNCS:skip_whitespace()
 				self:move()
 			end
 
-			if self:match_string("-->") then
-				self:move(3)
-			end
+			if self:match_string("-->") then self:move(3) end
 		elseif self:cur_char() == string.byte("<") and self:peek(1) == string.byte("!") then
 			self:move(2)
 			while not self:eof() and self:cur_char() ~= string.byte(">") do
 				self:move()
 			end
-			if self:cur_char() == string.byte(">") then
-				self:move()
-			end
+			if self:cur_char() == string.byte(">") then self:move() end
 		elseif self:match_string("<?") then
 			self:move(2)
 			while not self:eof() and not self:match_string("?>") do
 				self:move()
 			end
-			if self:match_string("?>") then
-				self:move(2)
-			end
+			if self:match_string("?>") then self:move(2) end
 		else
 			break
 		end
@@ -282,9 +270,7 @@ function TOKENIZER_FUNCS:next_token()
 	self.prev_row = self.cur_row
 	self.prev_col = self.cur_col
 
-	if self:eof() then
-		return nil
-	end
+	if self:eof() then return nil end
 
 	local c = self:cur_char()
 	self:move()
@@ -413,9 +399,7 @@ function PARSER_FUNCS:parse_element(skip_opening_tag)
 			self:report_error("missing_token", "parsing element - did not find a token")
 			return
 		end
-		if tok.type ~= "<" then
-			self:report_error("missing_tag_open", "couldn't find a '<' to start parsing with")
-		end
+		if tok.type ~= "<" then self:report_error("missing_tag_open", "couldn't find a '<' to start parsing with") end
 	end
 
 	tok = self.tok:next_token()
@@ -423,9 +407,7 @@ function PARSER_FUNCS:parse_element(skip_opening_tag)
 		self:report_error("missing_token", "parsing element - did not find a token")
 		return
 	end
-	if tok.type ~= "string" then
-		self:report_error("missing_element_name", "expected an element name after '<'")
-	end
+	if tok.type ~= "string" then self:report_error("missing_element_name", "expected an element name after '<'") end
 
 	local elem_name = tok.value
 	if not elem_name then
@@ -455,9 +437,7 @@ function PARSER_FUNCS:parse_element(skip_opening_tag)
 		end
 	end
 
-	if self_closing then
-		return elem
-	end
+	if self_closing then return elem end
 
 	while true do
 		tok = self.tok:next_token()
@@ -510,9 +490,7 @@ function PARSER_FUNCS:parse_element(skip_opening_tag)
 				table.insert(elem.children, child)
 			end
 		else
-			if not elem.content then
-				elem.content = {}
-			end
+			if not elem.content then elem.content = {} end
 
 			content_idx = content_idx + 1
 			elem.content[content_idx] = tok.value or tok.type
@@ -554,9 +532,7 @@ end
 ---@param source element
 local function merge_element(dest, source)
 	for attr_name, attr_value in pairs(source.attr) do
-		if dest:get(attr_name) == nil then
-			dest:set(attr_name, attr_value)
-		end
+		if dest:get(attr_name) == nil then dest:set(attr_name, attr_value) end
 	end
 end
 
@@ -568,9 +544,7 @@ local function merge_xml(root, base_element, base_file)
 	local index = 1
 	local counts = {}
 	for elem in base_file:each_child() do
-		if not counts[elem.name] then
-			counts[elem.name] = 0
-		end
+		if not counts[elem.name] then counts[elem.name] = 0 end
 		counts[elem.name] = counts[elem.name] + 1
 		local modifications = base_element:nth_of(elem.name, counts[elem.name])
 		if modifications then
@@ -617,15 +591,15 @@ local function merge_xml(root, base_element, base_file)
 end
 
 ---Expands the Base files for an entity xml
+---Returns `self` for chaining purposes.
 ---**WARN: This is not 100% identical to Nollas implementation, _remove_from_base does not work**
 ---
 ---@param read (fun(path: str): str)? `ModTextFileGetContent`
 ---@param exists (fun(path: str): bool)? `ModDoesFileExist`
+---@return element self
 function XML_ELEMENT_FUNCS:expand_base(read, exists)
 	---@cast self element
-	if self.name ~= "Entity" then
-		return
-	end
+	if self.name ~= "Entity" then return self end
 	---@cast self element
 	-- thanks Kaedenn for writing this!
 	read = read or ModTextFileGetContent
@@ -633,9 +607,7 @@ function XML_ELEMENT_FUNCS:expand_base(read, exists)
 	local base_tag
 	while true do
 		base_tag = self:first_of("Base")
-		if not base_tag then
-			break
-		end
+		if not base_tag then break end
 		local file = base_tag:get("file")
 		if file and exists(file) then
 			local root_xml = nxml.parse_file(file, read)
@@ -651,23 +623,23 @@ function XML_ELEMENT_FUNCS:expand_base(read, exists)
 	for elem in self:each_child() do
 		elem:expand_base(read, exists)
 	end
+	return self
 end
 
+---Returns `self` for chaining purposes.
 ---@param defaults table<string, table<string, any>>
+---@return element
 function XML_ELEMENT_FUNCS:apply_defaults(defaults)
 	---@cast self element
 	local apply = defaults[self.name]
 	for child in self:each_child() do
 		child:apply_defaults(defaults)
 	end
-	if not apply then
-		return
-	end
+	if not apply then return self end
 	for k, v in pairs(apply) do
-		if self:get(k) == nil then
-			self:set(k, v)
-		end
+		if self:get(k) == nil then self:set(k, v) end
 	end
+	return self
 end
 
 ---Returns the content inside an element.
@@ -679,13 +651,9 @@ end
 ---@return str
 function XML_ELEMENT_FUNCS:text()
 	---@cast self element
-	if self.content == nil then
-		return ""
-	end
+	if self.content == nil then return "" end
 	local content_count = #self.content
-	if content_count == 0 then
-		return ""
-	end
+	if content_count == 0 then return "" end
 
 	local text = self.content[1]
 	for i = 2, content_count do
@@ -702,21 +670,27 @@ function XML_ELEMENT_FUNCS:text()
 	return text
 end
 
+---Returns `self` for chaining purposes.
 ---@param child element
 function XML_ELEMENT_FUNCS:add_child(child)
 	self.children[#self.children + 1] = child
+	return self
 end
 
+---Returns `self` for chaining purposes.
 ---@param children element[]
+---@return element self
 function XML_ELEMENT_FUNCS:add_children(children)
 	---@cast self element
 	for _, child in ipairs(children) do
 		self:add_child(child)
 	end
+	return self
 end
 
----Removes the given child, note that this is exact equality not structural equality so copies will not be considered equal.
+---Removes the given child, note that this is exact equality not structural equality so copies will not be considered equal. Returns `self` for chaining purposes.
 ---@param child element
+---@return element self
 function XML_ELEMENT_FUNCS:remove_child(child)
 	---@cast self element
 	for i = 1, #self.children do
@@ -725,10 +699,12 @@ function XML_ELEMENT_FUNCS:remove_child(child)
 			break
 		end
 	end
+	return self
 end
 
----Removes the given child, but adds its children to this element
+---Removes the given child, but adds its children to this element. Returns `self` for chaining purposes
 ---@param child element
+---@return element
 function XML_ELEMENT_FUNCS:lift_child(child)
 	---@cast self element
 	for k, v in ipairs(self.children) do
@@ -742,22 +718,32 @@ function XML_ELEMENT_FUNCS:lift_child(child)
 			break
 		end
 	end
+	return self
 end
 
+---Returns `self` for chaining purposes
 ---@param index int
+---@return element
 function XML_ELEMENT_FUNCS:remove_child_at(index)
 	---@cast self element
 	table.remove(self.children, index)
+	return self
 end
 
+---Returns `self` for chaining purposes
+---@return element
 function XML_ELEMENT_FUNCS:clear_children()
 	---@cast self element
 	self.children = {}
+	return self
 end
 
+---Returns `self` for chaining purposes
+---@return element
 function XML_ELEMENT_FUNCS:clear_attrs()
 	---@cast self element
 	self.attr = {}
+	return self
 end
 
 ---Returns the first child element with the given name and its index.
@@ -766,9 +752,7 @@ end
 function XML_ELEMENT_FUNCS:first_of(element_name)
 	---@cast self element
 	for k, v in ipairs(self.children) do
-		if v.name == element_name then
-			return v, k
-		end
+		if v.name == element_name then return v, k end
 	end
 end
 
@@ -779,18 +763,15 @@ end
 function XML_ELEMENT_FUNCS:nth_of(element_name, n)
 	---@cast self element
 	for k, v in ipairs(self.children) do
-		if v.name ~= element_name then
-			goto continue
-		end
+		if v.name ~= element_name then goto continue end
 		n = n - 1
-		if n == 0 then
-			return v, k
-		end
+		if n == 0 then return v, k end
 		::continue::
 	end
 end
 
 ---Iterate over each child with the given name, effectively a filter.
+---Note that this function will behave strangely if you mutate children while iterating.
 ---Use like:
 ---```lua
 ---for dmc in entity:each_of("DamageModelComponent") do
@@ -808,9 +789,7 @@ function XML_ELEMENT_FUNCS:each_of(element_name)
 		while i <= n do
 			local child = self.children[i]
 			i = i + 1
-			if child.name == element_name then
-				return child
-			end
+			if child.name == element_name then return child end
 		end
 	end
 end
@@ -853,12 +832,8 @@ end
 ---@return str
 local function attr_value_to_str(value)
 	local t = type(value)
-	if t == "string" then
-		return value
-	end
-	if t == "boolean" then
-		return value and "1" or "0"
-	end
+	if t == "string" then return value end
+	if t == "boolean" then return value and "1" or "0" end
 
 	return tostring(value)
 end
@@ -871,12 +846,28 @@ function XML_ELEMENT_FUNCS:get(attr)
 	return self.attr[attr]
 end
 
----Sets the given attribute, make sure your type can be stringified.
+---Sets the given attribute, make sure your type can be stringified. Returns `self` for chaining purposes.
 ---@param attr str
 ---@param value any
+---@return element
 function XML_ELEMENT_FUNCS:set(attr, value)
 	---@cast self element
 	self.attr[attr] = attr_value_to_str(value)
+	return self
+end
+
+---@return element
+function XML_ELEMENT_FUNCS:clone()
+	---@cast self element
+	local children = {}
+	for e in self:each_child() do
+		table.insert(children, e:clone())
+	end
+	local attr = {}
+	for k, v in pairs(self.attr) do
+		attr[k] = v
+	end
+	return nxml.new_element(self.name, attr, children)
 end
 
 ---Allows you to have an xml element which represents a file, with changes made in the xml element reflecting in the file when you exit the `edit_file()` scope.
@@ -918,9 +909,7 @@ function nxml.parse_file(file, read)
 
 	local elem = parser:parse_element(false)
 
-	if not elem or (elem.errors and #elem.errors > 0) then
-		error("parser encountered errors")
-	end
+	if not elem or (elem.errors and #elem.errors > 0) then error("parser encountered errors") end
 
 	return elem
 end
@@ -935,9 +924,7 @@ function nxml.parse(data)
 
 	local elem = parser:parse_element(false)
 
-	if not elem or (elem.errors and #elem.errors > 0) then
-		error("parser encountered errors")
-	end
+	if not elem or (elem.errors and #elem.errors > 0) then error("parser encountered errors") end
 
 	return elem
 end
@@ -959,9 +946,7 @@ function nxml.parse_many(data)
 	for i = 1, #elems do
 		local elem = elems[i]
 
-		if elem.errors and #elem.errors > 0 then
-			error("parser encountered errors")
-		end
+		if elem.errors and #elem.errors > 0 then error("parser encountered errors") end
 	end
 
 	return elems
@@ -969,14 +954,19 @@ end
 
 ---Constructs an element with the given values, just a wrapper to set the metatable really.
 ---@param name str
----@param attrs table<str, str>? {}
+---@param attrs table<str, any>? {}
 ---@param children element[]? {}
 ---@return element
 function nxml.new_element(name, attrs, children)
+	local attr = {}
+	attrs = attrs or {}
+	for k, v in pairs(attrs) do
+		attr[k] = attr_value_to_str(v)
+	end
 	---@type element
 	local element = {
 		name = name,
-		attr = attrs or {},
+		attr = attr,
 		children = children or {},
 		errors = {},
 		content = nil,
@@ -1012,24 +1002,16 @@ function nxml.tostring(elem, packed, indent_char, cur_indent)
 	local deeper_indent = cur_indent .. indent_char
 
 	if elem.content and #elem.content ~= 0 then
-		if not packed then
-			s = s .. "\n" .. deeper_indent
-		end
+		if not packed then s = s .. "\n" .. deeper_indent end
 		s = s .. elem:text()
 	end
 
-	if not packed then
-		s = s .. "\n"
-	end
+	if not packed then s = s .. "\n" end
 
 	for _, v in ipairs(elem.children) do
-		if not packed then
-			s = s .. deeper_indent
-		end
+		if not packed then s = s .. deeper_indent end
 		s = s .. nxml.tostring(v, packed, indent_char, deeper_indent)
-		if not packed then
-			s = s .. "\n"
-		end
+		if not packed then s = s .. "\n" end
 	end
 
 	s = s .. cur_indent .. "</" .. elem.name .. ">"

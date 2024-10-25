@@ -2,7 +2,6 @@ dofile_once("data/scripts/director_helpers.lua")
 
 local x, y = EntityGetTransform(GetUpdatedEntityID())
 
-
 local biome_spawns = {
 	hills = {
 		total_prob = 0,
@@ -46,13 +45,13 @@ local biome_spawns = {
 		{ prob = 0.3, entity = "data/entities/props/physics_stone_03.xml" },
 		{ prob = 0.3, entity = "data/entities/props/physics_stone_04.xml" },
 		{ prob = 0.3, entity = "data/entities/props/stonepile.xml" },
+		{ prob = 0.4, entity = "mods/noita.fairmod/files/content/snowman/snowman.xml" },
 	},
 	lake = {
 		total_prob = 0,
 		{ prob = 2, entity = "mods/noita.fairmod/files/content/enemy_reworks/fish/fish.xml" },
 	},
 }
-
 
 local function get_biome()
 	local biome_x = ((x / 512) + 35) % 70
@@ -74,6 +73,4 @@ local biome_choices = biome_spawns[biome]
 
 SetRandomSeed(x, y)
 local spawn_entity = random_from_table(biome_choices, x, y)
-if spawn_entity ~= nil then
-	EntityLoad(tostring(spawn_entity.entity), x, y)
-end
+if spawn_entity ~= nil then EntityLoad(tostring(spawn_entity.entity), x, y) end

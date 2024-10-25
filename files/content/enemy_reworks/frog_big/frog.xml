@@ -1,0 +1,11 @@
+<Entity>
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/enemy_reworks/frog_big/frog.png"
+		offset_x="0"
+		offset_y="0"
+		update_transform="0"
+		update_transform_rotation="0">
+	</SpriteComponent>
+
+</Entity>

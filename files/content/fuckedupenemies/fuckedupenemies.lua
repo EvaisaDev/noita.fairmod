@@ -1,20 +1,54 @@
 -- Eba made this
 -- Makes enemies very fucked up and evil.
 -- Idk
-local effects = { "BERSERK", "REGENERATION", "REGENERATION", "BREATH_UNDERWATER", "WET", "BLOODY",
-	"CRITICAL_HIT_BOOST", "MELEE_COUNTER", "KNOCKBACK", "KNOCKBACK", "KNOCKBACK_IMMUNITY",
-	"KNOCKBACK_IMMUNITY", "MOVEMENT_FASTER", "STAINS_DROP_FASTER", "SAVING_GRACE",
-	"DAMAGE_MULTIPLIER", "RESPAWN", "PROTECTION_FIRE", "PROTECTION_RADIOACTIVITY",
-	"PROTECTION_EXPLOSION", "PROTECTION_MELEE", "PROTECTION_ELECTRICITY", "TELEPORTITIS",
-	"TELEPORTITIS", "TELEPORTITIS", "STAINLESS_ARMOUR", "NO_SLIME_SLOWDOWN", "MOVEMENT_FASTER_2X",
-	"LOW_HP_DAMAGE_BOOST", "MOVEMENT_FASTER_2X", "LOW_HP_DAMAGE_BOOST", "STUN_PROTECTION_ELECTRICITY",
-	"STUN_PROTECTION_FREEZE", "PROTECTION_ALL", "INVISIBILITY", "INVISIBILITY", "INVISIBILITY",
-	"PROTECTION_DURING_TELEPORT", "PROTECTION_POLYMORPH", "PROTECTION_FREEZE", "FROZEN_SPEED_UP",
-	"RAINBOW_FARTS", }
+local effects = {
+	"BERSERK",
+	"REGENERATION",
+	"REGENERATION",
+	"BREATH_UNDERWATER",
+	"WET",
+	"BLOODY",
+	"CRITICAL_HIT_BOOST",
+	"MELEE_COUNTER",
+	"KNOCKBACK",
+	"KNOCKBACK",
+	"KNOCKBACK_IMMUNITY",
+	"KNOCKBACK_IMMUNITY",
+	"MOVEMENT_FASTER",
+	"STAINS_DROP_FASTER",
+	"SAVING_GRACE",
+	"DAMAGE_MULTIPLIER",
+	"RESPAWN",
+	"PROTECTION_FIRE",
+	"PROTECTION_RADIOACTIVITY",
+	"PROTECTION_EXPLOSION",
+	"PROTECTION_MELEE",
+	"PROTECTION_ELECTRICITY",
+	"TELEPORTITIS",
+	"TELEPORTITIS",
+	"TELEPORTITIS",
+	"STAINLESS_ARMOUR",
+	"NO_SLIME_SLOWDOWN",
+	"MOVEMENT_FASTER_2X",
+	"LOW_HP_DAMAGE_BOOST",
+	"MOVEMENT_FASTER_2X",
+	"LOW_HP_DAMAGE_BOOST",
+	"STUN_PROTECTION_ELECTRICITY",
+	"STUN_PROTECTION_FREEZE",
+	"PROTECTION_ALL",
+	"INVISIBILITY",
+	"INVISIBILITY",
+	"INVISIBILITY",
+	"PROTECTION_DURING_TELEPORT",
+	"PROTECTION_POLYMORPH",
+	"PROTECTION_FREEZE",
+	"FROZEN_SPEED_UP",
+	"RAINBOW_FARTS",
+}
 
 --- @class fuckupenemies
 local evil = {
-	scanned = {}
+	scanned = {},
 }
 
 function evil:GiveRandomEffect(enemy)
@@ -25,12 +59,11 @@ function evil:GiveRandomEffect(enemy)
 end
 
 function evil:ItemPickUpperComponent(enemy)
-
 	EntityAddComponent2(enemy, "LuaComponent", {
-		script_source_file="mods/noita.fairmod/files/content/misc/item_dropper.lua",
-		execute_on_added=true,
-		execute_every_n_frame=0,
-		execute_times=-1
+		script_source_file = "mods/noita.fairmod/files/content/misc/item_dropper.lua",
+		execute_on_added = true,
+		execute_every_n_frame = 0,
+		execute_times = -1,
 	})
 	local item_pickupper_component = EntityGetFirstComponentIncludingDisabled(enemy, "ItemPickUpperComponent")
 	if item_pickupper_component then
@@ -49,8 +82,6 @@ function evil:ItemPickUpperComponent(enemy)
 end
 
 function evil:TweakAnimalComponent(headache, animal_ai)
-
-
 	--[[
 	ComponentSetValue2(animal_ai, "attack_only_if_attacked", false)
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", 200)
@@ -83,16 +114,18 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 	ComponentSetValue2(animal_ai, "attack_ranged_entity_count_max",
 		attack_ranged_entity_count_max * damage_mult)
 	]]
-	
+
 	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 50) == 1)
 	local creature_detection_range_x = ComponentGetValue2(animal_ai, "creature_detection_range_x")
 	local creature_detection_range_y = ComponentGetValue2(animal_ai, "creature_detection_range_y")
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", creature_detection_range_x * (1 + (Random() / 2)))
 	ComponentSetValue2(animal_ai, "creature_detection_range_y", creature_detection_range_y * (1 + (Random() / 2)))
 	local attack_melee_enabled = ComponentGetValue2(animal_ai, "attack_melee_enabled")
-	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 30 and attack_melee_enabled or (not attack_melee_enabled))
-
-
+	ComponentSetValue2(
+		animal_ai,
+		"attack_melee_enabled",
+		math.random(1, 100) < 30 and attack_melee_enabled or not attack_melee_enabled
+	)
 
 	--[[
 	local aggressiveness_min = ComponentGetValue2(animal_ai, "aggressiveness_min")
@@ -109,10 +142,15 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 	end]]
 end
 
+local pickup_blacklist = {
+	["data/entities/animals/necromancer_shop.xml"] = true,
+	["data/entities/animals/necromancer_super.xml"] = true,
+}
+
 function evil:BuffEnemy(enemy)
 	self.scanned[enemy] = true
 
-	if(EntityHasTag(enemy, "do_not_evil"))then return end
+	if EntityHasTag(enemy, "do_not_evil") then return end
 
 	local ex, ey = EntityGetTransform(enemy)
 	SetRandomSeed(ex, ey)
@@ -120,24 +158,25 @@ function evil:BuffEnemy(enemy)
 	local headache = (math.random(0, 10000) / 100) <= 2
 	-- Chicanery ends
 
+	local file_name = EntityGetFilename(enemy)
+
 	local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
 	if animal_ai then
 		self:TweakAnimalComponent(headache, animal_ai)
-		self:ItemPickUpperComponent(enemy)
+		if(not file_name or not pickup_blacklist[file_name])then
+			self:ItemPickUpperComponent(enemy)
+		end
+		
 	end
 
-	if headache then
-		self:GiveRandomEffect(enemy)
-	end
+	if headache then self:GiveRandomEffect(enemy) end
 end
 
 function evil:OnWorldPreUpdate()
 	local enemies = EntityGetWithTag("enemy")
 
 	for _, enemy in ipairs(enemies) do
-		if not evil.scanned[enemy] then
-			self:BuffEnemy(enemy)
-		end
+		if not evil.scanned[enemy] then self:BuffEnemy(enemy) end
 	end
 end
 

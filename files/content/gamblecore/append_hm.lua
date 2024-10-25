@@ -4,4 +4,3 @@ function spawn_hp(x, y)
 
 	EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", x - 110, y + 41)
 end
-

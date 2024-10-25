@@ -4,4 +4,11 @@
 		offset_x="0"
 		offset_y="0">
 	</SpriteComponent>
+	<AudioLoopComponent
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="rats/rats"
+		auto_play="1"
+		calculate_material_lowpass="0"
+	>
+	</AudioLoopComponent>
 </Entity>

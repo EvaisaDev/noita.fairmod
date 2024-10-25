@@ -26,9 +26,7 @@ local edge_y = camera_center_y + direction_y * camera_h / 2
 -- calculate distance from the edge
 local distance_from_edge = math.sqrt((edge_x - x) * (edge_x - x) + (edge_y - y) * (edge_y - y))
 -- check if snail is within the camera bounds
-if x > camera_x and x < camera_x + camera_w and y > camera_y and y < camera_y + camera_h then
-	return
-end
+if x > camera_x and x < camera_x + camera_w and y > camera_y and y < camera_y + camera_h then return end
 
 SetRandomSeed(camera_x + x, camera_y + y)
 
@@ -36,8 +34,7 @@ teleport_timer = teleport_timer or Random(200, 7200)
 
 -- If the entity is further than a certain threshold from the camera
 if distance_from_edge > 100 then
-
-	if(teleport_timer <= 0)then
+	if teleport_timer <= 0 then
 		teleport_timer = Random(200, 7200)
 		-- Try to find a valid position outside the player's camera bounds
 		local tries = 0
@@ -49,32 +46,25 @@ if distance_from_edge > 100 then
 		while tries < max_tries and not valid do
 			-- Generate a random position outside the camera bounds
 			local direction_x = Random(0, 1)
-			if direction_x == 0 then
-				direction_x = -1
-			end
+			if direction_x == 0 then direction_x = -1 end
 
 			new_x = camera_center_x + (camera_w / 2 + max_distance_from_edge) * direction_x
 			new_y = Random(camera_y, camera_y + camera_h)
 
-			if not RaytracePlatforms(new_x + 2, new_y + 2, new_x - 2, new_y - 2) then
-				valid = true
-			end
+			if not RaytracePlatforms(new_x + 2, new_y + 2, new_x - 2, new_y - 2) then valid = true end
 
 			-- raycast down until we hit the ground
 			local hit, hit_x, hit_y = RaytracePlatforms(new_x, new_y, new_x, new_y + 1000)
-			if hit then
-				new_y = hit_y - 3
-			end
+			if hit then new_y = hit_y - 3 end
 
 			tries = tries + 1
 		end
 
+		print("Teleporting snail to new position: " .. new_x .. ", " .. new_y)
+
 		-- If a valid position is found, update the entity's position
-		if valid then
-			EntityApplyTransform(entity_id, new_x, new_y)
-		end
+		if valid then EntityApplyTransform(entity_id, new_x, new_y) end
 	else
 		teleport_timer = teleport_timer - 1
 	end
 end
-

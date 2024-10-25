@@ -1,0 +1,9 @@
+TODO:
+Make fish swim towards bobber when you are about to catch a fish
+When you catch a fish attach it to the bobber
+Show a popup with the fish you caught
+Add a logbook with all of your caught fish
+Run script if fish is special and has a script
+Give item if fish has a item
+Implement different bait types
+

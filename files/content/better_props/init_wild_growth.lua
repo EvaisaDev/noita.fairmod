@@ -1,13 +1,15 @@
 -- Makes root growers spread a lot more
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
-ModLuaFileAppend("data/scripts/biomes/temple_altar_right.lua", "mods/noita.fairmod/files/content/better_props/temple_altar_right_append.lua")
-
+ModLuaFileAppend(
+	"data/scripts/biomes/temple_altar_right.lua",
+	"mods/noita.fairmod/files/content/better_props/temple_altar_right_append.lua"
+)
 
 local function rootgrower_apply_changes(element)
 	for comp in element:each_of("LifetimeComponent") do
 		-- Go longer
-		comp:set("lifetime", 500)
+		comp:set("lifetime", 350)
 	end
 
 	for comp in element:each_of("LuaComponent") do
@@ -25,7 +27,7 @@ local function rootgrower_apply_changes(element)
 
 	-- GIRTHY vines
 	for comp in element:each_of("ParticleEmitterComponent") do
-		comp:set("count_min", 20)
+		comp:set("count_min", 30)
 		comp:set("count_max", 140)
 	end
 end
@@ -35,12 +37,15 @@ for rootgrower_xml in nxml.edit_file("data/entities/props/root_grower.xml") do
 
 	local collision = rootgrower_xml:first_of("CollisionTriggerComponent")
 	if collision ~= nil then
-		collision:set("width", 350)
-		collision:set("height", 350)
-		collision:set("radius", 350)
+		collision:set("width", 300)
+		collision:set("height", 300)
+		collision:set("radius", 300)
 	end
 end
 
 for rootgrower_branch_xml in nxml.edit_file("data/entities/props/root_grower_branch.xml") do
 	rootgrower_apply_changes(rootgrower_branch_xml:first_of("Base"))
 end
+
+
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_props/material_overrides.xml")

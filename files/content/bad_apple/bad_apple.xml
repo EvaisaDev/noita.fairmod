@@ -1,0 +1,9 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/bad_apple/animation.xml"
+		rect_animation="idle"
+	/>
+
+	<SpriteAnimatorComponent
+	/>
+</Entity>

@@ -1,0 +1,7 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/rotate/rat_hole_gfx.xml"
+		offset_x="0"
+		offset_y="0">
+	</SpriteComponent>
+</Entity>

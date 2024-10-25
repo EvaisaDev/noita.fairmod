@@ -1,0 +1,151 @@
+<Materials>
+
+	<CellDataChild
+		_parent="rock_static"
+		_inherit_reactions="1"
+		tags="[static],[alchemy],[solid],[earth]"
+		name="backrooms_zone_1_wall" 
+		ui_name="Wall"
+		wang_color="ff8e905d"
+		hp="200000"
+		durability="12"
+		audio_physics_material_event="rock"
+		audio_physics_material_wall="rock"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="1"
+		>
+		<Graphics
+		texture_file="mods/noita.fairmod/files/content/backrooms/materials/wall_zone_1.png"
+		color="ff8e905d" 
+		>	
+			<Edge>	
+				<EdgeGraphics 
+					overwrite="1" 
+					percent="1" 
+					require_same_material="0" 
+					require_same_material_type="1" 
+					type="EVERYWHERE" 
+					z="1" >
+					<Images>
+						<Image 
+							allow_random_rotation="0"
+							filename="mods/noita.fairmod/files/content/backrooms/materials/edge_shadow.png" 
+						/>
+					</Images>
+				</EdgeGraphics>
+		</Edge>
+		</Graphics>
+  	</CellDataChild>  
+
+	<CellDataChild
+		_parent="rock_static"
+		_inherit_reactions="1"
+		tags="[static],[alchemy],[solid],[earth]"
+		name="backrooms_zone_1_ceiling" 
+		ui_name="Ceiling Panel"
+		wang_color="ffbabb95"
+		hp="200000"
+		durability="8"
+		burnable="1"
+		fire_hp="1000"
+		temperature_of_fire="90"
+		autoignition_temperature="15"
+		audio_physics_material_event="rock"
+		audio_physics_material_wall="rock"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="1"
+		>
+		<Graphics
+		texture_file="mods/noita.fairmod/files/content/backrooms/materials/ceiling_zone_1.png"
+		color="ffbabb95" 
+		>	
+		</Graphics>
+  	</CellDataChild>  
+
+
+	<CellDataChild
+		_parent="rock_static"
+		_inherit_reactions="1"
+		tags="[static],[alchemy],[solid],[earth]"
+		name="backrooms_zone_1_floor" 
+		ui_name="Damp Carpet"
+		wang_color="ff8a743f"
+		hp="200000"
+		durability="6"
+		burnable="1"
+		fire_hp="300"
+		temperature_of_fire="90"
+		autoignition_temperature="15"
+		audio_physics_material_event="snow"
+		audio_physics_material_wall="snow"
+		audio_physics_material_solid="snow"
+		show_in_creative_mode="1"
+		platform_type="2"
+		>
+		<Graphics
+		texture_file="mods/noita.fairmod/files/content/backrooms/materials/carpet_zone_1.png" 
+		color="ff8a743f" >
+		</Graphics>
+	</CellDataChild>	
+
+	<CellDataChild
+		_parent="rock_static"
+		_inherit_reactions="1"
+		tags="[static],[alchemy],[solid],[earth]"
+		name="backrooms_zone_1_wall_noplatform" 
+		ui_name="Wall"
+		wang_color="ffaaad76"
+		hp="200000"
+		durability="12"
+		audio_physics_material_event="rock"
+		audio_physics_material_wall="rock"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="1"
+		platform_type="2"
+		>
+		<Graphics
+		texture_file="mods/noita.fairmod/files/content/backrooms/materials/wall_zone_1.png"
+		color="ffaaad76" 
+		>	
+			<Edge>	
+				<EdgeGraphics 
+					overwrite="1" 
+					percent="1" 
+					require_same_material="0" 
+					require_same_material_type="1" 
+					type="EVERYWHERE" 
+					z="1" >
+					<Images>
+						<Image 
+							allow_random_rotation="0"
+							filename="mods/noita.fairmod/files/content/backrooms/materials/edge_shadow.png" 
+						/>
+					</Images>
+				</EdgeGraphics>
+		</Edge>
+		</Graphics>
+  	</CellDataChild> 
+
+	<CellDataChild
+		_parent="aluminium"
+		_inherit_reactions="1"
+		tags="[box2d]"
+		name="ceiling_light_backrooms"
+		ui_name="Ceiling Light"
+		platform_type="0"
+		solid_gravity_scale="1.3"
+		hp="30000"
+		durability="0"
+		gfx_glow="255"
+		wang_color="ffd1d59d"
+		stainable="0" 
+		electrical_conductivity="0"
+		audio_physics_material_wall="glass"
+		audio_physics_material_solid="glass"
+		>
+		<Graphics
+			texture_file="data/materials_gfx/crystal.png"
+			color="ffd1d59d" >
+		</Graphics>
+	</CellDataChild>	
+</Materials>
