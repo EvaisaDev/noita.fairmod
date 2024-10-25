@@ -39,11 +39,6 @@ end
 local CHANGE_CHANCE = 0.2
 
 local function buttsify(filename)
-	-- Seed with system time
-	local tv = { GameGetDateAndTimeUTC() }
-	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
-	math.randomseed(seed)
-
 	local content = ModTextFileGetContent(filename)
 	local csv = tcsv.parse(content, filename)
 

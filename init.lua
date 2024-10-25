@@ -97,9 +97,18 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
-	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
+	-- Seed translations changes rng with system time
+	local tv = { GameGetDateAndTimeUTC() }
+	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
+	math.randomseed(seed)
+
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
+
+	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
+
 	dofile_once("mods/noita.fairmod/files/content/backrooms/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
@@ -109,8 +118,6 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
-	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
-	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
 	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")

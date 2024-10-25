@@ -40,14 +40,9 @@ end
 
 
 
-local CHANGE_CHANCE = .1
+local CHANGE_CHANCE = 0.15
 
 local function not_buttsify(filename)
-	-- Seed with system time
-	local tv = { GameGetDateAndTimeUTC() }
-	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
-	math.randomseed(seed)
-
 	local content = ModTextFileGetContent(filename)
 	local csv = tcsv.parse(content, filename)
 
@@ -57,18 +52,11 @@ local function not_buttsify(filename)
 
 	for _, row in ipairs(csv.rows) do
 
-        if math.random() < CHANGE_CHANCE then
-		    for i, v in ipairs(row) do
-		    	if i == 1 then
-		    	-- Skip the first column
-		    		goto continue
-		    	end
-		        if math.random() < CHANGE_CHANCE then
-                    row[i] = shuffle_words(row[i])
-		        end
-            ::continue::
-            end
-        end
+		if math.random() < CHANGE_CHANCE then
+			for i=2, #row do
+				row[i] = shuffle_words(row[i])
+			end
+		end
 
 		outrows[#outrows + 1] = format_csv_row(row)
 	end
