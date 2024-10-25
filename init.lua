@@ -65,6 +65,7 @@ dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
+dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -79,7 +80,7 @@ ModLuaFileAppend(
 	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
 )
 
-ModMaterialsFileAdd( "mods/noita.fairmod/files/content/backrooms/materials.xml" )
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
