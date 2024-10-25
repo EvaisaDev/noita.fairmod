@@ -43,6 +43,7 @@ local function parse_file(file)
 			parse_element(elem)
 		end
 	end
+	ModTextFileSetContent(file, tostring(xml))
 end
 
 local files = ModMaterialFilesGet()
