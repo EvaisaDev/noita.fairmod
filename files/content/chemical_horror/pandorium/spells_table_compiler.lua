@@ -37,7 +37,7 @@ local chaotic = {
 function IsValidProjectile(spell)
 	--if true then return true end --crying and shaking rn, this line of code stumped me for like an hour cuz i forgot it existed :sob:
 
-	if ("," .. spell.spawn_level .. ","):find(",[01245],") then --[[print(spell.id .. " IS VALID")]]
+	if ("," .. spell.spawn_level .. ","):find(",[012457],") then --[[print(spell.id .. " IS VALID")]]
 		return true --fancy string shenanigans here and in the modifier script grabbed from Nathan and other lovel ppl from noitacord
 	end
 	
