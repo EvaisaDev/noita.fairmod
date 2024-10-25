@@ -40,6 +40,19 @@ end
 ]]
 --
 
+dofile_once("mods/noita.fairmod/files/content/chemical_horror/methane/shader_utilities.lua")
+postfx.append(
+"uniform vec4 grayscale;",
+"uniform vec4 brightness_contrast_gamma;",
+"data/shaders/post_final.frag"
+)
+postfx.append(
+[[
+color = mix(color, vec3(dot(color,vec3(.2126, .7152, .0722))), grayscale.a );
+]],
+"// various debug visualizations================================================================================",
+"data/shaders/post_final.frag"
+)
 
 
 

@@ -1,0 +1,17 @@
+<Entity>
+    <InheritTransformComponent>
+    </InheritTransformComponent>    
+    
+    <GameEffectComponent 
+        effect="CUSTOM"
+		custom_effect_id="INGESTION_METHANE"
+        frames="99999"
+    ></GameEffectComponent>
+
+    <LuaComponent
+    script_source_file="mods/noita.fairmod/files/content/chemical_horror/methane/spawnController.lua"
+    execute_every_n_frame="1"
+	remove_after_executed="1"
+	></LuaComponent> --adds a controller if there is none
+
+</Entity>

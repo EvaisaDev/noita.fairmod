@@ -328,6 +328,129 @@
 
 
 
+
+
+	<CellData
+		name="cc_grease"
+		ui_name="$mat_fairmod_grease"
+		tags="[liquid],[impure],[liquid_common]"
+		burnable="1"
+		density="0.8"
+		cell_type="liquid"
+		wang_color="e6b7a131"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		fire_hp="2000"
+		liquid_sand="0"
+		liquid_stains="3"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="95"
+		autoignition_temperature="10"
+		show_in_creative_mode="1"
+		>
+		<ExplosionConfig 
+			damage="0"
+			cell_explosion_power="2"
+			cell_explosion_damage_required="1"
+			cell_explosion_radius_min="4"
+			explosion_sprite=""
+			load_this_entity="mods/noita.fairmod/files/content/chemical_horror/grease/grease_fire.xml"
+			ray_energy="0"
+			audio_enabled="0"
+			create_cell_probability="40"
+			sparks_enabled="0"
+			light_enabled="0"
+			hole_enabled="1"
+			crack_count="0"
+			stains_enabled="0"
+			damage_mortals="0"
+			particle_effect="0"
+			camera_shake="1" 
+			>
+		</ExplosionConfig>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="OILED" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="POISONED" amount="0.03" />
+				<StatusEffect type="FOOD_POISONING" amount="0.3" />
+			</Ingestion>
+		</StatusEffects>
+
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/chemical_horror/grease/grease.png"
+			>
+		</Graphics>
+	</CellData>
+
+
+  <CellData
+	name="cc_methane"
+	ui_name="$mat_fairmod_methane"
+	tags="[gas]"
+	burnable="1"
+	fire_hp="1200"
+	density="1"
+	cell_type="gas"
+	wang_color="a53b3c7f"
+	liquid_gravity="0.5"
+	liquid_sand="0"
+	liquid_stains="1"
+	liquid_sprite_stain_shaken_drop_chance="2"
+	status_effects="CC_INGESTION_METHANE"
+	generates_flames="20"
+	generates_smoke="1"
+	on_fire="0"
+	requires_oxygen="0"
+	temperature_of_fire="80"
+	autoignition_temperature="20" 
+	show_in_creative_mode="1"
+	>
+	<Graphics
+	color="a53b3c9f"
+	></Graphics>
+	<StatusEffects>
+		<Ingestion>
+			<StatusEffect type="CC_INGESTION_METHANE" amount="0.2" />
+		</Ingestion>
+	</StatusEffects>
+	</CellData><!-- lol, methane gas. -->
+	
+	<Reaction probability="100"
+		input_cell1="[fire]" 		input_cell2="cc_methane"
+		output_cell1="cc_carbon_dioxide"	output_cell2="[fire]"
+	>
+  </Reaction>
+	
+	<CellData
+		name="cc_carbon_dioxide"
+		ui_name="$mat_fairmod_carbon_dioxide"
+		tags="[gas]"
+		burnable="0"
+		density="1.5"
+		cell_type="gas"
+		wang_color="00abeea2"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		liquid_sprite_stain_shaken_drop_chance="100"
+		status_effects="CC_INGESTION_METHANE"
+		liquid_stains="1"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="60"
+		show_in_creative_mode="1"
+		gas_speed="200"
+		gas_upwards_speed="5"
+		gas_downwards_speed="255"
+		gas_horizontal_speed="35"
+		>
+	</CellData>
+
+
+
 <!--
 
 
@@ -450,60 +573,7 @@
 	</ParticleEffect>
 	</CellData>
 
-	<CellData
-		name="cc_grease"
-		ui_name="$mat_fairmod_grease"
-		tags="[liquid],[impure],[liquid_common]"
-		burnable="1"
-		density="0.8"
-		cell_type="liquid"
-		wang_color="e6b7a131"
-		generates_smoke="0"
-		liquid_gravity="0.5"
-		fire_hp="400"
-		liquid_sand="0"
-		liquid_stains="3"
-		on_fire="0"
-		requires_oxygen="1"
-		temperature_of_fire="95"
-		autoignition_temperature="10"
-		show_in_creative_mode="1"
-		>
-		<ExplosionConfig 
-			damage="0"
-			cell_explosion_power="2"
-			cell_explosion_damage_required="1"
-			cell_explosion_radius_min="4"
-			explosion_sprite=""
-			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/grease/grease_fire.xml"
-			ray_energy="0"
-			audio_enabled="0"
-			create_cell_probability="40"
-			sparks_enabled="0"
-			light_enabled="0"
-			hole_enabled="1"
-			crack_count="0"
-			stains_enabled="0"
-			damage_mortals="0"
-			particle_effect="0"
-			camera_shake="1" 
-			>
-		</ExplosionConfig>
-		<StatusEffects>
-			<Stains>
-				<StatusEffect type="OILED" />
-			</Stains>
-			<Ingestion>
-				<StatusEffect type="POISONED" amount="0.03" />
-				<StatusEffect type="FOOD_POISONING" amount="0.3" />
-			</Ingestion>
-		</StatusEffects>
 
-		<Graphics
-			texture_file="mods/Hydroxide/files/chemical_curiosities/materials/grease/grease.png"
-			>
-		</Graphics>
-	</CellData>
 
 	<CellDataChild
 		_parent="ice_static"
