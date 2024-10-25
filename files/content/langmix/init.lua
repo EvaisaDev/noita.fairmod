@@ -14,7 +14,7 @@ local LANG_INDEX_MAP = {
 	["한국어"] = 12,
 }
 
-local CHANGE_CHANCE = 0.1
+local CHANGE_CHANCE = 0.08
 local IDX_SWAP_MIN = 2
 local IDX_SWAP_MAX = 9 -- Not swapping with Asian languages because of font complications
 
@@ -35,11 +35,6 @@ function format_csv_row(row)
 end
 
 function mix_language(filename)
-	-- Seed with system time
-	local tv = { GameGetDateAndTimeUTC() }
-	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
-	math.randomseed(seed)
-
 	local content = ModTextFileGetContent(filename)
 	local csv = tcsv.parse(content, filename)
 
