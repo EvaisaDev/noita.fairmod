@@ -7,7 +7,6 @@ for xml in nxml.edit_file("data/entities/misc/effect_trip_03.xml") do
 	lua:set("execute_times", 1)
 end
 
-dofile_once("mods/noita.fairmod/files/content/fungal_shift/fix_nolla_tags.lua")
 ModLuaFileAppend("data/scripts/magic/fungal_shift.lua", "mods/noita.fairmod/files/content/fungal_shift/append.lua")
 ModLuaFileAppend(
 	"data/scripts/status_effects/status_list.lua",
