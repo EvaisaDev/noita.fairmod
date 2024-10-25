@@ -108,6 +108,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 end
