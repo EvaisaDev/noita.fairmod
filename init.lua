@@ -231,6 +231,8 @@ function OnWorldPreUpdate()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
+	
+	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")

@@ -35,8 +35,17 @@ else
 
 ModTextFileSetContent("data/scripts/perks/perk.lua", perkluacontent)
 
+--local scratch_tickets = dofile("mods/noita.fairmod/files/content/gamblecore/scratch_ticket.lua")
+
+--local ticket = nil
 gamba.PostWorldState = function()
-	--print(perkluacontent)
+	--ticket = scratch_tickets.new(0, 0)
+end
+
+gamba.Update = function()
+	--[[if(ticket ~= nil)then
+		ticket:draw()
+	end]]
 end
 
 ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/gamblecore/append_hm.lua")
