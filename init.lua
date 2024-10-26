@@ -67,6 +67,7 @@ dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
+dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
