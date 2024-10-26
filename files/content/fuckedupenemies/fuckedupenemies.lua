@@ -48,7 +48,6 @@ local effects = {
 
 --- @class fuckupenemies
 local evil = {
-	scanned = {},
 }
 
 function evil:GiveRandomEffect(enemy)
@@ -148,7 +147,7 @@ local pickup_blacklist = {
 }
 
 function evil:BuffEnemy(enemy)
-	self.scanned[enemy] = true
+	EntityAddTag(enemy, "evilified")
 
 	if EntityHasTag(enemy, "do_not_evil") then return end
 
@@ -176,7 +175,7 @@ function evil:OnWorldPreUpdate()
 	local enemies = EntityGetWithTag("enemy")
 
 	for _, enemy in ipairs(enemies) do
-		if not evil.scanned[enemy] then self:BuffEnemy(enemy) end
+		if not EntityHasTag(enemy, "evilified") then self:BuffEnemy(enemy) end
 	end
 end
 
