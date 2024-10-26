@@ -5,7 +5,6 @@ local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_setti
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
-local input_delay = dofile_once("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile_once("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
@@ -223,7 +222,6 @@ function OnWorldPreUpdate()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
-	input_delay.OnWorldPreUpdate()
 	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
@@ -233,7 +231,7 @@ function OnWorldPreUpdate()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
-	
+
 	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
