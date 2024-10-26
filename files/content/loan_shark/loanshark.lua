@@ -231,9 +231,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			},
 			{
 				text = "Trick or treat!",
-				enabled = GameHasFlagRun("fairmod_halloween_mask"),
+				show = function()
+					return GameHasFlagRun("fairmod_halloween_mask")
+				end,
 				func = function(dialog)
-					if GameHasFlagRun("fairmod_trickortreat_rewarded") then
+					if GameHasFlagRun("fairmod_trickortreat_rewarded_loanshark") then
 						dialog.show({
 							text = "You've gotten your treat kid, now scram! \\*blub\\*",
 							options = {
@@ -243,15 +245,25 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 							},
 						})
 					else
-						SetRandomSeed(GameGetFrameNum() + y, y * x)
-						if Random(1, 4) == 1 then
-							local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
-							CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
-							GameAddFlagRun("fairmod_trickortreat_rewarded")
-						else
-							EntityLoad("data/entities/projectiles/bomb.xml", x, y)
-						end
-						dialog.close()
+						dialog.show({
+							text = "Nice mask kid.. \\*blub\\*",
+							options = {
+								{
+									text = "Take treat",
+									func = function(dialog)
+										SetRandomSeed(GameGetFrameNum() + y, y * x)
+										if Random(1, 4) == 1 then
+											local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
+											CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+											GameAddFlagRun("fairmod_trickortreat_rewarded_loanshark")
+										else
+											EntityLoad("data/entities/projectiles/bomb.xml", x, y)
+										end
+										dialog.close()
+									end,
+								},
+							},
+						})
 					end
 				end,
 			},

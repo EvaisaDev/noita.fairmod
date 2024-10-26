@@ -110,6 +110,27 @@ local open_dialog = function()
 				end,
 			},
 			{
+				text = "Trick or treat!",
+				show = function()
+					return GameHasFlagRun("fairmod_halloween_mask")
+				end,
+				func = function(dialog)
+					dialog.show({
+						portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_4.png",
+						text = "Trick.",
+						options = {
+							{
+								text = "Run",
+								func = function()
+									gun_triggered = true
+									give_gun()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
 				text = "Leave",
 			},
 		},
