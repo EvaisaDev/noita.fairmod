@@ -1,0 +1,13 @@
+<Entity>
+	<InheritTransformComponent />
+	
+	<VariableStorageComponent
+		value_float="0.0"
+		/> --strength
+		
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/chemical_horror/methane/controller.lua"
+		execute_every_n_frame="1"
+		/>
+	
+</Entity>

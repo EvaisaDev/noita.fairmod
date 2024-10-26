@@ -88,6 +88,27 @@ pa.potions =
 	},
 	{
 		material="blood_cold",
-		cost=400,
+	},
+	{
+		material="cc_deceleratium",
+		probability = 5,
+	},
+	{
+		material="cc_heftium",
+		probability = 5,
+	},
+	{
+		material="cc_stillium",
+		probability = 2,
+	},
+	{
+		material="t_giga_slicing_liquid",
+		probability = 4,
+		amount = 500,
+	},
+	{
+		material="cc_grease",
+		probability = 20,
+		amount = 1000,
 	},
 }

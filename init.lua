@@ -66,6 +66,7 @@ dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
+dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -80,7 +81,7 @@ ModLuaFileAppend(
 	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
 )
 
-ModMaterialsFileAdd( "mods/noita.fairmod/files/content/backrooms/materials.xml" )
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
@@ -97,9 +98,18 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
-	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
+	-- Seed translations changes rng with system time
+	local tv = { GameGetDateAndTimeUTC() }
+	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
+	math.randomseed(seed)
+
 	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
 	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
+
+	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
+
 	dofile_once("mods/noita.fairmod/files/content/backrooms/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
 	gamblecore.PostWorldState()
@@ -109,7 +119,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fishing.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
-	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 end

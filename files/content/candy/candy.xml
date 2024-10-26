@@ -3,43 +3,41 @@
 	<CellData
 		name="candy_fairmod_hamis"
 		ui_name="Hamis Bars"
-		wang_color="ff36d517"
+		wang_color="ff36d516"
 		liquid_sand="1"
 		cell_type="liquid"
 		liquid_stains="2"
 	>
 		<Graphics
 			color="88E8BD5C"
-			texture_file="mods/noita.fairmod/files/content/candy/hamisbar.png" 
+			texture_file="mods/noita.fairmod/files/content/candy/hamisbar.png"
 		>
-		</Graphics>
-		wa
-		<StatusEffects>
+		</Graphics> wa <StatusEffects>
 			<Ingestion>
-				 <StatusEffect type="MOVEMENT_FASTER_2X" amount="0.2" />
+				<StatusEffect type="MOVEMENT_FASTER_2X" amount="0.2" />
 			</Ingestion>
 		</StatusEffects>
 
 	</CellData>
-	
+
 	<CellData
 		name="candy_fairmod_ambrosia"
 		ui_name="TelAmbrosia! Bars"
-		wang_color="ff36d517"
+		wang_color="ff36d518"
 		liquid_sand="1"
 		cell_type="liquid"
 		liquid_stains="2"
 	>
 		<Graphics
 			color="88E8BD5C"
-			texture_file="mods/noita.fairmod/files/content/candy/teleambrosia.png" 
+			texture_file="mods/noita.fairmod/files/content/candy/teleambrosia.png"
 		>
 		</Graphics>
 
 		<StatusEffects>
 			<Ingestion>
-				 <StatusEffect type="PROTECTION_ALL" amount="0.2" />
-				 <StatusEffect type="UNSTABLE_TELEPORTATION" amount="0.2" />
+				<StatusEffect type="PROTECTION_ALL" amount="0.2" />
+				<StatusEffect type="UNSTABLE_TELEPORTATION" amount="0.2" />
 			</Ingestion>
 		</StatusEffects>
 
@@ -48,21 +46,21 @@
 	<CellData
 		name="candy_fairmod_toxic"
 		ui_name="Toxic Drops!"
-		wang_color="ff36d517"
+		wang_color="ff36d519"
 		liquid_sand="1"
 		cell_type="liquid"
 		liquid_stains="2"
 	>
 		<Graphics
 			color="88E8BD5C"
-			texture_file="mods/noita.fairmod/files/content/candy/toxicdrop.png" 
+			texture_file="mods/noita.fairmod/files/content/candy/toxicdrop.png"
 		>
 		</Graphics>
 
 		<StatusEffects>
 			<Ingestion>
-				 <StatusEffect type="RADIOACTIVE" amount="0.2" />
-				 <StatusEffect type="FOOD_POISONING" amount="0.2" />
+				<StatusEffect type="RADIOACTIVE" amount="0.2" />
+				<StatusEffect type="FOOD_POISONING" amount="0.2" />
 			</Ingestion>
 		</StatusEffects>
 

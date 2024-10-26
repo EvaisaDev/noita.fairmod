@@ -182,7 +182,6 @@ dialog_system.open_dialog = function(message)
 	message.text = message.text:gsub("^%s*", ""):gsub("\n%s*", "\n"):gsub("%s*(?:\n)", "")
 	message.typing_sound = message.typing_sound or config.typing_sound or nil
 	message.typing_sound_interval = message.typing_sound_interval or config.typing_sound_interval or 1
-
 	local entity_id = GetUpdatedEntityID()
 	local x, y = EntityGetTransform(entity_id)
 

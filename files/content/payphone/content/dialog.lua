@@ -2,7 +2,7 @@ return {
     {
         name = "Unknown Caller",
         portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
-        typing_sound = "default",
+        typing_sound = "sans",
         text = [[Hello!! Is your refrigerator running?]],
         options = {
             {
@@ -66,7 +66,7 @@ return {
         portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
         typing_sound_interval = 5,
         typing_sound = "pop",
-        text = [[Hello.. Is this that, witch..? *blub*]],
+        text = [[Hello.. Is this that, witch..? \\*blub\\*]],
         can_call = function() -- optional
             return tonumber(GlobalsGetValue("loan_shark_debt", "0")) >= 50
         end,
@@ -75,7 +75,7 @@ return {
                 text = "Uhh, yes..? Who is this?",
                 func = function(dialog)
                     dialog.show({
-                        text = [[*blub* Just reminding you, you should pay off your debts,
+                        text = [[\\*blub\\* Just reminding you, you should pay off your debts,
 or {@color b82318}#you will regret it.#{@func disconnected}]],
                         options = {
                             {
@@ -92,7 +92,7 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
                 text = "You got the wrong number.",
                 func = function(dialog)
                     dialog.show({
-                        text = [[Oh.. I'm sorry. *blub* {@func disconnected}]],
+                        text = [[Oh.. I'm sorry. \\*blub\\* {@func disconnected}]],
                         options = {
                             {
                                 text = "...",
@@ -316,7 +316,7 @@ identity.]],
                 text = "Hello?",
                 func = function(dialog)
                     dialog.show({
-                        text = [[*heavy breathing*]],
+                        text = [[\\*heavy breathing\\*]],
                         options = {
                             {
                                 text = "Who is this?",
@@ -338,7 +338,7 @@ identity.]],
                                 text = "I'm calling the authorities.",
                                 func = function(dialog)
                                     dialog.show({
-                                        text = [[*gasp* {@func disconnected}]],
+                                        text = [[\\*gasp\\* {@func disconnected}]],
                                         options = {
                                             {
                                                 text = "Good riddance.",
@@ -701,6 +701,209 @@ appreciation, please accept 500 gold! {@func disconnected}]],
                 text = "Hang up.",
                 func = function(dialog)
                     hangup()
+                end,
+            },
+        },
+    },
+	{
+		name = "Unknown Caller",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "default",
+		text = [[Hello? Can Anyone there? \nI'm lost in some underground jungle!]],
+		options = {
+			{
+				text = "Yes, I'm  here. Where are you?",
+				func = function(dialog)
+					dialog.show({
+						text = [[I'm near some.. Vines? 
+						Oh god they're everywhere, please help..]],
+						options = {
+							{
+								text = "I'll try. Describe your surroundings in detail.",
+								func = function(dialog)
+									dialog.show({
+										text = [[Wait, I see a light! I think I found the exit!
+	Thank you! {@func disconnected}]],
+										options = {
+											{
+												text = "I.. didn't do anything.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+							{
+								text = "Sorry, I can't help.",
+								func = function(dialog)
+									dialog.show({
+										text = [[Oh... Okay. I'll keep searching. {@func disconnected}]],
+										options = {
+											{
+												text = "Good luck.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Hang up.",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Wizard Academy",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "two",
+		text = [[Greetings! 
+		This is the Wizard Academy reminding you about your 
+		overdue library books.]],
+		options = {
+			{
+				text = "I don't recall borrowing any books.",
+				func = function(dialog)
+					dialog.show({
+						text = [[Our records show you have 
+						"Nuclear Theory for the Ambitious Apprentice" 
+						checked out.
+						Please return it promptly to avoid a fine.]],
+						options = {
+							{
+								text = "I'll return it soon.",
+								func = function(dialog)
+									dialog.show({
+										text = [[Thank you for your cooperation! {@func disconnected}]],
+										options = {
+											{
+												text = "You're welcome.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+							{
+								text = "I think you have the wrong person.",
+								func = function(dialog)
+									dialog.show({
+										text = [[Oh, apologies for the mix-up. 
+										Have a good day! {@func disconnected}]],
+										options = {
+											{
+												text = "No problem.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Hang up.",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+        name = "Shady Merchant",
+        portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+        typing_sound = "two",
+        text = [[Greetings! Interested in purchasing a rare artifact?]],
+        options = {
+            {
+                text = "What are you offering?",
+                func = function(dialog)
+					local hm_visits = math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
+					local price = hm_visits * 200
+                    dialog.show({
+                        text = "I have a powerful wand for only "..price.." gold. Interested?",
+                        options = {
+                            {
+                                text = "Yes, I'll take it. ("..price.." gold)",
+                                enabled = function(stats)
+                                    return stats.gold >= price
+                                end,
+                                func = function(dialog)
+                                    -- Deduct gold and give item
+                                    local players = EntityGetWithTag("player_unit") or {}
+                                    if #players > 0 then
+                                        local player = players[1]
+                                        local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+                                        local gold = ComponentGetValue2(wallet, "money")
+                                        ComponentSetValue2(wallet, "money", gold - price)
+                                       
+										local x, y = EntityGetTransform(player)
+										
+										EntityLoad("mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"..tostring(hm_visits)..".xml", x, y)
+                                    end
+                                    dialog.show({
+                                        text = [[Pleasure doing business with you! {@func disconnected}]],
+                                        options = {
+                                            {
+                                                text = "Likewise.",
+                                                func = function(dialog)
+                                                    hangup()
+                                                end,
+                                            },
+                                        },
+                                    })
+                                end,
+                            },
+                            {
+                                text = "Too expensive for me.",
+                                func = function(dialog)
+                                    dialog.show({
+                                        text = [[Understandable. Maybe next time. {@func disconnected}]],
+                                        options = {
+                                            {
+                                                text = "Maybe.",
+                                                func = function(dialog)
+                                                    hangup()
+                                                end,
+                                            },
+                                        },
+                                    })
+                                end,
+                            },
+                        },
+                    })
+                end,
+            },
+            {
+                text = "Not interested.",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Very well. Safe travels! {@func disconnected}]],
+                        options = {
+                            {
+                                text = "Goodbye.",
+                                func = function(dialog)
+                                    hangup()
+                                end,
+                            },
+                        },
+                    })
                 end,
             },
         },

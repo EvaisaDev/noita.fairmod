@@ -22,6 +22,42 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		text = text[Random(1, #text)],
 		options = {
 			{
+				text = "Trick or treat!",
+				show = function()
+					return GameHasFlagRun("fairmod_halloween_mask")
+				end,
+				func = function(dialog)
+					if tonumber(GlobalsGetValue("fairmod_hamis_candy_gotten", "0")) >= 15 then
+						dialog.show({
+							text = "I appear to be out of treats.. Sorryyy...",
+							options = {
+								{
+									text = "Leave",
+								},
+							},
+						})
+					else
+						dialog.show({
+							text = "Cool costume!!\nMy mom said I didn't need one because\nI'm already really cute!!",
+							options = {
+								{
+									text = "Take treat",
+									func = function(dialog)
+										SetRandomSeed(GameGetFrameNum() + y, y * x)
+
+										CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+										GlobalsSetValue("fairmod_hamis_candy_gotten", tonumber(GlobalsGetValue("fairmod_hamis_candy_gotten", "0")) + 1)
+								
+										dialog.close()
+									end,
+								},
+							},
+						})
+
+					end
+				end,
+			},
+			{
 				text = "Leave",
 			},
 		},

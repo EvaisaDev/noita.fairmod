@@ -15,16 +15,16 @@ local CH_effects = {
 		effect_entity="mods/noita.fairmod/files/content/chemical_horror/potion_slowness/effect_slower_levitation.xml",
 		is_harmful=true,
 	},
-    --[[ 
 	{
 		id="CC_INGESTION_METHANE",
 		ui_name="$status_cc_ingestion_methane",
 		ui_description="$status_desc_cc_ingestion_methane",
-		ui_icon="mods/Hydroxide/files/chemical_curiosities/materials/methane/effect_methane.png",
-		effect_entity="mods/Hydroxide/files/chemical_curiosities/materials/methane/effect_methane.xml",
+		ui_icon="mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.png",
+		effect_entity="mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.xml",
 		protects_from_fire=false,
 		is_harmful=true,
 	},
+    --[[ 
 	{
 		id="CC_BLINDNESS",
 		ui_name="$status_cc_blindness",

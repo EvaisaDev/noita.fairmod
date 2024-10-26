@@ -4,4 +4,18 @@
 		offset_x="0"
 		offset_y="0">
 	</SpriteComponent>
+
+		<InteractableComponent
+		ui_text="Press $0 to talk to the rat"
+		radius="30"
+		>
+	</InteractableComponent>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/rotate/rat_dialog.lua"
+		script_source_file="mods/noita.fairmod/files/content/rotate/rat_dialog.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		>
+	</LuaComponent>	
 </Entity>

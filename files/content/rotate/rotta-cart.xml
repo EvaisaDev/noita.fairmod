@@ -1,4 +1,4 @@
-<Entity>
+<Entity name="rotta_kart">
 	<SpriteComponent
 		image_file="mods/noita.fairmod/files/content/rotate/rotta-cart-gfx.xml"
 		offset_x="0"
@@ -8,6 +8,7 @@
 		file="mods/noita.fairmod/fairmod.bank"
 		event_name="rats/rats"
 		auto_play="1"
+		play_on_component_enable="1"
 		calculate_material_lowpass="0"
 	>
 	</AudioLoopComponent>

@@ -1,0 +1,14 @@
+<Entity >
+   
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/chemical_horror/grease/grease_fire.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+	
+	<LifetimeComponent
+		lifetime="5"
+		>
+	</LifetimeComponent>
+  
+</Entity>
