@@ -44,7 +44,7 @@
 		special_scale_y="0.1"
 		update_transform_rotation="0"
 		offset_x="0"
-		offset_y="80"
+		offset_y="84"
 		/>
 
 	<SpriteComponent
