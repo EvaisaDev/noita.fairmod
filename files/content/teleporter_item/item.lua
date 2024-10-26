@@ -72,6 +72,7 @@ if controls then
 		::do_teleport::
 
 		EntityApplyTransform(holder, dest_x, dest_y)
+		GamePlaySound("mods/noita.fairmod/fairmod.bank", "teleporter/pickup", dest_x, dest_y)
 
 		-- Telefrag
 		local mortals = EntityGetInRadiusWithTag(dest_x, dest_y, 20, "mortal")
