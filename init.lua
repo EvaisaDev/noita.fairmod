@@ -217,7 +217,7 @@ function OnWorldPreUpdate()
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
-		orbs_for_all:OnWorldPreUpdate()
+		OrbsForAll()
 		surface_bad:update()
 		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
@@ -285,6 +285,7 @@ end
 -- Heinermann was here
 -- Seeker was here
 -- Dunk is bald
+-- Scipio was here
 
 --     ##
 --    #o##
