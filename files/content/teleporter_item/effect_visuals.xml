@@ -1,0 +1,37 @@
+<Entity>
+	<LifetimeComponent lifetime="14" />
+	<SpriteComponent
+		image_file="data/particles/explosion_032_electric_modified_looping.xml"
+		emissive="1"
+		/>
+	<SpriteParticleEmitterComponent
+		sprite_file="data/particles/shine_03_normal.xml"
+		emissive="1"
+		lifetime="0.5"
+		randomize_position.min_x="-7"
+		randomize_position.min_y="-7"
+		randomize_position.max_x="7"
+		randomize_position.max_y="7"
+		randomize_velocity.min_x="-20"
+		randomize_velocity.min_y="-20"
+		randomize_velocity.max_x="20"
+		randomize_velocity.max_y="20"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		/>
+	<SpriteParticleEmitterComponent
+		sprite_file="data/particles/shine_05.xml"
+		emissive="1"
+		lifetime="0.5"
+		randomize_position.min_x="-7"
+		randomize_position.min_y="-7"
+		randomize_position.max_x="7"
+		randomize_position.max_y="7"
+		randomize_velocity.min_x="-20"
+		randomize_velocity.min_y="-20"
+		randomize_velocity.max_x="20"
+		randomize_velocity.max_y="20"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		/>
+</Entity>

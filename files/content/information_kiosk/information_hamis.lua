@@ -23,6 +23,7 @@ local tips = {
 	table.concat{"There are ", GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?"},
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
+	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
 }
 
 function interacting(player, entity_interacted, interactable_name)
