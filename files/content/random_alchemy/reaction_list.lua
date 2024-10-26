@@ -140,6 +140,14 @@ local reactions = {
 	{
 		output_cell1 = "magic_liquid_unstable_teleportation",
 	},
+	{
+		input_cell1 = "smoke",
+		input_cell2 = "[fire]",
+	},
+	{
+		input_cell1 = "smoke",
+		input_cell2 = "[earth]",
+	},
 }
 
 return reactions

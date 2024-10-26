@@ -104,6 +104,7 @@ function ui:draw_navigation_buttons()
 	if self.book.flip_progress < 1 then
 		if self:IsHoverBoxHovered(self.x, self.y, self.book.width * 2, self.book.height, true) then
 			self:BlockInput()
+			return
 		end
 	end
 
