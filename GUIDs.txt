@@ -55,6 +55,7 @@
 {d4594423-dd50-4a85-99b4-8f7d2c42163b} event:/rats/birthday
 {0efc5ea7-02a2-4e44-9772-0fea4c998af1} event:/rats/rats
 {f762e06e-ff94-48ae-8b4d-e76d1dc1af82} event:/spooky/skeleton
+{616d3deb-0819-43c0-86de-709dcebff1ef} event:/teleporter/pickup
 {da290cac-e139-4b99-b883-ce1fc690a283} parameter:/Distance
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass
 {6864bf18-2f50-4b34-aecc-63c1bdf7fdf4} parameter:/Migration Name Conflict (4)/Distance
