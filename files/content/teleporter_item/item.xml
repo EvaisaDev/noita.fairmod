@@ -1,0 +1,67 @@
+<Entity tags="item">
+
+	<VelocityComponent
+		_tags="enabled_in_world"
+		gravity_y="400"
+		air_friction="0.55"
+		terminal_velocity="1000"
+		/>
+
+	<SimplePhysicsComponent
+		_tags="enabled_in_world"
+		/>
+
+	<ItemComponent
+		_tags="enabled_in_world"
+		is_pickable="1"
+		is_equipable_forced="1"
+		play_spinning_animation="0"
+		item_name="Teleporter"
+		ui_sprite="mods/noita.fairmod/files/content/teleporter_item/item.png"
+		ui_description="Completely safe item that can't hurt you yep!"
+		/>
+
+	<AbilityComponent
+		ui_name="Teleporter"
+		/>
+
+	<HitboxComponent
+		_tags="enabled_in_world"
+		aabb_max_x="4"
+		aabb_max_y="4"
+		aabb_min_x="-4"
+		aabb_min_y="-4"
+		is_enemy="0"
+		is_item="0"
+		is_player="0"
+		/>
+
+	<SpriteComponent
+		_tags="enabled_in_world"
+		image_file="mods/noita.fairmod/files/content/teleporter_item/sprite.png"
+		has_special_scale="1"
+		special_scale_x="0.1"
+		special_scale_y="0.1"
+		update_transform_rotation="0"
+		offset_x="0"
+		offset_y="80"
+		/>
+
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		image_file="mods/noita.fairmod/files/content/teleporter_item/sprite.png"
+		has_special_scale="1"
+		special_scale_x="0.1"
+		special_scale_y="0.1"
+		offset_x="0"
+		offset_y="60"
+		/>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		script_source_file="mods/noita.fairmod/files/content/teleporter_item/item.lua"
+		/>
+
+</Entity>
