@@ -46,6 +46,7 @@ postfx.append(
 "uniform vec4 brightness_contrast_gamma;",
 "data/shaders/post_final.frag"
 )
+dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
 postfx.append(
 [[
 color = mix(color, vec3(dot(color,vec3(.2126, .7152, .0722))), grayscale.a );
