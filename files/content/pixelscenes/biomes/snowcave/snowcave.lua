@@ -4,7 +4,7 @@ local horizontal = {
 		material_file = "mods/noita.fairmod/files/content/pixelscenes/snail/snail_h_520_260.png",
 		visual_file = "mods/noita.fairmod/files/content/pixelscenes/snail/snail_h_520_260_visual.png",
 		background_file = "",
-		is_unique = 0,
+		is_unique = 1,
 	},
 }
 
