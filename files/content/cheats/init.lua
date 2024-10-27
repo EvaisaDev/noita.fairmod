@@ -40,7 +40,9 @@ module.update = function()
 			end
 			if string.sub(code, 1, string.len(input)) == input then
 				if string.len(code) == string.len(input) then
-					GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
+					if v.name then
+						GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
+					end
 					v.func(player)
 					current_input_text = ""
 				end
