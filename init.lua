@@ -217,7 +217,7 @@ function OnWorldPreUpdate()
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
-		OrbsForAll()
+		orbs_for_all:update()
 		surface_bad:update()
 		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
