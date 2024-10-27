@@ -9,6 +9,8 @@ dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
 
+SetRandomSeed(x, y + GameGetFrameNum())
+
 function hangup()
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/putdown", x, y)
 	dialog.close()

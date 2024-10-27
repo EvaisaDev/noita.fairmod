@@ -33,10 +33,14 @@ module.update = function()
 
 	-- Function to check if input matches any cheat code
 	local function check_input(input)
-		for k, v in pairs(cheat_codes) do
-			if string.sub(k, 1, string.len(input)) == input then
-				if string.len(k) == string.len(input) then
-					GamePrintImportant("Cheat activated: " .. v.name, v.description)
+		for _, v in ipairs(cheat_codes) do
+			local code = v.code
+			if(type(code) == "function") then
+				code = code()
+			end
+			if string.sub(code, 1, string.len(input)) == input then
+				if string.len(code) == string.len(input) then
+					GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
 					v.func(player)
 					current_input_text = ""
 				end
