@@ -1,3 +1,4 @@
+-- stylua: ignore start
 local entity_id = GetUpdatedEntityID()
 
 IngestionComp = EntityGetFirstComponent(entity_id, "IngestionComponent")
@@ -19,22 +20,11 @@ if IngestionComp then
 			local x, y = EntityGetTransform(entity_id)
 			-- we do a little murdering
 			for i = 1, 100 do
-				EntityInflictDamage(
-					entity_id,
-					99999999999999999999999999999999999999999999999999999999999999999,
-					"DAMAGE_PHYSICS_BODY_DAMAGED",
-					"Heart Attack!",
-					"NORMAL",
-					0,
-					0,
-					entity_id,
-					x,
-					y,
-					0.1
-				)
+				EntityInflictDamage( entity_id, 99999999999999999999999999999999999999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Heart Attack!", "NORMAL", 0, 0, entity_id, x, y, 0.1 )
 			end
 			EntityKill(entity_id)
 			GameAddFlagRun("heart_attacked")
 		end
 	end
 end
+-- stylua: ignore end
