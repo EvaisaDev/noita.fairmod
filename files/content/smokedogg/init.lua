@@ -8,7 +8,7 @@ local M = {}
 
 local function condition_check()
 	local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
-	if hour == 16 and (minute >= 19 and minute <= 22) then return true end
+	if hour == 16 and (minute >= 20 and minute <= 21) then return true end
 	return false
 end
 
