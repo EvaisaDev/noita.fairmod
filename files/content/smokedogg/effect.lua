@@ -14,7 +14,10 @@ local direction = has_effect(owner, "FAIRMOD_SMOKEDOGG") and 1 or -1
 local sprite_comp = EntityGetFirstComponent(entity_id, "SpriteComponent")
 if sprite_comp then
 	alpha = math.min(max_weed, (alpha or 0) + velocity * direction)
-	if alpha > 0.8 then GameEntityPlaySoundLoop(entity_id, "fx", 0, 0) end
+	if alpha > 0.8 then
+    GameEntityPlaySoundLoop(entity_id, "fx", 0, 0)
+    GameAddFlagRun("smoke_dogg_spoke")
+  end
 	ComponentSetValue2(sprite_comp, "alpha", alpha)
 	if alpha <= 0 and direction < 0 then EntityKill(entity_id) end
 end

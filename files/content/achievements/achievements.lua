@@ -243,6 +243,35 @@ achievements = {
 			return HasFlagPersistent("secret_amulet_gem") and HasFlagPersistent("secret_hat")
 		end,
 	},
+	{
+		name = "Smoked a weed",
+		description = "You met the godfather of weed and he gave you his blessing",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/smoked_weed.png",
+		flag = "smoked_a_weed",
+		unlock = function()
+			return GameHasFlagRun("smoke_dogg_spoke")
+		end,
+	},
+	{
+		name = "Play at 3:33am",
+		description = "He's coming",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/play_at_333am.png",
+		flag = "play_at_333am",
+		unlock = function()
+			local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
+			return hour == 3 and minute == 33
+		end,
+	},
+	{
+		name = "Banana Peelionaire",
+		description = "Slip on 10 banana peels in one run",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/banana_peelionaire.png",
+		flag = "banana_peelionaire",
+		unlock = function()
+			local banana_peels_activated = tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0"))
+			return banana_peels_activated >= 10
+		end,
+	},
 }
 
 local function romanize(num)

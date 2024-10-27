@@ -19,7 +19,7 @@ function M.update()
 
 		EntityAddComponent2(smokedogg, "AudioLoopComponent", {
 			file = "mods/noita.fairmod/fairmod.bank",
-			event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedog/loop_streamer" or"smokedogg/loop",
+			event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedogg/loop_streamer" or"smokedogg/loop",
 			auto_play = true,
 		})
 
