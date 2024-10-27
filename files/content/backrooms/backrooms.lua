@@ -115,6 +115,12 @@ function load_lamp(x, y)
 			max_count = 1,
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_broken.xml",
 		},
+		{
+			prob = 0.01,
+			min_count = 1,
+			max_count = 1,
+			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml",
+		},
 	}
 
 	-- if x is odd, add 0.5, else, remove 0.5
