@@ -31,6 +31,10 @@ local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.l
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
+if ModIsEnabled("component-explorer") then
+	dofile("mods/noita.fairmod/files/content/component-explorer/init.lua")
+end
+
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
 dofile_once("mods/noita.fairmod/files/content/evasive_items/evasive_items.lua")
