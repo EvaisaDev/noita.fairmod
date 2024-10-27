@@ -16,13 +16,13 @@ function M.update()
 	if condition_check() and not GameHasFlagRun("fairmod_smokedogg_spawned") then
 		GameAddFlagRun("fairmod_smokedogg_spawned")
 		local smokedogg = EntityLoad("mods/noita.fairmod/files/content/smokedogg/smokedogg.xml")
-		if not ModSettingGet("noita.fairmod.streamer_mode") then
-			EntityAddComponent2(smokedogg, "AudioLoopComponent", {
-				file = "mods/noita.fairmod/fairmod.bank",
-				event_name = "smokedogg/loop",
-				auto_play = true,
-			})
-		end
+
+		EntityAddComponent2(smokedogg, "AudioLoopComponent", {
+			file = "mods/noita.fairmod/fairmod.bank",
+			event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedog/loop_streamer" or"smokedogg/loop",
+			auto_play = true,
+		})
+
 	end
 end
 

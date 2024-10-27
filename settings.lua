@@ -117,7 +117,7 @@ local function build_settings()
 				{
 					id = "streamer_mode",
 					ui_name = "Streamer mode",
-					ui_description = "Disables content that could cause copyright issues. (Requires restart)",
+					ui_description = "Replaces content that could cause copyright issues. (Requires restart)",
 					value_default = false,
 					scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
 				},

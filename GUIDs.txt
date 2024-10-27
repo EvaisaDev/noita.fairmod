@@ -19,9 +19,11 @@
 {67238d63-549c-4261-a14c-6331206c506b} event:/backrooms/flicker
 {45a9c665-d43f-411a-af46-8af30f23efe4} event:/backrooms/hum
 {bd914676-22a3-473b-818c-7fc2a1e4b65d} event:/badapple/song
+{e96881c9-26ea-48eb-9a5a-f53002e42bc3} event:/badapple/song_streamer
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {5b276062-bc6c-45ba-bf76-3edeff3c316f} event:/book/page
 {540b5473-9d8e-46f5-9070-d30554f0ae0a} event:/dingus/loop
+{50c1ee47-0450-4302-85d5-5624d936dcdc} event:/dingus/loop_streamer
 {2ac7e916-cd8f-431f-9b41-36c3680c0ae0} event:/dingus/meow
 {a1f08602-b751-439b-a30c-524f5002fffc} event:/dingus/purr
 {bf5fe97b-edda-464e-9373-1bdd3bf654ac} event:/dingus/riff
@@ -32,6 +34,8 @@
 {3ec05cb2-885f-4438-afed-656dbc6a6265} event:/gamblecore/letsgogamblingawdangit
 {9ef9a813-5996-4f6b-ace3-43733b142c7e} event:/gamblecore/letsgogamblingicantstopwinning
 {e4011c9c-e7a0-415c-ac4c-3d824f0c2365} event:/godhamis/loop
+{7c71de0e-5814-468c-ab3c-166a8218aa9c} event:/godhamis/loop_streamer
+{6e27e6ce-05b7-43eb-b452-b8273520a16d} event:/gun/fire
 {baeeb65f-306b-47e4-aeac-cd4afdc7a65c} event:/hescoming/reverbfart
 {2784aafe-d908-42c3-8f02-62de748903b0} event:/hescoming/tubaloop
 {7c93adb7-d17f-42c6-8f23-c84b3d4625b9} event:/immersivepiss/diarrhea
@@ -53,13 +57,17 @@
 {e64eef68-ba89-46ed-b415-1d6b80ebdf02} event:/radio/loop
 {c6f36ab2-5420-4120-a923-5583e5310514} event:/radio/static
 {d4594423-dd50-4a85-99b4-8f7d2c42163b} event:/rats/birthday
+{330469a2-11f4-4d91-a694-e5d9e1796099} event:/rats/birthday_streamer
 {0efc5ea7-02a2-4e44-9772-0fea4c998af1} event:/rats/rats
+{2559885e-0e85-4917-9722-dac15d621c82} event:/rats/rats_streamer
 {75446963-f1b4-40c1-9913-b5711248fbb5} event:/scratchoff/redeem
 {cf0306c3-708c-48b7-a74d-e932fb2b09b4} event:/scratchoff/scratch
 {bda12326-8527-4446-a0ee-ec47067026b4} event:/scratchoff/win
 {3189b000-f8d3-451d-8860-3a192637f824} event:/smokedogg/loop
+{00c1561b-e1af-4b44-9f0c-d2ccda710050} event:/smokedogg/loop_streamer
 {294931cc-8302-48f6-9387-339cdfa133bd} event:/smokedogg/smokeweedeveryday
 {f762e06e-ff94-48ae-8b4d-e76d1dc1af82} event:/spooky/skeleton
+{0b0f6bdc-dff3-4b20-97cf-da31226f1907} event:/spooky/skeleton_streamer
 {616d3deb-0819-43c0-86de-709dcebff1ef} event:/teleporter/pickup
 {da290cac-e139-4b99-b883-ce1fc690a283} parameter:/Distance
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass

@@ -177,7 +177,7 @@ return {
 			EntityAddComponent2(player, "AudioLoopComponent", {
 				_tags = "music",
 				file = "mods/noita.fairmod/fairmod.bank",
-				event_name = "godhamis/loop",
+				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "godhamis/loop_streamer" or "godhamis/loop",
 				auto_play = true,
 			})
 		end,
