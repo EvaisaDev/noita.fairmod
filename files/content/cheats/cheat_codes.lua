@@ -289,5 +289,33 @@ return {
 			
 			BiomeMapLoad_KeepPlayer(MagicNumbersGetValue("BIOME_MAP"), "data/biome/_pixel_scenes")
 		end,
-	}
+	},
+	{
+		code = "userk",
+		func = function()
+			print("UserK")
+			GamePrint("UserK")
+			GamePrintImportant("UserK", "UserK")
+		end
+	},
+	{
+		code = "/kill",
+		name = "Ouch!",
+		description = "Player fell out of the world.",
+		func = function(player)
+			EntityKill(player)
+		end
+	},
+	{
+		code = "altf4",
+		name = "oh",
+		description = "okay bye-",
+		func = function()
+			EntityKill(GameGetWorldStateEntity()) --lmao
+		end
+	},
+	-- stylua: ignore start
+	--cheatcode that teleports you to the cave entrance in your current world, im so fucking sorry
+	{ code = "/spawn", name = "/spawn", description = "Teleporting in 3... 2... wait, you're already there!", func = function(player) --[[go to cave entrance in current world]] EntityApplyTransform(player, MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X") + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512, tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))) end } --actually nvm this is cool as fuck, not sorry.
+	-- stylua: ignore end
 }
