@@ -258,7 +258,7 @@ return {
 		end,
 	},
 	{
-		code = function() return tostring(StatsGetValue("world_seed")) or "12345" end,
+		code = function() return StatsGetValue("world_seed") or "12345" end,
 		name = "World Reincarnation",
 		description = "The world has been regenerated with a new seed.",
 		func = function(player)
