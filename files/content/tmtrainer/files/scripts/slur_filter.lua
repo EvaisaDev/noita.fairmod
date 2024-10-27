@@ -2,6 +2,8 @@ local slurs = {
 }
 
 local content = ModTextFileGetContent("mods/noita.fairmod/files/content/tmtrainer/files/scripts/bad_words.txt")
+-- remove first line
+content = content:gsub("^[^\n]*\n", "")
 -- base64 decode
 local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 function base64_decode(data)
