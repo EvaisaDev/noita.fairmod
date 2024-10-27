@@ -126,13 +126,7 @@ return {
 					local flag = thisitem.spawn_requires_flag
 
 					if HasFlagPersistent(flag) == false then
-						print(
-							"Trying to spawn "
-								.. tostring(thisitem.id)
-								.. " even though flag "
-								.. tostring(flag)
-								.. " not set!!"
-						)
+						print( table.concat{"Trying to spawn ", tostring(thisitem.id), " even though flag ", tostring(flag), " not set!!"} )
 					end
 				end
 			end
