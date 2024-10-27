@@ -243,6 +243,15 @@ achievements = {
 			return HasFlagPersistent("secret_amulet_gem") and HasFlagPersistent("secret_hat")
 		end,
 	},
+	{
+		name = "Smoked a weed",
+		description = "You met the godfather of weed and he gave you his blessing",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/smoked_weed.png",
+		flag = "smoked_a_weed",
+		unlock = function()
+			return GameHasFlagRun("smoke_dogg_spoke")
+		end,
+	},
 }
 
 local function romanize(num)
