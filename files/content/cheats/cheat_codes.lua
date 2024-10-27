@@ -1,5 +1,6 @@
 return {
-	["motherlode"] = {
+	{
+		code = "motherlode",
 		name = "Motherlode",
 		description = "You got 1000 gold, you filthy cheater.",
 		func = function(player)
@@ -8,14 +9,16 @@ return {
 			ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 		end,
 	},
-	["duplicateme"] = {
+	{
+		code = "duplicateme",
 		name = "Dupe",
 		description = "There are two of you??",
 		func = function(player)
 			EntitySetTransform(EntityLoad("data/entities/player_rng_items.xml", x, y), EntityGetTransform(player))
 		end,
 	},
-	["upupdowndownleftrightleftrightbaenter"] = {
+	{
+		code = "upupdowndownleftrightleftrightbaenter",
 		name = "GOD HAMIS ARTIST-MARTIAL IMMORTALITY GAMER MODE",
 		description = "Enabled GHAMING MODE",
 		func = function(player)
@@ -182,7 +185,8 @@ return {
 			})
 		end,
 	},
-	["ahundredsnailsplease"] = {
+	{
+		code = "ahundredsnailsplease",
 		name = "A hundred snails",
 		description = "Are you sure about this??",
 		func = function(player)
@@ -208,7 +212,8 @@ return {
 			end
 		end,
 	},
-	["dingus"] = {
+	{
+		code = "dingus",
 		name = "Dingus",
 		description = "He looks so polite!!",
 		func = function(player)
@@ -217,26 +222,57 @@ return {
 			EntityLoad("mods/noita.fairmod/files/content/dingus/dingus.xml", x, y)
 		end,
 	},
-	["tacobell"] = {
+	{
+		code = "tacobell",
 		name = "Tacobell",
 		description = "You now have infinite shit and piss, enjoy.",
 		func = function(player)
 			GameAddFlagRun("tacobell_mode")
 		end,
 	},
-	["noclip"] = {
+	{
+		code = "noclip",
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
 			EntityApplyTransform(player, 1547, 14900)
 		end,
 	},
-	["gamba"] = {
+	{
+		code = "gamba",
 		name = "Gamba",
 		description = "All I have is scratch tickets!",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 			EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+		end,
+	},
+	{
+		code = "secondamendment",
+		name = "Second Amendment",
+		description = "Oh, I'm Sorry, I Thought This Was America.",
+		decoration = "mods/noita.fairmod/files/content/immortal_snail/gun/ui_gfx/decoration/twin.png",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/items/glock.xml", x, y)
+		end,
+	},
+	{
+		code = function() return tostring(StatsGetValue("world_seed")) or "12345" end,
+		name = "World Reincarnation",
+		description = "The world has been regenerated with a new seed.",
+		func = function(player)
+
+			local x, y = EntityGetTransform(player)
+
+			SetRandomSeed(x, y + GameGetFrameNum())
+
+			local seed = Random(1, 2147483646) + Random(1, 2147483646)
+			print("New seed: " .. seed)
+
+			SetWorldSeed(seed)
+			
+			BiomeMapLoad_KeepPlayer(MagicNumbersGetValue("BIOME_MAP"), "data/biome/_pixel_scenes")
 		end,
 	}
 }
