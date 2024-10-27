@@ -262,6 +262,16 @@ achievements = {
 			return hour == 3 and minute == 33
 		end,
 	},
+	{
+		name = "Banana Peelionaire",
+		description = "Slip on 10 banana peels in one run",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/banana_peelionaire.png",
+		flag = "banana_peelionaire",
+		unlock = function()
+			local banana_peels_activated = tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0"))
+			return banana_peels_activated >= 10
+		end,
+	},
 }
 
 local function romanize(num)
