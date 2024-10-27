@@ -1,0 +1,71 @@
+<Entity name="blackluminence_emitter" tags="hittable,teleportable_NOT,prop,prop_physics,mortal">
+
+	<Base file="data/entities/props/physics_tubelamp.xml" >
+	    <PhysicsImageShapeComponent 
+	    	body_id="100"
+	    	is_root="1"
+	    	centered="1"
+	    	image_file="mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/sprites/tubelamp_bl.png"
+	    	material="glass_box2d" >
+	    </PhysicsImageShapeComponent>
+
+	    <LightComponent 
+	    	_enabled="1" 
+	    	radius="150" 
+	    	blinking_freq="1"
+	    	offset_x="-6"
+	    	r="107"
+	    	g="5"
+	    	b="168">
+	    </LightComponent>
+
+	    <LightComponent 
+	    	_enabled="1" 
+	    	radius="150" 
+	    	blinking_freq="1"
+	    	offset_x="6"
+	    	r="107"
+	    	g="5"
+	    	b="168">
+	    </LightComponent>
+	</Base>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="150" 
+		blinking_freq="1"
+		offset_x="-6"
+		r="107"
+		g="5"
+		b="168">
+	</LightComponent>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="150" 
+		blinking_freq="1"
+		offset_x="6"
+		r="107"
+		g="5"
+		b="168">
+	</LightComponent>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="150" 
+		blinking_freq="1"
+		r="107"
+		g="5"
+		b="168">
+	</LightComponent>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="150" 
+		blinking_freq="1"
+		r="107"
+		g="5"
+		b="168">
+	</LightComponent>
+
+</Entity>

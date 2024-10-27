@@ -23,14 +23,14 @@ local _lmao = "/thgilkcalb/tnetnoc_sunob/nordluac/tnetnoc/selif/domriaf.ation/sd
 _lmao = string.reverse(_lmao)
 local bl_pages = {
     _lmao .. "cover.png",
-    _lmao .. "instructionbooklet-01.png.png",
-    _lmao .. "instructionbooklet-02.png.png",
-    _lmao .. "instructionbooklet-03.png.png",
-    _lmao .. "instructionbooklet-04.png.png",
-    _lmao .. "instructionbooklet-05.png.png",
-    _lmao .. "instructionbooklet-06.png.png",
-    _lmao .. "instructionbooklet-07.png.png",
-    _lmao .. "instructionbooklet-08.png.png",
+    _lmao .. "instructionbooklet-01.png",
+    _lmao .. "instructionbooklet-02.png",
+    _lmao .. "instructionbooklet-03.png",
+    _lmao .. "instructionbooklet-04.png",
+    _lmao .. "instructionbooklet-05.png",
+    _lmao .. "instructionbooklet-06.png",
+    _lmao .. "instructionbooklet-07.png",
+    _lmao .. "instructionbooklet-08.png",
     _lmao .. "back.png",
 }
 local black_luminosity = 0
@@ -76,7 +76,7 @@ function ui:image_crop(x, y)
 		self:SetZ(-999998)
 		self:Image(x, y, image_left[1], 1, self.book.zoomed_scale, self.book.zoomed_scale)
 		self:SetZ(-999999)
-		self:Image(x, y, image_left[2], 1, self.book.zoomed_scale, self.book.zoomed_scale)
+		self:Image(x, y, image_left[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
 	end
 	local image_right = {self.book.images[self.book.current_page_right], self.book.bl_pages[self.book.current_page_right]}
 	if image_right[1] and image_right[2] then
@@ -84,7 +84,7 @@ function ui:image_crop(x, y)
 		self:SetZ(-999998)
 		self:Image(x + self.book.zoomed_width, y, image_right[1], 1, self.book.zoomed_scale, self.book.zoomed_scale)
 		self:SetZ(-999999)
-		self:Image(x + self.book.zoomed_width, y, image_right[2], 1, self.book.zoomed_scale, self.book.zoomed_scale)
+		self:Image(x + self.book.zoomed_width, y, image_right[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
 	end
 	GuiEndScrollContainer(self.gui)
 end
@@ -95,7 +95,9 @@ end
 --- @param y number
 --- @param scale number
 --- @param page number
-function ui:draw_page(x, y, scale, page)
+function ui:draw_page(x, y, scale, page, z)
+	z = z or 0
+
 	-- Get the image of the current page
 	local image = self.book.images[page]
 	local bl = self.book.bl_pages[page]
@@ -104,11 +106,10 @@ function ui:draw_page(x, y, scale, page)
 		self:Text(x, y, "")
 		return
 	end
-
-    self:SetZ(self.z + 1)
+    self:SetZ(z + 1)
 	self:Image(x, y, image, 1, scale * self.book.page_scale, self.book.page_scale)
-    self:SetZ(self.z - 1)
-	self:Image(x, y, bl, 1, scale * self.book.page_scale, self.book.page_scale)
+    self:SetZ(z - 1)
+	self:Image(x, y, bl, self.book.bl_luminosity, scale * self.book.page_scale, self.book.page_scale)
 end
 
 --- Flip thingy
@@ -170,7 +171,7 @@ function ui:draw_page_right()
 		if self.book.flip_progress < 0 then return end
 
 		self:SetZ(self.z - 100)
-		self:draw_page(x, self.y, self.book.flip_progress, self.book.current_page_right)
+		self:draw_page(x, self.y, self.book.flip_progress, self.book.current_page_right, -100)
 		self:flip_progress()
 		return
 	end
@@ -179,9 +180,10 @@ function ui:draw_page_right()
 
 	if self.book.flip_next and self.book.flip_progress < 0 then
 		self:SetZ(self.z - 100)
-		self:draw_page(x, self.y, -self.book.flip_progress, self.book.current_page_right - 2)
+		self:draw_page(x, self.y, -self.book.flip_progress, self.book.current_page_right - 2, -100)
 		self:flip_progress()
 	end
+	
 end
 
 --- Draws left page
@@ -193,7 +195,7 @@ function ui:draw_page_left()
 
 		self:SetZ(self.z - 100)
 		local flip_pos = self.x + self.book.width * (1 - self.book.flip_progress) + 1
-		self:draw_page(flip_pos, self.y, self.book.flip_progress, self.book.current_page_left)
+		self:draw_page(flip_pos-1, self.y, self.book.flip_progress, self.book.current_page_left, -100)
 		self:flip_progress()
 		return
 	end
@@ -203,7 +205,7 @@ function ui:draw_page_left()
 	if self.book.flip_prev and self.book.flip_progress < 0 then
 		self:SetZ(self.z - 100)
 		local flip_pos = self.x + self.book.width * (1 + self.book.flip_progress) + 1
-		self:draw_page(flip_pos, self.y, -self.book.flip_progress, self.book.current_page_left + 2)
+		self:draw_page(flip_pos-1, self.y, -self.book.flip_progress, self.book.current_page_left + 2, -100)
 		self:flip_progress()
 	end
 end
@@ -266,9 +268,30 @@ function ui:draw_book()
 	self:draw_page_right()
 	self:draw_navigation_buttons()
 end
-
+local maxdist = 50
+local distmult = 1/maxdist
 --- Main function
 function ui:update()
+	local x,y = EntityGetTransform(EntityID)
+	local bl_entities = {}
+	local entites = EntityGetInRadius(x, y, 150)
+	for index, value in ipairs(entites) do
+		if EntityGetName(value) == "blackluminence_emitter" then
+			table.insert(bl_entities, value)
+		end
+	end
+	local distances = {}
+	local min = maxdist
+	if bl_entities[1] ~= nil then
+		for index, value in ipairs(bl_entities) do
+			local bl_x,bl_y = EntityGetTransform(value)
+			local dist = math.sqrt((x-bl_x)^2 + (y-bl_y)^2)
+			min = min < dist and min or dist
+		end
+	end
+	print((maxdist - min) * 0.01)
+	self.book.bl_luminosity = math.max(0, math.min(1, (maxdist - min) * distmult))
+	print("luminosity is " .. self.book.bl_luminosity)
 	self:StartFrame()
 	self:AddOption(self.c.options.NonInteractive)
 	GuiZSet(self.gui, self.z)
