@@ -27,6 +27,7 @@ local tips = {
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
 	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
+	"I heard that my information pamphlet contains the solution to the eyes, can you believe it?!",
 }
 
 function interacting(player, entity_interacted, interactable_name)
@@ -125,9 +126,7 @@ function interacting(player, entity_interacted, interactable_name)
 				show = function(stats)
 					local inventory_items = GameGetAllInventoryItems(player) or {}
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							return true
-						end
+						if EntityHasTag(item, "scratch_ticket") then return true end
 					end
 					return false
 				end,
@@ -144,9 +143,7 @@ function interacting(player, entity_interacted, interactable_name)
 					local inventory_items = GameGetAllInventoryItems(player) or {}
 
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							EntityRemoveTag(item, "scratch_ticket")
-						end
+						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
 					end
 				end,
 			},
