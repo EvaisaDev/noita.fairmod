@@ -3,10 +3,9 @@ local ticket_system = dofile_once("mods/noita.fairmod/files/content/gamblecore/s
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
-tickets = tickets or {}
-viewed = viewed or {}
+ticket = ticket or nil
 
-if(not tickets[entity_id])then
+if(not ticket)then
 	local variable_storage_comps = EntityGetComponentIncludingDisabled(entity_id, "VariableStorageComponent")
 
 	local ticket_data = nil
@@ -21,10 +20,10 @@ if(not tickets[entity_id])then
 	end
 
 	if(ticket_data)then
-		tickets[entity_id] = ticket_system.load(ticket_data, entity_id)
+		ticket = ticket_system.load(ticket_data, entity_id)
 	else
-		tickets[entity_id] = ticket_system.new(x, y)
-		local ticket_data = tickets[entity_id]:save()
+		ticket = ticket_system.new(x, y)
+		local ticket_data = ticket:save()
 		EntityAddComponent2(entity_id, "VariableStorageComponent", {
 			name = "ticket_data",
 			value_string = ticket_data
@@ -32,22 +31,8 @@ if(not tickets[entity_id])then
 	end
 end
 
-
-local ticket_viewed = viewed[entity_id] or false
-
-if(ticket_viewed)then
-	tickets[entity_id]:draw()
-end
-
--- no tag = redeemed
-if(not EntityHasTag(entity_id, "scratch_ticket") )then
-	tickets[entity_id]:redeem()
-	local parent = EntityGetRootEntity(entity_id)
-	GameKillInventoryItem(parent, entity_id)
-end
-
 local function save_ticket()
-	local ticket_data = tickets[entity_id]:save()
+	local ticket_data = ticket:save()
 	local variable_storage_comps = EntityGetComponentIncludingDisabled(entity_id, "VariableStorageComponent")
 	if(variable_storage_comps)then
 		for i, comp in ipairs(variable_storage_comps)do
@@ -60,16 +45,43 @@ local function save_ticket()
 	end
 end
 
+if(ticket.scratch_callback == nil)then
+	ticket.scratch_callback = function()
+		if(GameGetFrameNum() % 15 == 0)then
+			save_ticket()
+		end
+	end
+end
+
+
+local ticket_viewed = EntityHasTag(entity_id, "viewing")
+
+if(ticket_viewed)then
+	ticket:draw()
+end
+
+-- no tag = redeemed
+if(not EntityHasTag(entity_id, "scratch_ticket") )then
+	GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/redeem", 0, 0)
+	ticket:redeem()
+	local parent = EntityGetRootEntity(entity_id)
+	GameKillInventoryItem(parent, entity_id)
+end
+
+
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	GamePrint("interacting")
-	viewed[entity_id] = not viewed[entity_id]
-	save_ticket()
+	if(not EntityHasTag(entity_interacted, "viewing"))then
+		EntityAddTag(entity_interacted, "viewing")
+	else
+		EntityRemoveTag(entity_interacted, "viewing")
+	end
+	
 end
 
 function enabled_changed(entity_id, is_enabled)
 	if(not is_enabled)then
-		viewed[entity_id] = false
-		save_ticket()
+		EntityRemoveTag(entity_id, "viewing")
 	end
 end
 

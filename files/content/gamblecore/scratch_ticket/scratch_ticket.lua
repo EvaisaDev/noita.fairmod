@@ -1,4 +1,5 @@
 -- scratchoff system
+-- horribly written prototype that i cannot be bothered to refactor!! :D
 
 local get_money_func = function(amount)
     return function(player)
@@ -309,6 +310,8 @@ function scratch_ticket_methods.draw(self)
                     GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/scratch", 0, 0)
                 end
 
+				local changed = false
+
                 if self.prev_mx and self.prev_my then
                     -- Interpolate between previous and current mouse positions
                     local line_points = get_line(self.prev_mx, self.prev_my, mx, my)
@@ -329,6 +332,7 @@ function scratch_ticket_methods.draw(self)
                                         self.scratched_pixels[x_pix] = {}
                                     end
                                     self.scratched_pixels[x_pix][y_pix] = true
+									changed = true
                                 end
                             end
                         end
@@ -348,10 +352,16 @@ function scratch_ticket_methods.draw(self)
                             then
                                 if not self.scratched_pixels[x_pix] then self.scratched_pixels[x_pix] = {} end
                                 self.scratched_pixels[x_pix][y_pix] = true
+								changed = true
                             end
                         end
                     end
                 end
+
+				if changed and self.scratch_callback then
+					self.scratch_callback()
+				end
+
                 self.prev_mx = mx
                 self.prev_my = my
             else
