@@ -1,5 +1,6 @@
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.dialog_box_height = 80
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 

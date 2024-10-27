@@ -1,6 +1,8 @@
 -- scratchoff system
 -- horribly written prototype that i cannot be bothered to refactor!! :D
 
+local funcs = dofile_once("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/spawn_functions.lua")
+
 local get_money_func = function(amount)
     return function(player)
         local wallet = EntityGetFirstComponent(player, "WalletComponent")
@@ -9,6 +11,13 @@ local get_money_func = function(amount)
             ComponentSetValue2(wallet, "money", money + amount)
         end
     end
+end
+
+local get_spawn_func = function(func)
+	return function(player)
+		local x, y = EntityGetTransform(player)
+		func(player, x, y)
+	end
 end
 
 local prizes = {
@@ -22,6 +31,54 @@ local prizes = {
             EntityLoad("data/entities/animals/longleg.xml", x, y)
         end,
     },
+	{
+		text = "potion",
+		description = "You won a potion!",
+		weight = 10,
+		func = get_spawn_func(funcs.spawn_potion),
+	},
+	{
+		text = "wand",
+		description = "You won a wand!",
+		weight = 10,
+		func = get_spawn_func(funcs.spawn_wand),
+	},
+	{
+		text = "spell",
+		description = "You won a spell!",
+		weight = 10,
+		func = get_spawn_func(funcs.spawn_spell),
+	},
+	{
+		text = "perk",
+		description = "You won a perk!",
+		weight = 10,
+		func = get_spawn_func(funcs.spawn_perk),
+	},
+	{
+		text = "free",
+		description = "You won a free scratch ticket!",
+		weight = 10,
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+		end,
+	},
+	{
+		text = "$0.01",
+		weight = 50,
+		description = "You won 1 cent!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			local nugget = EntityLoad("data/entities/items/pickup/goldnugget.xml", x, y)
+			local storage_comps = EntityGetComponent(nugget, "VariableStorageComponent")
+			for k, v in pairs(storage_comps or {})do
+				if(ComponentGetValue2(v, "name") == "gold_value")then
+					ComponentSetValue2(v, "value_int", 1) 
+				end
+			end
+		end,
+	},
     {
         text = "$10.00",
         description = "You won 10 gold!",
@@ -32,14 +89,14 @@ local prizes = {
     {
         text = "$25.00",
         description = "You won 25 gold!",
-        weight = 50,
+        weight = 25,
         func = get_money_func(25),
     },
     -- 50
     {
         text = "$50.00",
         description = "You won 50 gold!",
-        weight = 25,
+        weight = 15,
         func = get_money_func(50),
     },
     -- 100
