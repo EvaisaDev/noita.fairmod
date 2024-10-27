@@ -1,4 +1,4 @@
-<Entity tags="item_physics,item_pickup">
+<Entity tags="item_physics,item_pickup,scratch_ticket">
 	<UIInfoComponent
 		name="Scratch Ticket"
 	></UIInfoComponent>
@@ -76,11 +76,16 @@
 	<LuaComponent
 		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
 		script_source_file="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
-		script_interacting="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
-		script_enabled_changed="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
 		execute_on_added="1"
 		execute_every_n_frame="1"
-		vm_type="ONE_PER_COMPONENT_INSTANCE"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
+	/>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_interacting="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
+		script_enabled_changed="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
 	/>
 
 </Entity>

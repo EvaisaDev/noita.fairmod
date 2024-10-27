@@ -102,6 +102,56 @@ function interacting(player, entity_interacted, interactable_name)
 				end,
 			},
 			{
+				text = "I'd like to buy a scratch-off (50 gold)",
+				enabled = function(stats)
+					return stats.gold >= 50
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Oh, you want to try your luck?\nHere you go!!",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+					EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+
+					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
+				end,
+			},
+			{
+				text = "I want to redeem my scratch-off(s)",
+				show = function(stats)
+					local inventory_items = GameGetAllInventoryItems(player) or {}
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then
+							return true
+						end
+					end
+					return false
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Oh man!! I hope you won big!\nHere's your winnings!",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+
+					local inventory_items = GameGetAllInventoryItems(player) or {}
+
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then
+							EntityRemoveTag(item, "scratch_ticket")
+						end
+					end
+				end,
+			},
+			{
 				text = "Leave",
 			},
 		},
