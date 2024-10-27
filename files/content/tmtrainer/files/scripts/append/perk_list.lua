@@ -57,9 +57,11 @@ end
 -- Main script execution
 local TMTRAINER_INDEX = 0
 
+local filter = dofile_once("mods/noita.fairmod/files/content/tmtrainer/files/scripts/slur_filter.lua")
+SetRandomSeed(TMTRAINER_INDEX, 0)
 for i = 1, #perk_pool do
 	-- we set it in here in case some function is dumb and overrides the seed
-	SetRandomSeed(TMTRAINER_INDEX, 0)
+
 	if Random(1, 100) < 40 then
 		local id = "TMTRAINER_" .. i
 		local ui_name_parts = {}
@@ -80,8 +82,35 @@ for i = 1, #perk_pool do
 			local added_description = GameTextGetTranslatedOrNot(perk.ui_description) or ""
 
 			-- Build name and description from random chunks
-			table.insert(ui_name_parts, get_random_chunk(added_name, 4))
-			table.insert(ui_description_parts, get_random_chunk(added_description, 10))
+			local max_iterations = 30
+			local function try_update_name(chars, iteration)
+				iteration = iteration or 0
+
+				table.insert(ui_name_parts, get_random_chunk(added_name, chars))
+
+				if filter.contains_slur(table.concat(ui_name_parts)) then
+					table.remove(ui_name_parts)
+					if iteration < max_iterations and (chars - 1 > 0) then
+						try_update_name(chars - 1, iteration + 1)
+					end
+				end
+			end	
+
+			local function try_update_description(chars, iteration)
+				iteration = iteration or 0
+
+				table.insert(ui_description_parts, get_random_chunk(added_description, chars))
+
+				if filter.contains_slur(table.concat(ui_description_parts)) then
+					table.remove(ui_description_parts)
+					if iteration < max_iterations and (chars - 1 > 0) then
+						try_update_description(chars - 1, iteration + 1)
+					end
+				end
+			end
+
+			try_update_name(4, 0)
+			try_update_description(10, 0)
 
 			-- Generate icons
 			generate_icon(i, perk.ui_icon, j == 1, "ui_icon")

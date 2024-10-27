@@ -5,7 +5,6 @@ local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_setti
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
-local input_delay = dofile_once("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile_once("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
@@ -28,6 +27,7 @@ local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
+local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
@@ -67,6 +67,7 @@ dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
+dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -222,7 +223,6 @@ function OnWorldPreUpdate()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
-	input_delay.OnWorldPreUpdate()
 	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
@@ -232,6 +232,9 @@ function OnWorldPreUpdate()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
+	smokedogg.update()
+
+	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -283,6 +286,7 @@ end
 -- Conga wuz here
 -- Heinermann was here
 -- Seeker was here
+-- Horscht may have been here
 -- Dunk is bald
 
 --     ##

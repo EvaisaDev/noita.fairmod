@@ -20,7 +20,11 @@ local tips = {
 	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
-	table.concat{"There are ", GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?"},
+	table.concat({
+		"There are ",
+		GlobalsGetValue("fairmod_total_achievements", "0"),
+		" achievements!\nCan you collect them all?",
+	}),
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
 	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
@@ -56,24 +60,21 @@ function interacting(player, entity_interacted, interactable_name)
 					return true
 				end,
 				func = function(dialog)
-
 					local item_count = 0
 					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
 						if EntityGetName(child) == "inventory_quick" then
 							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
-								if(ability_component)then
+								local ability_component =
+									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								if ability_component then
 									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
-									if( not use_gun_script )then
-										item_count = item_count + 1
-									end
-
+									if not use_gun_script then item_count = item_count + 1 end
 								end
 							end
 						end
 					end
 
-					if(item_count < 4)then
+					if item_count < 4 then
 						dialog.show({
 							text = "Ofcourse!! Here you go.\nHave a great day!!",
 							options = {
@@ -82,7 +83,11 @@ function interacting(player, entity_interacted, interactable_name)
 								},
 							},
 						})
-						local items = EntityLoad("mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml", x, y)
+						local items = EntityLoad(
+							"mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml",
+							x,
+							y
+						)
 						GamePickUpInventoryItem(player, items, false)
 					else
 						dialog.show({
@@ -92,9 +97,9 @@ function interacting(player, entity_interacted, interactable_name)
 									text = "Leave",
 								},
 							},
-						})	
+						})
 					end
-				end,	
+				end,
 			},
 			{
 				text = "Leave",

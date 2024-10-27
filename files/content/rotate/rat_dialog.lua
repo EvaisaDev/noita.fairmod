@@ -22,14 +22,16 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 							{
 								text = "Thank you!!",
 								func = function(dialog)
-									local interactable_component = EntityGetFirstComponentIncludingDisabled(entity_id, "InteractableComponent")
+									local interactable_component =
+										EntityGetFirstComponentIncludingDisabled(entity_id, "InteractableComponent")
 									-- remove the interactable component so the rat doesn't talk to you again
 									EntityRemoveComponent(entity_interacted, interactable_component)
 
 									local rotta_kart = EntityGetWithName("rotta_kart")
 
-									if(rotta_kart and EntityGetIsAlive(rotta_kart))then
-										local audio_loop = EntityGetFirstComponentIncludingDisabled(rotta_kart, "AudioLoopComponent")
+									if rotta_kart and EntityGetIsAlive(rotta_kart) then
+										local audio_loop =
+											EntityGetFirstComponentIncludingDisabled(rotta_kart, "AudioLoopComponent")
 										ComponentSetValue2(audio_loop, "event_name", "rats/birthday")
 										EntitySetComponentIsEnabled(rotta_kart, audio_loop, false)
 										EntitySetComponentIsEnabled(rotta_kart, audio_loop, true)

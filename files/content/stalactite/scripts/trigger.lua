@@ -17,9 +17,7 @@ function should_collapse(colliding_entity_id)
 		local deaths = ModSettingGet("fairmod.deaths") or 0
 
 		-- Don't collapse any on the very first run
-		if deaths == 0 then
-			return false
-		end
+		if deaths == 0 then return false end
 
 		-- Maybe more conditions?
 	end
@@ -30,8 +28,7 @@ function should_collapse(colliding_entity_id)
 end
 
 function collision_trigger(colliding_entity_id)
-
-	if should_collapse(colliding_entity_id)then
+	if should_collapse(colliding_entity_id) then
 		local entity_id = GetUpdatedEntityID()
 		local x, y = EntityGetTransform(entity_id)
 
@@ -51,12 +48,11 @@ function collision_trigger(colliding_entity_id)
 		EntityKill(entity_id)
 	end
 
-	local is_projectile = EntityHasTag(colliding_entity_id, "projectile") or EntityHasTag(colliding_entity_id, "player_projectile")
+	local is_projectile = EntityHasTag(colliding_entity_id, "projectile")
+		or EntityHasTag(colliding_entity_id, "player_projectile")
 
-	if(is_projectile)then
+	if is_projectile then
 		local projectile_component = EntityGetFirstComponent(colliding_entity_id, "ProjectileComponent")
-		if(projectile_component ~= nil)then
-			ComponentSetValue2(projectile_component, "lifetime", 1)
-		end
+		if projectile_component ~= nil then ComponentSetValue2(projectile_component, "lifetime", 1) end
 	end
 end

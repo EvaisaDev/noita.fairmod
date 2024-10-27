@@ -15,8 +15,8 @@ fish_list = {
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/basic_fish.png",
-		func = function(fish, x, y) 
-			LoadRagdoll( "data/ragdolls/fish_01/filenames.txt", x, y, "meat_helpless", 1, 0, 0 )
+		func = function(fish, x, y)
+			LoadRagdoll("data/ragdolls/fish_01/filenames.txt", x, y, "meat_helpless", 1, 0, 0)
 		end,
 	},
 	{
@@ -33,8 +33,8 @@ fish_list = {
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/basic_fish_2.png",
-		func = function(fish, x, y) 
-			LoadRagdoll( "data/ragdolls/fish_02/filenames.txt", x, y, "meat_helpless", 1, 0, 0 )
+		func = function(fish, x, y)
+			LoadRagdoll("data/ragdolls/fish_02/filenames.txt", x, y, "meat_helpless", 1, 0, 0)
 		end,
 	},
 	{
@@ -50,8 +50,8 @@ fish_list = {
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/hamisfish.png",
-		func = function(fish, x, y) 
-			LoadRagdoll( "data/ragdolls/longleg/filenames.txt", x, y, "meat_helpless", 1, 0, 0 )
+		func = function(fish, x, y)
+			LoadRagdoll("data/ragdolls/longleg/filenames.txt", x, y, "meat_helpless", 1, 0, 0)
 		end,
 	},
 	{
@@ -68,8 +68,16 @@ fish_list = {
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/eel.png",
-		func = function(fish, x, y) 
-			LoadRagdoll( "mods/noita.fairmod/files/content/fishing/ragdolls/worm/filenames.txt", x, y, "meat_helpless", 1, 0, 0 )
+		func = function(fish, x, y)
+			LoadRagdoll(
+				"mods/noita.fairmod/files/content/fishing/ragdolls/worm/filenames.txt",
+				x,
+				y,
+				"meat_helpless",
+				1,
+				0,
+				0
+			)
 		end,
 	},
 	{
@@ -85,8 +93,8 @@ fish_list = {
 		catch_seconds = 3,
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/tentacler.png",
-		func = function(fish, x, y) 
-			LoadRagdoll( "data/ragdolls/tentacler_small/filenames.txt", x, y, "meat_helpless", 1, 0, 0 )
+		func = function(fish, x, y)
+			LoadRagdoll("data/ragdolls/tentacler_small/filenames.txt", x, y, "meat_helpless", 1, 0, 0)
 		end,
 	},
 	{

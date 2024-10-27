@@ -1,0 +1,33 @@
+<Materials>
+
+  <CellData
+    name="fairmod_magic_gas_smokedoggium"
+    ui_name="Aw hell nah, who let the dogg out?!"
+    tags="[gas],[vapour],[alchemy]"
+    burnable="0"
+    density="2"
+    cell_type="gas"
+    lifetime="-1"
+    wang_color="ffa672eb"
+    generates_smoke="0"
+    liquid_gravity="0.5"
+    liquid_sand="0"
+    on_fire="0"
+    requires_oxygen="0"
+    temperature_of_fire="0"
+    autoignition_temperature="99"
+    gfx_glow="0"
+    show_in_creative_mode="1"
+    liquid_stains="1"
+    liquid_sprite_stains_status_threshold="0"
+    liquid_sprite_stain_shaken_drop_chance="1"
+    status_effects="FAIRMOD_SMOKEDOGG"
+    liquid_sprite_stains_check_offset="1"
+	>
+    <Graphics 
+      color="AAAACCAA"
+		>
+    </Graphics>
+  </CellData>
+
+</Materials>

@@ -15,9 +15,7 @@ end
 local tp = GetUpdatedEntityID()
 local holder = EntityGetRootEntity(tp)
 
-if tp == holder then
-	return
-end
+if tp == holder then return end
 
 -- has_special_scale="1" in the SpriteComponent stops the item from flipping
 -- it's held and the entity turns around. Reimplement that functionality here.
@@ -35,7 +33,7 @@ local controls = EntityGetFirstComponent(holder, "ControlsComponent")
 if controls then
 	if ComponentGetValue2(controls, "mButtonFrameFire") == frame then
 		local dir_x, dir_y = ComponentGetValue2(controls, "mAimingVector")
-		local length = math.sqrt(dir_x^2+dir_y^2)
+		local length = math.sqrt(dir_x ^ 2 + dir_y ^ 2)
 		dir_x = dir_x / length
 		dir_y = dir_y / length
 
@@ -48,23 +46,17 @@ if controls then
 		local dest_x, dest_y = x + dir_x * dist, y + dir_y * dist
 		if is_space_occupied(dest_x, dest_y) then
 			-- Space occupied, try upwarping
-			for _=1,UPWARP_MAX_STEPS do
+			for _ = 1, UPWARP_MAX_STEPS do
 				dest_y = dest_y - UPWARP_STEP_SIZE
-				if not is_space_occupied(dest_x, dest_y) then
-					goto do_teleport
-				end
+				if not is_space_occupied(dest_x, dest_y) then goto do_teleport end
 			end
 
 			-- Couldn't be saved :-(
 
 			local game_stats = EntityGetFirstComponent(holder, "GameStatsComponent")
-			if game_stats then
-				ComponentSetValue2(game_stats, "extra_death_msg", "Teleporter misadventure")
-			end
+			if game_stats then ComponentSetValue2(game_stats, "extra_death_msg", "Teleporter misadventure") end
 
-			if EntityHasTag(holder, "player_unit") then
-				GameSetCameraPos(dest_x, dest_y)
-			end
+			if EntityHasTag(holder, "player_unit") then GameSetCameraPos(dest_x, dest_y) end
 
 			EntityKill(holder)
 		end

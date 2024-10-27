@@ -318,7 +318,6 @@ if in_liquid then
 		if material_id then liquid_type = CellFactory_GetName(material_id) end
 
 		if liquid_type ~= nil and liquid_type ~= "air" then
-
 			allow_catch = EntityHasFlag(bobber, "is_catch_allowed")
 
 			fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}

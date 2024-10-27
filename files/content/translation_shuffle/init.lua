@@ -12,33 +12,30 @@ local function format_csv_row(row)
 	return table.concat(escaped, ",") .. ","
 end
 
-
 local function shuffle_words(input)
-    local words = {}
-    local separators = {}
+	local words = {}
+	local separators = {}
 
-    -- Pattern to capture word + optional punctuation and any trailing spaces
-    for word, separator in input:gmatch("(%a+)([^%a]*)") do
-        table.insert(words, word)
-        table.insert(separators, separator)
-    end
+	-- Pattern to capture word + optional punctuation and any trailing spaces
+	for word, separator in input:gmatch("(%a+)([^%a]*)") do
+		table.insert(words, word)
+		table.insert(separators, separator)
+	end
 
-    -- Shuffle the words table
-    for i = #words, 2, -1 do
-        local j = math.random(i)
-        words[i], words[j] = words[j], words[i]
-    end
+	-- Shuffle the words table
+	for i = #words, 2, -1 do
+		local j = math.random(i)
+		words[i], words[j] = words[j], words[i]
+	end
 
-    -- Rebuild the string with correct spaces and punctuation
-    local result = ""
-    for i = 1, #words do
-        result = result .. words[i] .. separators[i]
-    end
+	-- Rebuild the string with correct spaces and punctuation
+	local result = ""
+	for i = 1, #words do
+		result = result .. words[i] .. separators[i]
+	end
 
-    return result
+	return result
 end
-
-
 
 local CHANGE_CHANCE = 0.15
 
@@ -51,9 +48,8 @@ local function not_buttsify(filename)
 	}
 
 	for _, row in ipairs(csv.rows) do
-
 		if math.random() < CHANGE_CHANCE then
-			for i=2, #row do
+			for i = 2, #row do
 				row[i] = shuffle_words(row[i])
 			end
 		end

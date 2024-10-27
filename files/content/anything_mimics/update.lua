@@ -50,10 +50,7 @@ end
 
 local mimic_chance = 5
 
-if ModSettingGet("noita.fairmod.arachnophilia_mode") then
-	mimic_chance = 50
-end
-
+if ModSettingGet("noita.fairmod.arachnophilia_mode") then mimic_chance = 50 end
 
 for i, entity in ipairs(entities_close) do
 	if math.random(0, 100) <= mimic_chance then

@@ -47,8 +47,7 @@ local effects = {
 }
 
 --- @class fuckupenemies
-local evil = {
-}
+local evil = {}
 
 function evil:GiveRandomEffect(enemy)
 	for _ = 1, 3 do
@@ -162,10 +161,7 @@ function evil:BuffEnemy(enemy)
 	local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
 	if animal_ai then
 		self:TweakAnimalComponent(headache, animal_ai)
-		if(not file_name or not pickup_blacklist[file_name])then
-			self:ItemPickUpperComponent(enemy)
-		end
-		
+		if not file_name or not pickup_blacklist[file_name] then self:ItemPickUpperComponent(enemy) end
 	end
 
 	if headache then self:GiveRandomEffect(enemy) end

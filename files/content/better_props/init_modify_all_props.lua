@@ -46,7 +46,7 @@ local function fixup_prop_children(element)
 				MaterialInventoryComponent = {
 					leak_pressure_min = 0.7,
 					leak_pressure_max = 1.1,
-				}
+				},
 			})
 		else
 			comp:apply_defaults({
@@ -54,7 +54,7 @@ local function fixup_prop_children(element)
 					leak_pressure_min = 0.1,
 					leak_pressure_max = 0.25,
 					b2_force_on_leak = 0.2,
-				}
+				},
 			})
 		end
 		elem_multiply_attr(comp, "leak_pressure_min", 2)
