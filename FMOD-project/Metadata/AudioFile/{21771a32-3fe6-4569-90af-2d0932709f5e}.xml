@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{21771a32-3fe6-4569-90af-2d0932709f5e}">
+		<property name="assetPath">
+			<value>Spooky Scary Skeletons (House Remix).mp3.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>195.03020408163266</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eb2a4d4a-1287-481b-8086-c8771a725107}</destination>
+		</relationship>
+	</object>
+</objects>

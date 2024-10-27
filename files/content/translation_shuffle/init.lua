@@ -17,9 +17,12 @@ local function shuffle_words(input)
 	local separators = {}
 
 	-- Pattern to capture word + optional punctuation and any trailing spaces
-	for word, separator in input:gmatch("(%a+)([^%a]*)") do
-		table.insert(words, word)
-		table.insert(separators, separator)
+	local separator_pat = ".()/!:?\" \t\n-"
+	for word, separator in input:gmatch("([^" .. separator_pat .. "]*)([" .. separator_pat .."]*)") do
+		if word ~= "" or separator ~= "" then
+			table.insert(words, word)
+			table.insert(separators, separator)
+		end
 	end
 
 	-- Shuffle the words table
