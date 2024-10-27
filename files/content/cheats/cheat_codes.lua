@@ -258,6 +258,21 @@ return {
 		end,
 	},
 	{
+		code = "snoopdogg",
+		name = "Snoop Dogg",
+		description = "La-da-da-da-dah It's the motherfuckin' D-O-double-G (Snoop Dogg!)",
+		func = function(player)
+			GameAddFlagRun("fairmod_smokedogg_spawned")
+			local smokedogg = EntityLoad("mods/noita.fairmod/files/content/smokedogg/smokedogg.xml")
+	
+			EntityAddComponent2(smokedogg, "AudioLoopComponent", {
+				file = "mods/noita.fairmod/fairmod.bank",
+				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedogg/loop_streamer" or"smokedogg/loop",
+				auto_play = true,
+			})	
+		end,
+	},
+	{
 		code = function() return StatsGetValue("world_seed") or "12345" end,
 		name = "World Reincarnation",
 		description = "The world has been regenerated with a new seed.",
