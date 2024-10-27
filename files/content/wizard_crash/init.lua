@@ -15,9 +15,9 @@ local wizards = {
 for _, wizfile in ipairs(wizards) do
 	local entity = nxml.parse(ModTextFileGetContent(wizfile))
 	entity:add_child(nxml.new_element("LuaComponent", {
-		script_source_file="mods/noita.fairmod/files/content/wizard_crash/spawn_friend.lua",
-		execute_on_added="1",
-		remove_after_executed="1",
+		script_source_file = "mods/noita.fairmod/files/content/wizard_crash/spawn_friend.lua",
+		execute_on_added = "1",
+		remove_after_executed = "1",
 	}))
 	ModTextFileSetContent(wizfile, tostring(entity))
 end

@@ -1,5 +1,3 @@
-
-
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 for xml in nxml.edit_file("data/biome/_biomes_all.xml") do
 	for biome in xml:each_of("Biome") do

@@ -1,30 +1,30 @@
-local CH_effects = { 
+local CH_effects = {
 	{
-		id="CC_MOVEMENT_SLOWER_2X",
-		ui_name="$status_cc_movement_slower_2x",
-		ui_description="$status_desc_cc_movement_slower_2x",
-		ui_icon="data/ui_gfx/status_indicators/movement_slower.png",
-		effect_entity="data/entities/misc/effect_movement_slower_2x.xml",
-		is_harmful=true,
+		id = "CC_MOVEMENT_SLOWER_2X",
+		ui_name = "$status_cc_movement_slower_2x",
+		ui_description = "$status_desc_cc_movement_slower_2x",
+		ui_icon = "data/ui_gfx/status_indicators/movement_slower.png",
+		effect_entity = "data/entities/misc/effect_movement_slower_2x.xml",
+		is_harmful = true,
 	},
 	{
-		id="CC_LEVITATION_SLOWER",
-		ui_name="$status_cc_levitation_slower",
-		ui_description="$status_desc_cc_levitation_slower",
-		ui_icon="mods/noita.fairmod/files/content/chemical_horror/potion_slowness/effect_levitation_slow.png",
-		effect_entity="mods/noita.fairmod/files/content/chemical_horror/potion_slowness/effect_slower_levitation.xml",
-		is_harmful=true,
+		id = "CC_LEVITATION_SLOWER",
+		ui_name = "$status_cc_levitation_slower",
+		ui_description = "$status_desc_cc_levitation_slower",
+		ui_icon = "mods/noita.fairmod/files/content/chemical_horror/potion_slowness/effect_levitation_slow.png",
+		effect_entity = "mods/noita.fairmod/files/content/chemical_horror/potion_slowness/effect_slower_levitation.xml",
+		is_harmful = true,
 	},
 	{
-		id="CC_INGESTION_METHANE",
-		ui_name="$status_cc_ingestion_methane",
-		ui_description="$status_desc_cc_ingestion_methane",
-		ui_icon="mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.png",
-		effect_entity="mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.xml",
-		protects_from_fire=false,
-		is_harmful=true,
+		id = "CC_INGESTION_METHANE",
+		ui_name = "$status_cc_ingestion_methane",
+		ui_description = "$status_desc_cc_ingestion_methane",
+		ui_icon = "mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.png",
+		effect_entity = "mods/noita.fairmod/files/content/chemical_horror/methane/effect_methane.xml",
+		protects_from_fire = false,
+		is_harmful = true,
 	},
-    --[[ 
+	--[[ 
 	{
 		id="CC_BLINDNESS",
 		ui_name="$status_cc_blindness",
@@ -92,9 +92,6 @@ local CH_effects = {
 	}, ]]
 }
 
-
-
-
-for i=1,#CH_effects do
-    status_effects[#status_effects+1] = CH_effects[i]
+for i = 1, #CH_effects do
+	status_effects[#status_effects + 1] = CH_effects[i]
 end

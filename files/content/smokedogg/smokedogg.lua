@@ -25,8 +25,15 @@ local entity_id = GetUpdatedEntityID()
 SetRandomSeed(entity_id + GameGetFrameNum(), ent_x + ent_y)
 local random_angle = Randomf(0, math.pi * 2)
 local random_distance = Randomf(0, 10)
-GameCreateParticle("fairmod_magic_gas_smokedoggium",
-  ent_x + math.cos(random_angle) * random_distance,
-  ent_y + math.sin(random_angle) * random_distance,
-  20, 20, 20, false, false, true)
+GameCreateParticle(
+	"fairmod_magic_gas_smokedoggium",
+	ent_x + math.cos(random_angle) * random_distance,
+	ent_y + math.sin(random_angle) * random_distance,
+	20,
+	20,
+	20,
+	false,
+	false,
+	true
+)
 EntitySetTransform(entity_id, ent_x, ent_y)

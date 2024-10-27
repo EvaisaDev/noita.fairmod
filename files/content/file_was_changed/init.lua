@@ -24,12 +24,11 @@ function file_was_changed(filename)
 	}
 
 	for _, row in ipairs(csv.rows) do
-
 		-- replace all columns with ""file was changed in the watch folder"" except the first one
 		for i = 2, #row do
 			row[i] = "file was changed in the watch folder"
 		end
-	
+
 		outrows[#outrows + 1] = format_csv_row(row)
 	end
 
@@ -38,6 +37,4 @@ end
 
 SetRandomSeed(1, 1)
 
-if(Random(0, 1000) <= 1)then
-	file_was_changed("data/translations/common.csv")
-end
+if Random(0, 1000) <= 1 then file_was_changed("data/translations/common.csv") end

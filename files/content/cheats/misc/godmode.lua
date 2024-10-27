@@ -5,5 +5,5 @@ ComponentSetValue2(dmc, "hp", 2147483647000)
 ComponentSetValue2(dmc, "max_hp", 2147483647000)
 ComponentSetValue2(dmc, "max_hp_cap", 0)
 
-local audio_loop = EntityGetFirstComponentIncludingDisabled( entity_id, "AudioLoopComponent", "music" )
-ComponentSetValue2( audio_loop, "m_volume", math.max(0.0001, (ComponentGetValue2(audio_loop, "m_volume") or 1)-0.005) )
+local audio_loop = EntityGetFirstComponentIncludingDisabled(entity_id, "AudioLoopComponent", "music")
+ComponentSetValue2(audio_loop, "m_volume", math.max(0.0001, (ComponentGetValue2(audio_loop, "m_volume") or 1) - 0.005))

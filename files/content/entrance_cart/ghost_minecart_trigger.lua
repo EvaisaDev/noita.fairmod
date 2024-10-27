@@ -1,4 +1,3 @@
-
 function collision_trigger(colliding_entity_id)
 	local x, y = EntityGetTransform(GetUpdatedEntityID())
 

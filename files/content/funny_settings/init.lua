@@ -18,7 +18,6 @@ local shader_append = function(find, append)
 	end
 end
 
-
 shader_append(
 	"varying vec2 tex_coord_fogofwar;",
 	[[
@@ -66,7 +65,6 @@ shader_append(
 	}
 ]]
 )
-
 
 local module = {}
 

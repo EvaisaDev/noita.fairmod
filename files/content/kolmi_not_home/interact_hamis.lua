@@ -46,14 +46,16 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 										SetRandomSeed(GameGetFrameNum() + y, y * x)
 
 										CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
-										GlobalsSetValue("fairmod_hamis_candy_gotten", tonumber(GlobalsGetValue("fairmod_hamis_candy_gotten", "0")) + 1)
-								
+										GlobalsSetValue(
+											"fairmod_hamis_candy_gotten",
+											tonumber(GlobalsGetValue("fairmod_hamis_candy_gotten", "0")) + 1
+										)
+
 										dialog.close()
 									end,
 								},
 							},
 						})
-
 					end
 				end,
 			},

@@ -32,9 +32,6 @@ end
 
 local direction = 0 - math.atan2(player.ydistance, player.xdistance)
 
-
-
-
 --[[
 local lifetime_loss = (200 - math.sqrt(player.xdistance^2 + player.ydistance^2)) * .3
 local projcomp = EntityGetComponent(entity_id, "ProjectileComponent")
@@ -42,9 +39,7 @@ if not projcomp then return end
 ComponentSetValue2(projcomp[1], "lifetime", ComponentGetValue2(projcomp[1], "lifetime") - math.max(lifetime_loss, 0))
 --]]
 
-
-
-local gravity_multiplier = math.min(1, 400 - math.sqrt(player.xdistance^2 + player.ydistance^2) * 0.0025)
+local gravity_multiplier = math.min(1, 400 - math.sqrt(player.xdistance ^ 2 + player.ydistance ^ 2) * 0.0025)
 
 local gravity_coeff = 60 * gravity_multiplier
 

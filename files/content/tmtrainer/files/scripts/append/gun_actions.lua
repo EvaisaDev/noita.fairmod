@@ -145,7 +145,7 @@ local function create_tmtrainer_action(action_type, index)
 			table.insert(name_parts, get_random_chunk(added_name, 6))
 			table.insert(description_parts, get_random_chunk(added_description, 10))
 		end
-		
+
 		-- Collect action functions
 		table.insert(functions, added_action.action)
 
@@ -278,10 +278,9 @@ local function create_tmtrainer_action(action_type, index)
 				seed_offset = seed_offset + 1
 				SetRandomSeed(TMTRAINER_INDEX, seed_offset)
 				local caster = EntityGetRootEntity(GetUpdatedEntityID())
-				if(EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player"))then
+				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then
 					_streaming_run_event(twitch_event.id)
 				end
-				
 			end
 		end
 	end

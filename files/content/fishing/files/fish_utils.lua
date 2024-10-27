@@ -113,7 +113,7 @@ function create_fish_object(fish, x, y, size)
 	EntityAddComponent2(fish_item, "AbilityComponent", {
 		ui_name = fish.name,
 		throw_as_item = true,
-		use_gun_script = false
+		use_gun_script = false,
 	})
 
 	EntitySetVariable(fish_item, "fish_size", "float", size)
