@@ -27,6 +27,7 @@ local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
+local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
@@ -231,6 +232,7 @@ function OnWorldPreUpdate()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
+	smokedogg.update()
 
 	gamblecore.Update()
 
@@ -284,6 +286,7 @@ end
 -- Conga wuz here
 -- Heinermann was here
 -- Seeker was here
+-- Horscht may have been here
 -- Dunk is bald
 
 --     ##

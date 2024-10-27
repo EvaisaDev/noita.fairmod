@@ -1,0 +1,26 @@
+<Entity>
+
+	<InheritTransformComponent>
+  </InheritTransformComponent>
+
+  <GameEffectComponent
+    effect="CUSTOM"
+    custom_effect_id="FAIRMOD_SMOKEDOGG"
+    frames="-1"
+  ></GameEffectComponent>
+
+	<DrugEffectModifierComponent>
+		<fx_add
+			distortion_amount="2"
+			color_amount="1"
+      nightvision_amount="0.5"
+		/>
+	</DrugEffectModifierComponent>
+
+  <LuaComponent
+    script_source_file="mods/noita.fairmod/files/content/smokedogg/effect_init.lua"
+    execute_every_n_frame="1"
+    remove_after_executed="1"
+  ></LuaComponent>
+
+</Entity>
