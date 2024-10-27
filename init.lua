@@ -210,6 +210,8 @@ function OnPlayerSpawned(player)
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
+	EntityLoad("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/physics_tubelamp_bl.xml", target_x+250, -127)
+	EntityLoad("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/physics_tubelamp_bl.xml", target_x+300, -127)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -288,6 +290,7 @@ end
 -- Seeker was here
 -- Horscht may have been here
 -- Dunk is bald
+-- UserK.
 
 --     ##
 --    #o##
@@ -318,4 +321,4 @@ end
 --▒▒▒▒        ▒▒▒▒
 --▒▒▒▒        ▒▒▒▒
 
---▓▒░ Colour palette for my art 😊
+--▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua

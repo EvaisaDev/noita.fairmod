@@ -274,24 +274,19 @@ local distmult = 1/maxdist
 function ui:update()
 	local x,y = EntityGetTransform(EntityID)
 	local bl_entities = {}
-	local entites = EntityGetInRadius(x, y, 150)
-	for index, value in ipairs(entites) do
-		if EntityGetName(value) == "blackluminence_emitter" then
+	local entities = EntityGetInRadius(x, y, maxdist)
+	for index, value in ipairs(entities) do
+		if EntityGetName(value) == "uv_emitter" then
 			table.insert(bl_entities, value)
 		end
 	end
-	local distances = {}
 	local min = maxdist
-	if bl_entities[1] ~= nil then
-		for index, value in ipairs(bl_entities) do
-			local bl_x,bl_y = EntityGetTransform(value)
-			local dist = math.sqrt((x-bl_x)^2 + (y-bl_y)^2)
-			min = min < dist and min or dist
-		end
+	for i = 1, #bl_entities do
+		local bl_x,bl_y = EntityGetTransform(bl_entities[i])
+		local dist = math.sqrt((x-bl_x)^2 + (y-bl_y)^2)
+		min = min < dist and min or dist
 	end
-	print((maxdist - min) * 0.01)
 	self.book.bl_luminosity = math.max(0, math.min(1, (maxdist - min) * distmult))
-	print("luminosity is " .. self.book.bl_luminosity)
 	self:StartFrame()
 	self:AddOption(self.c.options.NonInteractive)
 	GuiZSet(self.gui, self.z)

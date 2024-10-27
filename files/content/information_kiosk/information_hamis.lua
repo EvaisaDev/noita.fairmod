@@ -18,10 +18,11 @@ local tips = {
 	"Happy Halloween!",
 	"Hey, if you combine Whiskey and Berserkium it makes my own patented Hamis Bars!!",
 	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
+	"Follow the purple lights.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
 	-- stylua: ignore start
-	table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/
+	table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
 	-- stylua: ignore end
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",

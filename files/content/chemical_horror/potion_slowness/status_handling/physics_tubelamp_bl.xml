@@ -1,4 +1,4 @@
-<Entity name="blackluminence_emitter" tags="hittable,teleportable_NOT,prop,prop_physics,mortal">
+<Entity name="uv_emitter" tags="hittable,teleportable_NOT,prop,prop_physics,mortal">
 
 	<Base file="data/entities/props/physics_tubelamp.xml" >
 	    <PhysicsImageShapeComponent 

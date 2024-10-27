@@ -43,6 +43,7 @@ function clipboard.OnPlayerSpawned()
 			"Minecraft is just a Noita clone imo",
 			GameTextGet("$bee_movie_script"), --lmao
 			'"Wait a minute, I didn\'t copy this!"\n-You, right now',
+			"I wonder what the blacklights are for..."
 		}
 
 	if imgui then
