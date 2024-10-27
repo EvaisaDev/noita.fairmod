@@ -252,6 +252,16 @@ achievements = {
 			return GameHasFlagRun("smoke_dogg_spoke")
 		end,
 	},
+	{
+		name = "Play at 3:33am",
+		description = "He's coming",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/play_at_333am.png",
+		flag = "play_at_333am",
+		unlock = function()
+			local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
+			return hour == 3 and minute == 33
+		end,
+	},
 }
 
 local function romanize(num)
