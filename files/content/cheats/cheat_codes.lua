@@ -231,4 +231,12 @@ return {
 			EntityApplyTransform(player, 1547, 14900)
 		end,
 	},
+	["gamba"] = {
+		name = "Gamba",
+		description = "All I have is scratch tickets!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+		end,
+	}
 }

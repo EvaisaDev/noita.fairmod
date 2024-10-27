@@ -54,6 +54,8 @@
 {c6f36ab2-5420-4120-a923-5583e5310514} event:/radio/static
 {d4594423-dd50-4a85-99b4-8f7d2c42163b} event:/rats/birthday
 {0efc5ea7-02a2-4e44-9772-0fea4c998af1} event:/rats/rats
+{cf0306c3-708c-48b7-a74d-e932fb2b09b4} event:/scratchoff/scratch
+{bda12326-8527-4446-a0ee-ec47067026b4} event:/scratchoff/win
 {3189b000-f8d3-451d-8860-3a192637f824} event:/smokedogg/loop
 {294931cc-8302-48f6-9387-339cdfa133bd} event:/smokedogg/smokeweedeveryday
 {f762e06e-ff94-48ae-8b4d-e76d1dc1af82} event:/spooky/skeleton
