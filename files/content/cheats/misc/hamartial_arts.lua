@@ -1,5 +1,6 @@
 ---@diagnostic disable-next-line: lowercase-global
 function kick()
+	-- stylua: ignore start
 	local shooter = GetUpdatedEntityID()
 	local controlscomp = EntityGetFirstComponentIncludingDisabled(shooter, "ControlsComponent") --[[@cast controlscomp number]]
 	local x, y = EntityGetTransform(shooter)
@@ -14,10 +15,11 @@ function kick()
 	local herd_id = genome and ComponentGetValue2(genome, "herd_id") or -1
 	local velocity = 750
 	local vel_x, vel_y = aim_x * velocity, aim_y * velocity
-	GameShootProjectile(shooter, x, y-8, x + vel_x, y-8 + vel_y, projectile_id, true)
+	GameShootProjectile(shooter, x, y-8, x+vel_x, y-8+vel_y, projectile_id, true)
 	ComponentSetValue2(projcomp, "mWhoShot", shooter)
 	ComponentSetValue2(projcomp, "mShooterHerdId", herd_id)
 	ComponentSetValue2(velcomp, "mVelocity", vel_x, vel_y)
-	local audio_loop = EntityGetFirstComponentIncludingDisabled( shooter, "AudioLoopComponent", "music" )
-	ComponentSetValue2( audio_loop, "m_volume", math.min(2, ComponentGetValue2(audio_loop, "m_volume")+0.6) )
+	local audio_loop = EntityGetFirstComponentIncludingDisabled(shooter, "AudioLoopComponent", "music")
+	ComponentSetValue2(audio_loop, "m_volume", math.min(2, ComponentGetValue2(audio_loop, "m_volume") + 0.6))
+	-- stylua: ignore end
 end

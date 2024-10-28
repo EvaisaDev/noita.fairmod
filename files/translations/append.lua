@@ -16,7 +16,6 @@ translation = translation:gsub("\r", ""):gsub("\n\n+", "\n")
 
 ModTextFileSetContent(game_translation_file, translation)
 
-
 --[[ stuff for generating reformatted strings
 local function shuffle_words(input)
 	local words = {}

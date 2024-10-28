@@ -1,0 +1,13 @@
+<!-- This is where he dances and generates smoke -->
+<Entity>
+
+  <LuaComponent
+    script_source_file="mods/noita.fairmod/files/content/smokedogg/smokedogg.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+
+  <LifetimeComponent
+    lifetime="3600"
+  ></LifetimeComponent>
+
+</Entity>

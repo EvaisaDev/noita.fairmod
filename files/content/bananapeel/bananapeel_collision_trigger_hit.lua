@@ -14,5 +14,7 @@ function collision_trigger(colliding_entity_id)
 		LoadGameEffectEntityTo(colliding_entity_id, "mods/noita.fairmod/files/content/bananapeel/stun_effect.xml")
 		local x, y = EntityGetTransform(colliding_entity_id)
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "bananapeel/slip_and_fall", x, y)
+		local banana_peels_activated = tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0"))
+		GlobalsSetValue("fairmod_banana_peels_activated", tostring(banana_peels_activated + 1))
 	end
 end

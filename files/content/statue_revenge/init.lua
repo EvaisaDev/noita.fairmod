@@ -1,7 +1,6 @@
 -- HM statues don't fly very far, they rotate and kick you instead
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
-
 local statues = {
 	"data/entities/props/temple_statue_01.xml",
 	"data/entities/props/temple_statue_01_green.xml",

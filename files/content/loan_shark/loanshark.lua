@@ -1,5 +1,6 @@
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.dialog_box_height = 100
 dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "loanshark/pop" }
 -- "mods/noita.fairmod/fairmod.bank", "immersivepiss/timetotakeapiss"
 local entity_id = GetUpdatedEntityID()
@@ -9,7 +10,7 @@ SetRandomSeed(x + GameGetFrameNum(), y)
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	local loan_shark_debt = tonumber(GlobalsGetValue("loan_shark_debt", "0"))
-	dialog_system.dialog_box_height = 70
+	
 	dialog = dialog_system.open_dialog({
 		name = "Loanprey",
 		portrait = "mods/noita.fairmod/files/content/loan_shark/portrait.png",
@@ -25,7 +26,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					return true
 				end,
 				func = function(dialog)
-					dialog_system.dialog_box_height = 100
 					dialog.show({
 						text = loan_shark_debt < 10000 and "\\*blub!\\* \\*blub blub blub..\\*"
 							or "I cannot loan you any more money. \n\\*blub\\* Pay off your debts or {@color b82318}#you will regret it.#",
@@ -37,7 +37,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -65,7 +65,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -93,7 +93,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -121,7 +121,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -149,7 +149,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -227,6 +227,56 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 							},
 						},
 					})
+				end,
+			},
+			{
+				text = "I'd like to buy a scratch-off (50 gold)",
+				enabled = function(stats)
+					return stats.gold >= 50
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Hmm, ofcourse! \nYour chances of winning are very high! \\*blub\\*\nYou can redeem your winnings here as well.",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+					EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+
+					local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
+				end,
+			},
+			{
+				text = "I want to redeem my scratch-off(s)",
+				show = function(stats)
+					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then
+							return true
+						end
+					end
+					return false
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Alright, here are your winnings. \\*blub\\*",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+
+					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
+
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then
+							EntityRemoveTag(item, "scratch_ticket")
+						end
+					end
 				end,
 			},
 			{

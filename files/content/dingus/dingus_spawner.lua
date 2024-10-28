@@ -8,9 +8,7 @@ SetRandomSeed(x, y + GameGetFrameNum())
 
 local dingus = EntityGetWithName("Dingus")
 
-if(dingus ~= nil and EntityGetIsAlive(dingus))then
-	return
-end
+if dingus ~= nil and EntityGetIsAlive(dingus) then return end
 
 -- create a unique id for this chunk
 last_chunk_id = last_chunk_id or 0
@@ -20,16 +18,14 @@ local discovery_chance = 2
 
 local spawn_range = 512
 
-if(chunk_id ~= last_chunk_id)then
-    last_chunk_id = chunk_id
-    local has_visited_chunk = GameHasFlagRun("dingus_visited_chunk_" .. chunk_id)
+if chunk_id ~= last_chunk_id then
+	last_chunk_id = chunk_id
+	local has_visited_chunk = GameHasFlagRun("dingus_visited_chunk_" .. chunk_id)
 
-    if(not has_visited_chunk)then
-        GameAddFlagRun("dingus_visited_chunk_" .. chunk_id)
-	
+	if not has_visited_chunk then
+		GameAddFlagRun("dingus_visited_chunk_" .. chunk_id)
 
-        if(Random(0, 100) <= discovery_chance)then
-
+		if Random(0, 100) <= discovery_chance then
 			local points = {}
 			local angle_step = math.pi * 2 / 32
 			for i = 0, 31 do
@@ -41,11 +37,9 @@ if(chunk_id ~= last_chunk_id)then
 				local new_y = y + add_y
 
 				local hit = RaytraceSurfaces(new_x, new_y, new_x, new_y + 0.5)
-				if(hit == false)then
+				if hit == false then
 					local hit2, hit_x, hit_y = RaytraceSurfaces(new_x, new_y, new_x, new_y + 256)
-					if(hit2)then
-						table.insert(points, {hit_x, hit_y - 10})
-					end
+					if hit2 then table.insert(points, { hit_x, hit_y - 10 }) end
 				end
 			end
 
@@ -56,13 +50,7 @@ if(chunk_id ~= last_chunk_id)then
 				local y = point[2]
 
 				EntityLoad("mods/noita.fairmod/files/content/dingus/dingus.xml", x, y)
-				
-
 			end
-       
-        end
-    end
+		end
+	end
 end
-
-
-

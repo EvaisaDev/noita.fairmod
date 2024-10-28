@@ -81,7 +81,17 @@ if ingestion_comp then
 				ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
 			end
 
-			GameCreateParticle("poo", x, y, GameHasFlagRun("tacobell_mode") and 32 or 8, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false)
+			GameCreateParticle(
+				"poo",
+				x,
+				y,
+				GameHasFlagRun("tacobell_mode") and 32 or 8,
+				dir_x * shit_velocity,
+				dir_y * shit_velocity,
+				false,
+				false,
+				false
+			)
 
 			ingestion_size = ingestion_size - 15
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)

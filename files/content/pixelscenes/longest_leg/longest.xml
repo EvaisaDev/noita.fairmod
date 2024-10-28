@@ -1,0 +1,27 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_body.xml"
+		offset_x="38.5"
+		offset_y="65.5">
+	</SpriteComponent>
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_eye.xml"
+		emissive="1"
+		offset_x="38.5"
+		offset_y="65.5">
+	</SpriteComponent>
+
+	<InteractableComponent
+		ui_text="Press $0 to talk to the ???"
+		radius="30">
+	</InteractableComponent>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_dialogue.lua"
+		script_source_file="mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_dialogue.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		execute_on_added="1">
+	</LuaComponent>
+</Entity>

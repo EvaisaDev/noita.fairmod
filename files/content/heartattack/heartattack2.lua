@@ -1,3 +1,4 @@
+-- stylua: ignore start
 local entity_id = GetUpdatedEntityID()
 
 IngestionComp = EntityGetFirstComponent(entity_id, "IngestionComponent")
@@ -26,3 +27,4 @@ if IngestionComp then
 		end
 	end
 end
+-- stylua: ignore end

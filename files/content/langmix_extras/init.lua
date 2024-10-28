@@ -1,6 +1,6 @@
 local tcsv = dofile_once("mods/noita.fairmod/files/content/langmix/tcsv.lua") --nabbed from dexter, again lmao
 
---ack this is annoying to get the dumb lang 
+--ack this is annoying to get the dumb lang
 
 local LANG_INDEX_MAP = {
 	["English"] = 2,
@@ -25,7 +25,6 @@ local idx = LANG_INDEX_MAP[language] or 2
 
 -- Unsupported language
 if not idx then return end
-
 
 function format_csv_row(row)
 	local escaped = {}

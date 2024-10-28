@@ -2,10 +2,9 @@ dofile_once("data/scripts/lib/utilities.lua")
 
 local entity = GetUpdatedEntityID()
 
-local root = EntityGetParent( entity)
+local root = EntityGetParent(entity)
 
-if(root == entity)then return end
-
+if root == entity then return end
 
 local component = EntityGetFirstComponent(root, "CharacterDataComponent")
 if not component then return end

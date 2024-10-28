@@ -1,8 +1,9 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
+
 local new_elem = nxml.new_element("AudioLoopComponent", {
 	file = "mods/noita.fairmod/fairmod.bank",
-	event_name = "spooky/skeleton",
+	event_name = ModSettingGet("noita.fairmod.streamer_mode") and "spooky/skeleton_streamer" or "spooky/skeleton",
 	auto_play = "1",
 })
 

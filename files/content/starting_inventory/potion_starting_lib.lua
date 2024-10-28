@@ -2,23 +2,7 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("data/scripts/items/init_potion.lua")
 
-
-
-
-
-
-
 --dont do stuff here dinguses and dingi, go to "content/starting_inventory/potion_append.lua"- which overwrites the default values here without the unnecessary clutter
-
-
-
-
-
-
-
-
-
-
 
 --PotionStartingLib global table
 PotionStartingLib = {}
@@ -119,8 +103,6 @@ ps.functions = {
 ---@type fun(potion_material: string, data: table)[]
 local functions2 = {}
 
-
-
 ---Function that chooses the potion material
 ---@diagnostic disable
 function ps.potion_a_materials(outcome, r_value, r_value2, data) --Variables are available as inputs in case you want to run with forced RNG. data lets you pass extra data if you want
@@ -151,7 +133,6 @@ function ps.potion_a_materials(outcome, r_value, r_value2, data) --Variables are
 	return tostring(outcome)
 end
 
-
 ---@diagnostic disable
 function init(entity_id) --mostly vanilla function
 	local x, y = EntityGetTransform(entity_id)
@@ -173,9 +154,6 @@ function init(entity_id) --mostly vanilla function
 
 	init_potion(entity_id, potion_material)
 end
-
-
-
 
 --Handy script for mass-generating potion outcomes and displaying them neatly in the console
 function ps.TEST(num)

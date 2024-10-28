@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-doc-field, duplicate-set-field
 --- @class instruction_booklet_gui:UI_class
 --- @field book instruction_booklet_gui_book
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua")
@@ -104,6 +105,7 @@ function ui:draw_navigation_buttons()
 	if self.book.flip_progress < 1 then
 		if self:IsHoverBoxHovered(self.x, self.y, self.book.width * 2, self.book.height, true) then
 			self:BlockInput()
+			return
 		end
 	end
 

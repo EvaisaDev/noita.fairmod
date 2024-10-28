@@ -1,3 +1,4 @@
+EntityID = GetUpdatedEntityID()
 local ui = dofile_once("mods/noita.fairmod/files/content/instruction_booklet/gui.lua") --- @class instruction_booklet_gui
 
 function enabled_changed(entity_id, is_enabled)

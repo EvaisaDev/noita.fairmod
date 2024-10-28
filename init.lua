@@ -1,3 +1,5 @@
+local SetContent = ModTextFileSetContent
+
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
@@ -5,7 +7,6 @@ local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_setti
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
 local nukes = dofile_once("mods/noita.fairmod/files/content/nukes/scripts/nukes.lua")
-local input_delay = dofile_once("mods/noita.fairmod/files/content/input_delay/input_delay.lua")
 local tm_trainer = dofile_once("mods/noita.fairmod/files/content/tmtrainer/init.lua")
 local crits = dofile_once("mods/noita.fairmod/files/content/crits/init.lua")
 local clipboard = dofile_once("mods/noita.fairmod/files/content/clipboard/init.lua")
@@ -29,8 +30,11 @@ local candy = dofile_once("mods/noita.fairmod/files/content/candy/init.lua")
 local information_kiosk = dofile_once("mods/noita.fairmod/files/content/information_kiosk/init.lua")
 local cheats = dofile_once("mods/noita.fairmod/files/content/cheats/init.lua")
 local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.lua")
+local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
+
+if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -67,6 +71,8 @@ dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
+dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
+dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -214,6 +220,7 @@ end
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
+	ModTextFileSetContent = SetContent
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
@@ -223,7 +230,6 @@ function OnWorldPreUpdate()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
-	input_delay.OnWorldPreUpdate()
 	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
@@ -233,6 +239,9 @@ function OnWorldPreUpdate()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
+	smokedogg.update()
+
+	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -284,8 +293,10 @@ end
 -- Conga wuz here
 -- Heinermann was here
 -- Seeker was here
+-- Horscht may have been here
 -- Dunk is bald
 -- Scipio was here
+-- UserK.
 
 --     ##
 --    #o##
@@ -316,4 +327,43 @@ end
 --▒▒▒▒        ▒▒▒▒
 --▒▒▒▒        ▒▒▒▒
 
---▓▒░ Colour palette for my art 😊
+--▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua
+
+
+
+--[[                                                       
+                                                                                                                                            
+                                            .....:::::...                                           
+                                           .::^^^^^^^^^:..                                          
+                                         ..:^~!!!!!!~~~^:..                                         
+                                      ..:^~!?JYYJJ?7!~~^:::...                                      
+                                    ..::^~7J5PGGP5J7!~^^^^^^::..                                    
+                                    .::^~!?YPGBBG5J7!~~~~!!!~~^:.                                   
+                                    .:^~~!7?JYYYJ?7!~~!7?JYYJ?!^.                                   
+                                    .:^~~~!!!!!!!~~~~~7JYPGGPY?~:                                   
+                                   ..:^~~~!!!!!!~~~~~~7J5GBBG5?~:                                   
+                                ....:^^~~!7??JJJJ?7!~~!7JY55Y?!^.                                   
+                              ...:::^^^~~!?Y5GGGP5J7!~~~!!77!~^:.                                   
+                              ..:::^^^^^~!7J5GBBG5J7!~^^^^^^^::..                                   
+                              ..::^^:::::^~7?JYYYJ?7!~~^^::..........                               
+                              ..:::::..  .:^~!!!7!!!!~~^:..  ...::::..                              
+                             ...::::..     .:^^^~~~~~^^:..    .:::::..                              
+                         ............      .::^^^^::::..      .:::::..                              
+                        ..:::::..         ..::::::...        ..:::::..                              
+                       ..::::::..         ..:::::..          ..:::::..                              
+                       ..::::::..         ..:::::..          ..:::::..                              
+                       ..::::::..         ..:::::..          ..:::::..                              
+                       ..::::::..         ..::::::..         ...::::...                             
+                       ..::::::..         ..::::::..           .............                        
+                       ..::::::..         ..::::::..               ..:::::..                        
+                       ...:::::..         ..:::::...               ..::::::..                       
+                        ..::::...         ...::::..                ...::::..                        
+                       ...:::::..         ..:::::...               ..:::::...                       
+                       ..:^^^^::.         .::^^^^:..               .::^^^^:..                       
+                       .:^~!!~^:.         .:^~!!~^:.               .:^~!!~^:.                       
+                       .^~!77!~^:.       .:^~!77!~^.              .:^~!77!~^.                       
+                       .:^~~~~^:.         .:^~~~~^:.               .:^~~~~^:.                       
+                        ..::::...         ...::::..                ...::::..                        
+                                                                                                    
+
+--nabbed from Immersive Mimics, absolutely wretch of a mod ]]

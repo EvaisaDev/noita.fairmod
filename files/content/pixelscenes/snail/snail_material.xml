@@ -1,0 +1,50 @@
+<Materials>
+	<CellData
+		name="snail_static_shell"
+		ui_name="Snail Shell"
+		tags="[NO_FUNGAL_SHIFT],[fairmod_snail]"
+		density="10"
+		cell_type="liquid"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		wang_color="ffaef125"
+		durability="14"
+		platform_type="1">
+	</CellData>
+
+	<CellDataChild
+		_parent="snail_static_shell"
+		name="snail_static_meat"
+		ui_name="Snail Meat"
+		tags="[NO_FUNGAL_SHIFT],[fairmod_snail],[meat]"
+		wang_color="ffae0125"
+		durability="7"
+		slippery="1"
+		liquid_stains="1">
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="SLIMY" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="POISONED" amount="0.1" />
+				<StatusEffect type="FAIRMOD_SNAIL_EATER" amount="1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellDataChild>
+
+	<Reaction probability="100" fast_reaction="1"
+		input_cell1="[fairmod_snail]" input_cell2="[liquid]"
+		output_cell1="[fairmod_snail]" output_cell2="air"
+	></Reaction>
+
+	<Reaction probability="100" fast_reaction="1"
+		input_cell1="[fairmod_snail]" input_cell2="[gas]"
+		output_cell1="[fairmod_snail]" output_cell2="air"
+	></Reaction>
+
+	<Reaction probability="100" fast_reaction="1"
+		input_cell1="[fairmod_snail]" input_cell2="[food]"
+		output_cell1="[fairmod_snail]" output_cell2="air"
+	></Reaction>
+</Materials>

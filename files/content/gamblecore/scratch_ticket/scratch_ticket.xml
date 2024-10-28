@@ -1,0 +1,91 @@
+<Entity tags="item_physics,item_pickup,scratch_ticket">
+	<UIInfoComponent
+		name="Scratch Ticket"
+	></UIInfoComponent>
+
+	<DamageModelComponent
+		_tags="enabled_in_world"
+		air_needed="0"
+		blood_material=""
+		drop_items_on_death="0"
+		falling_damages="1"
+		hp="0.1"
+		ragdoll_filenames_file=""
+		ragdoll_material=""
+	></DamageModelComponent>
+
+	<SimplePhysicsComponent
+		_tags="enabled_in_world"
+	></SimplePhysicsComponent>
+
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		offset_x="5"
+		offset_y="6"
+		image_file="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff_in_world.png"
+	></SpriteComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_world"
+		_enabled="1"
+		offset_x="5"
+		offset_y="11"
+		image_file="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff_in_world.png"
+	></SpriteComponent>
+
+
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name="Scratch Ticket"
+		max_child_items="0"
+		is_pickable="1"
+		is_equipable_forced="1"
+		play_spinning_animation="0"
+		play_hover_animation="0"
+		ui_sprite="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff_inventory.png"
+		ui_description="A scratch ticket. Scratch it off to reveal the prize!"
+		preferred_inventory="QUICK"
+	></ItemComponent>
+
+	<AbilityComponent
+		ui_name="Scratch Ticket"
+		throw_as_item="1"
+		rotate_in_hand="0"
+	>
+		<gun_config
+			deck_capacity="0"
+		></gun_config>
+
+	</AbilityComponent>
+
+	<InheritTransformComponent/>
+	
+	<InteractableComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		radius="20"
+		ui_text="Press $0 to view/hide the ticket."
+		name="interact"
+	/>
+	
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		script_source_file="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	/>
+
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_interacting="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
+		script_enabled_changed="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/ticket.lua"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	/>
+
+</Entity>

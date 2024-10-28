@@ -1,5 +1,6 @@
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.dialog_box_height = 80
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
@@ -18,11 +19,16 @@ local tips = {
 	"Happy Halloween!",
 	"Hey, if you combine Whiskey and Berserkium it makes my own patented Hamis Bars!!",
 	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
+	"Follow the purple lights.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
-	table.concat{"There are ", GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?"},
+	-- stylua: ignore start
+	table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
+	-- stylua: ignore end
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
+	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
+	"I heard that my information pamphlet contains the solution to the eyes, can you believe it?!",
 }
 
 function interacting(player, entity_interacted, interactable_name)
@@ -55,24 +61,21 @@ function interacting(player, entity_interacted, interactable_name)
 					return true
 				end,
 				func = function(dialog)
-
 					local item_count = 0
 					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
 						if EntityGetName(child) == "inventory_quick" then
 							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
-								if(ability_component)then
+								local ability_component =
+									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								if ability_component then
 									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
-									if( not use_gun_script )then
-										item_count = item_count + 1
-									end
-
+									if not use_gun_script then item_count = item_count + 1 end
 								end
 							end
 						end
 					end
 
-					if(item_count < 4)then
+					if item_count < 4 then
 						dialog.show({
 							text = "Ofcourse!! Here you go.\nHave a great day!!",
 							options = {
@@ -81,7 +84,11 @@ function interacting(player, entity_interacted, interactable_name)
 								},
 							},
 						})
-						local items = EntityLoad("mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml", x, y)
+						local items = EntityLoad(
+							"mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml",
+							x,
+							y
+						)
 						GamePickUpInventoryItem(player, items, false)
 					else
 						dialog.show({
@@ -91,9 +98,55 @@ function interacting(player, entity_interacted, interactable_name)
 									text = "Leave",
 								},
 							},
-						})	
+						})
 					end
-				end,	
+				end,
+			},
+			{
+				text = "I'd like to buy a scratch-off (50 gold)",
+				enabled = function(stats)
+					return stats.gold >= 50
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Oh, you want to try your luck? Here you go!!\nYou can redeem your winnings here or at the loanprey!",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+					EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+
+					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
+				end,
+			},
+			{
+				text = "I want to redeem my scratch-off(s)",
+				show = function(stats)
+					local inventory_items = GameGetAllInventoryItems(player) or {}
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then return true end
+					end
+					return false
+				end,
+				func = function(dialog)
+					dialog.show({
+						text = "Oh man!! I hope you won big!\nHere's your winnings!",
+						options = {
+							{
+								text = "Leave",
+							},
+						},
+					})
+
+					local inventory_items = GameGetAllInventoryItems(player) or {}
+
+					for _, item in ipairs(inventory_items) do
+						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
+					end
+				end,
 			},
 			{
 				text = "Leave",

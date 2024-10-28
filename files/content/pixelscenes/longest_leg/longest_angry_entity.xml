@@ -1,0 +1,32 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_angry_entity_gfx.xml"
+		offset_x="32"
+		offset_y="64"
+		z_index="0"
+		has_special_scale="1"
+		special_scale_x="0.7"
+		special_scale_y="0.7">
+	</SpriteComponent>
+
+	<LifetimeComponent
+		lifetime="59"
+		fade_sprites="1">
+	</LifetimeComponent>
+
+	<MagicConvertMaterialComponent
+		radius="1024"
+		is_circle="true"
+		steps_per_frame="3"
+		from_any_material="1"
+		to_material="material_darkness">
+	</MagicConvertMaterialComponent>
+
+	<MagicConvertMaterialComponent
+		radius="64"
+		is_circle="true"
+		steps_per_frame="1"
+		from_material="material_darkness"
+		to_material="fairmod_hamisium">
+	</MagicConvertMaterialComponent>
+</Entity>

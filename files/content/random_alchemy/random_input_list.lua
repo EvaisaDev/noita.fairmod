@@ -20,6 +20,7 @@ local input = {
 	"oil",
 	"acid",
 	"acid_gas",
+	"smoke",
 }
 
 return input

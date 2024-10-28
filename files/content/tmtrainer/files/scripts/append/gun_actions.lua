@@ -82,7 +82,7 @@ end
 
 -- Main script execution
 local TMTRAINER_INDEX = 0
-
+local filter = dofile_once("mods/noita.fairmod/files/content/tmtrainer/files/scripts/slur_filter.lua")
 -- Function to create a new TMTRAINER action
 local function create_tmtrainer_action(action_type, index)
 	local added_actions = {}
@@ -142,10 +142,37 @@ local function create_tmtrainer_action(action_type, index)
 			local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
 
 			-- Build name and description from random chunks
-			table.insert(name_parts, get_random_chunk(added_name, 6))
-			table.insert(description_parts, get_random_chunk(added_description, 10))
+			local max_iterations = 30
+			local function try_update_name(chars, iteration)
+				iteration = iteration or 0
+
+				table.insert(name_parts, get_random_chunk(added_name, chars))
+
+				if filter.contains_slur(table.concat(name_parts)) then
+					table.remove(name_parts)
+					if iteration < max_iterations and (chars - 1 > 0) then
+						try_update_name(chars - 1, iteration + 1)
+					end
+				end
+			end	
+
+			local function try_update_description(chars, iteration)
+				iteration = iteration or 0
+
+				table.insert(description_parts, get_random_chunk(added_description, chars))
+
+				if filter.contains_slur(table.concat(description_parts)) then
+					table.remove(description_parts)
+					if iteration < max_iterations and (chars - 1 > 0) then
+						try_update_description(chars - 1, iteration + 1)
+					end
+				end
+			end
+
+			try_update_name(4, 0)
+			try_update_description(10, 0)
 		end
-		
+
 		-- Collect action functions
 		table.insert(functions, added_action.action)
 
@@ -278,10 +305,9 @@ local function create_tmtrainer_action(action_type, index)
 				seed_offset = seed_offset + 1
 				SetRandomSeed(TMTRAINER_INDEX, seed_offset)
 				local caster = EntityGetRootEntity(GetUpdatedEntityID())
-				if(EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player"))then
+				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then
 					_streaming_run_event(twitch_event.id)
 				end
-				
 			end
 		end
 	end
@@ -307,6 +333,8 @@ local function create_tmtrainer_action(action_type, index)
 
 	return new_action
 end
+
+SetRandomSeed(TMTRAINER_INDEX, 1)
 
 -- Iterate over each action type and create new TMTRAINER actions
 for action_type, action_list in pairs(action_info_map) do
