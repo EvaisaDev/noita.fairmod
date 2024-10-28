@@ -325,6 +325,15 @@ achievements = {
 			return (tonumber(GlobalsGetValue("TELEPORTER_USES")) or 0) > 0
 		end,
 	},
+	{
+		name = "Master of Crashing",
+		description = "Got you",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/wizard_crash.png",
+		flag = "wizard_crash",
+		unlock = function ()
+			return HasFlagPersistent("crashed_by_wizard")
+		end,
+	},
 }
 
 local function romanize(num)

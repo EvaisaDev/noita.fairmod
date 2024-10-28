@@ -9,6 +9,9 @@ SetRandomSeed(x, y)
 
 local effects = {
 	function()
+		-- This immediately adds a file into the flags folder. Next time you
+		-- start Noita you get the achievement
+		AddFlagPersistent("crashed_by_wizard")
 		EntityKill(GameGetWorldStateEntity())
 	end,
 	function()
