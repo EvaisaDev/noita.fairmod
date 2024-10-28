@@ -553,7 +553,15 @@ local extra_ui = {
 		text = function()
 			local _, y = GameGetCameraPos()
 			-- Don't show X position. That would spoil the PW!
-			return "Y position: " .. math.floor(y)
+			local above_or_below = ""
+			if y < 10 then
+				above_or_below = "above surface"
+			elseif y > 10 then
+				above_or_below = "underground"
+			else
+				return "Depth: Surface"
+			end
+			return "Depth: " .. math.abs(math.floor(y / 10))/2 .. "m " .. above_or_below
 		end,
 	},
 }
