@@ -336,10 +336,20 @@ return {
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end
 	},
-	-- stylua: ignore start
-	--cheatcode that teleports you to the cave entrance in your current world, im so fucking sorry
-	{ code = "/spawn", name = "/spawn", description = "Teleporting in 3... 2... wait, you're already there!", func = function(player) --[[go to cave entrance in current world]] EntityApplyTransform(player, MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X") + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512, tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))) end } --actually nvm this is cool as fuck, not sorry.
-	-- stylua: ignore end
+	{ -- sorry i fixed your bullshit :)
+		code = "/spawn",
+		name = "/spawn",
+		description = "Teleporting in 3... 2... wait, you're already there!",
+		func = function(player)
+			-- Variables for coordinates
+			local start_x = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))
+			local start_y = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))
+			local parallel_world_offset = GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512
+	
+			-- Teleport player to the calculated coordinates
+			EntityApplyTransform(player, start_x + parallel_world_offset, start_y)
+		end
+	}
 	,{
 		code = "yourworldseed",
 		func = function ()
