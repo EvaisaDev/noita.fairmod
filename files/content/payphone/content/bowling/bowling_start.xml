@@ -1,0 +1,20 @@
+<Entity >
+	<MagicConvertMaterialComponent
+      kill_when_finished="1"
+      from_material_tag="[solid]"
+      steps_per_frame="5"
+      to_material="air"
+      clean_stains="1"
+      is_circle="1"
+      radius="350" 
+	  loop="0"
+	  >
+    </MagicConvertMaterialComponent>
+	
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/payphone/content/bowling/bowling_spawn_items.lua"
+		execute_every_n_frame="-1"
+		execute_on_removed="1"
+		>
+	</LuaComponent>
+</Entity>

@@ -912,4 +912,50 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 			},
 		},
 	},
+    {
+        name = "Niko",
+        portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+        typing_sound = "four",
+        text = [[Niko it's Roman.
+			Let's go bowling.]],
+        options = {
+            {
+                text = "Sure thing!",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Okay, I'll come to get you in an hour, be ready!]],
+                        options = {
+                            {
+                                text = "Sounds good, I'll see you soon then.",
+                                func = function(dialog)
+                                    local player_id = EntityGetWithTag("player_unit")
+                                    for k=1,#player_id do
+                                        local x,y = EntityGetTransform(player_id[k])
+                                        EntityAddChild(player_id[k],EntityLoad("mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml",x,y))
+                                    end
+                                    hangup()
+                                end,
+                            },
+                        },
+                    })
+                end,
+            },
+            {
+                text = "I can't right now I'm busy.",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Okay, we'll make arrangement for another time!]],
+                        options = {
+                            {
+                                text = "Goodbye.",
+                                func = function(dialog)
+                                    hangup()
+                                end,
+                            },
+                        },
+                    })
+                end,
+            }
+        },
+    },
 }
