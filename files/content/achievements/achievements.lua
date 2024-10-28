@@ -316,6 +316,15 @@ achievements = {
 			return GameHasFlagRun("fairmod_longest_disappointed")
 		end,
 	},
+	{
+		name = "Teleporter",
+		description = "This can only end well",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/teleporter.png",
+		flag = "teleporter",
+		unlock = function ()
+			return (tonumber(GlobalsGetValue("TELEPORTER_USES")) or 0) > 0
+		end,
+	},
 }
 
 local function romanize(num)

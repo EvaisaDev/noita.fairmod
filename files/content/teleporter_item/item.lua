@@ -32,6 +32,13 @@ local frame = GameGetFrameNum()
 local controls = EntityGetFirstComponent(holder, "ControlsComponent")
 if controls then
 	if ComponentGetValue2(controls, "mButtonFrameFire") == frame then
+		local used_by_player = EntityHasTag(holder, "player_unit")
+		if used_by_player then
+			local uses = tonumber(GlobalsGetValue("TELEPORTER_USES")) or 0
+			uses = uses + 1
+			GlobalsSetValue("TELEPORTER_USES", tostring(uses))
+		end
+
 		local dir_x, dir_y = ComponentGetValue2(controls, "mAimingVector")
 		local length = math.sqrt(dir_x ^ 2 + dir_y ^ 2)
 		dir_x = dir_x / length
@@ -56,7 +63,7 @@ if controls then
 			local game_stats = EntityGetFirstComponent(holder, "GameStatsComponent")
 			if game_stats then ComponentSetValue2(game_stats, "extra_death_msg", "Teleporter misadventure") end
 
-			if EntityHasTag(holder, "player_unit") then GameSetCameraPos(dest_x, dest_y) end
+			if used_by_player then GameSetCameraPos(dest_x, dest_y) end
 
 			EntityKill(holder)
 		end
