@@ -303,6 +303,28 @@ return {
 		name = "Ouch!",
 		description = "Player fell out of the world.",
 		func = function(player)
+			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityKill(player)
+		end
+	},
+	{
+		code = "boobs",
+		func = function(player)
+			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityKill(player)
+		end
+	},
+	{
+		code = "ariral.boobs",
+		func = function(player)
+			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityKill(player)
+		end
+	},
+	{
+		code = "sex",
+		func = function(player)
+			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
 			EntityKill(player)
 		end
 	},
@@ -318,4 +340,60 @@ return {
 	--cheatcode that teleports you to the cave entrance in your current world, im so fucking sorry
 	{ code = "/spawn", name = "/spawn", description = "Teleporting in 3... 2... wait, you're already there!", func = function(player) --[[go to cave entrance in current world]] EntityApplyTransform(player, MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X") + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512, tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))) end } --actually nvm this is cool as fuck, not sorry.
 	-- stylua: ignore end
+	,{
+		code = "yourworldseed",
+		func = function ()
+			GameAddFlagRun("YOUBLITHINGIDIOT")
+		end
+	},
+	{
+		code = "london",
+		name = "Aye bruv",
+		description = "Oh, splendid! Another dreary cup of tea to elevate my utterly bland day—how terribly exciting!",
+		func = function ()
+			local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
+			ComponentSetValue2(state, "fog_target",		9999999)
+			ComponentSetValue2(state, "fog",			9999999)
+			ComponentSetValue2(state, "rain_target",	9999999)
+			ComponentSetValue2(state, "rain",			9999999)
+			ComponentSetValue2(state, "ENDING_HAPPINESS_HAPPENING", false)
+			ComponentSetValue2(state, "ENDING_HAPPINESS_FRAMES", 0)
+			ComponentSetValue2(state, "ENDING_HAPPINESS", false)
+		end
+	},
+	{
+		code = "thebodies",
+		name = "the bodies the bodies the bodies the bodies the bodies",
+		description = "oh no",
+		func = function (player)
+		if not GameHasFlagRun("thebodies") then
+			GameAddFlagRun("thebodies")
+			ModTextFileSetContent("data/thebodies.lua", [[local x, y, r, sx, sy = EntityGetTransform(GetUpdatedEntityID()); LoadRagdoll("data/ragdolls/player/filenames.txt", x, y - 10, "meat", sx, 0, -1)]])
+		end
+		EntityAddComponent2(player, "LuaComponent", {
+			script_source_file="data/thebodies.lua",
+			execute_every_n_frame=30
+		})
+		end
+	},
+	{
+		code = "genocide",
+		name = "genocide",
+		description = "we murderin",
+		func = function (player)
+			local x, y= EntityGetTransform(player)
+			for k, v in ipairs(GetEnemiesInRadius(x, y, 256)) do
+				EntityConvertToMaterial(v, "blood")
+				EntityKill(v)
+			end
+		end
+	},
+	{
+		code = "wasdwasd",
+		name = "oops!",
+		description = "be more careful!",
+		func = function (player)
+			GameDropAllItems(player)
+		end
+	},
 }

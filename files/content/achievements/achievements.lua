@@ -268,8 +268,16 @@ achievements = {
 		icon = "mods/noita.fairmod/files/content/achievements/icons/banana_peelionaire.png",
 		flag = "banana_peelionaire",
 		unlock = function()
-			local banana_peels_activated = tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0"))
-			return banana_peels_activated >= 10
+			return tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0")) >= 10
+		end
+	},
+	{
+		name = "YOU BLITHING IDIOT",
+		description = "ITS THE RUN'S SEED NOT [YOUR WORLD SEED]",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/idiot.png",
+		flag = "blithingidiot",
+		unlock = function()
+			return GameHasFlagRun("YOUBLITHINGIDIOT")
 		end,
 	},
 }
