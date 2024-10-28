@@ -25,6 +25,7 @@ local function shuffle(text)
 end
 
 local function its_mad()
+	GameAddFlagRun("fairmod_longest_disappointed")
 	EntityAddComponent2(entity_id, "LifetimeComponent", { lifetime = 60, fade_sprites = true })
 	GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/orb_distant_monster/create", x, y)
 	GamePrintImportant(
@@ -54,6 +55,7 @@ local dialogue_read_the_words_8 = function(dialogue)
 				text = "I believe in Hamis now",
 				func = function(dialogue_finish)
 					bad_choice = false
+					GameAddFlagRun("fairmod_longest_content")
 					local interactable_component = EntityGetFirstComponent(entity_id, "InteractableComponent")
 					if interactable_component then EntityRemoveComponent(entity_id, interactable_component) end
 					EntityLoad(reward_to_load, x, y)

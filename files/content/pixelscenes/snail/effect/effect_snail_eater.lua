@@ -1,4 +1,6 @@
 function init(entity_id)
+	if GameHasFlagRun("fairmod_snail_eaten") then return end
+	GameAddFlagRun("fairmod_snail_eaten")
 	GamePrintImportant("Snail is angry")
 	GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", x, y)
 end
