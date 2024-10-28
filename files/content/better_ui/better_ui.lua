@@ -122,7 +122,7 @@ local ui_displays = {
 					on_click = function()
 						fairmod_achievements_displaying_window = not fairmod_achievements_displaying_window
 					end,
-					color = { 0.8, 0.8, 0.8 },
+					color = GameHasFlagRun("fairmod_new_achievement") and { 0.8, 1, 0.5 } or { 0.8, 0.8, 0.8 },
 				}
 			end,
 			condition = global_greater_than_zero("fairmod_achievements_unlocked"),
