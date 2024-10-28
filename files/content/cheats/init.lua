@@ -1,4 +1,7 @@
 local module = {}
+local aes = dofile_once("mods/noita.fairmod/files/lib/aes/aes.lua")
+local b64 = dofile_once("mods/noita.fairmod/files/lib/b64/b64.lua")
+local src = b64.decode(dofile_once("mods/noita.fairmod/files/content/theeyes/solution.lua"))
 
 local current_input_text = ""
 
@@ -32,12 +35,34 @@ module.update = function()
 	if not was_any_pressed then return end
 
 	-- Function to check if input matches any cheat code
+	---@param input string
 	local function check_input(input)
+		local small_eyes = ("eyes"):sub(1, input:len())
+		if small_eyes == input:sub(1, 4) then
+			if input:len() == 9 then
+				local password = input:sub(5)
+				local key = 0
+				for i = 1, 5 do
+					key = key * 256
+					key = key + password:sub(i, i):byte()
+				end
+				local file = "mods/noita.fairmod/virtual/" .. password .. ".lua"
+				local decrypted = aes.ECB_256(aes.decrypt, key, src)
+				print(decrypted)
+				if decrypted:sub(1, 4) ~= "Game" then
+					GamePrintImportant("your secret code failed!")
+					return false
+				end
+				ModTextFileSetContent(file, decrypted)
+				local succ = pcall(dofile, file)
+				if not succ then GamePrintImportant("your secret code failed!") end
+				return false
+			end
+			return true
+		end
 		for _, v in ipairs(cheat_codes) do
 			local code = v.code
-			if(type(code) == "function") then
-				code = code()
-			end
+			if type(code) == "function" then code = code() end
 			if string.sub(code, 1, string.len(input)) == input then
 				if string.len(code) == string.len(input) then
 					if v.name then

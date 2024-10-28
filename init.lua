@@ -1,3 +1,5 @@
+local SetContent = ModTextFileSetContent
+
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
@@ -31,9 +33,7 @@ local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.l
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 
-if ModIsEnabled("component-explorer") then
-	dofile("mods/noita.fairmod/files/content/component-explorer/init.lua")
-end
+if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -219,6 +219,7 @@ end
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
+	ModTextFileSetContent = SetContent
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
