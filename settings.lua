@@ -82,10 +82,9 @@ local function ui_get_input(_, gui, _, im_id, setting)
 		end
 	end
 
-	GuiOptionsAddForNextWidget(gui, GUI_OPTION.Layout_NextSameLine)
+	GuiLayoutBeginHorizontal(gui, 0, 0, true, 0, 0)
 	GuiText(gui, mod_setting_group_x_offset, 0, setting.ui_name)
 
-	GuiLayoutBeginHorizontal(gui, 50, 0, true, 0, 0)
 	GuiText(gui, 8, 0, "")
 	local _, _, _, x, y = GuiGetPreviousWidgetInfo(gui)
 	local w, h = GuiGetTextDimensions(gui, current_key)
@@ -105,6 +104,33 @@ local function ui_get_input(_, gui, _, im_id, setting)
 	GuiText(gui, 0, 0, current_key)
 
 	GuiLayoutEnd(gui)
+end
+
+local function break_this_window(_, gui, _, im_id, setting)
+	local text = setting.ui_name .. ": " .. GameTextGet(setting.break_it and "$option_on" or "$option_off")
+
+	local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset, 0, text)
+	local _, _, _, _, y = GuiGetPreviousWidgetInfo(gui)
+	if clicked or right_clicked then setting.break_it = not setting.break_it end
+
+	GuiTooltip(gui, setting.ui_description, "")
+
+	GuiOptionsAddForNextWidget(gui, GUI_OPTION.Layout_NoLayouting)
+	GuiImage(
+		gui,
+		im_id,
+		430,
+		y - 80,
+		"data/enemies_gfx/longleg.xml",
+		1,
+		8,
+		8,
+		0,
+		GUI_RECT_ANIMATION_PLAYBACK.Loop,
+		"pet"
+	)
+
+	if setting.break_it then local lol = nil + 0 end
 end
 
 local function build_settings()
@@ -183,6 +209,13 @@ local function build_settings()
 					value_max = 0.3,
 					value_display_multiplier = 100,
 					value_display_formatting = " $0%",
+				},
+				{
+					not_setting = true,
+					ui_name = "Move Settings",
+					ui_description = "Moves this window",
+					break_it = false,
+					ui_fn = break_this_window,
 				},
 			},
 		},
