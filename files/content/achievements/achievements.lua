@@ -269,7 +269,7 @@ achievements = {
 		flag = "banana_peelionaire",
 		unlock = function()
 			return tonumber(GlobalsGetValue("fairmod_banana_peels_activated", "0")) >= 10
-		end
+		end,
 	},
 	{
 		name = "YOU BLITHING IDIOT",
@@ -278,6 +278,42 @@ achievements = {
 		flag = "blithingidiot",
 		unlock = function()
 			return GameHasFlagRun("YOUBLITHINGIDIOT")
+		end,
+	},
+	{
+		name = "Throw a booklet",
+		description = "Welcome to fairmod",
+		icon = "mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_inventory.png",
+		flag = "throw_a_booklet",
+		unlock = function()
+			return GameHasFlagRun("fairmod_booklet_died")
+		end,
+	},
+	{
+		name = "Snail Eater",
+		description = "You monster",
+		icon = "mods/noita.fairmod/files/content/pixelscenes/snail/effect/snail_eater_icon.png",
+		flag = "snail_eaten",
+		unlock = function()
+			return GameHasFlagRun("fairmod_snail_eaten")
+		end,
+	},
+	{
+		name = "Hamis Believer",
+		description = "You have been converted and accepted Lord Hamis",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/hamis_believer.png",
+		flag = "hamis_believer",
+		unlock = function()
+			return GameHasFlagRun("fairmod_longest_content")
+		end,
+	},
+	{
+		name = "Hamis Heretic",
+		description = "Lord Hamis is disappointed",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/hamis_heretic.png",
+		flag = "hamis_heretic",
+		unlock = function()
+			return GameHasFlagRun("fairmod_longest_disappointed")
 		end,
 	},
 }

@@ -12,3 +12,7 @@ end
 function wake_up_waiting_threads()
 	ui:update()
 end
+
+function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
+	GameAddFlagRun("fairmod_booklet_died")
+end

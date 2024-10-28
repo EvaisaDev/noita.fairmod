@@ -175,6 +175,7 @@ local function CheckAchievements()
 		if not HasFlagPersistent(flag) and achievement.unlock() then
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
+			GameAddFlagRun("fairmod_new_achievement")
 			AddFlagPersistent(flag)
 		elseif HasFlagPersistent(flag) then
 			achievements_unlocked = achievements_unlocked + 1
@@ -290,6 +291,7 @@ function ui:DrawAchievementsScrollbox()
 end
 
 function ui:DrawAchievementsWindow()
+	GameRemoveFlagRun("fairmod_new_achievement")
 	local x = 26
 	local y = 50
 	self:Draw9Piece(
