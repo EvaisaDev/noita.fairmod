@@ -59,7 +59,7 @@ local function fixup_prop_children(element)
 		end
 		elem_multiply_attr(comp, "leak_pressure_min", 2)
 		elem_multiply_attr(comp, "leak_pressure_max", 6)
-		elem_multiply_attr(comp, "b2_force_on_leak", 5)
+		elem_multiply_attr(comp, "b2_force_on_leak", -5)
 		comp:set("on_death_spill", true)
 		comp:set("leak_on_damage_percent", 0.999)
 
