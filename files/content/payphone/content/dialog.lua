@@ -960,7 +960,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
     },
 	{
         name = "Copi",
-        portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+        portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
         typing_sound = "sans",
         text = [[Hello, It is I. Copi of things!!]],
         options = {
@@ -974,13 +974,13 @@ appreciation, please accept 500 gold! {@func disconnected}]],
                                 text = "No it is not..",
                                 func = function(dialog)
 									dialog.show({
-										text = [[Oh what the scallop!! you better enable it NOW.]],
+										text = [[Oh what the scallop!! you better enable it #NOW#.]],
 										options = {
 											{
 												text = "No I don't think I will.",
 												func = function(dialog)
 													dialog.show({
-														text = [[What if I promise you an achievement if you do..?]],
+														text = [[What if I promise you an achievement if you do #.# #.# #?#]],
 														options = {
 															{
 																text = "Deal!",
@@ -992,6 +992,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 																text = "Maybe another time.",
 																func = function(dialog)
 																	hangup()
+																	-- Add a script to the player to add a 'herobrine' shadow copi that just subtly appears at the edge of the screen sometimes
 																end,
 															},
 														},
@@ -1019,6 +1020,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 												text = "...",
 												func = function(dialog)
 													hangup()
+													-- Do something if the mod is actually off
 												end,
 											},
 										},

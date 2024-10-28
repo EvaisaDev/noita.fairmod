@@ -23,7 +23,8 @@ function clipboard.OnPlayerSpawned()
 			"Whuh",
 			"Huh??",
 			"Also try Noita Community Rebalance!",
-			"Copi stinks",
+			"Copi stinks", -- D:
+			"Copi smells really nice, actually :(",
 			"Hydrate yourself, NOW",
 			"I love arson!",
 			"This person stinks!",

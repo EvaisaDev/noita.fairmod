@@ -91,6 +91,7 @@ end
 if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("cpand_tmtrainer_chance") or 0.05 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
 
 --unused funni stuff
+-- please use the funni stuff -c
 
 local include = {
 	COPITH_SUMMON_HAMIS = true,
