@@ -110,9 +110,26 @@ local function break_this_window(_, gui, _, im_id, setting)
 	local text = setting.ui_name .. ": " .. GameTextGet(setting.break_it and "$option_on" or "$option_off")
 
 	local clicked, right_clicked = GuiButton(gui, im_id, mod_setting_group_x_offset, 0, text)
+	local _, _, _, _, y = GuiGetPreviousWidgetInfo(gui)
 	if clicked or right_clicked then setting.break_it = not setting.break_it end
 
 	GuiTooltip(gui, setting.ui_description, "")
+
+	GuiOptionsAddForNextWidget(gui, GUI_OPTION.Layout_NoLayouting)
+	GuiImage(
+		gui,
+		im_id,
+		430,
+		y - 80,
+		"data/enemies_gfx/longleg.xml",
+		1,
+		8,
+		8,
+		0,
+		GUI_RECT_ANIMATION_PLAYBACK.Loop,
+		"pet"
+	)
+
 	if setting.break_it then local lol = nil + 0 end
 end
 
