@@ -19,7 +19,7 @@ local output = {
 	"glowstone",
 	"bush_seed",
 	"wood_static",
-	"gunpowder_unstable",
+	"gunpowder_explosive",
 	"lava",
 	"air",
 	"fairmod_hamisium",
