@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{a9b1195c-6e75-40e7-99bd-5d1a1c365ecc}">
 		<property name="assetPath">
-			<value>God Hand - Ending Credits - noX (youtube).mp3</value>
+			<value>Compress_Extra/God Hand - Ending Credits - noX (youtube).mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

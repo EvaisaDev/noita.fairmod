@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{0ffcef21-a27f-4850-a0ed-a4f2561b63b9}">
 		<property name="assetPath">
-			<value>meow_0.ogg</value>
+			<value>Compress/meow_0.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>16</value>

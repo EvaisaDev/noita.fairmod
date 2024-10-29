@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{b37ebe80-7f70-4719-9c79-9b110d7d5af9}">
 		<property name="assetPath">
-			<value>gamblecore-03.mp3</value>
+			<value>Compress/gamblecore-03.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

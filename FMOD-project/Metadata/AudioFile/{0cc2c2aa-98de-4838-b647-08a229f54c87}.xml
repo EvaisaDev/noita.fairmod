@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{0cc2c2aa-98de-4838-b647-08a229f54c87}">
 		<property name="assetPath">
-			<value>purr.mp3</value>
+			<value>Compress/purr.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

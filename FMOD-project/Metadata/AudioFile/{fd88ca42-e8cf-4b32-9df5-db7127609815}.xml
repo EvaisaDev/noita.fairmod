@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{fd88ca42-e8cf-4b32-9df5-db7127609815}">
 		<property name="assetPath">
-			<value>Spooky Scary Skeletons (House Remix).mp3</value>
+			<value>Compress_Extra/Spooky Scary Skeletons (House Remix).mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
