@@ -58,12 +58,15 @@ local ticket_viewed = EntityHasTag(entity_id, "viewing")
 
 if(ticket_viewed)then
 	ticket:draw()
+else
+	GuiStartFrame(ticket.gui)
 end
 
 -- no tag = redeemed
 if(not EntityHasTag(entity_id, "scratch_ticket") )then
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/redeem", 0, 0)
 	ticket:redeem()
+	GuiDestroy(ticket.gui)
 	local parent = EntityGetRootEntity(entity_id)
 	GameKillInventoryItem(parent, entity_id)
 end
