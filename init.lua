@@ -1,5 +1,6 @@
 local SetContent = ModTextFileSetContent
 
+dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
@@ -328,8 +329,6 @@ end
 --▒▒▒▒        ▒▒▒▒
 
 --▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua
-
-
 
 --[[                                                       
                                                                                                                                             
