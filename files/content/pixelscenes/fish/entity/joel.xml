@@ -1,0 +1,30 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/pixelscenes/fish/entity/joel_fgx.xml"
+		offset_x="40"
+		offset_y="13"
+		has_special_scale="1"
+		special_scale_x="0.5"
+		special_scale_y="0.5"
+		z_index="-1">
+	</SpriteComponent>
+
+	<AudioLoopComponent
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="fish/i_am_just_a_fish"
+		auto_play="1"
+		play_on_component_enable="1"
+		calculate_material_lowpass="0">
+	</AudioLoopComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/pixelscenes/fish/entity/fish_script.lua"
+		script_material_area_checker_failed="mods/noita.fairmod/files/content/pixelscenes/fish/entity/fish_script.lua">
+	</LuaComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/pixelscenes/fish/entity/streamer_mode.lua"
+		execute_on_added="1"
+		execute_every_n_frame="-1">
+	</LuaComponent>
+</Entity>
