@@ -200,6 +200,7 @@ function OnPlayerSpawned(player)
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
+	if damage_model_comp then ComponentSetValue2(damage_model_comp, "falling_damages", true) end
 
 	EntityAddComponent2(player, "LuaComponent", {
 		script_source_file = "mods/noita.fairmod/files/content/piss/player_immersion.lua",
