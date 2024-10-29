@@ -301,6 +301,14 @@ return {
 	},
 	-- stylua: ignore start
 	--cheatcode that teleports you to the cave entrance in your current world, im so fucking sorry
-	{ code = "/spawn", name = "/spawn", description = "Teleporting in 3... 2... wait, you're already there!", func = function(player) --[[go to cave entrance in current world]] EntityApplyTransform(player, MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X") + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512, tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))) end } --actually nvm this is cool as fuck, not sorry.
+	{ code = "/spawn", name = "/spawn", description = "Teleporting in 3... 2... wait, you're already there!", func = function(player) --[[go to cave entrance in current world]] EntityApplyTransform(player, MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X") + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512, tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))) end }, --actually nvm this is cool as fuck, not sorry.
 	-- stylua: ignore end
+	{
+		code = "copi",
+		name = "Copi",
+		description = "Setting Immersion: 100%!",
+		func = function()
+			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
+		end
+	}
 }

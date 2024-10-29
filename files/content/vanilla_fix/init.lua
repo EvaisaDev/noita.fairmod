@@ -6,9 +6,6 @@ local catastrophicMaterials = {
 	creepy_liquid = true,
 	monster_powder_test = true,
 	totallyBogusMaterial = true,
-	t_omega_slicing_liquid = true,
-	aa_chaotic_pandorium = true,
-	aa_unstable_pandorium = true,
 } -- Catastrophic Materials list
 
 local full_data = {} --- @type {[string]:element}
