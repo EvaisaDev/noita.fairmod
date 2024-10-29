@@ -321,7 +321,7 @@ achievements = {
 		description = "This can only end well",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/teleporter.png",
 		flag = "teleporter",
-		unlock = function ()
+		unlock = function()
 			return (tonumber(GlobalsGetValue("TELEPORTER_USES")) or 0) > 0
 		end,
 	},
@@ -330,8 +330,17 @@ achievements = {
 		description = "Got you",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/wizard_crash.png",
 		flag = "wizard_crash",
-		unlock = function ()
+		unlock = function()
 			return HasFlagPersistent("crashed_by_wizard")
+		end,
+	},
+	{
+		name = "Freedom",
+		description = "You set him free",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/joel_free.png",
+		flag = "fish_is_free",
+		unlock = function()
+			return GameHasFlagRun("fairmod_fish_is_free")
 		end,
 	},
 }

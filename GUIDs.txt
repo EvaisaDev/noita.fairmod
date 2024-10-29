@@ -27,6 +27,8 @@
 {2ac7e916-cd8f-431f-9b41-36c3680c0ae0} event:/dingus/meow
 {a1f08602-b751-439b-a30c-524f5002fffc} event:/dingus/purr
 {bf5fe97b-edda-464e-9373-1bdd3bf654ac} event:/dingus/riff
+{d8a4ad2e-0e21-41c5-80bd-e1e311bf3e36} event:/fish/i_am_just_a_fish
+{28c37bc3-b2d1-4472-9436-7c0749d0a6f2} event:/fish/i_am_just_a_fish_streamer
 {9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
 {4bf99c55-f917-4cff-b3c8-ddf56f3e9ce1} event:/gamblecore/break
 {4a18f166-f0c0-467c-b874-8bc0f7361b96} event:/gamblecore/icantstopwinning
