@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{b518e66b-42b7-4976-a63d-a18450939640}">
 		<property name="assetPath">
-			<value>9_mm_gunshot-mike-koenig-123.mp3</value>
+			<value>Compress/9_mm_gunshot-mike-koenig-123.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

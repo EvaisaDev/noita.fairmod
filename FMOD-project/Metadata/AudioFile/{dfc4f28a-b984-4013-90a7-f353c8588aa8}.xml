@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{dfc4f28a-b984-4013-90a7-f353c8588aa8}">
 		<property name="assetPath">
-			<value>guitar-strum-74592.mp3</value>
+			<value>Compress_Extra/guitar-strum-74592.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

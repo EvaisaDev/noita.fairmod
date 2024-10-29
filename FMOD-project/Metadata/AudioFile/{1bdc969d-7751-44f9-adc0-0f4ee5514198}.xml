@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{1bdc969d-7751-44f9-adc0-0f4ee5514198}">
 		<property name="assetPath">
-			<value>SMG4 sound effects - time to take a piss - Herbie Hopps (youtube).mp3</value>
+			<value>Compress/SMG4 sound effects - time to take a piss - Herbie Hopps (youtube).mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

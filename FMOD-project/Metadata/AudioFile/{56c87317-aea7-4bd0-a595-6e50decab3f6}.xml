@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{56c87317-aea7-4bd0-a595-6e50decab3f6}">
 		<property name="assetPath">
-			<value>dingus_music.wav.mp3</value>
+			<value>Compress_Extra/dingus_music.wav.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
