@@ -82,42 +82,42 @@ local prizes = {
     {
         text = "$10.00",
         description = "You won 10 gold!",
-        weight = 100,
+        weight = 120,
         func = get_money_func(10),
     },
     -- 25
     {
         text = "$25.00",
         description = "You won 25 gold!",
-        weight = 25,
+        weight = 50,
         func = get_money_func(25),
     },
     -- 50
     {
         text = "$50.00",
         description = "You won 50 gold!",
-        weight = 15,
+        weight = 35,
         func = get_money_func(50),
     },
     -- 100
     {
         text = "$100.00",
         description = "You won 100 gold!",
-        weight = 10,
+        weight = 15,
         func = get_money_func(100),
     },
     -- 250
     {
         text = "$250.00",
         description = "You won 250 gold!",
-        weight = 5,
+        weight = 3,
         func = get_money_func(250),
     },
     -- 500
     {
         text = "$500.00",
         description = "You won 500 gold!",
-        weight = 2,
+        weight = 1,
         func = get_money_func(500),
     },
     -- 1000
@@ -183,7 +183,7 @@ local function get_mouse_pos(gui)
     return mx, my
 end
 
-local number_range = { 1, 50 }
+local number_range = { 1, 60 }
 
 local function get_line(x0, y0, x1, y1)
     local points = {}

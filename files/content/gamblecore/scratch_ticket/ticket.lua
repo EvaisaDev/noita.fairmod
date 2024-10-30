@@ -67,9 +67,11 @@ end
 if(not EntityHasTag(entity_id, "scratch_ticket") )then
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/redeem", 0, 0)
 	ticket:redeem()
+	GameRemoveFlagRun("fairmod_scratch_interacting")
 	GuiDestroy(ticket.gui)
 	local parent = EntityGetRootEntity(entity_id)
 	GameKillInventoryItem(parent, entity_id)
+
 end
 
 
@@ -89,6 +91,7 @@ end
 function enabled_changed(entity_id, is_enabled)
 	if(not is_enabled)then
 		EntityRemoveTag(entity_id, "viewing")
+		GameRemoveFlagRun("fairmod_scratch_interacting")
 	end
 end
 
