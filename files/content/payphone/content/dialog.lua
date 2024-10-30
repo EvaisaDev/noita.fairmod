@@ -853,13 +853,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 
 										local x, y = EntityGetTransform(player)
 
-										EntityLoad(
-											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
-												.. tostring(hm_visits)
-												.. ".xml",
-											x,
-											y
-										)
+										EntityLoad( "mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0" .. tostring(hm_visits) .. ".xml", x, y )
 									end
 									dialog.show({
 										text = [[Pleasure doing business with you! {@func disconnected}]],
@@ -980,7 +974,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 												text = "No I don't think I will.",
 												func = function(dialog)
 													dialog.show({
-														text = [[What if I promise you an achievement if you do #.# #.# #?#]],
+														text = [[What if I promise you an achievement if you do{@delay 15} #.# #.# #?#]],
 														options = {
 															{
 																text = "Deal!",
@@ -1007,24 +1001,63 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 											},
 										},
 									})
-               
                                 end,
                             },
 							{
                                 text = "Yes it is!",
                                 func = function(dialog)
-									dialog.show({
-										text = [[Well you better go catch it! {@func disconnected}]],
-										options = {
-											{
-												text = "...",
-												func = function(dialog)
-													hangup()
-													-- Do something if the mod is actually off
-												end,
+									if ModIsEnabled("copis_things") then
+										if tonumber(GlobalsGetValue("copis_things_version")) <= 0.5 then
+											dialog.show({
+												text = [[Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
+Your version is not up to date! Make sure to update it!{@func disconnected}]],
+												options = {
+													{
+														text = "...",
+														func = function(dialog)
+															hangup()
+															
+														end,
+													},
+												},
+											})
+										else
+											dialog.show({
+												text = [[Well you better go catch it! ~hehehe!~ {@func disconnected}]],
+												options = {
+													{
+														text = "...",
+														func = function(dialog)
+															-- Blessings of COpi
+															dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")local a,b=EntityGetTransform(GetPlayers()[1])dofile_once("data/scripts/gun/gun_actions.lua")local c={}for d=1,#actions do if actions[d].author=="Copi"then c[#c+1]=actions[d].id end end;for d=0,7 do local e=math.pi/8*d;local f=a+20*math.cos(e)local g=b-20*math.sin(e)CreateItemActionEntity(c[math.random(1,#c)],f,g)end;EntityLoad("data/entities/particles/image_emitters/perk_effect.xml",a,b)
+															hangup()
+														end,
+													},
+												},
+											})
+										end
+
+									else
+										for k, v in ipairs(GetPlayers()) do
+											EntityAddComponent2(v, "LuaComponent", {
+												script_source_file="mods/noita.fairmod/files/content/payphone/entities/curse_of_copi.lua",
+												execute_every_n_frame=30
+											})
+										end
+										dialog.show({
+											text = [[{@sound default}{@delay 10}{@color FF0000}#LIAR.#
+{@delay 3}{@color FFFFFF}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
+											options = {
+												{
+													text = "...",
+													func = function(dialog)
+														hangup()
+													end,
+												},
 											},
-										},
-									})
+										})
+
+									end
                                 end,
                             },
                         },
