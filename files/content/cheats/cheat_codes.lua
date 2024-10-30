@@ -336,7 +336,7 @@ return {
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end
 	},
-	{ -- sorry i fixed your bullshit :)
+	{ -- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
 		code = "/spawn",
 		name = "/spawn",
 		description = "Teleporting in 3... 2... wait, you're already there!",
@@ -349,8 +349,15 @@ return {
 			-- Teleport player to the calculated coordinates
 			EntityApplyTransform(player, start_x + parallel_world_offset, start_y)
 		end
-	}
-	,{
+	},
+	{
+		code = "copi",
+		func = function()
+			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
+			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
+		end
+	},
+	{
 		code = "yourworldseed",
 		func = function ()
 			GameAddFlagRun("YOUBLITHINGIDIOT")

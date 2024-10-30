@@ -62,7 +62,7 @@
   <CellData 
 	name="aa_chaotic_pandorium"
 	ui_name="$mat_fairmod_chaotic_pandorium"
-  	tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
+  	tags="[liquid],[magic_liquid],[water],[impure]"
 	burnable="0"
 	density="1"
 	cell_type="liquid"
@@ -177,6 +177,7 @@
   <CellDataChild
 	_parent="t_giga_slicing_liquid"
     name="t_omega_slicing_liquid"
+	tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible],[catastrophic]"
 	ui_name="$mat_fairmod_omega_slicing_liquid"
 	density="2.29"
 	wang_color="afaaaabf"
