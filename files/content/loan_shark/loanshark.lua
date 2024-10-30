@@ -9,8 +9,13 @@ local x, y = EntityGetTransform(entity_id)
 SetRandomSeed(x + GameGetFrameNum(), y)
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	-- If viewing a scratch ticket, don't interact at the same time
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
+
 	local loan_shark_debt = tonumber(GlobalsGetValue("loan_shark_debt", "0"))
-	
+
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	dialog = dialog_system.open_dialog({
 		name = "Loanprey",
 		portrait = "mods/noita.fairmod/files/content/loan_shark/portrait.png",
@@ -321,5 +326,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				text = "Leave",
 			},
 		},
+		on_closed = function ()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end
 	})
 end

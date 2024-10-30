@@ -32,6 +32,11 @@ local tips = {
 }
 
 function interacting(player, entity_interacted, interactable_name)
+	-- If viewing a scratch ticket, don't interact at the same time
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
+
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	dialog = dialog_system.open_dialog({
 		name = "Information Hämis",
 		portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
@@ -152,5 +157,8 @@ function interacting(player, entity_interacted, interactable_name)
 				text = "Leave",
 			},
 		},
+		on_closed = function ()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end
 	})
 end
