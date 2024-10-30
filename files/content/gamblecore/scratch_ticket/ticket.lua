@@ -1,3 +1,4 @@
+local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 local ticket_system = dofile_once("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.lua")
 
 local entity_id = GetUpdatedEntityID()
@@ -73,13 +74,16 @@ end
 
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	GamePrint("interacting")
+	-- If interacting with a dialog system, don't open scratch ticket at the same time
+	if dialog_system.is_any_dialog_open() or GameHasFlagRun("fairmod_dialog_interacting") then return end
+
 	if(not EntityHasTag(entity_interacted, "viewing"))then
 		EntityAddTag(entity_interacted, "viewing")
+		GameAddFlagRun("fairmod_scratch_interacting")
 	else
 		EntityRemoveTag(entity_interacted, "viewing")
+		GameRemoveFlagRun("fairmod_scratch_interacting")
 	end
-	
 end
 
 function enabled_changed(entity_id, is_enabled)

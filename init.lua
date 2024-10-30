@@ -139,6 +139,8 @@ function OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
+	GameRemoveFlagRun("fairmod_dialog_interacting")
+	GameRemoveFlagRun("fairmod_scratch_interacting")
 
 	local x, y = EntityGetTransform(player)
 
