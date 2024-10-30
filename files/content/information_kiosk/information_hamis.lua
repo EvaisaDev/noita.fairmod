@@ -60,6 +60,10 @@ local tips = {
 	"Sing to the stars;\nthey won’t respond, but they listen better than most.",
 }
 
+-- Global so it's preserved across conversations
+-- Used to avoid showing the same tip twice until you've seen all tips
+remaining_tips = remaining_tips or {}
+
 function interacting(player, entity_interacted, interactable_name)
 	-- If viewing a scratch ticket, don't interact at the same time
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
@@ -78,8 +82,13 @@ function interacting(player, entity_interacted, interactable_name)
 					return true
 				end,
 				func = function(dialog)
+					if #remaining_tips == 0 then
+						for _, tip in ipairs(tips) do
+							remaining_tips[#remaining_tips+1] = tip
+						end
+					end
 					dialog.show({
-						text = tips[Random(1, #tips)],
+						text = table.remove(remaining_tips, Random(1, #remaining_tips)),
 						options = {
 							{
 								text = "Leave",
