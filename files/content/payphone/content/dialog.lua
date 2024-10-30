@@ -1072,4 +1072,51 @@ Your version is not up to date! Make sure to update it!{@func disconnected}]],
 			},
         },
     },
+	{
+		name = "Commando 'Risk' O'Rain",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_commando.png",
+		typing_sound = "default",
+		text = [[Captain? Is that you?]],
+		options = {
+			{
+				text = "COMMANDO I NEED YOU TO BRING ME TONICS.",
+				func = function(dialog)
+					dialog.show({
+						portrait = "mods/noita.fairmod/files/content/payphone/portrait_commando_whar.png",
+						text = [[Cap'n I'm talling you it's an addiction{@delay 15}...{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Who is this?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@delay 15}... {@delay 3}Wrong number.{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Goodbye",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
 }
