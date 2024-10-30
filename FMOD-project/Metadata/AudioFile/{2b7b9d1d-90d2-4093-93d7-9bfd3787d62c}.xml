@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{2b7b9d1d-90d2-4093-93d7-9bfd3787d62c}">
 		<property name="assetPath">
-			<value>fluorescent-lamp-flickering-17625.mp3</value>
+			<value>Compress_Extra/fluorescent-lamp-flickering-17625.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

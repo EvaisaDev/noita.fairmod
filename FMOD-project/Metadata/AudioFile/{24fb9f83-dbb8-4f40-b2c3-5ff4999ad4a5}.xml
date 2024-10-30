@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{24fb9f83-dbb8-4f40-b2c3-5ff4999ad4a5}">
 		<property name="assetPath">
-			<value>ohhbanana.wav</value>
+			<value>Compress/ohhbanana.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -12,3 +12,15 @@ local vertical_index = #g_pixel_scene_03
 for i = 1, #vertical do
 	g_pixel_scene_03[vertical_index + i] = vertical[i]
 end
+
+function spawn_unique_enemy(x, y)
+	for i = 1, 12 do
+		spawn(g_unique_enemy, x - 1, y - 60 + i * 10, 0, 0)
+	end
+end
+
+function spawn_large_enemies(x, y)
+	for i = 1, 12 do
+		spawn(g_large_enemies, x - 1, y - 60 + i * 10, 0, 0)
+	end
+end

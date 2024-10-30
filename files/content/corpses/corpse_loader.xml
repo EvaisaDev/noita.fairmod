@@ -1,0 +1,7 @@
+<Entity>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/corpses/corpse_loader.lua"
+		execute_on_added="1"
+		execute_times="1"
+		/>
+</Entity>

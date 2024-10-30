@@ -1,5 +1,6 @@
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.dialog_box_height = 100
 dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "loanshark/pop" }
 -- "mods/noita.fairmod/fairmod.bank", "immersivepiss/timetotakeapiss"
 local entity_id = GetUpdatedEntityID()
@@ -8,8 +9,13 @@ local x, y = EntityGetTransform(entity_id)
 SetRandomSeed(x + GameGetFrameNum(), y)
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	-- If viewing a scratch ticket, don't interact at the same time
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
+
 	local loan_shark_debt = tonumber(GlobalsGetValue("loan_shark_debt", "0"))
-	dialog_system.dialog_box_height = 70
+
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	dialog = dialog_system.open_dialog({
 		name = "Loanprey",
 		portrait = "mods/noita.fairmod/files/content/loan_shark/portrait.png",
@@ -25,7 +31,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					return true
 				end,
 				func = function(dialog)
-					dialog_system.dialog_box_height = 100
 					dialog.show({
 						text = loan_shark_debt < 10000 and "\\*blub!\\* \\*blub blub blub..\\*"
 							or "I cannot loan you any more money. \n\\*blub\\* Pay off your debts or {@color b82318}#you will regret it.#",
@@ -37,7 +42,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -65,7 +70,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -93,7 +98,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -121,7 +126,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -149,7 +154,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									dialog_system.dialog_box_height = 70
+									
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -236,7 +241,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Hmm, ofcourse! \nYour chances of winning are very high! \\*blub\\*",
+						text = "Hmm, ofcourse! \nYour chances of winning are very high! \\*blub\\*\nYou can redeem your winnings here as well.",
 						options = {
 							{
 								text = "Leave",
@@ -321,5 +326,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				text = "Leave",
 			},
 		},
+		on_closed = function ()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end
 	})
 end

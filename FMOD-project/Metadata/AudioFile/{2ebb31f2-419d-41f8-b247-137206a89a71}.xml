@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{2ebb31f2-419d-41f8-b247-137206a89a71}">
 		<property name="assetPath">
-			<value>dogg.mp3</value>
+			<value>Compress_Extra/dogg.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

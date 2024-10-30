@@ -122,7 +122,7 @@ local ui_displays = {
 					on_click = function()
 						fairmod_achievements_displaying_window = not fairmod_achievements_displaying_window
 					end,
-					color = { 0.8, 0.8, 0.8 },
+					color = GameHasFlagRun("fairmod_new_achievement") and { 0.8, 1, 0.5 } or { 0.8, 0.8, 0.8 },
 				}
 			end,
 			condition = global_greater_than_zero("fairmod_achievements_unlocked"),
@@ -553,7 +553,15 @@ local extra_ui = {
 		text = function()
 			local _, y = GameGetCameraPos()
 			-- Don't show X position. That would spoil the PW!
-			return "Y position: " .. math.floor(y)
+			local above_or_below = ""
+			if y < 10 then
+				above_or_below = "above surface"
+			elseif y > 10 then
+				above_or_below = "underground"
+			else
+				return "Depth: Surface"
+			end
+			return "Depth: " .. math.abs(math.floor(y / 10))/2 .. "m " .. above_or_below
 		end,
 	},
 }

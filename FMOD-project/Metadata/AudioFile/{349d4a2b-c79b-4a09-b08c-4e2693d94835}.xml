@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{349d4a2b-c79b-4a09-b08c-4e2693d94835}">
 		<property name="assetPath">
-			<value>Slip and Fall Sound Effect [Aa-ZIXJdDW4].mp3</value>
+			<value>Compress/Slip and Fall Sound Effect [Aa-ZIXJdDW4].mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

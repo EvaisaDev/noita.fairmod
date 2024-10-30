@@ -27,6 +27,13 @@
 {2ac7e916-cd8f-431f-9b41-36c3680c0ae0} event:/dingus/meow
 {a1f08602-b751-439b-a30c-524f5002fffc} event:/dingus/purr
 {bf5fe97b-edda-464e-9373-1bdd3bf654ac} event:/dingus/riff
+{90b530c1-8cca-4d67-aa9e-ec8cc86ff677} event:/ending_quiz/cheer
+{97530f1b-1814-44bd-916f-cf79e7df0f24} event:/ending_quiz/mario_course_clear
+{27644ff2-751d-40f8-af10-e66408b99be0} event:/ending_quiz/millionare_ask
+{0f4e14a4-6f76-4123-8546-bb99c8a40c16} event:/ending_quiz/millionare_music
+{1575ea21-d6eb-471f-b3de-2ff53f3aced6} event:/ending_quiz/millionare_music_stop
+{d8a4ad2e-0e21-41c5-80bd-e1e311bf3e36} event:/fish/i_am_just_a_fish
+{28c37bc3-b2d1-4472-9436-7c0749d0a6f2} event:/fish/i_am_just_a_fish_streamer
 {9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
 {4bf99c55-f917-4cff-b3c8-ddf56f3e9ce1} event:/gamblecore/break
 {4a18f166-f0c0-467c-b874-8bc0f7361b96} event:/gamblecore/icantstopwinning
@@ -53,6 +60,7 @@
 {e94bd9c0-4b86-4e3e-a138-ea0159ea20cf} event:/payphone/pickup
 {876eb51e-6244-4a21-b16e-b5f6b05e8677} event:/payphone/putdown
 {ed561f27-68f1-4211-87b1-b578ce7ee6df} event:/payphone/ring
+{a6fd0e95-e39e-4df0-9c69-1664c249c7e8} event:/pedro/pedro
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
 {e64eef68-ba89-46ed-b415-1d6b80ebdf02} event:/radio/loop

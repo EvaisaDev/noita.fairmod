@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{b5bac1c2-a778-4ece-b587-0200eedea99b}">
 		<property name="assetPath">
-			<value>michael it_s your birthday today - corndog (youtube).mp3.mp3</value>
+			<value>Compress_Extra/michael it_s your birthday today - corndog (youtube).mp3.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

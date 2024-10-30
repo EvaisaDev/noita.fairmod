@@ -912,4 +912,131 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 			},
 		},
 	},
+    {
+        name = "Niko",
+        portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+        typing_sound = "four",
+        text = [[Niko it's Roman.
+			Let's go bowling.]],
+        options = {
+            {
+                text = "Sure thing!",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Okay, I'll come to get you in an hour, be ready!]],
+                        options = {
+                            {
+                                text = "Sounds good, I'll see you soon then.",
+                                func = function(dialog)
+                                    local player_id = EntityGetWithTag("player_unit")
+                                    for k=1,#player_id do
+                                        local x,y = EntityGetTransform(player_id[k])
+                                        EntityAddChild(player_id[k],EntityLoad("mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml",x,y))
+                                    end
+                                    hangup()
+                                end,
+                            },
+                        },
+                    })
+                end,
+            },
+            {
+                text = "I can't right now I'm busy.",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Okay, we'll make arrangement for another time!]],
+                        options = {
+                            {
+                                text = "Goodbye.",
+                                func = function(dialog)
+                                    hangup()
+                                end,
+                            },
+                        },
+                    })
+                end,
+            }
+        },
+    },
+	{
+        name = "Copi",
+        portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+        typing_sound = "sans",
+        text = [[Hello, It is I. Copi of things!!]],
+        options = {
+            {
+                text = "H.. Hello?",
+                func = function(dialog)
+                    dialog.show({
+                        text = [[Just calling to see if your Copith is running!]],
+                        options = {
+                            {
+                                text = "No it is not..",
+                                func = function(dialog)
+									dialog.show({
+										text = [[Oh what the scallop!! you better enable it #NOW#.]],
+										options = {
+											{
+												text = "No I don't think I will.",
+												func = function(dialog)
+													dialog.show({
+														text = [[What if I promise you an achievement if you do #.# #.# #?#]],
+														options = {
+															{
+																text = "Deal!",
+																func = function(dialog)
+																	hangup()
+																end,
+															},
+															{
+																text = "Maybe another time.",
+																func = function(dialog)
+																	hangup()
+																	-- Add a script to the player to add a 'herobrine' shadow copi that just subtly appears at the edge of the screen sometimes
+																end,
+															},
+														},
+													})
+												end,
+											},
+											{
+												text = "Of-course my great Copi, creator of things.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+               
+                                end,
+                            },
+							{
+                                text = "Yes it is!",
+                                func = function(dialog)
+									dialog.show({
+										text = [[Well you better go catch it! {@func disconnected}]],
+										options = {
+											{
+												text = "...",
+												func = function(dialog)
+													hangup()
+													-- Do something if the mod is actually off
+												end,
+											},
+										},
+									})
+                                end,
+                            },
+                        },
+                    })
+                end,
+            },
+			{
+				text = "Hang up.",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+        },
+    },
 }

@@ -1,0 +1,19 @@
+<Entity>
+
+	<InteractableComponent
+		radius="15"
+		ui_text="$hint_endingmcguffin_use"
+		name="This text will never shows up in-game lol"
+	>
+	</InteractableComponent>
+    
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/ending_quiz/run_fake_ending.lua"
+		script_source_file="mods/noita.fairmod/files/content/ending_quiz/run_fake_ending.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		execute_on_added="1"
+	>
+	</LuaComponent>
+</Entity>
+

@@ -1,3 +1,6 @@
+local SetContent = ModTextFileSetContent
+
+dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
@@ -18,6 +21,7 @@ local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
+local orbs_for_all = dofile_once("mods/noita.fairmod/files/content/orbs_for_all/orbs_for_all.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
@@ -30,10 +34,10 @@ local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.l
 local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
+local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/init.lua")
+local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 
-if ModIsEnabled("component-explorer") then
-	dofile("mods/noita.fairmod/files/content/component-explorer/init.lua")
-end
+if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
 dofile_once("mods/noita.fairmod/files/content/coveryourselfinoil/coveryourselfinoil.lua")
 dofile_once("mods/noita.fairmod/files/content/hm_portal_mimic/init.lua")
@@ -136,6 +140,8 @@ function OnPlayerSpawned(player)
 
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
+	GameRemoveFlagRun("fairmod_dialog_interacting")
+	GameRemoveFlagRun("fairmod_scratch_interacting")
 
 	local x, y = EntityGetTransform(player)
 
@@ -195,7 +201,11 @@ function OnPlayerSpawned(player)
 
 	information_kiosk.spawn_kiosk(target_x, target_y)
 
+	ending_quiz.spawn_shape(target_x, target_y)
+
 	dingus.OnPlayerSpawned(player)
+
+	corpses.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -222,9 +232,11 @@ end
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
+	ModTextFileSetContent = SetContent
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
+		orbs_for_all:update()
 		surface_bad:update()
 		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
@@ -280,6 +292,7 @@ function OnPlayerDied(player)
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
 	hescoming.OnPlayerDied(player)
+	corpses.OnPlayerDied(player)
 end
 
 -- Copi was here
@@ -295,6 +308,7 @@ end
 -- Seeker was here
 -- Horscht may have been here
 -- Dunk is bald
+-- Scipio was here
 -- UserK.
 
 --     ##
@@ -327,8 +341,6 @@ end
 --▒▒▒▒        ▒▒▒▒
 
 --▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua
-
-
 
 --[[                                                       
                                                                                                                                             

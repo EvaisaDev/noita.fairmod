@@ -1,0 +1,17 @@
+<Entity >
+	<InheritTransformComponent>
+    </InheritTransformComponent>
+	
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/payphone/content/bowling/bowling_end.lua"
+		execute_every_n_frame="-1"
+		execute_on_removed="1"
+		>
+	</LuaComponent>
+	
+    <GameEffectComponent 
+    	effect="NONE"
+    	frames="300"
+    >
+	</GameEffectComponent >
+</Entity>

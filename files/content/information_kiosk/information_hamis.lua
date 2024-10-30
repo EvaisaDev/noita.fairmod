@@ -1,5 +1,6 @@
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.dialog_box_height = 80
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
@@ -27,9 +28,15 @@ local tips = {
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
 	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
+	"I heard that my information pamphlet contains the solution to the eyes, can you believe it?!",
 }
 
 function interacting(player, entity_interacted, interactable_name)
+	-- If viewing a scratch ticket, don't interact at the same time
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
+
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	dialog = dialog_system.open_dialog({
 		name = "Information Hämis",
 		portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
@@ -107,7 +114,7 @@ function interacting(player, entity_interacted, interactable_name)
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Oh, you want to try your luck?\nHere you go!!",
+						text = "Oh, you want to try your luck? Here you go!!\nYou can redeem your winnings here or at the loanprey!",
 						options = {
 							{
 								text = "Leave",
@@ -125,9 +132,7 @@ function interacting(player, entity_interacted, interactable_name)
 				show = function(stats)
 					local inventory_items = GameGetAllInventoryItems(player) or {}
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							return true
-						end
+						if EntityHasTag(item, "scratch_ticket") then return true end
 					end
 					return false
 				end,
@@ -144,9 +149,7 @@ function interacting(player, entity_interacted, interactable_name)
 					local inventory_items = GameGetAllInventoryItems(player) or {}
 
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							EntityRemoveTag(item, "scratch_ticket")
-						end
+						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
 					end
 				end,
 			},
@@ -154,5 +157,8 @@ function interacting(player, entity_interacted, interactable_name)
 				text = "Leave",
 			},
 		},
+		on_closed = function ()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end
 	})
 end

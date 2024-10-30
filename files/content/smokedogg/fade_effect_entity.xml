@@ -3,10 +3,11 @@ This is needed because I want to face out the sprite slowly once the effect has 
 So let's just put that on this entity which we add to the player and in there check if the effect is still active
 and increase/decrease the alpha etc accordingly
 -->
-<Entity>
+<Entity name="smoke_dogg_fade_effect_entity">
 
-  <InheritTransformComponent>
-  </InheritTransformComponent>
+  <InheritTransformComponent
+    only_position="1"
+  ></InheritTransformComponent>
 
   <AudioLoopComponent
     _tags="fx"

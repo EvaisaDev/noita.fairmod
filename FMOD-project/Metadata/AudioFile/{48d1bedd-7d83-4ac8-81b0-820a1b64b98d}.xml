@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{48d1bedd-7d83-4ac8-81b0-820a1b64b98d}">
 		<property name="assetPath">
-			<value>Half Life 2_ Distorted Trumpets Music File - Dahkittydoonsta (youtube).mp3</value>
+			<value>Compress_Extra/Half Life 2_ Distorted Trumpets Music File - Dahkittydoonsta (youtube).mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
