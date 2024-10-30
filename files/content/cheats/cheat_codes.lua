@@ -352,10 +352,9 @@ return {
 	},
 	{
 		code = "copi",
-		name = "Copi",
-		description = "Setting Immersion: 100%!",
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
+			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
 		end
 	},
 	{

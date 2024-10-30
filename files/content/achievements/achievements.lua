@@ -343,6 +343,15 @@ achievements = {
 			return GameHasFlagRun("fairmod_fish_is_free")
 		end,
 	},
+	{
+		name = "Copi Malware!",
+		description = "Download Copi's Things!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copi_malware.png",
+		flag = "copi_malware",
+		unlock = function()
+			return GameHasFlagRun("COPI_IMMERSIVE_MIMICS")
+		end
+	},
 }
 
 local function romanize(num)

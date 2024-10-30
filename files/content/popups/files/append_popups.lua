@@ -15,12 +15,14 @@ local Popups = {
         "Also try Graham's Things!",
         "Also try Noita.Fairmod! wait...",
         "Hello, Geoffrey.",
+        "Become a Noitillionaire Today!",
     },
 
+    -- [IMG]path = image NOTE must be start of line and only works alone
+    -- [GIF]path = animated image --NOT FUNCTIONAL NOR IMPLEMENTED IN ANY CAPACITY, SOMETHING TO WORK ON
     -- @@ = rainbow
     -- ** = white
     -- || = RAGE
-    -- [IMG]path = image NOTE must be start of line and only works alone
 
     Random_Ads = {
         "noita NOITA *Noita* |noita| @Noita@ noita NOITA @Noita@ *Noita* noita *NOITA* *noita* Noita @Noita@ noita |noita| *Noita* @noita@ noita @Noita@ noita *Noita* |NOITA| @NOITA@ Noita noita @noita@ *noita* Noita *noita* *NOITA* noita",
@@ -29,46 +31,72 @@ local Popups = {
         "imagine having to start with *2x* *gc* + the |demolitionist| *perk* from @copi's@ @things@ i think??? and then *giga* *nuke* or *giga* *holy* *bomb*",
         "[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
         "hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
-        "YOU'RE STEAM ID IS 12486918847501984! newline Stay Safe! :thumbsup:",
+        "note to self: add more trojans to popups",
     },
 
 
-    forcePrefab = true,
+    forcePrefab = false, --do this and delete all other prefabs if you need to test a specific popup or something.
 
     Prefabs = {
-        {
-            EXE = "POPUP.EXE",
-            MESSAGE = "This is an @example@ of what a %message%(1) |might| look like! newline *White* *text.*",
-            CLICK_EVENTS = {
+        { -- very in depth example of what you can do:
+            EXE = "EVIL_POPUP.EXE", --leaving this blank will pick randomly from the Random_EXEs table
+            MESSAGE = "*I* *am* *an* |EVIL| *message* *that* *can* |*only*| *be* *closed* *by* *one* *who* *is* @pure@ @of@ @heart@ |*.*| |*.*| |*.*| newline %or% %clicks% %this% %cool-ass% %link%", --leaving this blank will pick randomly from the Random_Ads table
+
+            CLICK_EVENTS = { --click events should be in order, so the first hyperlink in a text will run the first function, second runs the second etc.
+                function(self) --if the hyperlink is clicked
+                    self.hyperlink_clicked = true
+                    self.disableSound = false
+                    self.CUSTOM_9PIECE = nil
+                    self.CUSTOM_9PIECE_BAR = nil
+                    self.CUSTOM_X = nil
+                end,
                 function(self)
-                    print("click registered! :D")
-                end
+                    print("function 2!!!")
+                        self.CLICK_EVENTS[1](self)
+                end,
+                function(self)
+                    print("function 3!!!")
+                    self.CLICK_EVENTS[1](self)
+                end,
+                function(self)
+                    print("function 4!!!")
+                    self.CLICK_EVENTS[1](self)
+                end,
+                function(self)
+                    print("function 5!!!")
+                    self.CLICK_EVENTS[1](self)
+                end,
             },
-            OPEN_FUNCTION = function(self)
+            OPEN_FUNCTION = function(self) --OPEN_FUNCTION runs only once when the window is opened
                 print("Window opened -v-")
             end,
 
-            --IS_OPEN_FUNCTION = function() end, --runs every frame, would recommend avoiding this
+            --IS_OPEN_FUNCTION = function() end, --runs every frame, would recommend you avoid using this
 
-            custom_close_counter = 0,
+            hyperlink_clicked = false, --you can put custom variables in here and they will be saved accordingly
 
-            CLOSE_FUNCTION = function(self)
-                print("Counter: " .. self.custom_close_counter)
-                self.custom_close_counter = self.custom_close_counter + 1
-                if self.custom_close_counter == 9 then
-                    self.CUSTOM_X = nil
-                elseif self.custom_close_counter >= 10 then
-                    self.cannotClose = false 
-                    self.disableSound = false
-                    print("Player closed the window >:|")
+            CLOSE_FUNCTION = function(self) --returning false AND ONLY FALSE will not close the window. Anything else, such as not returning at all, will close the window still.
+                if not self.hyperlink_clicked then
+                    return false
                 end
+                print("Player closed the window >:|")
             end,
 
-            disableSound = false,
-            cannotClose = true,
+            disableSound = true, --this disables the sound made when you click the X button
             CUSTOM_9PIECE = "mods/noita.fairmod/files/content/popups/custom_9piece.png",
+            CUSTOM_9PIECE_BAR = "mods/noita.fairmod/files/content/popups/custom_9piecebar.png",
             CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
-        },
+        }, --this is an example that shows basically everything you can do
+
+
+        { --and here's a better example showcasing a much smaller effect
+            MESSAGE = "YOU'RE STEAM ID IS 765611steamid! \n Stay Safe! :thumbsup:",
+            OPEN_FUNCTION = function(self)
+                self.MESSAGE = self.MESSAGE:gsub("steamid", string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
+            end
+        }, -- i hope these help, have fun!
+
+
     }
 }
 

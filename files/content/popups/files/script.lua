@@ -355,7 +355,7 @@ SeedCount = SeedCount or 0
 LastFrame = LastFrame or 0
 math.randomseed(GameGetFrameNum())
 -- 1/400 -> 15% per second with COPI mode, 1/40000 -> 0.15% per second by default
-local windowProbability = GameHasFlagRun("COPI_IMMERSIVE_MIMICS") and 400 or 400 --(400 for testing purposes atm lmao)
+local windowProbability = GameHasFlagRun("COPI_IMMERSIVE_MIMICS") and 400 or 40000 --(use 400 for testing purposes)
 if GameGetFrameNum() - LastFrame >= 1 and math.random(1, windowProbability) == 1 then
     SeedCount = SeedCount + 1
     Windows[#Windows + 1] = {
@@ -368,6 +368,7 @@ if GameGetFrameNum() - LastFrame >= 1 and math.random(1, windowProbability) == 1
     -- print(tostring(Windows[#Windows]))
 
     --[[rando pause]]
+    --[[
     if math.random(1,500)==1 then
         local t = GameGetRealWorldTimeSinceStarted()
         local quit = false
@@ -379,7 +380,7 @@ if GameGetFrameNum() - LastFrame >= 1 and math.random(1, windowProbability) == 1
                 GlobalsSetValue("fucking_lag", shit)
             end
         end
-    end
+    end --disabled cuz it just seems unfun lmao]]
 
     LastFrame = GameGetFrameNum()
 end
@@ -458,7 +459,6 @@ local Popups = dofile_once("mods/noita.fairmod/files/content/popups/files/append
         "Also try Chemical Curiosities!",
         "Also try Graham's Things!",
         "Also try Noita.Fairmod! wait...",
-        "Become a Noitillionaire Today!"
     },
 
     -- @@ = rainbow
@@ -503,22 +503,21 @@ local ww, wh = 100, 100
 for i = 2, #Windows do
     if Windows[i] ~= nil then
 
-        local popup = { EXE = "nil!", MESSAGE = "nil!" }
+        local popup = Windows[i].popup or {}
         if Windows[i].popup == nil then
             print("creating window")
             if math.random(1, 20 + math.min(#Popups.Prefabs, 10)) <= 20 and not Popups.forcePrefab then
                 popup = { EXE = Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)],  MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)] }
             else
-                popup = Popups.Prefabs[math.random(1, #Popups.Prefabs)]
+                local _popup = Popups.Prefabs[math.random(1, #Popups.Prefabs)]
+                for k, v in pairs(_popup) do --loop over prefab
+                    popup[k] = v
+                end
                 if not popup.EXE then popup.EXE = Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)] end
                 if not popup.MESSAGE then popup.MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)] end
             end
-        else
-            popup = Windows[i].popup
         end
         --print(string.format("Window[%s] counter is %s", i,tostring(popup.custom_close_counter)))
-        local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
-        if guiPrev[1] then print("CLICK!") end
         math.randomseed(Windows[i].seed)
         windowCounter = windowCounter + 1
         local z = -1999999 - windowCounter * windowNumOverlappingElements
@@ -556,27 +555,38 @@ for i = 2, #Windows do
             GuiZSetForNextWidget(Gui, z - 3)
             GuiImage(Gui, 1, 0, 0, s:sub(6), 1, 1, 1)
         else
+            local hyperlink_number = 0
             for w in s:gmatch("%S+") do
+                GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)
                 local shake = false
+                local underline = false
+                local hyperlink = false
                 if (w == "newline") then
                     l = 0
                     py = py + lastdy
                     goto innercontinue
                 end
-                if w:sub(1, 1) == "*" and w:sub(-1, -1) == "*" then
-                    GuiColorSetForNextWidget(Gui, 0.4, 0.4, 0.4, 1)
-                    w = w:gsub("*", "")
-                elseif w:sub(1, 1) == "@" and w:sub(-1, -1) == "@" then
+                if w:sub(1, 1) == "%" and w:gsub("%(%d+%)", ""):sub(-1, -1) == "%" then
+                    GuiColorSetForNextWidget(Gui, 0, 0.039, 1, 1)
+                    local func = popup.CLICK_EVENTS[string.match(w, '%d[%d.,]*')]
+                    hyperlink = true
+                    hyperlink_number = hyperlink_number + 1
+                    w = w:gsub("%(%d+%)", ""):sub(2, -2)
+                end
+                if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
+                    GuiColorSetForNextWidget(Gui, 1, 0.2, 0.2, 1)
+                    w = string.sub(w, 2, -2)
+                    shake = true
+                end
+                if w:sub(1, 1) == "@" and w:sub(-1, -1) == "@" then
                     local color = Color:new(((Windows[i].seed+l-py) * 25 + GameGetFrameNum() * 5) % 360, 0.8, 0.4)
                     local r, g, b = color:get_rgb()
                     GuiColorSetForNextWidget(Gui, r, g, b, 1)
-                    w = w:gsub("@", "")
-                elseif w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
-                    GuiColorSetForNextWidget(Gui, 1, 0.2, 0.2, 1)
-                    w = w:gsub("|", "")
-                    shake = true
-                else
-                    GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)
+                    w = string.sub(w, 2,-2)
+                end
+                if w:sub(1, 1) == "*" and w:sub(-1, -1) == "*" then
+                    GuiColorSetForNextWidget(Gui, 0.4, 0.4, 0.4, 1)
+                    w = string.sub(w, 2, -2)
                 end
                 local dimx, dimy = GuiGetTextDimensions(Gui, w)
                 GuiZSetForNextWidget(Gui, z - 3)
@@ -592,7 +602,16 @@ for i = 2, #Windows do
                     o1 = math.sin(Random(1,10000+1)-1)/2
                     o2 = math.sin(Random(1,10000-1)+1)/2
                 end
+                
                 GuiText(Gui, l+o1, py+o2, w)
+                local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
+                if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
+                    local click_events = popup.CLICK_EVENTS or {}
+                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup)
+                    else print("NO CLICK FUNCTION ATTACHED: " .. hyperlink_number)
+                    end
+                end
+
                 l = l + dimx + 4
                 ::innercontinue::
             end
@@ -613,17 +632,22 @@ for i = 2, #Windows do
         GuiIdPushString(Gui, "ModMimicPopupButton" .. tostring(Windows[i].id))
         GuiOptionsAddForNextWidget(Gui, 21)
         GuiOptionsAddForNextWidget(Gui, 6)
-        if GuiImageButton(Gui, 1, x + 99, y - 14, "", popup.CUSTOMX or "mods/noita.fairmod/files/content/popups/button.png") then
+        local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
+        if GuiImageButton(Gui, 1, x + 99, y - 14, "", _button) then
             if popup.disableSound ~= true then GamePlaySound("data/audio/Desktop/ui.bank", "ui/button_click", GameGetCameraPos()) end
-            if popup.CLOSE_FUNCTION ~= nil then popup:CLOSE_FUNCTION() end
-            if popup.cannotClose ~= true then table.remove(Windows, i) goto continue end
+
+            if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
+                if popup:CLOSE_FUNCTION() ~= false then table.remove(Windows, i) goto continue end
+            else table.remove(Windows, i) goto continue end
         end
         GuiIdPop(Gui)
         GuiIdPushString(Gui, "ModMimicPopupImage" .. tostring(Windows[i].id))
         GuiZSetForNextWidget(Gui, z)
-        GuiImageNinePiece(Gui, 1, x, y, ww + 15, wh + 5, 1, popup.CUSTOM9PIECE or "mods/noita.fairmod/files/content/popups/9piece.png", "mods/noita.fairmod/files/content/popups/9piece.png")
+        local _9piece = popup.CUSTOM_9PIECE or "mods/noita.fairmod/files/content/popups/9piece.png"
+        GuiImageNinePiece(Gui, 1, x, y, ww + 15, wh + 5, 1, _9piece)
         GuiZSetForNextWidget(Gui, z - 1)
-        GuiImageNinePiece(Gui, 2, x, y - 15, ww + 15, 12, 1, "mods/noita.fairmod/files/content/popups/9pieceBar.png", "mods/noita.fairmod/files/content/popups/9pieceBar.png")
+        local _9piecebar = popup.CUSTOM_9PIECE_BAR or "mods/noita.fairmod/files/content/popups/9pieceBar.png"
+        GuiImageNinePiece(Gui, 2, x, y - 15, ww + 15, 12, 1, _9piecebar, _9piecebar)
         GuiIdPop(Gui)
         Windows[i].popup = popup
     end
