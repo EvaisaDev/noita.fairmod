@@ -2,7 +2,7 @@ local strmanip = dofile_once("mods/noita.fairmod/files/lib/stringmanip.lua") ---
 
 local starting_wand = strmanip:new("data/scripts/gun/procedural/starting_wand.lua")
 starting_wand:AppendBefore(
-	[[local bullshit_spells = { "GRENADE_ANTI", "GRENADE_LARGE", "RUBBER_BALL", "BOUNCY_ORB", "ARROW", "CURSED_ORB", "LIGHT_BULLET", "BURST_2", "CHAINSAW", "SPAKR_BOLT", "FAIRMOD_RUBBA_BALL" }]]
+	[[local bullshit_spells = { "GRENADE_ANTI", "GRENADE_LARGE", "RUBBER_BALL", "BOUNCY_ORB", "ARROW", "CURSED_ORB", "LIGHT_BULLET", "BURST_2", "CHAINSAW", "SPAKR_BOLT", "FAIRMOD_RUBBA_BALL", "FAIRMOD_POUNCY_ORB" }]]
 )
 starting_wand:ReplaceLine("AddGunAction(", [[AddGunAction(entity_id, get_random_from(bullshit_spells))]])
 starting_wand:WriteAndClose()
