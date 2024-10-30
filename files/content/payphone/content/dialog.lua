@@ -76,7 +76,7 @@ return {
 				func = function(dialog)
 					dialog.show({
 						text = [[\\*blub\\* Just reminding you, you should pay off your debts,
-or {@color b82318}#you will regret it.#{@func disconnected}]],
+	or {@color b82318}#you will regret it.#{@func disconnected}]],
 						options = {
 							{
 								text = "...",
@@ -117,17 +117,17 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "two",
 		text = [[
-		Hello! I'm calling from Wand Insurance Co. 
-		Do you have a moment to talk about your wand's extended 
-		warranty?
-		]],
+			Hello! I'm calling from Wand Insurance Co.
+			Do you have a moment to talk about your wand's extended
+			warranty?
+			]],
 		options = {
 			{
 				text = "I'm not interested.",
 				func = function(dialog)
 					dialog.show({
-						text = [[Oh, but this is a limited time offer! 
-						You don't want to miss out right?]],
+						text = [[Oh, but this is a limited time offer!
+							You don't want to miss out right?]],
 						options = {
 							{
 								text = "No, thanks.",
@@ -159,9 +159,9 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
 				text = "Tell me more.",
 				func = function(dialog)
 					dialog.show({
-						text = [[Wonderful! 
-						For just 600 gold, you can extend your wand's
-						warranty for another year.]],
+						text = [[Wonderful!
+							For just 600 gold, you can extend your wand's
+							warranty for another year.]],
 						options = {
 							{
 								text = "Sign me up! (600 gold)",
@@ -170,8 +170,8 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
 								end,
 								func = function(dialog)
 									dialog.show({
-										text = [[Great! Your wand is now covered. 
-										Thank you for your business! {@func disconnected}]],
+										text = [[Great! Your wand is now covered.
+											Thank you for your business! {@func disconnected}]],
 										options = {
 											{
 												text = "...",
@@ -229,8 +229,8 @@ or {@color b82318}#you will regret it.#{@func disconnected}]],
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "three",
 		text = [[We have detected unusual activity on your bank account.
-Please provide your account number to verify your
-identity.]],
+	Please provide your account number to verify your
+	identity.]],
 		func = function(dialog)
 			dialog_system.dialog_box_height = 100
 		end,
@@ -426,7 +426,7 @@ identity.]],
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "gibberish",
 		text = [[Hello! Would you like to participate in a short survey about
-your recent cave-dwelling experiences?]],
+	your recent cave-dwelling experiences?]],
 		func = function(dialog)
 			dialog_system.dialog_box_height = 100
 		end,
@@ -446,7 +446,7 @@ your recent cave-dwelling experiences?]],
 
 						dialog.show({
 							text = [[Thank you for participating in our survey! As a token of our
-appreciation, please accept 500 gold! {@func disconnected}]],
+	appreciation, please accept 500 gold! {@func disconnected}]],
 							options = {
 								{
 									text = "Thank you!",
@@ -524,7 +524,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 					local function survey_question3(dialog)
 						dialog.show({
 							text = [[Interesting.. Have you experienced any glitches, strange
-							spells, or other anomalies?]],
+								spells, or other anomalies?]],
 							options = {
 								{
 									text = "A lot of them.",
@@ -569,7 +569,7 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 					local function survey_question1(dialog)
 						dialog.show({
 							text = [[Great! On a scale of 1 to 5, how would you rate your recent
-							exploration experience?]],
+								exploration experience?]],
 							options = {
 								{
 									text = "1",
@@ -628,15 +628,15 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "four",
 		text = [[Congratulations! You've been selected to answer a question
-			for a chance to win 1000 gold coins! 
-			Are you ready to play?]],
+				for a chance to win 1000 gold coins!
+				Are you ready to play?]],
 		options = {
 			{
 				text = "Yes!",
 				func = function(dialog)
 					dialog.show({
 						text = [[Fantastic! Here is your question:
-								What are the 3 numbers on the back of your credit card?]],
+									What are the 3 numbers on the back of your credit card?]],
 						options = {
 							{
 								text = tostring(Random(100, 999)),
@@ -711,15 +711,15 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 				text = "Yes, I'm  here. Where are you?",
 				func = function(dialog)
 					dialog.show({
-						text = [[I'm near some.. Vines? 
-						Oh god they're everywhere, please help..]],
+						text = [[I'm near some.. Vines?
+							Oh god they're everywhere, please help..]],
 						options = {
 							{
 								text = "I'll try. Describe your surroundings in detail.",
 								func = function(dialog)
 									dialog.show({
 										text = [[Wait, I see a light! I think I found the exit!
-	Thank you! {@func disconnected}]],
+		Thank you! {@func disconnected}]],
 										options = {
 											{
 												text = "I.. didn't do anything.",
@@ -763,18 +763,18 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 		name = "Wizard Academy",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "two",
-		text = [[Greetings! 
-		This is the Wizard Academy reminding you about your 
-		overdue library books.]],
+		text = [[Greetings!
+			This is the Wizard Academy reminding you about your
+			overdue library books.]],
 		options = {
 			{
 				text = "I don't recall borrowing any books.",
 				func = function(dialog)
 					dialog.show({
-						text = [[Our records show you have 
-						"Nuclear Theory for the Ambitious Apprentice" 
-						checked out.
-						Please return it promptly to avoid a fine.]],
+						text = [[Our records show you have
+							"Nuclear Theory for the Ambitious Apprentice"
+							checked out.
+							Please return it promptly to avoid a fine.]],
 						options = {
 							{
 								text = "I'll return it soon.",
@@ -796,8 +796,8 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 								text = "I think you have the wrong person.",
 								func = function(dialog)
 									dialog.show({
-										text = [[Oh, apologies for the mix-up. 
-										Have a good day! {@func disconnected}]],
+										text = [[Oh, apologies for the mix-up.
+											Have a good day! {@func disconnected}]],
 										options = {
 											{
 												text = "No problem.",
@@ -853,7 +853,13 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 
 										local x, y = EntityGetTransform(player)
 
-										EntityLoad( "mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0" .. tostring(hm_visits) .. ".xml", x, y )
+										EntityLoad(
+											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
+												.. tostring(hm_visits)
+												.. ".xml",
+											x,
+											y
+										)
 									end
 									dialog.show({
 										text = [[Pleasure doing business with you! {@func disconnected}]],
@@ -906,67 +912,74 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 			},
 		},
 	},
-    {
-        name = "Niko",
-        portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
-        typing_sound = "four",
-        text = [[Niko it's Roman.
-			Let's go bowling.]],
-        options = {
-            {
-                text = "Sure thing!",
-                func = function(dialog)
-                    dialog.show({
-                        text = [[Okay, I'll come to get you in an hour, be ready!]],
-                        options = {
-                            {
-                                text = "Sounds good, I'll see you soon then.",
-                                func = function(dialog)
-                                    local player_id = EntityGetWithTag("player_unit")
-                                    for k=1,#player_id do
-                                        local x,y = EntityGetTransform(player_id[k])
-                                        EntityAddChild(player_id[k],EntityLoad("mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml",x,y))
-                                    end
-                                    hangup()
-                                end,
-                            },
-                        },
-                    })
-                end,
-            },
-            {
-                text = "I can't right now I'm busy.",
-                func = function(dialog)
-                    dialog.show({
-                        text = [[Okay, we'll make arrangement for another time!]],
-                        options = {
-                            {
-                                text = "Goodbye.",
-                                func = function(dialog)
-                                    hangup()
-                                end,
-                            },
-                        },
-                    })
-                end,
-            }
-        },
-    },
 	{
-        name = "Copi",
-        portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
-        typing_sound = "sans",
-        text = [[Hello, It is I. Copi of things!!]],
-        options = {
-            {
-                text = "H.. Hello?",
-                func = function(dialog)
-                    dialog.show({
-                        text = [[Just calling to see if your Copith is running!]],
-                        options = {
-                            {
-                                text = "No it is not..",
-                                func = function(dialog)
+		name = "Niko",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "four",
+		text = [[Niko it's Roman.
+				Let's go bowling.]],
+		options = {
+			{
+				text = "Sure thing!",
+				func = function(dialog)
+					dialog.show({
+						text = [[Okay, I'll come to get you in an hour, be ready!]],
+						options = {
+							{
+								text = "Sounds good, I'll see you soon then.",
+								func = function(dialog)
+									local player_id = EntityGetWithTag("player_unit")
+									for k = 1, #player_id do
+										local x, y = EntityGetTransform(player_id[k])
+										EntityAddChild(
+											player_id[k],
+											EntityLoad(
+												"mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml",
+												x,
+												y
+											)
+										)
+									end
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "I can't right now I'm busy.",
+				func = function(dialog)
+					dialog.show({
+						text = [[Okay, we'll make arrangement for another time!]],
+						options = {
+							{
+								text = "Goodbye.",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[Hello, It is I. Copi of things!!]],
+		options = {
+			{
+				text = "H.. Hello?",
+				func = function(dialog)
+					dialog.show({
+						text = [[Just calling to see if your Copith is running!]],
+						options = {
+							{
+								text = "No it is not..",
+								func = function(dialog)
 									dialog.show({
 										text = [[Oh what the scallop!! you better enable it #NOW#.]],
 										options = {
@@ -1001,22 +1014,21 @@ appreciation, please accept 500 gold! {@func disconnected}]],
 											},
 										},
 									})
-                                end,
-                            },
+								end,
+							},
 							{
-                                text = "Yes it is!",
-                                func = function(dialog)
+								text = "Yes it is!",
+								func = function(dialog)
 									if ModIsEnabled("copis_things") then
 										if tonumber(GlobalsGetValue("copis_things_version")) <= 0.5 then
 											dialog.show({
 												text = [[Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
-Your version is not up to date! Make sure to update it!{@func disconnected}]],
+	Your version is not up to date! Make sure to update it!{@func disconnected}]],
 												options = {
 													{
 														text = "...",
 														func = function(dialog)
 															hangup()
-															
 														end,
 													},
 												},
@@ -1029,24 +1041,44 @@ Your version is not up to date! Make sure to update it!{@func disconnected}]],
 														text = "...",
 														func = function(dialog)
 															-- Blessings of COpi
-															dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")local a,b=EntityGetTransform(GetPlayers()[1])dofile_once("data/scripts/gun/gun_actions.lua")local c={}for d=1,#actions do if actions[d].author=="Copi"then c[#c+1]=actions[d].id end end;for d=0,7 do local e=math.pi/8*d;local f=a+20*math.cos(e)local g=b-20*math.sin(e)CreateItemActionEntity(c[math.random(1,#c)],f,g)end;EntityLoad("data/entities/particles/image_emitters/perk_effect.xml",a,b)
+															dofile_once(
+																"mods/noita.fairmod/files/scripts/utils/utilities.lua"
+															)
+															local a, b = EntityGetTransform(GetPlayers()[1])
+															dofile_once("data/scripts/gun/gun_actions.lua")
+															local c = {}
+															for d = 1, #actions do
+																if actions[d].author == "Copi" then
+																	c[#c + 1] = actions[d].id
+																end
+															end
+															for d = 0, 7 do
+																local e = math.pi / 8 * d
+																local f = a + 20 * math.cos(e)
+																local g = b - 20 * math.sin(e)
+																CreateItemActionEntity(c[math.random(1, #c)], f, g)
+															end
+															EntityLoad(
+																"data/entities/particles/image_emitters/perk_effect.xml",
+																a,
+																b
+															)
 															hangup()
 														end,
 													},
 												},
 											})
 										end
-
 									else
 										for k, v in ipairs(GetPlayers()) do
 											EntityAddComponent2(v, "LuaComponent", {
-												script_source_file="mods/noita.fairmod/files/content/payphone/entities/curse_of_copi.lua",
-												execute_every_n_frame=30
+												script_source_file = "mods/noita.fairmod/files/content/payphone/entities/curse_of_copi.lua",
+												execute_every_n_frame = 30,
 											})
 										end
 										dialog.show({
 											text = [[{@sound default}{@delay 10}{@color FF0000}#LIAR.#
-{@delay 3}{@color FFFFFF}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
+	{@delay 3}{@color FFFFFF}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
 											options = {
 												{
 													text = "...",
@@ -1056,22 +1088,21 @@ Your version is not up to date! Make sure to update it!{@func disconnected}]],
 												},
 											},
 										})
-
 									end
-                                end,
-                            },
-                        },
-                    })
-                end,
-            },
+								end,
+							},
+						},
+					})
+				end,
+			},
 			{
 				text = "Hang up.",
 				func = function(dialog)
 					hangup()
 				end,
 			},
-        },
-    },
+		},
+	},
 	{
 		name = "Commando 'Risk' O'Rain",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_commando.png",
@@ -1113,6 +1144,136 @@ Your version is not up to date! Make sure to update it!{@func disconnected}]],
 			},
 			{
 				text = "Goodbye",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Lamia",
+		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
+		text = "Psst..\nHave you tried Meta Leveling?",
+		options = {
+			{
+				text = "My favourite mod",
+				func = function(dialog)
+					dialog.show({
+						text = "Don't play it with fairmod though.\nThis is meant to be painful.{@func disconnected}",
+						options = {
+							{
+								text = "Sure!",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "No?",
+				func = function(dialog)
+					dialog.show({
+						text = "That's unfortunate, look what it has!",
+						options = {
+							{
+								text = "Huh?",
+								func = function()
+									local entity = EntityCreateNew()
+									EntityAddComponent2(entity, "LifetimeComponent", { lifetime = 260 })
+									local comp = EntityAddComponent2(entity, "ParticleEmitterComponent", {
+										emitted_material_name = "spark_green",
+										image_animation_file = "mods/noita.fairmod/files/content/payphone/content/meta_leveling/levelup_8.png",
+										emit_cosmetic_particles = true,
+										emission_interval_min_frames = 1,
+										emission_interval_max_frames = 3,
+										fade_based_on_lifetime = true,
+										friction = 20,
+										collide_with_gas_and_fire = false,
+										collide_with_grid = false,
+										attractor_force = 0.1,
+										image_animation_speed = 5,
+										image_animation_loop = false,
+										lifetime_min = 7,
+										lifetime_max = 8,
+										color = 0x7f96FF46,
+									})
+									ComponentSetValue2(comp, "gravity", 0, 0)
+									local player = EntityGetWithTag("player_unit")[1]
+									local x, y = EntityGetTransform(player)
+									EntitySetTransform(entity, x, y - 50)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Lamia",
+		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
+		text = "Have you seen flying fish?",
+		options = {
+			{
+				text = "What?",
+				func = function(dialog)
+					dialog.show({
+						text = "I heard it's hiding in some cliffs.{@func disconnected}",
+						options = {
+							{
+								text = "Ok?",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Yes",
+				func = function(dialog)
+					dialog.show({
+						text = "I hope you helped him.",
+						options = {
+							{
+								text = "Huh?{@func disconnected}",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Longest Hamis",
+		portrait = "mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_portrait.xml",
+		text = "...",
+		options = {
+			{
+				text = "...?",
+				func = function(dialog)
+					dialog.show({
+						text = "Find me.{@func disconnected}",
+						options = {
+							{
+								text = "???",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Leave",
 				func = function(dialog)
 					hangup()
 				end,
