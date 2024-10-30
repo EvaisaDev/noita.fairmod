@@ -19,3 +19,7 @@ ModLuaFileAppend(
 	"data/scripts/gun/gun_actions.lua",
 	"mods/noita.fairmod/files/content/new_spells/pouncy_orb/pouncy_orb.lua"
 )
+ModLuaFileAppend(
+	"data/scripts/gun/gun_actions.lua",
+	"mods/noita.fairmod/files/content/new_spells/bad_bombs/bad_bombs.lua"
+)
