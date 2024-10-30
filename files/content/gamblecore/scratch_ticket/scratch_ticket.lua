@@ -543,10 +543,17 @@ function scratch_ticket_methods.draw(self)
     GuiColorSetForNextWidget(self.gui, 0, 0, 0, 1)
     GuiText(self.gui, text_x, text_y, winning_numbers_string, number_size * 1.5)
 
+	local index = 0
     -- Draw scratch overlay
     for y_pix = 0, (96 * 1.4) - 1 do
         local x_pix = 0
+		if(y_pix % 1 == 0)then
+			index = index + 1
+
+		end
         while x_pix < (108 * 1.4) do
+			-- every 4 x pixels, increment index
+
             if not self.scratched_pixels[x_pix] or not self.scratched_pixels[x_pix][y_pix] then
                 local run_start = x_pix
                 local run_length = 1
@@ -562,7 +569,9 @@ function scratch_ticket_methods.draw(self)
                 local draw_y = scratch_area_y + y_pix
                 local width = run_length
                 local height = 1
+				
                 GuiZSetForNextWidget(self.gui, -2)
+				GuiColorSetForNextWidget(self.gui, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, 1)	
                 GuiImage(
                     self.gui,
                     new_id(),
