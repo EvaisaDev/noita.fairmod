@@ -7,3 +7,7 @@ if ModSettingGet("noita.fairmod.streamer_mode") then
 end
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/new_spells/racoon/racoon.lua")
+ModLuaFileAppend(
+	"data/scripts/gun/gun_actions.lua",
+	"mods/noita.fairmod/files/content/new_spells/spakr_bolt/spakr_bolt.lua"
+)
