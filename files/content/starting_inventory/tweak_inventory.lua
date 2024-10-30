@@ -9,7 +9,7 @@ starting_wand:WriteAndClose()
 
 local starting_bomb_wand = strmanip:new("data/scripts/gun/procedural/starting_bomb_wand.lua")
 starting_bomb_wand:AppendBefore(
-	[[local bullshit_spells = { "BOMB", "DYNAMITE", "MINE", "ROCKET", "GRENADE", "BLACK_HOLE_DEATH_TRIGGER", "GRENADE_TRIGGER","LASER_LUMINOUS_DRILL", "TORCH", "PEBBLE", "TNTBOX_BIG" }]]
+	[[local bullshit_spells = { "BOMB", "DYNAMITE", "MINE", "ROCKET", "GRENADE", "BLACK_HOLE_DEATH_TRIGGER", "GRENADE_TRIGGER", "LASER_LUMINOUS_DRILL", "TORCH", "PEBBLE", "TNTBOX_BIG", "FAIRMOD_DYNAMITE", "FAIRMOD_BOMB", "FAIRMOD_ROCKET" }]]
 )
 starting_bomb_wand:ReplaceLine("AddGunAction(", [[AddGunAction(entity_id, get_random_from(bullshit_spells))]])
 starting_bomb_wand:WriteAndClose()
