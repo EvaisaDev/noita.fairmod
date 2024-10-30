@@ -6,23 +6,27 @@ for k = 1, #appends do
 	local path = table.concat({ "data/biome/", appends[k], ".xml" })
 	local content = ModTextFileGetContent(path)
 	local xml = nxml.parse(content)
-	xml:first_of("mBufferedPixelScenes"):add_child(nxml.parse([[
-		<PixelScene pos_x="771" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
-	]]))
-	xml:first_of("mBufferedPixelScenes"):add_child(nxml.parse(table.concat({
-		[[
-		<PixelScene pos_x=pos_x="]],
-		(771 + worldsize),
-		[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
-	]],
-	})))
-	xml:first_of("mBufferedPixelScenes"):add_child(nxml.parse(table.concat({
-		[[
-		<PixelScene pos_x="]],
-		(771 - worldsize),
-		[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
-	]],
-	})))
+
+	local scenes = xml:first_of("mBufferedPixelScenes")
+	if scenes ~= nil then
+		scenes:add_child(nxml.parse([[
+			<PixelScene pos_x="771" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
+		]]))
+		scenes:add_child(nxml.parse(table.concat({
+			[[
+			<PixelScene pos_x=pos_x="]],
+			(771 + worldsize),
+			[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
+		]],
+		})))
+		scenes:add_child(nxml.parse(table.concat({
+			[[
+			<PixelScene pos_x="]],
+			(771 - worldsize),
+			[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
+		]],
+		})))
+	end
 	ModTextFileSetContent(path, tostring(xml))
 end
 
