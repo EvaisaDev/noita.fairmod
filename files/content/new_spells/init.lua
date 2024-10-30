@@ -11,3 +11,7 @@ ModLuaFileAppend(
 	"data/scripts/gun/gun_actions.lua",
 	"mods/noita.fairmod/files/content/new_spells/spakr_bolt/spakr_bolt.lua"
 )
+ModLuaFileAppend(
+	"data/scripts/gun/gun_actions.lua",
+	"mods/noita.fairmod/files/content/new_spells/rubba_ball/rubba_ball.lua"
+)
