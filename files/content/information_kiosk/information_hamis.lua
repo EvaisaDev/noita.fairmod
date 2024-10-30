@@ -58,6 +58,11 @@ local tips = {
 	"Hunger is the best seasoning, but curiosity?\nNow, that’s the chef’s kiss.",
 	"Always keep a pocket empty.\nYou never know what’ll want to fill it.",
 	"Sing to the stars;\nthey won’t respond, but they listen better than most.",
+	"Don't drink the water, they put clams in it.\nTo make you forget.",
+	"I am not a snail.",
+	"What do you mean it keeps changing?\nThe game has always looked like this.",
+	"You do not recognize the bodies in the water.",
+	"Buy scratch-offs now, trust me.\nGreat investment!",
 }
 
 -- Global so it's preserved across conversations
