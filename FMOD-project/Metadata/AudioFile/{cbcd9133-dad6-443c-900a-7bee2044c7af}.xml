@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{cbcd9133-dad6-443c-900a-7bee2044c7af}">
 		<property name="assetPath">
-			<value>mario_course_clear.mp3</value>
+			<value>Compress/mario_course_clear.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
