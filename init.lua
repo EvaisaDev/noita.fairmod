@@ -35,6 +35,7 @@ local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.l
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
 local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/init.lua")
+local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -201,6 +202,8 @@ function OnPlayerSpawned(player)
 
 	dingus.OnPlayerSpawned(player)
 
+	corpses.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
@@ -284,6 +287,7 @@ function OnPlayerDied(player)
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
 	end
 	hescoming.OnPlayerDied(player)
+	corpses.OnPlayerDied(player)
 end
 
 -- Copi was here
