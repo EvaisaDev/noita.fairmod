@@ -61,6 +61,7 @@
 {876eb51e-6244-4a21-b16e-b5f6b05e8677} event:/payphone/putdown
 {ed561f27-68f1-4211-87b1-b578ce7ee6df} event:/payphone/ring
 {a6fd0e95-e39e-4df0-9c69-1664c249c7e8} event:/pedro/pedro
+{3d44277a-15d9-4aa7-a066-6e86c4c89f46} event:/pedro/pedro_streamer
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
 {e64eef68-ba89-46ed-b415-1d6b80ebdf02} event:/radio/loop
