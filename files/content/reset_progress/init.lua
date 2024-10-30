@@ -8,4 +8,5 @@ for i = 1, #achievements do
 	RemoveFlagPersistent(flag)
 end
 ModSettingRemove("fairmod_win_count")
+ModSettingRemove("fairmod.death_locations")
 ModSettingRemove("noita.fairmod.reset_progress")

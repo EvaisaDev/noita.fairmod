@@ -245,7 +245,7 @@ do
 				'attack_ranged_frames_between="24"',
 				table.concat({ 'attack_ranged_frames_between="', tostring(math.random(10, 120)), '"' })
 			)
-			content = content:gsub('hp="1"', table.concat({ 'hp="', tostring(math.random(1, 40)), '"' }))
+			content = content:gsub('hp="1"', table.concat({ 'hp="', tostring(math.random(1, 10)), '"' }))
 			content = content:gsub('can_fly="1"', table.concat({ 'can_fly="', tostring(can_fly), '"' }))
 			content = content:gsub(
 				'"data/enemies_gfx/scavenger_smg%.xml"',

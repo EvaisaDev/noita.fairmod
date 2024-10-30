@@ -108,7 +108,7 @@ function surface_bad:update()
 	SetRandomSeed(GameGetFrameNum(), GameGetRealWorldTimeSinceStarted())
 	self.rain_start_count = self.rain_start_count + Random(1, 10)
 
-	if self.rain_start_count > 200 then
+	if self.rain_start_count > 400 then
 		self.rain_current_material = rain_material_list[Random(1, #rain_material_list)]
 		self.rain_duration = Random(30, 90)
 		self.rain_start_count = 0
