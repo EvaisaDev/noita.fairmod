@@ -34,6 +34,7 @@ local hescoming = dofile_once("mods/noita.fairmod/files/content/hescoming/init.l
 local smokedogg = dofile_once("mods/noita.fairmod/files/content/smokedogg/init.lua")
 local dingus = dofile_once("mods/noita.fairmod/files/content/dingus/init.lua")
 local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother/he_watches_you.lua")
+local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -195,6 +196,8 @@ function OnPlayerSpawned(player)
 	fire.OnPlayerSpawned(player)
 
 	information_kiosk.spawn_kiosk(target_x, target_y)
+
+	ending_quiz.spawn_shape(target_x, target_y)
 
 	dingus.OnPlayerSpawned(player)
 

@@ -1,0 +1,22 @@
+<Entity tags="prop"  >
+
+	<VelocityComponent />
+
+    <SimplePhysicsComponent/>
+
+	<SpriteComponent 
+		z_index="1"
+		image_file="mods/noita.fairmod/files/content/ending_quiz/shape/square.png" 
+		offset_x="0"
+		offset_y="47" >
+	</SpriteComponent>
+
+	<LightComponent
+		_enabled="1" 
+		r="255"
+		g="255"
+		b="255"
+		radius="64" >
+	</LightComponent>
+</Entity>
+

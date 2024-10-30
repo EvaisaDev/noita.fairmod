@@ -1,0 +1,54 @@
+<Entity>
+
+  <SpriteParticleEmitterComponent
+		sprite_file="mods/noita.fairmod/files/content/ending_quiz/1x1.png"
+		delay="0"
+		lifetime="2"
+		color.r="1" color.g="0.5" color.b="1" color.a="0.5"
+		color_change.r="0" color_change.g="0" color_change.b="0" color_change.a="-0.2"
+		velocity.x="0" velocity.y="0"
+		gravity.x="0" gravity.y="450"
+		scale.x="2"
+		scale.y="2"
+		velocity_slowdown="1"
+		rotation="0"
+		angular_velocity="1"
+		emissive="1"
+		additive="1"
+		use_velocity_as_rotation="1"
+		emission_interval_min_frames="10"
+		emission_interval_max_frames="30"
+		count_min="6"
+    count_max="8"
+    sprite_centered="1"
+		randomize_position.min_x="-2"
+		randomize_position.max_x="2"
+		randomize_position.min_y="-10"
+		randomize_position.max_y="0"
+		randomize_velocity.min_x="-60"
+		randomize_velocity.max_x="60"
+		randomize_velocity.min_y="-500"
+		randomize_velocity.max_y="-400"
+		randomize_rotation="3"
+		randomize_alpha="0.3"
+		velocity_always_away_from_center="0"
+  ></SpriteParticleEmitterComponent>
+
+<!-- 
+	
+    randomize_scale.min_y="0.5"
+    randomize_scale.max_y="2"
+    randomize_scale.min_x="0.5"
+    randomize_scale.max_x="2"
+
+ -->
+			<!-- scale_velocity.x="1" scale_velocity.y="1" -->
+	<!-- scale.x="2" scale.y="2" -->
+<!-- 
+
+		use_velocity_as_rotation="1"
+
+ -->
+
+
+</Entity>
