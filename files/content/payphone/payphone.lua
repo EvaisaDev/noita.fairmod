@@ -100,5 +100,23 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		dialog = dialog_system.open_dialog(call)
 		if call.func ~= nil then call.func(dialog) end
 		print("Call started")
+	elseif not in_call then
+		in_call = true
+		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
+		dialog_system.dialog_box_height = 70
+		dialog = dialog_system.open_dialog({
+			name = "Payphone",
+			portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+			typing_sound = "none",
+			text = "{@func disconnected}...",
+			options = {
+				{
+					text = "Hang up",
+					func = function(dialog)
+						hangup()
+					end,
+				},
+			},
+		})
 	end
 end

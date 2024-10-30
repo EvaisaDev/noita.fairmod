@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{e397831b-4510-4ccd-a60e-a987d4781b9e}">
 		<property name="assetPath">
-			<value>reverbfart.wav</value>
+			<value>Compress/reverbfart.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

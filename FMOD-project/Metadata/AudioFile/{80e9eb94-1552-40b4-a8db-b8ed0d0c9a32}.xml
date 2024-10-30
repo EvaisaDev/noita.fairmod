@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{80e9eb94-1552-40b4-a8db-b8ed0d0c9a32}">
 		<property name="assetPath">
-			<value>were_rats.mp3.mp3</value>
+			<value>Compress_Extra/were_rats.mp3.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

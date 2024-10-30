@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{d1abd839-dbb7-45d2-a588-c00176abb0d7}">
 		<property name="assetPath">
-			<value>Discord Ping Sound.mp3</value>
+			<value>Compress/Discord Ping Sound.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

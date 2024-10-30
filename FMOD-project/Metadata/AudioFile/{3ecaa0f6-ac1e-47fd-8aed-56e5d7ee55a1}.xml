@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{3ecaa0f6-ac1e-47fd-8aed-56e5d7ee55a1}">
 		<property name="assetPath">
-			<value>factory-fluorescent-light-buzz-6871.mp3</value>
+			<value>Compress_Extra/factory-fluorescent-light-buzz-6871.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

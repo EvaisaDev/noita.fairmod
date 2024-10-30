@@ -136,9 +136,9 @@ end
 local function build_settings()
 	local settings = {
 		{
-			category_id = "default_settings",
-			ui_name = "",
-			ui_description = "",
+			category_id = "game_modes",
+			ui_name = "Game Modes",
+			ui_description = "Settings related to game modes",
 			settings = {
 				{
 					id = "streamer_mode",
@@ -182,6 +182,14 @@ local function build_settings()
 					value_default = false,
 					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
+			},
+		},
+		{
+			category_id = "controls",
+			ui_name = "Controls",
+			ui_description = "Settings related to controls",
+			settings = {
+
 				{
 					id = "rebind_pee",
 					ui_name = "Piss Button",
@@ -200,6 +208,13 @@ local function build_settings()
 					is_waiting_for_input = false,
 					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
+			},
+		},
+		{
+			category_id = "misc",
+			ui_name = "Misc",
+			ui_description = "Miscellaneous settings",
+			settings = {
 				{
 					id = "cpand_tmtrainer_chance",
 					ui_name = "Pandorium TMT%",
@@ -216,6 +231,19 @@ local function build_settings()
 					ui_description = "Moves this window",
 					break_it = false,
 					ui_fn = break_this_window,
+				},
+			},
+		},
+		{
+			category_id = "reset",
+			ui_name = "Reset",
+			settings = {
+				{
+					id = "reset_progress",
+					ui_name = "Reset Fair Mod Progress",
+					ui_description = "Will reset all fairmod progress on next run",
+					value_default = false,
+					scope = MOD_SETTING_SCOPE_NEW_GAME,
 				},
 			},
 		},

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{2d9944cf-1f90-448c-ad7a-548c62068428}">
 		<property name="assetPath">
-			<value>bingus_music.wav</value>
+			<value>Compress_Extra/bingus_music.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

@@ -236,7 +236,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Hmm, ofcourse! \nYour chances of winning are very high! \\*blub\\*",
+						text = "Hmm, ofcourse! \nYour chances of winning are very high! \\*blub\\*\nYou can redeem your winnings here as well.",
 						options = {
 							{
 								text = "Leave",

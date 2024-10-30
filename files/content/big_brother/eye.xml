@@ -11,7 +11,7 @@
 	</SpriteComponent>
 
 	<LifetimeComponent
-		lifetime="50"
+		lifetime="170"
 		fade_sprites="1"
 	></LifetimeComponent>
 	<Entity name="eye_pupil" tags="prop">
@@ -39,7 +39,7 @@
 		>
 		</LuaComponent>
 		<LifetimeComponent
-			lifetime="50"
+			lifetime="170"
 			fade_sprites="1"
 		></LifetimeComponent>
 	</Entity>

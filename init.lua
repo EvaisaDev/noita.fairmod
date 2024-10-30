@@ -1,5 +1,6 @@
 local SetContent = ModTextFileSetContent
 
+dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 
@@ -20,6 +21,7 @@ local achievements = dofile_once("mods/noita.fairmod/files/content/achievements/
 local legos = dofile_once("mods/noita.fairmod/files/content/legosfolder/init.lua")
 local healthymimic = dofile_once("mods/noita.fairmod/files/content/healthiummimicry/init.lua")
 local ping_attack = dofile_once("mods/noita.fairmod/files/content/ping_attack/ping_attack.lua")
+local orbs_for_all = dofile_once("mods/noita.fairmod/files/content/orbs_for_all/orbs_for_all.lua")
 local surface_bad = dofile_once("mods/noita.fairmod/files/content/surface_bad/init.lua") --- @type surface_bad
 local chemical_horror = dofile_once("mods/noita.fairmod/files/content/chemical_horror/init.lua")
 local fishing = dofile_once("mods/noita.fairmod/files/content/fishing/init.lua")
@@ -226,6 +228,7 @@ function OnWorldPreUpdate()
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()
+		orbs_for_all:update()
 		surface_bad:update()
 		he_watches_you:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
@@ -296,6 +299,7 @@ end
 -- Seeker was here
 -- Horscht may have been here
 -- Dunk is bald
+-- Scipio was here
 -- UserK.
 
 --     ##
@@ -328,8 +332,6 @@ end
 --▒▒▒▒        ▒▒▒▒
 
 --▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua
-
-
 
 --[[                                                       
                                                                                                                                             

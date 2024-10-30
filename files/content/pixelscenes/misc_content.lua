@@ -1,3 +1,4 @@
+dofile_once("mods/noita.fairmod/files/content/pixelscenes/fish/joel_add.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/pixelscenes/snail/snail_material.xml")
 ModLuaFileAppend(
 	"data/scripts/status_effects/status_list.lua",

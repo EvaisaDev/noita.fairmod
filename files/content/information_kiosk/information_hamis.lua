@@ -109,7 +109,7 @@ function interacting(player, entity_interacted, interactable_name)
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Oh, you want to try your luck?\nHere you go!!",
+						text = "Oh, you want to try your luck? Here you go!!\nYou can redeem your winnings here or at the loanprey!",
 						options = {
 							{
 								text = "Leave",

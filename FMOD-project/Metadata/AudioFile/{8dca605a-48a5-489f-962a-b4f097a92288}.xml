@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{8dca605a-48a5-489f-962a-b4f097a92288}">
 		<property name="assetPath">
-			<value>hang-up-tone-103906.mp3</value>
+			<value>Compress/hang-up-tone-103906.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

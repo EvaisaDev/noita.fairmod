@@ -64,7 +64,7 @@ local biomecost = (biomeid * 100)
 
 current_cost = current_cost or biomecost
 current_winnings = current_winnings or 200
-win_chance = tonumber(GlobalsGetValue("GAMBLECORE_WIN_CHANCE", "20"))
+win_chance = tonumber(GlobalsGetValue("GAMBLECORE_WIN_CHANCE", "10"))
 
 broken = broken or false
 broken_timer = broken_timer or 0
@@ -184,7 +184,7 @@ if currently_gambling then
 				EntityRefreshSprite(entity_id, sprite_component)
 				-- drop gold
 
-				win_chance = math.max(win_chance - 1, win_chance * 0.5)
+				win_chance = math.max(math.max(win_chance - 1, win_chance * 0.5), 0.01)
 
 				GlobalsSetValue("GAMBLECORE_WIN_CHANCE", tostring(win_chance))
 

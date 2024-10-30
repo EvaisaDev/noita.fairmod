@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{a92ac39a-6d98-4900-97ff-9d185782da81}">
 		<property name="assetPath">
-			<value>youtube_tgo30hh86Wg_audio.mp3</value>
+			<value>Compress/youtube_tgo30hh86Wg_audio.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
