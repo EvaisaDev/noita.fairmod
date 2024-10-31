@@ -31,6 +31,8 @@ local bl_pages = {
     _lmao .. "instructionbooklet-06.png",
     _lmao .. "instructionbooklet-07.png",
     _lmao .. "instructionbooklet-08.png",
+    _lmao .. "instructionbooklet-09.png",
+    _lmao .. "instructionbooklet-10.png",
     _lmao .. "back.png",
 }
 local black_luminosity = 0
