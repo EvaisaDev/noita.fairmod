@@ -8,8 +8,12 @@ local quiz_timer = tonumber(GlobalsGetValue( "fairmod_endquiz_timer", "-1" ))
 if quiz_timer > 0 then
 	quiz_timer = quiz_timer - 1
 	if quiz_timer == 0 then
-		EntityInflictDamage( player_id, 999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, player_id )
-		EntityKill(player_id)
+		local plyrs = EntityGetWithTag("player_unit")
+		for l=1,#plyrs do
+			EntityInflictDamage( plyrs[l], 999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, plyrs[l] )
+			EntityKill(plyrs[l])
+		end
+		GamePlaySound( "mods/noita.fairmod/fairmod.bank", "ending_quiz/millionare_music_stop", x, y )
 		dialog.close()
 	end
 	GlobalsSetValue( "fairmod_endquiz_timer", tostring(quiz_timer) )
