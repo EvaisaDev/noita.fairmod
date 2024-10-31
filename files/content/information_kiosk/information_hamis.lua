@@ -89,7 +89,7 @@ function interacting(player, entity_interacted, interactable_name)
 				func = function(dialog)
 					if #remaining_tips == 0 then
 						for _, tip in ipairs(tips) do
-							remaining_tips[#remaining_tips+1] = tip
+							remaining_tips[#remaining_tips + 1] = tip
 						end
 					end
 					dialog.show({

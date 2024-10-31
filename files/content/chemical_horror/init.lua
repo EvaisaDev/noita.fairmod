@@ -41,23 +41,20 @@ end
 --
 
 dofile_once("mods/noita.fairmod/files/content/chemical_horror/methane/shader_utilities.lua")
+postfx.append("uniform vec4 grayscale;", "uniform vec4 brightness_contrast_gamma;", "data/shaders/post_final.frag")
+dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
 postfx.append(
-"uniform vec4 grayscale;",
-"uniform vec4 brightness_contrast_gamma;",
-"data/shaders/post_final.frag"
-)
---dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
-postfx.append(
-[[
+	[[
 color = mix(color, vec3(dot(color,vec3(.2126, .7152, .0722))), grayscale.a );
 ]],
-"// various debug visualizations================================================================================",
-"data/shaders/post_final.frag"
+	"// various debug visualizations================================================================================",
+	"data/shaders/post_final.frag"
 )
 
-
-
-ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")
+ModLuaFileAppend(
+	"data/scripts/status_effects/status_list.lua",
+	"mods/noita.fairmod/files/content/chemical_horror/status_effects.lua"
+)
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
 
 --print("Example mod init done")

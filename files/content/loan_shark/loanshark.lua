@@ -42,7 +42,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									
+
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -70,7 +70,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									
+
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -98,7 +98,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									
+
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -126,7 +126,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									
+
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -154,7 +154,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									GameAddFlagRun("reset_debt_timer")
-									
+
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(
 										entity_who_interacted,
@@ -250,7 +250,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					})
 					EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
 
-					local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+					local wallet_component =
+						EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
 				end,
 			},
@@ -259,9 +260,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				show = function(stats)
 					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							return true
-						end
+						if EntityHasTag(item, "scratch_ticket") then return true end
 					end
 					return false
 				end,
@@ -278,9 +277,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
 
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then
-							EntityRemoveTag(item, "scratch_ticket")
-						end
+						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
 					end
 				end,
 			},
@@ -310,6 +307,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 										if Random(1, 4) == 1 then
 											local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
 											CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+											GameAddFlagRun("fairmod_trickortreated")
 											GameAddFlagRun("fairmod_trickortreat_rewarded_loanshark")
 										else
 											EntityLoad("data/entities/projectiles/bomb.xml", x, y)
@@ -326,8 +324,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				text = "Leave",
 			},
 		},
-		on_closed = function ()
+		on_closed = function()
 			GameRemoveFlagRun("fairmod_dialog_interacting")
-		end
+		end,
 	})
 end

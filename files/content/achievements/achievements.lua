@@ -361,6 +361,25 @@ achievements = {
 			return HasFlagPersistent("action_fairmod_pedro")
 		end,
 	},
+	{
+		name = "Trick or Treat",
+		description = "Successfully go trick or treating!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/trickortreat.png",
+		flag = "trt",
+		unlock = function()
+			return GameHasFlagRun("fairmod_trickortreated")
+		end,
+	},
+	{
+		name = "Noitillionare!",
+		description = "Be a winning contestant on who wants to be a noitillionare!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/noitillionare.png",
+		flag = "quiz_winner",
+		unlock = function()
+			return HasFlagPersistent("fairmod_noitillionare_winner")
+		end,
+	},
+	-- Todo biome acheevs
 }
 
 local function romanize(num)

@@ -8,15 +8,15 @@ local pos_x, pos_y = EntityGetTransform(entity_id)
 
 SetRandomSeed(GameGetFrameNum() + GetUpdatedComponentID(), pos_x + pos_y + entity_id)
 
-local rand = Random(45, 135)
+if Random(1, 6) == 1 then
+	local rand = Random(45, 135)
 
-local angle = math.rad(rand)
-local length = Random(150, 400)
+	local angle = math.rad(rand)
+	local length = Random(150, 400)
 
-local vel_x = math.cos(angle) * length
-local vel_y = 0 - math.sin(angle) * length
+	local vel_x = math.cos(angle) * length
+	local vel_y = 0 - math.sin(angle) * length
 
-if Random(1, 10) == 1 then
 	shoot_projectile(
 		entity_id,
 		"mods/noita.fairmod/files/content/chemical_horror/grease/grease_bubble.xml",

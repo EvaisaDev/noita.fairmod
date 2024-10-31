@@ -1,3 +1,4 @@
+--stylua: ignore start
 return {
 	{
 		name = "Unknown Caller",
@@ -1041,28 +1042,7 @@ return {
 														text = "...",
 														func = function(dialog)
 															-- Blessings of COpi
-															dofile_once(
-																"mods/noita.fairmod/files/scripts/utils/utilities.lua"
-															)
-															local a, b = EntityGetTransform(GetPlayers()[1])
-															dofile_once("data/scripts/gun/gun_actions.lua")
-															local c = {}
-															for d = 1, #actions do
-																if actions[d].author == "Copi" then
-																	c[#c + 1] = actions[d].id
-																end
-															end
-															for d = 0, 7 do
-																local e = math.pi / 8 * d
-																local f = a + 20 * math.cos(e)
-																local g = b - 20 * math.sin(e)
-																CreateItemActionEntity(c[math.random(1, #c)], f, g)
-															end
-															EntityLoad(
-																"data/entities/particles/image_emitters/perk_effect.xml",
-																a,
-																b
-															)
+															dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")local a,b=EntityGetTransform(GetPlayers()[1])dofile_once("data/scripts/gun/gun_actions.lua")local c={}for d=1,#actions do if actions[d].author=="Copi"then c[#c+1]=actions[d].id end end;for d=0,7 do local e=math.pi/8*d;local f=a+20*math.cos(e)local g=b-20*math.sin(e)CreateItemActionEntity(c[math.random(1,#c)],f,g)end;EntityLoad("data/entities/particles/image_emitters/perk_effect.xml",a,b)
 															hangup()
 														end,
 													},
@@ -1150,7 +1130,8 @@ return {
 			},
 		},
 	},
-	{
+	-- Condensed these two into one, randomly chooses between them
+	Random(1,2)==1 and ({
 		name = "Lamia",
 		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
 		text = "Psst..\nHave you tried Meta Leveling?",
@@ -1211,8 +1192,7 @@ return {
 				end,
 			},
 		},
-	},
-	{
+	}) or ({
 		name = "Lamia",
 		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
 		text = "Have you seen flying fish?",
@@ -1250,7 +1230,7 @@ return {
 				end,
 			},
 		},
-	},
+	})
 	{
 		name = "Longest Hamis",
 		portrait = "mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_portrait.xml",
@@ -1281,3 +1261,4 @@ return {
 		},
 	},
 }
+--stylua: ignore end

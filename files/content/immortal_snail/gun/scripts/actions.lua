@@ -1,4 +1,4 @@
-actions[#actions+1] = {
+actions[#actions + 1] = {
 	id = "BULLET_SNAIL",
 	name = "Snail Gun Bullet",
 	description = "yeah.",
@@ -12,7 +12,7 @@ actions[#actions+1] = {
 		mag = mag or 17
 		if mag == 1 then
 			local x, y = EntityGetTransform(GetUpdatedEntityID())
-			GameCreateParticle("plastic_red", x, y-4, 1, math.random(-5, 5), -10, false)
+			GameCreateParticle("plastic_red", x, y - 4, 1, math.random(-5, 5), -10, false)
 			current_reload_time = current_reload_time + 40
 			mag = 17
 			GamePlaySound("mods/noita.fairmod/fairmod.bank", "gun/reload", x, y)

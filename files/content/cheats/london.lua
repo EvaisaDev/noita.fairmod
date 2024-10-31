@@ -1,0 +1,5 @@
+local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
+ComponentSetValue2(state, "fog_target",	ComponentGetValue2(state, "fog_target")+99)
+ComponentSetValue2(state, "fog",		ComponentGetValue2(state, "fog")+99)
+ComponentSetValue2(state, "rain_target",ComponentGetValue2(state, "rain_target")+99)
+ComponentSetValue2(state, "rain",		ComponentGetValue2(state, "rain")+99)

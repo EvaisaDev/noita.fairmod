@@ -753,8 +753,9 @@ function get_gun_data(cost, level, force_unshuffle)
 	if gun["mana_charge_speed"] < 10 then gun["mana_charge_speed"] = 10 end
 
 	p = Random(0, 100)
-	if p < 15 + level * 6 then gun["force_unshuffle"] = 1 		-- print( "force_unshuffle" )
-end
+	if p < 15 + level * 6 then
+		gun["force_unshuffle"] = 1 -- print( "force_unshuffle" )
+	end
 
 	local is_rare = 0
 	p = Random(0, 100)

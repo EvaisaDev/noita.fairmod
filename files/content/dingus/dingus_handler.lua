@@ -124,5 +124,4 @@ end
 local audio_loop = EntityGetFirstComponentIncludingDisabled(entity, "AudioLoopComponent", "music")
 if not audio_loop then return end
 
-
 ComponentSetValue2(audio_loop, "m_volume", volume)

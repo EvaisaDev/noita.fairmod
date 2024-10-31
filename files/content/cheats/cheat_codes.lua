@@ -1,3 +1,4 @@
+--stylua: ignore start
 return {
 	{
 		code = "motherlode",
@@ -180,7 +181,8 @@ return {
 			EntityAddComponent2(player, "AudioLoopComponent", {
 				_tags = "music",
 				file = "mods/noita.fairmod/fairmod.bank",
-				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "godhamis/loop_streamer" or "godhamis/loop",
+				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "godhamis/loop_streamer"
+					or "godhamis/loop",
 				auto_play = true,
 			})
 		end,
@@ -264,20 +266,22 @@ return {
 		func = function(player)
 			GameAddFlagRun("fairmod_smokedogg_spawned")
 			local smokedogg = EntityLoad("mods/noita.fairmod/files/content/smokedogg/smokedogg.xml")
-	
+
 			EntityAddComponent2(smokedogg, "AudioLoopComponent", {
 				file = "mods/noita.fairmod/fairmod.bank",
-				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedogg/loop_streamer" or"smokedogg/loop",
+				event_name = ModSettingGet("noita.fairmod.streamer_mode") and "smokedogg/loop_streamer"
+					or "smokedogg/loop",
 				auto_play = true,
-			})	
+			})
 		end,
 	},
 	{
-		code = function() return StatsGetValue("world_seed") or "12345" end,
+		code = function()
+			return StatsGetValue("world_seed") or "12345"
+		end,
 		name = "World Reincarnation",
 		description = "The world has been regenerated with a new seed.",
 		func = function(player)
-
 			local x, y = EntityGetTransform(player)
 
 			SetRandomSeed(x, y + GameGetFrameNum())
@@ -286,7 +290,7 @@ return {
 			print("New seed: " .. seed)
 
 			SetWorldSeed(seed)
-			
+
 			BiomeMapLoad_KeepPlayer(MagicNumbersGetValue("BIOME_MAP"), "data/biome/_pixel_scenes")
 		end,
 	},
@@ -296,37 +300,37 @@ return {
 			print("UserK")
 			GamePrint("UserK")
 			GamePrintImportant("UserK", "UserK")
-		end
+		end,
 	},
 	{
 		code = "/kill",
 		name = "Ouch!",
 		description = "Player fell out of the world.",
 		func = function(player)
-			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
-		end
+		end,
 	},
 	{
 		code = "boobs",
 		func = function(player)
-			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
-		end
+		end,
 	},
 	{
 		code = "ariral.boobs",
 		func = function(player)
-			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
-		end
+		end,
 	},
 	{
 		code = "sex",
 		func = function(player)
-			EntityInflictDamage(player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
-		end
+		end,
 	},
 	{
 		code = "altf4",
@@ -334,83 +338,122 @@ return {
 		description = "okay bye-",
 		func = function()
 			EntityKill(GameGetWorldStateEntity()) --lmao
-		end
-	},
-	{ -- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
-		code = "/spawn",
-		name = "/spawn",
-		description = "Teleporting in 3... 2... wait, you're already there!",
-		func = function(player)
-			-- Variables for coordinates
-			local start_x = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))
-			local start_y = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))
-			local parallel_world_offset = GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512
-	
-			-- Teleport player to the calculated coordinates
-			EntityApplyTransform(player, start_x + parallel_world_offset, start_y)
-		end
-	},
-	{
+		end,
+	},-- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
+	-- Fixed it again -c
+	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
+	,{
 		code = "copi",
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
 			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
-		end
+		end,
 	},
 	{
 		code = "yourworldseed",
-		func = function ()
+		func = function()
 			GameAddFlagRun("YOUBLITHINGIDIOT")
-		end
+		end,
 	},
 	{
 		code = "london",
 		name = "Aye bruv",
 		description = "Oh, splendid! Another dreary cup of tea to elevate my utterly bland day—how terribly exciting!",
-		func = function ()
+		func = function (player)
+			EntityAddComponent2(player, "LuaComponent", {
+				script_source_file="mods/noita.fairmod/files/content/cheats/london.lua",
+				execute_every_n_frame=30
+			})
 			local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
-			ComponentSetValue2(state, "fog_target",		9999999)
-			ComponentSetValue2(state, "fog",			9999999)
-			ComponentSetValue2(state, "rain_target",	9999999)
-			ComponentSetValue2(state, "rain",			9999999)
-			ComponentSetValue2(state, "ENDING_HAPPINESS_HAPPENING", false)
-			ComponentSetValue2(state, "ENDING_HAPPINESS_FRAMES", 0)
-			ComponentSetValue2(state, "ENDING_HAPPINESS", false)
+			ComponentSetValue2(state, "fog_target",		999)
+			ComponentSetValue2(state, "fog",			999)
+			ComponentSetValue2(state, "rain_target",	999)
+			ComponentSetValue2(state, "rain",			999)
+			ComponentSetValue2(state, "ENDING_HAPPINESS_HAPPENING", false) -- the world is miserable
+			ComponentSetValue2(state, "ENDING_HAPPINESS_FRAMES", 0) -- the world is miserable
+			ComponentSetValue2(state, "ENDING_HAPPINESS", false) -- the world is miserable
+			-- I want to spawn a bunch of fuckers with knives but I'm lazy
 		end
 	},
 	{
 		code = "thebodies",
 		name = "the bodies the bodies the bodies the bodies the bodies",
 		description = "oh no",
-		func = function (player)
-		if not GameHasFlagRun("thebodies") then
-			GameAddFlagRun("thebodies")
-			ModTextFileSetContent("data/thebodies.lua", [[local x, y, r, sx, sy = EntityGetTransform(GetUpdatedEntityID()); LoadRagdoll("data/ragdolls/player/filenames.txt", x, y - 10, "meat", sx, 0, -1)]])
-		end
-		EntityAddComponent2(player, "LuaComponent", {
-			script_source_file="data/thebodies.lua",
-			execute_every_n_frame=30
-		})
-		end
+		func = function(player)
+			if not GameHasFlagRun("thebodies") then
+				GameAddFlagRun("thebodies")
+				ModTextFileSetContent(
+					"data/thebodies.lua",
+					[[local x, y, r, sx, sy = EntityGetTransform(GetUpdatedEntityID()); LoadRagdoll("data/ragdolls/player/filenames.txt", x, y - 10, "meat", sx, 0, -1)]]
+				)
+			end
+			EntityAddComponent2(player, "LuaComponent", {
+				script_source_file = "data/thebodies.lua",
+				execute_every_n_frame = 30,
+			})
+		end,
 	},
 	{
 		code = "genocide",
 		name = "genocide",
 		description = "we murderin",
-		func = function (player)
-			local x, y= EntityGetTransform(player)
+		func = function(player)
+			local x, y = EntityGetTransform(player)
 			for k, v in ipairs(GetEnemiesInRadius(x, y, 256)) do
 				EntityConvertToMaterial(v, "blood")
 				EntityKill(v)
 			end
-		end
+		end,
 	},
 	{
 		code = "wasdwasd",
 		name = "oops!",
 		description = "be more careful!",
-		func = function (player)
+		func = function(player)
 			GameDropAllItems(player)
-		end
+		end,
+	},
+	{
+		code = "wdsawdsa",
+		name = "oops!",
+		description = "be more careful!",
+		func = function(player)
+			GameDropAllItems(player)
+		end,
+	},
+	{
+		code = "credits",
+		func = function(player)
+			if HasFlagPersistent("fairmod_unlocked_credits") then
+				--yeah i didnt finish this
+			else
+				GamePrint("cheatcode function not found, printing error in logs...")
+				print("pretend theres like, a lot of error logs here")
+			end
+		end,
+	},
+	{
+		code = "chaos",
+		name = "Chaos, Chaos!",
+		description = "this is surely a good idea",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium.xml", x, y)
+		end,
+	},
+	{
+		code = "give4664",
+		name = "Giving Noita 64 TNT",
+		description = "Please don't blow up the map",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			math.randomseed(x + y)
+			for k = 1, 64 do
+				local opts = { "DYNAMITE", "TNTBOX", "TNTBOX_BIG" }
+				CreateItemActionEntity(opts[math.random(1, 3)], x, y - 4)
+			end
+		end,
 	},
 }
+
+--stylua: ignore end
