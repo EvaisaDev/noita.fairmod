@@ -44,6 +44,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									text = "Take treat",
 									func = function(dialog)
 										SetRandomSeed(GameGetFrameNum() + y, y * x)
+										GameAddFlagRun("fairmod_trickortreated")
 
 										CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
 										GlobalsSetValue(
