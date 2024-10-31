@@ -218,8 +218,8 @@ local function build_settings()
 				{
 					id = "cpand_tmtrainer_chance",
 					ui_name = "Pandorium TMT%",
-					ui_description = "Probability for Pandorium to use TM-Trainer spells\nTMT Spells have a tendency to crash,set to 0 if you are experiencing issues\nRanges 0-30%",
-					value_default = 0.05,
+					ui_description = "Probability for Pandorium to use TM-Trainer spells\nTMT Spells have a tendency to crash, set to max if you aren't a coward\nRanges 0-30%",
+					value_default = 0,
 					value_min = 0.0,
 					value_max = 0.3,
 					value_display_multiplier = 100,

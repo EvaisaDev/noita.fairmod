@@ -359,7 +359,7 @@
 			load_this_entity="mods/noita.fairmod/files/content/chemical_horror/grease/grease_fire.xml"
 			ray_energy="0"
 			audio_enabled="0"
-			create_cell_probability="40"
+			create_cell_probability="30"
 			sparks_enabled="0"
 			light_enabled="0"
 			hole_enabled="1"

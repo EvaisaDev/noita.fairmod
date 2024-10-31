@@ -1,0 +1,28 @@
+<Entity name="$projectile_default" tags="projectile_player" >
+
+	<MaterialSeaSpawnerComponent
+	    size.x="128"
+	    size.y="64"
+	    offset.x="0"
+	    offset.y="-79"
+	    speed="10"
+	    noise_threshold="0.0"
+	    material="aa_chaotic_pandorium" >
+	</MaterialSeaSpawnerComponent>
+
+	<LifetimeComponent
+		lifetime="300">
+	</LifetimeComponent>
+
+	<MusicEnergyAffectorComponent
+		energy_target="1.0">
+	</MusicEnergyAffectorComponent>
+
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/sea_of_lava"
+		set_latest_event_position="1" >
+	</AudioComponent>
+
+</Entity>
+

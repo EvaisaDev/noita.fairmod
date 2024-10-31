@@ -413,4 +413,24 @@ return {
 			GameDropAllItems(player)
 		end
 	},
+	{
+		code = "credits",
+		func = function(player)
+			if HasFlagPersistent("fairmod_unlocked_credits") then
+				--yeah i didnt finish this
+			else
+				GamePrint("cheatcode function not found, printing error in logs...")
+				print("pretend theres like, a lot of error logs here")
+			end
+		end
+	},
+	{
+		code = "chaos",
+		name = "Chaos, Chaos!",
+		description = "this is surely a good idea",
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium.xml", x, y)
+		end
+	}
 }
