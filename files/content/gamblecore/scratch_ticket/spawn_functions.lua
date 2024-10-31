@@ -1,3 +1,4 @@
+--stylua: ignore start
 dofile_once("data/scripts/perks/perk.lua")
 
 return {
@@ -126,13 +127,7 @@ return {
 					local flag = thisitem.spawn_requires_flag
 
 					if HasFlagPersistent(flag) == false then
-						print(table.concat({
-							"Trying to spawn ",
-							tostring(thisitem.id),
-							" even though flag ",
-							tostring(flag),
-							" not set!!",
-						}))
+						print(table.concat({ "Trying to spawn ", tostring(thisitem.id), " even though flag ", tostring(flag), " not set!!", }))
 					end
 				end
 			end
@@ -149,3 +144,4 @@ return {
 		perk_pickup(pid, player, "", true, false)
 	end,
 }
+--stylua: ignore end

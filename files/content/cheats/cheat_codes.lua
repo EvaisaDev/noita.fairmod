@@ -1,3 +1,4 @@
+--stylua: ignore start
 return {
 	{
 		code = "motherlode",
@@ -306,60 +307,28 @@ return {
 		name = "Ouch!",
 		description = "Player fell out of the world.",
 		func = function(player)
-			EntityInflictDamage(
-				player,
-				9999999999999999999999999,
-				"DAMAGE_PHYSICS_BODY_DAMAGED",
-				"yuor a looser",
-				"DISINTEGRATED",
-				0,
-				0
-			)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
 	{
 		code = "boobs",
 		func = function(player)
-			EntityInflictDamage(
-				player,
-				9999999999999999999999999,
-				"DAMAGE_PHYSICS_BODY_DAMAGED",
-				"yuor a looser",
-				"DISINTEGRATED",
-				0,
-				0
-			)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
 	{
 		code = "ariral.boobs",
 		func = function(player)
-			EntityInflictDamage(
-				player,
-				9999999999999999999999999,
-				"DAMAGE_PHYSICS_BODY_DAMAGED",
-				"yuor a looser",
-				"DISINTEGRATED",
-				0,
-				0
-			)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
 	{
 		code = "sex",
 		func = function(player)
-			EntityInflictDamage(
-				player,
-				9999999999999999999999999,
-				"DAMAGE_PHYSICS_BODY_DAMAGED",
-				"yuor a looser",
-				"DISINTEGRATED",
-				0,
-				0
-			)
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
@@ -402,16 +371,21 @@ return {
 		code = "london",
 		name = "Aye bruv",
 		description = "Oh, splendid! Another dreary cup of tea to elevate my utterly bland day—how terribly exciting!",
-		func = function()
+		func = function (player)
+			EntityAddComponent2(player, "LuaComponent", {
+				script_source_file="mods/noita.fairmod/files/content/cheats/london.lua",
+				execute_every_n_frame=30
+			})
 			local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
-			ComponentSetValue2(state, "fog_target", 9999999)
-			ComponentSetValue2(state, "fog", 9999999)
-			ComponentSetValue2(state, "rain_target", 9999999)
-			ComponentSetValue2(state, "rain", 9999999)
-			ComponentSetValue2(state, "ENDING_HAPPINESS_HAPPENING", false)
-			ComponentSetValue2(state, "ENDING_HAPPINESS_FRAMES", 0)
-			ComponentSetValue2(state, "ENDING_HAPPINESS", false)
-		end,
+			ComponentSetValue2(state, "fog_target",		999)
+			ComponentSetValue2(state, "fog",			999)
+			ComponentSetValue2(state, "rain_target",	999)
+			ComponentSetValue2(state, "rain",			999)
+			ComponentSetValue2(state, "ENDING_HAPPINESS_HAPPENING", false) -- the world is miserable
+			ComponentSetValue2(state, "ENDING_HAPPINESS_FRAMES", 0) -- the world is miserable
+			ComponentSetValue2(state, "ENDING_HAPPINESS", false) -- the world is miserable
+			-- I want to spawn a bunch of fuckers with knives but I'm lazy
+		end
 	},
 	{
 		code = "thebodies",
@@ -452,6 +426,14 @@ return {
 		end,
 	},
 	{
+		code = "wdsawdsa",
+		name = "oops!",
+		description = "be more careful!",
+		func = function(player)
+			GameDropAllItems(player)
+		end,
+	},
+	{
 		code = "credits",
 		func = function(player)
 			if HasFlagPersistent("fairmod_unlocked_credits") then
@@ -485,3 +467,5 @@ return {
 		end,
 	},
 }
+
+--stylua: ignore end

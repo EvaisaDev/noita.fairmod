@@ -1,3 +1,4 @@
+--stylua: ignore start
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
 local pool = dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/projectile_pool.lua")
 local ui_rolls = 4
@@ -21,11 +22,7 @@ do
 
 	for k = 0, new_enemy_count do
 		--Generate ui icon
-		ModImageMakeEditable(
-			table.concat({ "data/ui_gfx/animal_icons/noita.fairmod_enemy_corrupted_0", k, ".png" }),
-			16,
-			16
-		)
+		ModImageMakeEditable( table.concat({ "data/ui_gfx/animal_icons/noita.fairmod_enemy_corrupted_0", k, ".png" }), 16, 16 )
 
 		ui_rolls = 4
 
@@ -34,12 +31,8 @@ do
 			y_pos = math.random(1, 12)
 			x_size = math.random(4, 16)
 			y_size = math.random(4, 16)
-			local victim_icon = ModImageIdFromFilename(
-				table.concat({ "data/ui_gfx/animal_icons/", csi_enemies[math.random(1, #csi_enemies)], ".png" })
-			)
-			local output_icon = ModImageIdFromFilename(
-				table.concat({ "data/ui_gfx/animal_icons/noita.fairmod_enemy_corrupted_0", k, ".png" })
-			)
+			local victim_icon = ModImageIdFromFilename(table.concat({ "data/ui_gfx/animal_icons/", csi_enemies[math.random(1, #csi_enemies)], ".png" }))
+			local output_icon = ModImageIdFromFilename(table.concat({ "data/ui_gfx/animal_icons/noita.fairmod_enemy_corrupted_0", k, ".png" }))
 			for x = x_pos, x_size do
 				for y = y_pos, y_size do
 					local colour = ModImageGetPixel(victim_icon, x, y)
@@ -50,32 +43,12 @@ do
 
 		--Generate enemy sprite
 		do
-			local path = table.concat({
-				"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0",
-				k,
-				".xml",
-			})
-			local content =
-				ModTextFileGetContent("mods/noita.fairmod/files/content/corrupted_enemies/gfx/scavenger_smg.xml")
-			content = content:gsub(
-				'"data/enemies_gfx/scavenger_smg%.png"',
-				table.concat({
-					'"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0',
-					k,
-					'.png"',
-				})
-			)
+			local path = table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0", k, ".xml", })
+			local content =ModTextFileGetContent("mods/noita.fairmod/files/content/corrupted_enemies/gfx/scavenger_smg.xml")
+			content = content:gsub('"data/enemies_gfx/scavenger_smg%.png"',table.concat({ '"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0', k, '.png"', }))
 			ModTextFileSetContent(path, content)
 
-			ModImageMakeEditable(
-				table.concat({
-					"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0",
-					k,
-					".png",
-				}),
-				120,
-				231
-			)
+			ModImageMakeEditable(table.concat({"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0",k,".png",}),120,231)
 			local opts = {
 				"scavenger_clusterbomb",
 				"scavenger_glue",
@@ -237,28 +210,12 @@ do
 			local path = table.concat({ "data/entities/animals/noita.fairmod_enemy_corrupted_0", k, ".xml" })
 			local content = ModTextFileGetContent("data/entities/animals/scavenger_smg.xml")
 			content = content:gsub("$animal_scavenger_smg", name)
-			content = content:gsub(
-				'"data/entities/projectiles/machinegun_bullet_slower%.xml"',
-				table.concat({ '"', pickrandomspell(k, minute), '.xml"' })
-			)
-			content = content:gsub(
-				'attack_ranged_frames_between="24"',
-				table.concat({ 'attack_ranged_frames_between="', tostring(math.random(10, 120)), '"' })
-			)
+			content = content:gsub('"data/entities/projectiles/machinegun_bullet_slower%.xml"',table.concat({ '"', pickrandomspell(k, minute), '.xml"' }))
+			content = content:gsub('attack_ranged_frames_between="24"',table.concat({ 'attack_ranged_frames_between="', tostring(math.random(10, 120)), '"' }))
 			content = content:gsub('hp="1"', table.concat({ 'hp="', tostring(math.random(1, 4)), '"' }))
 			content = content:gsub('can_fly="1"', table.concat({ 'can_fly="', tostring(can_fly), '"' }))
-			content = content:gsub(
-				'"data/enemies_gfx/scavenger_smg%.xml"',
-				table.concat({
-					'"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0',
-					k,
-					'.xml"',
-				})
-			)
-			content = content:gsub(
-				"</Base>",
-				'</Base> <LuaComponent script_source_file="mods/noita.fairmod/files/content/corrupted_enemies/generate_hp.lua" execute_times="1" remove_after_executed="1" > </LuaComponent>'
-			)
+			content = content:gsub('"data/enemies_gfx/scavenger_smg%.xml"',table.concat({'"mods/noita.fairmod/files/content/corrupted_enemies/gfx/noita.fairmod_enemy_corrupted_0',k,'.xml"',}))
+			content = content:gsub("</Base>",'</Base> <LuaComponent script_source_file="mods/noita.fairmod/files/content/corrupted_enemies/generate_hp.lua" execute_times="1" remove_after_executed="1" > </LuaComponent>')
 
 			-- todo add a 10% chance for a corrupt enemy to be a worm
 
@@ -300,11 +257,9 @@ do
 
 		local biome = opts[math.random(1, #opts)]
 
-		ModLuaFileAppend(
-			table.concat({ "data/scripts/biomes/", biome, ".lua" }),
-			table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0", k, ".lua" })
-		)
+		ModLuaFileAppend(table.concat({ "data/scripts/biomes/", biome, ".lua" }),table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0", k, ".lua" }))
 
 		--ModLuaFileAppend("data/scripts/biomes/coalmine.lua", table.concat({"mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0",k,".lua"}))
 	end
 end
+--stylua: ignore end

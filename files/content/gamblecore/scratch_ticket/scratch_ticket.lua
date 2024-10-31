@@ -1,3 +1,4 @@
+--stylua: ignore start
 -- scratchoff system
 -- horribly written prototype that i cannot be bothered to refactor!! :D
 
@@ -325,24 +326,11 @@ function scratch_ticket_methods.draw(self)
 
 	local screen_width, screen_height = GuiGetScreenDimensions(self.gui)
 
-	local background_width, background_height = GuiGetImageDimensions(
-		self.gui,
-		"mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff.png",
-		1.4
-	)
+	local background_width, background_height = GuiGetImageDimensions( self.gui, "mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff.png", 1.4 )
 
 	local x, y = screen_width / 2 - background_width / 2, screen_height / 2 - background_height / 2
 
-	GuiImage(
-		self.gui,
-		new_id(),
-		x,
-		y,
-		"mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff.png",
-		1,
-		1.4,
-		1.4
-	)
+	GuiImage( self.gui, new_id(), x, y, "mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff.png", 1, 1.4, 1.4 )
 
 	local mx, my = get_mouse_pos(self.gui)
 	local mouse_pressed = InputIsMouseButtonDown(1)
@@ -551,23 +539,8 @@ function scratch_ticket_methods.draw(self)
 				local height = 1
 
 				GuiZSetForNextWidget(self.gui, -2)
-				GuiColorSetForNextWidget(
-					self.gui,
-					(index % 2 / 100 * 2) + 0.98,
-					(index % 2 / 100 * 2) + 0.98,
-					(index % 2 / 100 * 2) + 0.98,
-					1
-				)
-				GuiImage(
-					self.gui,
-					new_id(),
-					draw_x,
-					draw_y,
-					"mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_pixel.png",
-					1,
-					width,
-					height
-				)
+				GuiColorSetForNextWidget( self.gui, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, 1 )
+				GuiImage( self.gui, new_id(), draw_x, draw_y, "mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_pixel.png", 1, width, height )
 			else
 				x_pix = x_pix + 1
 			end
@@ -589,17 +562,7 @@ function scratch_ticket_methods.draw(self)
 
 		local alpha = particle.life_frames / particle.max_life_frames
 		GuiZSetForNextWidget(self.gui, -3)
-		GuiImage(
-			self.gui,
-			new_id(),
-			particle.x,
-			particle.y,
-			"mods/noita.fairmod/files/content/gamblecore/scratch_ticket/star.png",
-			alpha,
-			1,
-			1,
-			math.rad(particle.angle)
-		)
+		GuiImage( self.gui, new_id(), particle.x, particle.y, "mods/noita.fairmod/files/content/gamblecore/scratch_ticket/star.png", alpha, 1, 1, math.rad(particle.angle) )
 
 		-- Remove particle if its life time is over
 		if particle.life_frames <= 0 then table.remove(self.particles, i) end
@@ -679,3 +642,4 @@ function serialize(o)
 end
 
 return scratch_ticket
+--stylua: ignore end
