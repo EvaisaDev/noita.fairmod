@@ -245,7 +245,7 @@ do
 				'attack_ranged_frames_between="24"',
 				table.concat({ 'attack_ranged_frames_between="', tostring(math.random(10, 120)), '"' })
 			)
-			content = content:gsub('hp="1"', table.concat({ 'hp="', tostring(math.random(1, 40)), '"' }))
+			content = content:gsub('hp="1"', table.concat({ 'hp="', tostring(math.random(1, 4)), '"' }))
 			content = content:gsub('can_fly="1"', table.concat({ 'can_fly="', tostring(can_fly), '"' }))
 			content = content:gsub(
 				'"data/enemies_gfx/scavenger_smg%.xml"',
@@ -255,6 +255,7 @@ do
 					'.xml"',
 				})
 			)
+			content = content:gsub('</Base>', '</Base> <LuaComponent script_source_file="mods/noita.fairmod/files/content/corrupted_enemies/generate_hp.lua" execute_times="1" remove_after_executed="1" > </LuaComponent>')
 
 			-- todo add a 10% chance for a corrupt enemy to be a worm
 

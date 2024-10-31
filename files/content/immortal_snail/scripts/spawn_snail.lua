@@ -1,5 +1,5 @@
 local snail = EntityGetWithName("Immortal Snail")
-snail_respawn_timer = snail_respawn_timer or 0
+snail_respawn_timer = snail_respawn_timer or 600
 if snail == nil or snail == 0 or not EntityGetIsAlive(snail) then
 	if snail_respawn_timer <= 0 then
 		local camera_x, camera_y, camera_w, camera_h = GameGetCameraBounds()

@@ -133,6 +133,30 @@ local function break_this_window(_, gui, _, im_id, setting)
 	if setting.break_it then local lol = nil + 0 end
 end
 
+local function mod_setting_integer(_, gui, in_main_menu, im_id, setting)
+	local id = prfx .. setting.id
+	local value = ModSettingGetNextValue(id)
+
+	local value_new = GuiSlider(
+		gui,
+		im_id,
+		mod_setting_group_x_offset,
+		0,
+		setting.ui_name,
+		value,
+		setting.value_min,
+		setting.value_max,
+		setting.value_default,
+		setting.value_display_multiplier or 1,
+		setting.value_display_formatting or "",
+		64
+	)
+	value_new = math.floor(value_new + 0.5)
+	if value ~= value_new then ModSettingSetNextValue(id, value_new, false) end
+
+	mod_setting_tooltip(mod_id, gui, in_main_menu, setting)
+end
+
 local function build_settings()
 	local settings = {
 		{
@@ -224,6 +248,16 @@ local function build_settings()
 					value_max = 0.3,
 					value_display_multiplier = 100,
 					value_display_formatting = " $0%",
+				},
+				{
+					id = "max_corpse_count",
+					ui_name = "Maximum Corpse Count",
+					ui_description = "How many death position to remember\nReduce it if it's causing lags",
+					value_default = 50,
+					value_min = 0,
+					value_max = 200,
+					ui_fn = mod_setting_integer,
+					scope = MOD_SETTING_SCOPE_NEW_GAME,
 				},
 				{
 					not_setting = true,

@@ -432,5 +432,18 @@ return {
 			local x,y = EntityGetTransform(player)
 			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium.xml", x, y)
 		end
-	}
+	},
+	{
+		code = "give4664",
+		name = "Giving Noita 64 TNT",
+		description = "Please don't blow up the map",
+		func = function (player)
+			local x,y = EntityGetTransform(player)
+			math.randomseed(x+y)
+			for k=1,64 do
+				local opts = {"DYNAMITE","TNTBOX","TNTBOX_BIG"}
+				CreateItemActionEntity( opts[math.random(1,3)], x, y - 4 )
+			end
+		end
+	},
 }

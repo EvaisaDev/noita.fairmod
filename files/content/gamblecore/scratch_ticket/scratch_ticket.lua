@@ -82,42 +82,42 @@ local prizes = {
     {
         text = "$10.00",
         description = "You won 10 gold!",
-        weight = 100,
+        weight = 120,
         func = get_money_func(10),
     },
     -- 25
     {
         text = "$25.00",
         description = "You won 25 gold!",
-        weight = 25,
+        weight = 50,
         func = get_money_func(25),
     },
     -- 50
     {
         text = "$50.00",
         description = "You won 50 gold!",
-        weight = 15,
+        weight = 35,
         func = get_money_func(50),
     },
     -- 100
     {
         text = "$100.00",
         description = "You won 100 gold!",
-        weight = 10,
+        weight = 15,
         func = get_money_func(100),
     },
     -- 250
     {
         text = "$250.00",
         description = "You won 250 gold!",
-        weight = 5,
+        weight = 3,
         func = get_money_func(250),
     },
     -- 500
     {
         text = "$500.00",
         description = "You won 500 gold!",
-        weight = 2,
+        weight = 1,
         func = get_money_func(500),
     },
     -- 1000
@@ -183,7 +183,7 @@ local function get_mouse_pos(gui)
     return mx, my
 end
 
-local number_range = { 1, 50 }
+local number_range = { 1, 60 }
 
 local function get_line(x0, y0, x1, y1)
     local points = {}
@@ -543,10 +543,17 @@ function scratch_ticket_methods.draw(self)
     GuiColorSetForNextWidget(self.gui, 0, 0, 0, 1)
     GuiText(self.gui, text_x, text_y, winning_numbers_string, number_size * 1.5)
 
+	local index = 0
     -- Draw scratch overlay
     for y_pix = 0, (96 * 1.4) - 1 do
         local x_pix = 0
+		if(y_pix % 1 == 0)then
+			index = index + 1
+
+		end
         while x_pix < (108 * 1.4) do
+			-- every 4 x pixels, increment index
+
             if not self.scratched_pixels[x_pix] or not self.scratched_pixels[x_pix][y_pix] then
                 local run_start = x_pix
                 local run_length = 1
@@ -562,7 +569,9 @@ function scratch_ticket_methods.draw(self)
                 local draw_y = scratch_area_y + y_pix
                 local width = run_length
                 local height = 1
+				
                 GuiZSetForNextWidget(self.gui, -2)
+				GuiColorSetForNextWidget(self.gui, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, (index % 2 / 100 * 2) + 0.98, 1)	
                 GuiImage(
                     self.gui,
                     new_id(),

@@ -55,36 +55,6 @@ local reactions = {
 		output_cell2 = "blood_fungi",
 	},
 	{
-		probability = "0.1",
-		entity = "data/entities/animals/longleg.xml",
-		output_cell1 = "air",
-		output_cell2 = "air",
-	},
-	{
-		probability = "0.1",
-		entity = "data/entities/animals/worm_tiny.xml",
-		output_cell1 = "air",
-		output_cell2 = "air",
-	},
-	{
-		probability = "0.1",
-		entity = "data/entities/animals/fish.xml",
-		output_cell1 = "air",
-		output_cell2 = "air",
-	},
-	{
-		probability = "0.1",
-		entity = "mods/noita.fairmod/files/content/enemy_reworks/fish/fish.xml",
-		output_cell1 = "air",
-		output_cell2 = "air",
-	},
-	{
-		probability = "0.1",
-		entity = "data/entities/animals/rat.xml",
-		output_cell1 = "air",
-		output_cell2 = "air",
-	},
-	{
 		output_cell1 = "air",
 		output_cell2 = "air",
 	},

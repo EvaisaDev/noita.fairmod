@@ -8,8 +8,12 @@ local quiz_timer = tonumber(GlobalsGetValue( "fairmod_endquiz_timer", "-1" ))
 if quiz_timer > 0 then
 	quiz_timer = quiz_timer - 1
 	if quiz_timer == 0 then
-		EntityInflictDamage( player_id, 999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, player_id )
-		EntityKill(player_id)
+		local plyrs = EntityGetWithTag("player_unit")
+		for l=1,#plyrs do
+			EntityInflictDamage( plyrs[l], 999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, plyrs[l] )
+			EntityKill(plyrs[l])
+		end
+		GamePlaySound( "mods/noita.fairmod/fairmod.bank", "ending_quiz/millionare_music_stop", x, y )
 		dialog.close()
 	end
 	GlobalsSetValue( "fairmod_endquiz_timer", tostring(quiz_timer) )
@@ -95,6 +99,7 @@ function right_answer()
 							{
 								text = "YES!!!",
 								func = function(dialog)
+									AddFlagPersistent("fairmod_noitillionare_winner")
 									set_controls_enabled(true)
 									run_real_ending(x,y)
 									dialog.close()
@@ -173,7 +178,7 @@ function interacting(player_id, building_id, interactable_name)
 		end
 
 		dialog = dialog_system.open_dialog({
-			name = "????",
+			name = "Noitillionare Host",
 			portrait = "mods/noita.fairmod/files/content/ending_quiz/portrait_noitillionare.png",
 			typing_sound_interval = 5,
 			typing_sound = "three", -- There are currently 6: default, sans, one, two, three, four and "none" to turn it off, if not specified uses "default"
@@ -192,7 +197,7 @@ function interacting(player_id, building_id, interactable_name)
 						GamePlaySound( "mods/noita.fairmod/fairmod.bank", "ending_quiz/millionare_music", x, y )
 						dialog.show({
 							text = [[At the start of your run there was a shape near spawn!
-							this is important so remember hard!
+							This is important so remember hard!
 							What shape was it?
 							You have 30 seconds to answer.]],
 							options = quiz_table
