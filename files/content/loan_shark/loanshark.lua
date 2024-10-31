@@ -310,6 +310,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 										if Random(1, 4) == 1 then
 											local pos_x, pos_y = EntityGetTransform(entity_who_interacted)
 											CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+											GameAddFlagRun("fairmod_trickortreated")
 											GameAddFlagRun("fairmod_trickortreat_rewarded_loanshark")
 										else
 											EntityLoad("data/entities/projectiles/bomb.xml", x, y)
