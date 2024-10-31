@@ -27,9 +27,9 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 
 	local rand = Random(0, 100)
 
-	if (portal_teleport and rand < 10) or rand < 5 then
+	if GameHasFlagRun("random_teleport_next") or (portal_teleport and rand < 10) or rand < 5 then
 		if portal_teleport then GameAddFlagRun("portal_malfunction") end
-
+		GameRemoveFlagRun("random_teleport_next")
 		dofile("mods/noita.fairmod/files/content/funky_portals/biome_blacklist.lua")
 		local biome_map_w, biome_map_h = BiomeMapGetSize()
 		local chunk_size = 512
@@ -177,19 +177,23 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						-- create hole
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
-							local return_portal = EntityLoad(
-								"mods/noita.fairmod/files/content/funky_portals/return_portal.xml",
-								new_x,
-								new_y
-							)
-							EntityAddComponent2(return_portal, "VariableStorageComponent", {
-								name = "target_x",
-								value_float = from_x,
-							})
-							EntityAddComponent2(return_portal, "VariableStorageComponent", {
-								name = "target_y",
-								value_float = from_y,
-							})
+							if(not GameHasFlagRun("no_return"))then
+								local return_portal = EntityLoad(
+									"mods/noita.fairmod/files/content/funky_portals/return_portal.xml",
+									new_x,
+									new_y
+								)
+								EntityAddComponent2(return_portal, "VariableStorageComponent", {
+									name = "target_x",
+									value_float = from_x,
+								})
+								EntityAddComponent2(return_portal, "VariableStorageComponent", {
+									name = "target_y",
+									value_float = from_y,
+								})
+							else
+								GameRemoveFlagRun("no_return")
+							end
 						end)
 					end)
 
