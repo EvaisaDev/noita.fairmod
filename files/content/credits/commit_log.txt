@@ -1,0 +1,590 @@
+Fair Mod Commit History
+
+Initial commit
+default mod files
+Create README.md
+Add enemy fucked up and evilified
+stuff
+Update fuckedupenemies.lua
+Untested
+Add nukes
+Update mod.xml
+remove debug print
+fix heart attack, fix evil effect lifetime
+remove debug
+cant get my script to run for some reason
+mimics spawn 1 in 75, assuming they CAN spawn bc script wont run >:(((
+Update README.md
+Heart attack based on ingestion amount
+remove debug print again, i can't stop losing
+but heres the snailer
+nxml
+fucked up snail that doesn't wanna work
+Update set_home_on_player.lua
+fix chances
+remove protection projectile because it appears to be fake
+let me pull
+make the snail spawn on the ground
+Add input delay
+Store plays in mod settings
+Keep input delay and make it gradually worse
+hamis
+added 1 falling stalactite
+*optimise*
+Create damage_players.lua
+organizing!!
+Add TMTrainer
+fix arguments
+reduce nuke chance even more
+ok it works
+add crits
+moved hm portal mimic content to its own folder
+make fungal shifts considerably more hectic
+fix copi rework spells file path
+bottle of water
+stalactite change, and fix another file path
+fix copi stuff and more violent stalactite
+fixfixfix
+more stalactites :3
+fixed invalid shifts
+enemy reworked, rotta
+evil
+remove debug logs
+fish
+sten now heals from water
+spawn player in a random parallel world.
+Add minus life perk
+Implement evasive_items module
+better snail, and bananas
+my dumbass commented out the wrong thing
+Better minus life logic
+Also put health at 100 after spending extra life
+Move to files/content/minus_life
+Unindent
+Put garbage in user's clipboard if imgui is available
+replace gold pickup audio with "ooh banana"
+include fmod project
+Improved props part 1
+Organization, better root growers and flying props and stuff
+Cleanup
+more water shenanigans
+Added piss and shit mechanics, stomach size no longer lowers on its own.
+Impl evasive items
+Add pixel scenes to troll PWs
+Make the PW pixel scenes script generic
+Update player_immersion.lua
+Tablets yeet away from you
+Only dupe lava lake for performance reasons
+add gamblecore
+strmanip lib
+Add Master of Crashing
+improved gamblecore
+Fix clipboard message always the same
+more gamblecore
+lower gamba chances
+add lasers
+replace unneeded dofiles with dofile once
+reformat everything other than automatic fmod files
+Update slot_machine.lua
+hämis thumbsupemoji
+worms
+make perks not play gamblecore audio unless atleast 1 stack of perk lottery
+help
+works
+fucked up and evil, stalactites now spawn in coal pits and snowy
+Update trigger.lua
+Help people learn new languages
+Better seeding
+remove logs and add deranged evil teleporting.
+fix cover yourself in oil
+added butts.
+add more strings to the clipboard thingy
+Fix 'LoadTranslationsFromCSV() failed at data/translations/common.csv on line: 2'
+t
+add streamer luck
+Update init.lua
+Add dialogue to the snail! Add hämis!
+Remove option to quit the game
+Update clipboard
+update dialogue system and add random portal pool liquids.
+Add scene liquid randomizer
+chainsaw now pulls the player forward
+more mimics :3
+make immortal snail 100% more deadly, add speedrunning door. fix kolmi not being home chance.
+Style
+More thrilling mountain collapse
+fix missing set random seed
+fixed some missing setseed
+forgor
+Add early return for non-player
+better snail, more fucked up, evil.
+fix seed warnings
+add fake perks
+Update perk_append.lua
+weird starting loadout
+forgor again
+added evil nuggets.
+fix snail not spawning
+remove debug prints
+Fix magic numbers getting saved on noita_dev.exe
+more magic numbers?
+Update snail.xml
+Root grower lag fixes, tweaks, and extra troll at entrance
+Fix some minor issues/errors
+more jump
+4 more crashmage effects
+change bonce to use a lua table for file names.
+No east/west notification
+car vroom vroom
+tm trainer rewrite
+Less frequent lang swaps
+cats
+hurts
+magic
+gjhas
+make tmtrainer perks more rare
+more snail aggression, no more stealing.
+add evil mode overlay to escape menu
+kolmi is kinda home again!!
+buff enemies less
+Update damage.lua
+Add bluescreen
+mountain, fish
+better speedrun portal, more sensitive stalactites (to spells)
+Update door_entrance.xml
+let enemies drop items in favour of other items
+working slotmachine
+woops
+add poop ending
+Increase HM collapse trigger, collapse the entire mountain
+Touching cactus damages you
+Plug up both sides of kolmi's arena so lava can flood it
+Add themed surface spawns
+fix AI
+shutup fish
+fix tmtrainer
+disable physics damage for steve and skoude
+Update filenames.lua
+Initial "better" ui
+Align info in a different way
+Add a couple of important counters.
+gamblecore integration
+Reduce precision in probability calculation.
+WIP Splits for "speedrun mode"
+Sampo pickup split
+Ending sequence split, refactor a bit
+slight refactor on better ui stuff
+refactor again
+color support
+Update better_ui.lua
+Moved some obviously repeating conditions/text to dedicated functions.
+Added loan shark to holy mountain
+improve debt
+Add achievement system.
+Update init.lua for legos
+legos2
+Create legos
+Update init.lua for legos whaat
+Update legos
+Delete files/content/legos
+Create init.lua
+Rename legos to legos.xml
+Add orbs_for_all
+Tweaks
+Don't go to broken PWs
+shutup nxml
+wrong
+fixed random
+More terraria UI
+add some more achievements
+achievement crop
+some achievements
+Update files/content/orbs_for_all/orbs_for_all.lua
+reworked achievement background
+fix loanshark animation
+Random discord pings
+Ooops forgot to save fmod
+highly_tested_commit
+Update achievements.lua
+this theoretically works
+custom rain
+fix achievement flags and add portal malfunction achievement
+Create healthiummmimic
+Update legos.xml
+rat party
+uncomment
+Rename healthiummmimic to healthiummmimic.xml
+Add bananapeel entity
+Update healthiummmimic.xml
+added Chemical Horror content
+add fishing
+remove dialogsystem from fishing mod
+reduce volume of pings
+Update orbs_for_all.lua
+Update files/content/better_ui/better_ui.lua
+refactored Chemical Horrors
+Make ping sound less loud
+Save fmod project
+remove update script from tmtrainer
+bind fishing power to amount of fish caught
+add fishing achievement
+Fishing power UI and time fixes, don't spazz out days, lull the player in first
+Add fish caught
+add spells and wands to fishing list
+remove debug logging
+bad apple and rat quieting
+propane in winter
+rats
+Merge remote-tracking branch 'upstream/main'
+fix mats
+nerf props
+Add living snowman to replace snowman props
+Better snowballs
+less nukes and no more damage triggers on stalactites
+fish nerf and fixed death script not working
+Fix material error
+mina spreads fire everywhere
+unfuck water texture
+cats (untested)
+fix merge
+added return portala
+add player checks
+Polymorph Player Support
+print removal
+add lifetime to return portal
+remove debug log
+fix UI rendering
+add death count to UI
+nerf pissing slightly
+more piss nerfing
+half the nuke chance
+make nuke not reproc on the same projectile
+slotmachine is now 500% more rigged
+done
+99% of gamblers quit before they explode
+fix some achievements
+fix copi achievement
+add achievements to better ui
+reduce wrong teleport chance more
+gui rewrite
+more ui rewrite
+Acheevs
+Finished Giga and Omega Slicing Liquid
+Update random_spell_chaotic.xml
+add stylua toml and format
+Add stylua github action for PRs
+Random Enemies + Shield Generator
+Ribbit i hope this works
+RIBBIT!!!
+RIBITI
+:sob:
+Im dying
+Ribbit why didnt you test
+Squidward.
+fix fish form
+filled out newer potion appends
+Permanent self damage
+Few fixes.
+Capitalization
+todo note
+fish rework
+add colorblindness mode
+fix runtime colorblind mode toggle
+gonna do this now
+format bs
+achievements window
+tmtrainer refactor!!, also snail will now annihilate you while testing
+add shit powered flight :3
+added translations
+easier to trigger shift
+shutup git
+pls
+Squashed commit of the following:
+hints for underground propane
+added slicing liquid
+Update gun_actions.lua
+make snail annihilation more robust
+moved conga stuff to prevent seed calls before seed init
+format
+was adding keybinds but it broke and then i was too lazy
+setting for input keys
+format again
+Change throw power dynamically
+added my name
+die eva
+Add envs for gh action colored output
+Box of Masks
+Fixed visible \n
+Fix collision/chain_break sound not playing
+Trick or Treat
+fix format yet again
+gamba less rigged?? woahg
+funny skeleton
+add banana pells to jungle
+added Hämis 👍 (and modid.txt)
+fixed mod id
+added clarifitory comments to potion lib stuff
+Update potion_append.lua
+some stuff with Chaotic Pandorium
+Reformat .lua files
+Update workflow to only check changed/added files
+add arachnophilia mode option
+random reactions
+some healthium changes
+add Chaotic Pandorium Rain
+Add autoformat action on push to main
+Fixed mask take animation
+Fix formatting
+Freedom at last
+make gold use nxml
+increase mimic chance if arachnophilia mode is turned on
+Add Invert Y Axis setting
+banana and update nxml
+remove old data files
+add low resolution rendering and make steve not pick up items.
+return portal actually works now.
+make fake perks more obvious by making them move out of phase only
+fix description being in name field
+improve fishing
+random reactions now supports any field
+tmtrainer improvements
+add lava urine reaction
+make fishing rod velocity be controlled by aim distance
+Rat Wand
+added slow potions, tweaked pandorium
+a single place for translation files
+add instruction booklet to repo
+remove zip
+Update chemical_horror.csv
+nerfed a couple things, added potion_aggressive lib
+basically finished potion_aggressive
+Create candy.xml
+Add files via upload
+wrapped up testing and added TLs for slow potions
+Tweaks and fixes to existing things.
+Spawn a cart sliding down the entrance when you're at the bottom
+book shenanigans
+add the information kiosk
+add book sound
+i think gui is done
+update book sound
+information booklets are out of stock for now
+booklet entity
+fixed issues
+small fixes
+0.1% chance for file was changed in the watch folder, also fix tmtrainer reflection translations
+make the information hämis give out the booklet
+Update fish_utils.lua
+fix text wrapping on one of the tips
+why
+add old school GTA style cheats system
+optimize cheats system
+add support for konami code
+i fucked up the order
+Update cheat_codes.lua
+improve the cheat system so that when it clears incorrect cheat text it leaves the last typed thing in case that was intended.
+I am going CRAZY
+Add he that comes at 3:33am
+debug
+more cursed reworks, yay
+Teleport him close to the player if player gets too far away
+add snail cheatcode
+???
+book sprite
+bee movie stuff
+chance for acid 10000% to have bee movie desc
+HM statues probably kill you if you kick them
+Clean up stalactite code
+destroy projectiles on trigger
+Apply more modifiers to more biomes
+added random inputs
+more reactions
+more funny bullshit
+added more bee movie
+prepare for dingus
+fix purr distance
+uwu
+add dingus spawner script and finish the dingus
+Update dingus_sprite_bones.xml
+replace hell with the backrooms
+Update dingus_spawner.lua
+add hell enemies back
+Fix bad mod paths
+fix path
+update instruction booklet
+wa
+add backrooms cheat, and improve back rooms immersion, also taco bell
+shrank bee movie csv, added TL shuffling and reformats
+add phone ringing sound effect
+Add more/fewer UI buttons that go off screen
+forgot to actually build the bank
+nerfed OSL, maybe, and fixed reformatted tablets
+GOD HAMIS
+add more phone sounds
+Update information_hamis.lua
+fixes
+implement payphone kinda
+Update candy.xml
+why is this not working???
+enable coroutines and keep dialogsystem around cross frames(?
+fixed some things in lib
+better buttons, fixed color
+fixed translation attempts for locked achievements
+added acid
+finish payphone system
+Update {ed561f27-68f1-4211-87b1-b578ce7ee6df}.xml
+added Grease and Methane to CH
+added vanilla fix content and [catastrophic] material tag
+reformatted vanilla_fix/init.lua
+add more calls to the payphone
+Update dialog.lua
+fix escape characters
+new materials
+new materials integrated
+refactored vanilla fix
+removed the end biome (replaced with backrooms)
+fixed wang collision
+forgor to set content
+cleanup and more silly calls
+add small rat dialogw
+forgot to uncomment the calls
+Tweak translation change chance and some fixes
+update moldos credit
+added parent check for material parser
+switch fucked up enemies back to use a tag
+Update tweak_inventory.lua
+mroe trick or treat stuff
+Create scratchoff.png
+Add teleport sound
+Add teleporter item
+Use nxml instead of gsub for crash wizard spawn script
+Allow Ukkoskivi to be turned into the teleporter using tp liquid
+Play teleport sound
+Move world sprite up a bit
+make the cheat system more robust
+Update per comments and to make it work better on continue
+Add teleporter hint
+Teleportation visual effects
+return
+big snails
+more bullshit
+start implementing scratch tickets
+Remove input delay
+Add smokedogg which spawns at 4:20pm
+fix xml format
+fix lua format
+pushed stuff
+we overengineering shitposts here
+add slur filter to tmtrainer
+why is this broken??
+fix the thing
+base64 encode the bad words
+protect my code against the sinful formatting
+add extra warning to slur filter list
+Make smoke dogg appearance window smaller and more exact
+Fix shuffle returning empty strings in some cases
+Streamer mode
+Spaces to tabs
+best streamer mode ever.
+update gun sounds
+gunified
+sound equalization
+moved biomes
+longestleg
+blacklight stuff finished i think?
+added blacklight backrooms light
+more pixelscenes
+randomer payphone
+Add fairmod stuff into CE's spawn stuff window
+hello? git?
+a
+more ticket prizes!
+fix eba blunder
+snoop dogg cheat code
+Update .gitignore
+Add achievement for smoking a weed
+Add achievement for playing at 3:33am
+Add banana peel achievement
+Fix bananapeel infinite sound loop
+Fix smokedogg streamer audio path
+Make the big smoke dogg hallucination not rotatable
+Fix multiple smoke dogg effect entities getting added
+add the solution to the eyes
+Revert "Update .gitignore"
+add eyes cheat code
+cheats
+guh
+fix userk's stinky formatting
+added an option to move settings
+added hamis to settings
+Why didn't I think of this earlier? lmao
+Show depth instead of Y coordinate
+Bowling
+add extra info to scratchoff
+add more info for scratch tickets
+added new achievement notification
+added achievements
+Add teleporter achievement
+Add Master of Crashing achievement
+add copi to payphone
+Oops, forgot the images
+update copi @EvaisaDev please look at comments I had some funnies
+update in-game booklet
+remove chunkloading stuff from snails
+rig gamba even more than it already is
+nerfed
+multiply
+added Cop-ups, unfinished
+update booklet
+clean up some booklet files
+workshop stuff, just setting up
+potentially fix scratch tickets not clearing their UI area
+longer
+fmod asset compression by folders
+less chain explosions
+i am just a fish
+added a way to reset progress
+organized settings
+Ending Quiz
+audio bank update
+Fix portals in PWs. Copy more pixelscenes to PWs for authenticity.
+Fix issue with interacting with scratch ticket and kiosk at the same time
+Load a corpse at every death location
+Add blood for ambiance
+compress and added pedro
+update dmca free godhand
+increased volume of pedro
+copi dialogue dlc
+finished popups maybe probably
+removed debug testing stuff
+pedro
+Commando RoR2
+Update workshop_preview_image.png
+nerf random enemies hp
+increased rain cooldown
+removed entities from random reactions completely (laggy))
+added limit to corpses, added corpses to reset list
+Fix mod compat with Conjurer
+Add DMCA warning on first startup
+spakr bolt
+rubba ball
+pouncy orb
+reset dmca warn flag on reset
+fixed some issues with corpse limiter
+added a bunch of bs
+Squiwart gun
+Avoid showing same tip twice
+add some extra tips
+more dialogues
+remove these from random reactions
+scratch ticket improvements
+add snail grace period
+more bad spells
+add neco arc noises and some cleanup
+Fuck with player ghosts
+Final PR
+Update files/magic_numbers.xml
+Logo update
+Fixed time's up
+added Sea of Chaotic Pandorium
+fixed init (was in absolute fucking shambles)
