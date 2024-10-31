@@ -339,22 +339,10 @@ return {
 		func = function()
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end,
-	},
-	{ -- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
-		code = "/spawn",
-		name = "/spawn",
-		description = "Teleporting in 3... 2... wait, you're already there!",
-		func = function(player)
-			-- Variables for coordinates
-			local start_x = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))
-			local start_y = tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))
-			local parallel_world_offset = GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512
-
-			-- Teleport player to the calculated coordinates
-			EntityApplyTransform(player, start_x + parallel_world_offset, start_y)
-		end,
-	},
-	{
+	},-- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
+	-- Fixed it again -c
+	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
+	,{
 		code = "copi",
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
