@@ -248,7 +248,28 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 							},
 						},
 					})
-					EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+
+
+
+					local ticket = EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+					
+					local item_count = 0
+					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
+						if EntityGetName(child) == "inventory_quick" then
+							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
+								local ability_component =
+									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								if ability_component then
+									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
+									if not use_gun_script then item_count = item_count + 1 end
+								end
+							end
+						end
+					end
+
+					if item_count < 4 then
+						GamePickUpInventoryItem(entity_who_interacted, ticket, true)
+					end
 
 					local wallet_component =
 						EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")

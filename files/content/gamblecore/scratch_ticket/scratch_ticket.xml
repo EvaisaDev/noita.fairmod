@@ -36,6 +36,7 @@
 		offset_x="5"
 		offset_y="11"
 		image_file="mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratchoff_in_world.png"
+		z_index="0.8"
 	></SpriteComponent>
 
 
