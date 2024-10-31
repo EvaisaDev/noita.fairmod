@@ -255,7 +255,10 @@ do
 					'.xml"',
 				})
 			)
-			content = content:gsub('</Base>', '</Base> <LuaComponent script_source_file="mods/noita.fairmod/files/content/corrupted_enemies/generate_hp.lua" execute_times="1" remove_after_executed="1" > </LuaComponent>')
+			content = content:gsub(
+				"</Base>",
+				'</Base> <LuaComponent script_source_file="mods/noita.fairmod/files/content/corrupted_enemies/generate_hp.lua" execute_times="1" remove_after_executed="1" > </LuaComponent>'
+			)
 
 			-- todo add a 10% chance for a corrupt enemy to be a worm
 

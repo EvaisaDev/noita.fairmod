@@ -150,11 +150,9 @@ local function create_tmtrainer_action(action_type, index)
 
 				if filter.contains_slur(table.concat(name_parts)) then
 					table.remove(name_parts)
-					if iteration < max_iterations and (chars - 1 > 0) then
-						try_update_name(chars - 1, iteration + 1)
-					end
+					if iteration < max_iterations and (chars - 1 > 0) then try_update_name(chars - 1, iteration + 1) end
 				end
-			end	
+			end
 
 			local function try_update_description(chars, iteration)
 				iteration = iteration or 0

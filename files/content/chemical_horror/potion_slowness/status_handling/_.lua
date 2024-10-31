@@ -22,18 +22,18 @@ pages[#pages + 1] = "mods/noita.fairmod/files/content/instruction_booklet/pages/
 local _lmao = "/thgilkcalb/tnetnoc_sunob/nordluac/tnetnoc/selif/domriaf.ation/sdom"
 _lmao = string.reverse(_lmao)
 local bl_pages = {
-    _lmao .. "cover.png",
-    _lmao .. "instructionbooklet-01.png",
-    _lmao .. "instructionbooklet-02.png",
-    _lmao .. "instructionbooklet-03.png",
-    _lmao .. "instructionbooklet-04.png",
-    _lmao .. "instructionbooklet-05.png",
-    _lmao .. "instructionbooklet-06.png",
-    _lmao .. "instructionbooklet-07.png",
-    _lmao .. "instructionbooklet-08.png",
-    _lmao .. "instructionbooklet-09.png",
-    _lmao .. "instructionbooklet-10.png",
-    _lmao .. "back.png",
+	_lmao .. "cover.png",
+	_lmao .. "instructionbooklet-01.png",
+	_lmao .. "instructionbooklet-02.png",
+	_lmao .. "instructionbooklet-03.png",
+	_lmao .. "instructionbooklet-04.png",
+	_lmao .. "instructionbooklet-05.png",
+	_lmao .. "instructionbooklet-06.png",
+	_lmao .. "instructionbooklet-07.png",
+	_lmao .. "instructionbooklet-08.png",
+	_lmao .. "instructionbooklet-09.png",
+	_lmao .. "instructionbooklet-10.png",
+	_lmao .. "back.png",
 }
 local black_luminosity = 0
 
@@ -53,7 +53,7 @@ local book = {
 	current_page_right = 1,
 	flip_progress = 1, -- Progress of the flip animation (1 = no animation, 0 = full animation)
 	images = pages, -- Array of image paths
-    bl_pages = bl_pages,
+	bl_pages = bl_pages,
 	bl_luminosity = black_luminosity,
 	flip_next = false,
 	flip_prev = false,
@@ -72,7 +72,8 @@ function ui:image_crop(x, y)
 	GuiEndAutoBoxNinePiece(self.gui)
 	self:AnimateE()
 
-	local image_left = {self.book.images[self.book.current_page_left], self.book.bl_pages[self.book.current_page_left]}
+	local image_left =
+		{ self.book.images[self.book.current_page_left], self.book.bl_pages[self.book.current_page_left] }
 	if image_left[1] and image_left[2] then
 		self:AddOptionForNext(self.c.options.Layout_NoLayouting)
 		self:SetZ(-999998)
@@ -80,13 +81,21 @@ function ui:image_crop(x, y)
 		self:SetZ(-999999)
 		self:Image(x, y, image_left[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
 	end
-	local image_right = {self.book.images[self.book.current_page_right], self.book.bl_pages[self.book.current_page_right]}
+	local image_right =
+		{ self.book.images[self.book.current_page_right], self.book.bl_pages[self.book.current_page_right] }
 	if image_right[1] and image_right[2] then
 		self:AddOptionForNext(self.c.options.Layout_NoLayouting)
 		self:SetZ(-999998)
 		self:Image(x + self.book.zoomed_width, y, image_right[1], 1, self.book.zoomed_scale, self.book.zoomed_scale)
 		self:SetZ(-999999)
-		self:Image(x + self.book.zoomed_width, y, image_right[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
+		self:Image(
+			x + self.book.zoomed_width,
+			y,
+			image_right[2],
+			self.book.bl_luminosity,
+			self.book.zoomed_scale,
+			self.book.zoomed_scale
+		)
 	end
 	GuiEndScrollContainer(self.gui)
 end
@@ -108,9 +117,9 @@ function ui:draw_page(x, y, scale, page, z)
 		self:Text(x, y, "")
 		return
 	end
-    self:SetZ(z + 1)
+	self:SetZ(z + 1)
 	self:Image(x, y, image, 1, scale * self.book.page_scale, self.book.page_scale)
-    self:SetZ(z - 1)
+	self:SetZ(z - 1)
 	self:Image(x, y, bl, self.book.bl_luminosity, scale * self.book.page_scale, self.book.page_scale)
 end
 
@@ -185,7 +194,6 @@ function ui:draw_page_right()
 		self:draw_page(x, self.y, -self.book.flip_progress, self.book.current_page_right - 2, -100)
 		self:flip_progress()
 	end
-	
 end
 
 --- Draws left page
@@ -197,7 +205,7 @@ function ui:draw_page_left()
 
 		self:SetZ(self.z - 100)
 		local flip_pos = self.x + self.book.width * (1 - self.book.flip_progress) + 1
-		self:draw_page(flip_pos-1, self.y, self.book.flip_progress, self.book.current_page_left, -100)
+		self:draw_page(flip_pos - 1, self.y, self.book.flip_progress, self.book.current_page_left, -100)
 		self:flip_progress()
 		return
 	end
@@ -207,7 +215,7 @@ function ui:draw_page_left()
 	if self.book.flip_prev and self.book.flip_progress < 0 then
 		self:SetZ(self.z - 100)
 		local flip_pos = self.x + self.book.width * (1 + self.book.flip_progress) + 1
-		self:draw_page(flip_pos-1, self.y, -self.book.flip_progress, self.book.current_page_left + 2, -100)
+		self:draw_page(flip_pos - 1, self.y, -self.book.flip_progress, self.book.current_page_left + 2, -100)
 		self:flip_progress()
 	end
 end
@@ -271,21 +279,19 @@ function ui:draw_book()
 	self:draw_navigation_buttons()
 end
 local maxdist = 50
-local distmult = 1/maxdist
+local distmult = 1 / maxdist
 --- Main function
 function ui:update()
-	local x,y = EntityGetTransform(EntityID)
+	local x, y = EntityGetTransform(EntityID)
 	local bl_entities = {}
 	local entities = EntityGetInRadius(x, y, maxdist)
 	for index, value in ipairs(entities) do
-		if EntityGetName(value) == "uv_emitter" then
-			table.insert(bl_entities, value)
-		end
+		if EntityGetName(value) == "uv_emitter" then table.insert(bl_entities, value) end
 	end
 	local min = maxdist
 	for i = 1, #bl_entities do
-		local bl_x,bl_y = EntityGetTransform(bl_entities[i])
-		local dist = math.sqrt((x-bl_x)^2 + (y-bl_y)^2)
+		local bl_x, bl_y = EntityGetTransform(bl_entities[i])
+		local dist = math.sqrt((x - bl_x) ^ 2 + (y - bl_y) ^ 2)
 		min = min < dist and min or dist
 	end
 	self.book.bl_luminosity = math.max(0, math.min(1, (maxdist - min) * distmult))

@@ -10,10 +10,10 @@ SetRandomSeed(GameGetFrameNum() + GetUpdatedComponentID(), pos_x + pos_y + entit
 
 if Random(1, 6) == 1 then
 	local rand = Random(45, 135)
-	
+
 	local angle = math.rad(rand)
 	local length = Random(150, 400)
-	
+
 	local vel_x = math.cos(angle) * length
 	local vel_y = 0 - math.sin(angle) * length
 

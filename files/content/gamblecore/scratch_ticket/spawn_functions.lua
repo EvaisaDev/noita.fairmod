@@ -126,7 +126,13 @@ return {
 					local flag = thisitem.spawn_requires_flag
 
 					if HasFlagPersistent(flag) == false then
-						print( table.concat{"Trying to spawn ", tostring(thisitem.id), " even though flag ", tostring(flag), " not set!!"} )
+						print(table.concat({
+							"Trying to spawn ",
+							tostring(thisitem.id),
+							" even though flag ",
+							tostring(flag),
+							" not set!!",
+						}))
 					end
 				end
 			end
@@ -139,7 +145,7 @@ return {
 		EntityLoad("data/entities/items/pickup/potion_starting.xml", x, y)
 	end,
 	spawn_perk = function(player, x, y)
-		local pid = perk_spawn_random( x, y )
-		perk_pickup( pid, player, "", true, false )
+		local pid = perk_spawn_random(x, y)
+		perk_pickup(pid, player, "", true, false)
 	end,
 }

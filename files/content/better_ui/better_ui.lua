@@ -561,7 +561,7 @@ local extra_ui = {
 			else
 				return "Depth: Surface"
 			end
-			return "Depth: " .. math.abs(math.floor(y / 10))/2 .. "m " .. above_or_below
+			return "Depth: " .. math.abs(math.floor(y / 10)) / 2 .. "m " .. above_or_below
 		end,
 	},
 }
