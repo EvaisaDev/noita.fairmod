@@ -1,3 +1,4 @@
+--stylua: ignore start
 local dialog_system = dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 9999
 dialog_system.dialog_box_height = 100
@@ -10,7 +11,8 @@ if quiz_timer > 0 then
 	if quiz_timer == 0 then
 		local plyrs = EntityGetWithTag("player_unit")
 		for l = 1, #plyrs do
-			EntityInflictDamage(plyrs[l], 999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, plyrs[l])
+			EntityInflictDamage(plyrs[l], 9999999999999999999999999999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, plyrs[l])
+			EntityInflictDamage(plyrs[l], 9999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "time's up", "NONE", 0, 0, plyrs[l])
 			EntityKill(plyrs[l])
 		end
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "ending_quiz/millionare_music_stop", x, y)
@@ -67,16 +69,8 @@ function wrong_answer()
 								func = function(dialog)
 									local plyrs = EntityGetWithTag("player_unit")
 									for l = 1, #plyrs do
-										EntityInflictDamage(
-											plyrs[l],
-											999999,
-											"DAMAGE_CURSE",
-											"bad answer",
-											"NONE",
-											0,
-											0,
-											player_id
-										)
+										EntityInflictDamage( plyrs[l], 999999999999999999999, "DAMAGE_CURSE", "bad answer", "NONE", 0, 0, plyrs[l] )
+										EntityInflictDamage( plyrs[l], 999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "bad answer", "NONE", 0, 0, plyrs[l] )
 										EntityKill(plyrs[l])
 										dialog.close()
 									end
@@ -211,3 +205,4 @@ function interacting(player_id, building_id, interactable_name)
 		})
 	end
 end
+--stylua: ignore end
