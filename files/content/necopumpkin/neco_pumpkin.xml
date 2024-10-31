@@ -1,0 +1,20 @@
+<Entity name="Neco Arc" >
+    <Base file="data/entities/base_item_physics2.xml" >
+        <PhysicsBody2Component
+            kill_entity_after_initialized="0"
+            >
+        </PhysicsBody2Component>
+
+        <PhysicsImageShapeComponent 
+            image_file="mods/noita.fairmod/files/content/necopumpkin/neco_pumpkin.png"
+            material="meat_pumpkin"
+            >
+        </PhysicsImageShapeComponent>
+    </Base>
+
+    <LuaComponent
+        script_source_file="mods/noita.fairmod/files/content/necopumpkin/neco_sound.lua"
+        execute_every_n_frame="180"
+        >
+    </LuaComponent>
+</Entity>
