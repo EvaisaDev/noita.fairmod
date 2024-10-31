@@ -10,8 +10,10 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	if radio_is_on then
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", true)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", false)
+		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) + 1))
 	else
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", false)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", true)
+		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) - 1))
 	end
 end

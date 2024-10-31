@@ -135,6 +135,12 @@ local ui_displays = {
 		},
 		{
 			text = function()
+				return string.format("Radios tuned: %s", GlobalsGetValue("radios_activated", "0"))
+			end,
+			condition = global_greater_than_zero("radios_activated"),
+		},
+		{
+			text = function()
 				local time_minutes_total = get_ingame_time()
 				local time_minutes = time_minutes_total % 60
 				local time_hours = math.floor(time_minutes_total / 60)
