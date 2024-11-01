@@ -17,3 +17,7 @@ for _, file in ipairs(statues) do
 		end
 	end
 end
+
+for xml in nxml.edit_file("data/entities/props/temple_statue_01.xml") do
+	xml:set("tags", (xml:get("tags") or "") .. ",phonecall_statue")
+end
