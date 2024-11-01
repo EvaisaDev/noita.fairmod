@@ -295,11 +295,11 @@ local rainbowCounter = 0
 local swidth, sheight = GuiGetScreenDimensions(Gui)
 local vw, vh = tonumber(MagicNumbersGetValue("VIRTUAL_RESOLUTION_X")),
     tonumber(MagicNumbersGetValue("VIRTUAL_RESOLUTION_Y"))
-
+local immersive_mimics = GameHasFlagRun("COPI_IMMERSIVE_MIMICS")
 
 --GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
 
-if GameHasFlagRun("COPI_IMMERSIVE_MIMICS") then --funny rainbow text disabled by default :pensive:
+if immersive_mimics then --funny rainbow text disabled by default :pensive:
     
     local cx, cy = GameGetCameraPos()
     local players = EntityGetWithTag("player_unit") or {}
@@ -354,8 +354,8 @@ Windows = Windows or {}
 SeedCount = SeedCount or 0
 LastFrame = LastFrame or 0
 math.randomseed(GameGetFrameNum())
--- 1/400 -> 15% per second with COPI mode, 1/40000 -> 0.15% per second by default
-local windowProbability = GameHasFlagRun("COPI_IMMERSIVE_MIMICS") and 400 or 40000 --(use 400 for testing purposes)
+-- 1/400 -> 15% per second with COPI mode, 1/4000 -> 1.5% per second by default
+local windowProbability = immersive_mimics and 400 or 20000
 if GameGetFrameNum() - LastFrame >= 1 and math.random(1, windowProbability) == 1 then
     SeedCount = SeedCount + 1
     Windows[#Windows + 1] = {
@@ -363,6 +363,8 @@ if GameGetFrameNum() - LastFrame >= 1 and math.random(1, windowProbability) == 1
         id = SeedCount,
         x = nil,
         y = nil,
+        ww = nil,
+        wh = nil,
         popup = nil
     }
     -- print(tostring(Windows[#Windows]))
@@ -387,7 +389,7 @@ end
 
 
 local coper_things = {
-    exes = {
+    Random_EXEs = {
         "copis_ads.exe",
         "noita_2.exe",
         "chrome.exe",
@@ -416,7 +418,7 @@ local coper_things = {
         "cauldron.exe",
     },
 
-    ads = {
+    Random_Ads = {
         "DOWNLOAD @COPI'S@ @THINGS@ FROM *GITHUB!* IT WILL *CHANGE* YOUR *LIFE!* BEST MOD EVER! LOREM IPSUM *DO* *SHIT!* COPIS THINGS  COPIS THINGS  COPIS THINGS  COPIS THINGS  NOITER!",
         "*MODDERS* newline |HATE| newline *HIM!!* newline Find out how this *BOZO* made the @BEST@ @NOITA@ @MOD@ in *EXISTENCE* with just *THREE* *EASY* *STEPS!* Learn more at @https://github.com/@ @Ramiels/copis_things/!!!@",
         "@WOOO@ you are being @HYPNOTIZED@ to *DOWNLOAD* @COPI'S@ @THINGS@ oooo the *RAINBOWS* make you want to go to *GITHUB* and @DOWNLOAD@ @IT@ @NOW!!!@",
@@ -436,8 +438,10 @@ local coper_things = {
         that's right a |fucking| |morse| |code|
         when *translated* *it* turned out to be a *youtube* *url* of a *vid* |telling| |me| |to| |download| |copi| |things|
         the *"activate* *your* *windows"* text today said @"download@ @copi@ @things"@ instead]],
-        "[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
-    }
+        "[IMG]mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
+    },
+
+    Prefabs = {}
 }
 
 
@@ -473,7 +477,6 @@ local Popups = dofile_once("mods/noita.fairmod/files/content/popups/files/append
         "imagine having to start with *2x* *gc* + the |demolitionist| *perk* from @copi's@ @things@ i think??? and then *giga* *nuke* or *giga* *holy* *bomb*",
         "[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
         "hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
-        "[IMG]mods/noita.fairmod/files/content/popups/instructionmanual.png",
         "YOU'RE STEAM ID IS 12486918847501984! newline Stay Safe! :thumbsup:",
     },
 
@@ -490,7 +493,7 @@ local Popups = dofile_once("mods/noita.fairmod/files/content/popups/files/append
 
     forcePrefab = false
 }
-
+if immersive_mimics then Popups = coper_things end
 GuiIdPushString(Gui, "ModMimicPopupWindow")
 
 local windowNumOverlappingElements = 4
@@ -499,50 +502,67 @@ local windowCounter = 0
 
 
 
-local ww, wh = 100, 100
+local minwidth, minheight = 80, 100 -- min width & height
+local maxwidth, maxheight = 300, 220 -- max width & height
 for i = 2, #Windows do
     if Windows[i] ~= nil then
+        
 
-        local popup = Windows[i].popup or {}
+        math.randomseed(Windows[i].seed)
+        windowCounter = windowCounter + 1
+
+        --generate/obtain data
+        local popup = Windows[i].popup or {}        
         if Windows[i].popup == nil then
-            print("creating window")
             if math.random(1, 20 + math.min(#Popups.Prefabs, 10)) <= 20 and not Popups.forcePrefab then
-                popup = { EXE = Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)],  MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)] }
+                popup = {
+                    EXE = Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)],
+                    MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)]
+                }
             else
                 local _popup = Popups.Prefabs[math.random(1, #Popups.Prefabs)]
                 for k, v in pairs(_popup) do --loop over prefab
                     popup[k] = v
                 end
-                if not popup.EXE then popup.EXE = Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)] end
-                if not popup.MESSAGE then popup.MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)] end
+                popup.EXE = popup.EXE or Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)]
+                popup.MESSAGE = popup.MESSAGE or Popups.Random_Ads[math.random(1, #Popups.Random_Ads)]
             end
         end
-        --print(string.format("Window[%s] counter is %s", i,tostring(popup.custom_close_counter)))
-        math.randomseed(Windows[i].seed)
-        windowCounter = windowCounter + 1
+
         local z = -1999999 - windowCounter * windowNumOverlappingElements
-        local x = Windows[i]['x'] or
-        (function()
-            local val = math.random(0, swidth - ww)
-            Windows[i]['x'] = val
-            return val
-        end)()
-        local y = Windows[i]['y'] or
-        (function()
-            local val = math.random(0, sheight - wh - 20)
-            Windows[i]['y'] = val
-            return val
-        end)()
+
+        local imgwidth,imgheight = 0,0
+        if popup.MESSAGE:sub(1,5)=="[IMG]" then
+            imgwidth,imgheight =  GuiGetImageDimensions(Gui, popup.MESSAGE:sub(6))
+        end
+        local ww = Windows[i].ww or math.min(maxwidth, math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth, imgwidth))
+        local wh = Windows[i].wh or math.min(maxheight, math.max(minheight, imgheight))
+        local x = Windows[i].x or math.random(5, swidth - ww - 5)
+        local y = Windows[i].y or math.random(5, sheight - wh - 5)
+
+
+        local s2 = popup.EXE
+        GuiColorSetForNextWidget(Gui, 1, 1, 1, 1)
+        GuiZSetForNextWidget(Gui, z - 3)
+        GuiText(Gui, x + 3, y - 12, s2)
+
+        --print(string.format("Window[%s] counter is %s", i,tostring(popup.custom_close_counter)))
+
+
         GuiZSetForNextWidget(Gui, z - 2)
         GuiBeginScrollContainer(Gui, Windows[i].id, x, y, ww, wh, true)
 
-        --overwrite to coper things if Immersive Mimics
-        if GameHasFlagRun("COPI_IMMERSIVE_MIMICS") then popup = { EXE = coper_things.exes[math.random(1, #coper_things.exes)],  MESSAGE = coper_things.ads[math.random(1, #coper_things.ads)] } end
 
         --if has_opened flag is not present, add it and run check for OPEN_FUNCTION()
         if not Windows[i].has_opened then
             Windows[i].has_opened = true
             if popup.OPEN_FUNCTION then popup:OPEN_FUNCTION() end
+            print(popup.EXE)
+            print(tostring(Windows[i].ww))
+            print(tostring(GuiGetTextDimensions(Gui, popup.EXE)))
+            print(tostring(GuiGetTextDimensions(Gui, popup.EXE) + 10))
+            print(tostring(math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth)))
+            print(tostring(Windows[i].ww or math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth)))
             print(popup.MESSAGE)
         end 
         if popup.IS_OPEN_FUNCTION then popup:IS_OPEN_FUNCTION() end
@@ -551,14 +571,14 @@ for i = 2, #Windows do
         local l = 0
         local py = 0
         local lastdy = 0
+        local hyperlink_number = 0
         if s:sub(1,5)=="[IMG]" then
             GuiZSetForNextWidget(Gui, z - 3)
-            GuiImage(Gui, 1, 0, 0, s:sub(6), 1, 1, 1)
+            GuiImage(Gui, 1, (ww - imgwidth) * .5, 0, s:sub(6), 1, 1, 1)
         else
-            local hyperlink_number = 0
             for w in s:gmatch("%S+") do
                 GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)
-                local shake = false
+                local shake = 0
                 local underline = false
                 local hyperlink = false
                 if (w == "newline") then
@@ -575,8 +595,14 @@ for i = 2, #Windows do
                 end
                 if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
                     GuiColorSetForNextWidget(Gui, 1, 0.2, 0.2, 1)
+                    shake = shake + 1
                     w = string.sub(w, 2, -2)
-                    shake = true
+                    for i = 1, 10 do --check for continued layers of ||
+                        if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
+                            shake = shake + 1
+                            w = string.sub(w, 2, -2)
+                        end
+                    end
                 end
                 if w:sub(1, 1) == "@" and w:sub(-1, -1) == "@" then
                     local color = Color:new(((Windows[i].seed+l-py) * 25 + GameGetFrameNum() * 5) % 360, 0.8, 0.4)
@@ -598,11 +624,11 @@ for i = 2, #Windows do
                 SetRandomSeed(GameGetFrameNum(), Windows[i]['seed']+l-py)
                 local o1 = 0
                 local o2 = 0
-                if shake then
-                    o1 = math.sin(Random(1,10000+1)-1)/2
-                    o2 = math.sin(Random(1,10000-1)+1)/2
+                if shake > 0 then
+                    o1 = math.sin(Random(1,10000+1)-1)/2 * shake
+                    o2 = math.sin(Random(1,10000-1)+1)/2 * shake
                 end
-                
+
                 GuiText(Gui, l+o1, py+o2, w)
                 local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
                 if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
@@ -623,17 +649,13 @@ for i = 2, #Windows do
         GuiEndScrollContainer(Gui)
 
 
-        local s2 = popup.EXE
-        GuiColorSetForNextWidget(Gui, 1, 1, 1, 1)
-        GuiZSetForNextWidget(Gui, z - 3)
-        GuiText(Gui, x + 3, y - 12, s2)
 
         GuiZSetForNextWidget(Gui, z - 2)
         GuiIdPushString(Gui, "ModMimicPopupButton" .. tostring(Windows[i].id))
         GuiOptionsAddForNextWidget(Gui, 21)
         GuiOptionsAddForNextWidget(Gui, 6)
         local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
-        if GuiImageButton(Gui, 1, x + 99, y - 14, "", _button) then
+        if GuiImageButton(Gui, 1, x + ww - 1, y - 14, "", _button) then
             if popup.disableSound ~= true then GamePlaySound("data/audio/Desktop/ui.bank", "ui/button_click", GameGetCameraPos()) end
 
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
@@ -649,6 +671,11 @@ for i = 2, #Windows do
         local _9piecebar = popup.CUSTOM_9PIECE_BAR or "mods/noita.fairmod/files/content/popups/9pieceBar.png"
         GuiImageNinePiece(Gui, 2, x, y - 15, ww + 15, 12, 1, _9piecebar, _9piecebar)
         GuiIdPop(Gui)
+
+        Windows[i].x = x
+        Windows[i].y = y
+        Windows[i].ww = ww
+        Windows[i].wh = wh
         Windows[i].popup = popup
     end
     ::continue::
