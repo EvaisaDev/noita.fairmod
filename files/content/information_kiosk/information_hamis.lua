@@ -24,7 +24,7 @@ local tips = {
 	"Make sure to configure your settings.",
 	-- stylua: ignore start
 	-- table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
-	string.format("There are %s achievements!\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0")), -- have you heard about string.format? (still messed up by formatter, lmao)
+	string.format("There are %s achievements!\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0") + Random(1, 5)), -- have you heard about string.format? (still messed up by formatter, lmao)
 	-- stylua: ignore end
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
@@ -63,6 +63,18 @@ local tips = {
 	"What do you mean it keeps changing?\nThe game has always looked like this.",
 	"You do not recognize the bodies in the water.",
 	"Buy scratch-offs now, trust me.\nGreat investment!",
+	"Your world seed is " .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "!",
+	"Hiisi base has had some new reading lights installed!",
+	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
+	"There’s something behind you!\n..?\nOh, no no, silly! I meant in real life!",
+	"Type \"Chaos\" on your keyboard for some free digging",
+	"Trapped? Try code NOCLIP to get yourself out of any\nsticky situation!",
+	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
+	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	"[Hyperlink Blocked.]",
+	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
+	"Death comes for those who wait.",
+	"what",
 }
 
 -- Global so it's preserved across conversations

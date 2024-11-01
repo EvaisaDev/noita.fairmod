@@ -65,6 +65,7 @@
 {3d44277a-15d9-4aa7-a066-6e86c4c89f46} event:/pedro/pedro_streamer
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
+{7477f39d-6219-4c5f-95d3-c4ffbd0b54f3} event:/radio/ill_see_you_when_i_see_you
 {e64eef68-ba89-46ed-b415-1d6b80ebdf02} event:/radio/loop
 {c6f36ab2-5420-4120-a923-5583e5310514} event:/radio/static
 {d4594423-dd50-4a85-99b4-8f7d2c42163b} event:/rats/birthday

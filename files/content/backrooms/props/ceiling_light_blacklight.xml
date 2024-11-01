@@ -95,4 +95,11 @@
 		b="168">
 	</LightComponent>
 
+    <LuaComponent
+        script_source_file="mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight_spawn.lua"
+        execute_on_added="1"
+		execute_every_n_frame="-1"
+		remove_after_executed="1"
+	/>
+
 </Entity>

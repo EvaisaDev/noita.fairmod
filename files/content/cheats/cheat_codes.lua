@@ -461,6 +461,14 @@ return {
 			end
 		end,
 	},
+	{
+		code = "allsight",
+		name = "All Seeing!",
+		description = "i got tired of getting this manually while testing",
+		func = function(player)
+			perk_pickup( nil, player, "REMOVE_FOG_OF_WAR", true, false, true )
+		end
+	}
 }
 
 --stylua: ignore end
