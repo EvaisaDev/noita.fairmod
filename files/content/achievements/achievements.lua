@@ -530,3 +530,15 @@ for i = 1, 10 do
 		end,
 	}
 end
+
+
+achievements[#achievements+1]=
+{
+	name = "H4X0R",
+	description = "3P1C 1337 H4XX B)",
+	icon = "mods/noita.fairmod/files/content/achievements/icons/cheater.png",
+	flag = "achievement_copis_things",
+	unlock = function()
+		return GameHasFlagRun("Epic_leet_hacker")
+	end,
+}
