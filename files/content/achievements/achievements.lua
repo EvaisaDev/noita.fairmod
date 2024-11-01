@@ -379,6 +379,15 @@ achievements = {
 			return HasFlagPersistent("fairmod_noitillionare_winner")
 		end,
 	},
+	{
+		name = "Happy Birthday",
+		description = "Are you michael?",
+		icon = "mods/noita.fairmod/files/content/rat_wand/gfx/rat_bite_ui.png",
+		flag = "rat_birthday_dialogue",
+		unlock = function()
+			return GameHasFlagRun("fairmod_rat_birthday_dialogue")
+		end,
+	},
 	-- Todo biome acheevs
 }
 
@@ -531,9 +540,7 @@ for i = 1, 10 do
 	}
 end
 
-
-achievements[#achievements+1]=
-{
+achievements[#achievements + 1] = {
 	name = "H4X0R",
 	description = "3P1C 1337 H4XX B)",
 	icon = "mods/noita.fairmod/files/content/achievements/icons/cheater.png",
