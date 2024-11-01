@@ -1,4 +1,4 @@
-<Entity name="Snowball" tags="hittable,teleportable_NOT,item_physics,item_pickup" >
+<Entity name="Snowball" tags="hittable,teleportable_NOT,item_physics,item_pickup,snowball" >
 	<Base file="data/entities/base_item_projectile.xml" />
 
 	<!-- physical presence -->
