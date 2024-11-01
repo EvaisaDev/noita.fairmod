@@ -12,21 +12,45 @@ dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 SetRandomSeed(x, y + GameGetFrameNum())
 
+function teleport_now()
+	GameAddFlagRun("random_teleport_next")
+	GameAddFlagRun("no_return")
+
+	local players = EntityGetWithTag("player_unit") or {}
+
+	if players == nil or #players == 0 then return end
+
+	local player = players[1]
+
+	local x, y = EntityGetTransform(player)
+
+	EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
+end
+
 function hangup()
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/putdown", x, y)
 	dialog.close()
 	in_call = false
 	is_disconnected = false
+	if(do_random_teleport) then
+		teleport_now()
+		do_random_teleport = false
+	end
 end
 
 function disconnected()
 	is_disconnected = true
 end
 
+function teleport()
+	do_random_teleport = true
+end
+
 if dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0 then hangup() end
 
 dialog_system.functions.hangup = hangup
 dialog_system.functions.disconnected = disconnected
+dialog_system.functions.teleport = teleport
 
 local call_options = dofile("mods/noita.fairmod/files/content/payphone/content/dialog.lua")
 
@@ -35,6 +59,7 @@ ring_timer = ring_timer or 0
 ring_end_time = ring_end_time or 0
 in_call = in_call or false
 is_disconnected = is_disconnected or false
+do_random_teleport = do_random_teleport or false
 
 local audio_loop_disconnected = EntityGetFirstComponent(entity_id, "AudioLoopComponent", "disconnected")
 if audio_loop_disconnected ~= nil then
@@ -63,7 +88,7 @@ local players = EntityGetInRadiusWithTag(x, y, 500, "player_unit")
 if players == nil or #players == 0 then return end
 
 -- random chance for the phone to ring if the player is nearby
-if GameGetFrameNum() % 30 == 0 and not ringing and not in_call and Random(0, 100) <= ring_chance then
+if GameGetFrameNum() % 45 == 0 and not ringing and not in_call and Random(0, 100) <= ring_chance then
 	ringing = true
 	ring_end_time = 60 * 15
 end

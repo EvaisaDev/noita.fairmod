@@ -1386,24 +1386,11 @@ return {
 	{
 		name = "G???O??D????",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
-		text = "Haha bye.{@func disconnected}",
+		text = "Haha bye.{@func disconnected} {@func teleport}",
 		options = {
 			{
 				text = "What..?",
 				func = function(dialog)
-					GameAddFlagRun("random_teleport_next")
-					GameAddFlagRun("no_return")
-
-					local players = EntityGetWithTag("player_unit") or {}
-
-					if players == nil or #players == 0 then return end
-
-					local player = players[1]
-
-					local x, y = EntityGetTransform(player)
-
-					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
-
 					hangup()
 				end,
 			},
