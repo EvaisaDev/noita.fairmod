@@ -7,6 +7,7 @@ local fairmod_rat_spellappends = {
 		sprite_unidentified = "data/ui_gfx/gun_actions/chainsaw_unidentified.png",
 		related_projectiles = { "mods/noita.fairmod/files/content/rat_wand/rat_bite.xml" },
 		type = ACTION_TYPE_PROJECTILE,
+		spawn_requires_flag = "fairmod_rat_birthday_dialogue",
 		spawn_level = "0,1,2", -- LUMINOUS_DRILL
 		spawn_probability = "0.5,0.5,0.25", -- LUMINOUS_DRILL
 		price = 150,
