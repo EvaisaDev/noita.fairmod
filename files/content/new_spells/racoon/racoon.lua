@@ -4,7 +4,6 @@ local pedro = {
 	description = "Racoon?",
 	sprite = "mods/noita.fairmod/files/content/new_spells/racoon/icon.png",
 	sprite_unidentified = "data/ui_gfx/gun_actions/disc_bullet_unidentified.png",
-	spawn_requires_flag = "card_unlocked_everything",
 	related_projectiles = { "mods/noita.fairmod/files/content/new_spells/racoon/racoon.xml" },
 	type = ACTION_TYPE_PROJECTILE,
 	spawn_level = "2,3,5,10",
