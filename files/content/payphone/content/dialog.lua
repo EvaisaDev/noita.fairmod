@@ -1239,10 +1239,10 @@ return {
 					text = "Yes",
 					func = function(dialog)
 						dialog.show({
-							text = "I hope you helped him.",
+							text = "I hope you helped him.{@func disconnected}",
 							options = {
 								{
-									text = "Huh?{@func disconnected}",
+									text = "Huh?",
 									func = function()
 										hangup()
 									end,
@@ -1410,4 +1410,3 @@ return {
 		},
 	},
 }
-
