@@ -18,6 +18,11 @@ local increment = GetValueNumber("increment", 0.1)
 EntitySetTransform(entity, x, y - increment)
 if GameGetFrameNum() % 60 == 0 then SetValueNumber("increment", increment + 0.1) end
 
+if GetValueBool("spell_not_spawn", true) and increment >= 0.5 then
+	CreateItemActionEntity("FAIRMOD_JOEL", x, y + 30)
+	SetValueBool("spell_not_spawn", false)
+end
+
 local sprite_comp = EntityGetFirstComponent(entity, "SpriteComponent")
 local audio_comp = EntityGetFirstComponent(entity, "AudioLoopComponent")
 if not sprite_comp or not audio_comp then return end
