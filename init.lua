@@ -84,7 +84,7 @@ dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
-dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
+
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -134,6 +134,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
+
+	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 end
 
 function OnPlayerSpawned(player)
