@@ -353,7 +353,7 @@ GuiIdPop(Gui)
 Windows = Windows or {}
 SeedCount = SeedCount or 0
 LastFrame = LastFrame or 0
-math.randomseed(GameGetFrameNum())
+math.randomseed(GameGetFrameNum() * StatsGetValue("world_seed"))
 -- 1/400 -> 1.5% per second with COPI mode, 1/1000 -> .6% per second by default
 local windowProbability = immersive_mimics and 400 or 10000
 if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) == 1) then
