@@ -1,4 +1,5 @@
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 achievements = {
 	{
 		name = "Shitted",
@@ -379,6 +380,42 @@ achievements = {
 			return HasFlagPersistent("fairmod_noitillionare_winner")
 		end,
 	},
+	{
+		name = "Happy Birthday",
+		description = "Are you michael?",
+		icon = "mods/noita.fairmod/files/content/rat_wand/gfx/rat_bite_ui.png",
+		flag = "rat_birthday_dialogue",
+		unlock = function()
+			return GameHasFlagRun("fairmod_rat_birthday_dialogue")
+		end,
+	},
+	{
+		name = "Winter is Coming!",
+		description = "Get hit by a snowball.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/snowman.png",
+		flag = "hit_by_snowball",
+		unlock = function()
+			return GameHasFlagRun("fairmod_snowball_hit")
+		end,
+	},
+	{
+		name = "Coming for Winter!",
+		description = "Catch a snowball.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/snowball_pile.png",
+		flag = "has_snowball",
+		unlock = function()
+			return HasInventoryItemTag("snowball")
+		end,
+	},
+	{
+		name = "Cave of Wonder",
+		description = "Discover the Mountain Entrance.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/biome_mountain_left_entrance.png",
+		flag = "biome_mountain_left_entrance",
+		unlock = function()
+			return GetCurrentBiomeId() == "mountain_left_entrance"
+		end,
+	},
 	-- Todo biome acheevs
 }
 
@@ -427,9 +464,8 @@ end
 -- 	}
 -- end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Fire In The Hole " .. romanize(i),
 		description = "You shot " .. tostring(2 ^ i) .. " times!",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/shot_count_", i, ".png" }),
@@ -437,12 +473,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("projectiles_shot")) >= 2 ^ i
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "New Kicks " .. romanize(i),
 		description = "You kicked " .. tostring(2 ^ i) .. " times!",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/kick_count_", i, ".png" }),
@@ -450,12 +485,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("kicks")) >= 2 ^ i
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Trailblazer " .. romanize(i),
 		description = "Current streak:  " .. tostring(2 ^ i),
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/streak_", i, ".png" }),
@@ -463,12 +497,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("streaks")) >= 2 ^ i
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Survivor " .. romanize(i),
 		description = "Session Time:  " .. tostring(2 ^ i),
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/session_time_", i, ".png" }),
@@ -476,12 +509,11 @@ for i = 1, 10 do
 		unlock = function()
 			return (tonumber(StatsGetValue("playtime")) >= 2 ^ i) and #(GetPlayers()) > 1
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Healthy " .. romanize(i),
 		description = "That's at least " .. tostring(2 ^ i + 100) .. "max HP!",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/max_hp_", i, ".png" }),
@@ -489,12 +521,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("hp")) >= 2 ^ i + 100
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Rags to Riches " .. romanize(i),
 		description = "Woah $" .. tostring(2 ^ i) .. ", Nice!",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/gold_", i, ".png" }),
@@ -502,12 +533,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("gold")) >= 2 ^ i
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Brittle Bones Noita " .. romanize(i),
 		description = "You've soaked up " .. tostring(2 ^ i * 25) .. " damage!",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/damage_taken_", i, ".png" }),
@@ -515,12 +545,11 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(StatsGetValue("damage_taken") * 25) >= (2 ^ i) * 25
 		end,
-	}
+	})
 end
 
-ach_len = #achievements
 for i = 1, 10 do
-	achievements[ach_len + i] = {
+	table.insert(achievements, {
 		name = "Monster " .. romanize(i),
 		description = tostring(1024 - (2 ^ i)) .. " remain...",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png" }),
@@ -528,12 +557,10 @@ for i = 1, 10 do
 		unlock = function()
 			return tonumber(GlobalsGetValue("HELPLESS_KILLS", "0")) >= (2 ^ i)
 		end,
-	}
+	})
 end
 
-
-achievements[#achievements+1]=
-{
+achievements[#achievements + 1] = {
 	name = "H4X0R",
 	description = "3P1C 1337 H4XX B)",
 	icon = "mods/noita.fairmod/files/content/achievements/icons/cheater.png",

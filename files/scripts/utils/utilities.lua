@@ -1,3 +1,5 @@
+---@vararg table
+---@return table
 function MergeTables(...)
 	local tables = { ... }
 	local out = {}
@@ -9,10 +11,15 @@ function MergeTables(...)
 	return out
 end
 
+---@return table
 function GetPlayers()
 	return MergeTables(EntityGetWithTag("player_unit") or {}, EntityGetWithTag("polymorphed_player") or {}) or {}
 end
 
+---@param x number
+---@param y number
+---@param radius number
+---@return int[]
 function GetEnemiesInRadius(x, y, radius)
 	local entities =
 		MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
@@ -47,4 +54,38 @@ function MaterialsFilter(mats)
 	end
 
 	return mats
+end
+
+---@return table<int>
+function GetInventoryItems()
+	local player_entity = GetPlayers()[1]
+	if player_entity ~= nil then
+		return GameGetAllInventoryItems(player_entity) or {}
+	end
+	return {}
+end
+
+---@param tag string
+---@return boolean
+function HasInventoryItemTag(tag)
+	for _, item in ipairs(GetInventoryItems()) do
+		if EntityHasTag(item, tag) then
+			return true
+		end
+	end
+	return false
+end
+
+---@return string|nil
+function GetCurrentBiomeId()
+	local plyr = GetPlayers()[1]
+	if plyr == nil then return nil end
+
+	local x, y = EntityGetTransform(plyr)
+	local filename = DebugBiomeMapGetFilename(x, y)
+	for name in filename:gmatch("/([%w_ ]+).xml") do
+		GamePrint(name)
+		return name
+	end
+	return nil
 end
