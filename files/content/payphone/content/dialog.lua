@@ -1,4 +1,3 @@
---stylua: ignore start
 return {
 	{
 		name = "Unknown Caller",
@@ -1042,7 +1041,28 @@ return {
 														text = "...",
 														func = function(dialog)
 															-- Blessings of COpi
-															dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")local a,b=EntityGetTransform(GetPlayers()[1])dofile_once("data/scripts/gun/gun_actions.lua")local c={}for d=1,#actions do if actions[d].author=="Copi"then c[#c+1]=actions[d].id end end;for d=0,7 do local e=math.pi/8*d;local f=a+20*math.cos(e)local g=b-20*math.sin(e)CreateItemActionEntity(c[math.random(1,#c)],f,g)end;EntityLoad("data/entities/particles/image_emitters/perk_effect.xml",a,b)
+															dofile_once(
+																"mods/noita.fairmod/files/scripts/utils/utilities.lua"
+															)
+															local a, b = EntityGetTransform(GetPlayers()[1])
+															dofile_once("data/scripts/gun/gun_actions.lua")
+															local c = {}
+															for d = 1, #actions do
+																if actions[d].author == "Copi" then
+																	c[#c + 1] = actions[d].id
+																end
+															end
+															for d = 0, 7 do
+																local e = math.pi / 8 * d
+																local f = a + 20 * math.cos(e)
+																local g = b - 20 * math.sin(e)
+																CreateItemActionEntity(c[math.random(1, #c)], f, g)
+															end
+															EntityLoad(
+																"data/entities/particles/image_emitters/perk_effect.xml",
+																a,
+																b
+															)
 															hangup()
 														end,
 													},
@@ -1131,106 +1151,108 @@ return {
 		},
 	},
 	-- Condensed these two into one, randomly chooses between them
-	Random(1,2)==1 and ({
-		name = "Lamia",
-		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
-		text = "Psst..\nHave you tried Meta Leveling?",
-		options = {
-			{
-				text = "My favourite mod",
-				func = function(dialog)
-					dialog.show({
-						text = "Don't play it with fairmod though.\nThis is meant to be painful.{@func disconnected}",
-						options = {
-							{
-								text = "Sure!",
-								func = function()
-									hangup()
-								end,
+	Random(1, 2) == 1
+			and {
+				name = "Lamia",
+				portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
+				text = "Psst..\nHave you tried Meta Leveling?",
+				options = {
+					{
+						text = "My favourite mod",
+						func = function(dialog)
+							dialog.show({
+								text = "Don't play it with fairmod though.\nThis is meant to be painful.{@func disconnected}",
+								options = {
+									{
+										text = "Sure!",
+										func = function()
+											hangup()
+										end,
+									},
+								},
+							})
+						end,
+					},
+					{
+						text = "No?",
+						func = function(dialog)
+							dialog.show({
+								text = "That's unfortunate, look what it has!",
+								options = {
+									{
+										text = "Huh?",
+										func = function()
+											local entity = EntityCreateNew()
+											EntityAddComponent2(entity, "LifetimeComponent", { lifetime = 260 })
+											local comp = EntityAddComponent2(entity, "ParticleEmitterComponent", {
+												emitted_material_name = "spark_green",
+												image_animation_file = "mods/noita.fairmod/files/content/payphone/content/meta_leveling/levelup_8.png",
+												emit_cosmetic_particles = true,
+												emission_interval_min_frames = 1,
+												emission_interval_max_frames = 3,
+												fade_based_on_lifetime = true,
+												friction = 20,
+												collide_with_gas_and_fire = false,
+												collide_with_grid = false,
+												attractor_force = 0.1,
+												image_animation_speed = 5,
+												image_animation_loop = false,
+												lifetime_min = 7,
+												lifetime_max = 8,
+												color = 0x7f96FF46,
+											})
+											ComponentSetValue2(comp, "gravity", 0, 0)
+											local player = EntityGetWithTag("player_unit")[1]
+											local x, y = EntityGetTransform(player)
+											EntitySetTransform(entity, x, y - 50)
+											hangup()
+										end,
+									},
+								},
+							})
+						end,
+					},
+				},
+			}
+		or {
+			name = "Lamia",
+			portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
+			text = "Have you seen flying fish?",
+			options = {
+				{
+					text = "What?",
+					func = function(dialog)
+						dialog.show({
+							text = "I heard it's hiding in some cliffs.{@func disconnected}",
+							options = {
+								{
+									text = "Ok?",
+									func = function()
+										hangup()
+									end,
+								},
 							},
-						},
-					})
-				end,
-			},
-			{
-				text = "No?",
-				func = function(dialog)
-					dialog.show({
-						text = "That's unfortunate, look what it has!",
-						options = {
-							{
-								text = "Huh?",
-								func = function()
-									local entity = EntityCreateNew()
-									EntityAddComponent2(entity, "LifetimeComponent", { lifetime = 260 })
-									local comp = EntityAddComponent2(entity, "ParticleEmitterComponent", {
-										emitted_material_name = "spark_green",
-										image_animation_file = "mods/noita.fairmod/files/content/payphone/content/meta_leveling/levelup_8.png",
-										emit_cosmetic_particles = true,
-										emission_interval_min_frames = 1,
-										emission_interval_max_frames = 3,
-										fade_based_on_lifetime = true,
-										friction = 20,
-										collide_with_gas_and_fire = false,
-										collide_with_grid = false,
-										attractor_force = 0.1,
-										image_animation_speed = 5,
-										image_animation_loop = false,
-										lifetime_min = 7,
-										lifetime_max = 8,
-										color = 0x7f96FF46,
-									})
-									ComponentSetValue2(comp, "gravity", 0, 0)
-									local player = EntityGetWithTag("player_unit")[1]
-									local x, y = EntityGetTransform(player)
-									EntitySetTransform(entity, x, y - 50)
-									hangup()
-								end,
+						})
+					end,
+				},
+				{
+					text = "Yes",
+					func = function(dialog)
+						dialog.show({
+							text = "I hope you helped him.",
+							options = {
+								{
+									text = "Huh?{@func disconnected}",
+									func = function()
+										hangup()
+									end,
+								},
 							},
-						},
-					})
-				end,
+						})
+					end,
+				},
 			},
 		},
-	}) or ({
-		name = "Lamia",
-		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_lamia.xml",
-		text = "Have you seen flying fish?",
-		options = {
-			{
-				text = "What?",
-				func = function(dialog)
-					dialog.show({
-						text = "I heard it's hiding in some cliffs.{@func disconnected}",
-						options = {
-							{
-								text = "Ok?",
-								func = function()
-									hangup()
-								end,
-							},
-						},
-					})
-				end,
-			},
-			{
-				text = "Yes",
-				func = function(dialog)
-					dialog.show({
-						text = "I hope you helped him.",
-						options = {
-							{
-								text = "Huh?{@func disconnected}",
-								func = function()
-									hangup()
-								end,
-							},
-						},
-					})
-				end,
-			},
-		},
-	})
 	{
 		name = "Longest Hamis",
 		portrait = "mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_portrait.xml",
@@ -1285,7 +1307,6 @@ return {
 											},
 										},
 									})
-									
 								end,
 							},
 						},
@@ -1305,31 +1326,28 @@ return {
 
 									if players == nil or #players == 0 then return end
 
-								
-
 									local player = players[1]
 
 									GameDestroyInventoryItems(player)
 
-									local hm_visits =
-									math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
+									local hm_visits = math.max(
+										math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6),
+										1
+									)
 									local x, y = EntityGetTransform(player)
 
 									dofile("data/scripts/perks/perk.lua")
 
 									local tmtrainer_perks = {}
 
-									for i, v in ipairs(perk_list)do
+									for i, v in ipairs(perk_list) do
 										-- if perk name starts with TMTRAINER_ then add it to the list
 										if string.sub(v.id, 1, 10) == "TMTRAINER_" then
 											table.insert(tmtrainer_perks, v.id)
 										end
 									end
 
-
 									for i = 1, 4 do
-								
-
 										local item = EntityLoad(
 											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
 												.. tostring(hm_visits)
@@ -1340,13 +1358,16 @@ return {
 
 										GamePickUpInventoryItem(player, item, false)
 
-										local perk = perk_spawn( x + Random(-15, 15), y + Random(-15, 15), tmtrainer_perks[Random(1, #tmtrainer_perks)], true )
+										local perk = perk_spawn(
+											x + Random(-15, 15),
+											y + Random(-15, 15),
+											tmtrainer_perks[Random(1, #tmtrainer_perks)],
+											true
+										)
 
 										perk_pickup(perk, player, "", false, false)
 									end
 
-			
-									
 									hangup()
 								end,
 							},
@@ -1360,7 +1381,7 @@ return {
 					hangup()
 				end,
 			},
-		}
+		},
 	},
 	{
 		name = "G???O??D????",
@@ -1382,12 +1403,11 @@ return {
 					local x, y = EntityGetTransform(player)
 
 					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
-					
+
 					hangup()
 				end,
 			},
 		},
-
-	}
+	},
 }
---stylua: ignore end
+
