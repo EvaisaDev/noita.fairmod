@@ -1,334 +1,322 @@
 <Materials>
-   <CellData 
-	name="aa_unstable_pandorium"
-	ui_name="$mat_fairmod_unstable_pandorium"
-  	tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
-	burnable="0"
-	density="1"
-	cell_type="liquid"
-	wang_color="80306c22"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
+	<CellData
+		name="aa_unstable_pandorium"
+		ui_name="$mat_fairmod_unstable_pandorium"
+		tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
+		burnable="0"
+		density="1"
+		cell_type="liquid"
+		wang_color="80306c22"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
 	>
-	<ParticleEffect
-		vel.y="-40"
-		vel_random.min_y="-20.21"
-		vel_random.max_y="-2.861"
-		vel_random.min_x="-6.667"
-		vel_random.max_x="6.667"
-		lifetime.min="0.3238"
-		lifetime.max="9.3238"
-		gravity.y="-100"
-		render_on_grid="1"
-		airflow_force="10"
-		airflow_scale="6.857"
-		draw_as_long="0"
-		friction="1.352"
-		probability="0.0343"
-	>
-	</ParticleEffect>
-	<Graphics 
-		color="44FF4E99"
+		<ParticleEffect
+			vel.y="-40"
+			vel_random.min_y="-20.21"
+			vel_random.max_y="-2.861"
+			vel_random.min_x="-6.667"
+			vel_random.max_x="6.667"
+			lifetime.min="0.3238"
+			lifetime.max="9.3238"
+			gravity.y="-100"
+			render_on_grid="1"
+			airflow_force="10"
+			airflow_scale="6.857"
+			draw_as_long="0"
+			friction="1.352"
+			probability="0.0343"
 		>
-    </Graphics>
-  </CellData>
-  
-	<Reaction probability = "0.9"
+		</ParticleEffect>
+		<Graphics
+			color="44FF4E99"
+		>
+		</Graphics>
+	</CellData>
+
+	<Reaction probability="0.9"
 		input_cell1="aa_unstable_pandorium" input_cell2="air"
 		output_cell1="air" output_cell2="air"
 	>
-	<ExplosionConfig
-		camera_shake="0" 
-		damage="0"
-		cell_explosion_power="5"
-		cell_explosion_damage_required="3000"
-		cell_explosion_radius_min="1"
-		cell_explosion_radius_max="1"
-		cell_explosion_probability="1.1"
-		explosion_sprite="data/particles/explosion_012.xml"
-		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_unstable.xml" 
-		ray_energy="1"
+		<ExplosionConfig
+			camera_shake="0"
+			damage="0"
+			cell_explosion_power="5"
+			cell_explosion_damage_required="3000"
+			cell_explosion_radius_min="1"
+			cell_explosion_radius_max="1"
+			cell_explosion_probability="1.1"
+			explosion_sprite="data/particles/explosion_012.xml"
+			load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_unstable.xml"
+			ray_energy="1"
 		>
-	</ExplosionConfig>
+		</ExplosionConfig>
 	</Reaction><!-- unstable pandorium casts spells -->
 
-    
 
-  <CellData 
-	name="aa_chaotic_pandorium"
-	ui_name="$mat_fairmod_chaotic_pandorium"
-  	tags="[liquid],[magic_liquid],[water],[impure]"
-	burnable="0"
-	density="1"
-	cell_type="liquid"
-	wang_color="8b3428a3"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="150"
-	on_fire="0"
-	requires_oxygen="0"
-	temperature_of_fire="95"
-	autoignition_temperature="10"
-	fire_hp="500"
-	liquid_stains="1"
+	<CellData
+		name="aa_chaotic_pandorium"
+		ui_name="$mat_fairmod_chaotic_pandorium"
+		tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
+		burnable="0"
+		density="1"
+		cell_type="liquid"
+		wang_color="8b3428a3"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="95"
+		autoignition_temperature="10"
+		fire_hp="500"
+		liquid_stains="1"
 	>
-	<ParticleEffect
-		vel.y="-30"
-		vel_random.min_y="-30.21"
-		vel_random.max_y="-4.861"
-		vel_random.min_x="-8.667"
-		vel_random.max_x="8.667"
-		lifetime.min="0.3238"
-		lifetime.max="9.3238"
-		gravity.y="-100"
-		render_on_grid="1"
-		airflow_force="10"
-		airflow_scale="6.857"
-		draw_as_long="0"
-		friction="1.352"
-		probability="0.0543"
-	>
-	</ParticleEffect>
-	<Graphics 
-		color="44FF93EB"
+		<ParticleEffect
+			vel.y="-30"
+			vel_random.min_y="-30.21"
+			vel_random.max_y="-4.861"
+			vel_random.min_x="-8.667"
+			vel_random.max_x="8.667"
+			lifetime.min="0.3238"
+			lifetime.max="9.3238"
+			gravity.y="-100"
+			render_on_grid="1"
+			airflow_force="10"
+			airflow_scale="6.857"
+			draw_as_long="0"
+			friction="1.352"
+			probability="0.0543"
 		>
-    </Graphics>
-  </CellData>
+		</ParticleEffect>
+		<Graphics
+			color="44FF93EB"
+		>
+		</Graphics>
+	</CellData>
 
-	<Reaction probability = "2"
+	<Reaction probability="2"
 		input_cell1="aa_chaotic_pandorium" input_cell2="air"
 		output_cell1="air" output_cell2="air"
 	>
-	<ExplosionConfig
-		camera_shake="0" 
-		damage="0"
-		cell_explosion_power="5"
-		cell_explosion_damage_required="3000"
-		cell_explosion_radius_min="1"
-		cell_explosion_radius_max="1"
-		cell_explosion_probability="1.1"
-		explosion_sprite="data/particles/explosion_012.xml"
-		load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.xml" 
-		ray_energy="1"
+		<ExplosionConfig
+			camera_shake="0"
+			damage="0"
+			cell_explosion_power="5"
+			cell_explosion_damage_required="3000"
+			cell_explosion_radius_min="1"
+			cell_explosion_radius_max="1"
+			cell_explosion_probability="1.1"
+			explosion_sprite="data/particles/explosion_012.xml"
+			load_this_entity="mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.xml"
+			ray_energy="1"
 		>
-	</ExplosionConfig>
+		</ExplosionConfig>
 	</Reaction><!-- chaotic pandorium casts spells -->
 
 
-
-
-
-
-  <CellData
-	name="t_giga_slicing_liquid"
-	ui_name="$mat_fairmod_giga_slicing_liquid"
-	tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible]"
-	density="2.31"
-	cell_type="liquid"
-	wang_color="afaaaaaf"
-	gfx_glow="255"
-	burnable="1"
-	on_fire_flame_material="spark"
-	temperature_of_fire="100"
-	autoignition_temperature="5"
-	electrical_conductivity="1"
-	liquid_stains="3"
-	audio_materialaudio_type="MAGICAL" 
+	<CellData
+		name="t_giga_slicing_liquid"
+		ui_name="$mat_fairmod_giga_slicing_liquid"
+		tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible]"
+		density="2.31"
+		cell_type="liquid"
+		wang_color="afaaaaaf"
+		gfx_glow="255"
+		burnable="1"
+		on_fire_flame_material="spark"
+		temperature_of_fire="100"
+		autoignition_temperature="5"
+		electrical_conductivity="1"
+		liquid_stains="3"
+		audio_materialaudio_type="MAGICAL"
 	>
-	<Graphics
-		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/giga_slicing_liquid.png"
-	>
-	</Graphics>
-	<ParticleEffect
-		vel.y="17.14"
-		vel_random.min_y="-100"
-		vel_random.max_y="25.71"
-		lifetime.min="0"
-		gravity.y="-8.57"
-		render_on_grid="1"
-		draw_as_long="1"
-		friction="-3.429"
-		probability="0.0518"
-	>
-	</ParticleEffect>
-  </CellData> <!-- giga slicing liquid-->
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/giga_slicing_liquid.png"
+		>
+		</Graphics>
+		<ParticleEffect
+			vel.y="17.14"
+			vel_random.min_y="-100"
+			vel_random.max_y="25.71"
+			lifetime.min="0"
+			gravity.y="-8.57"
+			render_on_grid="1"
+			draw_as_long="1"
+			friction="-3.429"
+			probability="0.0518"
+		>
+		</ParticleEffect>
+	</CellData> <!-- giga slicing liquid-->
 
 	<Reaction probability="21"
-	input_cell1="t_giga_slicing_liquid"	input_cell2="[fire]"
-	output_cell1="air"			output_cell2="air"
-	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_big.xml" 
+		input_cell1="t_giga_slicing_liquid" input_cell2="[fire]"
+		output_cell1="air" output_cell2="air"
+		entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_big.xml"
 	>
 	</Reaction>
 
 	<Reaction probability="31"
-	input_cell1="t_giga_slicing_liquid"	input_cell2="[fire]"
-	output_cell1="air"			output_cell2="air"
+		input_cell1="t_giga_slicing_liquid" input_cell2="[fire]"
+		output_cell1="air" output_cell2="air"
 	>
 	</Reaction>
 
 
-
-  <CellDataChild
-	_parent="t_giga_slicing_liquid"
-    name="t_omega_slicing_liquid"
-	tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible],[catastrophic]"
-	ui_name="$mat_fairmod_omega_slicing_liquid"
-	density="2.29"
-	wang_color="afaaaabf"
+	<CellDataChild
+		_parent="t_giga_slicing_liquid"
+		name="t_omega_slicing_liquid"
+		tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible],[catastrophic]"
+		ui_name="$mat_fairmod_omega_slicing_liquid"
+		density="2.29"
+		wang_color="afaaaabf"
 	>
-	<Graphics
-		texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/omega_slicing_liquid.png"
-	>
-	</Graphics>
-  </CellDataChild> <!-- Omega slicing liquid-->
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/omega_slicing_liquid.png"
+		>
+		</Graphics>
+	</CellDataChild> <!-- Omega slicing liquid-->
 
 	<Reaction probability="7"
-	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
-	output_cell1="[fire]"			output_cell2="air"
-	entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml" 
+		input_cell1="t_omega_slicing_liquid" input_cell2="[fire]"
+		output_cell1="[fire]" output_cell2="air"
+		entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_bigger.xml"
 	>
 	</Reaction>
 
 	<Reaction probability="31"
-	input_cell1="t_omega_slicing_liquid"	input_cell2="[fire]"
-	output_cell1="[fire]"			output_cell2="air"
+		input_cell1="t_omega_slicing_liquid" input_cell2="[fire]"
+		output_cell1="[fire]" output_cell2="air"
 	>
 	</Reaction>
 
 
-	
-
-	<CellData	
-	  name="cc_deceleratium"
-	  ui_name="$mat_fairmod_deceleratium"
-	  tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
-	  burnable="0"
-	  density="4.1"
-	  cell_type="liquid"
-	  wang_color="806f823e" 
-	  generates_smoke="0"
-	  liquid_gravity="0.7"
-	  liquid_sand="0"
-	  gfx_glow="150"
-	  on_fire="0"
-	  requires_oxygen="0"
-	  liquid_stains="1"
-	  liquid_sprite_stain_shaken_drop_chance="1"
-	  status_effects="CC_MOVEMENT_SLOWER_2X"
-	  audio_materialaudio_type="MAGICAL"
-	  show_in_creative_mode="1"
-	  >
-	  <ParticleEffect
-		vel.y="17.14"
-		vel_random.min_y="-100"
-		vel_random.max_y="25.71"
-		lifetime.min="0"
-		gravity.y="-8.57"
-		render_on_grid="1"
-		draw_as_long="1"
-		friction="3.429"
-		probability="0.0518"
-	  >
-	</ParticleEffect>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.2" />
-		</Ingestion>
-	</StatusEffects>
-  </CellData>
-  
-  <CellData
-	name="cc_heftium"
-	ui_name="$mat_fairmod_heftium"
-  	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
-	burnable="0"
-	density="4.92"
-	cell_type="liquid"
-	wang_color="80776075"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="100"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="1"
-	status_effects="CC_LEVITATION_SLOWER"
-	audio_materialaudio_type="MAGICAL" 
-	show_in_creative_mode="1"
+	<CellData
+		name="cc_deceleratium"
+		ui_name="$mat_fairmod_deceleratium"
+		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+		burnable="0"
+		density="4.1"
+		cell_type="liquid"
+		wang_color="806f823e"
+		generates_smoke="0"
+		liquid_gravity="0.7"
+		liquid_sand="0"
+		gfx_glow="150"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="1"
+		status_effects="CC_MOVEMENT_SLOWER_2X"
+		audio_materialaudio_type="MAGICAL"
+		show_in_creative_mode="1"
 	>
-	<ParticleEffect
-		vel.y="17.14"
-		vel_random.min_y="-100"
-		vel_random.max_y="25.71"
-		lifetime.min="0"
-		gravity.y="-8.57"
-		render_on_grid="1"
-		draw_as_long="1"
-		friction="3.429"
-		probability="0.0518"
+		<ParticleEffect
+			vel.y="17.14"
+			vel_random.min_y="-100"
+			vel_random.max_y="25.71"
+			lifetime.min="0"
+			gravity.y="-8.57"
+			render_on_grid="1"
+			draw_as_long="1"
+			friction="3.429"
+			probability="0.0518"
+		>
+		</ParticleEffect>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+
+	<CellData
+		name="cc_heftium"
+		ui_name="$mat_fairmod_heftium"
+		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+		burnable="0"
+		density="4.92"
+		cell_type="liquid"
+		wang_color="80776075"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="100"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="1"
+		status_effects="CC_LEVITATION_SLOWER"
+		audio_materialaudio_type="MAGICAL"
+		show_in_creative_mode="1"
 	>
-	</ParticleEffect>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.2" />
-		</Ingestion>
-	</StatusEffects>
-  </CellData>
-	
-	
+		<ParticleEffect
+			vel.y="17.14"
+			vel_random.min_y="-100"
+			vel_random.max_y="25.71"
+			lifetime.min="0"
+			gravity.y="-8.57"
+			render_on_grid="1"
+			draw_as_long="1"
+			friction="3.429"
+			probability="0.0518"
+		>
+		</ParticleEffect>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
 
-  <CellData
-	name="cc_stillium"
-	ui_name="$mat_fairmod_stillium"
-  	tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
-	burnable="0"
-	density="3.091"
-	cell_type="liquid"
-	wang_color="8087be59"
-	generates_smoke="0"
-	liquid_gravity="0.8"
-	liquid_sand="0"
-	gfx_glow="100"
-	on_fire="0"
-	requires_oxygen="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="0.5"
-	audio_materialaudio_type="MAGICAL" 
-	show_in_creative_mode="1"
+
+	<CellData
+		name="cc_stillium"
+		ui_name="$mat_fairmod_stillium"
+		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
+		burnable="0"
+		density="3.091"
+		cell_type="liquid"
+		wang_color="8087be59"
+		generates_smoke="0"
+		liquid_gravity="0.8"
+		liquid_sand="0"
+		gfx_glow="100"
+		on_fire="0"
+		requires_oxygen="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="0.5"
+		audio_materialaudio_type="MAGICAL"
+		show_in_creative_mode="1"
 	>
-	<ParticleEffect
-		vel.y="17.14"
-		vel_random.min_y="-100"
-		vel_random.max_y="25.71"
-		lifetime.min="0"
-		gravity.y="-8.57"
-		render_on_grid="1"
-		draw_as_long="1"
-		friction="3.429"
-		probability="0.0518"
-	>
-	</ParticleEffect>
-  	<StatusEffects>
-		<Stains>
-			<StatusEffect type="CC_LEVITATION_SLOWER" />
-			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" />
-		</Stains>
-		<Ingestion>
-			<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.1" />
-			<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.1" />
-		</Ingestion>
-	</StatusEffects>
-  </CellData>
-
-
-
+		<ParticleEffect
+			vel.y="17.14"
+			vel_random.min_y="-100"
+			vel_random.max_y="25.71"
+			lifetime.min="0"
+			gravity.y="-8.57"
+			render_on_grid="1"
+			draw_as_long="1"
+			friction="3.429"
+			probability="0.0518"
+		>
+		</ParticleEffect>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="CC_LEVITATION_SLOWER" />
+				<StatusEffect type="CC_MOVEMENT_SLOWER_2X" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="CC_LEVITATION_SLOWER" amount="0.1" />
+				<StatusEffect type="CC_MOVEMENT_SLOWER_2X" amount="0.1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
 
 
 	<CellData
@@ -349,8 +337,8 @@
 		temperature_of_fire="95"
 		autoignition_temperature="10"
 		show_in_creative_mode="1"
-		>
-		<ExplosionConfig 
+	>
+		<ExplosionConfig
 			damage="0"
 			cell_explosion_power="2"
 			cell_explosion_damage_required="1"
@@ -367,8 +355,8 @@
 			stains_enabled="0"
 			damage_mortals="0"
 			particle_effect="0"
-			camera_shake="1" 
-			>
+			camera_shake="1"
+		>
 		</ExplosionConfig>
 		<StatusEffects>
 			<Stains>
@@ -382,49 +370,50 @@
 
 		<Graphics
 			texture_file="mods/noita.fairmod/files/content/chemical_horror/grease/grease.png"
-			>
+		>
 		</Graphics>
 	</CellData>
 
 
-  <CellData
-	name="cc_methane"
-	ui_name="$mat_fairmod_methane"
-	tags="[gas]"
-	burnable="1"
-	fire_hp="1200"
-	density="1"
-	cell_type="gas"
-	wang_color="a53b3c7f"
-	liquid_gravity="0.5"
-	liquid_sand="0"
-	liquid_stains="1"
-	liquid_sprite_stain_shaken_drop_chance="2"
-	status_effects="CC_INGESTION_METHANE"
-	generates_flames="20"
-	generates_smoke="1"
-	on_fire="0"
-	requires_oxygen="0"
-	temperature_of_fire="80"
-	autoignition_temperature="20" 
-	show_in_creative_mode="1"
+	<CellData
+		name="cc_methane"
+		ui_name="$mat_fairmod_methane"
+		tags="[gas]"
+		burnable="1"
+		fire_hp="1200"
+		density="1"
+		cell_type="gas"
+		wang_color="a53b3c7f"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="2"
+		status_effects="CC_INGESTION_METHANE"
+		generates_flames="20"
+		generates_smoke="1"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="80"
+		autoignition_temperature="20"
+		show_in_creative_mode="1"
 	>
-	<Graphics
-	color="a53b3c9f"
-	></Graphics>
-	<StatusEffects>
-		<Ingestion>
-			<StatusEffect type="CC_INGESTION_METHANE" amount="0.2" />
-		</Ingestion>
-	</StatusEffects>
-	</CellData><!-- lol, methane gas. -->
-	
+		<Graphics
+			color="a53b3c9f"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="CC_INGESTION_METHANE" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData><!--
+	lol, methane gas. -->
+
 	<Reaction probability="100"
-		input_cell1="[fire]" 		input_cell2="cc_methane"
-		output_cell1="cc_carbon_dioxide"	output_cell2="[fire]"
+		input_cell1="[fire]" input_cell2="cc_methane"
+		output_cell1="cc_carbon_dioxide" output_cell2="[fire]"
 	>
-  </Reaction>
-	
+	</Reaction>
+
 	<CellData
 		name="cc_carbon_dioxide"
 		ui_name="$mat_fairmod_carbon_dioxide"
@@ -447,12 +436,11 @@
 		gas_upwards_speed="5"
 		gas_downwards_speed="255"
 		gas_horizontal_speed="35"
-		>
+	>
 	</CellData>
 
 
-
-<!--
+	<!--
 
 
 	
@@ -612,7 +600,7 @@
 			cell_explosion_damage_required="1"
 			cell_explosion_radius_min="2"
 			explosion_sprite="data/particles/explosion_012.xml"
-			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
+	load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
 			ray_energy="10"
         >
 		</ExplosionConfig>
@@ -655,7 +643,7 @@
 			cell_explosion_damage_required="1"
 			cell_explosion_radius_min="2"
 			explosion_sprite="data/particles/explosion_012.xml"
-			load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
+	load_this_entity="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/crystal_explode.xml"
 			ray_energy="10"
         >
 		</ExplosionConfig>
@@ -679,7 +667,7 @@
 		audio_materialaudio_type="MAGICAL" 
 		>
 		<Graphics
-			texture_file="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/liquid_crystal.png"
+	texture_file="mods/Hydroxide/files/chemical_curiosities/materials/volatile_crystal/liquid_crystal.png"
 			color="20b333a3"
 			>
 		</Graphics>
