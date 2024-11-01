@@ -1,3 +1,62 @@
+
+local function get_distance(x1, y1, x2, y2)
+	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+end
+
+local function statue_check()
+	local player = (EntityGetWithTag("player_unit") or {})[1]
+	if player == nil then return true end
+	local x,y = EntityGetTransform(player)
+
+	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
+	if statue == nil then return true end
+	local x2,y2 = EntityGetTransform(statue)
+
+	local dist = get_distance(x, y, x2, y2)
+	if dist < 25 then
+		local phys = EntityGetFirstComponent(statue, "PhysicsBody2Component")
+		local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
+		PhysicsComponentSetTransform(phys, x, y, angle, vel_x + 20, vel_y - 1, -20)
+		return true
+	end
+	return dist > 500
+end
+
+local function statue_closeness_dialog(dialog)
+	if statue_check() then
+		hangup()
+	end
+
+	local requests = {
+		"Closer . . .",
+		"No, closer.",
+		"No, you're too far.",
+		"Come closer.",
+		"Not close enough."
+	}
+	local responses = {
+		"How's this?",
+		"Am I close enough?",
+		"Here?",
+		"How about now?"
+	}
+	dialog.show({
+		text=requests[Random(1, #requests)],
+		options = {
+			{
+				text = responses[Random(1, #responses)],
+				func = statue_closeness_dialog
+			},
+			{
+				text = "Bye",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	})
+end
+
 return {
 	{
 		name = "Unknown Caller",
@@ -1404,6 +1463,85 @@ return {
 
 					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Heinermann",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_heinermann.png",
+		text = "Hello, have you heard of the Archipelago mod?",
+		options = {
+			{
+				text = "Yep, I've even played it!",
+				func = function(dialog)
+					dialog.show({
+						text="Great! Please share it!",
+						options = {
+							{
+								text = "Okay",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Yeah, but I haven't tried it.",
+				func = function(dialog)
+					dialog.show({
+						text=[[Don't be afraid to give it a shot. You can switch between
+						different games on your own, or play with others, short session,
+						multi-day session, lots of ways to play.]],
+						options = {
+							{
+								text = "Cool, maybe I will",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "No, what is it?",
+				func = function(dialog)
+					dialog.show({
+						text=[[It's a multi-game, multi-world randomizer. You connect
+						with multiple games and items are shuffled between them.
+
+						Work together to complete all the games!]],
+						options = {
+							{
+								text = "Oh, interesting",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Statue?",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_statue.png",
+		text = [[Psst . . .
+		{@pause 60}
+		Come closer . . .]],
+		options = {
+			{
+				text = "How's this?",
+				func = statue_closeness_dialog
+			},
+			{
+				text = "No thanks",
+				func = function(dialog)
 					hangup()
 				end,
 			},
