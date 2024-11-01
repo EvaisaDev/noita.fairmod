@@ -38,7 +38,7 @@
         auto_play_if_enabled = "1"
         play_on_component_enable = "1"
         file = "mods/noita.fairmod/fairmod.bank"
-        event_name = "radio/loop"
+        event_name = "radio/ill_see_you_when_i_see_you"
     />    
 
 	<SpriteParticleEmitterComponent
