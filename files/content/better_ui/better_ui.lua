@@ -100,6 +100,7 @@ local objectives = {
 	"Have 3 people visit your island",
 	"Loading...",
 	"Failed",
+	"Follow the purple lights",
 }
 
 local game_speed_a = 0
