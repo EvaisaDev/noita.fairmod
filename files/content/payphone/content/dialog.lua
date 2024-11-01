@@ -1260,5 +1260,134 @@ return {
 			},
 		},
 	},
+	{
+		name = "Evaisa",
+		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_eba.png",
+		text = "Hello, It is I, the eba.",
+		options = {
+			{
+				text = "Hello?",
+				func = function(dialog)
+					dialog.show({
+						text = "Hiii hellooo hii hihiiii hiii :3",
+						options = {
+							{
+								text = "Okay..? So why were you calling?",
+								func = function()
+									dialog.show({
+										text = ":3{@func disconnected}",
+										options = {
+											{
+												text = "Okay... Wait how do you even :3 on a phone?",
+												func = function()
+													hangup()
+												end,
+											},
+										},
+									})
+									
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Woahh eba I love your mods you are so cool wow.",
+				func = function(dialog)
+					dialog.show({
+						text = "Thanks!! I shall bless you with my best creations!{@func disconnected}",
+						options = {
+							{
+								text = "This surely won't backfire.",
+								func = function()
+									local players = EntityGetWithTag("player_unit") or {}
+
+									if players == nil or #players == 0 then return end
+
+								
+
+									local player = players[1]
+
+									GameDestroyInventoryItems(player)
+
+									local hm_visits =
+									math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
+									local x, y = EntityGetTransform(player)
+
+									dofile("data/scripts/perks/perk.lua")
+
+									local tmtrainer_perks = {}
+
+									for i, v in ipairs(perk_list)do
+										-- if perk name starts with TMTRAINER_ then add it to the list
+										if string.sub(v.id, 1, 10) == "TMTRAINER_" then
+											table.insert(tmtrainer_perks, v.id)
+										end
+									end
+
+
+									for i = 1, 4 do
+								
+
+										local item = EntityLoad(
+											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
+												.. tostring(hm_visits)
+												.. ".xml",
+											x + Random(-15, 15),
+											y + Random(-15, 15)
+										)
+
+										GamePickUpInventoryItem(player, item, false)
+
+										local perk = perk_spawn( x + Random(-15, 15), y + Random(-15, 15), tmtrainer_perks[Random(1, #tmtrainer_perks)], true )
+
+										perk_pickup(perk, player, "", false, false)
+									end
+
+			
+									
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Hang up.",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		}
+	},
+	{
+		name = "G???O??D????",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		text = "Haha bye.{@func disconnected}",
+		options = {
+			{
+				text = "What..?",
+				func = function(dialog)
+					GameAddFlagRun("random_teleport_next")
+					GameAddFlagRun("no_return")
+
+					local players = EntityGetWithTag("player_unit") or {}
+
+					if players == nil or #players == 0 then return end
+
+					local player = players[1]
+
+					local x, y = EntityGetTransform(player)
+
+					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
+					
+					hangup()
+				end,
+			},
+		},
+
+	}
 }
 --stylua: ignore end
