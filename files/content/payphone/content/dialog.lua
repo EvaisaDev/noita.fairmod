@@ -1034,7 +1034,8 @@ return {
 				text = "H.. Hello?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Just calling to see if your Copith is running!]],
+						text = [[Just calling to see if your ~Copi's Things~ mod is running!
+{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
 						options = {
 							{
 								text = "No it is not..",
@@ -1058,7 +1059,6 @@ return {
 																text = "Maybe another time.",
 																func = function(dialog)
 																	hangup()
-																	-- Add a script to the player to add a 'herobrine' shadow copi that just subtly appears at the edge of the screen sometimes
 																end,
 															},
 														},
