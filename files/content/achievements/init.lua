@@ -30,6 +30,10 @@ for xml in nxml.edit_file("data/entities/player.xml") do
 		execute_every_n_frame = -1,
 		script_damage_received = "mods/noita.fairmod/files/content/achievements/get_hit.lua"
 	}))
+	xml:add_child(nxml.new_element("LuaComponent", {
+		execute_every_n_frame = 10,
+		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua"
+	}))
 end
 
 
