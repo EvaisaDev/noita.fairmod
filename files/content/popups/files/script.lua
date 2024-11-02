@@ -355,7 +355,7 @@ SeedCount = SeedCount or 0
 LastFrame = LastFrame or 0
 math.randomseed(GameGetFrameNum() * StatsGetValue("world_seed"))
 -- 1/400 -> 1.5% per second with COPI mode, 1/1000 -> .6% per second by default
-local windowProbability = immersive_mimics and 400 or 10000
+local windowProbability = immersive_mimics and 400 or 20000
 if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) == 1) then
     SeedCount = SeedCount + 1
     Windows[#Windows + 1] = {
@@ -502,8 +502,8 @@ local windowCounter = 0
 
 
 
-local minwidth, minheight = 80, 100 -- min width & height
-local maxwidth, maxheight = 300, 220 -- max width & height
+local minwidth, minheight = 100, 100 -- min width & height
+local maxwidth, maxheight = 300, 270 -- max width & height
 for i = 2, #Windows do
     if Windows[i] ~= nil then
         
@@ -633,7 +633,7 @@ for i = 2, #Windows do
                 local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
                 if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
                     local click_events = popup.CLICK_EVENTS or {}
-                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup)
+                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup, click_events)
                     else print("NO CLICK FUNCTION ATTACHED: " .. hyperlink_number)
                     end
                 end
