@@ -83,6 +83,7 @@ local Popups = {
 				end,
 			},
 			OPEN_FUNCTION = function(self) --OPEN_FUNCTION runs only once when the window is opened
+				GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/prompt", GameGetCameraPos()) --play opening sound manually cuz disableSound is enabled
 				print("Window opened -v-")
 			end,
 
@@ -95,7 +96,7 @@ local Popups = {
 				print("Player closed the window >:|")
 			end,
 
-			disableSound = true, --this disables the sound made when you click the X button
+			disableSound = true, --this disables the sound made when popups open and close
 			CUSTOM_9PIECE = "mods/noita.fairmod/files/content/popups/custom_9piece.png",
 			CUSTOM_9PIECE_BAR = "mods/noita.fairmod/files/content/popups/custom_9piecebar.png",
 			CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
