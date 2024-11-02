@@ -434,6 +434,15 @@ achievements = {
 			return tonumber(GlobalsGetValue("FAIRMOD_SNAIL_TELEFRAGS", "0")) > 0
 		end,
 	},
+	{
+		name = "Minus Life",
+		description = "Does what is says on the tin.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/minus_life.png",
+		flag = "minus_life",
+		unlock = function()
+			return GameHasFlagRun("PERK_PICKED_MINUS_LIFE")
+		end
+	},
 	-- Todo biome acheevs
 }
 
