@@ -468,7 +468,13 @@ return {
 		func = function(player)
 			perk_pickup( nil, player, "REMOVE_FOG_OF_WAR", true, false, true )
 		end
-	}
+	},
+	{
+		code = "scam",
+		func = function()
+			GameAddFlagRun("SPAWN_POPUP")
+		end,
+	},
 }
 
 --stylua: ignore end
