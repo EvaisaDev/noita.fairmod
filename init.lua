@@ -38,6 +38,7 @@ local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother
 local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/init.lua")
 local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
+local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -212,6 +213,8 @@ function OnPlayerSpawned(player)
 	corpses.OnPlayerSpawned(player)
 
 	dmca_warning.OnPlayerSpawned(player)
+
+	saw.OnPlayerSpawned(player)
 
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
