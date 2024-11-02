@@ -425,6 +425,15 @@ achievements = {
 			return GameHasFlagRun("fairmod_piss_drinker")
 		end,
 	},
+	{
+		name = "Killed the Snail",
+		description = "It will return.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/snail_telefrag.png",
+		flag = "snail_telefrag",
+		unlock = function()
+			return tonumber(GlobalsGetValue("FAIRMOD_SNAIL_TELEFRAGS", "0")) > 0
+		end,
+	},
 	-- Todo biome acheevs
 }
 
