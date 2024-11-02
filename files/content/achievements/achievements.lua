@@ -419,7 +419,7 @@ achievements = {
 	{
 		name = "Loathsome Piss Drinker",
 		description = "Drink a gallon of piss.",
-		icon = "mods/noita.fairmod/files/content/achievements/icons/biome_mountain_left_entrance.png",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/piss_drinker.png",
 		flag = "loathsome_piss_drinker",
 		unlock = function()
 			return GameHasFlagRun("fairmod_piss_drinker")
