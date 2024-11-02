@@ -1,0 +1,19 @@
+<Materials>
+	<CellDataChild
+		_parent="aluminium"
+		_inherit_reactions="1"
+		tags="[box2d],[corrodible],[rust_box2d],[alchemy],[meltable_metal],[solid],[earth]"
+		name="fairmod_metal_sharp"
+		ui_name="$mat_metal_rust"
+		platform_type="1"
+		wang_color="ff6e3a3f"
+		electrical_conductivity="1"
+		audio_physics_material_event="metalhollow"
+		audio_physics_material_wall="metalhollow"
+		audio_physics_material_solid="metalhollow">
+		<Graphics
+			texture_file="data/materials_gfx/steel.png"
+			color="ff4d2d3c">
+		</Graphics>
+	</CellDataChild>
+</Materials>
