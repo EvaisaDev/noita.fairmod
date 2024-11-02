@@ -240,6 +240,9 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
 	ModTextFileSetContent = SetContent
+
+	GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
+
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()

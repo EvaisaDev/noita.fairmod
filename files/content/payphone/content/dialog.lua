@@ -3,7 +3,7 @@ local function get_distance(x1, y1, x2, y2)
 	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
 
-local function statue_check()
+local function statue_get_distance()
 	local player = (EntityGetWithTag("player_unit") or {})[1]
 	if player == nil then return true end
 	local x,y = EntityGetTransform(player)
@@ -12,14 +12,20 @@ local function statue_check()
 	if statue == nil then return true end
 	local x2,y2 = EntityGetTransform(statue)
 
-	local dist = get_distance(x, y, x2, y2)
+	return get_distance(x, y, x2, y2)
+end
+
+local function statue_check()
+	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
+
+	local dist = statue_get_distance()
 	if dist < 25 then
 		local phys = EntityGetFirstComponent(statue, "PhysicsBody2Component")
 		local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
 		PhysicsComponentSetTransform(phys, x, y, angle, vel_x + 20, vel_y - 1, -20)
 		return true
 	end
-	return dist > 500
+	return dist > 100
 end
 
 local function statue_closeness_dialog(dialog)
@@ -1522,6 +1528,9 @@ return {
 		text = [[Psst . . .
 		{@pause 60}
 		Come closer . . .]],
+		can_call = function() -- optional
+			return statue_get_distance() < 100
+		end,
 		options = {
 			{
 				text = "How's this?",
