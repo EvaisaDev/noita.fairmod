@@ -47,8 +47,8 @@ module.spawn_shape = function(x, y)
 	SetRandomSeed(x, y)
 	local shape_chosen = GlobalsGetValue("fairmod_ending_quiz_shape", "null")
 	if shape_chosen == "null" then
-		local shape = opts[Random(1, #shape_chosen)]
-		EntityLoad(table.concat({ "mods/noita.fairmod/files/content/ending_quiz/shape/", shape, ".xml" }),x + 140,y - 40)
+		local shape = opts[Random(1, #opts)]
+		EntityLoad(table.concat({ "mods/noita.fairmod/files/content/ending_quiz/shape/", shape, ".xml" }),x + 135,y - 40)
 		GlobalsSetValue("fairmod_ending_quiz_shape", shape)
 	end
 end
