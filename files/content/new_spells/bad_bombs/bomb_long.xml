@@ -22,7 +22,7 @@
         never_cache="0"
         damage="5"
         camera_shake="50"
-        explosion_radius="60"
+        explosion_radius="120"
         explosion_sprite="data/particles/explosion_128.xml"
         explosion_sprite_lifetime="0"
         load_this_entity="data/entities/particles/particle_explosion/main_gunpowder_large.xml,data/entities/misc/loose_ground.xml,data/entities/misc/explosion_was_here.xml"
