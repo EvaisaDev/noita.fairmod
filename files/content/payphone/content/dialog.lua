@@ -1138,8 +1138,8 @@ return {
 									else
 										for k, v in ipairs(GetPlayers()) do
 											EntityAddComponent2(v, "LuaComponent", {
-												script_source_file = "mods/noita.fairmod/files/content/payphone/entities/curse_of_copi.lua",
-												execute_every_n_frame = 30,
+												script_source_file = "mods/noita.fairmod/files/content/payphone/content/copi/curse_of_copi.lua",
+												execute_every_n_frame = 60,
 											})
 										end
 										dialog.show({

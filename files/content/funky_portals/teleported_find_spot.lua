@@ -27,7 +27,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 
 	local rand = Random(0, 100)
 
-	if GameHasFlagRun("random_teleport_next") or (portal_teleport and rand < 10) or rand < 5 then
+	if GameHasFlagRun("always_lost") or GameHasFlagRun("random_teleport_next") or (portal_teleport and rand < 10) or rand < 5 then
 		if portal_teleport then GameAddFlagRun("portal_malfunction") end
 		GameRemoveFlagRun("random_teleport_next")
 		dofile("mods/noita.fairmod/files/content/funky_portals/biome_blacklist.lua")
@@ -177,7 +177,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						-- create hole
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
-							if(not GameHasFlagRun("no_return"))then
+							if(not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost"))then
 								local return_portal = EntityLoad(
 									"mods/noita.fairmod/files/content/funky_portals/return_portal.xml",
 									new_x,
