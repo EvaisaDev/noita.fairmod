@@ -73,6 +73,8 @@ end
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	-- If interacting with a dialog system, don't open scratch ticket at the same time
 	if dialog_system.is_any_dialog_open() or GameHasFlagRun("fairmod_dialog_interacting") then return end
+	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 
 	if not EntityHasTag(entity_interacted, "viewing") then
 		EntityAddTag(entity_interacted, "viewing")

@@ -113,6 +113,12 @@ local get_random_call = function()
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	-- If viewing a scratch ticket, don't interact at the same time
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
+	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
+	GameAddFlagRun("fairmod_dialog_interacting")
+	
 	SetRandomSeed(x, y + GameGetFrameNum())
 	if ringing then
 		ringing = false
@@ -121,6 +127,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
 		-- open random call
 		local call = get_random_call()
+		call.on_closed = function()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end
 		dialog_system.dialog_box_height = 70
 
 		dialog = dialog_system.open_dialog(call)
@@ -143,6 +152,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					end,
 				},
 			},
+			on_closed = function()
+				GameRemoveFlagRun("fairmod_dialog_interacting")
+			end,
 		})
 	end
 end
