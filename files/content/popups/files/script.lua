@@ -354,9 +354,12 @@ Windows = Windows or {}
 SeedCount = SeedCount or 0
 LastFrame = LastFrame or 0
 math.randomseed(GameGetFrameNum() * StatsGetValue("world_seed"))
+
 -- 1/400 -> 1.5% per second with COPI mode, 1/1000 -> .6% per second by default
 local windowProbability = immersive_mimics and 400 or 20000
-if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) == 1) then
+
+if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) == 1) or GameHasFlagRun("SPAWN_POPUP") then
+    GameRemoveFlagRun("SPAWN_POPUP")
     SeedCount = SeedCount + 1
     Windows[#Windows + 1] = {
         seed = math.random(1, 1000000),
@@ -520,7 +523,7 @@ for i = 2, #Windows do
                     MESSAGE = Popups.Random_Ads[math.random(1, #Popups.Random_Ads)]
                 }
             else
-                local _popup = Popups.Prefabs[math.random(1, #Popups.Prefabs)]
+                local _popup = Popups.Prefabs[Popups.forcePrefab] or Popups.Prefabs[math.random(1, #Popups.Prefabs)]
                 for k, v in pairs(_popup) do --loop over prefab
                     popup[k] = v
                 end
@@ -552,20 +555,14 @@ for i = 2, #Windows do
         GuiZSetForNextWidget(Gui, z - 2)
         GuiBeginScrollContainer(Gui, Windows[i].id, x, y, ww, wh, true)
 
-
+        local data = {Windows = Windows, iteration = i}
         --if has_opened flag is not present, add it and run check for OPEN_FUNCTION()
         if not Windows[i].has_opened then
             Windows[i].has_opened = true
-            if popup.OPEN_FUNCTION then popup:OPEN_FUNCTION() end
-            print(popup.EXE)
-            print(tostring(Windows[i].ww))
-            print(tostring(GuiGetTextDimensions(Gui, popup.EXE)))
-            print(tostring(GuiGetTextDimensions(Gui, popup.EXE) + 10))
-            print(tostring(math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth)))
-            print(tostring(Windows[i].ww or math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth)))
-            print(popup.MESSAGE)
+            if popup.OPEN_FUNCTION then popup:OPEN_FUNCTION(data) end
+            if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/prompt", GameGetCameraPos()) end
         end 
-        if popup.IS_OPEN_FUNCTION then popup:IS_OPEN_FUNCTION() end
+        if popup.IS_OPEN_FUNCTION then popup:IS_OPEN_FUNCTION(data) end
 
         local s = popup.MESSAGE
         local l = 0
@@ -633,7 +630,7 @@ for i = 2, #Windows do
                 local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
                 if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
                     local click_events = popup.CLICK_EVENTS or {}
-                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup, click_events)
+                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup, click_events, data)
                     else print("NO CLICK FUNCTION ATTACHED: " .. hyperlink_number)
                     end
                 end
@@ -656,10 +653,10 @@ for i = 2, #Windows do
         GuiOptionsAddForNextWidget(Gui, 6)
         local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
         if GuiImageButton(Gui, 1, x + ww - 1, y - 14, "", _button) then
-            if popup.disableSound ~= true then GamePlaySound("data/audio/Desktop/ui.bank", "ui/button_click", GameGetCameraPos()) end
+            if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
 
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
-                if popup:CLOSE_FUNCTION() ~= false then table.remove(Windows, i) goto continue end
+                if popup:CLOSE_FUNCTION(data) ~= false then table.remove(Windows, i)  goto continue end
             else table.remove(Windows, i) goto continue end
         end
         GuiIdPop(Gui)

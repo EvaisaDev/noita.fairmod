@@ -470,6 +470,12 @@ return {
 		end
 	},
 	{
+		code = "scam",
+		func = function()
+			GameAddFlagRun("SPAWN_POPUP")
+		end,
+	},
+	{
 		code = "whereami",
 		name = "Where am I?",
 		description = "Must've sleep walked..",
@@ -481,7 +487,7 @@ return {
 		
 			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 		end
-	}
+	},
 }
 
 --stylua: ignore end
