@@ -468,6 +468,19 @@ return {
 		func = function(player)
 			perk_pickup( nil, player, "REMOVE_FOG_OF_WAR", true, false, true )
 		end
+	},
+	{
+		code = "whereami",
+		name = "Where am I?",
+		description = "Must've sleep walked..",
+		func = function(player)
+			GameAddFlagRun("random_teleport_next")
+			GameAddFlagRun("no_return")
+		
+			local x, y = EntityGetTransform(player)
+		
+			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
+		end
 	}
 }
 
