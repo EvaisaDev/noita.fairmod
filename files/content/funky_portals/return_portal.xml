@@ -1,4 +1,4 @@
-<Entity serialize="1">
+<Entity serialize="0">
 	<SpriteComponent
 		image_file="mods/noita.fairmod/files/content/funky_portals/tear.png"
 		offset_x="40"
