@@ -109,9 +109,98 @@ local Popups = {
 				self.MESSAGE = self.MESSAGE:gsub("steamid", string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
-
-
-
+		--[=[
+		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
+			EXE					= "PROGRESS PAWN SHOP",
+			CUSTOM_9PIECE_BAR	= "mods/noita.fairmod/files/content/popups/pawn_9piecebar.png",
+			CUSTOM_X			= "mods/noita.fairmod/files/content/popups/pawn_button.png",
+			MESSAGE				= "Sell 1 random @progress@ for $1m?\n%[yes]%\n%[no]%",
+			value				= 1000,
+			gen_next_value		= function (self)
+				local suffixes = { "", "k", "M", "B", "T", "Qd", "Qn", "Sx", "Sp", "O", "N", "De", "U", "Dd" }
+				local magnitude = 0
+				local num = value*2
+				self.value = num
+				while num >= 1000 and magnitude < #suffixes - 1 do
+					num = num / 1000
+					magnitude = magnitude + 1
+				end
+				local txt = ("%d%s"):format(num,suffixes[magnitude + 1])
+				local quitter = self.CUSTOM_X ~= "mods/noita.fairmod/files/content/popups/pawn_button.png"
+				self.MESSAGE = table.concat{quitter and [[WAIT! At least barter a little!\n]] or "", "Sell 3 random @progress@ for ", txt, " gold?\n%[yes]%\n%[no]%"}
+			end,
+			CLICK_EVENTS = {
+				function(self)
+					dofile_once("data/scripts/gun/gun_actions.lua")
+					dofile_once("data/scripts/perks/perk_list.lua")
+					local t = {}
+					for i=1, #actions do
+						local id = "action_"..actions[i].id:lower(); if HasFlagPersistent(id) then t[#t+1] = {id=id, name=actions[i].name} end
+					end
+					for i=1, #perk_list do
+						local id = "perk_picked_"..perk_list[i].id:lower(); if HasFlagPersistent(id) then t[#t+1] = {id=id, name=perk_list[i].name} end
+					end
+					if #t>3 then
+						for i=1, 3 do
+							local opt = math.random(1, #t)
+							table.remove(t, opt)
+							RemoveFlagPersistent(t[opt])
+						end
+						local wallet_component = EntityGetFirstComponentIncludingDisabled(GetPlayers()[1], "WalletComponent")
+						if wallet_component == nil then return end
+						ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + self.value)
+					end
+				end,
+				function(self)
+					self.gen_next_value()
+				end,
+			},
+			CLOSE_FUNCTION = function(self)
+				if self.CUSTOM_X == "mods/noita.fairmod/files/content/popups/pawn_button.png" then
+					self.CUSTOM_X = nil
+					self.gen_next_value()
+					return false
+				end
+			end,
+		},]=]
+		--[=[
+		{ -- Basic clicker game. Intention: On buying 10 of an autoclicker, it unlocks the next tier. Please make this work userk
+			EXE		= "COPI CLICKER V0.04",
+			MESSAGE = "Copis: 0\n\n%[Copi]%\n\n%[Buy 1x Copith: 10 Copis]%",
+			copis 	= 0,
+			clickers= {
+				{0,1}
+			},
+			IS_OPEN_FUNCTION = function(self)
+				if GameGetFrameNum()%60==0 then
+					self.value = self.value + 1 * self.clickers
+				end
+				for i=1, #self.clickers do
+					self.value = self.value + (10^(i-1))*(self.clickers[i][1]) / 60
+				end
+			end,
+			create_new_clicker = function (self)
+				-- Cost of a clicker is 10^level * 1.05 per clicker you have
+				local level = #self.clickers+1
+				self.clickers[level] = {10^level, 1}
+				self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
+					if self.value >= self.cost then
+						self.value = self.value - self.cost
+						self.clickers[level][1] = self.clickers[level][1] + 1
+						self.clickers[level][2] = self.clickers[level][2] + 1
+						self.cost = self.cost * 1.05
+					end
+				end
+			end,
+			OPEN_FUNCTION = function(self)
+				self.create_new_clicker()
+			end,
+			CLICK_EVENTS = {
+				function(self)
+					self.value = self.value + 1
+				end,
+			},
+		},]=]
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
