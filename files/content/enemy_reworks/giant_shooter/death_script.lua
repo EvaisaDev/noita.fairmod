@@ -14,7 +14,16 @@ function damage_received(damage, desc, entity_who_caused, is_fatal)
 	if health > 0.3 and health - damage < 0.3 then
 		local visible = helper:is_entity_visible(entity_id)
 		if visible then GameAddFlagRun("FAIRMOD_GIANTSHOOTER_KILLED") end
-		local entity_file = visible and EntityGetFilename(entity_id) or "data/entities/animals/slimeshooter.xml"
+		local this_entity_file = EntityGetFilename(entity_id)
+		local entities = EntityGetInRadiusWithTag(x, y, 500, "enemy")
+		local shooter_count = 0
+		for i = 1, #entities do
+			local enemy_entity = entities[i]
+			if EntityGetFilename(enemy_entity) == this_entity_file then shooter_count = shooter_count + 1 end
+		end
+		local can_spawn_more = shooter_count < 10
+		local entity_file = (visible and can_spawn_more) and this_entity_file
+			or "data/entities/animals/slimeshooter.xml"
 		for _ = 1, 3 do
 			local offset_x = Random(-10, 10)
 			local offset_y = Random(-10, 10)
