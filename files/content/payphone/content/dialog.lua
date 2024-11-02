@@ -764,7 +764,8 @@ return {
 		name = "Unknown Caller",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "default",
-		text = [[Hello? Can Anyone there? \nI'm lost in some underground jungle!]],
+		text = [[Hello? Is Anyone there? 
+		I'm lost in some underground jungle!]],
 		options = {
 			{
 				text = "Yes, I'm  here. Where are you?",
