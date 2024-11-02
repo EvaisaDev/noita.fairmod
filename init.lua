@@ -38,6 +38,7 @@ local he_watches_you = dofile_once("mods/noita.fairmod/files/content/big_brother
 local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/init.lua")
 local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
+local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -84,6 +85,7 @@ dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
+
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
@@ -133,6 +135,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
+
+	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 end
 
 function OnPlayerSpawned(player)
@@ -210,6 +214,8 @@ function OnPlayerSpawned(player)
 
 	dmca_warning.OnPlayerSpawned(player)
 
+	saw.OnPlayerSpawned(player)
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
@@ -234,6 +240,9 @@ ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 function OnWorldPreUpdate()
 	ModTextFileSetContent = SetContent
+
+	GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
+
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
 		fuckedupenemies:OnWorldPreUpdate()

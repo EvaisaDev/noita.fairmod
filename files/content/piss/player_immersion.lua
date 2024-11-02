@@ -16,6 +16,7 @@ local controls_comp = EntityGetFirstComponentIncludingDisabled(entity, "Controls
 local entity_x, entity_y, _, scale_x = EntityGetTransform(entity)
 
 last_ingestion_size = last_ingestion_size or nil
+last_notice_frame = last_notice_frame or 0
 
 local ingestion_comp = EntityGetFirstComponent(entity, "IngestionComponent")
 if ingestion_comp then
@@ -95,6 +96,12 @@ if ingestion_comp then
 
 			ingestion_size = ingestion_size - 15
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
+		end
+	elseif piss_button or shit_button then
+		local current_frame = GameGetFrameNum()
+		if current_frame - last_notice_frame > 60 then
+			last_notice_frame = current_frame
+			GamePrint("Stomach is empty!")
 		end
 	end
 

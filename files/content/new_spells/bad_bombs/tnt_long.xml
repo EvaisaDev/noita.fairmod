@@ -19,7 +19,7 @@
 		>
 			<config_explosion
 				damage="2.5"
-				explosion_radius="28"
+				explosion_radius="56"
 				explosion_sprite="data/particles/explosion_032.xml"
 				load_this_entity="data/entities/particles/particle_explosion/main_gunpowder_medium.xml"
 				audio_event_name="explosions/tnt"
