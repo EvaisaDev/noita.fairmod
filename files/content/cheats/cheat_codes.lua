@@ -346,8 +346,8 @@ return {
 		func = function()
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end,
-	},-- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
-	-- Fixed it again -c
+	},--[[sorry i fixed your bullshit :) -e]] --[[NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated: -k]]
+	--[[Fixed it again -c]] --[[W COPI -k]]
 	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
 	,{
 		code = "copi",
@@ -486,6 +486,27 @@ return {
 			local x, y = EntityGetTransform(player)
 		
 			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
+		end
+	},
+	{
+		code = "superchest",
+		func = function(player)
+
+			if GameHasFlagRun("chaos_run_active") then return end
+
+			local x,y = EntityGetTransform(player)
+
+			if HasFlagPersistent("fairmod_spawned_superchest") then
+				GamePrintImportant("I said just once.", "May you be punished by torrents of chaos")
+				local cid = EntityLoad( "mods/noita.fairmod/files/content/cheats/misc/essence_of_chaos.xml", x, y)
+				EntityAddChild( player, cid )
+				GameAddFlagRun("chaos_run_active")
+				return
+			end
+
+			GamePrintImportant("Alright, just this once", "May you make the most of your single blessing")
+			EntityLoad( "data/entities/items/pickup/chest_random_super.xml", x, y - 20)
+			AddFlagPersistent("fairmod_spawned_superchest")
 		end
 	},
 }

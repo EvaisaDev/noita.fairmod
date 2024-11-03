@@ -33,6 +33,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 		dofile("mods/noita.fairmod/files/content/funky_portals/biome_blacklist.lua")
 		local biome_map_w, biome_map_h = BiomeMapGetSize()
 		local chunk_size = 512
+		local offset = GetParallelWorldPosition(from_x, from_y) * BiomeMapGetSize() * 512
 
 		local map_offset_y = 0
 
@@ -59,7 +60,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 				if y >= 14 then weight = 3 end
 
 				-- get center of pixel
-				local center_x = world_x + (chunk_size / 2)
+				local center_x = world_x + (chunk_size / 2) + offset --offset keeps player in PW
 				local center_y = world_y + (chunk_size / 2)
 
 				-- get biome at pixel
