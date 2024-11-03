@@ -1,0 +1,68 @@
+<Materials>
+
+	<CellDataChild
+		_parent="aluminium"
+		_inherit_reactions="1"
+		tags="[box2d],[corrodible],[rust_box2d],[alchemy],[meltable_metal],[solid],[earth]"
+		name="fairmod_metal_rust"
+		ui_name="$mat_metal_rust"
+		platform_type="1"
+		wang_color="ff4e2e3d"
+		electrical_conductivity="1"
+		audio_physics_material_event="metalhollow"
+		audio_physics_material_wall="metalhollow"
+		audio_physics_material_solid="metalhollow"
+		solid_restitution="0.95"
+		solid_friction="0"
+		solid_go_through_sand="0"
+		solid_gravity_scale="1.5"
+		>
+		<Graphics
+			texture_file="data/materials_gfx/steel.png"
+			color="ff4d2d3c"
+		/>
+	</CellDataChild>
+
+	<CellData
+		name="fairmod_metal_rust_rust"
+		ui_name="$mat_metal_rust_rust"
+		tags="[box2d],[alchemy],[corrodible],[solid],[meltable_metal_generic],[earth]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="ff74a37f"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="0"
+		hp="8000"
+		electrical_conductivity="1"
+		audio_physics_material_wall="metalhollow"
+		audio_physics_material_solid="metalhollow"
+		solid_restitution="0.95"
+		solid_friction="0"
+		solid_go_through_sand="0"
+		solid_gravity_scale="1.5"
+		>
+			<Graphics
+				texture_file="data/materials_gfx/rust.png"
+				color="ff73a37f"
+				pixel_all_around="ff73737f"
+				
+				pixel_lonely="ff4f5eab"
+				pixel_top_right="ff4f5eab"
+				pixel_bottom_left="ff4f5eab"
+				
+				pixel_left="ffc1c8be"
+				pixel_top_left="ffc1c8be"
+				pixel_top="ffc1c8be"
+				
+				pixel_right="ff25333b"
+				pixel_bottom_right="ff25333b"
+				pixel_bottom="ff25333b"
+			/>
+	</CellData>
+
+</Materials>
