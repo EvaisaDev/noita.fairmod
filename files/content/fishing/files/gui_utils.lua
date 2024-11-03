@@ -45,32 +45,8 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	end
 
 	local GuiImageOld = GuiImage
-	GuiImage = function(
-		gui,
-		id,
-		x,
-		y,
-		sprite_filename,
-		alpha,
-		scale,
-		scale_y,
-		rotation,
-		rect_animation_playback_type,
-		rect_animation_name
-	)
-		GuiImageOld(
-			gui,
-			id,
-			x,
-			y,
-			sprite_filename,
-			alpha,
-			scale,
-			scale_y,
-			rotation,
-			rect_animation_playback_type,
-			rect_animation_name
-		)
+	GuiImage = function(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name)
+		GuiImageOld(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name)
 		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
 			GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
@@ -105,34 +81,8 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	end
 
 	local GuiSliderOld = GuiSlider
-	GuiSlider = function(
-		gui,
-		id,
-		x,
-		y,
-		text,
-		value,
-		value_min,
-		value_max,
-		value_default,
-		value_display_multiplier,
-		value_formatting,
-		width
-	)
-		GuiSliderOld(
-			gui,
-			id,
-			x,
-			y,
-			text,
-			value,
-			value_min,
-			value_max,
-			value_default,
-			value_display_multiplier,
-			value_formatting,
-			width
-		)
+	GuiSlider = function(gui, id, x, y, text, value, value_min, value_max, value_default, value_display_multiplier, value_formatting, width)
+		GuiSliderOld(gui, id, x, y, text, value, value_min, value_max, value_default, value_display_multiplier, value_formatting, width)
 		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
 			GuiGetPreviousWidgetInfo(gui)
 		width = width + width2

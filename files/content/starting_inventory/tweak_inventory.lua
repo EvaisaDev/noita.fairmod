@@ -18,10 +18,7 @@ ModTextFileSetContent(
 	"data/scripts/items/potion_starting.lua",
 	ModTextFileGetContent("mods/noita.fairmod/files/content/starting_inventory/potion_starting_lib.lua")
 )
-ModLuaFileAppend(
-	"data/scripts/items/potion_starting.lua",
-	"mods/noita.fairmod/files/content/starting_inventory/potion_append.lua"
-)
+ModLuaFileAppend("data/scripts/items/potion_starting.lua", "mods/noita.fairmod/files/content/starting_inventory/potion_append.lua")
 
 local potion_starting = "data/scripts/items/potion_starting.lua"
 local content = ModTextFileGetContent(potion_starting)

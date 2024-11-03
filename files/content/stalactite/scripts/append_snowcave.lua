@@ -6,9 +6,7 @@ spawn_big_enemies = function(x, y)
 		local hit, hit_x, hit_y = RaytracePlatforms(x, y, x, y - 1000)
 		if hit then
 			EntityLoad(
-				"mods/noita.fairmod/files/content/stalactite/entities/triggers/ice/stalactite_ice_"
-					.. Random(1, 3)
-					.. ".xml",
+				"mods/noita.fairmod/files/content/stalactite/entities/triggers/ice/stalactite_ice_" .. Random(1, 3) .. ".xml",
 				hit_x,
 				hit_y
 			)

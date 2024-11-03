@@ -1,4 +1,3 @@
-
 local function get_distance(x1, y1, x2, y2)
 	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
@@ -6,11 +5,11 @@ end
 local function statue_get_distance()
 	local player = (EntityGetWithTag("player_unit") or {})[1]
 	if player == nil then return true end
-	local x,y = EntityGetTransform(player)
+	local x, y = EntityGetTransform(player)
 
 	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
 	if statue == nil then return true end
-	local x2,y2 = EntityGetTransform(statue)
+	local x2, y2 = EntityGetTransform(statue)
 
 	return get_distance(x, y, x2, y2)
 end
@@ -29,29 +28,27 @@ local function statue_check()
 end
 
 local function statue_closeness_dialog(dialog)
-	if statue_check() then
-		hangup()
-	end
+	if statue_check() then hangup() end
 
 	local requests = {
 		"Closer . . .",
 		"No, closer.",
 		"No, you're too far.",
 		"Come closer.",
-		"Not close enough."
+		"Not close enough.",
 	}
 	local responses = {
 		"How's this?",
 		"Am I close enough?",
 		"Here?",
-		"How about now?"
+		"How about now?",
 	}
 	dialog.show({
-		text=requests[Random(1, #requests)],
+		text = requests[Random(1, #requests)],
 		options = {
 			{
 				text = responses[Random(1, #responses)],
-				func = statue_closeness_dialog
+				func = statue_closeness_dialog,
 			},
 			{
 				text = "Bye",
@@ -254,8 +251,7 @@ return {
 
 									local player = players[1]
 
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
 
 									ComponentSetValue2(wallet_component, "money", gold - 600)
@@ -475,8 +471,7 @@ return {
 												local target_x = x + (dx * distance)
 												local target_y = y + (dy * distance)
 
-												local hit =
-													RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+												local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
 
 												if not hit then
 													EntityLoad(
@@ -668,8 +663,7 @@ return {
 
 									local player = players[1]
 
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
 
 									ComponentSetValue2(wallet_component, "money", gold + 1000)
@@ -839,8 +833,7 @@ return {
 			{
 				text = "What are you offering?",
 				func = function(dialog)
-					local hm_visits =
-						math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
+					local hm_visits = math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
 					local price = hm_visits * 200
 					dialog.show({
 						text = "I have a powerful wand for only " .. price .. " gold. Interested?",
@@ -855,8 +848,7 @@ return {
 									local players = EntityGetWithTag("player_unit") or {}
 									if #players > 0 then
 										local player = players[1]
-										local wallet =
-											EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+										local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 										local gold = ComponentGetValue2(wallet, "money")
 										ComponentSetValue2(wallet, "money", gold - price)
 
@@ -942,11 +934,7 @@ return {
 										local x, y = EntityGetTransform(player_id[k])
 										EntityAddChild(
 											player_id[k],
-											EntityLoad(
-												"mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml",
-												x,
-												y
-											)
+											EntityLoad("mods/noita.fairmod/files/content/payphone/content/bowling/bowling_timer.xml", x, y)
 										)
 									end
 									hangup()
@@ -1050,16 +1038,12 @@ return {
 														text = "...",
 														func = function(dialog)
 															-- Blessings of COpi
-															dofile_once(
-																"mods/noita.fairmod/files/scripts/utils/utilities.lua"
-															)
+															dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 															local a, b = EntityGetTransform(GetPlayers()[1])
 															dofile_once("data/scripts/gun/gun_actions.lua")
 															local c = {}
 															for d = 1, #actions do
-																if actions[d].author == "Copi" then
-																	c[#c + 1] = actions[d].id
-																end
+																if actions[d].author == "Copi" then c[#c + 1] = actions[d].id end
 															end
 															for d = 0, 7 do
 																local e = math.pi / 8 * d
@@ -1067,11 +1051,7 @@ return {
 																local g = b - 20 * math.sin(e)
 																CreateItemActionEntity(c[math.random(1, #c)], f, g)
 															end
-															EntityLoad(
-																"data/entities/particles/image_emitters/perk_effect.xml",
-																a,
-																b
-															)
+															EntityLoad("data/entities/particles/image_emitters/perk_effect.xml", a, b)
 															hangup()
 														end,
 													},
@@ -1340,10 +1320,7 @@ return {
 
 									GameDestroyInventoryItems(player)
 
-									local hm_visits = math.max(
-										math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6),
-										1
-									)
+									local hm_visits = math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
 									local x, y = EntityGetTransform(player)
 
 									dofile("data/scripts/perks/perk.lua")
@@ -1352,9 +1329,7 @@ return {
 
 									for i, v in ipairs(perk_list) do
 										-- if perk name starts with TMTRAINER_ then add it to the list
-										if string.sub(v.id, 1, 10) == "TMTRAINER_" then
-											table.insert(tmtrainer_perks, v.id)
-										end
+										if string.sub(v.id, 1, 10) == "TMTRAINER_" then table.insert(tmtrainer_perks, v.id) end
 									end
 
 									for i = 1, 4 do
@@ -1415,7 +1390,7 @@ return {
 				text = "Yep, I've even played it!",
 				func = function(dialog)
 					dialog.show({
-						text="Great! Please share it!",
+						text = "Great! Please share it!",
 						options = {
 							{
 								text = "Okay",
@@ -1431,7 +1406,7 @@ return {
 				text = "Yeah, but I haven't tried it.",
 				func = function(dialog)
 					dialog.show({
-						text=[[Don't be afraid to give it a shot. You can switch between
+						text = [[Don't be afraid to give it a shot. You can switch between
 						different games on your own, or play with others, short session,
 						multi-day session, lots of ways to play.]],
 						options = {
@@ -1449,7 +1424,7 @@ return {
 				text = "No, what is it?",
 				func = function(dialog)
 					dialog.show({
-						text=[[It's a multi-game, multi-world randomizer. You connect
+						text = [[It's a multi-game, multi-world randomizer. You connect
 						with multiple games and items are shuffled between them.
 
 						Work together to complete all the games!]],
@@ -1478,7 +1453,7 @@ return {
 		options = {
 			{
 				text = "How's this?",
-				func = statue_closeness_dialog
+				func = statue_closeness_dialog,
 			},
 			{
 				text = "No thanks",
@@ -1513,8 +1488,6 @@ return {
 							{
 								text = "I.. I don't understand.",
 								func = function(dialog)
-
-
 									dialog.show({
 										text = [[{@delay 10}#      E N TER {@func disconnected} {@func ng_portal}]],
 										options = {
@@ -1526,13 +1499,10 @@ return {
 											},
 										},
 									})
-
-									
-								end
-							}
-						}
+								end,
+							},
+						},
 					})
-							
 				end,
 			},
 			{
@@ -1547,7 +1517,7 @@ return {
 		name = "Heavy Breather",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "breathing",
-		
+
 		text = [[{@delay 60}...]],
 		options = {
 			{

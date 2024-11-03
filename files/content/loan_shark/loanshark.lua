@@ -45,15 +45,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") + 50
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 50)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
 										options = {
@@ -73,15 +67,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") + 100
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 100)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
 										options = {
@@ -101,15 +89,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") + 500
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 500)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
 										options = {
@@ -129,15 +111,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") + 1000
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
 										options = {
@@ -157,15 +133,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") + 5000
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 5000)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
 										options = {
@@ -200,10 +170,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									-- take all of the players gold and subtract it from debt, make sure we don't go negative
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
+									local wallet_component =
+										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
 									local debt = loan_shark_debt
 									debt = debt - gold
@@ -250,16 +218,13 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 						},
 					})
 
-
-
 					local ticket = EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
-					
+
 					local item_count = 0
 					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
 						if EntityGetName(child) == "inventory_quick" then
 							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component =
-									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
 								if ability_component then
 									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
 									if not use_gun_script then item_count = item_count + 1 end
@@ -268,12 +233,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 						end
 					end
 
-					if item_count < 4 then
-						GamePickUpInventoryItem(entity_who_interacted, ticket, true)
-					end
+					if item_count < 4 then GamePickUpInventoryItem(entity_who_interacted, ticket, true) end
 
-					local wallet_component =
-						EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+					local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
 				end,
 			},

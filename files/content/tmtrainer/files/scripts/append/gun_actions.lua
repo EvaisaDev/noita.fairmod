@@ -57,8 +57,7 @@ local function generate_image(index, original_sprite, was_first)
 	-- Randomly overlay parts of the original sprite onto the corrupted sprite
 
 	local original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename(original_sprite)
-	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height =
-		ModImageIdFromFilename(corrupted_sprite)
+	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename(corrupted_sprite)
 
 	if was_first then
 		for i = 0, corrupted_sprite_width - 1 do
@@ -161,9 +160,7 @@ local function create_tmtrainer_action(action_type, index)
 
 				if filter.contains_slur(table.concat(description_parts)) then
 					table.remove(description_parts)
-					if iteration < max_iterations and (chars - 1 > 0) then
-						try_update_description(chars - 1, iteration + 1)
-					end
+					if iteration < max_iterations and (chars - 1 > 0) then try_update_description(chars - 1, iteration + 1) end
 				end
 			end
 

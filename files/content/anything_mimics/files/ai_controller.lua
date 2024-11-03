@@ -88,9 +88,7 @@ if GameGetFrameNum() % 30 == 0 then
 			-- Calculate angle between the player and the (x, y) coordinates
 			local base_angle_rad = math.atan2((y - player_y), (x - player_x))
 
-			if is_projectile and not belongs_to_player then
-				base_angle_rad = math.atan2((player_y - y), (player_x - x))
-			end
+			if is_projectile and not belongs_to_player then base_angle_rad = math.atan2((player_y - y), (player_x - x)) end
 
 			local ray_distance = 500
 
@@ -273,10 +271,8 @@ else
 		local max_rotation = 10
 		-- rotate direction by random degrees
 		local rotation = Random(-max_rotation, max_rotation)
-		local rotated_direction_x = direction_x * math.cos(math.rad(rotation))
-			- direction_y * math.sin(math.rad(rotation))
-		local rotated_direction_y = direction_x * math.sin(math.rad(rotation))
-			+ direction_y * math.cos(math.rad(rotation))
+		local rotated_direction_x = direction_x * math.cos(math.rad(rotation)) - direction_y * math.sin(math.rad(rotation))
+		local rotated_direction_y = direction_x * math.sin(math.rad(rotation)) + direction_y * math.cos(math.rad(rotation))
 
 		local speed = 1 * anti_grav_force
 		if isNearPlaform() then PhysicsApplyForce(item, rotated_direction_x * speed, rotated_direction_y * speed) end
@@ -285,11 +281,7 @@ else
 
 		local dir_x = 0
 		local dir_y = float_range
-		dir_x, dir_y = vec_rotate(
-			dir_x,
-			dir_y,
-			ProceduralRandomf(x, y + GameGetFrameNum(), -float_sensor_sector, float_sensor_sector)
-		)
+		dir_x, dir_y = vec_rotate(dir_x, dir_y, ProceduralRandomf(x, y + GameGetFrameNum(), -float_sensor_sector, float_sensor_sector))
 
 		local did_hit, hit_x, hit_y = RaytracePlatforms(x, y, x + dir_x, y + dir_y)
 		if did_hit then

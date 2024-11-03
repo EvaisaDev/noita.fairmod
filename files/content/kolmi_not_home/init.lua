@@ -1,11 +1,5 @@
-ModLuaFileAppend(
-	"data/scripts/biomes/boss_arena.lua",
-	"mods/noita.fairmod/files/content/kolmi_not_home/append_boss_arena.lua"
-)
-ModLuaFileAppend(
-	"data/scripts/biomes/boss_victoryroom.lua",
-	"mods/noita.fairmod/files/content/kolmi_not_home/append_boss_victoryroom.lua"
-)
+ModLuaFileAppend("data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/kolmi_not_home/append_boss_arena.lua")
+ModLuaFileAppend("data/scripts/biomes/boss_victoryroom.lua", "mods/noita.fairmod/files/content/kolmi_not_home/append_boss_victoryroom.lua")
 ModLuaFileAppend(
 	"data/entities/animals/boss_centipede/death_check.lua",
 	"mods/noita.fairmod/files/content/kolmi_not_home/kolmi_death_check.lua"

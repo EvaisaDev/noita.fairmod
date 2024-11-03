@@ -21,8 +21,7 @@ end
 ---@param radius number
 ---@return int[]
 function GetEnemiesInRadius(x, y, radius)
-	local entities =
-		MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
+	local entities = MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
 
 	return entities
 end
@@ -59,9 +58,7 @@ end
 ---@return table<int>
 function GetInventoryItems()
 	local player_entity = GetPlayers()[1]
-	if player_entity ~= nil then
-		return GameGetAllInventoryItems(player_entity) or {}
-	end
+	if player_entity ~= nil then return GameGetAllInventoryItems(player_entity) or {} end
 	return {}
 end
 
@@ -69,9 +66,7 @@ end
 ---@return boolean
 function HasInventoryItemTag(tag)
 	for _, item in ipairs(GetInventoryItems()) do
-		if EntityHasTag(item, tag) then
-			return true
-		end
+		if EntityHasTag(item, tag) then return true end
 	end
 	return false
 end

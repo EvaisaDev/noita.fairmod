@@ -22,8 +22,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	)
 
 	-- better_ui integration
-	if not GameHasFlagRun("speedrun_door_used") then
-		GlobalsSetValue("SPEEDRUN_SPLIT_DOOR", tostring(GameGetFrameNum()))
-	end
+	if not GameHasFlagRun("speedrun_door_used") then GlobalsSetValue("SPEEDRUN_SPLIT_DOOR", tostring(GameGetFrameNum())) end
 	GameAddFlagRun("speedrun_door_used")
 end

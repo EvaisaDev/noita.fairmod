@@ -1,4 +1,3 @@
-
 perk_list[#perk_list + 1] = {
 	id = "LOST_IN_PORTALS",
 	ui_name = "Directionally Challenged",

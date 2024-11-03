@@ -25,9 +25,7 @@ local sprite_comp = EntityGetFirstComponent(tp, "SpriteComponent")
 local sprite_scale_y = ComponentGetValue2(sprite_comp, "special_scale_y")
 local _, _, _, holder_scale_x = EntityGetTransform(holder)
 
-if (sprite_scale_y < 0) ~= (holder_scale_x < 0) then
-	ComponentSetValue2(sprite_comp, "special_scale_y", -sprite_scale_y)
-end
+if (sprite_scale_y < 0) ~= (holder_scale_x < 0) then ComponentSetValue2(sprite_comp, "special_scale_y", -sprite_scale_y) end
 
 local frame = GameGetFrameNum()
 

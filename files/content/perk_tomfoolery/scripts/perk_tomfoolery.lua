@@ -36,9 +36,7 @@ if variable_storage_comps ~= nil then
 	end
 end
 
-if actual_perk_id == nil or actual_perk_icon == nil or actual_perk_name == nil or actual_perk_desc == nil then
-	return
-end
+if actual_perk_id == nil or actual_perk_icon == nil or actual_perk_name == nil or actual_perk_desc == nil then return end
 
 local sprite_component = EntityGetFirstComponent(entity_id, "SpriteComponent", "perk_icon")
 local ui_info_component = EntityGetFirstComponent(entity_id, "UIInfoComponent")

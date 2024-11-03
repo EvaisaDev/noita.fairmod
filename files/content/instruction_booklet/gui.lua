@@ -9,8 +9,7 @@ local pages = {
 	"mods/noita.fairmod/files/content/instruction_booklet/pages/cover.png",
 }
 for i = 1, 1000 do
-	local image =
-		string.format("mods/noita.fairmod/files/content/instruction_booklet/pages/instructionbooklet-%02d.png", i)
+	local image = string.format("mods/noita.fairmod/files/content/instruction_booklet/pages/instructionbooklet-%02d.png", i)
 	if ModImageDoesExist(image) then
 		pages[#pages + 1] = image
 	else
@@ -187,8 +186,7 @@ end
 function ui:draw_zoomed()
 	self:UpdateDimensions()
 
-	self.book.zoomed_width, self.book.zoomed_height =
-		GuiGetImageDimensions(self.gui, self.book.images[1], self.book.zoomed_scale)
+	self.book.zoomed_width, self.book.zoomed_height = GuiGetImageDimensions(self.gui, self.book.images[1], self.book.zoomed_scale)
 
 	local book_width = self.book.zoomed_width * 2
 

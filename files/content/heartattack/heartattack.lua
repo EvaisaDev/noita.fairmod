@@ -3,10 +3,7 @@ local malice = {
 		-- synchronize death watches
 		local lcs = EntityGetComponentIncludingDisabled(player_entity, "LuaComponent", "glue_NOT") or {}
 		for i = 1, #lcs do
-			if
-				ComponentGetValue2(lcs[i], "script_source_file")
-				== "mods/noita.fairmod/files/content/heartattack/heartattack2.lua"
-			then
+			if ComponentGetValue2(lcs[i], "script_source_file") == "mods/noita.fairmod/files/content/heartattack/heartattack2.lua" then
 				return
 			end
 		end

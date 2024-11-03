@@ -43,22 +43,8 @@ if Random(1, 4) > 1 then
 	vel_y = 0 - math.sin(angle) * length
 
 	if #EntityGetInRadiusWithTag(x, y, 25, "player_unit") > 0 then
-		shoot_projectile(
-			entity_id,
-			"mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml",
-			x,
-			y,
-			vel_x * 1.1,
-			vel_y * 1.1
-		)
-		shoot_projectile(
-			entity_id,
-			"mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml",
-			x,
-			y,
-			vel_x * 0.9,
-			vel_y * 0.9
-		)
+		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 1.1, vel_y * 1.1)
+		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 0.9, vel_y * 0.9)
 		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y)
 	end
 end

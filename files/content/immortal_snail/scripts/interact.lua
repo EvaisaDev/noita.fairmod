@@ -57,9 +57,7 @@ Better get going.]],
 local open_dialog = function()
 	dialog = dialog_system.open_dialog({
 		name = "Snail",
-		portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_" .. tostring(
-			current_potrait
-		) .. ".png",
+		portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_" .. tostring(current_potrait) .. ".png",
 		typing_sound = "default", -- There are currently 6: default, sans, one, two, three, four and "none" to turn it off, if not specified uses "default"
 		text = [[
 		The snail looks at you with #murderous# intent.
@@ -79,9 +77,7 @@ local open_dialog = function()
 
 						local options = {}
 
-						if current_dialog.next then
-							table.insert(options, { text = current_dialog.next, func = dialogue_loop })
-						end
+						if current_dialog.next then table.insert(options, { text = current_dialog.next, func = dialogue_loop }) end
 
 						if current_dialog.close_func then
 							table.insert(options, {
@@ -98,9 +94,9 @@ local open_dialog = function()
 						if current_dialog.func then current_dialog.func(dialog) end
 
 						dialog.show({
-							portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_"
-								.. tostring(current_potrait)
-								.. ".png",
+							portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_" .. tostring(
+								current_potrait
+							) .. ".png",
 							text = current_dialog.text,
 							options = options,
 						})

@@ -367,10 +367,7 @@ function PARSER_FUNCS:parse_attr(attr_table, name)
 
 		if tok.type == "string" then
 			if attr_table[name] ~= nil then
-				self:report_error(
-					"duplicate_attribute",
-					string.format("parsing attribute '%s' - attribute already exists", name)
-				)
+				self:report_error("duplicate_attribute", string.format("parsing attribute '%s' - attribute already exists", name))
 				return
 			end
 			attr_table[name] = tok.value
@@ -450,29 +447,20 @@ function PARSER_FUNCS:parse_element(skip_opening_tag)
 
 				local end_name = self.tok:next_token()
 				if not end_name then
-					self:report_error(
-						"missing_token",
-						string.format("parsing element '%s' - did not find a token", elem_name)
-					)
+					self:report_error("missing_token", string.format("parsing element '%s' - did not find a token", elem_name))
 					return
 				end
 				if end_name.type == "string" and end_name.value == elem_name then
 					local close_greater = self.tok:next_token()
 					if not close_greater then
-						self:report_error(
-							"missing_token",
-							string.format("parsing element '%s' - did not find a token", elem_name)
-						)
+						self:report_error("missing_token", string.format("parsing element '%s' - did not find a token", elem_name))
 						return
 					end
 
 					if close_greater.type == ">" then
 						return elem
 					else
-						self:report_error(
-							"missing_element_close",
-							string.format("no closing '>' found for element '%s'", elem_name)
-						)
+						self:report_error("missing_element_close", string.format("no closing '>' found for element '%s'", elem_name))
 					end
 				else
 					self:report_error(

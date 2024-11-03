@@ -86,9 +86,7 @@ local function swapCardEntity(card, spell_id)
 					local inventoryComp = EntityGetFirstComponentIncludingDisabled(player, "Inventory2Component")
 					if inventoryComp ~= nil then
 						local activeItem = ComponentGetValue2(inventoryComp, "mActiveItem")
-						if activeItem == parent then
-							EntitySetComponentsWithTagEnabled(action_entity, "enabled_in_hand", true)
-						end
+						if activeItem == parent then EntitySetComponentsWithTagEnabled(action_entity, "enabled_in_hand", true) end
 					end
 				end
 			end
@@ -130,10 +128,7 @@ if now % 30 == 0 then
 		if spells ~= nil then return spells[Random(1, #spells)] end
 	end
 
-	SetRandomSeed(
-		x + GameGetFrameNum() + StatsGetValue("world_seed"),
-		y + GameGetFrameNum() + StatsGetValue("world_seed")
-	)
+	SetRandomSeed(x + GameGetFrameNum() + StatsGetValue("world_seed"), y + GameGetFrameNum() + StatsGetValue("world_seed"))
 
 	local card_entities = EntityGetWithTag("card_action")
 	for k, v in ipairs(card_entities) do

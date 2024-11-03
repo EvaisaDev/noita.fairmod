@@ -24,18 +24,16 @@ local achievement_height = 0
 
 local debug_no_flags = false
 
-
 for xml in nxml.edit_file("data/entities/player.xml") do
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = -1,
-		script_damage_received = "mods/noita.fairmod/files/content/achievements/get_hit.lua"
+		script_damage_received = "mods/noita.fairmod/files/content/achievements/get_hit.lua",
 	}))
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = 10,
-		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua"
+		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua",
 	}))
 end
-
 
 local function AddNotification(icon, name, description, sound)
 	if sound then GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0) end
@@ -308,14 +306,7 @@ function ui:DrawAchievementsWindow()
 	GameRemoveFlagRun("fairmod_new_achievement")
 	local x = 26
 	local y = 50
-	self:Draw9Piece(
-		x - 3,
-		y,
-		1001,
-		self.scroll.width + 6,
-		8,
-		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png"
-	)
+	self:Draw9Piece(x - 3, y, 1001, self.scroll.width + 6, 8, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png")
 	local unlocked = tonumber(GlobalsGetValue("fairmod_achievements_unlocked")) or 0
 	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
 	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))

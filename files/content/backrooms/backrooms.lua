@@ -116,7 +116,7 @@ function load_lamp(x, y)
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_broken.xml",
 		},
 		{
-			prob = .01,
+			prob = 0.01,
 			min_count = 1,
 			max_count = 1,
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml",

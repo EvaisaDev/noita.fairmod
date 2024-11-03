@@ -125,11 +125,7 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", creature_detection_range_x * (1 + (Random() / 2)))
 	ComponentSetValue2(animal_ai, "creature_detection_range_y", creature_detection_range_y * (1 + (Random() / 2)))
 	local attack_melee_enabled = ComponentGetValue2(animal_ai, "attack_melee_enabled")
-	ComponentSetValue2(
-		animal_ai,
-		"attack_melee_enabled",
-		math.random(1, 100) < 30 and attack_melee_enabled or not attack_melee_enabled
-	)
+	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 30 and attack_melee_enabled or not attack_melee_enabled)
 
 	--[[
 	local aggressiveness_min = ComponentGetValue2(animal_ai, "aggressiveness_min")

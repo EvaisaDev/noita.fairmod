@@ -17,9 +17,7 @@ end
 
 local nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "player_unit") or {}
 
-if #nearby_players <= 0 then
-	nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {}
-end
+if #nearby_players <= 0 then nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {} end
 
 for i, player in ipairs(nearby_players) do
 	EntityRemoveStainStatusEffect(player, "PROTECTION_ALL", 1)

@@ -247,14 +247,7 @@ local ui_displays = {
 		{
 			text = function()
 				-- TODO: add a rare tag to hiisi chef, mimics, santa hiisi
-				local enemy = get_any_nearby_tags(
-					"big_friend",
-					"small_friend",
-					"mimic_potion",
-					"boss_dragon",
-					"boss",
-					"miniboss"
-				)[1]
+				local enemy = get_any_nearby_tags("big_friend", "small_friend", "mimic_potion", "boss_dragon", "boss", "miniboss")[1]
 				if enemy ~= nil then
 					local name = EntityGetName(enemy) -- not working??? Kolmi not showing up
 					if name ~= nil and name ~= "" then return "Rare enemy: " .. GameTextGetTranslatedOrNot(name) end
@@ -601,12 +594,7 @@ function ui:draw_entry_data(entry_data)
 		if entry_data.on_click and self:IsLeftClicked() then entry_data.on_click() end
 	end
 	if entry_data.color then
-		self:Color(
-			entry_data.color[1] or 1,
-			entry_data.color[2] or 1,
-			entry_data.color[3] or 1,
-			entry_data.color[4] or 1
-		)
+		self:Color(entry_data.color[1] or 1, entry_data.color[2] or 1, entry_data.color[3] or 1, entry_data.color[4] or 1)
 	end
 	self:Text(x, self.y, text)
 end
@@ -714,9 +702,7 @@ function ui:update()
 
 	local more_text = "More"
 	local _, more_w = self:GetTextDimension(more_text)
-	if self:IsButtonClicked(x, self.y, 10, more_text, "Show more info UI") then
-		extra_ui_count = math.min(extra_ui_count + 5, #extra_ui)
-	end
+	if self:IsButtonClicked(x, self.y, 10, more_text, "Show more info UI") then extra_ui_count = math.min(extra_ui_count + 5, #extra_ui) end
 
 	if extra_ui_count > 0 then
 		if self:IsButtonClicked(x + more_w + 20, self.y, 10, "Fewer", "Show less info UI") then

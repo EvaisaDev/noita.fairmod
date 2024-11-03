@@ -31,9 +31,7 @@ for k, v in pairs(bait_list) do
 					if EntityHasTag(wand, "fishing_rod") then
 						--print(tostring(EntityGetClosestWithTag(  x, y, "bobber" )))
 						if EntityGetClosestWithTag(x, y, "bobber") == 0 then
-							add_projectile(
-								"mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml"
-							)
+							add_projectile("mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml")
 
 							GameRemoveFlagRun("allow_catch_fish")
 							GameRemoveFlagRun("kill_fishing_challenge_ui")
@@ -42,10 +40,7 @@ for k, v in pairs(bait_list) do
 						else
 							bobber = EntityGetClosestWithTag(x, y, "bobber")
 
-							if
-								EntityHasFlag(bobber, "is_catch_allowed") == false
-								and not EntityHasFlag(bobber, "failed_catch")
-							then
+							if EntityHasFlag(bobber, "is_catch_allowed") == false and not EntityHasFlag(bobber, "failed_catch") then
 								--hand[1].uses_remaining = hand[1].uses_remaining + 1
 							end
 

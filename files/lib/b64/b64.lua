@@ -147,21 +147,11 @@ function base64.encode(str, encoder, usecaching)
 		if usecaching then
 			s = cache[v]
 			if not s then
-				s = char(
-					encoder[extract(v, 18, 6)],
-					encoder[extract(v, 12, 6)],
-					encoder[extract(v, 6, 6)],
-					encoder[extract(v, 0, 6)]
-				)
+				s = char(encoder[extract(v, 18, 6)], encoder[extract(v, 12, 6)], encoder[extract(v, 6, 6)], encoder[extract(v, 0, 6)])
 				cache[v] = s
 			end
 		else
-			s = char(
-				encoder[extract(v, 18, 6)],
-				encoder[extract(v, 12, 6)],
-				encoder[extract(v, 6, 6)],
-				encoder[extract(v, 0, 6)]
-			)
+			s = char(encoder[extract(v, 18, 6)], encoder[extract(v, 12, 6)], encoder[extract(v, 6, 6)], encoder[extract(v, 0, 6)])
 		end
 		t[k] = s
 		k = k + 1

@@ -28,8 +28,7 @@ end
 local function filter_options(options, stats)
 	local filtered_options = {}
 	for i, v in ipairs(options) do
-		local show = v.show == nil
-			or (type(v.show) == "function" and v.show(stats) or (type(v.show) ~= "function" and v.show))
+		local show = v.show == nil or (type(v.show) == "function" and v.show(stats) or (type(v.show) ~= "function" and v.show))
 		if show then table.insert(filtered_options, v) end
 	end
 	return filtered_options
@@ -67,16 +66,14 @@ local stats = setmetatable({}, {
 			hp = function()
 				local player = EntityGetWithTag("player_unit")[1]
 				if player then
-					local damage_model_component =
-						EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+					local damage_model_component = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 					return ComponentGetValue2(damage_model_component, "hp") * 25
 				end
 			end,
 			max_hp = function()
 				local player = EntityGetWithTag("player_unit")[1]
 				if player then
-					local damage_model_component =
-						EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+					local damage_model_component = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 					return ComponentGetValue2(damage_model_component, "max_hp") * 25
 				end
 			end,
@@ -314,19 +311,7 @@ dialog_system.open_dialog = function(message)
 			)
 			if dialog.fade_in_portrait > -1 then
 				GuiZSetForNextWidget(gui, 1)
-				GuiImage(
-					gui,
-					2,
-					x,
-					y,
-					dialog.message.portrait,
-					1,
-					1,
-					1,
-					0,
-					GUI_RECT_ANIMATION_PLAYBACK.Loop,
-					message.animation or ""
-				)
+				GuiImage(gui, 2, x, y, dialog.message.portrait, 1, 1, 1, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, message.animation or "")
 				if dialog.message.portrait_overlay then
 					GuiZSetForNextWidget(gui, 0.5)
 					GuiIdPushString(gui, "portrait_overlay")
@@ -400,12 +385,7 @@ dialog_system.open_dialog = function(message)
 					GuiText(
 						gui,
 						screen_width / 2 - width / 2 + diff / 2,
-						screen_height
-							- dialog_system.dialog_box_y
-							- height
-							- nameplate_height / 2
-							- name_height
-							+ nameplate_padding,
+						screen_height - dialog_system.dialog_box_y - height - nameplate_height / 2 - name_height + nameplate_padding,
 						dialog.message.name
 					)
 				end
@@ -521,20 +501,16 @@ dialog_system.open_dialog = function(message)
 				if dialog.message.options then
 					local filtered_options
 					-- Skip the cached result on the first call
-					filtered_options =
-						throttle(filter_options, dialog.has_new_options and 0 or 120, dialog.message.options, stats)
+					filtered_options = throttle(filter_options, dialog.has_new_options and 0 or 120, dialog.message.options, stats)
 					dialog.has_new_options = false
 					local num_options = #filtered_options
 					for i, v in ipairs(filtered_options) do
 						local enabled = v.enabled == nil
 							or (type(v.enabled) == "function" and throttle(v.enabled, 30, stats))
 							or (type(v.enabled) ~= "function" and v.enabled)
-						local text_x, text_y =
-							x + 70, y + dialog_system.dialog_box_height - (num_options - i + 1) * line_height - 7
+						local text_x, text_y = x + 70, y + dialog_system.dialog_box_height - (num_options - i + 1) * line_height - 7
 						if enabled then
-							if
-								GuiButton(gui, 5 + i, text_x, text_y, "[ " .. v.text .. " ]") or activate_main_option()
-							then
+							if GuiButton(gui, 5 + i, text_x, text_y, "[ " .. v.text .. " ]") or activate_main_option() then
 								if v.func then
 									v.func(dialog, stats)
 								else
@@ -623,10 +599,7 @@ dialog_system.open_dialog = function(message)
 						color[2] = bit.band(bit.rshift(rgb, 8), 0xFF) / 255
 						color[3] = bit.band(rgb, 0xFF) / 255
 					elseif command == "img" then
-						table.insert(
-							dialog.current_line,
-							{ wave = wave, blink = blink, shake = shake, rainbow = rainbow, img = param1 }
-						)
+						table.insert(dialog.current_line, { wave = wave, blink = blink, shake = shake, rainbow = rainbow, img = param1 })
 						play_sound = true
 						do_wait = true
 					elseif command == "sound" then

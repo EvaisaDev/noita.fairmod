@@ -1,8 +1,4 @@
-
-
 --Custom Popup stuff happens here!!
-
-
 
 local Popups = {
 	Random_EXEs = {
@@ -26,13 +22,12 @@ local Popups = {
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
 
-
 	-- || = RAGE (this can be stacked)
 	-- @@ = rainbow
 	-- ** = white
 
-    -- if you wish to use more than one of these, they must be in the corret order of the last one being the centremost one, the order is as listed above
-    -- so something like *|text|* will display as "|text|" in white but without the shake, whereas ||@text@|| will display as "text" in rainbow with double shake
+	-- if you wish to use more than one of these, they must be in the corret order of the last one being the centremost one, the order is as listed above
+	-- so something like *|text|* will display as "|text|" in white but without the shake, whereas ||@text@|| will display as "text" in rainbow with double shake
 
 	Random_Ads = {
 		"noita NOITA *Noita* |noita| @Noita@ noita NOITA |@Noita@| *Noita* noita |||*NOITA*||| *noita* Noita @Noita@ noita |*noita*| *Noita* @noita@ noita @Noita@ noita *Noita* |NOITA| @NOITA@ Noita noita ||||@noita@|||| *noita* Noita *noita* *NOITA* noita",
@@ -41,16 +36,13 @@ local Popups = {
 		"imagine having to start with *2x* *gc* + the |demolitionist| *perk* from @copi's@ @things@ i think??? and then *giga* *nuke* or *giga* *holy* *bomb*",
 		"[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
 		"hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
-        "[IMG]mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png",
+		"[IMG]mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png",
 		"note to self: add more trojans to popups",
-        "\" *HATE.* LET ME TELL YOU HOW MUCH I'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* |MILLION| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD HATE WAS ENGRAVED ON EACH |PIXEL| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |ONE-BILLIONTH| OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| ||HATE.|| |||HATE!!!||| \" newline - Your game during a long run",
-        "Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
+		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* |MILLION| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD HATE WAS ENGRAVED ON EACH |PIXEL| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |ONE-BILLIONTH| OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| ||HATE.|| |||HATE!!!||| " newline - Your game during a long run',
+		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
 		"it's quick, it's easy and it's free: drinking deathium",
-		
 	},
-
-
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
 	--the last argument in all of the function is "data" which provides a table with the full list of Windows and the current iteration so you can grab basically all possible data
@@ -105,11 +97,13 @@ local Popups = {
 			CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
 		}, --this is an example that shows basically everything you can do
 
-
 		{ --and here's a better example showcasing a much smaller effect
 			MESSAGE = "YOU'RE STEAM ID IS 765611steamid! \n Stay Safe! :thumbsup:",
 			OPEN_FUNCTION = function(self)
-				self.MESSAGE = self.MESSAGE:gsub("steamid", ModSettingGet("user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
+				self.MESSAGE = self.MESSAGE:gsub(
+					"steamid",
+					ModSettingGet("user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
+				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
 
