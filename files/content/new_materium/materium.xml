@@ -111,6 +111,53 @@
 		entity="data/entities/projectiles/tnt.xml">
 	</Reaction>
 
+	<!-- evil mario... -->
+	<CellData
+		name="fairmod_truehealy"
+		ui_name="Panacea"
+		tags="[liquid],[magic_liquid]"
+		wang_color="fff6ffdc"
+		cell_type="liquid"
+		liquid_sand="0"
+		electrical_conductivity="0"
+		gfx_glow="10"
+		liquid_stains="2"
+		>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type ="ALCOHOLIC"></StatusEffect>
+			</Stains>
+		
+			<Ingestion>
+				 <StatusEffect type="REGENERATION" amount="0.2" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<Reaction probability="100"
+		input_cell1="magic_liquid_polymorph" input_cell2="magic_liquid_worm_attractor"
+		output_cell1="fairmod_truehealy" output_cell2="fairmod_truehealy"
+		>
+	</Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="magic_liquid_polymorph" input_cell2="blood_worm"
+		output_cell1="magic_liquid_worm_attractor" output_cell2="smoke"
+		>
+	</Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="magic_liquid_unstable_polymorph" input_cell2="magic_liquid_worm_attractor"
+		output_cell1="gunpowder_unstable" output_cell2="liquid_fire"
+		>
+	</Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="magic_liquid_random_polymorph" input_cell2="magic_liquid_worm_attractor"
+		output_cell1="gunpowder_unstable" output_cell2="liquid_fire"
+		>
+	</Reaction>
+
 	<!-- tagged reactions -->
 	<Reaction probability="1"
 		input_cell1="[materium_activate]" input_cell2="air"
