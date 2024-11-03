@@ -26,7 +26,7 @@ fish_list = {
 		drop_fish = false,
 		splash_screen = true,
 		always_discovered = true,
-		sizes = { min = 1.0, max = 4.5 },
+		sizes = { min = 1.0, max = 10.5 },
 		price = 10000,
 		probability = 100,
 		difficulty = 5,
@@ -61,7 +61,7 @@ fish_list = {
 		drop_fish = false,
 		splash_screen = true,
 		always_discovered = true,
-		sizes = { min = 2.0, max = 9.0 },
+		sizes = { min = 50.0, max = 113 },
 		price = 10000,
 		probability = 40,
 		difficulty = 8,
@@ -86,7 +86,7 @@ fish_list = {
 		description = "A.. squid?",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = { min = 1.5, max = 4.0 },
+		sizes = { min = 20, max = 100 },
 		price = 10000,
 		probability = 40,
 		difficulty = 5,
@@ -103,7 +103,7 @@ fish_list = {
 		description = "A potion flask with some kind of material inside.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = { min = 0.5, max = 5.0 },
+		sizes = { min = 0.5, max = 1.5 },
 		price = 10000,
 		probability = 50,
 		difficulty = 5,
@@ -111,7 +111,8 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/potion.png",
 		func = function(fish, x, y)
-			_, x, y = RaytraceSurfaces(x, y, x, y + 100)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
+			_, x, y = RaytraceSurfaces(x + Random(-50, 50) / 50, y, x, y + 100)
 			EntityLoad("data/entities/items/pickup/potion_starting.xml", x, y)
 		end,
 	},
@@ -121,7 +122,7 @@ fish_list = {
 		description = "You caught a wand! Very cool.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = { min = 0.5, max = 5.0 },
+		sizes = { min = 0.1, max = 0.5 },
 		price = 10000,
 		probability = 30,
 		difficulty = 5,
@@ -129,7 +130,7 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/wand.png",
 		func = function(fish, x, y)
-			SetRandomSeed(x, y)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
 
 			local biomes = {
 				[1] = 0,
@@ -197,7 +198,7 @@ fish_list = {
 		description = "You caught a spell! Hope it's a good one.",
 		drop_fish = false,
 		splash_screen = true,
-		sizes = { min = 0.5, max = 5.0 },
+		sizes = { min = 0.1, max = 0.5 },
 		price = 10000,
 		probability = 40,
 		difficulty = 5,
@@ -205,7 +206,7 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/spell.png",
 		func = function(fish, x, y)
-			SetRandomSeed(x, y)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
 
 			local biomes = {
 				[1] = 0,

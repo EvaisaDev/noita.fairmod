@@ -19,6 +19,8 @@ local rod = EntityGetVariable(bobber, "rod_entity", "int")
 
 local return_bobber = EntityHasFlag(bobber, "return_bobber")
 
+
+
 function has_catch()
 	return EntityHasFlag(bobber, "has_catch")
 end
@@ -354,7 +356,7 @@ if fish ~= nil and not return_bobber then
 end
 if in_liquid then
 	-- Check if water is atleast 20 pixels deep
-	did_hit = RaytraceSurfaces(x2, y2, x2, y2 + 50)
+	did_hit = RaytraceSurfaces(x2, y2, x2, y2 + 25)
 
 	if not did_hit then
 		local liquid_type = nil
@@ -426,6 +428,9 @@ if in_liquid then
 				local caught_fish = (Random(1, 10000) / 1000) <= 1000.05
 
 				if caught_fish and not has_catch() then
+
+					SetRandomSeed(x + GameGetFrameNum(), y)
+
 					EntityAddFlag(bobber, "has_catch")
 
 					EntitySetComponentsWithTagEnabled(bobber, "bait_sprite", false)
