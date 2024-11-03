@@ -13,7 +13,7 @@ gamba_gui = gamba_gui or GuiCreate()
 GuiStartFrame(gamba_gui)
 -- biome based cost
 
-SetRandomSeed(x, y)
+SetRandomSeed(x + GameGetFrameNum(), y)
 
 local biomes = {
 	[1] = 0,
@@ -249,6 +249,7 @@ end
 
 -- LETS GO GAMBLING
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	SetRandomSeed(x + GameGetFrameNum(), y)
 	if interactable_name == "interact" and not broken and not currently_gambling then
 		-- better_ui integration
 		GameAddFlagRun("gamblecore_found")
@@ -261,7 +262,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GamePrint("You don't have enough money!")
 				return
 			else
-				if Random(1, 100) == 1 then
+				if Random(1, 100) <= 2 then
 					will_break = true
 					local interactible_component = EntityGetFirstComponent(entity_interacted, "InteractableComponent")
 					EntityRemoveComponent(entity_interacted, interactible_component)
