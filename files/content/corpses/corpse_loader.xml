@@ -1,7 +1,16 @@
-<Entity>
+<Entity tag="corpse_loader">
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/corpses/corpse_loader.lua"
 		execute_on_added="1"
-		execute_times="1"
+		execute_every_n_frame="-1"
 		/>
+
+	<!--LifetimeComponent
+		lifetime="1"
+		randomize_lifetime.min="0"
+		randomize_lifetime.max="60"
+		/-->
+
+	<!-- not working -->
+	<!--CameraBoundComponent/-->
 </Entity>
