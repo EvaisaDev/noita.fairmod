@@ -129,12 +129,17 @@ local function create_tmtrainer_action(action_type, index)
 	local spawn_probability = ""
 	local sprite = "mods/noita.fairmod/files/content/tmtrainer/files/spell_icons/" .. index .. ".png"
 	local custom_xml_file = nil
+	local recursive = false
+	local ai_never_uses = false
 
 	for i, added_action in ipairs(added_actions) do
 		local id = added_action.id
 
 		-- if id starts with RANDOM_ we ignore it
 		if string.sub(id, 1, 7) == "RANDOM_" then goto continue end
+
+		if(added_action.ai_never_uses) then ai_never_uses = true end
+		if(added_action.recursive) then recursive = true end
 
 		if not reflecting then
 			local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
@@ -313,6 +318,8 @@ local function create_tmtrainer_action(action_type, index)
 		price = price,
 		mana = mana,
 		max_uses = max_uses,
+		ai_never_uses = ai_never_uses,
+		recursive = recursive,
 		custom_xml_file = custom_xml_file,
 		tm_trainer = true,
 		action = function(recursion_level, iteration)
