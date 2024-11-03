@@ -12,7 +12,7 @@ local function GenerateRandomNumber(iterations)
 	return number
 end
 
-if ModSettingGet("user_seed") == nil or true then
+if ModSettingGet("user_seed") == nil then
 	ModSettingSet("user_seed", GenerateRandomNumber(30))
 	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
 end
