@@ -94,9 +94,9 @@ local open_dialog = function()
 						if current_dialog.func then current_dialog.func(dialog) end
 
 						dialog.show({
-							portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_" .. tostring(
-								current_potrait
-							) .. ".png",
+							portrait = "mods/noita.fairmod/files/content/immortal_snail/sprites/snail_portrait_"
+								.. tostring(current_potrait)
+								.. ".png",
 							text = current_dialog.text,
 							options = options,
 						})

@@ -47,9 +47,11 @@ end
 local dialogue_read_the_words_8 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("And so, from the fires of the Hamis Lord") .. "\n" .. shuffle(
-			"the world was made whole and its purpose set aflame."
-		) .. "\n" .. shuffle("Hope you learned something from this story."),
+		text = shuffle("And so, from the fires of the Hamis Lord")
+			.. "\n"
+			.. shuffle("the world was made whole and its purpose set aflame.")
+			.. "\n"
+			.. shuffle("Hope you learned something from this story."),
 		options = {
 			{
 				text = "I believe in Hamis now",
@@ -176,11 +178,15 @@ end
 local dialogue_read_the_words_2 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("On the Second Day, the Hamis Lord commanded magma to rise from the depths,") .. "\n" .. shuffle(
-			"rivers of molten stone spilling forth."
-		) .. "\n" .. shuffle("These rivers carved the bones of mountains") .. "\n" .. shuffle(
-			"and filled the earth with the scent of brimstone."
-		) .. "\n" .. shuffle("Thus, the land was seared with the mark of its fiery birth."),
+		text = shuffle("On the Second Day, the Hamis Lord commanded magma to rise from the depths,")
+			.. "\n"
+			.. shuffle("rivers of molten stone spilling forth.")
+			.. "\n"
+			.. shuffle("These rivers carved the bones of mountains")
+			.. "\n"
+			.. shuffle("and filled the earth with the scent of brimstone.")
+			.. "\n"
+			.. shuffle("Thus, the land was seared with the mark of its fiery birth."),
 		options = {
 			{
 				text = "Okay.",

@@ -1,10 +1,7 @@
 -- Makes root growers spread a lot more
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
-ModLuaFileAppend(
-	"data/scripts/biomes/temple_altar_right.lua",
-	"mods/noita.fairmod/files/content/better_props/temple_altar_right_append.lua"
-)
+ModLuaFileAppend("data/scripts/biomes/temple_altar_right.lua", "mods/noita.fairmod/files/content/better_props/temple_altar_right_append.lua")
 
 local function rootgrower_apply_changes(element)
 	for comp in element:each_of("LifetimeComponent") do

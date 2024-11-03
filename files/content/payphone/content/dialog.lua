@@ -1343,12 +1343,8 @@ return {
 
 										GamePickUpInventoryItem(player, item, false)
 
-										local perk = perk_spawn(
-											x + Random(-15, 15),
-											y + Random(-15, 15),
-											tmtrainer_perks[Random(1, #tmtrainer_perks)],
-											true
-										)
+										local perk =
+											perk_spawn(x + Random(-15, 15), y + Random(-15, 15), tmtrainer_perks[Random(1, #tmtrainer_perks)], true)
 
 										perk_pickup(perk, player, "", false, false)
 									end

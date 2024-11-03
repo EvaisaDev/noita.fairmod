@@ -164,8 +164,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
 							if not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost") then
-								local return_portal =
-									EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", new_x, new_y)
+								local return_portal = EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", new_x, new_y)
 								EntityAddComponent2(return_portal, "VariableStorageComponent", {
 									name = "target_x",
 									value_float = from_x,

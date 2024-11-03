@@ -378,10 +378,7 @@ function PARSER_FUNCS:parse_attr(attr_table, name)
 			)
 		end
 	else
-		self:report_error(
-			"missing_equals_sign",
-			string.format("parsing attribute '%s' - did not find equals sign after attribute name", name)
-		)
+		self:report_error("missing_equals_sign", string.format("parsing attribute '%s' - did not find equals sign after attribute name", name))
 	end
 end
 

@@ -593,9 +593,7 @@ function ui:draw_entry_data(entry_data)
 		end
 		if entry_data.on_click and self:IsLeftClicked() then entry_data.on_click() end
 	end
-	if entry_data.color then
-		self:Color(entry_data.color[1] or 1, entry_data.color[2] or 1, entry_data.color[3] or 1, entry_data.color[4] or 1)
-	end
+	if entry_data.color then self:Color(entry_data.color[1] or 1, entry_data.color[2] or 1, entry_data.color[3] or 1, entry_data.color[4] or 1) end
 	self:Text(x, self.y, text)
 end
 
@@ -705,9 +703,7 @@ function ui:update()
 	if self:IsButtonClicked(x, self.y, 10, more_text, "Show more info UI") then extra_ui_count = math.min(extra_ui_count + 5, #extra_ui) end
 
 	if extra_ui_count > 0 then
-		if self:IsButtonClicked(x + more_w + 20, self.y, 10, "Fewer", "Show less info UI") then
-			extra_ui_count = math.max(0, extra_ui_count - 5)
-		end
+		if self:IsButtonClicked(x + more_w + 20, self.y, 10, "Fewer", "Show less info UI") then extra_ui_count = math.max(0, extra_ui_count - 5) end
 	end
 
 	GlobalsSetValue("FAIRMOD_EXTRA_UI_COUNT", tostring(extra_ui_count))

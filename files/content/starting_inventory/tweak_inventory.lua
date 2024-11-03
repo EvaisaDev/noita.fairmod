@@ -44,12 +44,7 @@ end
 --- @param a number
 --- @return integer color
 local function color_abgr_merge(r, g, b, a)
-	return bit.bor(
-		bit.band(r, 0xFF),
-		bit.lshift(bit.band(g, 0xFF), 8),
-		bit.lshift(bit.band(b, 0xFF), 16),
-		bit.lshift(bit.band(a, 0xFF), 24)
-	)
+	return bit.bor(bit.band(r, 0xFF), bit.lshift(bit.band(g, 0xFF), 8), bit.lshift(bit.band(b, 0xFF), 16), bit.lshift(bit.band(a, 0xFF), 24))
 end
 
 --- Blend colors

@@ -197,11 +197,7 @@ local function create_tmtrainer_action(action_type, index)
 		generate_image(index, added_action.sprite, i == 1)
 
 		-- Determine custom_xml_file
-		if
-			added_action.custom_xml_file
-			and added_action.custom_xml_file ~= ""
-			and (i == 1 or Random(0, 100) > 50 or not custom_xml_file)
-		then
+		if added_action.custom_xml_file and added_action.custom_xml_file ~= "" and (i == 1 or Random(0, 100) > 50 or not custom_xml_file) then
 			custom_xml_file = added_action.custom_xml_file
 		end
 
@@ -300,9 +296,7 @@ local function create_tmtrainer_action(action_type, index)
 				seed_offset = seed_offset + 1
 				SetRandomSeed(TMTRAINER_INDEX, seed_offset)
 				local caster = EntityGetRootEntity(GetUpdatedEntityID())
-				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then
-					_streaming_run_event(twitch_event.id)
-				end
+				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then _streaming_run_event(twitch_event.id) end
 			end
 		end
 	end

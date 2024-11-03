@@ -90,9 +90,7 @@ local desired_vel_x = direction_x * SPEED
 local desired_vel_y = direction_y * SPEED
 
 -- Debug marker for the direction
-if DEBUG then
-	GameCreateSpriteForXFrames("data/ui_gfx/debug_marker.png", x + direction_x * 10, y + direction_y * 10, true, 0, 0, 1, true)
-end
+if DEBUG then GameCreateSpriteForXFrames("data/ui_gfx/debug_marker.png", x + direction_x * 10, y + direction_y * 10, true, 0, 0, 1, true) end
 
 -- Get velocity components
 local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "VelocityComponent")

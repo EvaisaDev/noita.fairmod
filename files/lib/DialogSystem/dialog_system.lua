@@ -523,10 +523,7 @@ dialog_system.open_dialog = function(message)
 						end
 					end
 				else
-					if
-						GuiButton(gui, 6, x + 70, y + dialog_system.dialog_box_height - line_height - 7, "[ End ]")
-						or activate_main_option()
-					then
+					if GuiButton(gui, 6, x + 70, y + dialog_system.dialog_box_height - line_height - 7, "[ End ]") or activate_main_option() then
 						dialog.close()
 					end
 				end
@@ -613,19 +610,11 @@ dialog_system.open_dialog = function(message)
 				end
 			else
 				local color_copy = { unpack(color) }
-				table.insert(
-					dialog.current_line,
-					{ char = char, wave = wave, blink = blink, shake = shake, rainbow = rainbow, color = color_copy }
-				)
+				table.insert(dialog.current_line, { char = char, wave = wave, blink = blink, shake = shake, rainbow = rainbow, color = color_copy })
 				if char ~= " " then play_sound = true end
 				do_wait = true
 			end
-			if
-				typing_sound ~= "none"
-				and i % typing_sound_interval == 0
-				and play_sound
-				and frame_last_played_sound ~= GameGetFrameNum()
-			then
+			if typing_sound ~= "none" and i % typing_sound_interval == 0 and play_sound and frame_last_played_sound ~= GameGetFrameNum() then
 				frame_last_played_sound = GameGetFrameNum()
 				local bank = dialog_system.sounds[typing_sound or "default"].bank
 				local event = dialog_system.sounds[typing_sound or "default"].event

@@ -69,10 +69,7 @@ for k, v in pairs(bait_list) do
 							--EntityKill(children[1])
 
 							for k2, v2 in pairs(EntityGetComponentIncludingDisabled(children[1], "ItemComponent")) do
-								if
-									ComponentGetValue2(v2, "permanently_attached") == false
-									and ComponentGetValue2(v2, "uses_remaining") == 1
-								then
+								if ComponentGetValue2(v2, "permanently_attached") == false and ComponentGetValue2(v2, "uses_remaining") == 1 then
 									EntityKill(children[1])
 								end
 							end

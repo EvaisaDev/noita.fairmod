@@ -29,8 +29,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiTextOld = GuiText
 	GuiText = function(gui, x, y, text)
 		GuiTextOld(gui, x, y, text)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -38,8 +37,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiTextCenteredOld = GuiTextCentered
 	GuiTextCentered = function(gui, x, y, text)
 		GuiTextCenteredOld(gui, x, y, text)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -47,8 +45,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiImageOld = GuiImage
 	GuiImage = function(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name)
 		GuiImageOld(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -56,8 +53,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiImageNinePieceOld = GuiImageNinePiece
 	GuiImageNinePiece = function(gui, id, x, y, width, height, alpha, sprite_filename, sprite_highlight_filename)
 		GuiImageNinePieceOld(gui, id, x, y, width, height, alpha, sprite_filename, sprite_highlight_filename)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -65,8 +61,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiButtonOld = GuiButton
 	GuiButton = function(gui, id, x, y, text)
 		GuiButtonOld(gui, id, x, y, text)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -74,8 +69,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiImageButtonOld = GuiImageButton
 	GuiImageButton = function(gui, id, x, y, text, sprite_filename)
 		GuiImageButtonOld(gui, id, x, y, text, sprite_filename)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -83,8 +77,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiSliderOld = GuiSlider
 	GuiSlider = function(gui, id, x, y, text, value, value_min, value_max, value_default, value_display_multiplier, value_formatting, width)
 		GuiSliderOld(gui, id, x, y, text, value, value_min, value_max, value_default, value_display_multiplier, value_formatting, width)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -92,35 +85,15 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiTextInputOld = GuiTextInput
 	GuiTextInput = function(gui, id, x, y, text, width, max_length, allowed_characters)
 		GuiTextInputOld(gui, id, x, y, text, width, max_length, allowed_characters)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
 
 	local GuiEndAutoBoxNinePieceOld = GuiEndAutoBoxNinePiece
-	GuiEndAutoBoxNinePiece = function(
-		gui,
-		margin,
-		size_min_x,
-		size_min_y,
-		mirrorize_over_x_axis,
-		x_axis,
-		sprite_filename,
-		sprite_highlight_filename
-	)
-		GuiEndAutoBoxNinePieceOld(
-			gui,
-			margin,
-			size_min_x,
-			size_min_y,
-			mirrorize_over_x_axis,
-			x_axis,
-			sprite_filename,
-			sprite_highlight_filename
-		)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+	GuiEndAutoBoxNinePiece = function(gui, margin, size_min_x, size_min_y, mirrorize_over_x_axis, x_axis, sprite_filename, sprite_highlight_filename)
+		GuiEndAutoBoxNinePieceOld(gui, margin, size_min_x, size_min_y, mirrorize_over_x_axis, x_axis, sprite_filename, sprite_highlight_filename)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -128,8 +101,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiBeginScrollContainerOld = GuiBeginScrollContainer
 	GuiBeginScrollContainer = function(gui, id, x, y, width, height, scrollbar_gamepad_focusable, margin_x, margin_y)
 		GuiBeginScrollContainerOld(gui, id, x, y, width, height, scrollbar_gamepad_focusable, margin_x, margin_y)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end
@@ -137,8 +109,7 @@ function AutoBox(gui, autobox_id, x, y, elem1, elem2, elem3)
 	local GuiEndScrollContainerOld = GuiEndScrollContainer
 	GuiEndScrollContainer = function(gui)
 		GuiEndScrollContainerOld(gui)
-		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height =
-			GuiGetPreviousWidgetInfo(gui)
+		local clicked, right_clicked, hovered, x, y, width2, height2, draw_x, draw_y, draw_width, draw_height = GuiGetPreviousWidgetInfo(gui)
 		width = width + width2
 		height = height + height2
 	end

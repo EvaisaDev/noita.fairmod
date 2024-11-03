@@ -45,8 +45,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 50))
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 50)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
@@ -67,8 +66,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 100))
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 100)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
@@ -89,8 +87,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 500))
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 500)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
@@ -111,8 +108,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 1000))
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 1000)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
@@ -133,8 +129,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									GameAddFlagRun("reset_debt_timer")
 
 									GlobalsSetValue("loan_shark_debt", tostring(loan_shark_debt + 5000))
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") + 5000)
 									dialog.show({
 										text = "Please return the money soon \\*blub\\* \nor {@color b82318}#I will send my collectors. #{@color FFFFFF}",
@@ -170,8 +165,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end,
 								func = function(dialog)
 									-- take all of the players gold and subtract it from debt, make sure we don't go negative
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
 									local debt = loan_shark_debt
 									debt = debt - gold

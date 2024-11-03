@@ -50,8 +50,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									local potion = EntityLoad("data/entities/items/pickup/potion.xml")
 									GamePickUpInventoryItem(entity_who_interacted, potion)
 									-- And deduct 500 gold
-									local wallet_component =
-										EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
 									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 500)
 									dialog.close()
 								end,

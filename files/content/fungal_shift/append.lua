@@ -92,8 +92,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 					from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(from_material)))
 					if from.name_material then
-						from_material_name =
-							string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(CellFactory_GetType(from.name_material))))
+						from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(CellFactory_GetType(from.name_material))))
 					end
 
 					-- convert
@@ -103,26 +102,8 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 						converted_any = true
 
 						-- shoot particles of new material
-						GameCreateParticle(
-							CellFactory_GetName(from_material),
-							x - 10,
-							y - 10,
-							20,
-							rand(-100, 100),
-							rand(-100, -30),
-							true,
-							true
-						)
-						GameCreateParticle(
-							CellFactory_GetName(from_material),
-							x + 10,
-							y - 10,
-							20,
-							rand(-100, 100),
-							rand(-100, -30),
-							true,
-							true
-						)
+						GameCreateParticle(CellFactory_GetName(from_material), x - 10, y - 10, 20, rand(-100, 100), rand(-100, -30), true, true)
+						GameCreateParticle(CellFactory_GetName(from_material), x + 10, y - 10, 20, rand(-100, 100), rand(-100, -30), true, true)
 					end
 				end
 			end

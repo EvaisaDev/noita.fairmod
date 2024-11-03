@@ -77,8 +77,7 @@ async_loop(function()
 				-0.5
 			)
 
-			width, height =
-				TextSize(gui, "mods/noita.fairmod/files/content/fishing/files/ui/characters", 0, 0, 0.4, -525, fish_size .. " kg", -0.5)
+			width, height = TextSize(gui, "mods/noita.fairmod/files/content/fishing/files/ui/characters", 0, 0, 0.4, -525, fish_size .. " kg", -0.5)
 			DrawText(
 				gui,
 				"mods/noita.fairmod/files/content/fishing/files/ui/characters",

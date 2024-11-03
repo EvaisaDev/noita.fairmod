@@ -93,32 +93,12 @@ if bobber ~= nil then
 			-- Catch window indicator
 			GuiColorSetForNextWidget(gui, 1, 0.3, 0.3, 0.5)
 			GuiZSetForNextWidget(gui, -512)
-			GuiImage(
-				gui,
-				NextID(),
-				base_x - (background_width / 2) + catch_frame,
-				base_y + 1,
-				square_path,
-				0.5,
-				CATCH_WINDOW,
-				scale_y,
-				rotation
-			)
+			GuiImage(gui, NextID(), base_x - (background_width / 2) + catch_frame, base_y + 1, square_path, 0.5, CATCH_WINDOW, scale_y, rotation)
 
 			-- Current frame indicator
 			GuiColorSetForNextWidget(gui, 0.3, 1, 0.3, 0.5)
 			GuiZSetForNextWidget(gui, -513)
-			GuiImage(
-				gui,
-				NextID(),
-				base_x - (background_width / 2) + current_frame,
-				base_y + 1,
-				square_path,
-				alpha,
-				scale_x,
-				scale_y,
-				rotation
-			)
+			GuiImage(gui, NextID(), base_x - (background_width / 2) + current_frame, base_y + 1, square_path, alpha, scale_x, scale_y, rotation)
 
 			local fish_path = "mods/noita.fairmod/files/content/fishing/files/ui/skillcheck/fish.png"
 			local fish_width, fish_height = GuiGetImageDimensions(gui, fish_path)

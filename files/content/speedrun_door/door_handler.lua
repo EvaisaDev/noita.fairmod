@@ -13,13 +13,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	--EntityLoad("data/entities/particles/teleportation_target.xml", kolmi_location_x, kolmi_location_y)
 	--GamePlaySound("data/audio/Desktop/misc.bank","misc/teleport_use", kolmi_location_x, kolmi_location_y)
 
-	LoadBackgroundSprite(
-		"mods/noita.fairmod/files/content/speedrun_door/door.png",
-		kolmi_location_x - 30,
-		kolmi_location_y - 40,
-		-10,
-		false
-	)
+	LoadBackgroundSprite("mods/noita.fairmod/files/content/speedrun_door/door.png", kolmi_location_x - 30, kolmi_location_y - 40, -10, false)
 
 	-- better_ui integration
 	if not GameHasFlagRun("speedrun_door_used") then GlobalsSetValue("SPEEDRUN_SPLIT_DOOR", tostring(GameGetFrameNum())) end

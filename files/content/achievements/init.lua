@@ -320,15 +320,7 @@ function ui:DrawAchievementsWindow()
 	self:Text(close_x, y, "[Close]")
 
 	self:Text(x + 3, y, text)
-	self:ScrollBox(
-		x,
-		y + 16,
-		1001,
-		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png",
-		3,
-		3,
-		self.DrawAchievementsScrollbox
-	)
+	self:ScrollBox(x, y + 16, 1001, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png", 3, 3, self.DrawAchievementsScrollbox)
 end
 
 function ui:update()

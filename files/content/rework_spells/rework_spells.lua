@@ -10,9 +10,7 @@ local actions_to_edit = {
 				draw_actions(1, true)
 				LastShootingStart = GameGetFrameNum()
 				local shooter = GetUpdatedEntityID()
-				if EntityHasTag(shooter, "player_unit") or EntityHasTag(shooter, "polymorphed_player") then
-					GameAddFlagRun("hahah_fuck_your_mana")
-				end
+				if EntityHasTag(shooter, "player_unit") or EntityHasTag(shooter, "polymorphed_player") then GameAddFlagRun("hahah_fuck_your_mana") end
 			end
 		end,
 	},
