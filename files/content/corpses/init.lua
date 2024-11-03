@@ -1,6 +1,5 @@
 local corpses = {}
 
-
 ---@return string
 local function get_stripped_data()
 	local max_corpses = ModSettingGet("noita.fairmod.max_corpse_count2") or 0
@@ -47,11 +46,10 @@ function corpses.OnPlayerSpawned(player)
 
 	local deaths = get_stripped_data()
 	for x, y in string.gmatch(deaths, "([%d.-]+),([%d.-]+)") do
-		for pw=-1,1 do
+		for pw = -1, 1 do
 			EntityLoadCameraBound("mods/noita.fairmod/files/content/corpses/corpse_loader.xml", tonumber(x) + pw * width, tonumber(y))
 		end
 	end
 end
-
 
 return corpses

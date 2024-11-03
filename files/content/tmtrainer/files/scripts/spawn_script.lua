@@ -56,13 +56,10 @@ for k, v in ipairs(projectile_component) do
 			if tonumber(b) ~= nil then
 				local value = tonumber(b)
 
-				if projectile_component_data.objects[objectName][a] == nil then
-					projectile_component_data.objects[objectName][a] = 0
-				end
+				if projectile_component_data.objects[objectName][a] == nil then projectile_component_data.objects[objectName][a] = 0 end
 
 				if projectile_component_data.objects[objectName][a] ~= nil then
-					projectile_component_data.objects[objectName][a] = projectile_component_data.objects[objectName][a]
-						+ value
+					projectile_component_data.objects[objectName][a] = projectile_component_data.objects[objectName][a] + value
 				end
 				if value ~= 1 and value ~= 0 then projectile_component_data.valid_objects[objectName][a] = true end
 			end
@@ -101,9 +98,7 @@ for k, v in ipairs(velocity_component) do
 		if tonumber(b) ~= nil then
 			local value = tonumber(b)
 
-			if velocity_component_properties.properties[a] == nil then
-				velocity_component_properties.properties[a] = 0
-			end
+			if velocity_component_properties.properties[a] == nil then velocity_component_properties.properties[a] = 0 end
 
 			if velocity_component_properties.properties[a] ~= nil then
 				velocity_component_properties.properties[a] = velocity_component_properties.properties[a] + value

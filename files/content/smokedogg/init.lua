@@ -1,8 +1,5 @@
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/smokedogg/materials.xml")
-ModLuaFileAppend(
-	"data/scripts/status_effects/status_list.lua",
-	"mods/noita.fairmod/files/content/smokedogg/status_effects_append.lua"
-)
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/smokedogg/status_effects_append.lua")
 
 local M = {}
 

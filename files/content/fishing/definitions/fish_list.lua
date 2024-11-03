@@ -69,15 +69,7 @@ fish_list = {
 		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
 		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/eel.png",
 		func = function(fish, x, y)
-			LoadRagdoll(
-				"mods/noita.fairmod/files/content/fishing/ragdolls/worm/filenames.txt",
-				x,
-				y,
-				"meat_helpless",
-				1,
-				0,
-				0
-			)
+			LoadRagdoll("mods/noita.fairmod/files/content/fishing/ragdolls/worm/filenames.txt", x, y, "meat_helpless", 1, 0, 0)
 		end,
 	},
 	{
@@ -268,13 +260,7 @@ fish_list = {
 						local flag = thisitem.spawn_requires_flag
 
 						if HasFlagPersistent(flag) == false then
-							print(
-								"Trying to spawn "
-									.. tostring(thisitem.id)
-									.. " even though flag "
-									.. tostring(flag)
-									.. " not set!!"
-							)
+							print("Trying to spawn " .. tostring(thisitem.id) .. " even though flag " .. tostring(flag) .. " not set!!")
 						end
 					end
 				end

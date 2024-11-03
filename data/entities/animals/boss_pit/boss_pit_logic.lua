@@ -63,8 +63,7 @@ if state == 1 then
 			"data/entities/projectiles/deck/rubber_ball.xml" 
 		]]
 		--
-		local spells =
-			{ "rocket", "rocket_tier_2", "rocket_tier_3", "grenade", "grenade_tier_2", "grenade_tier_3", "rubber_ball" }
+		local spells = { "rocket", "rocket_tier_2", "rocket_tier_3", "grenade", "grenade_tier_2", "grenade_tier_3", "rubber_ball" }
 		local rnd = Random(1, #spells)
 		local path = "data/entities/projectiles/deck/" .. spells[rnd] .. ".xml"
 

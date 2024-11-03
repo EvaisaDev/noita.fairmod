@@ -18,11 +18,10 @@ local function random(a, b)
 	return ProceduralRandomi(x + entity_id, y + GameGetFrameNum(), a, b)
 end
 
-
 local num_corpses = #(EntityGetInRadiusWithTag(x, y, 512, "corpse_loader") or {})
 
 -- Find a decent spot to place the corpse on the ground
-local y_offset = random(5,20)
+local y_offset = random(5, 20)
 x, y = FindFreePositionForBody(x, y - y_offset, 0, 0, 20)
 
 -- Load the ragdoll, choose depending on how many other corpses nearby
@@ -40,6 +39,5 @@ end
 
 -- Add just a bit of blood for effect
 GameCreateParticle("blood", x, y, random(10, 30), 0, 0, false)
-
 
 EntityKill(entity_id)

@@ -47,15 +47,5 @@ if GameHasFlagRun("draw_evil_mode_text") then
 	local text_w, text_h = GuiGetTextDimensions(evil_gui, "Noita - Build Aug 12 2024 - 21:48:01 -")
 
 	GuiZSetForNextWidget(evil_gui, -1)
-	GuiImage(
-		evil_gui,
-		21425251,
-		text_w + 10,
-		screen_h - (text_h * 2 + 10),
-		"mods/noita.fairmod/files/content/misc/evil_mode.png",
-		1,
-		0.12,
-		0.12,
-		0
-	)
+	GuiImage(evil_gui, 21425251, text_w + 10, screen_h - (text_h * 2 + 10), "mods/noita.fairmod/files/content/misc/evil_mode.png", 1, 0.12, 0.12, 0)
 end

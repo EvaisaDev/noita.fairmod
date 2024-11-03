@@ -5,9 +5,7 @@ function material_area_checker_success(pos_x, pos_y)
 
 	if #player_id > 0 then
 		local comp_damagemodel = EntityGetFirstComponent(player_id[1], "DamageModelComponent")
-		if comp_damagemodel ~= nil then
-			ComponentSetValue(comp_damagemodel, "materials_damage_proportional_to_maxhp", "1")
-		end
+		if comp_damagemodel ~= nil then ComponentSetValue(comp_damagemodel, "materials_damage_proportional_to_maxhp", "1") end
 
 		EntityAddChild(player_id[1], midas_id)
 	end

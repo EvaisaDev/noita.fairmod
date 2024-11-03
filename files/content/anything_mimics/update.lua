@@ -57,8 +57,7 @@ for i, entity in ipairs(entities_close) do
 		local entity_x, entity_y = EntityGetTransform(entity)
 		--EntityLoad( "data/entities/particles/polymorph_explosion.xml", entity_x, entity_y )
 		--GamePlaySound( "data/audio/Desktop/misc.bank", "game_effect/polymorph/create", entity_x, entity_y );
-		local ai_entity =
-			EntityLoad("mods/noita.fairmod/files/content/anything_mimics/files/runner_ai.xml", entity_x, entity_y)
+		local ai_entity = EntityLoad("mods/noita.fairmod/files/content/anything_mimics/files/runner_ai.xml", entity_x, entity_y)
 		EntityAddChild(entity, ai_entity)
 		EntityAddTag(entity, runner_tag)
 	else

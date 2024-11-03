@@ -1,5 +1,3 @@
-
-
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	local radio_is_on = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on") ~= nil
 	local entity = GetUpdatedEntityID()
@@ -25,6 +23,5 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", false)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", true)
 		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) - 1))
-
 	end
 end

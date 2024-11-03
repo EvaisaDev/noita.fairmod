@@ -103,11 +103,7 @@ local function rgb_to_hsl(r, g, b)
 end
 
 local function rgb_string_to_hsl(rgb)
-	return rgb_to_hsl(
-		tonumber(rgb:sub(2, 3), 16) / 256,
-		tonumber(rgb:sub(4, 5), 16) / 256,
-		tonumber(rgb:sub(6, 7), 16) / 256
-	)
+	return rgb_to_hsl(tonumber(rgb:sub(2, 3), 16) / 256, tonumber(rgb:sub(4, 5), 16) / 256, tonumber(rgb:sub(6, 7), 16) / 256)
 end
 
 -----------------------------------------------------------------------------

@@ -171,10 +171,7 @@ if currently_gambling then
 
 			if will_win then
 				-- better_ui integration
-				GlobalsSetValue(
-					"GAMBLECORE_TIMES_WON",
-					tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) or 0) + 1)
-				)
+				GlobalsSetValue("GAMBLECORE_TIMES_WON", tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_WON", "0")) or 0) + 1))
 				GlobalsSetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")
 
 				GamePrint("You won!")

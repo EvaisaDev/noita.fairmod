@@ -23,9 +23,7 @@ local function apply_material_converter()
 	local player = EntityGetWithTag("player_unit")[1]
 	if player then
 		local found = false
-		for i, component_id in
-			ipairs(EntityGetComponentIncludingDisabled(player, "MagicConvertMaterialComponent") or {})
-		do
+		for i, component_id in ipairs(EntityGetComponentIncludingDisabled(player, "MagicConvertMaterialComponent") or {}) do
 			if ComponentGetValue2(component_id, "to_material") == CellFactory_GetType("hescoming") then
 				found = true
 				break
