@@ -45,10 +45,11 @@ shader_append(
 	"varying vec2 tex_coord_fogofwar;",
 	[[
 /* VARIABLES */
-#define END_ZOOM 0.0005
+#define END_ZOOM 0.0002
 #define END_SPEED 0.002
 #define END_LIGHT 1.4
 uniform sampler2D END_TEXTURE;
+uniform vec4 END_OVERRIDE;
 
 /* CONST */
 #define END_PI   3.14159265359
@@ -88,9 +89,14 @@ shader_append(
 	vec2 tex_coord_inverted = vec2(tex_coord.x, 1.0 - tex_coord.y);
 	vec4 end_color_ref = texture2D(tex_fg, tex_coord_inverted );
 
-	if (end_color_ref.r > 152.0 / 255.0 && end_color_ref.r < 154.0 / 255.0 && 
+	// get average color value of all channels
+	float end_color_avg = (end_color_ref.r + end_color_ref.g + end_color_ref.b) / 3.0;
+
+	// 
+
+	if (END_OVERRIDE.r > end_color_avg || (end_color_ref.r > 152.0 / 255.0 && end_color_ref.r < 154.0 / 255.0 && 
 		end_color_ref.g > 54.0 / 255.0 && end_color_ref.g < 56.0 / 255.0 &&
-		end_color_ref.b > 198.0 / 255.0 && end_color_ref.b < 200.0 / 255.0) {
+		end_color_ref.b > 198.0 / 255.0 && end_color_ref.b < 200.0 / 255.0)) {
 
 		gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
 		tex_coord /= window_size.xy;

@@ -5,7 +5,7 @@
 			<value>breathing</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{91f27e66-a3fa-4c9e-b4bc-ca79a3c4e987}</destination>
@@ -136,7 +136,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{5402f6ab-dda5-40cf-9294-d790e1854c1d}">
 		<property name="volume">
-			<value>-15</value>
+			<value>-10</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -161,7 +161,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{c73886a6-764c-4934-8293-0379f94ac762}">
 		<relationship name="effects">
-			<destination>{fdc674f4-f2fd-454b-9d1d-deb8d8f17af3}</destination>
 			<destination>{5d93877e-59c7-458d-b951-011a5573afbc}</destination>
 		</relationship>
 	</object>
@@ -216,17 +215,6 @@
 			<destination>{5c4f74c5-5d8f-42b8-83c0-8729b2d156f1}</destination>
 			<destination>{621d54e4-b579-44ea-89b6-e957863200d8}</destination>
 		</relationship>
-	</object>
-	<object class="SpatialiserEffect" id="{fdc674f4-f2fd-454b-9d1d-deb8d8f17af3}">
-		<property name="distanceRolloffType">
-			<value>3</value>
-		</property>
-		<property name="minimumDistance">
-			<value>50</value>
-		</property>
-		<property name="maximumDistance">
-			<value>400</value>
-		</property>
 	</object>
 	<object class="MixerBusFader" id="{5d93877e-59c7-458d-b951-011a5573afbc}" />
 	<object class="MixerBusFader" id="{077ecaa2-6753-4a5c-8f00-1a03f73ad839}" />

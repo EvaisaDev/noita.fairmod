@@ -64,6 +64,7 @@ local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/in
 local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
 local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
+local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -100,7 +101,6 @@ dofile_once("mods/noita.fairmod/files/content/rat_wand/init.lua")
 dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
-dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
 dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
@@ -291,6 +291,7 @@ function OnWorldPreUpdate()
 	cheats.update()
 	hescoming.update()
 	smokedogg.update()
+	payphone.update()
 
 	gamblecore.Update()
 
