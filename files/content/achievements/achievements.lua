@@ -587,6 +587,18 @@ for i = 1, 10 do
 	})
 end
 
+for i = 1, 10 do
+	table.insert(achievements, {
+		name = "X marks the spot " .. romanize(i),
+		description = 2^i .. " digital doubloons yanked from ye pocket",
+		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png" }),
+		flag = "popups_closed_" .. i,
+		unlock = function()
+			return tonumber(GlobalsGetValue("POPUPS_CLOSED", "0")) >= (2 ^ i)
+		end,
+	})
+end
+
 achievements[#achievements + 1] = {
 	name = "H4X0R",
 	description = "3P1C 1337 H4XX B)",
