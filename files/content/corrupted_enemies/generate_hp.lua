@@ -1,3 +1,4 @@
+--stylua: ignore start
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 local currbiome = BiomeMapGetName(x, y)
@@ -31,3 +32,4 @@ local comp = EntityGetFirstComponentIncludingDisabled(entity_id, "DamageModelCom
 local hp = ComponentGetValue2(comp, "hp")
 ComponentSetValue2(comp, "hp", hp * hp_mod)
 ComponentSetValue2(comp, "max_hp", hp * hp_mod)
+--stylua: ignore end

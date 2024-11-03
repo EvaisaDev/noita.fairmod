@@ -979,7 +979,7 @@ return {
 		},
 	},
 	{
-		name = "Niko",
+		name = "Roman",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "four",
 		text = [[Niko it's Roman.
