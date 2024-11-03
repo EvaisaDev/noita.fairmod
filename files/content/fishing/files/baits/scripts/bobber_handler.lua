@@ -3,21 +3,21 @@ dofile_once("mods/noita.fairmod/files/content/fishing/files/fish_utils.lua")
 dofile_once("mods/noita.fairmod/files/content/fishing/definitions/fish_list.lua")
 dofile_once("data/scripts/lib/utilities.lua")
 
-bobber = GetUpdatedEntityID()
+local bobber = GetUpdatedEntityID()
 
-fishing_frame = tonumber(GlobalsGetValue(bobber .. "_frame", 0))
+local fishing_frame = tonumber(GlobalsGetValue(bobber .. "_frame", "0"))
 
-x, y = EntityGetTransform(bobber)
+local x, y = EntityGetTransform(bobber)
 
-projectile_component = EntityGetFirstComponent(bobber, "ProjectileComponent")
+local projectile_component = EntityGetFirstComponent(bobber, "ProjectileComponent")
 
-bobber_owner = ComponentGetValue2(projectile_component, "mWhoShot")
+local bobber_owner = ComponentGetValue2(projectile_component, "mWhoShot")
 
-player = get_players()[1]
+local player = get_players()[1]
 
-rod = EntityGetVariable(bobber, "rod_entity", "int")
+local rod = EntityGetVariable(bobber, "rod_entity", "int")
 
-return_bobber = EntityHasFlag(bobber, "return_bobber")
+local return_bobber = EntityHasFlag(bobber, "return_bobber")
 
 function has_catch()
 	return EntityHasFlag(bobber, "has_catch")
@@ -25,9 +25,9 @@ end
 
 GlobalsSetValue(bobber .. "_frame", fishing_frame + 1)
 
-fish_string = EntityGetVariable(bobber, "catch_id", "string") or nil
+local fish_string = EntityGetVariable(bobber, "catch_id", "string") or nil
 
-fish = nil
+local fish = nil
 
 for k, v in pairs(fish_list) do
 	if v.id == fish_string then fish = v end
@@ -45,16 +45,16 @@ end
 
 if bobber_owner ~= player or player == nil then
 	--print("rawr")
-	rope_entity = EntityGetVariable(bobber, "rope_entity", "int")
+	local rope_entity = EntityGetVariable(bobber, "rope_entity", "int")
 	if rope_entity ~= nil and rope_entity ~= 0 then EntityKill(rope_entity) end
 	EntityKill(bobber)
 	return
 end
 
-owner_x, owner_y = EntityGetTransform(bobber_owner)
+local owner_x, owner_y = EntityGetTransform(bobber_owner)
 
 if rod == nil or rod == 0 then
-	rods = EntityGetInRadiusWithTag(owner_x, owner_y, 10, "fishing_rod") or {}
+	local rods = EntityGetInRadiusWithTag(owner_x, owner_y, 10, "fishing_rod") or {}
 
 	rod = rods[1]
 
@@ -74,47 +74,95 @@ local ry = math.sin(rotation)
 x1 = x1 + (rx * 30)
 y1 = y1 + (ry * 30)
 
-trajectoryHeight = -50
+local trajectoryHeight = -50
+
+local function reel_in_objects(x, y, dir_x, dir_y)
+	local objects_to_reel = EntityGetInRadius(x, y, 15)
+
+	for _, entity in ipairs(objects_to_reel) do
+		if EntityHasTag(entity, "bobber") then goto continue end
+
+		local phys = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
+		if phys then
+			-- Works for these
+			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
+			PhysicsComponentSetTransform(phys, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
+		end
+
+		local phys2 = EntityGetFirstComponent(entity, "PhysicsBody2Component")
+		if phys2 then
+			-- Works for these
+			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys2)
+			PhysicsComponentSetTransform(phys2, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
+		end
+
+		local phys3 = EntityGetFirstComponent(entity, "SimplePhysicsComponent")
+		if phys3 and ComponentGetValue2(phys3, "can_go_up") then
+			-- Not working
+			--GamePrint("REEL IN phys3 " .. EntityGetName(entity))
+			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys3)
+			PhysicsComponentSetTransform(phys3, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
+			--PhysicsApplyForce(entity, dir_x * 100, dir_y * 100)
+		end
+
+		local chr = EntityGetFirstComponent(entity, "CharacterDataComponent")
+		if chr then
+			local vx, vy = ComponentGetValue2(chr, "mVelocity")
+			ComponentSetValue2(chr, "mVelocity", vx + dir_x * 20, vy + dir_y * 20)
+		end
+
+		::continue::
+	end
+end
 
 if return_bobber then
-	fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
+	local fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
 
-	for k, v in pairs(fish_in_range2) do
+	for _, v in pairs(fish_in_range2) do
 		local fish_x, fish_y = EntityGetTransform(v)
 		EntityLoad("mods/noita.fairmod/files/content/fishing/files/poof_black.xml", fish_x, fish_y)
 		--EntityKill(v)
 	end
 
-	fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
+	local fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
 
-	for k, v in pairs(fish_in_range) do
+	for _, v in pairs(fish_in_range) do
 		EntityKill(v)
 	end
 
-	player_x = EntityGetVariable(bobber, "last_position_player_x", "int")
-	player_y = EntityGetVariable(bobber, "last_position_player_y", "int")
+	local player_x = EntityGetVariable(bobber, "last_position_player_x", "int")
+	local player_y = EntityGetVariable(bobber, "last_position_player_y", "int")
 
-	bobber_x = EntityGetVariable(bobber, "last_position_x", "int")
-	bobber_y = EntityGetVariable(bobber, "last_position_y", "int")
+	local bobber_x = EntityGetVariable(bobber, "last_position_x", "int")
+	local bobber_y = EntityGetVariable(bobber, "last_position_y", "int")
 
 	--GamePrint("Returning to master.")
 
-	local cTime =
-		math.max(math.min((GameGetFrameNum() - EntityGetVariable(bobber, "frame_num_start", "int")) / 20, 2), 0)
+	local frame_diff = GameGetFrameNum() - EntityGetVariable(bobber, "frame_num_start", "int")
+	local cTime = math.max(math.min(frame_diff / 20, 2), 0)
 
-	--GamePrint(cTime)
+	--GamePrint(tostring(cTime))
 
-	current_x = math.lerp(bobber_x, player_x, cTime)
-	current_y = math.lerp(bobber_y, player_y, cTime)
+	local current_x = math.lerp(bobber_x, player_x, cTime)
+	local current_y = math.lerp(bobber_y, player_y, cTime)
 
 	current_y = current_y + (trajectoryHeight * math.sin(math.clamp(cTime / 2, 0, 1) * math.pi))
 
 	EntityApplyTransform(bobber, current_x, current_y)
 
-	if cTime == 2 then
+	if cTime == 0 then
+		local next_time = math.max(math.min(1 / 20, 2), 0)
+		local next_x = math.lerp(bobber_x, player_x, next_time)
+		local next_y = math.lerp(bobber_y, player_y, next_time)
+		next_y = current_y + (trajectoryHeight * math.sin(math.clamp(next_time / 2, 0, 1) * math.pi))
+
+		local dx = next_x - bobber_x
+		local dy = next_y - bobber_y
+		reel_in_objects(bobber_x, bobber_y, dx * 4, dy * 4)
+	elseif cTime == 2 then
 		if has_catch() then
 			--print(tostring(fish))
-			fish_size = EntityGetVariable(bobber, "weight", "float")
+			local fish_size = EntityGetVariable(bobber, "weight", "float")
 
 			GameAddFlagRun("caught_fish_" .. fish.id)
 
@@ -138,7 +186,7 @@ if return_bobber then
 end
 
 if EntityGetVariable(bobber, "rope_entity", "int") == 0 then
-	line = EntityLoad("mods/noita.fairmod/files/content/fishing/files/line/rope.xml", owner_x, owner_y)
+	local line = EntityLoad("mods/noita.fairmod/files/content/fishing/files/line/rope.xml", owner_x, owner_y)
 
 	EntityAddChild(bobber_owner, line)
 
@@ -149,7 +197,7 @@ if EntityGetVariable(bobber, "rope_entity", "int") == 0 then
 	local last_point_index = 0
 	edit_component(line, "VerletPhysicsComponent", function(comp, vars)
 		verletphysics_comp_found = true
-		last_point_index = ComponentGetValue(comp, "num_points")
+		last_point_index = ComponentGetValue2(comp, "num_points")
 	end)
 
 	if verletphysics_comp_found then
@@ -176,8 +224,8 @@ if EntityGetVariable(bobber, "rope_entity", "int") == 0 then
 	EntitySetVariable(bobber, "rope_entity", "int", line)
 end
 
-in_liquid = false
-
+local in_liquid = false
+local did_hit = false
 --GamePrint("Has catch? "..tostring(has_catch()))
 
 if not return_bobber and not (has_catch()) then
@@ -186,7 +234,7 @@ if not return_bobber and not (has_catch()) then
 	if did_hit then
 		in_liquid = true
 
-		vel_comp = EntityGetFirstComponent(bobber, "VelocityComponent")
+		local vel_comp = EntityGetFirstComponent(bobber, "VelocityComponent")
 		ComponentSetValue2(vel_comp, "mVelocity", 0, -50)
 	end
 end
@@ -198,7 +246,7 @@ if not return_bobber and has_catch() then
 		if did_hit then
 			in_liquid = true
 
-			vel_comp = EntityGetFirstComponent(bobber, "VelocityComponent")
+			local vel_comp = EntityGetFirstComponent(bobber, "VelocityComponent")
 			ComponentSetValue2(vel_comp, "mVelocity", 0, -50)
 		end
 	end
@@ -207,9 +255,9 @@ end
 if return_bobber and not GameHasFlagRun("allow_catch_fish") and EntityHasFlag(bobber, "has_catch") then
 	EntityRemoveFlag(bobber, "has_catch")
 
-	direction_sound = get_direction(owner_x, owner_y, x, y)
+	local direction_sound = get_direction(owner_x, owner_y, x, y)
 
-	direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
+	local direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
 
 	GamePlaySound(
 		"data/audio/Desktop/materials.bank",
@@ -240,7 +288,7 @@ if return_bobber and not GameHasFlagRun("allow_catch_fish") and EntityHasFlag(bo
 
 	GamePrint("The fish got away!")
 
-	fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
+	local fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
 
 	for k, v in pairs(fish_in_range2) do
 		local fish_x, fish_y = EntityGetTransform(v)
@@ -248,14 +296,14 @@ if return_bobber and not GameHasFlagRun("allow_catch_fish") and EntityHasFlag(bo
 		--EntityKill(v)
 	end
 
-	fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
+	local fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
 
-	for k, v in pairs(fish_in_range) do
+	for _, v in pairs(fish_in_range) do
 		EntityKill(v)
 	end
 end
 
-catch_frame = EntityGetVariable(bobber, "catch_frame", "int") or GameGetFrameNum()
+local catch_frame = EntityGetVariable(bobber, "catch_frame", "int") or GameGetFrameNum()
 
 if fish ~= nil and not return_bobber then
 	--GamePrint(tostring((GameGetFrameNum() - catch_frame) / 60)..">"..tostring(fish.catch_seconds))
@@ -263,9 +311,9 @@ if fish ~= nil and not return_bobber then
 	if has_catch() and ((GameGetFrameNum() - catch_frame) / 60) > fish.catch_seconds then
 		EntityRemoveFlag(bobber, "has_catch")
 
-		direction_sound = get_direction(owner_x, owner_y, x, y)
+		local direction_sound = get_direction(owner_x, owner_y, x, y)
 
-		direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
+		local direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
 
 		GamePlaySound(
 			"data/audio/Desktop/materials.bank",
@@ -289,15 +337,15 @@ if fish ~= nil and not return_bobber then
 
 		GamePrint("The fish got away!")
 
-		fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
+		local fish_in_range2 = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish_sprite") or {}
 
-		for k, v in pairs(fish_in_range2) do
+		for _, v in pairs(fish_in_range2) do
 			local fish_x, fish_y = EntityGetTransform(v)
 			EntityLoad("mods/noita.fairmod/files/content/fishing/files/poof_black.xml", fish_x, fish_y)
 			--EntityKill(v)
 		end
 
-		fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
+		local fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
 
 		for k, v in pairs(fish_in_range) do
 			EntityKill(v)
@@ -318,13 +366,13 @@ if in_liquid then
 		if material_id then liquid_type = CellFactory_GetName(material_id) end
 
 		if liquid_type ~= nil and liquid_type ~= "air" then
-			allow_catch = EntityHasFlag(bobber, "is_catch_allowed")
+			local allow_catch = EntityHasFlag(bobber, "is_catch_allowed")
 
-			fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
+			local fish_in_range = EntityGetInRadiusWithTag(x2, y2, 200, "cosmetic_fish") or {}
 
 			if not has_catch() and not EntityHasFlag(bobber, "failed_catch") then
 				if #fish_in_range <= EntityGetVariable(bobber, "fish_count", "int") then
-					new_fish = EntityCreateNew()
+					local new_fish = EntityCreateNew()
 					EntityAddTag(new_fish, "cosmetic_fish")
 
 					EntityAddChild(bobber, new_fish)
@@ -333,14 +381,13 @@ if in_liquid then
 						EntityAddFlag(bobber, "is_catch_allowed")
 					end
 
-					fish_x = x2
-					fish_y = y2 + 10 + Random(5, 20)
+					local fish_x = x2
+					local fish_y = y2 + 10 + Random(5, 20)
 
-					did_hit_left, left_x, left_y = RaytraceSurfaces(fish_x, fish_y, fish_x - 30, fish_y)
-					did_hit_right, right_x, right_y = RaytraceSurfaces(fish_x, fish_y, fish_x + 30, fish_y)
+					local did_hit_left, left_x, left_y = RaytraceSurfaces(fish_x, fish_y, fish_x - 30, fish_y)
+					local did_hit_right, right_x, right_y = RaytraceSurfaces(fish_x, fish_y, fish_x + 30, fish_y)
 
-					fish_width = math.min(math.min(math.abs(fish_x - left_x) * 2, math.abs(right_x - fish_x) * 2), 50)
-						- 10
+					local fish_width = math.min(math.min(math.abs(fish_x - left_x) * 2, math.abs(right_x - fish_x) * 2), 50) - 10
 
 					if fish_width > 5 then
 						--GamePrint("Fish Width: "..fish_width)
@@ -357,7 +404,7 @@ if in_liquid then
 						})
 						--ComponentObjectSetValue2(inherit_transform, "Transform", "position", fish_x - x, fish_y - y)
 
-						fish_sprite = EntityLoad(
+						local fish_sprite = EntityLoad(
 							"mods/noita.fairmod/files/content/fishing/files/fish/shadows/fish" .. Random(1, 5) .. ".xml",
 							x2 + Random(-20, 20),
 							y2 + 10 + Random(5, 20)
@@ -376,7 +423,7 @@ if in_liquid then
 			-- We are in a liquid and know the type of the liquid
 
 			if allow_catch and not EntityHasFlag(bobber, "failed_catch") then
-				caught_fish = (Random(1, 10000) / 1000) <= 1000.05
+				local caught_fish = (Random(1, 10000) / 1000) <= 1000.05
 
 				if caught_fish and not has_catch() then
 					EntityAddFlag(bobber, "has_catch")
@@ -387,9 +434,9 @@ if in_liquid then
 
 					EntityLoad("mods/noita.fairmod/files/content/fishing/files/splash.xml", x, y)
 
-					direction_sound = get_direction(owner_x, owner_y, x, y)
+					local direction_sound = get_direction(owner_x, owner_y, x, y)
 
-					direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
+					local direction_sound_x, direction_sound_y = rad_to_vec(direction_sound)
 
 					GamePlaySound(
 						"data/audio/Desktop/animals.bank",
@@ -404,13 +451,13 @@ if in_liquid then
 
 					EntitySetVariable(bobber, "catch_id", "string", fish.id)
 
-					fish_size = Random(fish.sizes.min * 100, fish.sizes.max * 100) / 100
+					local fish_size = Random(fish.sizes.min * 100, fish.sizes.max * 100) / 100
 
 					EntitySetVariable(bobber, "weight", "float", fish_size)
 
 					local ui = EntityCreateNew()
 
-					speed = ((fish.difficulty / 100) + ((fish_size / fish.sizes.max) / 3)) * 100 --((100 - ((fish.sizes.max + (fish_size*-1)) * 100 / (fish.sizes.max - fish.sizes.min))) / 100) * fish.difficulty
+					local speed = ((fish.difficulty / 100) + ((fish_size / fish.sizes.max) / 3)) * 100 --((100 - ((fish.sizes.max + (fish_size*-1)) * 100 / (fish.sizes.max - fish.sizes.min))) / 100) * fish.difficulty
 
 					--GamePrint("speed = "..tostring(speed))
 
