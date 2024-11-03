@@ -17,14 +17,7 @@ if Random(1, 6) == 1 then
 	local vel_x = math.cos(angle) * length
 	local vel_y = 0 - math.sin(angle) * length
 
-	shoot_projectile(
-		entity_id,
-		"mods/noita.fairmod/files/content/chemical_horror/grease/grease_bubble.xml",
-		pos_x,
-		pos_y,
-		vel_x,
-		vel_y
-	)
+	shoot_projectile(entity_id, "mods/noita.fairmod/files/content/chemical_horror/grease/grease_bubble.xml", pos_x, pos_y, vel_x, vel_y)
 end
 
 EntityKill(entity_id)

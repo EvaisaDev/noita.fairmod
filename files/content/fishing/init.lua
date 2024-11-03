@@ -161,10 +161,7 @@ function module.OnMagicNumbersAndWorldSeedInitialized()
 
 			--print(bait_file)
 
-			ModTextFileSetContent(
-				"mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml",
-				bait_file
-			)
+			ModTextFileSetContent("mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml", bait_file)
 		end
 	end
 

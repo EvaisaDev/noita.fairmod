@@ -101,9 +101,7 @@ for i = 1, #perk_pool do
 
 				if filter.contains_slur(table.concat(ui_description_parts)) then
 					table.remove(ui_description_parts)
-					if iteration < max_iterations and (chars - 1 > 0) then
-						try_update_description(chars - 1, iteration + 1)
-					end
+					if iteration < max_iterations and (chars - 1 > 0) then try_update_description(chars - 1, iteration + 1) end
 				end
 			end
 

@@ -38,10 +38,7 @@ if ingestion_comp then
 
 			if piss_pressed then
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "immersivepiss/timetotakeapiss", entity_x, entity_y)
-				GlobalsSetValue(
-					"TIMES_TOOK_PISS",
-					tostring((tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0) + 1)
-				)
+				GlobalsSetValue("TIMES_TOOK_PISS", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_PISS", "0")) or 0) + 1))
 			end
 
 			GameCreateParticle(
@@ -65,10 +62,7 @@ if ingestion_comp then
 
 			if shit_pressed then
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "immersivepiss/diarrhea", entity_x, entity_y)
-				GlobalsSetValue(
-					"TIMES_TOOK_SHIT",
-					tostring((tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0) + 1)
-				)
+				GlobalsSetValue("TIMES_TOOK_SHIT", tostring((tonumber(GlobalsGetValue("TIMES_TOOK_SHIT", "0")) or 0) + 1))
 			end
 
 			local character_data_comp = EntityGetFirstComponent(entity, "CharacterDataComponent")

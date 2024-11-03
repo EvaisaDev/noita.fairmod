@@ -14,11 +14,8 @@ function module.update()
 
 			GameSetPostFxParameter("END_OVERRIDE", value, 0, 0, 0)
 			print("value: " .. value)
-
 		elseif teleporting_end == 0.5 then
-					
 			BiomeMapLoad_KeepPlayer(MagicNumbersGetValue("BIOME_MAP"), "data/biome/_pixel_scenes")
-
 		elseif teleporting_end < 0.5 then
 			local value = teleporting_end * 2
 
@@ -27,8 +24,7 @@ function module.update()
 			print("value: " .. value)
 		end
 
-		if(teleporting_end <= 0)then
-
+		if teleporting_end <= 0 then
 			local players = EntityGetWithTag("player_unit") or {}
 
 			if players == nil or #players == 0 then return end
@@ -42,7 +38,6 @@ function module.update()
 			EntityLoad("data/entities/particles/teleportation_source.xml", x + 100, y)
 		end
 	end
-
 end
 
 return module

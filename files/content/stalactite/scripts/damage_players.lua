@@ -17,19 +17,7 @@ for k, v in ipairs(players) do
 	local player_id = v
 	local px, py = EntityGetTransform(player_id)
 
-	EntityInflictDamage(
-		player_id,
-		30,
-		"DAMAGE_PHYSICS_HIT",
-		"Falling Debris",
-		"BLOOD_EXPLOSION",
-		0,
-		0,
-		entity_id,
-		x,
-		y,
-		0.1
-	)
+	EntityInflictDamage(player_id, 30, "DAMAGE_PHYSICS_HIT", "Falling Debris", "BLOOD_EXPLOSION", 0, 0, entity_id, x, y, 0.1)
 
 	SetRandomSeed(px, py)
 

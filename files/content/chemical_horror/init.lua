@@ -52,10 +52,8 @@ if not ModIsEnabled("Hydroxide") then
 	)
 end
 
-ModLuaFileAppend(
-	"data/scripts/status_effects/status_list.lua",
-	"mods/noita.fairmod/files/content/chemical_horror/status_effects.lua"
-) dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")
+dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")
 
 --print("Example mod init done")

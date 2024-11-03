@@ -46,11 +46,9 @@ local function save_ticket()
 	end
 end
 
-if ticket.scratch_callback == nil then
-	ticket.scratch_callback = function()
-		if GameGetFrameNum() % 15 == 0 then save_ticket() end
-	end
-end
+if ticket.scratch_callback == nil then ticket.scratch_callback = function()
+	if GameGetFrameNum() % 15 == 0 then save_ticket() end
+end end
 
 local ticket_viewed = EntityHasTag(entity_id, "viewing")
 

@@ -6,8 +6,7 @@ dialog_system.sounds.tick = { bank = "data/audio/Desktop/ui.bank", event = "ui/b
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 local player = EntityGetInRadiusWithTag(x, y, 15, "player_unit")[1]
-local character_platforming_component =
-	EntityGetFirstComponentIncludingDisabled(entity_id, "CharacterPlatformingComponent")
+local character_platforming_component = EntityGetFirstComponentIncludingDisabled(entity_id, "CharacterPlatformingComponent")
 if player then
 	ComponentSetValue2(character_platforming_component, "run_velocity", 0)
 else
@@ -51,15 +50,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									local potion = EntityLoad("data/entities/items/pickup/potion.xml")
 									GamePickUpInventoryItem(entity_who_interacted, potion)
 									-- And deduct 500 gold
-									local wallet_component = EntityGetFirstComponentIncludingDisabled(
-										entity_who_interacted,
-										"WalletComponent"
-									)
-									ComponentSetValue2(
-										wallet_component,
-										"money",
-										ComponentGetValue2(wallet_component, "money") - 500
-									)
+									local wallet_component = EntityGetFirstComponentIncludingDisabled(entity_who_interacted, "WalletComponent")
+									ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 500)
 									dialog.close()
 								end,
 							},

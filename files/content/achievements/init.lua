@@ -1,5 +1,6 @@
 --- @alias achievement_data {name:{lines:string[], height:number}, description:{lines:string[],height:number}, icon:{path:string, width:number}, height:number}
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class achievement_ui:UI_class
 ui.scroll.height_max = 250
@@ -24,18 +25,16 @@ local achievement_height = 0
 
 local debug_no_flags = false
 
-
 for xml in nxml.edit_file("data/entities/player.xml") do
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = -1,
-		script_damage_received = "mods/noita.fairmod/files/content/achievements/get_hit.lua"
+		script_damage_received = "mods/noita.fairmod/files/content/achievements/get_hit.lua",
 	}))
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = 10,
-		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua"
+		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua",
 	}))
 end
-
 
 local function AddNotification(icon, name, description, sound)
 	if sound then GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0) end
@@ -187,6 +186,10 @@ local function CheckAchievements()
 	for i, achievement in ipairs(achievements) do
 		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
 		if not HasFlagPersistent(flag) and achievement.unlock() then
+			for k, v in ipairs(GetPlayers()) do
+				local dmgcomp = EntityGetFirstComponentIncludingDisabled(v, "DamageModelComponent")
+				ComponentSetValue2(dmgcomp, ComponentGetValue2(dmgcomp, "max_hp") + (0.04))
+			end
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
 			GameAddFlagRun("fairmod_new_achievement")
@@ -198,6 +201,13 @@ local function CheckAchievements()
 
 	GlobalsSetValue("fairmod_total_achievements", tostring(#achievements))
 	GlobalsSetValue("fairmod_achievements_unlocked", tostring(achievements_unlocked))
+
+	if not GameHasFlagRun("gave_max_hp") then
+		for k, v in ipairs(GetPlayers()) do
+			local dmgcomp = EntityGetFirstComponentIncludingDisabled(v, "DamageModelComponent")
+			ComponentSetValue2(dmgcomp, ComponentGetValue2(dmgcomp, "max_hp") + (0.04*achievements_unlocked))
+		end
+	end
 
 	if debug_no_flags then
 		HasFlagPersistent = persistent_flag_func_get
@@ -308,14 +318,7 @@ function ui:DrawAchievementsWindow()
 	GameRemoveFlagRun("fairmod_new_achievement")
 	local x = 26
 	local y = 50
-	self:Draw9Piece(
-		x - 3,
-		y,
-		1001,
-		self.scroll.width + 6,
-		8,
-		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png"
-	)
+	self:Draw9Piece(x - 3, y, 1001, self.scroll.width + 6, 8, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png")
 	local unlocked = tonumber(GlobalsGetValue("fairmod_achievements_unlocked")) or 0
 	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
 	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
@@ -329,18 +332,23 @@ function ui:DrawAchievementsWindow()
 	self:Text(close_x, y, "[Close]")
 
 	self:Text(x + 3, y, text)
-	self:ScrollBox(
-		x,
-		y + 16,
-		1001,
-		"mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png",
-		3,
-		3,
-		self.DrawAchievementsScrollbox
-	)
+	self:ScrollBox(x, y + 16, 1001, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png", 3, 3, self.DrawAchievementsScrollbox)
 end
 
 function ui:update()
+	---@diagnostic disable-next-line: param-type-mismatch
+	SetRandomSeed((ModSettingGet("user_seed") or 0), 42069)
+	if Random(1,10000000000)==1 then
+		GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", GameGetCameraPos())
+		for i=1, Random(1, 10) do
+			AddNotification("mods/noita.fairmod/files/content/achievements/icons/Ahoy!.png", "I see you.", "", false)
+		end
+	end
+
+
+
+
+
 	CheckAchievements()
 	self:StartFrame()
 	self.text_scale = 0.7

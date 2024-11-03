@@ -217,9 +217,7 @@ end
 local function utf8replace(s, mapping)
 	-- argument checking
 	if type(s) ~= "string" then error("bad argument #1 to 'utf8replace' (string expected, got " .. type(s) .. ")") end
-	if type(mapping) ~= "table" then
-		error("bad argument #2 to 'utf8replace' (table expected, got " .. type(mapping) .. ")")
-	end
+	if type(mapping) ~= "table" then error("bad argument #2 to 'utf8replace' (table expected, got " .. type(mapping) .. ")") end
 
 	local pos = 1
 	local bytes = len(s)
@@ -521,8 +519,7 @@ local function classMatchGenerator(class, plain)
 	else
 		return function(charCode)
 			return charCode ~= -1 and not (binsearch(codes, charCode) or inRanges(charCode))
-		end,
-			skip
+		end, skip
 	end
 end
 

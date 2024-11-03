@@ -19,10 +19,7 @@ local particles = {
 
 for _, file in ipairs(particles) do
 	for content in nxml.edit_file(file) do
-		content
-			:first_of("AudioComponent")
-			:set("file", "mods/noita.fairmod/fairmod.bank")
-			:set("event_root", "pickbanana")
+		content:first_of("AudioComponent"):set("file", "mods/noita.fairmod/fairmod.bank"):set("event_root", "pickbanana")
 	end
 end
 for _, file in ipairs(nuggets) do

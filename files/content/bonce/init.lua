@@ -35,8 +35,7 @@ for _, filename in ipairs(filenames) do
 	filename = "data/entities/animals/" .. filename
 	for content in nxml.edit_file(filename) do
 		local base = content:first_of("Base")
-		local path_finding_comp = base and base:first_of("PathFindingComponent")
-			or content:first_of("PathFindingComponent")
+		local path_finding_comp = base and base:first_of("PathFindingComponent") or content:first_of("PathFindingComponent")
 		if path_finding_comp then visit(path_finding_comp) end
 	end
 end

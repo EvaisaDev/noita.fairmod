@@ -53,12 +53,7 @@ local deck_capacity = gun.deck_capacity
 ComponentSetValue(ability_comp, "ui_name", get_random_from(gun.name))
 
 ComponentObjectSetValue(ability_comp, "gun_config", "reload_time", gun.reload_time)
-ComponentObjectSetValue(
-	ability_comp,
-	"gunaction_config",
-	"fire_rate_wait",
-	get_random_between_range(gun.fire_rate_wait)
-)
+ComponentObjectSetValue(ability_comp, "gunaction_config", "fire_rate_wait", get_random_between_range(gun.fire_rate_wait))
 ComponentSetValue(ability_comp, "mana_charge_speed", get_random_between_range(gun.mana_charge_speed))
 
 ComponentObjectSetValue(ability_comp, "gun_config", "actions_per_round", gun.actions_per_round)

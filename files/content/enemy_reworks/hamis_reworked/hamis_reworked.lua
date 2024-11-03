@@ -19,8 +19,7 @@ hamis_xml:add_child(nxml.new_element("LuaComponent", {
 
 ModTextFileSetContent(hamis_file, tostring(hamis_xml))
 
-local hamis_parts =
-	nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml"))
+local hamis_parts = nxml.parse(ModTextFileGetContent("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml"))
 local base = hamis_parts:first_of("Base")
 if not base then return end
 

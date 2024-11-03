@@ -7,11 +7,7 @@ local orbsbad = {}
 function orbsbad:update()
 	local mortals = EntityGetWithTag("mortal")
 	for _, entity in ipairs(mortals) do
-		if
-			EntityHasTag(entity, "orbsfucked")
-			or EntityHasTag(entity, "player_unit")
-			or EntityHasTag(entity, "polymorphed_player")
-		then
+		if EntityHasTag(entity, "orbsfucked") or EntityHasTag(entity, "player_unit") or EntityHasTag(entity, "polymorphed_player") then
 			goto continue
 		end
 		local dmg_comp = EntityGetFirstComponent(entity, "DamageModelComponent")

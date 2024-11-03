@@ -57,8 +57,7 @@ local function generate_image(index, original_sprite, was_first)
 	-- Randomly overlay parts of the original sprite onto the corrupted sprite
 
 	local original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename(original_sprite)
-	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height =
-		ModImageIdFromFilename(corrupted_sprite)
+	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename(corrupted_sprite)
 
 	if was_first then
 		for i = 0, corrupted_sprite_width - 1 do
@@ -161,9 +160,7 @@ local function create_tmtrainer_action(action_type, index)
 
 				if filter.contains_slur(table.concat(description_parts)) then
 					table.remove(description_parts)
-					if iteration < max_iterations and (chars - 1 > 0) then
-						try_update_description(chars - 1, iteration + 1)
-					end
+					if iteration < max_iterations and (chars - 1 > 0) then try_update_description(chars - 1, iteration + 1) end
 				end
 			end
 
@@ -200,11 +197,7 @@ local function create_tmtrainer_action(action_type, index)
 		generate_image(index, added_action.sprite, i == 1)
 
 		-- Determine custom_xml_file
-		if
-			added_action.custom_xml_file
-			and added_action.custom_xml_file ~= ""
-			and (i == 1 or Random(0, 100) > 50 or not custom_xml_file)
-		then
+		if added_action.custom_xml_file and added_action.custom_xml_file ~= "" and (i == 1 or Random(0, 100) > 50 or not custom_xml_file) then
 			custom_xml_file = added_action.custom_xml_file
 		end
 
@@ -303,9 +296,7 @@ local function create_tmtrainer_action(action_type, index)
 				seed_offset = seed_offset + 1
 				SetRandomSeed(TMTRAINER_INDEX, seed_offset)
 				local caster = EntityGetRootEntity(GetUpdatedEntityID())
-				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then
-					_streaming_run_event(twitch_event.id)
-				end
+				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then _streaming_run_event(twitch_event.id) end
 			end
 		end
 	end

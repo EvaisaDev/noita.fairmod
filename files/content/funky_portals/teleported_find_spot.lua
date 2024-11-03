@@ -75,9 +75,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						end
 					end
 
-					if legal then
-						table.insert(positions, { x = center_x, y = center_y, biome = biome, weight = weight })
-					end
+					if legal then table.insert(positions, { x = center_x, y = center_y, biome = biome, weight = weight }) end
 				end
 			end
 		end
@@ -125,9 +123,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 								local hit2, hit_x, hit_y = RaytraceSurfaces(curr_x, curr_y, curr_x, curr_y + 512)
 								local hit3 = RaytraceSurfacesAndLiquiform(hit_x, hit_y - 1, hit_x, hit_y - 5)
 
-								if hit2 and not hit3 then
-									table.insert(valid_positions, { x = hit_x, y = hit_y - 8 })
-								end
+								if hit2 and not hit3 then table.insert(valid_positions, { x = hit_x, y = hit_y - 8 }) end
 							end
 						end
 					end
@@ -140,16 +136,11 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 					local entities = EntityGetInRadius(valid_positions[safe_index].x, valid_positions[safe_index].y, 20)
 					for i, entity in ipairs(entities) do
 						if entity ~= player_entity and EntityGetRootEntity(entity) == entity then
-							local physics_body_component =
-								EntityGetFirstComponentIncludingDisabled(entity, "PhysicsBodyComponent")
-							local physics_body2_component =
-								EntityGetFirstComponentIncludingDisabled(entity, "PhysicsBody2Component")
-							local explosion_component =
-								EntityGetFirstComponentIncludingDisabled(entity, "ExplosionComponent")
-							local projectile_component =
-								EntityGetFirstComponentIncludingDisabled(entity, "ProjectileComponent")
-							local explode_on_damage_component =
-								EntityGetFirstComponentIncludingDisabled(entity, "ExplodeOnDamageComponent")
+							local physics_body_component = EntityGetFirstComponentIncludingDisabled(entity, "PhysicsBodyComponent")
+							local physics_body2_component = EntityGetFirstComponentIncludingDisabled(entity, "PhysicsBody2Component")
+							local explosion_component = EntityGetFirstComponentIncludingDisabled(entity, "ExplosionComponent")
+							local projectile_component = EntityGetFirstComponentIncludingDisabled(entity, "ProjectileComponent")
+							local explode_on_damage_component = EntityGetFirstComponentIncludingDisabled(entity, "ExplodeOnDamageComponent")
 
 							if
 								physics_body_component
@@ -166,24 +157,14 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 					EntityApplyTransform(player_entity, valid_positions[safe_index].x, valid_positions[safe_index].y)
 					delay.new(10, function()
 						--EntityApplyTransform(player_entity, valid_positions[safe_index].x, valid_positions[safe_index].y)
-						local new_x, new_y = FindFreePositionForBody(
-							valid_positions[safe_index].x,
-							valid_positions[safe_index].y,
-							0,
-							0,
-							6
-						)
+						local new_x, new_y = FindFreePositionForBody(valid_positions[safe_index].x, valid_positions[safe_index].y, 0, 0, 6)
 						EntityApplyTransform(player_entity, new_x, new_y)
 
 						-- create hole
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
-							if(not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost"))then
-								local return_portal = EntityLoad(
-									"mods/noita.fairmod/files/content/funky_portals/return_portal.xml",
-									new_x,
-									new_y
-								)
+							if not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost") then
+								local return_portal = EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", new_x, new_y)
 								EntityAddComponent2(return_portal, "VariableStorageComponent", {
 									name = "target_x",
 									value_float = from_x,
@@ -198,12 +179,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						end)
 					end)
 
-					print(
-						"Safe position found at "
-							.. valid_positions[safe_index].x
-							.. ", "
-							.. valid_positions[safe_index].y
-					)
+					print("Safe position found at " .. valid_positions[safe_index].x .. ", " .. valid_positions[safe_index].y)
 					-- print non chuck size
 					print(
 						"Safe position found at "

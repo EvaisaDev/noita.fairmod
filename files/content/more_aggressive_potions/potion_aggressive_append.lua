@@ -39,22 +39,14 @@ pa.potions = {
 		probability = 2, --default probability is 10
 		amount = 100000, --reference to the funny 10000% acid potion mod
 		cost = 800, --default cost 200
-		
+
 		func = function(data) --function has no default, entirely optional
 			local itemcomp = EntityGetComponent(data.entity_id, "ItemComponent") --function that adds funni names/descs to the acid potion
 			if itemcomp == nil then return end
 			ComponentSetValue2(itemcomp[1], "item_name", "$100000_percent_acid")
 			ComponentSetValue2(itemcomp[1], "always_use_item_name_in_ui", true)
-			ComponentSetValue2(
-				itemcomp[1],
-				"ui_description",
-				GameTextGet("$100000_percent_acid_desc", "$bee_movie_script")
-			) --low chance to just make it the entire bee movie script lmao
-			ComponentSetValue2(
-				itemcomp[1],
-				"custom_pickup_string",
-				GameTextGet("$100000_percent_acid_picked_up", "$100000_percent_acid")
-			)
+			ComponentSetValue2(itemcomp[1], "ui_description", GameTextGet("$100000_percent_acid_desc", "$bee_movie_script")) --low chance to just make it the entire bee movie script lmao
+			ComponentSetValue2(itemcomp[1], "custom_pickup_string", GameTextGet("$100000_percent_acid_picked_up", "$100000_percent_acid"))
 		end, --just an example of the sort of thing you can do
 	},
 	{

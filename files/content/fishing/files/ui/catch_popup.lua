@@ -50,60 +50,21 @@ async_loop(function()
 		GuiZSetForNextWidget(gui, -500)
 		img_w, img_h = GuiGetImageDimensions(gui, background_sprite, 1)
 		img_h = img_h * height_multiplier
-		GuiImage(
-			gui,
-			NextID(),
-			((w / 2) - (img_w / 2)),
-			((h / 2) - (img_h / 2)) - 100,
-			background_sprite,
-			1,
-			1,
-			height_multiplier,
-			0
-		)
+		GuiImage(gui, NextID(), ((w / 2) - (img_w / 2)), ((h / 2) - (img_h / 2)) - 100, background_sprite, 1, 1, height_multiplier, 0)
 
 		GuiZSetForNextWidget(gui, -510)
 		img_w, img_h = GuiGetImageDimensions(gui, fish_sprite, 1)
 		img_h = img_h * height_multiplier
-		GuiImage(
-			gui,
-			NextID(),
-			(w / 2) - (img_w / 2),
-			((h / 2) - (img_h / 2)) - 100,
-			fish_sprite,
-			1,
-			1,
-			height_multiplier,
-			0
-		)
+		GuiImage(gui, NextID(), (w / 2) - (img_w / 2), ((h / 2) - (img_h / 2)) - 100, fish_sprite, 1, 1, height_multiplier, 0)
 
 		GuiColorSetForNextWidget(gui, 0, 0, 0, 0.3)
 		GuiZSetForNextWidget(gui, -505)
 		img_w, img_h = GuiGetImageDimensions(gui, fish_sprite, 1)
 		img_h = img_h * height_multiplier
-		GuiImage(
-			gui,
-			NextID(),
-			(w / 2) + 1 - (img_w / 2),
-			((h / 2) + 1 - (img_h / 2)) - 100,
-			fish_sprite,
-			1,
-			1,
-			height_multiplier,
-			0
-		)
+		GuiImage(gui, NextID(), (w / 2) + 1 - (img_w / 2), ((h / 2) + 1 - (img_h / 2)) - 100, fish_sprite, 1, 1, height_multiplier, 0)
 
 		if show_text then
-			width, height = TextSize(
-				gui,
-				"mods/noita.fairmod/files/content/fishing/files/ui/characters",
-				0,
-				0,
-				0.4,
-				-525,
-				fish_name,
-				-0.5
-			)
+			width, height = TextSize(gui, "mods/noita.fairmod/files/content/fishing/files/ui/characters", 0, 0, 0.4, -525, fish_name, -0.5)
 			DrawText(
 				gui,
 				"mods/noita.fairmod/files/content/fishing/files/ui/characters",
@@ -116,16 +77,7 @@ async_loop(function()
 				-0.5
 			)
 
-			width, height = TextSize(
-				gui,
-				"mods/noita.fairmod/files/content/fishing/files/ui/characters",
-				0,
-				0,
-				0.4,
-				-525,
-				fish_size .. " kg",
-				-0.5
-			)
+			width, height = TextSize(gui, "mods/noita.fairmod/files/content/fishing/files/ui/characters", 0, 0, 0.4, -525, fish_size .. " kg", -0.5)
 			DrawText(
 				gui,
 				"mods/noita.fairmod/files/content/fishing/files/ui/characters",

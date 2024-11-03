@@ -77,12 +77,7 @@ function EntitySetVerletPoints(entity, start_x, start_y, end_x, end_y)
 
 	local overshoot = (stretch_distance / resting_distance) / 2
 
-	local direction = get_direction(
-		positions[end_x_index - 2],
-		positions[end_y_index - 2],
-		positions[end_x_index],
-		positions[end_y_index]
-	)
+	local direction = get_direction(positions[end_x_index - 2], positions[end_y_index - 2], positions[end_x_index], positions[end_y_index])
 
 	local dir_x, dir_y = rad_to_vec(direction)
 

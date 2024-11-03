@@ -148,16 +148,7 @@ end
 for k, v in ipairs(limbs) do
 	if tracked_limbs[k] ~= nil then
 		if debug then
-			GameCreateSpriteForXFrames(
-				"data/ui_gfx/debug_marker.png",
-				tracked_limbs[k][1],
-				tracked_limbs[k][2],
-				true,
-				0,
-				0,
-				60,
-				true
-			)
+			GameCreateSpriteForXFrames("data/ui_gfx/debug_marker.png", tracked_limbs[k][1], tracked_limbs[k][2], true, 0, 0, 60, true)
 			screen_pos_x, screen_pos_y = WorldToScreenPos(gui, end_x, end_y)
 
 			GuiText(gui, screen_pos_x, screen_pos_y, "Limb " .. tostring(k))
@@ -208,16 +199,7 @@ for k, v in ipairs(limbs) do
 			end
 
 			if debug then
-				GameCreateSpriteForXFrames(
-					"data/ui_gfx/debug_marker.png",
-					max_position_x,
-					max_position_y,
-					true,
-					0,
-					0,
-					1,
-					true
-				)
+				GameCreateSpriteForXFrames("data/ui_gfx/debug_marker.png", max_position_x, max_position_y, true, 0, 0, 1, true)
 
 				local screen_pos_x, screen_pos_y = WorldToScreenPos(gui, max_position_x, max_position_y)
 
