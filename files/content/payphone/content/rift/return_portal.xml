@@ -1,0 +1,109 @@
+<Entity serialize="0">
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/payphone/content/rift/tear.png"
+		offset_x="40"
+   		offset_y="33"
+		z_index="5"
+	/>
+	
+	<InteractableComponent
+		_tags="enter_portal"
+		radius="20"
+		ui_text="Press $0 to enter."
+		name="interact"
+	/>
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/payphone/content/rift/return_handler.lua"
+		enable_coroutines="1"
+	/>
+
+
+	<LifetimeComponent
+		lifetime="1800"
+	/>
+
+	<LightComponent 
+		
+		_enabled="1" 
+		radius="255"
+		fade_out_time="1.5" 
+		r="64"
+		g="100"
+		b="255"
+		offset_y="-16"
+	></LightComponent>
+	
+	<LightComponent 
+		
+		_enabled="1" 
+		radius="64"
+		fade_out_time="1.5" 
+		r="64"
+		g="100"
+		b="255"
+		offset_y="-16"
+	></LightComponent>
+	
+	<ParticleEmitterComponent 
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="1"
+		lifetime_max="2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="115"
+		count_max="115"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="12"
+		emission_interval_max_frames="12"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" 
+		image_animation_file="mods/noita.fairmod/files/content/payphone/content/rift/tear_emitter.png"
+		image_animation_speed="5"
+		image_animation_loop="1"
+		>
+	</ParticleEmitterComponent>
+
+	<ParticleEmitterComponent 
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="1"
+		lifetime_max="2"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="1"
+		count_max="1"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="12"
+		emission_interval_max_frames="12"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="0"
+		render_back="1"
+		is_emitting="1" 
+		image_animation_file="mods/noita.fairmod/files/content/funky_portals/tear_emitter.png"
+		image_animation_speed="5"
+		image_animation_loop="1"
+		>
+	</ParticleEmitterComponent>
+	
+
+</Entity>

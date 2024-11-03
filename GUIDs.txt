@@ -56,6 +56,7 @@
 {53d38946-4d1e-4b9d-bbec-463a2b7de10e} event:/nuke/fart4
 {a5d4cb7e-f443-4251-89c2-f3dbef789d95} event:/nuke/fart5
 {4cb8cff5-faed-469b-b07d-94ba48b7f74c} event:/payphone/breathing
+{ef02546b-97c6-48ad-9604-7498f300aaeb} event:/payphone/garbled
 {81ed466e-7c7a-4991-ae53-60a8340c8c22} event:/payphone/gibberish
 {0205183a-406d-4bb5-ad07-3716b4621518} event:/payphone/hungup
 {e94bd9c0-4b86-4e3e-a138-ea0159ea20cf} event:/payphone/pickup

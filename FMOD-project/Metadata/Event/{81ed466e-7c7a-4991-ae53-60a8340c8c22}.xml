@@ -5,7 +5,7 @@
 			<value>gibberish</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{91f27e66-a3fa-4c9e-b4bc-ca79a3c4e987}</destination>
@@ -160,7 +160,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f7266e3c-6d1d-40f0-be6d-50d3e9c2c6cd}">
 		<relationship name="effects">
-			<destination>{e02e90f6-ae8f-4a51-9b9a-65e197add360}</destination>
 			<destination>{36543f6c-82f7-4da9-9bff-7697f18f1c7b}</destination>
 		</relationship>
 	</object>
@@ -210,17 +209,6 @@
 			<destination>{5f557253-aeca-458a-8dc1-e35dfac276cd}</destination>
 			<destination>{45f7dbd7-f7e5-4ff2-a377-d9fbb20b6984}</destination>
 		</relationship>
-	</object>
-	<object class="SpatialiserEffect" id="{e02e90f6-ae8f-4a51-9b9a-65e197add360}">
-		<property name="distanceRolloffType">
-			<value>3</value>
-		</property>
-		<property name="minimumDistance">
-			<value>50</value>
-		</property>
-		<property name="maximumDistance">
-			<value>400</value>
-		</property>
 	</object>
 	<object class="MixerBusFader" id="{36543f6c-82f7-4da9-9bff-7697f18f1c7b}" />
 	<object class="MixerBusFader" id="{2bff0415-2b7a-4e6c-af13-8679d0bc0e69}" />

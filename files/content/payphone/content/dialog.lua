@@ -371,7 +371,7 @@ return {
 		name = "Heavy Breather",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "breathing",
-		typing_sound_interval = 5,
+		typing_sound_interval = 1,
 		text = [[...]],
 		options = {
 			{
@@ -1351,6 +1351,7 @@ return {
 	{
 		name = "Evaisa",
 		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_eba.png",
+		typing_sound = "gibberish",
 		text = "Hello, It is I, the eba.",
 		options = {
 			{
@@ -1538,6 +1539,61 @@ return {
 			},
 			{
 				text = "No thanks",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Garbled Voice",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "garbled",
+		text = [[{@delay 2}#                    H                               E    
+		#  #L                                                      
+		#                                                #P        
+		#  #M                                                      
+		#                            #E                            
+		]],
+		options = {
+			{
+				text = "wh.. what?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@delay 1}#                    L                               O
+		#  #S
+		#                                                #T
+		#  #I						#I                    
+		#                            #TS     W    R    O    N    G
+		]],
+						options = {
+							{
+								text = "I.. I don't understand.",
+								func = function(dialog)
+
+
+									dialog.show({
+										text = [[{@delay 10}#      E N TER {@func disconnected} {@func ng_portal}]],
+										options = {
+											{
+												text = "Hang up.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+
+									
+								end
+							}
+						}
+					})
+							
+				end,
+			},
+			{
+				text = "hang up",
 				func = function(dialog)
 					hangup()
 				end,
