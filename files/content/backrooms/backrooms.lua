@@ -94,7 +94,8 @@ end
 
 function load_lamp(x, y)
 	SetRandomSeed(x, y + GameGetFrameNum())
-
+	local _seed = tonumber(ModSettingGet("user_seed"):sub(5, 13))
+	math.randomseed(_seed, _seed + 1)
 	local g_lamp = {
 		total_prob = 0,
 		{
@@ -116,13 +117,12 @@ function load_lamp(x, y)
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_broken.xml",
 		},
 		{
-			prob = .01,
+			prob = math.random(500, 2000) * .00001,
 			min_count = 1,
 			max_count = 1,
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml",
 		},
 	}
-
 	-- if x is odd, add 0.5, else, remove 0.5
 	if x % 2 == 1 then
 		x = x + 0.5
