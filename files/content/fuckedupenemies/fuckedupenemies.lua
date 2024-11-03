@@ -63,20 +63,26 @@ function evil:ItemPickUpperComponent(enemy)
 		execute_every_n_frame = 0,
 		execute_times = -1,
 	})
-	local item_pickupper_component = EntityGetFirstComponentIncludingDisabled(enemy, "ItemPickUpperComponent")
-	if item_pickupper_component then
-		ComponentSetValue2(item_pickupper_component, "is_in_npc", true)
-		ComponentSetValue2(item_pickupper_component, "pick_up_any_item_buggy", true)
-		ComponentSetValue2(item_pickupper_component, "is_immune_to_kicks", false)
-		ComponentSetValue2(item_pickupper_component, "drop_items_on_death", true)
-		return
+
+	-- Can't have enemies without a controls component picking up weird shit,
+	-- because that causes crashes.
+	local controls_component = EntityGetFirstComponentIncludingDisabled(enemy, "ControlsComponent")
+	if controls_component then
+		local item_pickupper_component = EntityGetFirstComponentIncludingDisabled(enemy, "ItemPickUpperComponent")
+		if item_pickupper_component then
+			ComponentSetValue2(item_pickupper_component, "is_in_npc", true)
+			ComponentSetValue2(item_pickupper_component, "pick_up_any_item_buggy", true)
+			ComponentSetValue2(item_pickupper_component, "is_immune_to_kicks", false)
+			ComponentSetValue2(item_pickupper_component, "drop_items_on_death", true)
+			return
+		end
+		EntityAddComponent2(enemy, "ItemPickUpperComponent", {
+			is_in_npc = true,
+			pick_up_any_item_buggy = true,
+			is_immune_to_kicks = false,
+			drop_items_on_death = true,
+		})
 	end
-	EntityAddComponent2(enemy, "ItemPickUpperComponent", {
-		is_in_npc = true,
-		pick_up_any_item_buggy = true,
-		is_immune_to_kicks = false,
-		drop_items_on_death = true,
-	})
 end
 
 function evil:TweakAnimalComponent(headache, animal_ai)

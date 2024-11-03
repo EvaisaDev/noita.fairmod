@@ -1,19 +1,24 @@
-radio_is_on = radio_is_on or false
+
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	radio_is_on = not radio_is_on
+	local radio_is_on = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on") ~= nil
 	local entity = GetUpdatedEntityID()
 
-	local audio_loop_off = EntityGetFirstComponentIncludingDisabled(entity, "AudioLoopComponent", "radio_off")
-	local audio_loop_on = EntityGetFirstComponentIncludingDisabled(entity, "AudioLoopComponent", "radio_on")
-
-	if radio_is_on then
+	if not radio_is_on then
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", true)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", false)
-		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) + 1))
+		local audiocomp = EntityGetFirstComponent(entity, "AudioLoopComponent")
+		if audiocomp then ComponentSetValue2(audiocomp, "event_name", "radio/" .. (Random(1, 10) == 9 and "ill_see_you_when_i_see_you" or "loop")) end
+
+		local current_radios = tonumber(GlobalsGetValue("radios_activated", "0")) + 1
+		GlobalsSetValue("radios_activated", tostring(current_radios))
+		if current_radios > (ModSettingGet("radios_activated_highscore") or 0) then
+			ModSettingSet("radios_activated_highscore", current_radios)
+		end
 	else
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", false)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", true)
 		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) - 1))
+
 	end
 end

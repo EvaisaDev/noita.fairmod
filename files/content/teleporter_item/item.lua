@@ -7,6 +7,8 @@ local MAX_STEPS = 8
 local UPWARP_STEP_SIZE = 15
 local UPWARP_MAX_STEPS = 6
 
+local snail_telefrags_global = "FAIRMOD_SNAIL_TELEFRAGS"
+
 local function is_space_occupied(x, y)
 	local hit = RaytracePlatforms(x, y, x, y)
 	return hit
@@ -79,6 +81,20 @@ if controls then
 		for _, mortal in ipairs(mortals) do
 			if mortal ~= holder then
 				EntityInflictDamage(mortal, 1000, "DAMAGE_PHYSICS_HIT", "Telefragged", "BLOOD_EXPLOSION", 0, 0, holder)
+				if EntityGetFilename(mortal) == "mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml" then
+					-- Components still run for a frame if we don't disable them
+					for _, comp in ipairs(EntityGetAllComponents(mortal)) do
+						EntitySetComponentIsEnabled(mortal, comp, false)
+					end
+
+					EntityKill(mortal)
+
+					local sx, sy = EntityGetTransform(mortal)
+					EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/guts/guts" .. Random(1, 5) .. ".xml", sx, sy)
+					EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/guts/guts" .. Random(1, 5) .. ".xml", sx, sy)
+
+					GlobalsSetValue(snail_telefrags_global, GlobalsGetValue(snail_telefrags_global, "0") + 1)
+				end
 			end
 		end
 	end

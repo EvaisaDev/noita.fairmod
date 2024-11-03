@@ -3,7 +3,7 @@
 		_tags="loanshark_sprite"
 		image_file="mods/noita.fairmod/files/content/loan_shark/loanshark_anim.xml"
 		rect_animation="idle"
-		z_index="2"
+		z_index="22"
 	/>
 
 	<SpriteAnimatorComponent
@@ -14,7 +14,7 @@
 		image_file="mods/noita.fairmod/files/content/loan_shark/desk.png"
 		offset_x="32"
 		offset_y="17"
-		z_index="1"
+		z_index="21"
 	/>
 
 

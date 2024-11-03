@@ -1,0 +1,13 @@
+<Entity tags="effect_protection" >
+	
+	<InheritTransformComponent>
+    </InheritTransformComponent>	
+    
+    <GameEffectComponent
+        effect="CUSTOM"
+		custom_effect_id="PROTECTION_NONE"
+        frames="7200"
+    >
+	</GameEffectComponent >
+
+</Entity>

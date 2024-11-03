@@ -180,7 +180,7 @@
 		air_needed="0" 
 		falling_damages="0"
 		fire_probability_of_ignition="0" 
-		blood_material="slime_green"
+		blood_material="magic_liquid_weakness"
 		is_on_fire="0" 
 		ragdoll_filenames_file=""
         ragdoll_material="meat_slime_green"

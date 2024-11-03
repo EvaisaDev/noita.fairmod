@@ -1,3 +1,68 @@
+
+local function get_distance(x1, y1, x2, y2)
+	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+end
+
+local function statue_get_distance()
+	local player = (EntityGetWithTag("player_unit") or {})[1]
+	if player == nil then return true end
+	local x,y = EntityGetTransform(player)
+
+	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
+	if statue == nil then return true end
+	local x2,y2 = EntityGetTransform(statue)
+
+	return get_distance(x, y, x2, y2)
+end
+
+local function statue_check()
+	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
+
+	local dist = statue_get_distance()
+	if dist < 25 then
+		local phys = EntityGetFirstComponent(statue, "PhysicsBody2Component")
+		local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
+		PhysicsComponentSetTransform(phys, x, y, angle, vel_x + 20, vel_y - 1, -20)
+		return true
+	end
+	return dist > 100
+end
+
+local function statue_closeness_dialog(dialog)
+	if statue_check() then
+		hangup()
+	end
+
+	local requests = {
+		"Closer . . .",
+		"No, closer.",
+		"No, you're too far.",
+		"Come closer.",
+		"Not close enough."
+	}
+	local responses = {
+		"How's this?",
+		"Am I close enough?",
+		"Here?",
+		"How about now?"
+	}
+	dialog.show({
+		text=requests[Random(1, #requests)],
+		options = {
+			{
+				text = responses[Random(1, #responses)],
+				func = statue_closeness_dialog
+			},
+			{
+				text = "Bye",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	})
+end
+
 return {
 	{
 		name = "Unknown Caller",
@@ -705,7 +770,8 @@ return {
 		name = "Unknown Caller",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "default",
-		text = [[Hello? Can Anyone there? \nI'm lost in some underground jungle!]],
+		text = [[Hello? Is Anyone there? 
+		I'm lost in some underground jungle!]],
 		options = {
 			{
 				text = "Yes, I'm  here. Where are you?",
@@ -975,7 +1041,8 @@ return {
 				text = "H.. Hello?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Just calling to see if your Copith is running!]],
+						text = [[Just calling to see if your ~Copi's Things~ mod is running!
+{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
 						options = {
 							{
 								text = "No it is not..",
@@ -999,7 +1066,6 @@ return {
 																text = "Maybe another time.",
 																func = function(dialog)
 																	hangup()
-																	-- Add a script to the player to add a 'herobrine' shadow copi that just subtly appears at the edge of the screen sometimes
 																end,
 															},
 														},
@@ -1072,8 +1138,8 @@ return {
 									else
 										for k, v in ipairs(GetPlayers()) do
 											EntityAddComponent2(v, "LuaComponent", {
-												script_source_file = "mods/noita.fairmod/files/content/payphone/entities/curse_of_copi.lua",
-												execute_every_n_frame = 30,
+												script_source_file = "mods/noita.fairmod/files/content/payphone/content/copi/curse_of_copi.lua",
+												execute_every_n_frame = 60,
 											})
 										end
 										dialog.show({
@@ -1239,10 +1305,10 @@ return {
 					text = "Yes",
 					func = function(dialog)
 						dialog.show({
-							text = "I hope you helped him.",
+							text = "I hope you helped him.{@func disconnected}",
 							options = {
 								{
-									text = "Huh?{@func disconnected}",
+									text = "Huh?",
 									func = function()
 										hangup()
 									end,
@@ -1386,28 +1452,96 @@ return {
 	{
 		name = "G???O??D????",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
-		text = "Haha bye.{@func disconnected}",
+		text = "Haha bye.{@func disconnected} {@func teleport}",
 		options = {
 			{
 				text = "What..?",
 				func = function(dialog)
-					GameAddFlagRun("random_teleport_next")
-					GameAddFlagRun("no_return")
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Heinermann",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_heinermann.png",
+		text = "Hello, have you heard of the Archipelago mod?",
+		options = {
+			{
+				text = "Yep, I've even played it!",
+				func = function(dialog)
+					dialog.show({
+						text="Great! Please share it!",
+						options = {
+							{
+								text = "Okay",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Yeah, but I haven't tried it.",
+				func = function(dialog)
+					dialog.show({
+						text=[[Don't be afraid to give it a shot. You can switch between
+						different games on your own, or play with others, short session,
+						multi-day session, lots of ways to play.]],
+						options = {
+							{
+								text = "Cool, maybe I will",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "No, what is it?",
+				func = function(dialog)
+					dialog.show({
+						text=[[It's a multi-game, multi-world randomizer. You connect
+						with multiple games and items are shuffled between them.
 
-					local players = EntityGetWithTag("player_unit") or {}
-
-					if players == nil or #players == 0 then return end
-
-					local player = players[1]
-
-					local x, y = EntityGetTransform(player)
-
-					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
-
+						Work together to complete all the games!]],
+						options = {
+							{
+								text = "Oh, interesting",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Statue?",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_statue.png",
+		text = [[Psst . . .
+		{@pause 60}
+		Come closer . . .]],
+		can_call = function() -- optional
+			return statue_get_distance() < 100
+		end,
+		options = {
+			{
+				text = "How's this?",
+				func = statue_closeness_dialog
+			},
+			{
+				text = "No thanks",
+				func = function(dialog)
 					hangup()
 				end,
 			},
 		},
 	},
 }
-

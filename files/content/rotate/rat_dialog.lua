@@ -6,6 +6,30 @@ local x, y = EntityGetTransform(entity_id)
 
 SetRandomSeed(x + GameGetFrameNum(), y)
 
+local function dialog_thank_you(dialog)
+	local interactable_component = EntityGetFirstComponentIncludingDisabled(entity_id, "InteractableComponent")
+	-- remove the interactable component so the rat doesn't talk to you again
+	if interactable_component then EntityRemoveComponent(entity_id, interactable_component) end
+
+	local rotta_kart = EntityGetWithName("rotta_kart")
+
+	if rotta_kart and EntityGetIsAlive(rotta_kart) then
+		local audio_loop = EntityGetFirstComponentIncludingDisabled(rotta_kart, "AudioLoopComponent")
+		if audio_loop then
+			ComponentSetValue2(
+				audio_loop,
+				"event_name",
+				ModSettingGet("noita.fairmod.streamer_mode") and "rats/birthday_streamer" or "rats/birthday"
+			)
+			EntitySetComponentIsEnabled(rotta_kart, audio_loop, false)
+			EntitySetComponentIsEnabled(rotta_kart, audio_loop, true)
+		end
+		GameAddFlagRun("fairmod_rat_birthday_dialogue")
+		EntityLoad("mods/noita.fairmod/files/content/rat_wand/rat_wand.xml", 425, -120)
+	end
+	dialog.close()
+end
+
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	dialog = dialog_system.open_dialog({
 		name = "Rat",
@@ -21,28 +45,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 						options = {
 							{
 								text = "Thank you!!",
-								func = function(dialog)
-									local interactable_component =
-										EntityGetFirstComponentIncludingDisabled(entity_id, "InteractableComponent")
-									-- remove the interactable component so the rat doesn't talk to you again
-									EntityRemoveComponent(entity_interacted, interactable_component)
-
-									local rotta_kart = EntityGetWithName("rotta_kart")
-
-									if rotta_kart and EntityGetIsAlive(rotta_kart) then
-										local audio_loop =
-											EntityGetFirstComponentIncludingDisabled(rotta_kart, "AudioLoopComponent")
-										ComponentSetValue2(
-											audio_loop,
-											"event_name",
-											ModSettingGet("noita.fairmod.streamer_mode") and "rats/birthday_streamer"
-												or "rats/birthday"
-										)
-										EntitySetComponentIsEnabled(rotta_kart, audio_loop, false)
-										EntitySetComponentIsEnabled(rotta_kart, audio_loop, true)
-									end
-									dialog.close()
-								end,
+								func = dialog_thank_you,
 							},
 						},
 					})

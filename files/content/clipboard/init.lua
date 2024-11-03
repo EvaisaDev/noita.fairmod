@@ -45,6 +45,9 @@ function clipboard.OnPlayerSpawned()
 			GameTextGet("$bee_movie_script"), --lmao
 			'"Wait a minute, I didn\'t copy this!"\n-You, right now',
 			"I wonder what the blacklights are for...",
+			"unknown.png",
+			"hehe im in your 'puter",
+			"This mod is so fair!",
 		}
 
 	if imgui then

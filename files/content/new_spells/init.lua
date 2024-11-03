@@ -23,3 +23,4 @@ ModLuaFileAppend(
 	"data/scripts/gun/gun_actions.lua",
 	"mods/noita.fairmod/files/content/new_spells/bad_bombs/bad_bombs.lua"
 )
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/new_spells/joel/joel.lua")

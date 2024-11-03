@@ -1,4 +1,4 @@
-<Entity name="Snowball" >
+<Entity name="Snowball" tags="snowball" >
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -26,7 +26,7 @@
 		damage="0.0001"
 		go_through_this_material="snow_b2"
 		blood_count_multiplier="0"
-		damage_game_effect_entities="data/entities/misc/effect_internal_ice.xml"
+		damage_game_effect_entities=""
 		knockback_force="20"
 		on_collision_spawn_entity="1"
 		spawn_entity="mods/noita.fairmod/files/content/snowman/snowball_item.xml"

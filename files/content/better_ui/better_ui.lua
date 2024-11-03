@@ -100,6 +100,7 @@ local objectives = {
 	"Have 3 people visit your island",
 	"Loading...",
 	"Failed",
+	"Follow the purple lights",
 }
 
 local game_speed_a = 0
@@ -136,6 +137,12 @@ local ui_displays = {
 		{
 			text = function()
 				return string.format("Radios tuned: %s", GlobalsGetValue("radios_activated", "0"))
+			end,
+			condition = global_greater_than_zero("radios_activated"),
+		},
+		{
+			text = function()
+				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("radios_activated_highscore")))
 			end,
 			condition = global_greater_than_zero("radios_activated"),
 		},

@@ -1,7 +1,7 @@
 actions[#actions + 1] = {
 	id = "BULLET_SNAIL",
-	name = "Snail Gun Bullet",
-	description = "yeah.",
+	name = "Freedom Seeds",
+	description = "Not actually a seed. It's a 9mm bullet.",
 	sprite = "mods/noita.fairmod/files/content/immortal_snail/gun/ui_gfx/bullet.png",
 	type = ACTION_TYPE_PROJECTILE,
 	spawn_level = "0,0",
