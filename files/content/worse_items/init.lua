@@ -143,3 +143,19 @@ for entity in nxml.edit_file("data/entities/items/pickup/physics_gold_orb_greed.
 	
 end
 
+
+for entity in nxml.edit_file("data/entities/misc/beam_from_sky.xml") do
+
+	for i = #entity.children, 1, -1 do
+		if(entity.children[i]:get("script_source_file") == "data/scripts/magic/beam_from_sky.lua")then
+			entity.children[i]:set("script_source_file", "mods/noita.fairmod/files/content/worse_items/beam_from_sky.lua")
+		end
+
+		if entity.children[i]:get("lifetime") == "190" then
+			entity.children[i]:set("lifetime", "700")
+		end
+	end
+
+
+end
+
