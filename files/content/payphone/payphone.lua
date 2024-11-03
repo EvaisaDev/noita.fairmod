@@ -1,4 +1,4 @@
-local ring_chance = 100
+local ring_chance = 1
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
