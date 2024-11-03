@@ -28,11 +28,7 @@ local function its_mad()
 	GameAddFlagRun("fairmod_longest_disappointed")
 	EntityAddComponent2(entity_id, "LifetimeComponent", { lifetime = 60, fade_sprites = true })
 	GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/orb_distant_monster/create", x, y)
-	GamePrintImportant(
-		"I    D  I  D    N  O  T    F  I  N  I  S  H",
-		"..whoops",
-		"mods/noita.fairmod/files/content/pixelscenes/longest_leg/3piece_important_msg.png"
-	)
+	GamePrintImportant( "I    D  I  D    N  O  T    F  I  N  I  S  H", "..whoops", "mods/noita.fairmod/files/content/pixelscenes/longest_leg/3piece_important_msg.png")
 	EntityLoad("mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_angry_entity.xml", x, y - 20)
 end
 
@@ -47,9 +43,7 @@ end
 local dialogue_read_the_words_8 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("And so, from the fires of the Hamis Lord") .. "\n" .. shuffle(
-			"the world was made whole and its purpose set aflame."
-		) .. "\n" .. shuffle("Hope you learned something from this story."),
+		text = shuffle("And so, from the fires of the Hamis Lord") .. "\n" .. shuffle( "the world was made whole and its purpose set aflame." ) .. "\n" .. shuffle("Hope you learned something from this story."),
 		options = {
 			{
 				text = "I believe in Hamis now",
