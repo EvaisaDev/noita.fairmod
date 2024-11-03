@@ -1,0 +1,31 @@
+<Entity>
+	<Base file="data/entities/items/pickup/potion.xml" >
+
+    <MaterialSuckerComponent 
+        barrel_size="1000"
+        num_cells_sucked_per_frame="0"
+    ></MaterialSuckerComponent>
+
+  <AbilityComponent
+    ui_name="$fairmod_item_endless_milk_potion"
+    throw_as_item="1"
+  ><gun_config
+    deck_capacity="0"
+  ></gun_config>
+  </AbilityComponent>
+
+    </Base>
+	
+	<VariableStorageComponent
+		name="potion_material"
+		value_string="milk"
+		>
+	</VariableStorageComponent>
+
+	<LuaComponent 
+		_enabled="1"
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		script_source_file="mods/noita.fairmod/files/content/milk_biome/scripts/endless_milk_potion.lua" 
+		execute_every_n_frame="1">
+	</LuaComponent>
+</Entity>

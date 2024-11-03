@@ -1,0 +1,3 @@
+mods/noita.fairmod/files/content/corpses/ragdolls/body_2.png
+mods/noita.fairmod/files/content/corpses/ragdolls/legs_2.png
+mods/noita.fairmod/files/content/corpses/ragdolls/head_2.png

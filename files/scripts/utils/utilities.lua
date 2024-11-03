@@ -84,7 +84,6 @@ function GetCurrentBiomeId()
 	local x, y = EntityGetTransform(plyr)
 	local filename = DebugBiomeMapGetFilename(x, y)
 	for name in filename:gmatch("/([%w_ ]+).xml") do
-		GamePrint(name)
 		return name
 	end
 	return nil

@@ -113,3 +113,33 @@ for entity in nxml.edit_file("data/entities/items/pickup/physics_die.xml") do
 	end
 	
 end
+
+for entity in nxml.edit_file("data/entities/items/pickup/physics_gold_orb.xml") do
+
+	for i = #entity.children, 1, -1 do
+		if(entity.children[i]:get("script_kick") == "data/scripts/items/gold_orb.lua")then
+			entity.children[i]:set("script_kick", "mods/noita.fairmod/files/content/worse_items/gold_orb.lua")
+		end
+	end
+	
+end
+for entity in nxml.edit_file("data/entities/items/pickup/physics_greed_die.xml") do
+	-- get every LuaComponent
+	for i = #entity.children, 1, -1 do
+		if(entity.children[i]:get("script_source_file") == "data/scripts/items/greed_die_status.lua")then
+			entity.children[i]:set("script_source_file", "mods/noita.fairmod/files/content/worse_items/greed_die_status.lua")
+		end
+	end
+	
+end
+
+for entity in nxml.edit_file("data/entities/items/pickup/physics_gold_orb_greed.xml") do
+
+	for i = #entity.children, 1, -1 do
+		if(entity.children[i]:get("script_kick") == "data/scripts/items/gold_orb_greed.lua")then
+			entity.children[i]:set("script_kick", "mods/noita.fairmod/files/content/worse_items/gold_orb_greed.lua")
+		end
+	end
+	
+end
+

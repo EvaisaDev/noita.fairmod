@@ -45,6 +45,12 @@ local prizes = {
 		func = get_spawn_func(funcs.spawn_wand),
 	},
 	{
+		text = "???",
+		description = "You won an artifact!",
+		weight = 5,
+		func = get_spawn_func(funcs.spawn_artifact),
+	},
+	{
 		text = "spell",
 		description = "You won a spell!",
 		weight = 10,
@@ -66,8 +72,21 @@ local prizes = {
 		end,
 	},
 	{
+		text = "vacation",
+		description = "You won a free vacation!",
+		weight = 10,
+		func = function(player)
+			GameAddFlagRun("random_teleport_next")
+			GameAddFlagRun("no_return")
+		
+			local x, y = EntityGetTransform(player)
+		
+			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
+		end,
+	},
+	{
 		text = "$0.01",
-		weight = 50,
+		weight = 40,
 		description = "You won 1 cent!",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
@@ -102,29 +121,41 @@ local prizes = {
 	{
 		text = "$100.00",
 		description = "You won 100 gold!",
-		weight = 15,
+		weight = 20,
 		func = get_money_func(100),
 	},
 	-- 250
 	{
 		text = "$250.00",
 		description = "You won 250 gold!",
-		weight = 3,
+		weight = 10,
 		func = get_money_func(250),
 	},
 	-- 500
 	{
 		text = "$500.00",
 		description = "You won 500 gold!",
-		weight = 1,
+		weight = 8,
 		func = get_money_func(500),
 	},
 	-- 1000
 	{
 		text = "$1000.00",
 		description = "You won 1000 gold!",
-		weight = 1,
+		weight = 5,
 		func = get_money_func(1000),
+	},
+	{
+		text = "$5000.00",
+		description = "You won 5000 gold!",
+		weight = 3,
+		func = get_money_func(5000),
+	},
+	{
+		text = "$10000.00",
+		description = "You won 100000 gold!",
+		weight = 1,
+		func = get_money_func(100000),
 	},
 }
 
@@ -576,6 +607,10 @@ function scratch_ticket_methods.redeem(self)
 	local players = EntityGetWithTag("player_unit") or {}
 	if #players == 0 then return end
 	local player = players[1]
+
+	local x, y = EntityGetTransform(player)
+
+	SetRandomSeed(x + GameGetFrameNum(), y)
 
 	-- Only redeem uncovered prizes
 	for i, scratch_number in ipairs(self.scratch_numbers) do

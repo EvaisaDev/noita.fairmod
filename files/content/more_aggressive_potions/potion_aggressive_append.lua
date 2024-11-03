@@ -9,15 +9,16 @@ pa.customfunctions = {
 			local rand = Random(1, 3)
 			if rand == 1 then
 				local material = liquids[Random(1, #liquids)]
-				return { material = material }
+				potion.material = material
 			elseif rand == 2 then
 				local material = sands[Random(1, #sands)]
-				return { material = material }
+				potion.material = material
 			else
 				local material = solids[Random(1, #solids)]
-				return { material = material }
+				potion.material = material
 			end
 		end
+		if potion.material == "creepy_liquid" and Random(1, 10) > 1 then return end
 
 		local r = Random(1, 20)
 		if r > 19 then --5% chance for triple potion amount
@@ -35,9 +36,10 @@ pa.default_amount = 1000 --in case you wanted to change this
 pa.potions = {
 	{
 		material = "acid", --you probably shouldnt leave name blank, but it will default to "air" if you do
-		probability = 0.2, --default probability is 10
+		probability = 2, --default probability is 10
 		amount = 100000, --reference to the funny 10000% acid potion mod
 		cost = 800, --default cost 200
+		
 		func = function(data) --function has no default, entirely optional
 			local itemcomp = EntityGetComponent(data.entity_id, "ItemComponent") --function that adds funni names/descs to the acid potion
 			if itemcomp == nil then return end
@@ -108,6 +110,11 @@ pa.potions = {
 		material = "t_giga_slicing_liquid",
 		probability = 4,
 		amount = 500,
+	},
+	{
+		material = "t_omega_slicing_liquid",
+		probability = 1,
+		amount = 250,
 	},
 	{
 		material = "cc_grease",

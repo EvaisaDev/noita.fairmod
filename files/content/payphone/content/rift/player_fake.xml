@@ -1,0 +1,195 @@
+<Entity >
+  	<LifetimeComponent
+		lifetime="40"
+	/>
+
+  <HotspotComponent
+      _tags="hand"
+      sprite_hotspot_name="hand"
+  ></HotspotComponent>
+
+  <HotspotComponent
+    _tags="shoot_pos"
+    offset.x="0"
+    offset.y="-2"
+  ></HotspotComponent>
+
+  <HotspotComponent
+    _tags="kick_pos"
+    offset.x="0"
+    offset.y="2"
+  ></HotspotComponent>
+  
+  <HotspotComponent
+    _tags="crouch_sensor"
+    offset.x="0"
+    offset.y="-14"
+  ></HotspotComponent>
+
+  <HitboxComponent 
+    aabb_max_x="3" 
+    aabb_max_y="4" 
+    aabb_min_x="-3" 
+    aabb_min_y="-12" 
+    is_enemy="0" 
+    is_item="0" 
+    is_player="1"
+  ></HitboxComponent>
+  
+  <HitboxComponent 
+    _tags="crouched"
+    _enabled="0" 
+    aabb_max_x="3" 
+    aabb_max_y="4" 
+    aabb_min_x="-3" 
+    aabb_min_y="-8.5" 
+    is_enemy="0" 
+    is_item="0" 
+    is_player="1"
+  ></HitboxComponent>
+
+  <SpriteAnimatorComponent>
+  </SpriteAnimatorComponent>
+
+  <SpriteComponent 
+    _tags="character" 
+    alpha="1" 
+    image_file="data/enemies_gfx/player.xml" 
+    next_rect_animation="" 
+    offset_x="6" 
+    offset_y="14" 
+    rect_animation="fly_idle" 
+    z_index="0.6"
+  ></SpriteComponent>
+  
+
+  <HotspotComponent
+    _tags="right_arm_root"
+    sprite_hotspot_name="right_arm_start"
+    transform_with_scale="1"
+  ></HotspotComponent>
+
+  <Entity name="arm_r" tags="player_arm_r">
+
+    <SpriteComponent 
+      _tags="with_item" 
+      alpha="1" 
+      image_file="data/enemies_gfx/player_arm.xml" 
+      next_rect_animation="" 
+      rect_animation="default" 
+      z_index="0.59"
+    ></SpriteComponent>
+
+    <InheritTransformComponent
+      parent_hotspot_tag="right_arm_root"
+      only_position="1"
+    ></InheritTransformComponent>  
+
+    <HotspotComponent
+      _tags="hand"
+      sprite_hotspot_name="hand"
+      transform_with_scale="1"
+    ></HotspotComponent>
+
+  </Entity>
+
+  <SpriteStainsComponent>
+  </SpriteStainsComponent>
+
+  <AudioComponent
+    file="data/audio/Desktop/player.bank"
+    event_root="player"
+    audio_physics_material="character_player"
+    set_latest_event_position="1"
+  ></AudioComponent>
+
+  <AudioLoopComponent
+    _tags="sound_jetpack"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/jetpack"
+    volume_autofade_speed="0.25"
+  ></AudioLoopComponent>
+
+  <AudioLoopComponent
+    _tags="sound_air_whoosh"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/air_whoosh"
+    volume_autofade_speed="0.5"
+  ></AudioLoopComponent>
+
+  <AudioLoopComponent
+    _tags="sound_underwater"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/underwater"
+    volume_autofade_speed="0.25"
+  ></AudioLoopComponent>
+
+  <AudioLoopComponent
+    _tags="sound_suffocating"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/suffocating"
+    volume_autofade_speed="0.25"
+  ></AudioLoopComponent>
+
+  <AudioLoopComponent
+    _tags="sound_damage_curse"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/suffocating"
+    volume_autofade_speed="0.1"
+  ></AudioLoopComponent>
+
+  <AudioLoopComponent
+    _tags="sound_pick_gold_sand"
+    file="data/audio/Desktop/player.bank"
+    event_name="player/pick_gold_sand"
+    volume_autofade_speed="0.05"
+  ></AudioLoopComponent>
+
+
+
+  <LiquidDisplacerComponent
+    radius="1"
+  ></LiquidDisplacerComponent>
+
+
+	<Base file="data/entities/base_jetpack_nosound.xml">
+
+    <ParticleEmitterComponent
+		_tags=""
+		_enabled="1"
+        offset.x="-2"
+        offset.y="5"
+        lifetime_min="0.0" 
+    ></ParticleEmitterComponent>
+  
+  </Base>
+
+
+  <LightComponent 
+    r="255"
+    g="255"
+    b="255"
+    radius="350"
+    fade_out_time="5.0"
+  ></LightComponent>
+
+  <!-- cape -->
+
+  <HotspotComponent
+      _tags="cape_root"
+      sprite_hotspot_name="cape" >
+  </HotspotComponent>
+
+  <Entity name="cape">  
+      <Base file="data/entities/verlet_chains/cape/cape.xml">
+      </Base>  
+  </Entity>
+  
+  <!-- belt -->
+  
+  <HotspotComponent
+    _tags="belt_root"
+    sprite_hotspot_name="belt"
+  ></HotspotComponent>
+
+</Entity>

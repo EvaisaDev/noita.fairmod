@@ -1,0 +1,11 @@
+--stylua: ignore start
+Hi!
+Originally I meant to make a milk biome but I couldn't really figure out where to put it, let alone how it would function mechanically.
+
+I did make an enemy called the milk man which throws milk potions and has a 20% chance to drop a bottomless milk potion on death,
+I think he's interesting enough to put in the game somewhere so he spawns randomly throughout the map currently.
+
+If you want to do anything with this or shoot ideas then go ahead
+I disabled the code which injects the biome into the biome map but I'm sure you know how to uncomment if you're working on this mod.
+If you don't, bless your innocent soul.
+--stylua: ignore end

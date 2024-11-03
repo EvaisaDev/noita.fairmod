@@ -143,5 +143,39 @@ return {
 		local pid = perk_spawn_random(x, y)
 		perk_pickup(pid, player, "", true, false)
 	end,
+	spawn_artifact = function(player, x, y)
+
+		local hm_visits =
+		math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
+
+		dofile("data/scripts/perks/perk.lua")
+
+		local tmtrainer_perks = {}
+
+		for i, v in ipairs(perk_list) do
+			-- if perk name starts with TMTRAINER_ then add it to the list
+			if string.sub(v.id, 1, 10) == "TMTRAINER_" then
+				table.insert(tmtrainer_perks, v.id)
+			end
+		end
+
+		if(Random(1, 100) <= 80) then
+			EntityLoad(
+				"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
+					.. tostring(hm_visits)
+					.. ".xml",
+				x + Random(-15, 15),
+				y + Random(-15, 0)
+			)
+		else
+		
+			perk_spawn(
+				x + Random(-15, 15),
+				y + Random(-15, 0),
+				tmtrainer_perks[Random(1, #tmtrainer_perks)],
+				true
+			)
+		end
+	end,
 }
 --stylua: ignore end

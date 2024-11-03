@@ -1,4 +1,30 @@
+--stylua: ignore start
 local SetContent = ModTextFileSetContent
+
+local time = {GameGetDateAndTimeUTC()}
+SetRandomSeed(time[5] * time[6], time[3] * time[4])
+
+local function GenerateRandomNumber(iterations)
+	local number = ""
+	for i = 1, iterations do
+		number = number .. Random(0, 9)
+	end
+	return number
+end
+
+if ModSettingGet("user_seed") == nil then
+	ModSettingSet("user_seed", GenerateRandomNumber(30))
+	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
+end
+
+--[[ user seed use example:
+local _seed = ModSettingGet("user_seed"):sub(1, 10) or 0
+print(_seed)
+SetRandomSeed(_seed, _seed)
+for i = 1, 10 do
+	print(GenerateRandomNumber(8))
+end
+--]]
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -38,6 +64,7 @@ local ending_quiz = dofile_once("mods/noita.fairmod/files/content/ending_quiz/in
 local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
 local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
+local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -74,7 +101,6 @@ dofile_once("mods/noita.fairmod/files/content/rat_wand/init.lua")
 dofile_once("mods/noita.fairmod/files/content/entrance_cart/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
-dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
 dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
@@ -84,20 +110,16 @@ dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
+dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
+
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
-ModLuaFileAppend(
-	"data/scripts/gun/gun_actions.lua",
-	"mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua"
-)
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
-ModLuaFileAppend(
-	"data/scripts/projectiles/all_spells_stage.lua",
-	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
-)
+ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
@@ -142,6 +164,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
+	
+	dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 end
 
 function OnPlayerSpawned(player)
@@ -267,6 +291,7 @@ function OnWorldPreUpdate()
 	cheats.update()
 	hescoming.update()
 	smokedogg.update()
+	payphone.update()
 
 	gamblecore.Update()
 
@@ -394,3 +419,4 @@ end
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
+--stylua: ignore end

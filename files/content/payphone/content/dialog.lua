@@ -368,63 +368,6 @@ return {
 		},
 	},
 	{
-		name = "Heavy Breather",
-		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
-		typing_sound = "breathing",
-		typing_sound_interval = 5,
-		text = [[...]],
-		options = {
-			{
-				text = "Hello?",
-				func = function(dialog)
-					dialog.show({
-						text = [[\\*heavy breathing\\*]],
-						options = {
-							{
-								text = "Who is this?",
-								func = function(dialog)
-									dialog.show({
-										text = [[...{@func disconnected}]],
-										options = {
-											{
-												text = "Creepy.",
-												func = function(dialog)
-													hangup()
-												end,
-											},
-										},
-									})
-								end,
-							},
-							{
-								text = "I'm calling the authorities.",
-								func = function(dialog)
-									dialog.show({
-										text = [[\\*gasp\\* {@func disconnected}]],
-										options = {
-											{
-												text = "Good riddance.",
-												func = function(dialog)
-													hangup()
-												end,
-											},
-										},
-									})
-								end,
-							},
-						},
-					})
-				end,
-			},
-			{
-				text = "Hang up.",
-				func = function(dialog)
-					hangup()
-				end,
-			},
-		},
-	},
-	{
 		name = "Wrong Number",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "default",
@@ -979,7 +922,7 @@ return {
 		},
 	},
 	{
-		name = "Niko",
+		name = "Roman",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "four",
 		text = [[Niko it's Roman.
@@ -1351,6 +1294,7 @@ return {
 	{
 		name = "Evaisa",
 		portrait = "mods/noita.fairmod/files/content/payphone/content/portrait_eba.png",
+		typing_sound = "gibberish",
 		text = "Hello, It is I, the eba.",
 		options = {
 			{
@@ -1538,6 +1482,119 @@ return {
 			},
 			{
 				text = "No thanks",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Garbled Voice",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "garbled",
+		text = [[{@delay 2}#                    H                               E    
+		#  #L                                                      
+		#                                                #P        
+		#  #M                                                      
+		#                            #E                            
+		]],
+		options = {
+			{
+				text = "wh.. what?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@delay 1}#                    L                               O
+		#  #S
+		#                                                #T
+		#  #I						#I                    
+		#                            #TS     W    R    O    N    G
+		]],
+						options = {
+							{
+								text = "I.. I don't understand.",
+								func = function(dialog)
+
+
+									dialog.show({
+										text = [[{@delay 10}#      E N TER {@func disconnected} {@func ng_portal}]],
+										options = {
+											{
+												text = "Hang up.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+
+									
+								end
+							}
+						}
+					})
+							
+				end,
+			},
+			{
+				text = "hang up",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Heavy Breather",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		typing_sound = "breathing",
+		
+		text = [[{@delay 60}...]],
+		options = {
+			{
+				text = "Hello?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@delay 60}...]],
+						options = {
+							{
+								text = "Who is this?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@delay 60}...{@func disconnected}]],
+										options = {
+											{
+												text = "Creepy.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+							{
+								text = "I'm calling the authorities.",
+								func = function(dialog)
+									dialog.show({
+										typing_sound_interval = 5,
+										text = [[\\*gasp\\* {@func disconnected}]],
+										options = {
+											{
+												text = "Good riddance.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Hang up.",
 				func = function(dialog)
 					hangup()
 				end,

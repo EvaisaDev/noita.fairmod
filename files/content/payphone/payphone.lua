@@ -8,6 +8,7 @@ dialog_system.distance_to_close = 35
 dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "loanshark/pop" }
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
+dialog_system.sounds.garbled = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/garbled" }
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 SetRandomSeed(x, y + GameGetFrameNum())
@@ -46,11 +47,16 @@ function teleport()
 	do_random_teleport = true
 end
 
+function ng_portal()
+	EntityLoad("mods/noita.fairmod/files/content/payphone/content/rift/return_portal.xml", x, y - 45)
+end
+
 if dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0 then hangup() end
 
 dialog_system.functions.hangup = hangup
 dialog_system.functions.disconnected = disconnected
 dialog_system.functions.teleport = teleport
+dialog_system.functions.ng_portal = ng_portal
 
 local call_options = dofile("mods/noita.fairmod/files/content/payphone/content/dialog.lua")
 
