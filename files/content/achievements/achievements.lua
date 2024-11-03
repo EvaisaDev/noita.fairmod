@@ -408,15 +408,6 @@ achievements = {
 		end,
 	},
 	{
-		name = "Cave of Wonder",
-		description = "Discover the Mountain Entrance.",
-		icon = "mods/noita.fairmod/files/content/achievements/icons/biome_mountain_left_entrance.png",
-		flag = "biome_mountain_left_entrance",
-		unlock = function()
-			return GetCurrentBiomeId() == "mountain_left_entrance"
-		end,
-	},
-	{
 		name = "Loathsome Piss Drinker",
 		description = "Drink a gallon of piss.",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/piss_drinker.png",
@@ -443,7 +434,6 @@ achievements = {
 			return GameHasFlagRun("PERK_PICKED_MINUS_LIFE")
 		end
 	},
-	-- Todo biome acheevs
 }
 
 local function romanize(num)
@@ -608,3 +598,506 @@ achievements[#achievements + 1] = {
 		return GameHasFlagRun("Epic_leet_hacker")
 	end,
 }
+
+local biome_achievements = {
+	alchemist_secret = {
+		name = "Alchemist's Secret Stash",
+		description = "Discover the location of the Dark Chest.",
+	},
+	biome_barren = {	-- no image
+		name = "Skyblock",
+		description = "Discover the Barren Temple.",
+	},
+	biome_boss_sky = {
+		name = "Home of The Rock",
+		description = "Discover the Kivi Temple.",
+	},
+	biome_darkness = {	-- no image
+		name = "Sus Sky Island",
+		description = "Discover the Ominous Temple.",
+	},
+	biome_potion_mimics = {	-- no image
+		name = "Castle in the Sky",
+		description = "Discover the Henkevä Temple.",
+	},
+	biome_watchtower = {
+		name = "The Tower... It watches",
+		description = "Discover the Watchtower.",
+	},
+	boss_arena = {
+		name = "The Typical Boss Room",
+		description = "Discover The Laboratory.",
+	},
+	boss_victoryroom = {
+		name = "What is this Contraption?",
+		description = "Discover The Work.",
+	},
+	bridge = {
+		name = "It's Sturdy I Swear",
+		description = "Discover the bridge.",
+	},
+	clouds = {
+		name = "Soft and Fluffy",
+		description = "Discover the Cloudscape.",
+	},
+	coalmine = {
+		name = "They Yearn for the Mines",
+		description = "Discover the Mines.",
+	},
+	coalmine_alt = {
+		name = "Why is the Coal Slimy?",
+		description = "Discover the Collapsed Mines.",
+	},
+	crypt = {
+		name = "They Disbanded the Creative Department",
+		description = "Discover the Temple of the Art.",
+	},
+	desert = {
+		name = "Got Sand in my Shoes",
+		description = "Discover the Desert.",
+	},
+	dragoncave = {
+		name = "Could be a Massive Omelette",
+		description = "Discover the Dragoncave.",
+	},
+	empty = {
+		name = "What's This Gap?",
+		description = "Discover the gap above the Frozen Vault.",
+	},
+	essenceroom = {
+		name = "Smells Like Earth",
+		description = "Discover the location of the Essence of Earth.",
+	},
+	essenceroom_air = {
+		name = "Smells Like Air",
+		description = "Discover the location of the Essence of Air.",
+	},
+	essenceroom_alc = {
+		name = "Smells Like Alcohol",
+		description = "Discover the location of the Essence of Spirits.",
+	},
+	essenceroom_hell = {
+		name = "Smells Like Water",
+		description = "Discover the location of the Essence of Water.",
+	},
+	excavationsite = {
+		name = "Diggy Diggy Hole",
+		description = "Discover the Coal Pits.",
+	},
+	excavationsite_cube_chamber = {
+		name = "I've Become Buddha",
+		description = "Discover the Meditation Chamber.",
+	},
+	friend_1 = {
+		name = "Friend Cave 1",
+		description = "Discover the first friend cave.",
+	},
+	friend_2 = {
+		name = "Friend Cave 2",
+		description = "Discover the second friend cave.",
+	},
+	friend_3 = {
+		name = "Friend Cave 3",
+		description = "Discover the third friend cave.",
+	},
+	friend_4 = {
+		name = "Friend Cave 4",
+		description = "Discover the fourth friend cave.",
+	},
+	friend_5 = {
+		name = "Friend Cave 5",
+		description = "Discover the fifth friend cave.",
+	},
+	friend_6 = {
+		name = "Friend Cave 6",
+		description = "Discover the sixth friend cave.",
+	},
+	fungicave = {	-- no image
+		name = "Smells a Bit Funky",
+		description = "Discover the Fungal Caverns.",
+	},
+	fungiforest = {	-- no image
+		name = "Look At All the Fun Guys!",
+		description = "Discover the Overgrown Cavern.",
+	},
+	funroom = {	-- no image
+		name = "It's Big and it's Funky",
+		description = "Discover the giant mushroom.",
+	},
+	ghost_secret = {
+		name = "Forget Anything?",
+		description = "Discover the Forgotten Cave.",
+	},
+	gold = {
+		name = "Life is Like a Hurricane...",
+		description = "Discover the Gold.",
+	},
+	gourd_room = {
+		name = "Discounted Fruit",
+		description = "Discover the gourd room.",
+	},
+	gun_room = {
+		name = "Ammo Included",
+		description = "Discover the gun room.",
+	},
+	hills = {
+		name = "Peaceful Scenery",
+		description = "Discover the forest.",
+	},
+	lake = {
+		name = "Is This the Ocean?",
+		description = "Discover the Lake.",
+	},
+	lake_deep = {
+		name = "Left my Submarine at Home",
+		description = "Discover the depths of the Lake.",
+	},
+	lake_statue = {
+		name = "Some Kind of Cult Ritual",
+		description = "Discover the Lake island.",
+	},
+	lava = {
+		name = "Hot Lava",
+		description = "Discover the Volcanic Lake.",
+	},
+	lava_90percent = {
+		name = "It's HOT Down Here",
+		description = "Discover the surface of the Volcanic Lake.",
+	},
+	lavalake = {
+		name = "Great Spot for Fishing",
+		description = "Discover the Lava lake.",
+	},
+	lavalake_pit = {
+		name = "ECHO! ECho Echo .. echo...",
+		description = "Discover the chasm.",
+	},
+	lavalake_racing = {
+		name = "Zoom Zoom Zoom",
+		description = "Discover the Race Track.",
+	},
+	liquidcave = {
+		name = "Oooh Chemistry!",
+		description = "Discover the Ancient Laboratory.",
+	},
+	meat = {
+		name = "Tender, Juicy, Savory...",
+		description = "Discover the Meat Realm.",
+	},
+	meatroom = {
+		name = "Kolmi But Prepped for Cooking",
+		description = "Discover Kolmisilmän Sydän's arena.",
+	},
+	mestari_secret = {
+		name = "The King has Arrived",
+		description = "Discover the Throne Room.",
+	},
+	moon_room = {
+		name = "Don't Even Need a Telescope",
+		description = "Discover the location of the Moon Radar.",
+	},
+	mountain_floating_island = {
+		name = "Is This Terraria?",
+		description = "Discover the Floating Island.",
+	},
+	mountain_hall = {
+		name = "It Begins...",
+		description = "Discover the Mountain Hall.",
+	},
+	mountain_lake = {
+		name = "Beautiful Lake",
+		description = "Discover the lake in the forest.",
+	},
+	mountain_left_entrance = {
+		name = "Cave of Wonder",
+		description = "Discover the Mountain Entrance.",
+	},
+	mountain_right = {
+		name = "On the Other Side",
+		description = "Discover the right side of the mountain.",
+	},
+	mountain_top = {	-- no image
+		name = "It's a... Volcano?",
+		description = "Discover the top of the mountain.",
+	},
+	mountain_tree = {	-- no image
+		name = "Big. Hard. Wood.",
+		description = "Discover the Giant Tree.",
+	},
+	mystery_teleport = {	-- no image
+		name = "Entrance to the Tower",
+		description = "Discover the portal to the Tower.",
+	},
+	null_room = {
+		name = "Perks? Reset?",
+		description = "Discover the Nullifying Altar.",
+	},
+	ocarina = {
+		name = "Music is my Passion",
+		description = "Discover the Huilu altar.",
+	},
+	orbroom_02 = {
+		name = "Orb Room 1",
+		description = "Discover the first Orb Room.",
+	},
+	orbroom_04 = {
+		name = "Orb Room 2",
+		description = "Discover the second Orb Room.",
+	},
+	orbroom_05 = {
+		name = "Orb Room 3",
+		description = "Discover the third Orb Room.",
+	},
+	orbroom_06 = {
+		name = "Orb Room 4",
+		description = "Discover the fourth Orb Room.",
+	},
+	orbroom_07 = {
+		name = "ABBC",
+		description = "Discover the fifth Orb Room.",
+	},
+	orbroom_08 = {
+		name = "Orb Room 6",
+		description = "Discover the sixth Orb Room.",
+	},
+	orbroom_09 = {
+		name = "Orb Room 7",
+		description = "Discover the seventh Orb Room.",
+	},
+	orbroom_10 = {
+		name = "Orb Room 8",
+		description = "Discover the eighth Orb Room.",
+	},
+	pyramid = {	-- no image
+		name = "Indiana Jones",
+		description = "Discover the interior of the Pyramid.",
+	},
+	pyramid_entrance = {
+		name = "Open Sesame",
+		description = "Discover the entrance to the Pyramid.",
+	},
+	pyramid_hallway = {
+		name = "Don't Anger the Mummy",
+		description = "Discover the entrance hallway inside the Pyramid.",
+	},
+	pyramid_left = {
+		name = "Stairs to the Sky",
+		description = "Discover the left side of the Pyramid.",
+	},
+	pyramid_right = {
+		name = "Bumpy Slide",
+		description = "Discover the right side of the Pyramid.",
+	},
+	pyramid_top = {
+		name = "Praise the Sun",
+		description = "Discover the top of the Pyramid.",
+	},
+	rainforest = {
+		name = "Welcome to the Jungle",
+		description = "Discover the upper Underground Jungle.",
+	},
+	rainforest_dark = {
+		name = "Blenders with Legs",
+		description = "Discover the Lukki Lair.",
+	},
+	rainforest_open = {
+		name = "I Hate the Vines",
+		description = "Discover the lower Underground Jungle.",
+	},
+	roadblock = {
+		name = "Can You Make it Up There?",
+		description = "Discover the Giant Tree branch.",
+	},
+	robobase = {	-- no image
+		name = "Unlimited Power!",
+		description = "Discover the Power Plant.",
+	},
+	roboroom = {	-- no image
+		name = "The Terminator",
+		description = "Discover the Kolmisilmän Silmä's arena.",
+	},
+	robot_egg = {	-- no image
+		name = "Dr. Robotnik Would be Proud",
+		description = "Discover the robotic egg.",
+	},
+	rock_room = {
+		name = "Music to my Hands",
+		description = "Discover the location of the Kuulokivi.",
+	},
+	sandcave = {	-- no image
+		name = "Hiisi are Everywhere",
+		description = "Discover the Sandcave.",
+	},
+	scale = {
+		name = "Balanced. As All Things Should Be.",
+		description = "Discover the Scale.",
+	},
+	secret_lab = {
+		name = "You When You're Older",
+		description = "Discover the Abandoned Alchemy Lab.",
+	},
+	snowcastle = {
+		name = "Casually Invading Their Home...",
+		description = "Discover the Hiisi Base.",
+	},
+	snowcastle_cavern = {	-- no image
+		name = "Side Market",
+		description = "Discover the Secret Shop.",
+	},
+	snowcastle_hourglass_chamber = {	-- no image
+		name = "Time is Relative",
+		description = "Discover the Hourglass Chamber.",
+	},
+	snowcave = {
+		name = "Let's Build a Snowman!",
+		description = "Discover the Snowy Depths.",
+	},
+	snowcave_secret_chamber = {
+		name = "snowcave_secret_chamber",
+		description = "Discover the Buried Eye Room.",
+	},
+	snowcave_tunnel = {
+		name = "Found the Back Entrance",
+		description = "Discover the bottom of the chasm.",
+	},
+	solid_wall = {
+		name = "Yep, it's Solid!",
+		description = "Discover an extremely dense rock wall.",
+	},
+	solid_wall_hidden_cavern = {
+		name = "Oooh Treasure!",
+		description = "Discover the Hidden Gold Cave.",
+	},
+	solid_wall_temple = {
+		name = "Walls of The Work",
+		description = "Discover the walls of The Work.",
+	},
+	solid_wall_tower = {
+		name = "The Curse",
+		description = "Discover the cursed rock.",
+	},
+	solid_wall_tower_1 = {
+		name = "Mines Again...",
+		description = "Discover the Mines in The Tower.",
+	},
+	solid_wall_tower_10 = {	-- no image
+		name = "Finally Made it to the Top",
+		description = "Discover The Tower's treasure.",
+	},
+	solid_wall_tower_2 = {
+		name = "Coal Pits Again...",
+		description = "Discover the Coal Pits in The Tower.",
+	},
+	solid_wall_tower_3 = {
+		name = "Snowy Depths Again...",
+		description = "Discover the Snowy Depths in The Tower.",
+	},
+	solid_wall_tower_4 = {
+		name = "Hiisi Base Again...",
+		description = "Discover the Hiisi Base in The Tower.",
+	},
+	solid_wall_tower_5 = {	-- no image
+		name = "Fungal Caverns Again...",
+		description = "Discover the Fungal Caverns in The Tower.",
+	},
+	solid_wall_tower_6 = {
+		name = "Underground Jungle Again...",
+		description = "Discover the Underground Jungle in The Tower.",
+	},
+	solid_wall_tower_7 = {
+		name = "The Vault Again...",
+		description = "Discover The Vault in The Tower.",
+	},
+	solid_wall_tower_8 = {
+		name = "Temple of the Art Again...",
+		description = "Discover the Temple of the Art in The Tower.",
+	},
+	solid_wall_tower_9 = {	-- no image
+		name = "Hell... Again?",
+		description = "Discover Hell in The Tower.",
+	},
+	song_room = {
+		name = "Blue Chest",
+		description = "Discover the location of the Coral Chest.",
+	},
+	teleroom = {	-- no image
+		name = "Now You're Thinking With Portals",
+		description = "Discover the Portal Room.",
+	},
+	temple_altar = {	-- no image
+		name = "There's a Lot Going on Here",
+		description = "Discover the center of a Holy Mountain.",
+	},
+	temple_altar_left = {	-- no image
+		name = "Ahhh Sanctuary... Or Is It?",
+		description = "Discover the Holy Mountain.",
+	},
+	temple_altar_right = {	-- no image
+		name = "Grab n' Go",
+		description = "Discover the right side of a Holy Mountain.",
+	},
+	temple_wall = {
+		name = "That'll Anger Steve",
+		description = "Discover the Holy Mountain's Walls.",
+	},
+	temple_wall_ending = {	-- no image
+		name = "That One Save Room Before the Boss",
+		description = "Discover the final Holy Mountain.",
+	},
+	the_end = {	-- no image
+		name = "We All Live Here :)",
+		description = "Discover Hell.",
+	},
+	the_sky = {	-- no image
+		name = "Icarus",
+		description = "Discover the Sky.",
+	},
+	vault = {
+		name = "Industrial Complex",
+		description = "Discover The Vault.",
+	},
+	vault_frozen = {
+		name = "Heat Death",
+		description = "Discover the Frozen Vault.",
+	},
+	wandcave = {	-- no image
+		name = "It's Maaagical!",
+		description = "Discover the Magical Temple.",
+	},
+	water = {
+		name = "Blub Blub",
+		description = "Discover the Water.",
+	},
+	watercave = {	-- no image
+		name = "It's Dark and... Who Did This?",
+		description = "Discover the dark cave.",
+	},
+	winter = {
+		name = "Wasteland? More like Battlefield.",
+		description = "Discover the Snowy Wasteland.",
+	},
+	winter_caves = {	-- no image
+		name = "It's Still Cold",
+		description = "Discover the Snowy Chasm.",
+	},
+	wizardcave = {	-- no image
+		name = "There Be Wizards",
+		description = "Discover the Wizards' Den.",
+	},
+	wizardcave_entrance = {
+		name = "The Illuminati",
+		description = "Discover the Gate Guardian.",
+	},
+}
+
+for id, info in pairs(biome_achievements) do
+	table.insert(achievements, 	{
+		name = info.name,
+		description = info.description,
+		icon = "mods/noita.fairmod/files/content/achievements/icons/biome_" .. id .. ".png",
+		flag = "biome_" .. id,
+		unlock = function()
+			return GetCurrentBiomeId() == id
+		end,
+	})
+end
