@@ -656,8 +656,16 @@ for i = 2, #Windows do
             if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
 
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
-                if popup:CLOSE_FUNCTION(data) ~= false then table.remove(Windows, i)  goto continue end
-            else table.remove(Windows, i) goto continue end
+                if popup:CLOSE_FUNCTION(data) ~= false then
+                    table.remove(Windows, i)
+                    GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
+                    goto continue
+                end
+            else
+                table.remove(Windows, i)
+                GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
+                goto continue
+            end
         end
         GuiIdPop(Gui)
         GuiIdPushString(Gui, "ModMimicPopupImage" .. tostring(Windows[i].id))
