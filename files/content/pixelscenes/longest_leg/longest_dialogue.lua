@@ -94,13 +94,11 @@ end
 local dialogue_read_the_words_6 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("On the Sixth Day, the Hamis Lord reached out to its kin,")
-			.. "\n"
-			.. shuffle("bestowing upon them the gifts of cunning and wrath.")
-			.. "\n"
-			.. shuffle('"Take the flames within you," it spoke, "and let them burn in every breath."')
-			.. "\n"
-			.. shuffle("Thus, the Hamis learned to guard the fires as their lord commanded."),
+		text = shuffle("On the Sixth Day, the Hamis Lord reached out to its kin,") .. "\n" .. shuffle(
+			"bestowing upon them the gifts of cunning and wrath."
+		) .. "\n" .. shuffle('"Take the flames within you," it spoke, "and let them burn in every breath."') .. "\n" .. shuffle(
+			"Thus, the Hamis learned to guard the fires as their lord commanded."
+		),
 		options = {
 			{
 				text = "Listen",
@@ -113,13 +111,11 @@ end
 local dialogue_read_the_words_5 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("On the Fifth Day, the Hamis Lord forged the deep tunnels")
-			.. "\n"
-			.. shuffle("and winding veins that lie hidden beneath stone.")
-			.. "\n"
-			.. shuffle("There, it whispered secrets into the rock, ancient words of power and flame.")
-			.. "\n"
-			.. shuffle("The earth pulsed with these sacred fires, unseen but always felt."),
+		text = shuffle("On the Fifth Day, the Hamis Lord forged the deep tunnels") .. "\n" .. shuffle(
+			"and winding veins that lie hidden beneath stone."
+		) .. "\n" .. shuffle("There, it whispered secrets into the rock, ancient words of power and flame.") .. "\n" .. shuffle(
+			"The earth pulsed with these sacred fires, unseen but always felt."
+		),
 		options = {
 			{
 				text = "How?",
@@ -153,13 +149,11 @@ end
 local dialogue_read_the_words_3 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("On the Third Day, with a voice like crackling coals,")
-			.. "\n"
-			.. shuffle("the Hamis Lord called forth the lava spirits and creatures of flame.")
-			.. "\n"
-			.. shuffle("From its own burning essence, it shaped the Hamiskin, the first of its kindred.")
-			.. "\n"
-			.. shuffle("In their glowing eyes was a reflection of the Lord’s eternal blaze."),
+		text = shuffle("On the Third Day, with a voice like crackling coals,") .. "\n" .. shuffle(
+			"the Hamis Lord called forth the lava spirits and creatures of flame."
+		) .. "\n" .. shuffle("From its own burning essence, it shaped the Hamiskin, the first of its kindred.") .. "\n" .. shuffle(
+			"In their glowing eyes was a reflection of the Lord’s eternal blaze."
+		),
 		options = {
 			{
 				text = "And?",
@@ -214,9 +208,7 @@ end
 local dialogue_hear_the_words = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("Was your journey hard so far?") .. "\n" .. shuffle(
-			"I may propose you to hear the words of our Savior."
-		),
+		text = shuffle("Was your journey hard so far?") .. "\n" .. shuffle("I may propose you to hear the words of our Savior."),
 		options = {
 			{
 				text = "Okay?",
@@ -236,9 +228,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		name = shuffle("Longest Hamis"),
 		portrait = "mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_portrait.xml",
 		animation = "stand",
-		text = shuffle("Good evening, Mina.") .. "\n" .. shuffle(
-			"Do you have a time to speak about our Lord and Savior - Lord Hamis?"
-		),
+		text = shuffle("Good evening, Mina.") .. "\n" .. shuffle("Do you have a time to speak about our Lord and Savior - Lord Hamis?"),
 		options = {
 			{
 				text = "Uh, sure?",

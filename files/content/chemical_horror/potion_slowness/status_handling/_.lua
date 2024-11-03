@@ -9,8 +9,7 @@ local pages = {
 	"mods/noita.fairmod/files/content/instruction_booklet/pages/cover.png",
 }
 for i = 1, 1000 do
-	local image =
-		string.format("mods/noita.fairmod/files/content/instruction_booklet/pages/instructionbooklet-%02d.png", i)
+	local image = string.format("mods/noita.fairmod/files/content/instruction_booklet/pages/instructionbooklet-%02d.png", i)
 	if ModImageDoesExist(image) then
 		pages[#pages + 1] = image
 	else
@@ -72,8 +71,7 @@ function ui:image_crop(x, y)
 	GuiEndAutoBoxNinePiece(self.gui)
 	self:AnimateE()
 
-	local image_left =
-		{ self.book.images[self.book.current_page_left], self.book.bl_pages[self.book.current_page_left] }
+	local image_left = { self.book.images[self.book.current_page_left], self.book.bl_pages[self.book.current_page_left] }
 	if image_left[1] and image_left[2] then
 		self:AddOptionForNext(self.c.options.Layout_NoLayouting)
 		self:SetZ(-999998)
@@ -81,21 +79,13 @@ function ui:image_crop(x, y)
 		self:SetZ(-999999)
 		self:Image(x, y, image_left[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
 	end
-	local image_right =
-		{ self.book.images[self.book.current_page_right], self.book.bl_pages[self.book.current_page_right] }
+	local image_right = { self.book.images[self.book.current_page_right], self.book.bl_pages[self.book.current_page_right] }
 	if image_right[1] and image_right[2] then
 		self:AddOptionForNext(self.c.options.Layout_NoLayouting)
 		self:SetZ(-999998)
 		self:Image(x + self.book.zoomed_width, y, image_right[1], 1, self.book.zoomed_scale, self.book.zoomed_scale)
 		self:SetZ(-999999)
-		self:Image(
-			x + self.book.zoomed_width,
-			y,
-			image_right[2],
-			self.book.bl_luminosity,
-			self.book.zoomed_scale,
-			self.book.zoomed_scale
-		)
+		self:Image(x + self.book.zoomed_width, y, image_right[2], self.book.bl_luminosity, self.book.zoomed_scale, self.book.zoomed_scale)
 	end
 	GuiEndScrollContainer(self.gui)
 end
@@ -225,8 +215,7 @@ end
 function ui:draw_zoomed()
 	self:UpdateDimensions()
 
-	self.book.zoomed_width, self.book.zoomed_height =
-		GuiGetImageDimensions(self.gui, self.book.images[1], self.book.zoomed_scale)
+	self.book.zoomed_width, self.book.zoomed_height = GuiGetImageDimensions(self.gui, self.book.images[1], self.book.zoomed_scale)
 
 	local book_width = self.book.zoomed_width * 2
 

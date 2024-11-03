@@ -76,9 +76,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 					to = {}
 					to.material = CellFactory_GetName(held_material)
 					-- heh he
-					if to.material == "gold" and random_nexti(rnd, 1, 1000) ~= 1 then
-						to.material = random_from_array(greedy_materials)
-					end
+					if to.material == "gold" and random_nexti(rnd, 1, 1000) ~= 1 then to.material = random_from_array(greedy_materials) end
 
 					if to.material == "grass_holy" and random_nexti(rnd, 1, 1000) ~= 1 then to.material = "grass" end
 				end
@@ -94,9 +92,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 
 					from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(from_material)))
 					if from.name_material then
-						from_material_name = string.upper(
-							GameTextGetTranslatedOrNot(CellFactory_GetUIName(CellFactory_GetType(from.name_material)))
-						)
+						from_material_name = string.upper(GameTextGetTranslatedOrNot(CellFactory_GetUIName(CellFactory_GetType(from.name_material))))
 					end
 
 					-- convert
@@ -106,26 +102,8 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 						converted_any = true
 
 						-- shoot particles of new material
-						GameCreateParticle(
-							CellFactory_GetName(from_material),
-							x - 10,
-							y - 10,
-							20,
-							rand(-100, 100),
-							rand(-100, -30),
-							true,
-							true
-						)
-						GameCreateParticle(
-							CellFactory_GetName(from_material),
-							x + 10,
-							y - 10,
-							20,
-							rand(-100, 100),
-							rand(-100, -30),
-							true,
-							true
-						)
+						GameCreateParticle(CellFactory_GetName(from_material), x - 10, y - 10, 20, rand(-100, 100), rand(-100, -30), true, true)
+						GameCreateParticle(CellFactory_GetName(from_material), x + 10, y - 10, 20, rand(-100, 100), rand(-100, -30), true, true)
 					end
 				end
 			end
@@ -155,11 +133,7 @@ fungal_shift = function(entity, x, y, debug_no_limits)
 				log_msg = GameTextGet("$logdesc_reality_mutation", from_material_name)
 				GamePrint(log_msg)
 			end
-			GamePrintImportant(
-				random_from_array(log_messages),
-				log_msg,
-				"data/ui_gfx/decorations/3piece_fungal_shift.png"
-			)
+			GamePrintImportant(random_from_array(log_messages), log_msg, "data/ui_gfx/decorations/3piece_fungal_shift.png")
 			GlobalsSetValue("fungal_shift_last_frame", tostring(frame))
 
 			-- add ui icon

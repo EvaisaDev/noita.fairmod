@@ -432,7 +432,7 @@ achievements = {
 		flag = "minus_life",
 		unlock = function()
 			return GameHasFlagRun("PERK_PICKED_MINUS_LIFE")
-		end
+		end,
 	},
 }
 
@@ -580,7 +580,7 @@ end
 for i = 1, 10 do
 	table.insert(achievements, {
 		name = "X marks the spot " .. romanize(i),
-		description = 2^i .. " digital doubloons yanked from ye pocket",
+		description = 2 ^ i .. " digital doubloons yanked from ye pocket",
 		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/popups_", i, ".png" }),
 		flag = "popups_closed_" .. i,
 		unlock = function()
@@ -604,7 +604,7 @@ local biome_achievements = {
 		name = "Alchemist's Secret Stash",
 		description = "Discover the location of the Dark Chest.",
 	},
-	biome_barren = {	-- no image
+	biome_barren = { -- no image
 		name = "Skyblock",
 		description = "Discover the Barren Temple.",
 	},
@@ -612,11 +612,11 @@ local biome_achievements = {
 		name = "Home of The Rock",
 		description = "Discover the Kivi Temple.",
 	},
-	biome_darkness = {	-- no image
+	biome_darkness = { -- no image
 		name = "Sus Sky Island",
 		description = "Discover the Ominous Temple.",
 	},
-	biome_potion_mimics = {	-- no image
+	biome_potion_mimics = { -- no image
 		name = "Castle in the Sky",
 		description = "Discover the Henkevä Temple.",
 	},
@@ -712,15 +712,15 @@ local biome_achievements = {
 		name = "Friend Cave 6",
 		description = "Discover the sixth friend cave.",
 	},
-	fungicave = {	-- no image
+	fungicave = { -- no image
 		name = "Smells a Bit Funky",
 		description = "Discover the Fungal Caverns.",
 	},
-	fungiforest = {	-- no image
+	fungiforest = { -- no image
 		name = "Look At All the Fun Guys!",
 		description = "Discover the Overgrown Cavern.",
 	},
-	funroom = {	-- no image
+	funroom = { -- no image
 		name = "It's Big and it's Funky",
 		description = "Discover the giant mushroom.",
 	},
@@ -816,15 +816,15 @@ local biome_achievements = {
 		name = "On the Other Side",
 		description = "Discover the right side of the mountain.",
 	},
-	mountain_top = {	-- no image
+	mountain_top = { -- no image
 		name = "It's a... Volcano?",
 		description = "Discover the top of the mountain.",
 	},
-	mountain_tree = {	-- no image
+	mountain_tree = { -- no image
 		name = "Big. Hard. Wood.",
 		description = "Discover the Giant Tree.",
 	},
-	mystery_teleport = {	-- no image
+	mystery_teleport = { -- no image
 		name = "Entrance to the Tower",
 		description = "Discover the portal to the Tower.",
 	},
@@ -868,7 +868,7 @@ local biome_achievements = {
 		name = "Orb Room 8",
 		description = "Discover the eighth Orb Room.",
 	},
-	pyramid = {	-- no image
+	pyramid = { -- no image
 		name = "Indiana Jones",
 		description = "Discover the interior of the Pyramid.",
 	},
@@ -908,15 +908,15 @@ local biome_achievements = {
 		name = "Can You Make it Up There?",
 		description = "Discover the Giant Tree branch.",
 	},
-	robobase = {	-- no image
+	robobase = { -- no image
 		name = "Unlimited Power!",
 		description = "Discover the Power Plant.",
 	},
-	roboroom = {	-- no image
+	roboroom = { -- no image
 		name = "The Terminator",
 		description = "Discover the Kolmisilmän Silmä's arena.",
 	},
-	robot_egg = {	-- no image
+	robot_egg = { -- no image
 		name = "Dr. Robotnik Would be Proud",
 		description = "Discover the robotic egg.",
 	},
@@ -924,7 +924,7 @@ local biome_achievements = {
 		name = "Music to my Hands",
 		description = "Discover the location of the Kuulokivi.",
 	},
-	sandcave = {	-- no image
+	sandcave = { -- no image
 		name = "Hiisi are Everywhere",
 		description = "Discover the Sandcave.",
 	},
@@ -940,11 +940,11 @@ local biome_achievements = {
 		name = "Casually Invading Their Home...",
 		description = "Discover the Hiisi Base.",
 	},
-	snowcastle_cavern = {	-- no image
+	snowcastle_cavern = { -- no image
 		name = "Side Market",
 		description = "Discover the Secret Shop.",
 	},
-	snowcastle_hourglass_chamber = {	-- no image
+	snowcastle_hourglass_chamber = { -- no image
 		name = "Time is Relative",
 		description = "Discover the Hourglass Chamber.",
 	},
@@ -980,7 +980,7 @@ local biome_achievements = {
 		name = "Mines Again...",
 		description = "Discover the Mines in The Tower.",
 	},
-	solid_wall_tower_10 = {	-- no image
+	solid_wall_tower_10 = { -- no image
 		name = "Finally Made it to the Top",
 		description = "Discover The Tower's treasure.",
 	},
@@ -996,7 +996,7 @@ local biome_achievements = {
 		name = "Hiisi Base Again...",
 		description = "Discover the Hiisi Base in The Tower.",
 	},
-	solid_wall_tower_5 = {	-- no image
+	solid_wall_tower_5 = { -- no image
 		name = "Fungal Caverns Again...",
 		description = "Discover the Fungal Caverns in The Tower.",
 	},
@@ -1012,7 +1012,7 @@ local biome_achievements = {
 		name = "Temple of the Art Again...",
 		description = "Discover the Temple of the Art in The Tower.",
 	},
-	solid_wall_tower_9 = {	-- no image
+	solid_wall_tower_9 = { -- no image
 		name = "Hell... Again?",
 		description = "Discover Hell in The Tower.",
 	},
@@ -1020,19 +1020,19 @@ local biome_achievements = {
 		name = "Blue Chest",
 		description = "Discover the location of the Coral Chest.",
 	},
-	teleroom = {	-- no image
+	teleroom = { -- no image
 		name = "Now You're Thinking With Portals",
 		description = "Discover the Portal Room.",
 	},
-	temple_altar = {	-- no image
+	temple_altar = { -- no image
 		name = "There's a Lot Going on Here",
 		description = "Discover the center of a Holy Mountain.",
 	},
-	temple_altar_left = {	-- no image
+	temple_altar_left = { -- no image
 		name = "Ahhh Sanctuary... Or Is It?",
 		description = "Discover the Holy Mountain.",
 	},
-	temple_altar_right = {	-- no image
+	temple_altar_right = { -- no image
 		name = "Grab n' Go",
 		description = "Discover the right side of a Holy Mountain.",
 	},
@@ -1040,15 +1040,15 @@ local biome_achievements = {
 		name = "That'll Anger Steve",
 		description = "Discover the Holy Mountain's Walls.",
 	},
-	temple_wall_ending = {	-- no image
+	temple_wall_ending = { -- no image
 		name = "That One Save Room Before the Boss",
 		description = "Discover the final Holy Mountain.",
 	},
-	backrooms = {	-- no image
+	backrooms = { -- no image
 		name = "Welcome to the Backrooms",
 		description = "Discover the Backrooms.",
 	},
-	the_sky = {	-- no image
+	the_sky = { -- no image
 		name = "Icarus",
 		description = "Discover the Sky.",
 	},
@@ -1060,7 +1060,7 @@ local biome_achievements = {
 		name = "Heat Death",
 		description = "Discover the Frozen Vault.",
 	},
-	wandcave = {	-- no image
+	wandcave = { -- no image
 		name = "It's Maaagical!",
 		description = "Discover the Magical Temple.",
 	},
@@ -1068,7 +1068,7 @@ local biome_achievements = {
 		name = "Blub Blub",
 		description = "Discover the Water.",
 	},
-	watercave = {	-- no image
+	watercave = { -- no image
 		name = "It's Dark and... Who Did This?",
 		description = "Discover the dark cave.",
 	},
@@ -1076,11 +1076,11 @@ local biome_achievements = {
 		name = "Wasteland? More like Battlefield.",
 		description = "Discover the Snowy Wasteland.",
 	},
-	winter_caves = {	-- no image
+	winter_caves = { -- no image
 		name = "It's Still Cold",
 		description = "Discover the Snowy Chasm.",
 	},
-	wizardcave = {	-- no image
+	wizardcave = { -- no image
 		name = "There Be Wizards",
 		description = "Discover the Wizards' Den.",
 	},
@@ -1091,7 +1091,7 @@ local biome_achievements = {
 }
 
 for id, info in pairs(biome_achievements) do
-	table.insert(achievements, 	{
+	table.insert(achievements, {
 		name = info.name,
 		description = info.description,
 		icon = "mods/noita.fairmod/files/content/achievements/icons/biome_" .. id .. ".png",

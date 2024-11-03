@@ -7,12 +7,6 @@ function spawn_speedrunner_door(x, y)
 	if (ModSettingGet("fairmod_win_count") or 0) > 0 then
 		EntityLoad("mods/noita.fairmod/files/content/speedrun_door/door_entrance.xml", x + 26, y)
 
-		LoadBackgroundSprite(
-			"mods/noita.fairmod/files/content/speedrun_door/speedrun_sign.png",
-			x + 25,
-			y - 72,
-			-100,
-			false
-		)
+		LoadBackgroundSprite("mods/noita.fairmod/files/content/speedrun_door/speedrun_sign.png", x + 25, y - 72, -100, false)
 	end
 end

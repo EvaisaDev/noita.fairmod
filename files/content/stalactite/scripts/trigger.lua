@@ -48,8 +48,7 @@ function collision_trigger(colliding_entity_id)
 		EntityKill(entity_id)
 	end
 
-	local is_projectile = EntityHasTag(colliding_entity_id, "projectile")
-		or EntityHasTag(colliding_entity_id, "player_projectile")
+	local is_projectile = EntityHasTag(colliding_entity_id, "projectile") or EntityHasTag(colliding_entity_id, "player_projectile")
 
 	if is_projectile then
 		local projectile_component = EntityGetFirstComponent(colliding_entity_id, "ProjectileComponent")

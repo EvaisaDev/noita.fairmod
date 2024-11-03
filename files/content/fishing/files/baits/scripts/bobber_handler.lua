@@ -19,8 +19,6 @@ local rod = EntityGetVariable(bobber, "rod_entity", "int")
 
 local return_bobber = EntityHasFlag(bobber, "return_bobber")
 
-
-
 function has_catch()
 	return EntityHasFlag(bobber, "has_catch")
 end
@@ -379,9 +377,7 @@ if in_liquid then
 
 					EntityAddChild(bobber, new_fish)
 
-					if #fish_in_range == EntityGetVariable(bobber, "fish_count", "int") then
-						EntityAddFlag(bobber, "is_catch_allowed")
-					end
+					if #fish_in_range == EntityGetVariable(bobber, "fish_count", "int") then EntityAddFlag(bobber, "is_catch_allowed") end
 
 					local fish_x = x2
 					local fish_y = y2 + 10 + Random(5, 20)
@@ -428,7 +424,6 @@ if in_liquid then
 				local caught_fish = (Random(1, 10000) / 1000) <= 1000.05
 
 				if caught_fish and not has_catch() then
-
 					SetRandomSeed(x + GameGetFrameNum(), y)
 
 					EntityAddFlag(bobber, "has_catch")

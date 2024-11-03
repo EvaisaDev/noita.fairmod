@@ -22,10 +22,8 @@ local tips = {
 	"Follow the purple lights.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
-	-- stylua: ignore start
 	-- table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
 	string.format("There are %s achievements!\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0") + Random(1, 5)), -- have you heard about string.format? (still messed up by formatter, lmao)
-	-- stylua: ignore end
 	"Some enemies are really messed up! Beware!",
 	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
 	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
@@ -67,7 +65,7 @@ local tips = {
 	"Hiisi base has had some new reading lights installed!",
 	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
 	"There’s something behind you!\n..?\nOh, no no, silly! I meant in real life!",
-	"Type \"Chaos\" on your keyboard for some free digging",
+	'Type "Chaos" on your keyboard for some free digging',
 	"Trapped? Try code NOCLIP to get yourself out of any\nsticky situation!",
 	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
 	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
@@ -76,6 +74,8 @@ local tips = {
 	"Death comes for those who wait.",
 	"what",
 }
+
+table.insert(tips, "there are " .. #tips .. " tips\ncan you read them all?")
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -126,8 +126,7 @@ function interacting(player, entity_interacted, interactable_name)
 					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
 						if EntityGetName(child) == "inventory_quick" then
 							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component =
-									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
 								if ability_component then
 									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
 									if not use_gun_script then item_count = item_count + 1 end
@@ -145,11 +144,7 @@ function interacting(player, entity_interacted, interactable_name)
 								},
 							},
 						})
-						local items = EntityLoad(
-							"mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml",
-							x,
-							y
-						)
+						local items = EntityLoad("mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet.xml", x, y)
 						GamePickUpInventoryItem(player, items, false)
 					else
 						dialog.show({
@@ -182,8 +177,7 @@ function interacting(player, entity_interacted, interactable_name)
 					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
 						if EntityGetName(child) == "inventory_quick" then
 							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component =
-									EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
 								if ability_component then
 									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
 									if not use_gun_script then item_count = item_count + 1 end
@@ -192,13 +186,9 @@ function interacting(player, entity_interacted, interactable_name)
 						end
 					end
 
-			
 					local ticket = EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
 
-					if item_count < 4 then
-						GamePickUpInventoryItem(player, ticket, true)
-					end
-
+					if item_count < 4 then GamePickUpInventoryItem(player, ticket, true) end
 
 					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)

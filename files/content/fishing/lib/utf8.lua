@@ -166,9 +166,7 @@ end
 local function utf8_char(...)
 	local r = {}
 	for i, v in ipairs({ ... }) do
-		if type(v) ~= "number" then
-			error("bad argument #" .. i .. " to 'char' (number expected, got " .. type(v) .. ")", 2)
-		end
+		if type(v) ~= "number" then error("bad argument #" .. i .. " to 'char' (number expected, got " .. type(v) .. ")", 2) end
 		r[i] = utf8_onechar(v)
 	end
 	return table_concat(r, "")

@@ -464,8 +464,7 @@ end
 --- @return number
 function ui_class:ScrollBoxCalculateTargetScroll(mouse_y, y, height, target)
 	local target_pos = mouse_y - y - target
-	return (target_pos / (height - self.scroll.scrollbar_height))
-		* (self.scroll.content_height - self.scroll.visible_height)
+	return (target_pos / (height - self.scroll.scrollbar_height)) * (self.scroll.content_height - self.scroll.visible_height)
 end
 
 --- function to check if click was on scroll thumb or bar
@@ -474,8 +473,7 @@ end
 --- @param y number start position of scrollbar
 --- @return boolean
 function ui_class:ScrollBoxClickedOnScrollBarThumb(mouse_y, y)
-	return mouse_y < y + self.scroll.scrollbar_pos
-		or mouse_y > y + self.scroll.scrollbar_pos + self.scroll.scrollbar_height
+	return mouse_y < y + self.scroll.scrollbar_pos or mouse_y > y + self.scroll.scrollbar_pos + self.scroll.scrollbar_height
 end
 
 --- function to calculate scrollbar thumb position
@@ -484,8 +482,7 @@ end
 --- @param height number height of scrollbox
 --- @return number position
 function ui_class:ScrollBoxCalculateScrollbarPos(target, height)
-	return (target / (self.scroll.content_height - self.scroll.visible_height))
-		* (height - self.scroll.scrollbar_height)
+	return (target / (self.scroll.content_height - self.scroll.visible_height)) * (height - self.scroll.scrollbar_height)
 end
 
 --- function to handle clicks on scrollbar
@@ -531,15 +528,7 @@ function ui_class:ScrollBoxDrawScrollbarTrack(x, y, z)
 	)
 
 	-- Draw the scrollbar track
-	self:Draw9Piece(
-		x + self.scroll.width + self.scroll.sprite_dim / 3 - 8,
-		y,
-		z - 10,
-		6,
-		self.scroll.height,
-		self.c.empty,
-		self.c.empty
-	)
+	self:Draw9Piece(x + self.scroll.width + self.scroll.sprite_dim / 3 - 8, y, z - 10, 6, self.scroll.height, self.c.empty, self.c.empty)
 end
 
 --- function that make scrollbar draggable
@@ -550,8 +539,7 @@ function ui_class:ScrollBoxMouseDrag(y)
 	if not InputIsMouseButtonDown(self.c.codes.mouse.lc) then self.scroll.move_triggered = false end
 	if self.scroll.move_triggered then
 		local _, mouse_y = self:get_mouse_pos()
-		self.scroll.target_y =
-			self:ScrollBoxCalculateTargetScroll(mouse_y, y, self.scroll.height, self.scroll.click_offset)
+		self.scroll.target_y = self:ScrollBoxCalculateTargetScroll(mouse_y, y, self.scroll.height, self.scroll.click_offset)
 	end
 end
 
@@ -570,9 +558,7 @@ end
 --- :)
 function ui_class:ScrollBoxAnswerToWheel()
 	if InputIsMouseButtonJustDown(self.c.codes.mouse.wheel_up) then self.scroll.target_y = self.scroll.target_y - 10 end
-	if InputIsMouseButtonJustDown(self.c.codes.mouse.wheel_down) then
-		self.scroll.target_y = self.scroll.target_y + 10
-	end
+	if InputIsMouseButtonJustDown(self.c.codes.mouse.wheel_down) then self.scroll.target_y = self.scroll.target_y + 10 end
 end
 
 --- function to clump target and move content

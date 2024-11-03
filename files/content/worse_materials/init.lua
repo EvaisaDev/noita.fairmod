@@ -3,7 +3,7 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local modifications = {
 	["magic_liquid_protection_all"] = function(celldata)
 		celldata:set("status_effects", "PROTECTION_NONE")
-	end
+	end,
 }
 
 for materials in nxml.edit_file("data/materials.xml") do

@@ -43,12 +43,7 @@ function catch_ui(fish, size)
 	local ui = EntityLoad("mods/noita.fairmod/files/content/fishing/files/ui/catch_popup.xml", pos_x, pos_y)
 
 	EntitySetVariable(ui, "fish", "string", fish.ui_sprite)
-	EntitySetVariable(
-		ui,
-		"background",
-		"string",
-		"mods/noita.fairmod/files/content/fishing/files/ui/catch_backgrounds/default.png"
-	)
+	EntitySetVariable(ui, "background", "string", "mods/noita.fairmod/files/content/fishing/files/ui/catch_backgrounds/default.png")
 	EntitySetVariable(ui, "fish_name", "string", fish.name)
 	--EntitySetVariable(ui, "bottom_text", "string", fish.catch_text.bottom)
 	EntitySetVariable(ui, "size", "string", tostring(round(size, 1)))

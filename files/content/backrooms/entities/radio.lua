@@ -1,5 +1,3 @@
-
-
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	local radio_is_on = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on") ~= nil
 	local entity = GetUpdatedEntityID()
@@ -12,13 +10,10 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 
 		local current_radios = tonumber(GlobalsGetValue("radios_activated", "0")) + 1
 		GlobalsSetValue("radios_activated", tostring(current_radios))
-		if current_radios > (ModSettingGet("radios_activated_highscore") or 0) then
-			ModSettingSet("radios_activated_highscore", current_radios)
-		end
+		if current_radios > (ModSettingGet("radios_activated_highscore") or 0) then ModSettingSet("radios_activated_highscore", current_radios) end
 	else
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", false)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", true)
 		GlobalsSetValue("radios_activated", tostring(tonumber(GlobalsGetValue("radios_activated", "0")) - 1))
-
 	end
 end

@@ -205,10 +205,8 @@ function ps.TEST(num)
 	for i, j in ipairs(t) do --print table
 		local material_name = j.key
 		local material_amount = j.value .. ","
-		local material_percent = string.format(("%.Xf"):gsub("X", tostring(longest_percent)), j.value / (num / 100))
-			.. "%"
-		local material_percent_rounded = string.format("%.1f", math.floor(((j.value / (num / 100)) + 0.05) * 10) * 0.1)
-			.. "%"
+		local material_percent = string.format(("%.Xf"):gsub("X", tostring(longest_percent)), j.value / (num / 100)) .. "%"
+		local material_percent_rounded = string.format("%.1f", math.floor(((j.value / (num / 100)) + 0.05) * 10) * 0.1) .. "%"
 
 		material_name = add_gap(material_name, longest_name) --add gap after material name
 
@@ -220,8 +218,6 @@ function ps.TEST(num)
 
 		material_percent_rounded = add_gap(material_percent_rounded, 13, true)
 
-		print(
-			material_name .. " = " .. material_amount .. material_percent .. material_percent_rounded .. "  " .. j.key
-		) -- MATERIAL	= AMOUNT,   AMOUNT%				ROUNDED%  MATERIAL
+		print(material_name .. " = " .. material_amount .. material_percent .. material_percent_rounded .. "  " .. j.key) -- MATERIAL	= AMOUNT,   AMOUNT%				ROUNDED%  MATERIAL
 	end
 end

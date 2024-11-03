@@ -16,11 +16,7 @@ local function dialog_thank_you(dialog)
 	if rotta_kart and EntityGetIsAlive(rotta_kart) then
 		local audio_loop = EntityGetFirstComponentIncludingDisabled(rotta_kart, "AudioLoopComponent")
 		if audio_loop then
-			ComponentSetValue2(
-				audio_loop,
-				"event_name",
-				ModSettingGet("noita.fairmod.streamer_mode") and "rats/birthday_streamer" or "rats/birthday"
-			)
+			ComponentSetValue2(audio_loop, "event_name", ModSettingGet("noita.fairmod.streamer_mode") and "rats/birthday_streamer" or "rats/birthday")
 			EntitySetComponentIsEnabled(rotta_kart, audio_loop, false)
 			EntitySetComponentIsEnabled(rotta_kart, audio_loop, true)
 		end

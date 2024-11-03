@@ -21,11 +21,7 @@ spawn_altar_top = function(x, y, is_solid)
 	else
 		--LoadPixelScene( valid_pools[Random(1, #valid_pools)], file_visual, x, y-40, "", true )
 		LoadPixelScene("data/biome_impl/temple/altar_top_water.png", file_visual, x, y - 40, "", true)
-		EntityLoad(
-			"mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/convert_materials.xml",
-			x,
-			y - 40
-		)
+		EntityLoad("mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/convert_materials.xml", x, y - 40)
 	end
 
 	if is_solid then LoadPixelScene("data/biome_impl/temple/solid.png", "", x, y - 40 + 300, "", true) end

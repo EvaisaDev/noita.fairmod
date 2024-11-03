@@ -116,19 +116,7 @@ local function break_this_window(_, gui, _, im_id, setting)
 	GuiTooltip(gui, setting.ui_description, "")
 
 	GuiOptionsAddForNextWidget(gui, GUI_OPTION.Layout_NoLayouting)
-	GuiImage(
-		gui,
-		im_id,
-		430,
-		y - 80,
-		"data/enemies_gfx/longleg.xml",
-		1,
-		8,
-		8,
-		0,
-		GUI_RECT_ANIMATION_PLAYBACK.Loop,
-		"pet"
-	)
+	GuiImage(gui, im_id, 430, y - 80, "data/enemies_gfx/longleg.xml", 1, 8, 8, 0, GUI_RECT_ANIMATION_PLAYBACK.Loop, "pet")
 
 	if setting.break_it then local lol = nil + 0 end
 end

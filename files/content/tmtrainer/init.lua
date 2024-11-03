@@ -62,14 +62,8 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 	ModTextFileSetContent("data/scripts/streaming_integration/alt_event_utils.lua", alt_event_utils)
 
 	-- Append custom action and perk scripts
-	ModLuaFileAppend(
-		"data/scripts/gun/gun_actions.lua",
-		"mods/noita.fairmod/files/content/tmtrainer/files/scripts/append/gun_actions.lua"
-	)
-	ModLuaFileAppend(
-		"data/scripts/perks/perk_list.lua",
-		"mods/noita.fairmod/files/content/tmtrainer/files/scripts/append/perk_list.lua"
-	)
+	ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/tmtrainer/files/scripts/append/gun_actions.lua")
+	ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/tmtrainer/files/scripts/append/perk_list.lua")
 
 	-- Prepend gun_enums to gun_actions.lua for proper initialization
 	local gun_actions_content = ModTextFileGetContent("data/scripts/gun/gun_actions.lua")

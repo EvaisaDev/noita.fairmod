@@ -637,8 +637,7 @@ function apply_random_variable(t_gun, variable)
 		end
 		max = clamp(max, 1, deck_capacity)
 
-		t_gun[variable] =
-			math.floor(clamp(RandomDistribution(probs.min, probs.max, probs.mean, probs.sharpness), min, max))
+		t_gun[variable] = math.floor(clamp(RandomDistribution(probs.min, probs.max, probs.mean, probs.sharpness), min, max))
 		local temp_cost = action_costs[clamp(t_gun[variable], 1, #action_costs)]
 		-- print( "t_gun: ", t_gun[variable] )
 		-- print( "temp_cost: ", temp_cost )
@@ -811,9 +810,7 @@ function get_gun_data(cost, level, force_unshuffle)
 	-- if( gun_names ~= nil ) then name = gun_names[Random(1, #gun_names)] .. ' ' .. name end
 
 	-- debug
-	if force_unshuffle or GlobalsGetValue("PERK_NO_MORE_SHUFFLE_WANDS", "0") == "1" then
-		gun["shuffle_deck_when_empty"] = 0
-	end
+	if force_unshuffle or GlobalsGetValue("PERK_NO_MORE_SHUFFLE_WANDS", "0") == "1" then gun["shuffle_deck_when_empty"] = 0 end
 
 	-- fix the unshuffle size 1
 	-- TODO( Petri ) - if deck_capacity == 1, we should do a digger or a material gun
@@ -838,9 +835,7 @@ function get_gun_data(cost, level, force_unshuffle)
 			local new_actions_per_round = gun["deck_capacity"]
 			for i = 1, 6 do
 				local temp_actions_per_round = Random(gun["actions_per_round"], gun["deck_capacity"])
-				if temp_actions_per_round < new_actions_per_round then
-					new_actions_per_round = temp_actions_per_round
-				end
+				if temp_actions_per_round < new_actions_per_round then new_actions_per_round = temp_actions_per_round end
 			end
 			gun["actions_per_round"] = new_actions_per_round
 		end
@@ -976,9 +971,7 @@ function wand_add_random_cards(gun, entity_id, level)
 				AddGunAction(entity_id, card)
 			else
 				AddGunAction(entity_id, bullet_card)
-				if random_bullets == 1 then
-					bullet_card = GetRandomActionWithType(x, y, level, ACTION_TYPE_PROJECTILE, i)
-				end
+				if random_bullets == 1 then bullet_card = GetRandomActionWithType(x, y, level, ACTION_TYPE_PROJECTILE, i) end
 			end
 		end
 	end
@@ -1033,15 +1026,7 @@ function make_wand_from_gun_data(gun, entity_id, level)
 	local wand = GetWand(gun)
 	-- local wand = RandomFromArray(wands)
 
-	SetWandSprite(
-		entity_id,
-		ability_comp,
-		wand.file,
-		wand.grip_x,
-		wand.grip_y,
-		(wand.tip_x - wand.grip_x),
-		(wand.tip_y - wand.grip_y)
-	)
+	SetWandSprite(entity_id, ability_comp, wand.file, wand.grip_x, wand.grip_y, (wand.tip_x - wand.grip_x), (wand.tip_y - wand.grip_y))
 	-- SetItemSprite( entity_id, ability_comp, "data/items_gfx/wands/wand_", Random( 0, 999 ) )
 
 	-- this way:
