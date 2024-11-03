@@ -3,10 +3,15 @@ local x, y = EntityGetTransform(entity_id)
 
 local kill_radius = 5
 
-local player_killed_by_snail = tonumber(GlobalsGetValue("PlayerKilledBySnail", "0"))
+local snail_timeout = tonumber(GlobalsGetValue("SnailTimeout", "0"))
 
-if player_killed_by_snail ~= 0 and EntityGetIsAlive(player_killed_by_snail) then
-	EntityKill(player_killed_by_snail)
+if snail_timeout > 0 then
+	local snail_timeout_frame = tonumber(GlobalsGetValue("SnailTimeoutFrame", "0"))
+	if GameGetFrameNum() > snail_timeout_frame then
+		snail_timeout = snail_timeout - 1
+		GlobalsSetValue("SnailTimeout", tostring(snail_timeout))
+		GlobalsSetValue("SnailTimeoutFrame", tostring(GameGetFrameNum()))
+	end
 	return
 end
 
@@ -37,5 +42,5 @@ for i, player in ipairs(nearby_players) do
 		EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/guts/guts" .. Random(1, 5) .. ".xml", px, py)
 	end
 
-	GlobalsSetValue("PlayerKilledBySnail", tostring(player))
+	GlobalsSetValue("SnailTimeout", tostring(120))
 end
