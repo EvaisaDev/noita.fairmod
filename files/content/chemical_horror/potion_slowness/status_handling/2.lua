@@ -12,7 +12,11 @@ local lamps = {
 	"data/scripts/biomes/vault.lua",
 }
 
+local _seed = tonumber(ModSettingGet("user_seed"):sub(8, 19))
+math.randomseed(_seed, _seed * 34)
+
 for index, value in ipairs(lamps) do
+	local probability = math.random(1000, 4000) * .00001
 	ModTextFileSetContent(
 		value,
 		ModTextFileGetContent(value):gsub(
@@ -21,12 +25,13 @@ for index, value in ipairs(lamps) do
 			[["data/entities/props/physics_tubelamp.xml"
 	},
 	{
-		prob   		= .02,
+		prob   		= ]] .. probability .. [[,
 		min_count	= 1,
 		max_count	= 1,    
 		entity 	= "mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/physics_tubelamp_bl.xml"]]
 		)
 	)
+	print(string.format("probability for %s is %s", value, probability))
 end
 
 local grease_barrels = {
