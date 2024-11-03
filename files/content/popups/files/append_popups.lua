@@ -22,6 +22,10 @@ local Popups = {
 		"Also try Noita.Fairmod! wait...",
 		"Hello, Geoffrey.",
 		"Become a Noitillionaire Today!",
+		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_A_Large_Part_Of_Your_Screen.exe",
+		"Also try Apotheosis!",
+		"Also try Banana of Rectitude!",
+		"Also try... what... what am i..?"
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
@@ -107,7 +111,7 @@ local Popups = {
 
 
 		{ --and here's a better example showcasing a much smaller effect
-			MESSAGE = "YOU'RE STEAM ID IS 765611steamid! \n Stay Safe! :thumbsup:",
+			MESSAGE = "YOU'RE STEAM ID IS 765611steamid! newline Stay Safe! :thumbsup:",
 			OPEN_FUNCTION = function(self)
 				self.MESSAGE = self.MESSAGE:gsub("steamid", ModSettingGet("user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
 			end,

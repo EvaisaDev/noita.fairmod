@@ -434,6 +434,24 @@ achievements = {
 			return GameHasFlagRun("PERK_PICKED_MINUS_LIFE")
 		end
 	},
+	{
+		name = "Banging Tunes",
+		description = "Tune 10 radios",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/10_radios.png",
+		flag = "achievement_10_radios",
+		unlock = function()
+			return GameHasFlagRun("10_radios_tuned")
+		end
+	},
+	{
+		name = "Stop it!!",
+		description = "There is no secret radio ending!!!!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/28_radios.png",
+		flag = "achievement_28_radios",
+		unlock = function()
+			return GameHasFlagRun("28_radios_tuned")
+		end
+	},
 }
 
 local function romanize(num)
