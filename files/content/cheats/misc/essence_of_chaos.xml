@@ -1,0 +1,9 @@
+<Entity tags="essence,essence_effect">
+	<InheritTransformComponent />
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/cheats/misc/chaos.lua"
+		execute_every_n_frame="2400"
+	    >
+	</LuaComponent>
+</Entity>

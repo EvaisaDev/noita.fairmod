@@ -488,6 +488,33 @@ return {
 			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 		end
 	},
+	{
+		code = "superchest",
+		func = function(player)
+
+			if GameHasFlagRun("chaos_run_active") then return end
+
+			local x,y = EntityGetTransform(player)
+
+			if HasFlagPersistent("fairmod_spawned_superchest") then
+				GamePrintImportant("I said just once.", "May you be punished by torrents of chaos")
+				local cid = EntityLoad( "mods/noita.fairmod/files/content/cheats/misc/essence_of_chaos.xml", x, y)
+				EntityAddChild( player, cid )
+				GameAddFlagRun("chaos_run_active")
+				return
+			end
+
+			GamePrintImportant("Alright, just this once", "May you make the most of your single blessing")
+			EntityLoad( "data/entities/items/pickup/chest_random_super.xml", x, y - 20)
+			AddFlagPersistent("fairmod_spawned_superchest")
+		end
+	},
+	{
+		code = "debug37",
+		func = function()
+			RemoveFlagPersistent("fairmod_spawned_superchest")
+		end
+	}
 }
 
 --stylua: ignore end
