@@ -67,7 +67,7 @@ local tips = {
 	"Hiisi base has had some new reading lights installed!",
 	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
 	"There’s something behind you!\n..?\nOh, no no, silly! I meant in real life!",
-	"Type \"Chaos\" on your keyboard for some free digging",
+	'Type "Chaos" on your keyboard for some free digging',
 	"Trapped? Try code NOCLIP to get yourself out of any\nsticky situation!",
 	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
 	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
@@ -76,6 +76,8 @@ local tips = {
 	"Death comes for those who wait.",
 	"what",
 }
+
+table.insert(tips, "there are " .. #tips .. " tips\ncan you read them all?")
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -192,13 +194,13 @@ function interacting(player, entity_interacted, interactable_name)
 						end
 					end
 
-			
-					local ticket = EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
+					local ticket = EntityLoad(
+						"mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml",
+						x,
+						y
+					)
 
-					if item_count < 4 then
-						GamePickUpInventoryItem(player, ticket, true)
-					end
-
+					if item_count < 4 then GamePickUpInventoryItem(player, ticket, true) end
 
 					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
