@@ -102,6 +102,9 @@ function right_answer()
 								text = "YES!!!",
 								func = function(dialog)
 									AddFlagPersistent("fairmod_noitillionare_winner")
+									if GameHasFlagRun("Epic_leet_hacker") == false then
+										AddFlagPersistent("fairmod_noitillionare_winner_legitimate") --Since the player needs to go through noitillionare regardless you can consider this a "won without cheating" flag
+									end
 									set_controls_enabled(true)
 									run_real_ending(x, y)
 									dialog.close()

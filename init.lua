@@ -143,6 +143,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
+	
+	dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 end
 
 function OnPlayerSpawned(player)
