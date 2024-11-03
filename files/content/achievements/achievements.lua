@@ -1044,9 +1044,9 @@ local biome_achievements = {
 		name = "That One Save Room Before the Boss",
 		description = "Discover the final Holy Mountain.",
 	},
-	the_end = {	-- no image
-		name = "We All Live Here :)",
-		description = "Discover Hell.",
+	backrooms = {	-- no image
+		name = "Welcome to the Backrooms",
+		description = "Discover the Backrooms.",
 	},
 	the_sky = {	-- no image
 		name = "Icarus",
