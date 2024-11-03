@@ -1,3 +1,4 @@
+--stylua: ignore start
 local SetContent = ModTextFileSetContent
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
@@ -86,19 +87,14 @@ dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 
+
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
-ModLuaFileAppend(
-	"data/scripts/gun/gun_actions.lua",
-	"mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua"
-)
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
-ModLuaFileAppend(
-	"data/scripts/projectiles/all_spells_stage.lua",
-	"mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua"
-)
+ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
@@ -397,3 +393,4 @@ end
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
+--stylua: ignore end
