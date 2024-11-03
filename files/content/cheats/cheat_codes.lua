@@ -509,12 +509,6 @@ return {
 			AddFlagPersistent("fairmod_spawned_superchest")
 		end
 	},
-	{
-		code = "debug37",
-		func = function()
-			RemoveFlagPersistent("fairmod_spawned_superchest")
-		end
-	}
 }
 
 --stylua: ignore end

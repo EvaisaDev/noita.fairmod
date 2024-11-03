@@ -9,6 +9,9 @@ for i = 1, #achievements do
 end
 
 RemoveFlagPersistent("fairmod_dmca_warning_shown")
+RemoveFlagPersistent("fairmod_spawned_superchest")
+RemoveFlagPersistent("fairmod_noitillionare_winner")
 ModSettingRemove("fairmod_win_count")
 ModSettingRemove("fairmod.death_locations")
+ModSettingRemove("radios_activated_highscore")
 ModSettingRemove("noita.fairmod.reset_progress")
