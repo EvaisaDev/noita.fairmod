@@ -109,9 +109,10 @@ local Popups = {
 		{ --and here's a better example showcasing a much smaller effect
 			MESSAGE = "YOU'RE STEAM ID IS 765611steamid! \n Stay Safe! :thumbsup:",
 			OPEN_FUNCTION = function(self)
-				self.MESSAGE = self.MESSAGE:gsub("steamid", string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
+				self.MESSAGE = self.MESSAGE:gsub("steamid", ModSettingGet("user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
+
 		--[=[
 		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
 			EXE					= "PROGRESS PAWN SHOP",

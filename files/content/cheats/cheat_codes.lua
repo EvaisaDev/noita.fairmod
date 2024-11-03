@@ -509,6 +509,14 @@ return {
 			AddFlagPersistent("fairmod_spawned_superchest")
 		end
 	},
+	{
+		code = "gimmetinker",
+		name = "gimme tinker",
+		desc = "no :)",
+		func = function(player)
+			perk_pickup( nil, player, "NO_WAND_EDITING", true, false, true )
+		end
+	},
 }
 
 --stylua: ignore end
