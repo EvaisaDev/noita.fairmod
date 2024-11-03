@@ -591,7 +591,7 @@ for i = 1, 10 do
 	table.insert(achievements, {
 		name = "X marks the spot " .. romanize(i),
 		description = 2^i .. " digital doubloons yanked from ye pocket",
-		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/innocent_kills_", i, ".png" }),
+		icon = table.concat({ "mods/noita.fairmod/files/content/achievements/icons/popups_", i, ".png" }),
 		flag = "popups_closed_" .. i,
 		unlock = function()
 			return tonumber(GlobalsGetValue("POPUPS_CLOSED", "0")) >= (2 ^ i)
