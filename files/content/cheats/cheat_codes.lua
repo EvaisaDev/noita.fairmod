@@ -346,8 +346,8 @@ return {
 		func = function()
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end,
-	},-- sorry i fixed your bullshit :) -- NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated:
-	-- Fixed it again -c
+	},--[[sorry i fixed your bullshit :) -e]] --[[NOOOOOOOOOOOOOOOOOOOOOOOOOO THE ONE-LINER TABLE :devastated: -k]]
+	--[[Fixed it again -c]] --[[W COPI -k]]
 	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
 	,{
 		code = "copi",
