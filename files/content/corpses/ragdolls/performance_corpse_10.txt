@@ -1,0 +1,1 @@
+mods/noita.fairmod/files/content/corpses/ragdolls/corpse_10.png

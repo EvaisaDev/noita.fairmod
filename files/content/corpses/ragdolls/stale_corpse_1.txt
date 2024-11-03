@@ -1,0 +1,5 @@
+mods/noita.fairmod/files/content/corpses/ragdolls/torso.png
+mods/noita.fairmod/files/content/corpses/ragdolls/right_arm.png
+mods/noita.fairmod/files/content/corpses/ragdolls/left_arm.png
+mods/noita.fairmod/files/content/corpses/ragdolls/legs.png
+mods/noita.fairmod/files/content/corpses/ragdolls/head.png
