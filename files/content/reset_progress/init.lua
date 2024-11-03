@@ -11,6 +11,7 @@ end
 RemoveFlagPersistent("fairmod_dmca_warning_shown")
 RemoveFlagPersistent("fairmod_spawned_superchest")
 RemoveFlagPersistent("fairmod_noitillionare_winner")
+RemoveFlagPersistent("crashed_by_wizard")
 ModSettingRemove("fairmod_win_count")
 ModSettingRemove("fairmod.death_locations")
 ModSettingRemove("radios_activated_highscore")
