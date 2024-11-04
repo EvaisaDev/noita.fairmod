@@ -228,7 +228,7 @@ achievements = {
 	},
 	{
 		name = "Jeffrey Preston Bezos ",
-		description = "Approx Net Worth: $2.147B",
+		description = "Approx Net Worth: $ 2.147B",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/infinite_gold.png",
 		flag = "achievement_infinite_gold",
 		unlock = function()
@@ -441,7 +441,7 @@ achievements = {
 		flag = "achievement_10_radios",
 		unlock = function()
 			return GameHasFlagRun("10_radios_tuned")
-		end
+		end,
 	},
 	{
 		name = "Stop it!!",
@@ -450,7 +450,7 @@ achievements = {
 		flag = "achievement_28_radios",
 		unlock = function()
 			return GameHasFlagRun("28_radios_tuned")
-		end
+		end,
 	},
 }
 
