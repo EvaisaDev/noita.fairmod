@@ -43,6 +43,7 @@ local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/
 local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
+local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -197,6 +198,7 @@ function OnPlayerSpawned(player)
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
 	fishing.OnPlayerSpawned(player)
+	secret.init()
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
@@ -275,6 +277,7 @@ function OnWorldPreUpdate()
 	hescoming.update()
 	smokedogg.update()
 	payphone.update()
+	secret.update()
 
 	gamblecore.Update()
 

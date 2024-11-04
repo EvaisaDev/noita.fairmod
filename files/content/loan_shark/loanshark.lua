@@ -300,6 +300,55 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				end,
 			},
 			{
+				text = "Gerald..?",
+				show = function()
+					return GameHasFlagRun("ask_for_gerald")
+				end,
+				func = function(dialog)
+					GameRemoveFlagRun("ask_for_gerald")
+
+					dialog.show({
+						text = "That's me, I was supposed to give you this.. \\*blub\\*",
+						options = {
+							{
+								text = "Grab note.",
+								func = function(dialog)
+									local x, y = EntityGetTransform(entity_who_interacted)
+									local entity = EntityLoad("mods/noita.fairmod/files/content/secret/note.xml", x, y)
+
+									local item_component = EntityGetFirstComponentIncludingDisabled(entity, "ItemComponent")
+
+									if item_component then
+										ComponentSetValue2(item_component, "ui_description", GlobalsGetValue("fairmod.secret_coords", "[REDACTED]"))
+									end
+
+									GameAddFlagRun("note_received")
+
+									local item_count = 0
+									for i, child in ipairs(EntityGetAllChildren(player) or {}) do
+										if EntityGetName(child) == "inventory_quick" then
+											for i, v in ipairs(EntityGetAllChildren(child) or {}) do
+												local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
+												if ability_component then
+													local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
+													if not use_gun_script then item_count = item_count + 1 end
+												end
+											end
+										end
+									end
+				
+									if item_count < 4 then GamePickUpInventoryItem(entity_who_interacted, entity, true) end
+				
+
+									dialog.close()
+								end,
+							},
+						},
+					})
+			
+				end,
+			},
+			{
 				text = "Leave",
 			},
 		},
