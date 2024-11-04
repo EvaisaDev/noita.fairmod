@@ -196,7 +196,7 @@ local function build_settings()
 				},
 				{
 					id = "discord_pings_enabled",
-					ui_name = "Enable Friends",
+					ui_name = "Friends",
 					ui_description = "Friends will occasionally try to reach out to you.",
 					value_default = true,
 					scope = MOD_SETTING_SCOPE_RUNTIME,
