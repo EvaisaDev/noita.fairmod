@@ -54,19 +54,6 @@ g_small_enemies =
 		entity 	= "data/entities/animals/rat.xml"
 	},
 	{
-		prob   		= 0.1,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/thunderskull.xml"
-	},
-	{
-		prob   		= 0.09,
-		min_count	= 1,
-		max_count	= 1,
-		ngpluslevel	= 1,
-		entity 	= "data/entities/animals/thundermage_big.xml"
-	},
-	{
 		prob   		= 0.10,
 		min_count	= 1,
 		max_count	= 2,    
@@ -77,26 +64,6 @@ g_small_enemies =
 		min_count	= 2,
 		max_count	= 3,  
 		entity 	= "mods/noita.fairmod/files/content/milk_biome/entities/animals/miner_milk.xml"
-	},
-	{
-		prob		= 0.10,
-		min_count	= 1,
-		max_count	= 2,
-		entity		= "data/entities/animals/scavenger_grenade.xml"
-	},
-	--[[
-	]]--
-	{
-		prob   		= 0.15,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 		= "data/entities/animals/wizard_weaken.xml"
-	},
-	{
-		prob   		= 0.04,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 		= "data/entities/animals/wizard_teleport.xml"
 	},
 }
 
@@ -114,31 +81,7 @@ g_big_enemies =
 		entity 	= ""
 	},
 	-- add skullflys after this step
-	{
-		prob   		= 0.08,
-		min_count	= 1,
-		max_count	= 1,
-		ngpluslevel	= 1,
-		entity 	= "data/entities/animals/thundermage_big.xml"
-	},
-	{
-		prob   		= 0.05,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/worm_big.xml"
-	},
-	{
-		prob           = 0.2,
-		min_count    = 1,
-		max_count    = 1,    
-		entity     = "data/entities/animals/tentacler.xml"
-	},
-    {
-        prob           = 0.15,
-        min_count    = 1,
-        max_count    = 1,
-        entity     = "data/entities/animals/tentacler_small.xml"
-    },
+
 }
 
 
@@ -167,12 +110,7 @@ g_aquatic =
 		entity 	= ""
 	},
 	-- 
-	{
-		prob   		= 1.0,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/sunken_cave/eel.xml"
-	},
+
 }
 
 g_mist_colossal =
@@ -211,48 +149,7 @@ g_unique_enemy =
 		entity 	= ""
 	},
 	-- add skullflys after this step
-	{
-		prob   		= 1.0,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/tank.xml"
-	},
-	{
-		prob   		= 0.1,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/tank_rocket.xml"
-	},
-	{
-		prob   		= 0.001,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/tank_super.xml"
-	},
-	{
-		prob   		= 0.1,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/wizard_tele.xml"
-	},
-	{
-		prob   		= 0.1,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/wizard_dark.xml"
-	},
-	{
-		prob   		= 0.07,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/wizard_swapper.xml"
-	},
-	{
-		prob   		= 0.1,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/necromancer.xml"
-	},
+
 }
 
 g_unique_enemy2 =
@@ -266,24 +163,7 @@ g_unique_enemy2 =
 		entity 	= ""
 	},
 	-- add skullflys after this step
-	{
-		prob   		= 0.6,
-		min_count	= 1,
-		max_count	= 2,    
-		entity 	= "data/entities/animals/scavenger_grenade.xml"
-	},
-	{
-		prob   		= 0.6,
-		min_count	= 1,
-		max_count	= 2,    
-		entity 	= "data/entities/animals/scavenger_smg.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/animals/sniper.xml"
-	}
+
 }
 
 ------------ ITEMS ------------------------------------------------------------
@@ -324,30 +204,22 @@ g_items =
 		max_count	= 1,    
 		entity 	= "data/entities/items/pickup/waterstone.xml"
 	},
+	{
+		prob   		= 2,
+		min_count	= 1,
+		max_count	= 1,    
+		entity 	= "mods/noita.fairmod/files/content/milk_biome/entities/items/pickup/endless_milk_potion.xml"
+	},
 }
 
 g_pixel_scene_01 =
 {
 	total_prob = 0,
-	{
-		prob   			= 0.5,
-		material_file 	= "mods/Apotheosis/files/biome_impl/sunken_cave/verticalobservatory2.png",
-		visual_file		= "data/biome_impl/snowcave/verticalobservatory2_visual.png",
-		background_file	= "data/biome_impl/snowcave/verticalobservatory2_background.png",
-		is_unique		= 0
-	},
 }
 
 g_pixel_scene_01_alt =
 {
 	total_prob = 0,
-	{
-		prob   			= 0.5,
-		material_file 	= "mods/Apotheosis/files/biome_impl/sunken_cave/verticalobservatory2.png",
-		visual_file		= "data/biome_impl/snowcave/verticalobservatory2_visual.png",
-		background_file	= "data/biome_impl/snowcave/verticalobservatory2_background.png",
-		is_unique		= 0
-	},
 }
 
 g_pixel_scene_02 =
@@ -372,13 +244,6 @@ g_pixel_scene_02 =
 		material_file 	= "data/biome_impl/snowcave/horizontalobservatory3.png",
 		visual_file		= "data/biome_impl/snowcave/horizontalobservatory3_visual.png",
 		background_file	= "data/biome_impl/snowcave/horizontalobservatory3_background.png",
-		is_unique		= 0
-	},
-	{
-		prob   			= 1.5,
-		material_file 	= "mods/Apotheosis/files/biome_impl/sunken_cave/shop.png",
-		visual_file		= "mods/Apotheosis/files/biome_impl/sunken_cave/shop_visual.png",
-		background_file	= "",
 		is_unique		= 0
 	},
 }
@@ -520,12 +385,6 @@ g_lamp =
 		min_count	= 1,
 		max_count	= 1,    
 		entity 	= ""
-	},
-	{
-		prob   		= 0.7,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/props/physics_lantern_small.xml"
 	},
 }
 
