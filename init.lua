@@ -65,6 +65,7 @@ local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
 local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
+local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -164,8 +165,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
-	
-	dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
+	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)

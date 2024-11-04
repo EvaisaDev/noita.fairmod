@@ -36,7 +36,7 @@
       material_index="9" 
       material_max="3.6" 
       material_min="0.9" 
-      material_name="rock_static" 
+      material_name="fairmod_swiss" 
       rare_polka_is_boxed="1" 
       rare_polka_probability="0.2" 
       rare_polka_radius_high="0.65" 
@@ -58,7 +58,7 @@
       material_index="10" 
       material_max="1.05" 
       material_min="0.53" 
-      material_name="rock_hard" 
+      material_name="fairmod_cheddar" 
       rare_polka_is_boxed="1" 
       rare_polka_probability="0.2" 
       rare_polka_radius_high="0.65" 
@@ -93,7 +93,7 @@
       material_index="5" 
       material_max="3.5" 
       material_min="0.9" 
-      material_name="rock_static_wet" 
+      material_name="fairmod_mozzerella" 
       rare_polka_is_boxed="0" 
       rare_polka_probability="0.1" 
       rare_polka_radius_high="1.8" 
@@ -107,6 +107,7 @@
     </MaterialComponent>
     
     <!-- for the gold vein biome modifier. material_max and material_min must initially be 0 -->
+     <!-- parmesan is so damn expensive it might as well be gold -->
     <MaterialComponent 
       _enabled="1" 
       is_rare="1" 
@@ -116,7 +117,7 @@
       material_index="9" 
       material_max="0" 
       material_min="0" 
-      material_name="silver" 
+      material_name="fairmod_parmesan" 
       rare_polka_is_boxed="0" 
       rare_polka_probability="0.357143" 
       rare_polka_radius_high="0.564286" 
@@ -132,4 +133,3 @@
   </Materials>
 
 </Biome>
-
