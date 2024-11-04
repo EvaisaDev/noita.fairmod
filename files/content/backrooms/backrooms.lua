@@ -93,9 +93,8 @@ function load_scene_h(x, y)
 end
 
 function load_lamp(x, y)
-	SetRandomSeed(x, y + GameGetFrameNum())
 	local _seed = tonumber(ModSettingGet("user_seed"):sub(5, 13))
-	math.randomseed(_seed, _seed + 1)
+	SetRandomSeed(_seed, _seed + 1)
 	local g_lamp = {
 		total_prob = 0,
 		{
@@ -117,7 +116,7 @@ function load_lamp(x, y)
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_broken.xml",
 		},
 		{
-			prob = math.random(500, 2000) * .00001,
+			prob = Random(500, 2000) * .00001,
 			min_count = 1,
 			max_count = 1,
 			entity = "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml",
@@ -134,23 +133,17 @@ function load_lamp(x, y)
 end
 
 function load_decal(x, y)
-	local a, b, c, d, e, f = GameGetDateAndTimeLocal()
-
-	local seed = a + b + c + d + e + f
-	SetRandomSeed(x + seed, y + GameGetFrameNum())
+	SetRandomSeed(x, y)
 
 	if Random(0, 100) < 5 then
 		LoadBackgroundSprite("mods/noita.fairmod/files/content/backrooms/background/backrooms_decals/" .. Random(1, 10) .. ".png", x - 16, y - 16)
-	elseif Random(0, 100) < 12 then
+	elseif Random(0, 100) < 7 then
 		LoadBackgroundSprite("mods/noita.fairmod/files/content/backrooms/background/backrooms_decals/secret/" .. Random(1, 26) .. ".png", x - 3, y - 8)
 	end
 end
 
 function load_radio(x, y)
-	local a, b, c, d, e, f = GameGetDateAndTimeLocal()
-
-	local seed = a + b + c + d + e + f
-	SetRandomSeed(x + seed, y + GameGetFrameNum())
+	SetRandomSeed(x, y)
 	if Random(0, 100) > 25 then return end
 	EntityLoad("mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x - 5, y - 5)
 end
