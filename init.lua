@@ -112,6 +112,7 @@ dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
+dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 

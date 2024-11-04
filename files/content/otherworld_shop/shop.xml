@@ -1,0 +1,36 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/otherworld_shop/shop_background.png"
+		offset_x="22"
+		offset_y="40"
+		z_index="30"
+	/>
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/otherworld_shop/shop_closed.png"
+		offset_x="22"
+		offset_y="40"
+		z_index="25"
+	/>
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/otherworld_shop/shop_foreground.png"
+		offset_x="22"
+		offset_y="40"
+		z_index="22"
+	/>
+
+	<InteractableComponent
+		radius="20"
+		ui_text="Press $0 to talk."
+		name="interact"
+	/>
+
+	<!--LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/otherworld_shop/shop_interact.lua"
+		script_source_file="mods/noita.fairmod/files/content/otherworld_shop/shop_interact.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		execute_on_added="1"
+	/-->
+</Entity>
