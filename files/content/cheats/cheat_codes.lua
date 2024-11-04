@@ -512,9 +512,34 @@ return {
 	{
 		code = "gimmetinker",
 		name = "gimme tinker",
-		desc = "no :)",
+		description = "no :)",
 		func = function(player)
 			perk_pickup( nil, player, "NO_WAND_EDITING", true, false, true )
+		end
+	},
+	{
+		code = "nodev",
+		devmode = true,
+		name = "Disable Developer Mode",
+		description = "Happy testing o/",
+		func = function()
+			GameRemoveFlagRun("fairmod_developer_mode")
+		end
+	},
+	{
+		code = "radio",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+		end
+	},
+	{
+		code = "blacklight",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
 		end
 	},
 }

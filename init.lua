@@ -1,30 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
-local time = {GameGetDateAndTimeUTC()}
-SetRandomSeed(time[5] * time[6], time[3] * time[4])
-
-local function GenerateRandomNumber(iterations)
-	local number = ""
-	for i = 1, iterations do
-		number = number .. Random(0, 9)
-	end
-	return number
-end
-
-if ModSettingGet("user_seed") == nil then
-	ModSettingSet("user_seed", GenerateRandomNumber(30))
-	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
-end
-
---[[ user seed use example:
-local _seed = ModSettingGet("user_seed"):sub(1, 10) or 0
-print(_seed)
-SetRandomSeed(_seed, _seed)
-for i = 1, 10 do
-	print(GenerateRandomNumber(8))
-end
---]]
+dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -171,6 +148,10 @@ function OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
+	if HasFlagPersistent("fairmod_developer_mode") then
+		GameAddFlagRun("fairmod_developer_mode")
+		RemoveFlagPersistent("fairmod_developer_mode")
+	end
 	surface_bad:spawn()
 	funny_settings.OnPlayerSpawned(player)
 
