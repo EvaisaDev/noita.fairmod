@@ -2,6 +2,7 @@ local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
 local kill_radius = 5
+local status_clear_radius = 50
 
 local snail_timeout = tonumber(GlobalsGetValue("SnailTimeout", "0"))
 
@@ -17,13 +18,32 @@ end
 
 local nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "player_unit") or {}
 
-if #nearby_players <= 0 then nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {} end
+if #nearby_players <= 0 then 
+	nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {} 
+end
+
+local clearable_players = EntityGetInRadiusWithTag(x, y, status_clear_radius, "player_unit") or {}
+
+if #clearable_players <= 0 then 
+	clearable_players = EntityGetInRadiusWithTag(x, y, status_clear_radius, "polymorphed_player") or {} 
+end
+
+for i, player in ipairs(clearable_players) do
+	EntityRemoveStainStatusEffect(player, "PROTECTION_ALL", 1)
+	local children = EntityGetAllChildren(player) or {}
+	for _, child in ipairs(children) do
+		local game_effect_comp = EntityGetFirstComponent(child, "GameEffectComponent")
+		if game_effect_comp and ComponentGetValue2(game_effect_comp, "effect") == "PROTECTION_ALL" then
+			EntityKill(child)
+		end
+	end
+end
 
 for i, player in ipairs(nearby_players) do
-	EntityRemoveStainStatusEffect(player, "PROTECTION_ALL", 1)
+
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then
-		ComponentSetValue2(damage_model_comp, "hp", 1)
+		ComponentSetValue2(damage_model_comp, "hp", 0.04)
 		ComponentSetValue2(damage_model_comp, "wait_for_kill_flag_on_death", false)
 		ComponentSetValue2(damage_model_comp, "invincibility_frames", 0)
 	end
