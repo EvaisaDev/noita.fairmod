@@ -1,12 +1,97 @@
---stylua: ignore start
 local SetContent = ModTextFileSetContent
+local PROFILE = true
+local prof_counts = {}
 
-local time = {GameGetDateAndTimeUTC()}
+---@param str string
+---@param n integer
+---@return string
+local function rightpad(str, n)
+	local len = str:len()
+	if len < n then return str .. (" "):rep(n - len) end
+	return str
+end
+
+local function dp2(v)
+	return string.format("%.2f", v)
+end
+
+local function log_profiler()
+	local data = {}
+	for k, v in pairs(prof_counts) do
+		table.insert(data, { k, v[1], v[2] })
+	end
+	table.sort(data, function(a, b)
+		return a[2] / a[3] > b[2] / b[3]
+	end)
+	print("Logs for frame: " .. GameGetFrameNum())
+	for _, v in ipairs(data) do
+		local name = rightpad(v[1] .. ":", 100)
+		local time = rightpad(dp2(v[2] * 1000) .. " ms", 15)
+		local calls = rightpad(v[3] .. " calls", 10)
+		local speed = dp2(v[2] / v[3] * 1000) .. " ms / call"
+		local res = name .. time .. calls .. speed
+		print(res)
+	end
+end
+if PROFILE then
+	local function count(str, time)
+		if prof_counts[str] == nil then prof_counts[str] = { 0, 0 } end
+		prof_counts[str][1] = prof_counts[str][1] + time
+		prof_counts[str][2] = prof_counts[str][2] + 1
+	end
+	local done_files = {}
+	local _dofile_once = dofile_once
+	dofile_once = function(filename)
+		if done_files[filename] then return _dofile_once(filename) end
+		--[[local function mark_value(value, name)
+			local ty = type(value)
+			if ty == "function" then
+				return function(...)
+					local start = GameGetRealWorldTimeSinceStarted()
+					local r = { value(...) }
+					local fin = GameGetRealWorldTimeSinceStarted()
+					count(filename .. "." .. name, fin - start)
+					return unpack(r)
+				end
+			end
+			if ty == "table" then
+			end
+			return value
+		end
+		setmetatable(_G, {
+			__newindex = function(t, k, v)
+				rawset(t, k, mark_value(v))
+			end,
+		})]]
+		done_files[filename] = true
+		local start = GameGetRealWorldTimeSinceStarted()
+		local result = _dofile_once(filename)
+		local fin = GameGetRealWorldTimeSinceStarted()
+		local time_taken = fin - start
+		count(filename, time_taken)
+		if type(result) ~= "table" then return result end
+		for k, v in pairs(result) do
+			if type(v) == "function" then
+				result[k] = function(...)
+					local fn_start = GameGetRealWorldTimeSinceStarted()
+					local r = { v(...) }
+					local fn_fin = GameGetRealWorldTimeSinceStarted()
+					local fn_time_taken = fn_fin - fn_start
+					count(filename .. "." .. k, fn_time_taken)
+					return unpack(r)
+				end
+			end
+		end
+		return result
+	end
+end
+
+local time = { GameGetDateAndTimeUTC() }
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
 
 local function GenerateRandomNumber(iterations)
 	local number = ""
-	for i = 1, iterations do
+	for _ = 1, iterations do
 		number = number .. Random(0, 9)
 	end
 	return number
@@ -112,14 +197,13 @@ dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 
-
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
-ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
+ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
-ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
+ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
@@ -164,7 +248,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
-	
+
 	dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 end
 
@@ -274,6 +358,7 @@ function OnWorldPreUpdate()
 
 	local frames = GameGetFrameNum()
 	if frames % 30 == 0 then
+		log_profiler()
 		fuckedupenemies:OnWorldPreUpdate()
 		orbs_for_all:update()
 		surface_bad:update()
@@ -328,9 +413,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 end
 
 function OnPlayerDied(player)
-	if not GameHasFlagRun("ending_game_completed") then
-		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
-	end
+	if not GameHasFlagRun("ending_game_completed") then ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1) end
 	hescoming.OnPlayerDied(player)
 	corpses.OnPlayerDied(player)
 end
@@ -419,4 +502,3 @@ end
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
---stylua: ignore end
