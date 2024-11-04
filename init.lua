@@ -172,6 +172,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
+	GamePrint(ModSettingGet("user_seed"))
 	surface_bad:spawn()
 	funny_settings.OnPlayerSpawned(player)
 
