@@ -65,12 +65,14 @@ module.update = function()
 			if type(code) == "function" then code = code() end
 			if string.sub(code, 1, string.len(input)) == input then
 				if string.len(code) == string.len(input) then
-					if v.name then
-						GameAddFlagRun("Epic_leet_hacker")
-						GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
+					if (v.devmode and GameHasFlagRun("fairmod_developer_mode")) or not v.devmode then
+						if v.name then
+							GameAddFlagRun("Epic_leet_hacker")
+							GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
+						end
+						v.func(player)
+						current_input_text = ""
 					end
-					v.func(player)
-					current_input_text = ""
 				end
 				print("current_cheat_text", input)
 				return true
