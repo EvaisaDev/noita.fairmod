@@ -139,8 +139,10 @@ function load_decal(x, y)
 	local seed = a + b + c + d + e + f
 	SetRandomSeed(x + seed, y + GameGetFrameNum())
 
-	if Random(0, 100) < 10 then
+	if Random(0, 100) < 5 then
 		LoadBackgroundSprite("mods/noita.fairmod/files/content/backrooms/background/backrooms_decals/" .. Random(1, 10) .. ".png", x - 16, y - 16)
+	elseif Random(0, 100) < 12 then
+		LoadBackgroundSprite("mods/noita.fairmod/files/content/backrooms/background/backrooms_decals/secret/" .. Random(1, 26) .. ".png", x - 3, y - 8)
 	end
 end
 
