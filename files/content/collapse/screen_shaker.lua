@@ -1,0 +1,2 @@
+
+GameScreenshake( 40 )

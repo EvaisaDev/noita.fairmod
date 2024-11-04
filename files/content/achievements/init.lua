@@ -294,11 +294,15 @@ function ui:DrawAchievementsScrollbox()
 		local achievement = achievements[i]
 		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
 		local achievement_data = self:GetAchievementData(achievement)
-		if HasFlagPersistent(flag) then
-			self:DrawAchievement(0, y, achievement_data)
-		else
-			self:DrawLockedAchievements(0, y, achievement_data)
+
+		if y >= 0 - achievement_data.height and y <= self.scroll.height_max then
+			if HasFlagPersistent(flag) then
+				self:DrawAchievement(0, y, achievement_data)
+			else
+				self:DrawLockedAchievements(0, y, achievement_data)
+			end
 		end
+
 		y = y + achievement_data.height
 	end
 	self:Text(0, y + self.scroll.y, "")
