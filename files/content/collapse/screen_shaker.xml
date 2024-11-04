@@ -1,0 +1,10 @@
+<Entity>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/collapse/screen_shaker.lua"
+		execute_every_n_frame="30"
+		/>
+
+	<LifetimeComponent
+		lifetime="130"
+		/>
+</Entity>
