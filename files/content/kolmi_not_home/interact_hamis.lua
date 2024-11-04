@@ -47,6 +47,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 										GameAddFlagRun("fairmod_trickortreated")
 
 										CreateItemActionEntity(GetRandomAction(GameGetFrameNum(), y, 10, 1), x, y)
+										GameCreateParticle("candy_fairmod_hamis", x, y, 50, 0, 0, false)
 										GlobalsSetValue(
 											"fairmod_hamis_candy_gotten",
 											tonumber(GlobalsGetValue("fairmod_hamis_candy_gotten", "0")) + 1
