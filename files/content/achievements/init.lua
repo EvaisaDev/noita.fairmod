@@ -167,6 +167,14 @@ function ui:DrawNotifications()
 
 			self:DrawCroppedBackground(x, y, achievement_data.height)
 			self:DrawCroppedGradient(x, y, achievement_data.height)
+			if
+				not fairmod_achievements_displaying_window
+				and self:IsHoverBoxHovered(x, y, notification_width, achievement_data.height)
+				and self:IsMouseClicked()
+			then
+				GamePlaySound("ui", "ui/button_click", 0, 0)
+				fairmod_achievements_displaying_window = true
+			end
 
 			self:DrawAchievement(x, y, achievement_data)
 		end
@@ -317,13 +325,16 @@ function ui:DrawAchievementsWindow()
 	self:Draw9Piece(x - 3, y, 1001, self.scroll.width + 6, 8, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png")
 	local unlocked = tonumber(GlobalsGetValue("fairmod_achievements_unlocked")) or 0
 	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
-	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
+	local text = string.format("Achievements: %d/%d (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
 	local close_dim = self:GetTextDimension("[Close]")
 	local close_x = x + self.scroll.width - close_dim + 3
 	local hovered = self:IsHoverBoxHovered(close_x, y, close_dim, 7)
 	if hovered then
 		self:Color(1, 1, 0.7)
-		if self:IsLeftClicked() then fairmod_achievements_displaying_window = false end
+		if self:IsLeftClicked() then
+			GamePlaySound("ui", "ui/button_click", 0, 0)
+			fairmod_achievements_displaying_window = false
+		end
 	end
 	self:Text(close_x, y, "[Close]")
 
