@@ -5,12 +5,14 @@ local x, y = EntityGetTransform(entity_interacted)
 local special_events = {
 	{
 		numbers	= {
-			"8 7 20 26",
-			"16 3 5 7 13 21",
-			"3 12 5",
-			"23 13 18",
-			"22 7 10 10",
-			"21 26 26",
+			"18 21 26",
+			"15 3 23 15 6 13 12 26",
+			"3 19",
+			"3 12 23",
+			"8 18 10 10",
+			"13 16",
+			"6 3 10 8",
+			"6 13 18 16",
 		},
 		current_line = 1,
 		current_pointer = 1,
@@ -74,6 +76,7 @@ local special_events = {
 						if self.current_line > #self.numbers then
 							-- All lines have been processed; deactivate the event
 							active_event = nil
+							ModSettingSet("fairmod.listened_to_numbers", true)
 							if radio_comp then ComponentSetValue2(radio_comp, "event_name", "radio/loop") end
 							print("Event has been completed and is now deactivated.")
 							return
@@ -113,13 +116,13 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	radio_is_on = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on") ~= nil
 	local entity = GetUpdatedEntityID()
 
-	local audiocomp = EntityGetFirstComponent(entity, "AudioLoopComponent")
-	ComponentSetValue2(audiocomp, "m_volume", 1)
 
 	if not radio_is_on then
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", true)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", false)
-	
+		local audiocomp = EntityGetFirstComponent(entity, "AudioLoopComponent", "radio_on")
+		ComponentSetValue2(audiocomp, "m_volume", 1)
+
 		if audiocomp then ComponentSetValue2(audiocomp, "event_name", "radio/" .. (Random(1, 10) == 9 and "ill_see_you_when_i_see_you" or "loop")) end
 
 		local current_radios = tonumber(GlobalsGetValue("radios_activated", "0")) + 1
