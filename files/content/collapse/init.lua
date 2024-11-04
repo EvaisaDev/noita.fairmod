@@ -2,25 +2,29 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 -- Add another falling chunks to the right of the original
-for chunks in nxml.edit_file("data/entities/misc/loose_chunks_workshop.xml") do
-	for x = -4, 1 do
-		if x ~= 0 then
-			chunks:add_child(nxml.new_element("Entity", {}, {
-				nxml.new_element("InheritTransformComponent", {}, {
-					nxml.new_element("Transform", {
-						["position.x"] = tostring(x * 180),
-					}),
+for xml in nxml.edit_file("data/entities/misc/loose_chunks_workshop.xml") do
+	local og_chunks = xml:first_of("LooseGroundComponent")
+	if og_chunks ~= nil then
+		xml:remove_child(og_chunks)
+	end
+
+	for x = -3, 1 do
+		xml:add_child(nxml.new_element("Entity", {}, {
+			nxml.new_element("InheritTransformComponent", {}, {
+				nxml.new_element("Transform", {
+					["position.x"] = tostring(x * 150),
 				}),
-				nxml.new_element("LooseGroundComponent", {
-					probability = "0.25",
-					max_distance = "200",
-					max_angle = "2.1",
-					chunk_probability = "0.2",
-					collapse_images = "data/procedural_gfx/collapse_big/$[0-14].png",
-					chunk_material = "concrete_collapsed",
-				}),
-			}))
-		end
+			}),
+			nxml.new_element("LooseGroundComponent", {
+				probability = 0.6,
+				max_distance = 200,
+				max_angle = 2.6,
+				chunk_probability = 0.8,
+				collapse_images = "data/procedural_gfx/collapse_huge/$[0-14].png",
+				chunk_material = "concrete_collapsed",
+				chunk_count = 20,
+			}),
+		}))
 	end
 end
 
