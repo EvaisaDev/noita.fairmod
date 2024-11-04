@@ -24,6 +24,7 @@ local achievement_height = 0
 
 local debug_no_flags = false
 
+
 for xml in nxml.edit_file("data/entities/player.xml") do
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = -1,
@@ -34,6 +35,7 @@ for xml in nxml.edit_file("data/entities/player.xml") do
 		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua",
 	}))
 end
+
 
 local function AddNotification(icon, name, description, sound)
 	if sound then GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0) end

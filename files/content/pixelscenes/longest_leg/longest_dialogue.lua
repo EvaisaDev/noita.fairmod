@@ -47,11 +47,9 @@ end
 local dialogue_read_the_words_8 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("And so, from the fires of the Hamis Lord")
-			.. "\n"
-			.. shuffle("the world was made whole and its purpose set aflame.")
-			.. "\n"
-			.. shuffle("Hope you learned something from this story."),
+		text = shuffle("And so, from the fires of the Hamis Lord") .. "\n" .. shuffle(
+			"the world was made whole and its purpose set aflame."
+		) .. "\n" .. shuffle("Hope you learned something from this story."),
 		options = {
 			{
 				text = "I believe in Hamis now",

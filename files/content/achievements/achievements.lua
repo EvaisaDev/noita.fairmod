@@ -434,6 +434,24 @@ achievements = {
 			return GameHasFlagRun("PERK_PICKED_MINUS_LIFE")
 		end,
 	},
+	{
+		name = "Banging Tunes",
+		description = "Tune 10 radios",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/10_radios.png",
+		flag = "achievement_10_radios",
+		unlock = function()
+			return GameHasFlagRun("10_radios_tuned")
+		end
+	},
+	{
+		name = "Stop it!!",
+		description = "There is no secret radio ending!!!!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/28_radios.png",
+		flag = "achievement_28_radios",
+		unlock = function()
+			return GameHasFlagRun("28_radios_tuned")
+		end
+	},
 }
 
 local function romanize(num)
@@ -628,6 +646,10 @@ local biome_achievements = {
 		name = "The Typical Boss Room",
 		description = "Discover The Laboratory.",
 	},
+	boss_arena_top = {
+		name = "How Do We Furnish It?",
+		description = "Discover the empty corner of Temple of the Art.",
+	},
 	boss_victoryroom = {
 		name = "What is this Contraption?",
 		description = "Discover The Work.",
@@ -712,15 +734,15 @@ local biome_achievements = {
 		name = "Friend Cave 6",
 		description = "Discover the sixth friend cave.",
 	},
-	fungicave = { -- no image
+	fungicave = {
 		name = "Smells a Bit Funky",
 		description = "Discover the Fungal Caverns.",
 	},
-	fungiforest = { -- no image
+	fungiforest = {
 		name = "Look At All the Fun Guys!",
 		description = "Discover the Overgrown Cavern.",
 	},
-	funroom = { -- no image
+	funroom = {
 		name = "It's Big and it's Funky",
 		description = "Discover the giant mushroom.",
 	},
@@ -820,7 +842,7 @@ local biome_achievements = {
 		name = "It's a... Volcano?",
 		description = "Discover the top of the mountain.",
 	},
-	mountain_tree = { -- no image
+	mountain_tree = {
 		name = "Big. Hard. Wood.",
 		description = "Discover the Giant Tree.",
 	},
@@ -924,7 +946,7 @@ local biome_achievements = {
 		name = "Music to my Hands",
 		description = "Discover the location of the Kuulokivi.",
 	},
-	sandcave = { -- no image
+	sandcave = {
 		name = "Hiisi are Everywhere",
 		description = "Discover the Sandcave.",
 	},
@@ -940,11 +962,11 @@ local biome_achievements = {
 		name = "Casually Invading Their Home...",
 		description = "Discover the Hiisi Base.",
 	},
-	snowcastle_cavern = { -- no image
+	snowcastle_cavern = {
 		name = "Side Market",
 		description = "Discover the Secret Shop.",
 	},
-	snowcastle_hourglass_chamber = { -- no image
+	snowcastle_hourglass_chamber = {
 		name = "Time is Relative",
 		description = "Discover the Hourglass Chamber.",
 	},
@@ -980,7 +1002,7 @@ local biome_achievements = {
 		name = "Mines Again...",
 		description = "Discover the Mines in The Tower.",
 	},
-	solid_wall_tower_10 = { -- no image
+	solid_wall_tower_10 = {
 		name = "Finally Made it to the Top",
 		description = "Discover The Tower's treasure.",
 	},
@@ -996,7 +1018,7 @@ local biome_achievements = {
 		name = "Hiisi Base Again...",
 		description = "Discover the Hiisi Base in The Tower.",
 	},
-	solid_wall_tower_5 = { -- no image
+	solid_wall_tower_5 = {
 		name = "Fungal Caverns Again...",
 		description = "Discover the Fungal Caverns in The Tower.",
 	},
@@ -1020,19 +1042,19 @@ local biome_achievements = {
 		name = "Blue Chest",
 		description = "Discover the location of the Coral Chest.",
 	},
-	teleroom = { -- no image
+	teleroom = {
 		name = "Now You're Thinking With Portals",
 		description = "Discover the Portal Room.",
 	},
-	temple_altar = { -- no image
+	temple_altar = {
 		name = "There's a Lot Going on Here",
 		description = "Discover the center of a Holy Mountain.",
 	},
-	temple_altar_left = { -- no image
+	temple_altar_left = {
 		name = "Ahhh Sanctuary... Or Is It?",
 		description = "Discover the Holy Mountain.",
 	},
-	temple_altar_right = { -- no image
+	temple_altar_right = {
 		name = "Grab n' Go",
 		description = "Discover the right side of a Holy Mountain.",
 	},
@@ -1044,7 +1066,7 @@ local biome_achievements = {
 		name = "That One Save Room Before the Boss",
 		description = "Discover the final Holy Mountain.",
 	},
-	backrooms = { -- no image
+	backrooms = {
 		name = "Welcome to the Backrooms",
 		description = "Discover the Backrooms.",
 	},
