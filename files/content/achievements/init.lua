@@ -319,7 +319,7 @@ function ui:DrawAchievementsWindow()
 	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
 	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
 	local close_dim = self:GetTextDimension("[Close]")
-	local close_x = x + self.scroll.width - close_dim
+	local close_x = x + self.scroll.width - close_dim + 3
 	local hovered = self:IsHoverBoxHovered(close_x, y, close_dim, 7)
 	if hovered then
 		self:Color(1, 1, 0.7)
@@ -327,7 +327,7 @@ function ui:DrawAchievementsWindow()
 	end
 	self:Text(close_x, y, "[Close]")
 
-	self:Text(x + 3, y, text)
+	self:Text(x, y, text)
 	self:ScrollBox(x, y + 16, 1001, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png", 3, 3, self.DrawAchievementsScrollbox)
 end
 
