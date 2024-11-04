@@ -2,7 +2,7 @@
 <Entity>
 	<GameEffectComponent
 		effect="KNOCKBACK"
-		frames="250"
+		frames="45"
 		disable_movement="1"
 	></GameEffectComponent>
 
@@ -15,10 +15,14 @@
 	></LuaComponent>
 
 	<LuaComponent
-		script_source_file="mods/noita.fairmod/files/content/bananapeel/reenable_controls.lua"
+		execute_every_n_frame="1"
+		script_source_file="mods/noita.fairmod/files/content/fishing/files/stun_init.lua"
+	/>
+	<LuaComponent
 		execute_every_n_frame="-1"
 		execute_on_removed="1"
-	></LuaComponent>
+		script_source_file="mods/noita.fairmod/files/content/fishing/files/stun_removed.lua"
+	/>
 
 	<SpriteComponent
 		_tags="fx"

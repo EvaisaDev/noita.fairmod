@@ -19,17 +19,17 @@ local rod = EntityGetVariable(bobber, "rod_entity", "int")
 
 local return_bobber = EntityHasFlag(bobber, "return_bobber")
 
-function has_catch()
+local function has_catch()
 	return EntityHasFlag(bobber, "has_catch")
 end
 
-GlobalsSetValue(bobber .. "_frame", fishing_frame + 1)
+GlobalsSetValue(bobber .. "_frame", tostring(fishing_frame + 1))
 
 local fish_string = EntityGetVariable(bobber, "catch_id", "string") or nil
 
 local fish = nil
 
-for k, v in pairs(fish_list) do
+for _, v in pairs(fish_list) do
 	if v.id == fish_string then fish = v end
 end
 
@@ -82,7 +82,7 @@ local function reel_in_objects(x, y, dir_x, dir_y)
 	for _, entity in ipairs(objects_to_reel) do
 		if EntityHasTag(entity, "bobber") then goto continue end
 
-		local phys = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
+		--[[local phys = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
 		if phys then
 			-- Works for these
 			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
@@ -94,7 +94,8 @@ local function reel_in_objects(x, y, dir_x, dir_y)
 			-- Works for these
 			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys2)
 			PhysicsComponentSetTransform(phys2, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
-		end
+		end]]
+		-- done with force application
 
 		local phys3 = EntityGetFirstComponent(entity, "SimplePhysicsComponent")
 		if phys3 and ComponentGetValue2(phys3, "can_go_up") then
@@ -108,11 +109,19 @@ local function reel_in_objects(x, y, dir_x, dir_y)
 		local chr = EntityGetFirstComponent(entity, "CharacterDataComponent")
 		if chr then
 			local vx, vy = ComponentGetValue2(chr, "mVelocity")
+			if not EntityHasTag(entity, "player_unit") then
+				LoadGameEffectEntityTo(entity, "mods/noita.fairmod/files/content/fishing/files/stun_effect.xml")
+			end
 			ComponentSetValue2(chr, "mVelocity", vx + dir_x * 20, vy + dir_y * 20)
 		end
 
 		::continue::
 	end
+
+	PhysicsApplyForceOnArea(function(body_entity, body_mass, body_x, body_y, body_vel_x, body_vel_y, body_vel_angular)
+		local scale = 1000 * body_mass / (((body_x - x) ^ 2 + (body_y - y) ^ 2) ^ 0.5 + 20)
+		return x, y, dir_x * scale, dir_y * scale, 0
+	end, bobber, x - 15, y - 15, x + 15, y + 15)
 end
 
 if return_bobber then

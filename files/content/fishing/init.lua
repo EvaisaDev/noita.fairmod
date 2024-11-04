@@ -6,9 +6,9 @@ local module = {}
 function module.OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/fishing/definitions/bait_list.lua")
 	dofile("mods/noita.fairmod/files/content/fishing/definitions/fish_list.lua")
-	for k, v in pairs(bait_list) do
+	for _, v in pairs(bait_list) do
 		if v.id ~= "any" then
-			bait_file = [[
+			local bait_file = [[
 				<Entity name="bobber" tags="bobber" >
 					<Base file="data/entities/base_projectile.xml" >
 						<VelocityComponent
@@ -159,19 +159,13 @@ function module.OnMagicNumbersAndWorldSeedInitialized()
 				</Entity>
 			]]
 
-			--print(bait_file)
-
 			ModTextFileSetContent("mods/noita.fairmod/files/content/fishing/files/baits/entities/" .. v.id .. ".xml", bait_file)
 		end
-	end
-
-	local function ends_with(str, ending)
-		return ending == "" or str:sub(-#ending) == ending
 	end
 end
 
 function module.OnPlayerSpawned(player)
-	x, y = EntityGetTransform(player)
+	local x, y = EntityGetTransform(player)
 
 	local entity = EntityLoad("mods/noita.fairmod/files/content/fishing/files/rod/default_rod.xml", x, y)
 

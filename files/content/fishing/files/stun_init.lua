@@ -1,0 +1,11 @@
+local me = GetUpdatedEntityID()
+EntityRemoveComponent(me, GetUpdatedComponentID())
+local parent = EntityGetParent(me)
+local platformer = EntityGetFirstComponent(parent, "CharacterPlatformingComponent")
+if platformer == nil then return end
+local accel_air = ComponentGetValue2(platformer, "accel_x_air")
+local accel = ComponentGetValue2(platformer, "accel_x")
+EntityAddComponent2(me, "VariableStorageComponent", { name = "accel_x_air", value_float = accel_air })
+EntityAddComponent2(me, "VariableStorageComponent", { name = "accel_x", value_float = accel })
+ComponentSetValue2(platformer, "accel_x_air", 0)
+ComponentSetValue2(platformer, "accel_x", 0)
