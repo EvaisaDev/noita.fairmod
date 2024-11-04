@@ -27,7 +27,7 @@ local function log_profiler()
 	for _, v in ipairs(data) do
 		local name = rightpad(v[1] .. ":", 100)
 		local time = rightpad(dp2(v[2] * 1000) .. " ms", 15)
-		local calls = rightpad(v[3] .. " calls", 10)
+		local calls = rightpad(v[3] .. " calls", 20)
 		local speed = dp2(v[2] / v[3] * 1000) .. " ms / call"
 		local res = name .. time .. calls .. speed
 		print(res)
@@ -204,7 +204,6 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend("data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua")
-
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
