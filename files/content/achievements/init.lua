@@ -7,6 +7,8 @@ ui.scroll.width = 110
 ui.scroll.scroll_img = "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_scrollbar.png"
 ui.scroll.scroll_img_hl = "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_scrollbar_hl.png"
 
+local achievements_data = setmetatable({}, { __mode = "k" })
+
 fairmod_achievements_displaying_window = false
 
 local notification_time = 420
@@ -24,7 +26,6 @@ local achievement_height = 0
 
 local debug_no_flags = false
 
-
 for xml in nxml.edit_file("data/entities/player.xml") do
 	xml:add_child(nxml.new_element("LuaComponent", {
 		execute_every_n_frame = -1,
@@ -35,7 +36,6 @@ for xml in nxml.edit_file("data/entities/player.xml") do
 		script_source_file = "mods/noita.fairmod/files/content/achievements/check_materials.lua",
 	}))
 end
-
 
 local function AddNotification(icon, name, description, sound)
 	if sound then GamePlaySound("mods/noita.fairmod/fairmod.bank", "achievements/notification", 0, 0) end
@@ -102,6 +102,7 @@ end
 --- @param achievement table
 --- @return achievement_data
 function ui:GetAchievementData(achievement)
+	if achievements_data[achievement.name] then return achievements_data[achievement.name] end
 	achievement_height = 7
 
 	local name = self:SplitString(achievement.name, notification_width - default_icon_size - 8)
@@ -119,7 +120,7 @@ function ui:GetAchievementData(achievement)
 	local icon_width = GuiGetImageDimensions(self.gui, achievement.icon, 1)
 	max_height = math.max(max_height, 28)
 
-	return {
+	achievements_data[achievement.name] = {
 		name = {
 			lines = name,
 			height = name_line_count,
@@ -134,6 +135,7 @@ function ui:GetAchievementData(achievement)
 		},
 		height = max_height,
 	}
+	return achievements_data[achievement.name]
 end
 
 --- Draw achievement notification
@@ -165,6 +167,14 @@ function ui:DrawNotifications()
 
 			self:DrawCroppedBackground(x, y, achievement_data.height)
 			self:DrawCroppedGradient(x, y, achievement_data.height)
+			if
+				not fairmod_achievements_displaying_window
+				and self:IsHoverBoxHovered(x, y, notification_width, achievement_data.height)
+				and self:IsMouseClicked()
+			then
+				GamePlaySound("ui", "ui/button_click", 0, 0)
+				fairmod_achievements_displaying_window = true
+			end
 
 			self:DrawAchievement(x, y, achievement_data)
 		end
@@ -315,17 +325,20 @@ function ui:DrawAchievementsWindow()
 	self:Draw9Piece(x - 3, y, 1001, self.scroll.width + 6, 8, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png")
 	local unlocked = tonumber(GlobalsGetValue("fairmod_achievements_unlocked")) or 0
 	local total = tonumber(GlobalsGetValue("fairmod_total_achievements")) or 1
-	local text = string.format("Achievements: %s/%s (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
+	local text = string.format("Achievements: %d/%d (%d%%)", unlocked, total, math.floor((unlocked / total) * 100))
 	local close_dim = self:GetTextDimension("[Close]")
-	local close_x = x + self.scroll.width - close_dim
+	local close_x = x + self.scroll.width - close_dim + 3
 	local hovered = self:IsHoverBoxHovered(close_x, y, close_dim, 7)
 	if hovered then
 		self:Color(1, 1, 0.7)
-		if self:IsLeftClicked() then fairmod_achievements_displaying_window = false end
+		if self:IsLeftClicked() then
+			GamePlaySound("ui", "ui/button_click", 0, 0)
+			fairmod_achievements_displaying_window = false
+		end
 	end
 	self:Text(close_x, y, "[Close]")
 
-	self:Text(x + 3, y, text)
+	self:Text(x, y, text)
 	self:ScrollBox(x, y + 16, 1001, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png", 3, 3, self.DrawAchievementsScrollbox)
 end
 

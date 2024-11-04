@@ -1,0 +1,99 @@
+<Materials>
+	<!-- ###################################### SOLIDS ###################################### -->
+	<!-- Cheddar -->
+	<CellDataChild
+		_parent="cheese_static"
+		_inherit_reactions="1"
+		name="fairmod_cheddar"
+		ui_name="$fairmod_mat_cheddar"
+		wang_color="ffF3CD68"
+		>
+		<Graphics
+			color="ffeba03f" />
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellDataChild>
+
+	<!-- White Cheddar -->
+	<CellDataChild
+		_parent="cheese_static"
+		_inherit_reactions="1"
+		name="fairmod_white_cheddar"
+		ui_name="$fairmod_mat_white_cheddar"
+		wang_color="ffF3CD69"
+		>
+		<Graphics
+			color="fff2e7c0" />
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellDataChild>
+
+	<!-- Mozzarella -->
+	<CellDataChild
+		_parent="cheese_static"
+		_inherit_reactions="1"
+		name="fairmod_mozzarella"
+		ui_name="$fairmod_mat_mozzarella"
+		wang_color="ffF3CD6A"
+		>
+		<Graphics
+			color="fff9f5e7" />
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellDataChild>
+
+	<!-- Swiss Cheese -->
+	<CellDataChild
+		_parent="cheese_static"
+		_inherit_reactions="1"
+		name="fairmod_swiss"
+		ui_name="$fairmod_mat_swiss"
+		wang_color="ffF3CD6D"
+		>
+		<Graphics 
+			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/swiss.png" 
+			color="fff7e0a2"
+			/>
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellDataChild>
+
+	<!-- ###################################### POWDERS ###################################### -->
+	<!-- Feta Cheese -->
+	<CellData
+		name="fairmod_feta"
+		ui_name="$fairmod_mat_feta"
+		wang_color="ffF3CD6B"
+		tags="[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food]"
+		burnable="0"
+		density="5"
+		cell_type="liquid"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		durability="5"
+		on_fire="0"
+		hp="1000"
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime"
+		show_in_creative_mode="1"
+		>
+		<Graphics 
+			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/feta.png" 
+			color="fff5ece5"
+			/>
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellData>
+
+	<!-- Parmesan -->
+	<CellDataChild
+		_parent="fairmod_feta"
+		_inherit_reactions="1"
+		name="fairmod_parmesan"
+		ui_name="$fairmod_mat_parmesan"
+		wang_color="ffF3CD6C"
+		>
+		<Graphics 
+			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/parmesan.png" 
+			color="fff7eec8"
+			/>
+		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
+	</CellDataChild>
+
+</Materials>

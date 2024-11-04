@@ -131,6 +131,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 	GameAddFlagRun("fairmod_dialog_interacting")
 
+	local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
+
 	SetRandomSeed(x, y + GameGetFrameNum())
 	if ringing then
 		ringing = false
@@ -147,6 +149,28 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		dialog = dialog_system.open_dialog(call)
 		if call.func ~= nil then call.func(dialog) end
 		print("Call started")
+	elseif ModSettingGet("fairmod.listened_to_numbers") and minute == 0 or minute == 30 then
+		in_call = true
+		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
+		dialog_system.dialog_box_height = 70
+		dialog = dialog_system.open_dialog({
+			name = "Payphone",
+			portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+			typing_sound = "garbled",
+			text = "{@delay 5}Talk to the staff, ask for gerald... {@func disconnected}",
+			options = {
+				{
+					text = "Hang up",
+					func = function(dialog)
+						hangup()
+					end,
+				},
+			},
+			on_closed = function()
+				GameAddFlagRun("ask_for_gerald")
+				GameRemoveFlagRun("fairmod_dialog_interacting")
+			end,
+		})
 	elseif not in_call then
 		in_call = true
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)

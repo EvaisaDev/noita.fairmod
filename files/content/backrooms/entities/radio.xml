@@ -158,7 +158,10 @@
 	/>
 
  	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/backrooms/entities/radio.lua"
 		script_interacting="mods/noita.fairmod/files/content/backrooms/entities/radio.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
         vm_type="ONE_PER_COMPONENT_INSTANCE"
 	/>   
 </Entity>

@@ -4,8 +4,15 @@ local module = {}
 
 function module.update()
 	SetRandomSeed(GameGetFrameNum(), 80)
-	local chance = 3600 * 60 / 2
-	if Random(1, chance) == 1 then
+
+	local enabled = ModSettingGet("noita.fairmod.discord_pings_enabled")
+
+	if enabled == nil then
+		enabled = true
+	end
+
+	local chance = 3600 * 60
+	if enabled and Random(1, chance) == 1 then
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "pingattack/discord", 0, 0)
 
 		local prev_cnt = ModSettingGet("noita.fairmod.discord_pings") or 0

@@ -591,7 +591,10 @@ function ui:draw_entry_data(entry_data)
 			local tp_width = self:GetTextDimension(entry_data.tooltip)
 			self:ShowTooltip(x - tp_width - 10, self.y, entry_data.tooltip)
 		end
-		if entry_data.on_click and self:IsLeftClicked() then entry_data.on_click() end
+		if entry_data.on_click and self:IsLeftClicked() then
+			GamePlaySound("ui", "ui/button_click", 0, 0)
+			entry_data.on_click()
+		end
 	end
 	if entry_data.color then self:Color(entry_data.color[1] or 1, entry_data.color[2] or 1, entry_data.color[3] or 1, entry_data.color[4] or 1) end
 	self:Text(x, self.y, text)

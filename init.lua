@@ -65,6 +65,8 @@ local corpses = dofile_once("mods/noita.fairmod/files/content/corpses/init.lua")
 local dmca_warning = dofile_once("mods/noita.fairmod/files/content/dmca_warning/init.lua")
 local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
+local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
+local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -111,6 +113,9 @@ dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
+dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
+
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -163,8 +168,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
-	
-	dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
+	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
@@ -213,6 +217,7 @@ function OnPlayerSpawned(player)
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
 	fishing.OnPlayerSpawned(player)
+	secret.init()
 
 	local plays = tonumber(ModSettingGet("fairmod.plays")) or 0
 	plays = plays + 1
@@ -291,6 +296,7 @@ function OnWorldPreUpdate()
 	hescoming.update()
 	smokedogg.update()
 	payphone.update()
+	secret.update()
 
 	gamblecore.Update()
 
