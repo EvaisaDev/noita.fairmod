@@ -2,7 +2,7 @@
   <Topology 
     name="$fairmod_biome_milkcaves"
     type="BIOME_WANG_TILE"
-    background_image="data/weather_gfx/background_cave_04_alt.png"
+    background_image="mods/noita.fairmod/files/content/milk_biome/cheesebackground.png"
     background_edge_left="data/weather_gfx/edges/background_cave_04_alt_left.png"
     background_edge_right="data/weather_gfx/edges/background_cave_04_alt_right.png"
     background_edge_top="data/weather_gfx/edges/background_cave_04_alt_top.png"
