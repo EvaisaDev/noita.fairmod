@@ -68,3 +68,6 @@ for collapse_trigger in nxml.edit_file("data/entities/buildings/workshop_exit.xm
 		}),
 	}))
 end
+
+
+ModLuaFileAppend("data/scripts/perks/perk_pickup.lua", "mods/noita.fairmod/files/content/collapse/perk_pickup_append.lua")
