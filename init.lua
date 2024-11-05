@@ -67,6 +67,7 @@ local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
+local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -312,6 +313,7 @@ function OnWorldPostUpdate() end
 local time_paused = 0
 local last_pause_was_inventory = false
 function OnPausePreUpdate()
+	show_user_id.OnPausePreUpdate()
 	time_paused = time_paused + 1
 
 	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
@@ -319,6 +321,7 @@ function OnPausePreUpdate()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
+	show_user_id.OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
