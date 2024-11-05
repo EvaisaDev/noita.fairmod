@@ -318,4 +318,15 @@
 		</GameEffectComponent >
 	</Entity>
 
+	<Entity name="boss_pit_invincible">
+		<InheritTransformComponent />
+		
+	    <GameEffectComponent 
+		_tags="protection_all_short,effect_protection_all"
+	        effect="PROTECTION_ALL"
+	        frames="-1"
+	    >
+		</GameEffectComponent >
+	</Entity>
+
 </Entity>
