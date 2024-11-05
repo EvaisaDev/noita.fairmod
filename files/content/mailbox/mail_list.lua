@@ -14,5 +14,10 @@ return {
 		func = function(x, y) -- runs on mailbox open
 
 		end,
-	}
+	},
+	bomb = {
+		func = function(x, y)
+			EntityLoad("data/entities/projectiles/mine_explosion.xml", x, y)
+		end,
+	},
 }
