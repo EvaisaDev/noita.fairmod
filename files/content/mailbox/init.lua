@@ -1,8 +1,8 @@
 local module = {}
 
 module.spawn = function(x, y)
-	if(not HasFlagPersistent("fairmod.first_time_mailbox"))then
-		AddFlagPersistent("fairmod.first_time_mailbox")
+	if(not HasFlagPersistent("fairmod_first_time_mailbox"))then
+		AddFlagPersistent("fairmod_first_time_mailbox")
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "welcome,")
 	end
 
