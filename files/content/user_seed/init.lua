@@ -43,7 +43,12 @@ local user_ids = {
         type = "mod_dev",
     },
 
-    --streamers (nab partials from the steamid popup)
+    --streamers (steamid 765611------------)
+    {
+        id = "XaqyzOne",
+        seed = "XXXXXXXX081665557096XXXXXXXXXX",
+        type = "streamer",
+    },
 
     --funny numbers
     { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!
