@@ -1,4 +1,4 @@
-<Entity tags="mortal,prey,do_not_evil" name="Immortal Snail">
+<Entity tags="mortal,prey,do_not_evil,snail" name="Immortal Snail">
 
 
 	<Base file="data/entities/base_helpless_animal.xml">

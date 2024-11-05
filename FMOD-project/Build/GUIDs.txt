@@ -107,6 +107,7 @@
 {3189b000-f8d3-451d-8860-3a192637f824} event:/smokedogg/loop
 {00c1561b-e1af-4b44-9f0c-d2ccda710050} event:/smokedogg/loop_streamer
 {294931cc-8302-48f6-9387-339cdfa133bd} event:/smokedogg/smokeweedeveryday
+{cc43df2e-44bd-4a1a-a3a4-b0f37763f883} event:/snail/alert
 {f762e06e-ff94-48ae-8b4d-e76d1dc1af82} event:/spooky/skeleton
 {0b0f6bdc-dff3-4b20-97cf-da31226f1907} event:/spooky/skeleton_streamer
 {da85f1b5-2f13-45f7-a9a4-bdf601b8ee75} event:/squiwart/americano

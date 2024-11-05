@@ -29,13 +29,12 @@ local function GenerateRandomNumber(iterations)
 	return number
 end
 
-if ModSettingGet("user_seed") == nil then
-	ModSettingSet("user_seed", GenerateRandomNumber(30))
+local user_seed = ModSettingGet("user_seed")
+if not user_seed then
+	user_seed = GenerateRandomNumber(30)
+	ModSettingSet("user_seed", user_seed)
 	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
 end
-
-local user_seed = ModSettingGet("user_seed")
-if user_seed == nil then return end --if still nil, then fucking give up i guess ¯\_(ツ)_/¯
 
 print("USER SEED IS [" .. user_seed .. "]")
 
@@ -49,6 +48,10 @@ local users = {
         seed = "XXXXXXXX431497468995XXXXXXXXXX",
         type = "mod_dev",
     },
+	dexter = {
+		seed = "0684181258XXXXXXXXXXXXXXXXXXXX",
+		type = "mod_dev",
+	},
 
     --streamers (steamid 765611------------)
     XaqyzOne = {
@@ -79,24 +82,39 @@ local users = {
     },
 }
 
+local function user_seed_match(seed, pattern)
+    if seed == pattern then return true end
+	if #seed ~= 30 then
+		print("Seed: " .. seed .. " not 30 characters")
+		return false
+	end
+	if #pattern ~= 30 then
+		print("Pattern: " .. pattern .. " not 30 characters")
+		return false
+	end
+
+	for i=1,30 do
+		local p = pattern:sub(i, i)
+		if p ~= "X" and p ~= seed:sub(i, i) then
+			return false
+		end
+	end
+	return true
+end
+
 local user
 for key, value in pairs(users) do
-    local is_valid = true
-    if user_seed == value.seed then
-        user = key
-        break
-    end
-    for i = 1, 30 do
-        if value.seed:sub(i, i) ~= "X" and (value.seed:sub(i, i) ~= user_seed:sub(i, i)) then goto continue end
-    end
-    do user = value break end
-    ::continue::
+	if user_seed_match(user_seed, value.seed) then
+		user = key
+		break
+	end
 end
-if user == nil then return end
 
 
-if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
-ModSettingSet(("di_resu"):reverse(), user)
+if user then
+	if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
+	ModSettingSet(("di_resu"):reverse(), user)
+end
 
 
 return user_seeds

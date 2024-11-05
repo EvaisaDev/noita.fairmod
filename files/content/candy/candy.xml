@@ -12,7 +12,7 @@
 			color="88E8BD5C"
 			texture_file="mods/noita.fairmod/files/content/candy/hamisbar.png"
 		>
-		</Graphics> wa <StatusEffects>
+		</Graphics> <StatusEffects>
 			<Ingestion>
 				<StatusEffect type="MOVEMENT_FASTER_2X" amount="0.2" />
 			</Ingestion>
