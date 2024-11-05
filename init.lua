@@ -1,7 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
-local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
+--local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -300,7 +300,7 @@ function OnPausePreUpdate()
 end
 
 function OnWorldInitialized()
-	user_seeds.OnWorldInitialized()
+	--user_seeds.OnWorldInitialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
