@@ -81,6 +81,14 @@ table.insert(tips, "there are " .. #tips .. " tips\ncan you read them all?")
 -- Used to avoid showing the same tip twice until you've seen all tips
 remaining_tips = remaining_tips or {}
 
+local function has_scratch_ticket(player)
+	local inventory_items = GameGetAllInventoryItems(player) or {}
+	for _, item in ipairs(inventory_items) do
+		if EntityHasTag(item, "scratch_ticket") then return true end
+	end
+	return false
+end
+
 function interacting(player, entity_interacted, interactable_name)
 	-- If viewing a scratch ticket, don't interact at the same time
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_scratch_interacting") then return end
@@ -197,11 +205,7 @@ function interacting(player, entity_interacted, interactable_name)
 			{
 				text = "I want to redeem my scratch-off(s)",
 				show = function(stats)
-					local inventory_items = GameGetAllInventoryItems(player) or {}
-					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then return true end
-					end
-					return false
+					return has_scratch_ticket(player)
 				end,
 				func = function(dialog)
 					dialog.show({
@@ -217,6 +221,46 @@ function interacting(player, entity_interacted, interactable_name)
 
 					for _, item in ipairs(inventory_items) do
 						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
+					end
+				end,
+			},
+			{
+				text = "Trick or treat!",
+				show = function()
+					-- Don't show if you have a scratch ticket or there will be too many options
+					return GameHasFlagRun("fairmod_halloween_mask") and not has_scratch_ticket(player)
+				end,
+				func = function(dialog)
+					if GameHasFlagRun("fairmod_trickortreat_rewarded_kiosk") then
+						dialog.show({
+							text = "Sorry, you only get one!",
+							options = {
+								{
+									text = "Leave",
+								},
+							},
+						})
+					else
+						dialog.show({
+							text = "Wow! You're all dressed up! :)",
+							options = {
+								{
+									text = "Take treat",
+									func = function(dialog)
+										local candies = {
+											"candy_fairmod_hamis", "candy_fairmod_ambrosia", "candy_fairmod_toxic"
+										}
+										local candy_num = ProceduralRandomi(x + entity_id, y + GameGetFrameNum(), 1, 3)
+
+										GameCreateParticle(candies[candy_num], x, y, 100, 0, 0, false)
+
+										GameAddFlagRun("fairmod_trickortreated")
+										GameAddFlagRun("fairmod_trickortreat_rewarded_kiosk")
+										dialog.close()
+									end,
+								},
+							},
+						})
 					end
 				end,
 			},
