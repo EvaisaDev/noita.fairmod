@@ -97,12 +97,12 @@ for key, value in pairs(users) do
 	end
 end
 
-if user == nil then return end
-
 local flag = ("edom_repoleved_domriaf"):reverse()
 
-if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
-ModSettingSet(("di_resu"):reverse(), user)
+if user then
+	if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
+	ModSettingSet(("di_resu"):reverse(), user)
+end
 
 function user_seeds.OnWorldInitialized()
 	if HasFlagPersistent(flag) then
