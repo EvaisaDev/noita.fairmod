@@ -45,6 +45,7 @@ local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua
 local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
 local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/init.lua")
+local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -275,6 +276,7 @@ function OnWorldPreUpdate()
 	smokedogg.update()
 	payphone.update()
 	secret.update()
+	snail_radar.update()
 
 	gamblecore.Update()
 
