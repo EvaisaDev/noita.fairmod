@@ -1,0 +1,23 @@
+<Entity serialize="1">
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/mailbox/mailbox.png"
+		offset_x="7"
+		offset_y="19"
+		z_index="1"
+	/>
+
+	<InteractableComponent
+		radius="20"
+		ui_text="Press $0 to open mailbox"
+		name="interact"
+	/>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/mailbox/mailbox.lua"
+		script_interacting="mods/noita.fairmod/files/content/mailbox/mailbox.lua"
+		execute_every_n_frame="1"
+		execute_on_added="1"
+		enable_coroutines="1"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
+	/>
+
+</Entity>

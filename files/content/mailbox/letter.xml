@@ -1,0 +1,75 @@
+<Entity tags="item_pickup">
+
+	<BookComponent
+		_enabled="0"
+		>
+	</BookComponent>
+
+	<UIInfoComponent
+		name="Suspicious Note"
+	></UIInfoComponent>
+
+	<DamageModelComponent
+		_tags="enabled_in_world"
+		air_needed="0"
+		blood_material=""
+		drop_items_on_death="0"
+		falling_damages="1"
+		hp="0.1"
+		ragdoll_filenames_file=""
+		ragdoll_material=""
+	></DamageModelComponent>
+
+	<SimplePhysicsComponent
+		_tags="enabled_in_world"
+	></SimplePhysicsComponent>
+
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		offset_x="8"
+		offset_y="9"
+		image_file="mods/noita.fairmod/files/content/mailbox/letter.png"
+	></SpriteComponent>
+
+	<SpriteComponent
+		_tags="enabled_in_world"
+		_enabled="1"
+		offset_x="8"
+		offset_y="15"
+		image_file="mods/noita.fairmod/files/content/mailbox/letter.png"
+		z_index="0.8"
+	></SpriteComponent>
+
+
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name="Suspicious Note"
+		max_child_items="0"
+		is_pickable="1"
+		is_equipable_forced="1"
+		play_spinning_animation="0"
+		play_hover_animation="0"
+		ui_sprite="mods/noita.fairmod/files/content/mailbox/letter.png"
+		ui_description="???"
+		preferred_inventory="QUICK"
+	></ItemComponent>
+
+	<AbilityComponent
+		ui_name="Suspicious Note"
+		throw_as_item="1"
+		rotate_in_hand="0"
+	>
+		<gun_config
+			deck_capacity="0"
+		></gun_config>
+
+	</AbilityComponent>
+
+	<InheritTransformComponent/>
+	
+</Entity>
