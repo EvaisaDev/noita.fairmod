@@ -4,9 +4,6 @@ perk_list[#perk_list + 1] = {
 	ui_description = "Be alerted when there is a snail nearby.",
 	ui_icon = "mods/noita.fairmod/files/content/snail_radar/ui_icon.png",
 	perk_icon = "mods/noita.fairmod/files/content/snail_radar/perk_icon.png",
-	one_off_effect = true,
-	do_not_remove = true,
-	stackable_is_rare = true,
 	stackable = false,
 	func = function(entity_perk_item, entity_who_picked, item_name)
 		GameAddFlagRun("snail_radar")
