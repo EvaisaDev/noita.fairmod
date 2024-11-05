@@ -1,13 +1,22 @@
 --stylua: ignore start
-
 local user_seeds = {}
+
+
 
 local allow_dev_mode = true --set to false to disable dev_mode
 
 
 
 
-RemoveFlagPersistent(("edom_repoleved_domriaf"):reverse())
+local flag = ("edom_repoleved_domriaf"):reverse()
+user_seeds.OnWorldInitialized = function()
+	if HasFlagPersistent(flag) then
+		GameAddFlagRun(flag)
+		RemoveFlagPersistent(flag)
+	end
+end
+
+RemoveFlagPersistent(flag)
 
 local time = {GameGetDateAndTimeUTC()}
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
@@ -80,22 +89,15 @@ for key, value in pairs(users) do
     for i = 1, 30 do
         if value.seed:sub(i, i) ~= "X" and (value.seed:sub(i, i) ~= user_seed:sub(i, i)) then goto continue end
     end
-    user = value break
+    do user = value break end
     ::continue::
 end
 if user == nil then return end
 
-local flag = ("edom_repoleved_domriaf"):reverse()
 
 if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
 ModSettingSet(("di_resu"):reverse(), user)
 
-function user_seeds.OnWorldInitialized()
-	if HasFlagPersistent(flag) then
-		GameAddFlagRun(flag)
-		RemoveFlagPersistent(flag)
-	end
-end
 
 return user_seeds
 --stylua: ignore end

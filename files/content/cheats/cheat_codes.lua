@@ -550,6 +550,14 @@ return {
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
 		end
 	},
+	{
+		code = "resetid",
+		devmode = true,
+		func = function(player)
+			ModSettingRemove("user_id")
+			GamePrintImportant("Reset User ID")
+		end
+	},
 }
 
 --stylua: ignore end
