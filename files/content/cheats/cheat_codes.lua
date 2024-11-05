@@ -518,13 +518,38 @@ return {
 		end
 	},
 	{
+		code = "nodev",
+		devmode = true,
+		name = "Disable Developer Mode",
+		description = "Happy testing o/",
+		func = function()
+			GameRemoveFlagRun("fairmod_developer_mode")
+		end
+	},
+	{
+		code = "radio",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+		end
+	},
+	{
+		code = "blacklight",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+		end
+	},
+	{
 		code = "protec",
 		name = "protec",
 		description = "missing description",
 		func = function(player)
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
 		end
-	}
+	},
 }
 
 --stylua: ignore end

@@ -1,30 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
-local time = {GameGetDateAndTimeUTC()}
-SetRandomSeed(time[5] * time[6], time[3] * time[4])
-
-local function GenerateRandomNumber(iterations)
-	local number = ""
-	for i = 1, iterations do
-		number = number .. Random(0, 9)
-	end
-	return number
-end
-
-if ModSettingGet("user_seed") == nil then
-	ModSettingSet("user_seed", GenerateRandomNumber(30))
-	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
-end
-
---[[ user seed use example:
-local _seed = ModSettingGet("user_seed"):sub(1, 10) or 0
-print(_seed)
-SetRandomSeed(_seed, _seed)
-for i = 1, 10 do
-	print(GenerateRandomNumber(8))
-end
---]]
+local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -318,6 +295,10 @@ function OnPausePreUpdate()
 
 	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
+end
+
+function OnWorldInitialized()
+	user_seeds.OnWorldInitialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
