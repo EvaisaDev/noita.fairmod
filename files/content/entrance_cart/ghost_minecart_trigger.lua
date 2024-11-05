@@ -9,4 +9,6 @@ function collision_trigger(colliding_entity_id)
 	else
 		EntityLoad("data/entities/props/physics/minecart.xml", x - 210, y - 240)
 	end
+
+	ModSettingSet("fairmod_touched_minecart_trigger", true)
 end
