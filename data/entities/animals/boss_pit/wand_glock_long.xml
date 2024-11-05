@@ -5,7 +5,7 @@
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
 			gravity_y="0"
-			air_friction="4"
+			air_friction="2"
 			mass="0.05"
 			>
 		</VelocityComponent> 
