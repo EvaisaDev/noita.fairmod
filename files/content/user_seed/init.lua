@@ -1,13 +1,13 @@
 --stylua: ignore start
 
-
+local user_seeds = {}
 
 local allow_dev_mode = true --set to false to disable dev_mode
 
 
 
 
-RemoveFlagPersistent(("fairmod_developer_mode"):reverse())
+RemoveFlagPersistent(("edom_repoleved_domriaf"):reverse())
 
 local time = {GameGetDateAndTimeUTC()}
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
@@ -88,7 +88,15 @@ end
 if user == nil then return end
 
 
-if user.type == "mod_dev" and allow_dev_mode then AddFlagPersistent(("edom_repoleved_domriaf"):reverse()) print("enabling dev mode") end
-ModSettingSet("user_id", user.id)
+if user.type == "mod_dev" and allow_dev_mode then AddFlagPersistent(("edom_repoleved_domriaf"):reverse()) end
+ModSettingSet(("di_resu"):reverse(), user.id)
 
+function user_seeds.OnWorldInitialized()
+	if HasFlagPersistent("fairmod_developer_mode") then
+		GameAddFlagRun("fairmod_developer_mode")
+		RemoveFlagPersistent("fairmod_developer_mode")
+	end
+end
+
+return user_seeds
 --stylua: ignore end
