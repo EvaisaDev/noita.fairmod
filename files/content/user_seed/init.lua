@@ -30,59 +30,51 @@ if user_seed == nil then return end --if still nil, then fucking give up i guess
 
 print("USER SEED IS [" .. user_seed .. "]")
 
-local user_ids = {
+local users = {
     --devs
-    {
-        id = "UserK",
+    UserK = {
         seed = "485395615766112676559806489159",
         type = "mod_dev",
     },
-    {
-        id = "eba",
+    eba = {
         seed = "XXXXXXXX431497468995XXXXXXXXXX",
         type = "mod_dev",
     },
 
     --streamers (steamid 765611------------)
-    {
-        id = "XaqyzOne",
+    XaqyzOne = {
         seed = "XXXXXXXX081665557096XXXXXXXXXX",
         type = "streamer",
     },
 
     --funny numbers
-    { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!
-        id = "nearly_nonillionth",
+    nearly_nonillionth = { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!
         seed = "999999999999999999999999999999",
         type = "funny_number"
     },
-    {
-        id = "2^99",
+    ["2^99"] = {
         seed = "633825300114114700748351602688",
         type = "funny_number"
     },
-    {
-        id = "nice",
+    nice = {
         seed = "696969696969696969696969696969",
         type = "funny_number"
     },
-    {
-        id = "nice_classic",
+    nice_classic = {
         seed = "000000000000000000000000000069",
         type = "funny_number"
     },
-    {
-        id = "millionth",
+    millionth = {
         seed = "000000000000000000000001000000",
         type = "funny_number"
     },
 }
 
 local user
-for key, value in pairs(user_ids) do
+for key, value in pairs(users) do
     local is_valid = true
     if user_seed == value.seed then
-        user = value
+        user = key
         break
     end
     for i = 1, 30 do
@@ -92,14 +84,15 @@ for key, value in pairs(user_ids) do
 end
 if user == nil then return end
 
+local flag = ("edom_repoleved_domriaf"):reverse()
 
-if user.type == "mod_dev" and allow_dev_mode then AddFlagPersistent(("edom_repoleved_domriaf"):reverse()) end
-ModSettingSet(("di_resu"):reverse(), user.id)
+if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
+ModSettingSet(("di_resu"):reverse(), user)
 
 function user_seeds.OnWorldInitialized()
-	if HasFlagPersistent("fairmod_developer_mode") then
-		GameAddFlagRun("fairmod_developer_mode")
-		RemoveFlagPersistent("fairmod_developer_mode")
+	if HasFlagPersistent(flag) then
+		GameAddFlagRun(flag)
+		RemoveFlagPersistent(flag)
 	end
 end
 
