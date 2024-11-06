@@ -88,6 +88,7 @@ local tips = {
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"The factory hämmies will eat well tonight!",
+	"I only do it the hard way. No, I will not fucking download github desktop!",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
