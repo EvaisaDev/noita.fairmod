@@ -1,28 +1,16 @@
-spawn_altar_top = function(x, y, is_solid)
-	SetRandomSeed(x, y)
-	local file_visual = "data/biome_impl/temple/altar_top_visual.png"
+dofile_once("mods/noita.fairmod/files/content/scene_liquid_randomizer/material_restrictions.lua")
 
-	LoadBackgroundSprite("data/biome_impl/temple/wall_background.png", x - 1, y - 30, 35)
+local old_LoadPixelScene = LoadPixelScene
+LoadPixelScene = function(materials_filename, colors_filename, x, y, background_file, skip_biome_checks, skip_edge_textures, color_to_material_table, background_z_index, load_even_if_duplicate)
+	if materials_filename:match("altar_top") then
+		SetRandomSeed(x, y)
+		local liquids = HMMaterialsFilter(CellFactory_GetAllLiquids(false, false) or {})
+		local random_liquid = liquids[Random(1, #liquids)]
 
-	--[[
-	local valid_pools = {}
-
-	local liquids = CellFactory_GetAllLiquids(false, false) or {}
-
-	for k, v in ipairs(liquids) do
-		if(ModImageDoesExist("mods/noita.fairmod/custom_hm_pools/hm_pool_"..v..".png"))then
-			table.insert(valid_pools, "mods/noita.fairmod/custom_hm_pools/hm_pool_"..v..".png")
-		end
-	end
-	]]
-
-	if y > 12000 then
-		LoadPixelScene("data/biome_impl/temple/altar_top_boss_arena.png", file_visual, x, y - 40, "", true)
-	else
-		--LoadPixelScene( valid_pools[Random(1, #valid_pools)], file_visual, x, y-40, "", true )
-		LoadPixelScene("data/biome_impl/temple/altar_top_water.png", file_visual, x, y - 40, "", true)
-		EntityLoad("mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/convert_materials.xml", x, y - 40)
+		local color_material = { ["2f554c"] = random_liquid }
+		materials_filename = "data/biome_impl/temple/altar_top_water.png"
+		return old_LoadPixelScene(materials_filename, colors_filename, x, y, background_file, skip_biome_checks, skip_edge_textures, color_material, background_z_index, load_even_if_duplicate)
 	end
 
-	if is_solid then LoadPixelScene("data/biome_impl/temple/solid.png", "", x, y - 40 + 300, "", true) end
+	return old_LoadPixelScene(materials_filename, colors_filename, x, y, background_file, skip_biome_checks, skip_edge_textures, color_to_material_table, background_z_index, load_even_if_duplicate)
 end

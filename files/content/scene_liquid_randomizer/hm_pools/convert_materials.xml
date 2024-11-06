@@ -1,8 +1,3 @@
 <Entity>
-	<LuaComponent
-		script_source_file="mods/noita.fairmod/files/content/scene_liquid_randomizer/hm_pools/convert_materials.lua"
-		execute_on_added="0"
-		execute_every_n_frame="30"
-		execute_times="1"
-	/>
+  <LifetimeComponent lifetime="120"/>
 </Entity>

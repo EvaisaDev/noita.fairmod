@@ -26,25 +26,24 @@ function GetEnemiesInRadius(x, y, radius)
 	return entities
 end
 
+local banned_tags = {
+	["[box2d]"] = true,
+	["[catastrophic]"] = true,
+	["[NO_FUNGAL_SHIFT]"] = true,
+}
+
 function MaterialsFilter(mats)
 	for i = #mats, 1, -1 do
 		local mat = mats[i]
 
-		if mat:find("fading") then
-			table.remove(mats, i)
-			goto continue
-		end
-		SetRandomSeed(1, 1)
-		if
-			mat:find("molten")--[[ and Random(1, 100) < 30]]
-		then
+		if mat:find("fading") or mat:find("molten") then
 			table.remove(mats, i)
 			goto continue
 		end
 
 		local tags = CellFactory_GetTags(CellFactory_GetType(mat)) or {}
 		for _, tag in ipairs(tags) do
-			if tag == "[box2d]" or tag == "[catastrophic]" or tag == "[NO_FUNGAL_SHIFT]" then
+			if banned_tags[tag] then
 				table.remove(mats, i)
 				goto continue
 			end
