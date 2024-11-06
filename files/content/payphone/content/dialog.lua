@@ -1403,8 +1403,8 @@ return {
 				func = function(dialog)
 					dialog.show({
 						text = [[Don't be afraid to give it a shot. You can switch between
-						different games on your own, or play with others, short session,
-						multi-day session, lots of ways to play.]],
+						different games on your own, or play with others, short
+						session, multi-day session, lots of ways to play.]],
 						options = {
 							{
 								text = "Cool, maybe I will",
