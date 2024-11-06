@@ -46,6 +46,7 @@ local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init
 local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
 local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/init.lua")
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
+local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -217,6 +218,8 @@ function OnPlayerSpawned(player)
 	fire.OnPlayerSpawned(player)
 
 	information_kiosk.OnPlayerSpawned(target_x, target_y, player)
+
+	mailbox.spawn(target_x, target_y)
 
 	ending_quiz.spawn_shape(target_x, target_y)
 

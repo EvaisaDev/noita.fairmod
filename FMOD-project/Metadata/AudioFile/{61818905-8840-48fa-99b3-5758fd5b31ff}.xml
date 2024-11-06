@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{61818905-8840-48fa-99b3-5758fd5b31ff}">
 		<property name="assetPath">
-			<value>garbled-04.mp3</value>
+			<value>Compress/garbled-04.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

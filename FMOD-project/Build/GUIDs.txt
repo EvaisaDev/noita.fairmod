@@ -49,6 +49,7 @@
 {7c93adb7-d17f-42c6-8f23-c84b3d4625b9} event:/immersivepiss/diarrhea
 {d024882e-4a93-4b8e-9937-d476a54daaf0} event:/immersivepiss/timetotakeapiss
 {42947374-a736-4c0b-b89a-ba9d79c30c98} event:/loanshark/pop
+{190c80f9-d744-445a-9ba5-8cc5c69002e8} event:/mailbox/open
 {044e65fe-1efb-42b4-a1df-7737b1263904} event:/necoarc/noises
 {c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/nuke/fart1
 {b384a56c-faac-461e-9710-59b3d955ea01} event:/nuke/fart2
