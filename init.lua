@@ -1,30 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
-local time = {GameGetDateAndTimeUTC()}
-SetRandomSeed(time[5] * time[6], time[3] * time[4])
-
-local function GenerateRandomNumber(iterations)
-	local number = ""
-	for i = 1, iterations do
-		number = number .. Random(0, 9)
-	end
-	return number
-end
-
-if ModSettingGet("user_seed") == nil then
-	ModSettingSet("user_seed", GenerateRandomNumber(30))
-	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
-end
-
---[[ user seed use example:
-local _seed = ModSettingGet("user_seed"):sub(1, 10) or 0
-print(_seed)
-SetRandomSeed(_seed, _seed)
-for i = 1, 10 do
-	print(GenerateRandomNumber(8))
-end
---]]
+local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 local suffertogetherid = "change to LST's UserID. He's the most likely to stream next."
 
@@ -69,6 +46,10 @@ local saw = dofile_once("mods/noita.fairmod/files/content/saw/init.lua")
 local payphone = dofile_once("mods/noita.fairmod/files/content/payphone/init.lua")
 local milk_biome = dofile_once("mods/noita.fairmod/files/content/milk_biome/init.lua")
 local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
+local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/init.lua")
+local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
+local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
+local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -108,7 +89,6 @@ dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
 dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
-dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_spells/init.lua")
 dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
@@ -239,7 +219,9 @@ function OnPlayerSpawned(player)
 
 	fire.OnPlayerSpawned(player)
 
-	information_kiosk.spawn_kiosk(target_x, target_y)
+	information_kiosk.OnPlayerSpawned(target_x, target_y, player)
+
+	mailbox.spawn(target_x, target_y)
 
 	ending_quiz.spawn_shape(target_x, target_y)
 
@@ -304,6 +286,7 @@ function OnWorldPreUpdate()
 	smokedogg.update()
 	payphone.update()
 	secret.update()
+	snail_radar.update()
 
 	gamblecore.Update()
 
@@ -319,13 +302,20 @@ function OnWorldPostUpdate() end
 local time_paused = 0
 local last_pause_was_inventory = false
 function OnPausePreUpdate()
+	show_user_id.OnPausePreUpdate()
 	time_paused = time_paused + 1
 
 	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
 end
 
+function OnWorldInitialized()
+	popups.OnWorldInitialized()
+	user_seeds.OnWorldInitialized()
+end
+
 function OnPausedChanged(is_paused, is_inventory_pause)
+	show_user_id.OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen

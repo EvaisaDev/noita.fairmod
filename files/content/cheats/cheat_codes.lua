@@ -1,4 +1,5 @@
 --stylua: ignore start
+--dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
@@ -222,6 +223,32 @@ return {
 		end,
 	},
 	{
+		code = "snail",
+		name = "snail",
+		description = "shelled gastropod moment",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+
+			-- get a random angle radian
+			local angle = math.rad(Random(0, 360))
+			-- get a random direction vector
+			local dx = math.cos(angle)
+			local dy = math.sin(angle)
+
+			local distance = Random(100, 250)
+
+			local target_x = x + (dx * distance)
+			local target_y = y + (dy * distance)
+
+			local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+
+			if not hit then
+				EntityLoad("mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml", target_x, target_y)
+			end
+	
+		end,
+	},
+	{
 		code = "dingus",
 		name = "Dingus",
 		description = "He looks so polite!!",
@@ -244,7 +271,7 @@ return {
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
-			EntityApplyTransform(player, 1547, 14900)
+			EntityApplyTransform(player, 1547 + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, 14900)
 		end,
 	},
 	{
@@ -518,13 +545,44 @@ return {
 		end
 	},
 	{
+		code = "nodev",
+		devmode = true,
+		name = "Disable Developer Mode",
+		description = "Happy testing o/",
+		func = function()
+			GameRemoveFlagRun("fairmod_developer_mode")
+		end
+	},
+	{
+		code = "radio",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+		end
+	},
+	{
+		code = "blacklight",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+		end
+	},
+	{
 		code = "protec",
 		name = "protec",
 		description = "missing description",
 		func = function(player)
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
 		end
-	}
+	},
+	{
+		code = "printuserdiagnostic",
+		func = function()
+			GamePrint(ModSettingGet("user_seed") or "nil")
+		end
+	},
 }
 
 --stylua: ignore end

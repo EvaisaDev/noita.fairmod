@@ -622,7 +622,7 @@ local biome_achievements = {
 		name = "Alchemist's Secret Stash",
 		description = "Discover the location of the Dark Chest.",
 	},
-	biome_barren = { -- no image
+	biome_barren = {
 		name = "Skyblock",
 		description = "Discover the Barren Temple.",
 	},
@@ -630,11 +630,11 @@ local biome_achievements = {
 		name = "Home of The Rock",
 		description = "Discover the Kivi Temple.",
 	},
-	biome_darkness = { -- no image
+	biome_darkness = {
 		name = "Sus Sky Island",
 		description = "Discover the Ominous Temple.",
 	},
-	biome_potion_mimics = { -- no image
+	biome_potion_mimics = {
 		name = "Castle in the Sky",
 		description = "Discover the Henkevä Temple.",
 	},
@@ -838,7 +838,7 @@ local biome_achievements = {
 		name = "On the Other Side",
 		description = "Discover the right side of the mountain.",
 	},
-	mountain_top = { -- no image
+	mountain_top = {
 		name = "It's a... Volcano?",
 		description = "Discover the top of the mountain.",
 	},
@@ -890,7 +890,7 @@ local biome_achievements = {
 		name = "Orb Room 8",
 		description = "Discover the eighth Orb Room.",
 	},
-	pyramid = { -- no image
+	pyramid = {
 		name = "Indiana Jones",
 		description = "Discover the interior of the Pyramid.",
 	},
@@ -930,15 +930,15 @@ local biome_achievements = {
 		name = "Can You Make it Up There?",
 		description = "Discover the Giant Tree branch.",
 	},
-	robobase = { -- no image
+	robobase = {
 		name = "Unlimited Power!",
 		description = "Discover the Power Plant.",
 	},
-	roboroom = { -- no image
+	roboroom = {
 		name = "The Terminator",
 		description = "Discover the Kolmisilmän Silmä's arena.",
 	},
-	robot_egg = { -- no image
+	robot_egg = {
 		name = "Dr. Robotnik Would be Proud",
 		description = "Discover the robotic egg.",
 	},
@@ -1034,7 +1034,7 @@ local biome_achievements = {
 		name = "Temple of the Art Again...",
 		description = "Discover the Temple of the Art in The Tower.",
 	},
-	solid_wall_tower_9 = { -- no image
+	solid_wall_tower_9 = {
 		name = "Hell... Again?",
 		description = "Discover Hell in The Tower.",
 	},
@@ -1062,7 +1062,7 @@ local biome_achievements = {
 		name = "That'll Anger Steve",
 		description = "Discover the Holy Mountain's Walls.",
 	},
-	temple_wall_ending = { -- no image
+	temple_wall_ending = {
 		name = "That One Save Room Before the Boss",
 		description = "Discover the final Holy Mountain.",
 	},
@@ -1070,7 +1070,7 @@ local biome_achievements = {
 		name = "Welcome to the Backrooms",
 		description = "Discover the Backrooms.",
 	},
-	the_sky = { -- no image
+	the_sky = {
 		name = "Icarus",
 		description = "Discover the Sky.",
 	},
@@ -1090,7 +1090,7 @@ local biome_achievements = {
 		name = "Blub Blub",
 		description = "Discover the Water.",
 	},
-	watercave = { -- no image
+	watercave = {
 		name = "It's Dark and... Who Did This?",
 		description = "Discover the dark cave.",
 	},
@@ -1098,7 +1098,7 @@ local biome_achievements = {
 		name = "Wasteland? More like Battlefield.",
 		description = "Discover the Snowy Wasteland.",
 	},
-	winter_caves = { -- no image
+	winter_caves = {
 		name = "It's Still Cold",
 		description = "Discover the Snowy Chasm.",
 	},

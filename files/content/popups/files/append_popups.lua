@@ -21,7 +21,8 @@ local Popups = {
 		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_A_Large_Part_Of_Your_Screen.exe",
 		"Also try Apotheosis!",
 		"Also try Banana of Rectitude!",
-		"Also try... what... what am i..?"
+		"Also try... what... what am i..?",
+		"Also try Meta-Levelling!",
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone

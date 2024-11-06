@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{fee2bcf0-2ca0-4626-9070-5bd03396c236}">
 		<property name="assetPath">
-			<value>americano.wav</value>
+			<value>Compress/americano.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

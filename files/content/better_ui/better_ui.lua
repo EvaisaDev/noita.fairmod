@@ -101,6 +101,13 @@ local objectives = {
 	"Loading...",
 	"Failed",
 	"Follow the purple lights",
+	"Forfeit material wealth for Hämis",
+	"Kill.",
+	"Fail this objective",
+	"Defeat God.",
+	"Download Copi's Things",
+	"Make 100 friends",
+	"Buy tips from Hämis",
 }
 
 local game_speed_a = 0

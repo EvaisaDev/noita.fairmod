@@ -149,7 +149,101 @@ for entity in nxml.edit_file("data/entities/misc/beam_from_sky.xml") do
 			entity.children[i]:set("lifetime", "700")
 		end
 	end
-
-
 end
 
+local lasers = {"data/entities/props/physics/trap_laser.xml", "data/entities/props/physics/trap_laser_enabled.xml", "data/entities/props/physics/trap_laser_enabled_left.xml", "data/entities/props/physics/trap_laser_toggling.xml", "data/entities/props/physics/trap_laser_toggling_left.xml"}
+
+for _, file in ipairs(lasers)do
+	for entity in nxml.edit_file(file) do
+		for i = #entity.children, 1, -1 do
+			if entity.children[i]:get("name") == "laser" then
+				-- get LaserEmitterComponent
+				local laser = entity.children[i]:first_of("LaserEmitterComponent")
+				if laser then
+					-- get or create "laser" child
+					local laser_child = laser:first_of("laser")
+
+					if(not laser_child) then
+						laser_child = nxml.new_element("laser")
+						laser:add_child(laser_child)
+					end
+					
+					if laser_child then
+						laser_child:set("max_length", "2048")
+						laser_child:set("beam_radius", "20")
+					end
+				end
+			end
+		end
+	end	
+end
+
+local igniters = {"data/entities/props/physics/trap_ignite.xml", "data/entities/props/physics/trap_ignite_enabled.xml", "data/entities/props/physics_trap_ignite.xml", "data/entities/props/physics_trap_ignite_enabled.xml"}
+for _, file in ipairs(igniters)do
+	for entity in nxml.edit_file(file) do
+		for i = #entity.children, 1, -1 do
+			if entity.children[i]:get("script_source_file") == "data/scripts/props/physics_trap_ignite.lua" then
+				entity.children[i]:set("execute_every_n_frame", 1)
+			end
+		end
+		
+		local physics_body_comp = entity:first_of("PhysicsBodyComponent")
+
+		if(physics_body_comp)then
+			physics_body_comp:set("is_static", true)
+		end
+
+		local physics_body2_comp = entity:first_of("PhysicsBody2Component")
+
+		if(physics_body2_comp)then
+			physics_body2_comp:set("is_static", true)
+		end
+	end
+end
+
+local electifiers = {"data/entities/props/physics/trap_electricity.xml", "data/entities/props/physics/trap_electricity_enabled.xml", "data/entities/props/physics/trap_electricity_suspended.xml", "data/entities/props/physics_trap_electricity.xml", "data/entities/props/physics_trap_electricity_enabled.xml"}
+for _, file in ipairs(electifiers)do
+	for entity in nxml.edit_file(file) do
+		for i = #entity.children, 1, -1 do
+			if entity.children[i]:get("script_source_file") == "data/scripts/props/physics_trap_electricity_pulse.lua" then
+				entity.children[i]:set("execute_every_n_frame", 1)
+			end
+		end
+		
+		local physics_body_comp = entity:first_of("PhysicsBodyComponent")
+
+		if(physics_body_comp)then
+			physics_body_comp:set("is_static", true)
+		end
+
+		local physics_body2_comp = entity:first_of("PhysicsBody2Component")
+
+		if(physics_body2_comp)then
+			physics_body2_comp:set("is_static", true)
+		end
+	end
+end
+
+local acid_traps = {"data/entities/props/physics/trap_circle_acid.xml", "data/entities/props/physics_trap_circle_acid.xml"}
+
+for _, file in ipairs(acid_traps)do
+	for entity in nxml.edit_file(file) do
+		for i = #entity.children, 1, -1 do
+			if entity.children[i]:get("value_string") == "data/entities/projectiles/deck/circle_acid.xml" then
+				entity.children[i]:set("value_string", "mods/noita.fairmod/files/content/worse_items/circle_acid.xml")
+			end
+		end
+
+		local physics_body_comp = entity:first_of("PhysicsBodyComponent")
+
+		if(physics_body_comp)then
+			physics_body_comp:set("is_static", true)
+		end
+
+		local physics_body2_comp = entity:first_of("PhysicsBody2Component")
+
+		if(physics_body2_comp)then
+			physics_body2_comp:set("is_static", true)
+		end
+	end
+end

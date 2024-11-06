@@ -1403,8 +1403,8 @@ return {
 				func = function(dialog)
 					dialog.show({
 						text = [[Don't be afraid to give it a shot. You can switch between
-						different games on your own, or play with others, short session,
-						multi-day session, lots of ways to play.]],
+						different games on your own, or play with others, short
+						session, multi-day session, lots of ways to play.]],
 						options = {
 							{
 								text = "Cool, maybe I will",
@@ -1564,6 +1564,70 @@ return {
 				func = function(dialog)
 					hangup()
 				end,
+			},
+		},
+	},
+	{
+		name = "Bomb Threat",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
+		text = [[{@pause 30}... {@delay 5}Give me 200 gold or I'll blow you up.]],
+		options = {
+			{
+				text = "You can't do that! That's against the law!",
+				func = function(dialog)
+					ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "bomb,")
+					dialog.show({
+						text = "We'll see about that.",
+						options = {
+							{
+								text = "Hang up.",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Alright, here you go.",
+				enabled = function(stats)
+					return stats.gold >= 200
+				end,
+				func = function(dialog)
+					local player = EntityGetWithTag("player_unit")[1]
+					if not player then return end
+					local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+					ComponentSetValue2(wallet, "money", ComponentGetValue2(wallet, "money") - 200)
+
+					dialog.show({
+						text = "Good choice.",
+						options = {
+							{
+								text = "Okay, bye! Love you!",
+								func = function(stats)
+									dialog.show({
+										text = "??? What ??",
+										options = {
+											{
+												text = "Uh, hang up.",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										}
+									})
+								end,
+							},
+							{
+								text = "Hang up.",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end
 			},
 		},
 	},

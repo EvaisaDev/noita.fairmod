@@ -14,10 +14,13 @@ function should_collapse(colliding_entity_id)
 	local x, y = EntityGetTransform(entity_id)
 
 	if EntityHasTag(entity_id, "entrance") then
-		local deaths = ModSettingGet("fairmod.deaths") or 0
-
 		-- Don't collapse any on the very first run
+		local deaths = ModSettingGet("fairmod.deaths") or 0
 		if deaths == 0 then return false end
+
+		-- Don't collapse if they haven't even entered the mines
+		local reached_mines = ModSettingGet("fairmod_touched_minecart_trigger") or false
+		if reached_mines ~= true then return false end
 
 		-- Maybe more conditions?
 	end

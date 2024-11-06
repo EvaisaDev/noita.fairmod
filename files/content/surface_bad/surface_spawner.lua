@@ -1,4 +1,5 @@
 dofile_once("data/scripts/director_helpers.lua")
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 local x, y = EntityGetTransform(GetUpdatedEntityID())
 
@@ -53,22 +54,8 @@ local biome_spawns = {
 	},
 }
 
-local function get_biome()
-	local biome_x = ((x / 512) + 35) % 70
-
-	if biome_x < 11 then
-		return "lake"
-	elseif biome_x < 31 then
-		return "winter"
-	elseif biome_x < 45 then
-		return "hills"
-	else
-		return "desert"
-	end
-end
-
 -----------------------------------------------------------------
-local biome = get_biome()
+local biome = GetBiomeId(x, y)
 local biome_choices = biome_spawns[biome]
 
 SetRandomSeed(x, y)

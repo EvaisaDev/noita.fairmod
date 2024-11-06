@@ -1,3 +1,6 @@
+--- Hardcoded world width for scripts that don't have access to BiomeMapGetSize.
+WORLD_WIDTH_HARDCODED = 70 * 512
+
 ---@vararg table
 ---@return table
 function MergeTables(...)
@@ -26,25 +29,24 @@ function GetEnemiesInRadius(x, y, radius)
 	return entities
 end
 
+local banned_tags = {
+	["[box2d]"] = true,
+	["[catastrophic]"] = true,
+	["[NO_FUNGAL_SHIFT]"] = true,
+}
+
 function MaterialsFilter(mats)
 	for i = #mats, 1, -1 do
 		local mat = mats[i]
 
-		if mat:find("fading") then
-			table.remove(mats, i)
-			goto continue
-		end
-		SetRandomSeed(1, 1)
-		if
-			mat:find("molten")--[[ and Random(1, 100) < 30]]
-		then
+		if mat:find("fading") or mat:find("molten") then
 			table.remove(mats, i)
 			goto continue
 		end
 
 		local tags = CellFactory_GetTags(CellFactory_GetType(mat)) or {}
 		for _, tag in ipairs(tags) do
-			if tag == "[box2d]" or tag == "[catastrophic]" or tag == "[NO_FUNGAL_SHIFT]" then
+			if banned_tags[tag] then
 				table.remove(mats, i)
 				goto continue
 			end
@@ -71,15 +73,22 @@ function HasInventoryItemTag(tag)
 	return false
 end
 
+---@param x number
+---@param y number
+---@return string|nil
+function GetBiomeId(x, y)
+	local filename = DebugBiomeMapGetFilename(x, y)
+	for name in filename:gmatch("/([%w_ ]+).xml") do
+		return name
+	end
+	return nil
+end
+
 ---@return string|nil
 function GetCurrentBiomeId()
 	local plyr = GetPlayers()[1]
 	if plyr == nil then return nil end
 
 	local x, y = EntityGetTransform(plyr)
-	local filename = DebugBiomeMapGetFilename(x, y)
-	for name in filename:gmatch("/([%w_ ]+).xml") do
-		return name
-	end
-	return nil
+	return GetBiomeId(x, y)
 end
