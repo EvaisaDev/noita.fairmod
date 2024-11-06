@@ -1,5 +1,5 @@
 --stylua: ignore start
-dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
+--dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
