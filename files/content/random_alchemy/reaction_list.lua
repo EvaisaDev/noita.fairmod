@@ -118,6 +118,60 @@ local reactions = {
 		input_cell1 = "smoke",
 		input_cell2 = "[earth]",
 	},
+	{
+		input_cell1 = "urine",
+		input_cell2 = "radioactive_liquid",
+		output_cell1 = "urine",
+		output_cell2 = "urine",
+	},
+	{
+		input_cell1 = "poo",
+		input_cell2 = "radioactive_liquid",
+		output_cell1 = "poo",
+		output_cell2 = "poo",
+		direction = "top",
+	},
+	{
+		input_cell1 = "poison",
+		input_cell2 = "air",
+		output_cell1 = "slime",
+		output_cell2 = "slime",
+	},
+	{
+		input_cell1 = "[meat]",
+		input_cell2 = "magic_liquid_worm_attractor",
+		output_cell1 = "air",
+		output_cell2 = "air",
+		probability = "0.01",
+		entity = "data/entities/animals/worm_tiny.xml",
+	},
+	{
+		input_cell1 = "[meat]",
+		input_cell2 = "air",
+		output_cell1 = "air",
+		output_cell2 = "air",
+		probability = "0.01",
+		entity = "data/entities/animals/longleg.xml",
+	},
+	{
+		input_cell1 = "blood",
+		input_cell2 = "poo",
+		output_cell1 = "magic_liquid_hp_regeneration",
+		output_cell2 = "poo",
+	},
+	{
+		input_cell1 = "gunpowder_explosive",
+		input_cell2 = "[fire]",
+		output_cell1 = "fairmod_tntinium",
+		output_cell2 = "[fire]",
+	},
+	{
+		input_cell1 = "metal_rust",
+		input_cell2 = "air",
+		probability = "0.01",
+		output_cell1 = "fairmod_minecartium",
+		output_cell2 = "air",
+	},
 }
 
 return reactions
