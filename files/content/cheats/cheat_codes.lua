@@ -577,11 +577,9 @@ return {
 		end
 	},
 	{
-		code = "resetid",
-		devmode = true,
-		func = function(player)
-			ModSettingRemove("user_id")
-			GamePrintImportant("Reset User ID")
+		code = "printuserseed",
+		func = function()
+			GamePrint(ModSettingGet("user_seed") or "nil")
 		end
 	},
 }

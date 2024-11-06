@@ -4,13 +4,13 @@ local user_seeds = {}
 local flag = ("edom_repoleved_domriaf"):reverse()
 
 user_seeds.OnWorldInitialized = function()
-	if ModSettingGet(("epyt_resu"):reverse()) == "mod_dev" then
+	if ModSettingGet(("epyt_resu"):reverse()) == "mod_dev" and allow_dev_mode then
 		GameAddFlagRun(flag)
 	end
 end
+
 ModSettingRemove(("di_resu"):reverse())
 ModSettingRemove(("epyt_resu"):reverse())
-
 
 local time = {GameGetDateAndTimeUTC()}
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
@@ -24,6 +24,9 @@ local function GenerateRandomNumber(iterations)
 end
 
 local user_seed = ModSettingGet("user_seed")
+
+--user_seed = "123456789012345678901234567890" --use this to spoof user_seeds
+
 if not user_seed then
 	user_seed = GenerateRandomNumber(30)
 	ModSettingSet("user_seed", user_seed)
