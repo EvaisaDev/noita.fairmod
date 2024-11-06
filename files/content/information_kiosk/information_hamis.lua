@@ -87,6 +87,7 @@ local tips = {
 	"The Voices, they speak through me!",
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
+	"The factory hämmies will eat well tonight!",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
@@ -132,7 +133,7 @@ local testing_tips = {
 	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
 	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
 }
-local test_tips = true
+local test_tips = false
 if test_tips then tips = testing_tips end
 
 -- Global so it's preserved across conversations

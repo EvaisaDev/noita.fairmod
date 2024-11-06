@@ -506,7 +506,7 @@ local windowCounter = 0
 
 
 local minwidth, minheight = 100, 100 -- min width & height
-local maxwidth, maxheight = 3000, 270 -- max width & height
+local maxwidth, maxheight = 300, 270 -- max width & height
 for i = 2, #Windows do
     if Windows[i] ~= nil then
         
