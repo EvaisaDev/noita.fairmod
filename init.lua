@@ -216,7 +216,7 @@ function OnPlayerSpawned(player)
 
 	fire.OnPlayerSpawned(player)
 
-	information_kiosk.spawn_kiosk(target_x, target_y)
+	information_kiosk.OnPlayerSpawned(target_x, target_y, player)
 
 	ending_quiz.spawn_shape(target_x, target_y)
 

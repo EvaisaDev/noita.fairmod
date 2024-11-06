@@ -9,14 +9,15 @@ local allow_dev_mode = true --set to false to disable dev_mode
 
 
 local flag = ("edom_repoleved_domriaf"):reverse()
+
 user_seeds.OnWorldInitialized = function()
-	if HasFlagPersistent(flag) then
+	if ModSettingGet(("epyt_resu"):reverse()) == "mod_dev" then
 		GameAddFlagRun(flag)
-		RemoveFlagPersistent(flag)
 	end
 end
+ModSettingRemove(("di_resu"):reverse())
+ModSettingRemove(("epyt_resu"):reverse())
 
-RemoveFlagPersistent(flag)
 
 local time = {GameGetDateAndTimeUTC()}
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
@@ -112,8 +113,8 @@ end
 
 
 if user then
-	if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
 	ModSettingSet(("di_resu"):reverse(), user)
+	ModSettingSet(("epyt_resu"):reverse(), users[user].type)
 end
 
 

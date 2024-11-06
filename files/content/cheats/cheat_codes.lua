@@ -270,7 +270,7 @@ return {
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
-			EntityApplyTransform(player, 1547, 14900)
+			EntityApplyTransform(player, 1547 + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, 14900)
 		end,
 	},
 	{
