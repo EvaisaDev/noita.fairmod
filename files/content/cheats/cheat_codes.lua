@@ -1,4 +1,5 @@
 --stylua: ignore start
+dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
@@ -577,7 +578,7 @@ return {
 		end
 	},
 	{
-		code = "printuserseed",
+		code = "printuserdiagnostic",
 		func = function()
 			GamePrint(ModSettingGet("user_seed") or "nil")
 		end
