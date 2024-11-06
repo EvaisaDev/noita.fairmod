@@ -12,7 +12,7 @@ local useed = ModSettingGet("user_seed")
 local uid = ModSettingGet("user_id")
 
 local tips = {
-	"I think I saw a {@color 591111}#snail#{@color FFFFFF} earlier!",
+	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
 	"Did you know that you can get a ~^free information booklet^~ \nhere?",
 	"99% of gamblers quit before they win big!",
@@ -78,7 +78,7 @@ local tips = {
 	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
 	"Death comes for those who wait.",
 	"what",
-	"Hello, " .. uid or useed or "{@color FF0000}ERROR",
+	"Hello, " .. (uid or useed or "{@color FF0000}ERROR"),
 	"I know you!",
 	"Sorry, who are you?",
 	"Jump off a bridge!",
