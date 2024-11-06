@@ -183,7 +183,7 @@ g_items =
 		prob   		= 5,
 		min_count	= 1,
 		max_count	= 1,    
-		entity 	= "mods/Apotheosis/files/entities/items/pickups/potion_reinforced.xml"
+		entity 	= "mods/noita.fairmod/files/content/milk_biome/entities/items/pickup/endless_milk_potion.xml"
 	},
 	-- debug tests
 	{
@@ -690,7 +690,7 @@ end
 function spawn_mist_colossal(x,y)
 	if safe( x, y ) then
 		spawn(g_mist_colossal, x, y)
-		EntityLoad("mods/Apotheosis/files/entities/buildings/pylon_hex_water.xml", x, y)
+		--EntityLoad("mods/Apotheosis/files/entities/buildings/pylon_hex_water.xml", x, y)
 	end
 end
 
@@ -822,6 +822,6 @@ function spawn_receptacle( x, y )
 end
 
 function spawn_potions( x, y )
-	EntityLoad("mods/Apotheosis/files/entities/items/pickups/potion_reinforced.xml",x,y)
+	EntityLoad("mods/noita.fairmod/files/content/milk_biome/entities/items/pickup/endless_milk_potion.xml",x,y)
 end
 --stylua: ignore end

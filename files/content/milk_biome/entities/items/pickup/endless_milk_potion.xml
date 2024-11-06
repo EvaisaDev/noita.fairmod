@@ -26,7 +26,8 @@
 			/>
 
 		<ItemComponent
-			item_name="$fairmod_item_jar"
+			item_name="$fairmod_item_endless_milk_potion"
+			always_use_item_name_in_ui="true"
 			ui_sprite="mods/noita.fairmod/files/content/milk_biome/entities/items/pickup/milk_jar_inventory.png"
 			/>
 	</Base>
