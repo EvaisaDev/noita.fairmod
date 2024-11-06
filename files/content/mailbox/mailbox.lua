@@ -5,16 +5,26 @@ dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/Dialo
 dialog_system.distance_to_close = 35
 
 
-function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	local mail_list = dofile("mods/noita.fairmod/files/content/mailbox/mail_list.lua")
-
-	local mail_str = ModSettingGet("noita.fairmod.mail")
+local function get_mail()
+	local mail_str = ModSettingGet("noita.fairmod.mail") or ""
 
 	-- split mail by comma
 	local mail = {}
 	for str in string.gmatch(mail_str, "([^,]+)") do
 		table.insert(mail, str)
 	end
+	return mail
+end
+
+
+local has_mail = #get_mail() > 0
+EntitySetComponentsWithTagEnabled(entity_id, "has_mail", has_mail)
+EntitySetComponentsWithTagEnabled(entity_id, "no_mail", not has_mail)
+
+
+function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	local mail_list = dofile("mods/noita.fairmod/files/content/mailbox/mail_list.lua")
+	local mail = get_mail()
 
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
 
