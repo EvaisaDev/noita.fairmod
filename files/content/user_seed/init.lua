@@ -1,6 +1,13 @@
 --stylua: ignore start
 local user_seeds = {}
 
+
+--NO RATS ALLOWED, STAY OUT (this means YOU nathan)
+local allow_dev_mode = true --set to false to disable dev_mode
+
+
+
+
 local flag = ("edom_repoleved_domriaf"):reverse()
 
 user_seeds.OnWorldInitialized = function()
@@ -17,7 +24,7 @@ SetRandomSeed(time[5] * time[6], time[3] * time[4])
 
 local function GenerateRandomNumber(iterations)
 	local number = ""
-	for _ = 1, iterations do
+	for i = 1, iterations do
 		number = number .. Random(0, 9)
 	end
 	return number

@@ -12,7 +12,7 @@ local useed = ModSettingGet("user_seed")
 local uid = ModSettingGet("user_id")
 
 local tips = {
-	"I think I saw a {@color 591111}#snail#{@color FFFFFF} earlier!",
+	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
 	"Did you know that you can get a ~^free information booklet^~ \nhere?",
 	"99% of gamblers quit before they win big!",
@@ -78,7 +78,7 @@ local tips = {
 	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
 	"Death comes for those who wait.",
 	"what",
-	"Hello, " .. uid or useed or "{@color FF0000}ERROR",
+	"Hello, " .. (uid or useed or "{@color FF0000}ERROR"),
 	"I know you!",
 	"Sorry, who are you?",
 	"Jump off a bridge!",
@@ -87,6 +87,7 @@ local tips = {
 	"The Voices, they speak through me!",
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
+	"The factory hämmies will eat well tonight!",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
@@ -132,7 +133,7 @@ local testing_tips = {
 	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
 	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
 }
-local test_tips = true
+local test_tips = false
 if test_tips then tips = testing_tips end
 
 -- Global so it's preserved across conversations
