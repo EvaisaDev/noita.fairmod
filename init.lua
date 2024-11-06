@@ -3,8 +3,6 @@ local SetContent = ModTextFileSetContent
 
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
-local suffertogetherid = "change to LST's UserID. He's the most likely to stream next."
-
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
@@ -232,11 +230,6 @@ function OnPlayerSpawned(player)
 	dmca_warning.OnPlayerSpawned(player)
 
 	saw.OnPlayerSpawned(player)
-
-	if ModSettingGet("user_seed") == suffertogetherid then
-		GamePrintImportant("Hello Lets Suffer Together", "Infernum speaking")
-		GamePrintImportant("Do not worry about how I can do this.", "Worry about what I will do with this. Infernum signing off.")
-	end
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -332,13 +325,6 @@ end
 function OnPlayerDied(player)
 	if not GameHasFlagRun("ending_game_completed") then
 		ModSettingSet("fairmod.deaths", (ModSettingGet("fairmod.deaths") or 0) + 1)
-		if ModSettingGet("user_seed") == suffertogetherid then
-			GamePrintImportant("Unfortunate, LST", "Really thought you'd get it this time")
-		end
-	elseif GameHasFlagRun("ending_game_completed") then
-		if ModSettingGet("user_seed") == suffertogetherid then
-			GamePrintImportant("I'm impressed, LST")
-		end
 	end
 	hescoming.OnPlayerDied(player)
 	corpses.OnPlayerDied(player)
