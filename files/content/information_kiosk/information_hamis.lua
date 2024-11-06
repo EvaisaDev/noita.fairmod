@@ -131,10 +131,9 @@ table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 local testing_tips = {
 	--"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
 	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
-	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
+	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
 }
-local test_tips = false
-if test_tips then tips = testing_tips end
+--tips = testing_tips --uncomment/comment to enable/disable testing_tips
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
