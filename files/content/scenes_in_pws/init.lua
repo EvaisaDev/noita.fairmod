@@ -2,8 +2,6 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
--- default map width seems to be 70
-local WORLD_WIDTH = 70 * 512
 local MAX_PARALLEL = 1 -- does NOT support large numbers
 
 local pixel_scene_files = {
@@ -18,7 +16,7 @@ local function create_pw_elements(result, element, attr_name)
 	for i = -MAX_PARALLEL, MAX_PARALLEL do
 		if i ~= 0 then
 			local attrs = MergeTables(element.attr)
-			attrs[attr_name] = tonumber(attrs[attr_name]) + WORLD_WIDTH * i
+			attrs[attr_name] = tonumber(attrs[attr_name]) + WORLD_WIDTH_HARDCODED * i
 
 			table.insert(result, nxml.new_element(element.name, attrs))
 		end
