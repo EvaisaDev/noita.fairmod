@@ -37,9 +37,10 @@ end
 local newFile = table.concat(newStrings, "\n")
 ModTextFileSetContent("data/translations/common.csv", newFile) -- disabled tl stuff lmao]]
 
+local popups = {}
 local a = OnWorldInitialized
 local b = OnPlayerSpawned
-function OnWorldInitialized()
+popups.OnWorldInitialized = function()
 	EntityAddComponent2(
 		GameGetWorldStateEntity(),
 		"LuaComponent",
@@ -50,3 +51,4 @@ end
 function OnPlayerSpawned()
 	--GamePrintImportant("THE MOD IS A MIMIC", "Download Copi's Things!") if b~=nil then b() end
 end
+return popups
