@@ -16,6 +16,22 @@
 		z_index="1"
 	/>
 
+	<SpriteComponent
+		_tags="has_mail"
+		_enabled="0"
+		image_file="mods/noita.fairmod/files/content/mailbox/notify.png"
+		offset_x="3"
+		offset_y="31"
+		z_index="1.05"
+	/>
+
+	<SpriteOffsetAnimatorComponent
+		_tags="has_mail"
+		sprite_id="2"
+		y_amount="1"
+		y_speed="4"
+	/>
+
 	<InteractableComponent
 		radius="20"
 		ui_text="Press $0 to open mailbox"
