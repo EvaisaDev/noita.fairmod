@@ -59,11 +59,21 @@ end
 --- Do rain thing
 --- @return boolean
 function surface_bad:rain_active()
+	local world_state = GameGetWorldStateEntity()
+	local world_state_comp = EntityGetFirstComponentIncludingDisabled(world_state, "WorldStateComponent")
+
 	if not self.rain_current_material then return false end
 	self.rain_duration = self.rain_duration - 1
 	if self.rain_duration < 1 then
 		self.rain_current_material = nil
+		if world_state_comp ~= nil then
+			ComponentSetValue2(world_state_comp, "rain_target_extra", 0)
+		end
 		return false
+	end
+
+	if world_state_comp ~= nil then
+		ComponentSetValue2(world_state_comp, "rain_target_extra", 1)
 	end
 
 	local player_id = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("polymorphed_player")[1]
