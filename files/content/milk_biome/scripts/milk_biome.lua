@@ -735,11 +735,11 @@ function spawn_stones(x, y)
 end
 
 function load_pixel_scene( x, y )
-	load_random_pixel_scene( g_pixel_scene_01, x, y )
+	--load_random_pixel_scene( g_pixel_scene_01, x, y )
 end
 
 function load_pixel_scene_alt( x, y )
-	load_random_pixel_scene( g_pixel_scene_01_alt, x, y )
+	--load_random_pixel_scene( g_pixel_scene_01_alt, x, y )
 end
 
 function load_pixel_scene2( x, y )
