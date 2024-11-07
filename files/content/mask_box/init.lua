@@ -1,4 +1,5 @@
-local worldsize = ModTextFileGetContent("data/compatibilitydata/worldsize.txt") or 35840
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
 local appends = { "_pixel_scenes", "_pixel_scenes_newgame_plus" }
 
@@ -15,14 +16,14 @@ for k = 1, #appends do
 		scenes:add_child(nxml.parse(table.concat({
 			[[
 			<PixelScene pos_x=pos_x="]],
-			(771 + worldsize),
+			(771 + WORLD_WIDTH_HARDCODED),
 			[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
 		]],
 		})))
 		scenes:add_child(nxml.parse(table.concat({
 			[[
 			<PixelScene pos_x="]],
-			(771 - worldsize),
+			(771 - WORLD_WIDTH_HARDCODED),
 			[[" pos_y="-88" just_load_an_entity="mods/noita.fairmod/files/content/mask_box/mask_box.xml" />
 		]],
 		})))

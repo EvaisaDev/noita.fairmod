@@ -6,26 +6,30 @@ local x, y = EntityGetTransform(entity_id)
 
 SetRandomSeed(x + GameGetFrameNum(), y)
 
+local player_has_won = ModSettingGet("fairmod_win_count") or 0
+
+local useed = ModSettingGet("fairmod.user_seed")
+local uid = ModSettingGet("fairmod.user_id")
+
 local tips = {
-	"I think I saw a snail earlier!",
+	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
-	"Did you know that you can get a free information booklet \nhere?",
+	"Did you know that you can get a ~^free information booklet^~ \nhere?",
 	"99% of gamblers quit before they win big!",
 	"Did you know we added a helpful UI\n that gives you lots of info?\nPay attention to the right side of the screen!",
 	"If you see spells that looks wrong..\nIgnore them! They are clearly bugs!!",
 	"Did you know you can fish up all kinds of stuff?",
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
 	"Don't drink and drive.",
-	"Happy Halloween!",
-	"Hey, if you combine Whiskey and Berserkium it makes my own patented Hamis Bars!!",
+	"Hey, if you combine Whiskey and Berserkium\nit makes my own patented ~Hamis Bars~!!",
 	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
-	"Follow the purple lights.",
+	"Follow the {@color 6b05a8}purple lights{@color FFFFFF}.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
 	-- table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
-	string.format("There are %s achievements!\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0") + Random(1, 5)), -- have you heard about string.format? (still messed up by formatter, lmao)
-	"Some enemies are really messed up! Beware!",
-	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything...\nWell, that's a spoiler!",
+	string.format("There are %s ~achievements!~\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0") + Random(1, 5)), -- have you heard about string.format? (still messed up by formatter, lmao)
+	"Some enemies are really messed up! #Beware!#",
+	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything{@pause 60}{@delay 45}#...#{@pause 100}{@delay 3}\nWell, that's a spoiler!",
 	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
 	"I heard that my information pamphlet contains\n the solution to the eyes, can you believe it?!",
 	"Listen closely to the songs.",
@@ -57,14 +61,14 @@ local tips = {
 	"Always keep a pocket empty.\nYou never know what’ll want to fill it.",
 	"Sing to the stars;\nthey won’t respond, but they listen better than most.",
 	"Don't drink the water, they put clams in it.\nTo make you forget.",
-	"I am not a snail.",
+	"I am not a {@color 760606}#snail#{@color FFFFFF}.",
 	"What do you mean it keeps changing?\nThe game has always looked like this.",
 	"You do not recognize the bodies in the water.",
 	"Buy scratch-offs now, trust me.\nGreat investment!",
-	"Your world seed is " .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "!",
+	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "!",
 	"Hiisi base has had some new reading lights installed!",
 	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
-	"There’s something behind you!\n..?\nOh, no no, silly! I meant in real life!",
+	"There’s something behind you!{@pause 80}\n..?{@pause 100}\nOh{@pause 15}, no no{@pause 30}, ~silly!~{@pause 70} I meant in real life!",
 	'Type "Chaos" on your keyboard for some free digging',
 	"Trapped? Try code NOCLIP to get yourself out of any\nsticky situation!",
 	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
@@ -73,9 +77,63 @@ local tips = {
 	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
 	"Death comes for those who wait.",
 	"what",
+	"Hello, " .. (uid or useed or "{@color FF0000}ERROR"),
+	"I know you!",
+	"Sorry, who are you?",
+	"Jump off a bridge!",
+	"{@color FF0000}#KYS#!!!!!!!!!!{@pause 90}\n{@color d991de}(Keep Yourself Safe <3 )",
+	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~~",
+	"The Voices, they speak through me!",
+	'psst, try this secret cheatcode: "photocopier"',
+	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
+	"The factory hämmies will eat well tonight!",
+	"This mod has been a joy to work on, see you all next year o/",
 }
 
-table.insert(tips, "there are " .. #tips .. " tips\ncan you read them all?")
+if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
+
+local seasonal = {
+	halloween = {
+		"Happy Halloween!",
+		"Trick or Treat!",
+		"Nice makeup, you really look like a Hiisi!",
+		"I'm dressing up as myself this year!",
+	},
+	winter = {
+		"Brrr, it's getting cold out!",
+		"All my competitors are stocking up to hibernate for winter\nNot me! I'm on the grind!",
+		"Merry Christmas",
+		"Happy Christmas",
+		"For Christmas, I'm going to wish for your happiness!",
+		"I hope we get snow!",
+		"Jingle Bells, Hämis Sells,\nLots and lots of tips!\nMinä buys, and then survives,\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
+	}
+}
+
+local streamer_tips = {
+	general = {
+		"Are you sure your recording software is running?",
+		"~Woooo its us, chat, we're in your gaaaaammee~",
+		"Chat is this a W?",
+		"We can tell when OBS is open, like right now!",
+		"Don't forget streamer mode!",
+		"Streaming tip: Don't Die",
+		"Streaming tip: Throw for content!",
+		"This stream is pretty P.O.G-CHAMP!!!",
+		"Chat, kill this guy.",
+		'Streamer detected, activating "Fucking_Kill_Them" Mode...'
+	}
+}
+
+table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
+
+
+local testing_tips = {
+	--"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
+	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
+}
+--tips = testing_tips --uncomment/comment to enable/disable testing_tips
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -103,9 +161,9 @@ function interacting(player, entity_interacted, interactable_name)
 		text = "Heyyyy!! Welcome to this wonderful place!\nWhat can I do for you today?",
 		options = {
 			{
-				text = "Ask for some tips",
+				text = "Ask for some tips (1 gold)",
 				enabled = function(stats)
-					return true
+					return stats.gold >= 1
 				end,
 				func = function(dialog)
 					if #remaining_tips == 0 then
@@ -121,6 +179,12 @@ function interacting(player, entity_interacted, interactable_name)
 							},
 						},
 					})
+
+					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
+					if wallet_component == nil then return end
+					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 1)
+					ModSettingSet("fairmod.information_hamis_amount_given", (ModSettingGet("fairmod.information_hamis_amount_given") or 0) + 1) --planning on doing things with these dw
+					ModSettingSet("fairmod.information_hamis_wallet", (ModSettingGet("fairmod.information_hamis_wallet") or 0) + 1) --i have a vision that i dont have time to work on rn, but it will be funny
 				end,
 			},
 			{

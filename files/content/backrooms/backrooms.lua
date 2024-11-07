@@ -93,7 +93,7 @@ function load_scene_h(x, y)
 end
 
 function load_lamp(x, y)
-	local _seed = tonumber(ModSettingGet("user_seed"):sub(5, 13))
+	local _seed = tonumber(ModSettingGet("fairmod.user_seed"):sub(5, 13))
 	SetRandomSeed(_seed, _seed + 1)
 	local g_lamp = {
 		total_prob = 0,

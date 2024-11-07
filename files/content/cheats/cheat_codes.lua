@@ -1,4 +1,5 @@
 --stylua: ignore start
+--dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
@@ -270,7 +271,7 @@ return {
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
-			EntityApplyTransform(player, 1547, 14900)
+			EntityApplyTransform(player, 1547 + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, 14900)
 		end,
 	},
 	{
@@ -574,6 +575,12 @@ return {
 		description = "missing description",
 		func = function(player)
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
+		end
+	},
+	{
+		code = "printuserdiagnostic",
+		func = function()
+			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
 		end
 	},
 }

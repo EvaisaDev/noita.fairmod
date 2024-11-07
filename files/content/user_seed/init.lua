@@ -1,10 +1,23 @@
 --stylua: ignore start
-
 local user_seeds = {}
 
+
+--NO RATS ALLOWED, STAY OUT (this means YOU nathan)
 local allow_dev_mode = true --set to false to disable dev_mode
 
-RemoveFlagPersistent(("edom_repoleved_domriaf"):reverse())
+
+
+
+local flag = ("edom_repoleved_domriaf"):reverse()
+
+user_seeds.OnWorldInitialized = function() --fairmod.domriaf
+	if ModSettingGet(("epyt_resu.domriaf"):reverse()) == "mod_dev" and allow_dev_mode then
+		GameAddFlagRun(flag)
+	end
+end
+
+ModSettingRemove(("di_resu.domriaf"):reverse())
+ModSettingRemove(("epyt_resu.domriaf"):reverse())
 
 local time = {GameGetDateAndTimeUTC()}
 SetRandomSeed(time[5] * time[6], time[3] * time[4])
@@ -17,11 +30,14 @@ local function GenerateRandomNumber(iterations)
 	return number
 end
 
-local user_seed = ModSettingGet("user_seed")
+local user_seed = ModSettingGet("fairmod.user_seed")
+
+--user_seed = "123456789012345678901234567890" --use this to spoof user_seeds
+
 if not user_seed then
 	user_seed = GenerateRandomNumber(30)
-	ModSettingSet("user_seed", user_seed)
-	print("GENERATED USER SEED IS [" .. ModSettingGet("user_seed") .. "]")
+	ModSettingSet("fairmod.user_seed", user_seed)
+	print("GENERATED USER SEED IS [" .. ModSettingGet("fairmod.user_seed") .. "]")
 end
 
 print("USER SEED IS [" .. user_seed .. "]")
@@ -44,6 +60,10 @@ local users = {
     --streamers (steamid 765611------------)
     XaqyzOne = {
         seed = "XXXXXXXX081665557096XXXXXXXXXX",
+        type = "streamer",
+    },
+    LST = {
+        seed = "2434295611XXXXXXXXXXXXXXXXXXXX",
         type = "streamer",
     },
 
@@ -71,6 +91,7 @@ local users = {
 }
 
 local function user_seed_match(seed, pattern)
+    if seed == pattern then return true end
 	if #seed ~= 30 then
 		print("Seed: " .. seed .. " not 30 characters")
 		return false
@@ -97,19 +118,18 @@ for key, value in pairs(users) do
 	end
 end
 
-local flag = ("edom_repoleved_domriaf"):reverse()
+--if users[user].type == "streamer" and Random(1, 5) == 5 then --20% chance for streamers to not be recognised as a streamer
+--    users = nil
+--elseif user == nil and Random(1, 30) then --3% chance to play in streamer mode
+--    user = { type = "streamer" } --tbh im kinda over the idea of fucking with streamers, it feels funny for a one-time gag, but after discussing it in the thread earlier it feels eh
+--end --i kinda only have a streamer type here to begin with cuz i added a mod_dev type so i could have developer cheatcodes, and make the option feel less redundant
+--yeah actually im over this, ill re-add it if i actually think of anything funny to attach to this
 
 if user then
-	if users[user].type == "mod_dev" and allow_dev_mode then AddFlagPersistent(flag) end
-	ModSettingSet(("di_resu"):reverse(), user)
+	ModSettingSet(("di_resu.domriaf"):reverse(), user)
+	ModSettingSet(("epyt_resu.domriaf"):reverse(), users[user].type)
 end
 
-function user_seeds.OnWorldInitialized()
-	if HasFlagPersistent(flag) then
-		GameAddFlagRun(flag)
-		RemoveFlagPersistent(flag)
-	end
-end
 
 return user_seeds
 --stylua: ignore end

@@ -101,6 +101,13 @@ local objectives = {
 	"Loading...",
 	"Failed",
 	"Follow the purple lights",
+	"Forfeit material wealth for Hämis",
+	"Kill.",
+	"Fail this objective",
+	"Defeat God.",
+	"Download Copi's Things",
+	"Make 100 friends",
+	"Buy tips from Hämis",
 }
 
 local game_speed_a = 0
@@ -142,7 +149,7 @@ local ui_displays = {
 		},
 		{
 			text = function()
-				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("radios_activated_highscore")))
+				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("fairmod.radios_activated_highscore")))
 			end,
 			condition = global_greater_than_zero("radios_activated"),
 		},
@@ -426,7 +433,7 @@ local extra_ui = {
 		end,
 	},
 	{
-		text = "Best pet: Cats",
+		text = "Best pet: Cats", --[[ +1 -k]]
 	},
 	{
 		text = function()

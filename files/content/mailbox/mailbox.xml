@@ -1,6 +1,16 @@
 <Entity serialize="1">
 	<SpriteComponent
+		_tags="no_mail"
 		image_file="mods/noita.fairmod/files/content/mailbox/mailbox.png"
+		offset_x="7"
+		offset_y="19"
+		z_index="1"
+	/>
+
+	<SpriteComponent
+		_tags="has_mail"
+		_enabled="0"
+		image_file="mods/noita.fairmod/files/content/mailbox/mailbox_with_mail.png"
 		offset_x="7"
 		offset_y="19"
 		z_index="1"

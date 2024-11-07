@@ -1,6 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
+dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
@@ -47,6 +48,7 @@ local secret = dofile_once("mods/noita.fairmod/files/content/secret/init.lua")
 local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/init.lua")
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
+local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -86,7 +88,6 @@ dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
 dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
-dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_spells/init.lua")
 dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
@@ -217,7 +218,7 @@ function OnPlayerSpawned(player)
 
 	fire.OnPlayerSpawned(player)
 
-	information_kiosk.spawn_kiosk(target_x, target_y)
+	information_kiosk.OnPlayerSpawned(target_x, target_y, player)
 
 	mailbox.spawn(target_x, target_y)
 
@@ -230,7 +231,7 @@ function OnPlayerSpawned(player)
 	dmca_warning.OnPlayerSpawned(player)
 
 	saw.OnPlayerSpawned(player)
-
+	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
@@ -303,6 +304,7 @@ function OnPausePreUpdate()
 end
 
 function OnWorldInitialized()
+	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
 end
 
