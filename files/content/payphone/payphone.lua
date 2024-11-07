@@ -15,7 +15,7 @@ SetRandomSeed(x, y + GameGetFrameNum())
 
 function teleport_now()
 	GameAddFlagRun("random_teleport_next")
-	GameAddFlagRun("no_return")
+	--GameAddFlagRun("no_return")
 
 	local players = EntityGetWithTag("player_unit") or {}
 
