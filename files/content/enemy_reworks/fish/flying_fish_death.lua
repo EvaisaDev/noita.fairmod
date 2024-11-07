@@ -3,14 +3,10 @@ dofile_once("data/scripts/biomes/temple_shared.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
 	local value = tonumber(GlobalsGetValue("fairmod_fish_killed")) or 0
-	if value < 2 then return end
+	if value < 5 then return end
 
 	local dead_fish = GetUpdatedEntityID()
 	local pos_x, pos_y = EntityGetTransform(dead_fish)
-
-	if ProceduralRandom(pos_x, pos_y + GameGetFrameNum(), 1, 100) < 80 then
-		return
-	end
 
 	if GlobalsGetValue("TEMPLE_PEACE_WITH_GODS") == "1" then
 		GamePrintImportant("$logdesc_temple_peace_temple_break", "")
@@ -27,9 +23,9 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
 	if GlobalsGetValue(leak_name) ~= "1" then
 		if tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) < 3 then
-			GamePrintImportant("$logdesc_temple_spawn_guardian", "")
+			GamePrintImportant("$logdesc_temple_spawn_guardian", "More than 5 peaceful fish and their guardians were murdered!")
 		else
-			GamePrintImportant("$logdesc_gods_are_very_angry", "")
+			GamePrintImportant("$logdesc_gods_are_very_angry", "More than 5 peaceful fish and their guardians were murdered!")
 			GameGiveAchievement("GODS_ENRAGED")
 		end
 		GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", pos_x, pos_y)
