@@ -53,6 +53,17 @@ return {
 
 		end,
 	},
+	fishbad = {
+		create_letter = true,
+		letter_title = "About the Fish...",
+		letter_content = [[
+		Hey, have you ran into any fishy business? You have, right?
+		Word of advice, don't kill too many of the peaceful ones or
+		the Gods will be upset.
+
+		Those flying fish though? They can go straight to hell!
+		- The Wandering Adventurer]],
+	},
 	bomb = {
 		func = function(x, y)
 			EntityLoad("data/entities/projectiles/mine_explosion.xml", x, y)

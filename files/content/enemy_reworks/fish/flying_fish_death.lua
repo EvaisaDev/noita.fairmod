@@ -23,9 +23,9 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 
 	if GlobalsGetValue(leak_name) ~= "1" then
 		if tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) < 3 then
-			GamePrintImportant("$logdesc_temple_spawn_guardian", "More than 5 peaceful fish and their guardians were murdered!")
+			GamePrintImportant("$logdesc_temple_spawn_guardian", "")
 		else
-			GamePrintImportant("$logdesc_gods_are_very_angry", "More than 5 peaceful fish and their guardians were murdered!")
+			GamePrintImportant("$logdesc_gods_are_very_angry", "")
 			GameGiveAchievement("GODS_ENRAGED")
 		end
 		GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", pos_x, pos_y)
