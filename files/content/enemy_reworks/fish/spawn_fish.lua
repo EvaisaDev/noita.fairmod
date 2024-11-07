@@ -8,6 +8,8 @@ function spawn_fish(x, y)
 	for _ = 1, f do
 		if Random(hm_visits, 50) >= 49 then
 			local e = EntityLoad("mods/noita.fairmod/files/content/enemy_reworks/fish/fish.xml", x, y)
+			EntitySetTransform(e, x, y + 20)
+
 			local dmc = EntityGetFirstComponent(e, "DamageModelComponent")
 			if not dmc then return end
 			local hp = hm_visits / 2 + 0.1

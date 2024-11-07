@@ -8,6 +8,10 @@ function death(damage_type_bit_field, damage_message, entity_thats_responsible, 
 	local dead_fish = GetUpdatedEntityID()
 	local pos_x, pos_y = EntityGetTransform(dead_fish)
 
+	if ProceduralRandom(pos_x, pos_y + GameGetFrameNum(), 1, 100) < 80 then
+		return
+	end
+
 	if GlobalsGetValue("TEMPLE_PEACE_WITH_GODS") == "1" then
 		GamePrintImportant("$logdesc_temple_peace_temple_break", "")
 		GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", pos_x, pos_y)

@@ -49,16 +49,7 @@ local rain_materials = {
 	fungi_creeping = {},
 	bush_seed = {},
 	fungi = {},
-	t_giga_slicing_liquid = {},
-	aa_chaotic_pandorium = {
-		count_min = 0,
-		count_max = 1,
-	},
 	fairmod_hamisium_active = {},
-	fairmod_propanium = {
-		count_min = 3,
-		count_max = 5,
-	},
 	fairmod_tntinium = {
 		count_min = 3,
 		count_max = 5,

@@ -1,6 +1,8 @@
 <Entity name="$animal_fish" tags="mortal,hittable,enemy">
 	<Base file="data/entities/base_enemy_flying.xml">
 		<AnimalAIComponent
+			_tags="activate"
+			_enabled="0"
 			attack_ranged_enabled="0"
 			attack_dash_enabled="1"
 			needs_food="0"
@@ -60,6 +62,20 @@
 		</CharacterDataComponent>
 	</Base>
 	<LuaComponent
-		script_death="mods/noita.fairmod/files/content/enemy_reworks/fish/flying_fish_death.lua">
-	</LuaComponent>
+		script_death="mods/noita.fairmod/files/content/enemy_reworks/fish/flying_fish_death.lua"
+		/>
+
+	<Entity>
+		<LifetimeComponent
+			lifetime = "120"
+			randomize_lifetime.min = "0"
+			randomize_lifetime.max = "300"
+		/>
+
+		<LuaComponent
+			script_source_file = "mods/noita.fairmod/files/content/enemy_reworks/fish/fish_activator.lua"
+			execute_on_removed = "1"
+			execute_every_n_frame = "-1"
+			/>
+	</Entity>
 </Entity>
