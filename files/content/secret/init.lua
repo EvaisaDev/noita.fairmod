@@ -33,7 +33,7 @@ module.update = function()
 
 		GameAddFlagRun("secret_text_spawned")
 
-		LoadBackgroundSprite("mods/noita.fairmod/files/content/secret/lazy.png", secret_note_coords[1], secret_note_coords[2], -100, false)
+		LoadBackgroundSprite("mods/noita.fairmod/files/content/secret/cya.png", secret_note_coords[1], secret_note_coords[2], -100, false)
 	end
 end
 

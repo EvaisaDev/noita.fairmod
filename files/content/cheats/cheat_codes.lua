@@ -330,6 +330,7 @@ return {
 	},
 	{
 		code = "userk",
+		is_cheat = false,
 		func = function()
 			print("UserK")
 			GamePrint("UserK")
@@ -378,6 +379,7 @@ return {
 	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
 	,{
 		code = "copi",
+		is_cheat = false,
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
 			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
@@ -385,12 +387,14 @@ return {
 	},
 	{
 		code = "yourworldseed",
+		is_cheat = false,
 		func = function()
 			GameAddFlagRun("YOUBLITHINGIDIOT")
 		end,
 	},
 	{
 		code = "london",
+		is_cheat = false,
 		name = "Aye bruv",
 		description = "Oh, splendid! Another dreary cup of tea to elevate my utterly bland day—how terribly exciting!",
 		func = function (player)
@@ -441,6 +445,7 @@ return {
 	},
 	{
 		code = "wasdwasd",
+		is_cheat = false,
 		name = "oops!",
 		description = "be more careful!",
 		func = function(player)
@@ -449,6 +454,7 @@ return {
 	},
 	{
 		code = "wdsawdsa",
+		is_cheat = false,
 		name = "oops!",
 		description = "be more careful!",
 		func = function(player)
@@ -457,6 +463,7 @@ return {
 	},
 	{
 		code = "credits",
+		is_cheat = false,
 		func = function(player)
 			if HasFlagPersistent("fairmod_unlocked_credits") then
 				--yeah i didnt finish this
@@ -517,6 +524,7 @@ return {
 	},
 	{
 		code = "superchest",
+		is_cheat = false, --technically cheaty the first time, but not after?
 		func = function(player)
 
 			if GameHasFlagRun("chaos_run_active") then return end
@@ -579,6 +587,7 @@ return {
 	},
 	{
 		code = "printuserdiagnostic",
+		is_cheat = false,
 		func = function()
 			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
 		end

@@ -12,8 +12,8 @@ local hm_banned_tags = {
 
 local hm_banned_materials = {
 	-- Midas
-	midas_precursor = true,
-	midas = true,
+	--midas_precursor = true, --disabling midas is lame imo
+	--midas = true,
 	-- Materials that vanish (lifetime or interact with air)
 	magic_liquid = true,
 	just_death = true,
