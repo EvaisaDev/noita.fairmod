@@ -231,7 +231,7 @@ function OnPlayerSpawned(player)
 	dmca_warning.OnPlayerSpawned(player)
 
 	saw.OnPlayerSpawned(player)
-
+	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
