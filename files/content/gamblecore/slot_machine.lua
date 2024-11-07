@@ -66,7 +66,6 @@ current_cost = current_cost or biomecost
 current_winnings = current_winnings or 200
 win_chance = tonumber(GlobalsGetValue("GAMBLECORE_WIN_CHANCE", "10"))
 
-broken = broken or false
 broken_timer = broken_timer or 0
 
 if debug_free then current_cost = 0 end
@@ -209,14 +208,15 @@ if currently_gambling then
 				EntityRefreshSprite(entity_id, sprite_component)
 			end
 		else
-			if broken then return end
+			if GetValueBool("broken", false) then return end
 			GamePlayAnimation(entity_id, gamble_states[state].animation, 1)
 			ComponentSetValue2(sprite_component, "rect_animation", gamble_states[state].animation)
 			EntityRefreshSprite(entity_id, sprite_component)
 
 			if gamble_states[state].play_win_sound then
 				if will_break then
-					broken = true
+					--broken = true
+					SetValueBool("broken", true)
 
 					local explosion = EntityLoad("mods/noita.fairmod/files/content/gamblecore/explosion.xml", x, y - 12)
 
@@ -235,7 +235,7 @@ if currently_gambling then
 	end
 end
 
-if broken then
+if GetValueBool("broken", false) then
 	broken_timer = broken_timer + 1
 	if broken_timer == 35 then
 		GamePlayAnimation(entity_id, "broken", 1)
@@ -247,6 +247,10 @@ end
 -- LETS GO GAMBLING
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	SetRandomSeed(x + GameGetFrameNum(), y)
+	local broken = GetValueBool("broken", false)
+	if(broken)then
+		GamePrint("The slot machine is broken!")
+	end
 	if interactable_name == "interact" and not broken and not currently_gambling then
 		-- better_ui integration
 		GameAddFlagRun("gamblecore_found")

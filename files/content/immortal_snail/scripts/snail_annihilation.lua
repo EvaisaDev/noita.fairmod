@@ -41,14 +41,15 @@ end
 
 for i, player in ipairs(nearby_players) do
 
+	local hp = 100 / 25
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then
-		ComponentSetValue2(damage_model_comp, "hp", 0.04)
 		ComponentSetValue2(damage_model_comp, "wait_for_kill_flag_on_death", false)
 		ComponentSetValue2(damage_model_comp, "invincibility_frames", 0)
+		hp = ComponentGetValue2(damage_model_comp, "hp")
 	end
 
-	EntityInflictDamage(player, 1000, "DAMAGE_CURSE", "immortal_snail", "BLOOD_EXPLOSION", 0, 0, entity_id)
+	EntityInflictDamage(player, hp * 100, "DAMAGE_CURSE", "immortal_snail", "BLOOD_EXPLOSION", 0, 0, entity_id)
 
 	local px, py = EntityGetTransform(player)
 
