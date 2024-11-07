@@ -14,7 +14,7 @@ local hm_banned_materials = {
 	-- Midas
 	midas_precursor = true,
 	midas = true,
-	-- Materials that vanish (lifetime)
+	-- Materials that vanish (lifetime or interact with air)
 	magic_liquid = true,
 	just_death = true,
 	material_rainbow = true,
@@ -27,14 +27,19 @@ local hm_banned_materials = {
 	fungus_powder = true,
 	blood_cold = true,
 	rocket_particles = true,
-	-- Just ends up turning into water or something smh
-	mimic_liquid = true,
 }
 
 -- In addition to the above, the inside of the HM can't have these
 local inner_hm_banned_materials = {
 	cement = true,
 	void_liquid = true,
+	poison = true,	-- evaporates slowly
+
+	-- Boring
+	water = true,
+	water_ice = true,
+	water_temp = true,
+	mimic_liquid = true,
 }
 
 function HMMaterialsFilter(mats, inside_hm)

@@ -40,7 +40,7 @@ local function shuffle_words(input)
 	return result
 end
 
-local CHANGE_CHANCE = 0.15
+local CHANGE_CHANCE = 0.1
 
 local function not_buttsify(filename)
 	local content = ModTextFileGetContent(filename)

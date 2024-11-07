@@ -1,3 +1,3 @@
 <Entity>
-  <LifetimeComponent lifetime="120"/>
+  <LifetimeComponent lifetime="240"/>
 </Entity>

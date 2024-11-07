@@ -10,7 +10,7 @@ end
 
 function replace_syllables_with_butt(syllables)
 	for i = 1, #syllables do
-		if math.random() > 0.9 then -- 10% chance to replace a syllable
+		if math.random() > 0.95 then -- 5% chance to replace a syllable
 			syllables[i] = "butt"
 		end
 	end

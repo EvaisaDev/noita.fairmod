@@ -3,7 +3,7 @@
 	<CellDataChild
 		_parent="aluminium"
 		_inherit_reactions="1"
-		tags="[box2d],[corrodible],[rust_box2d],[alchemy],[meltable_metal],[solid],[earth]"
+		tags="[box2d],[corrodible],[rust_box2d],[alchemy],[meltable_metal_generic],[solid],[earth]"
 		name="fairmod_metal_rust"
 		ui_name="$mat_metal_rust"
 		platform_type="1"

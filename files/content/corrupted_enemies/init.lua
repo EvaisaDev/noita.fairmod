@@ -202,9 +202,36 @@ do
 		local name =
 			table.concat({ adjectives[math.random(1, #adjectives)], " ", nouns[math.random(1, #nouns)], suffix })
 
+		--Generate spawn location
+		local opts = {
+			{ name = "wizardcave", chance = 0.5, fly = true },
+			{ name = "coalmine", chance = 0.1, fly = false },
+			{ name = "desert", chance = 0.5, fly = true },
+			{ name = "crypt", chance = 0.5, fly = true },
+			{ name = "pyramid", chance = 0.5, fly = true },
+			{ name = "fungicave", chance = 0.5, fly = true },
+			{ name = "coalmine_alt", chance = 0.2, fly = true },
+			{ name = "pyramid_hallway", chance = 0.5, fly = true },
+			{ name = "excavationsite", chance = 0.3, fly = true },
+			{ name = "fungiforest", chance = 0.5, fly = true },
+			{ name = "snowcave", chance = 0.4, fly = true },
+			{ name = "wandcave", chance = 0.5, fly = true },
+			{ name = "sandcave", chance = 0.5, fly = true },
+			{ name = "winter", chance = 0.5, fly = true },
+			{ name = "rainforest", chance = 0.5, fly = true },
+			{ name = "rainforest_dark", chance = 0.5, fly = true },
+			{ name = "liquidcave", chance = 0.5, fly = true },
+			{ name = "snowcastle", chance = 0.4, fly = true },
+			{ name = "vault", chance = 0.5, fly = true },
+		}
+		local biome = opts[math.random(1, #opts)]
+
 		--Generate enemy file
 		do
-			local can_fly = math.random(0, 1)
+			local can_fly = 0
+			if biome.fly then
+				can_fly = math.random(0, 1)
+			end
 			--local is_worm = 1 --math.random(1,10)
 
 			local path = table.concat({ "data/entities/animals/noita.fairmod_enemy_corrupted_0", k, ".xml" })
@@ -226,38 +253,14 @@ do
 			local content =
 				ModTextFileGetContent("mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append.lua")
 			content = content:gsub("k", k)
+			content = content:gsub("0.5", biome.chance)
 			ModTextFileSetContent(
 				table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0", k, ".lua" }),
 				content
 			)
 		end
 
-		--Generate spawn location
-		local opts = {
-			"wizardcave",
-			"coalmine",
-			"desert",
-			"crypt",
-			"pyramid",
-			"fungicave",
-			"coalmine_alt",
-			"pyramid_hallway",
-			"excavationsite",
-			"fungiforest",
-			"snowcave",
-			"wandcave",
-			"sandcave",
-			"winter",
-			"rainforest",
-			"rainforest_dark",
-			"liquidcave",
-			"snowcastle",
-			"vault",
-		}
-
-		local biome = opts[math.random(1, #opts)]
-
-		ModLuaFileAppend(table.concat({ "data/scripts/biomes/", biome, ".lua" }),table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0", k, ".lua" }))
+		ModLuaFileAppend(table.concat({ "data/scripts/biomes/", biome.name, ".lua" }),table.concat({ "mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0", k, ".lua" }))
 
 		--ModLuaFileAppend("data/scripts/biomes/coalmine.lua", table.concat({"mods/noita.fairmod/files/content/corrupted_enemies/spawnpool_append_0",k,".lua"}))
 	end

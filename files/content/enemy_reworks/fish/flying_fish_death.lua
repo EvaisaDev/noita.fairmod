@@ -3,7 +3,7 @@ dofile_once("data/scripts/biomes/temple_shared.lua")
 
 function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
 	local value = tonumber(GlobalsGetValue("fairmod_fish_killed")) or 0
-	if value < 2 then return end
+	if value < 5 then return end
 
 	local dead_fish = GetUpdatedEntityID()
 	local pos_x, pos_y = EntityGetTransform(dead_fish)

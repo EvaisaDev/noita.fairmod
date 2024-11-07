@@ -8,6 +8,12 @@ local script_death = function(damage_type_bit_field, damage_message, entity_that
 	if helper:is_player_kill(entity_thats_responsible) then
 		local value = tonumber(GlobalsGetValue("fairmod_fish_killed")) or 0
 		GlobalsSetValue("fairmod_fish_killed", tostring(value + 1))
+		if value + 1 >= 5 then
+			if(not HasFlagPersistent("fairmod_fish_letter"))then
+				AddFlagPersistent("fairmod_fish_letter")
+				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "fishbad,")
+			end
+		end
 	end
 end
 death = script_death
