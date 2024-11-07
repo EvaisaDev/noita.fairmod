@@ -61,9 +61,6 @@
 		>
 		</CharacterDataComponent>
 	</Base>
-	<LuaComponent
-		script_death="mods/noita.fairmod/files/content/enemy_reworks/fish/flying_fish_death.lua"
-		/>
 
 	<Entity>
 		<LifetimeComponent
