@@ -12,7 +12,7 @@ local lamps = {
 	"data/scripts/biomes/vault.lua",
 }
 
-local _seed = tonumber(ModSettingGet("user_seed"):sub(8, 19))
+local _seed = tonumber(ModSettingGet("fairmod.user_seed"):sub(8, 19))
 math.randomseed(_seed, _seed * 34)
 
 for index, value in ipairs(lamps) do

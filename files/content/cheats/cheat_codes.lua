@@ -580,7 +580,7 @@ return {
 	{
 		code = "printuserdiagnostic",
 		func = function()
-			GamePrint(ModSettingGet("user_seed") or "nil")
+			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
 		end
 	},
 }

@@ -8,8 +8,8 @@ SetRandomSeed(x + GameGetFrameNum(), y)
 
 local player_has_won = ModSettingGet("fairmod_win_count") or 0
 
-local useed = ModSettingGet("user_seed")
-local uid = ModSettingGet("user_id")
+local useed = ModSettingGet("fairmod.user_seed")
+local uid = ModSettingGet("fairmod.user_id")
 
 local tips = {
 	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
@@ -21,7 +21,6 @@ local tips = {
 	"Did you know you can fish up all kinds of stuff?",
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
 	"Don't drink and drive.",
-	"Happy Halloween!",
 	"Hey, if you combine Whiskey and Berserkium\nit makes my own patented ~Hamis Bars~!!",
 	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
 	"Follow the {@color 6b05a8}purple lights{@color FFFFFF}.",
@@ -88,6 +87,7 @@ local tips = {
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"The factory hämmies will eat well tonight!",
+	"This mod has been a joy to work on, see you all next year o/",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
@@ -112,8 +112,8 @@ local seasonal = {
 
 local streamer_tips = {
 	general = {
-		"Are you sure you're still recording?",
-		"~Woooo its us, chat, we're in your gaaaaammee",
+		"Are you sure your recording software is running?",
+		"~Woooo its us, chat, we're in your gaaaaammee~",
 		"Chat is this a W?",
 		"We can tell when OBS is open, like right now!",
 		"Don't forget streamer mode!",
@@ -183,8 +183,8 @@ function interacting(player, entity_interacted, interactable_name)
 					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 					if wallet_component == nil then return end
 					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 1)
-					ModSettingSet("information_hamis_amount_given", (ModSettingGet("information_hamis_amount_given") or 0) + 1) --planning on doing things with these dw
-					ModSettingSet("information_hamis_wallet", (ModSettingGet("information_hamis_amount_given") or 0) + 1) --i have a vision that i dont have time to work on rn, but it will be funny
+					ModSettingSet("fairmod.information_hamis_amount_given", (ModSettingGet("fairmod.information_hamis_amount_given") or 0) + 1) --planning on doing things with these dw
+					ModSettingSet("fairmod.information_hamis_wallet", (ModSettingGet("fairmod.information_hamis_wallet") or 0) + 1) --i have a vision that i dont have time to work on rn, but it will be funny
 				end,
 			},
 			{
