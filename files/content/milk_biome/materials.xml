@@ -96,4 +96,29 @@
 		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
 	</CellDataChild>
 
+	<!-- Overwrites piss data to not give food poisoning on consumption, inserting it here for ease of implementation, may the endless piss flow -->
+	<CellData 
+	name="urine"  
+	ui_name="$mat_urine"
+	tags="[liquid],[corrodible],[soluble],[liquid_common]"
+	burnable="0"  
+	density="3"  
+	cell_type="liquid" 
+	wang_color="33FFEE00"  
+	generates_smoke="0"  
+	liquid_gravity="0.9"  
+	liquid_sand="0"  
+	liquid_stains="1"
+	on_fire="0"  
+	requires_oxygen="1"  
+	temperature_of_fire="10" >
+	<StatusEffects>
+		<Stains>
+			<StatusEffect type="JARATE" />
+		</Stains>
+		<Ingestion>
+		</Ingestion>
+	</StatusEffects>
+	</CellData>
+
 </Materials>
