@@ -1,6 +1,7 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
 
+dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")

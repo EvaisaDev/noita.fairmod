@@ -107,7 +107,7 @@ local Popups = {
 			OPEN_FUNCTION = function(self)
 				self.MESSAGE = self.MESSAGE:gsub(
 					"steamid",
-					ModSettingGet("user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
+					ModSettingGet("fairmod.user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
@@ -117,7 +117,7 @@ local Popups = {
 			EXE					= "PROGRESS PAWN SHOP",
 			CUSTOM_9PIECE_BAR	= "mods/noita.fairmod/files/content/popups/pawn_9piecebar.png",
 			CUSTOM_X			= "mods/noita.fairmod/files/content/popups/pawn_button.png",
-			MESSAGE				= "Sell 1 random @progress@ for $1m?\n%[yes]%\n%[no]%",
+			MESSAGE				= "Sell 1 random @progress@ for 1m gold?\n%[yes]%\n%[no]%",
 			value				= 1000,
 			gen_next_value		= function (self)
 				local suffixes = { "", "k", "M", "B", "T", "Qd", "Qn", "Sx", "Sp", "O", "N", "De", "U", "Dd" }
@@ -147,6 +147,7 @@ local Popups = {
 						for i=1, 3 do
 							local opt = math.random(1, #t)
 							table.remove(t, opt)
+							print(tostring(t[opt]))
 							RemoveFlagPersistent(t[opt])
 						end
 						local wallet_component = EntityGetFirstComponentIncludingDisabled(GetPlayers()[1], "WalletComponent")
@@ -165,7 +166,7 @@ local Popups = {
 					return false
 				end
 			end,
-		},]=]
+		},--]=]
 		--[=[
 		{ -- Basic clicker game. Intention: On buying 10 of an autoclicker, it unlocks the next tier. Please make this work userk
 			EXE		= "COPI CLICKER V0.04",
@@ -203,7 +204,7 @@ local Popups = {
 					self.value = self.value + 1
 				end,
 			},
-		},]=]
+		},--]=]
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

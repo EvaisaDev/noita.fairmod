@@ -52,12 +52,12 @@ function IsValidModifier(spell)
 	return false
 end
 
-local function file_spell(data) end
 
 local tmtrainer
-
+local pandorium_safety = true
 for k, data in pairs(actions) do
 	if data.pandorium_ignore then goto continue end
+	if pandorium_safety and (data.ai_never_uses or data.recursive) then goto continue end
 
 	if data.tm_trainer then --It's a surprise tool that will helps us later!
 		if data.type == 0 then
@@ -88,7 +88,7 @@ for k, data in pairs(actions) do
 	::continue::
 end
 
-if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("cpand_tmtrainer_chance") or 0 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
+if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("fairmod.cpand_tmtrainer_chance") or 0 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
 
 --unused funni stuff
 -- please use the funni stuff -c

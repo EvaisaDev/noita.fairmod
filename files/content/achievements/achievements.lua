@@ -438,7 +438,7 @@ achievements = {
 		name = "Banging Tunes",
 		description = "Tune 10 radios",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/10_radios.png",
-		flag = "achievement_10_radios",
+		flag = "achievement_10_radios", --i put achievement_ cuz i didnt know about the automatic fairmod_ prefixer, leaving it as is cuz its harmless and changing achievement ID is a bad idea imo
 		unlock = function()
 			return GameHasFlagRun("10_radios_tuned")
 		end,

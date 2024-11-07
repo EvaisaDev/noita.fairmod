@@ -19,7 +19,7 @@ function show_user_id.OnPausePreUpdate()
 	show_for_n_frames = show_for_n_frames - 1
 
 	GuiStartFrame(gui)
-	local user_id = ModSettingGet("user_seed")
+	local user_id = ModSettingGet("fairmod.user_seed")
 	if user_id then
 		GuiColorSetForNextWidget(gui, 1, 1, 1, 0.05)
 		GuiText(gui, 10, 10, user_id:sub(1, 10))

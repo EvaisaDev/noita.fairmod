@@ -149,7 +149,7 @@ local ui_displays = {
 		},
 		{
 			text = function()
-				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("radios_activated_highscore")))
+				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("fairmod.radios_activated_highscore")))
 			end,
 			condition = global_greater_than_zero("radios_activated"),
 		},
@@ -433,7 +433,7 @@ local extra_ui = {
 		end,
 	},
 	{
-		text = "Best pet: Cats",
+		text = "Best pet: Cats", --[[ +1 -k]]
 	},
 	{
 		text = function()
