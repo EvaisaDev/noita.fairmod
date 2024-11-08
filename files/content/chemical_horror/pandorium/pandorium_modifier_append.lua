@@ -14,5 +14,6 @@ table.insert(actions,
     pandorium_ignore = true,
     action = function()
         c.extra_entities = c.extra_entities .. "mods/noita.fairmod/files/content/chemical_horror/pandorium/pandorium_modifier.xml,"
+        draw_actions(1, true)
     end,
 })

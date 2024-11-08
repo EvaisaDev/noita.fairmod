@@ -56,12 +56,13 @@ for i = 1, 12 do --positions 1-12
 end
 
 add_spell("GLIMMERS", 13) --position 13
-add_spell("CHAOTIC_PANDORIUM_MODIFIER", 14, true) --position 14
+--add_spell("CHAOTIC_PANDORIUM_MODIFIER", 14, true) --position 14
 add_spell("PROJECTILES", 15) --position 15
 
 for i = 1, 10 do --positions 16-26
 	add_spell("MODIFIERS", i + 15)
 end
+--add_spell("CHAOTIC_PANDORIUM_MODIFIER", 29, true) --position 29
 add_spell("STATIC_PROJECTILES", 30) --position 30
 
 ---- set mana to combined spells mana cost * 1.5 ----
