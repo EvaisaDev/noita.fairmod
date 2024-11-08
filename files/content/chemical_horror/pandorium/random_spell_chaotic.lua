@@ -1,3 +1,4 @@
+--stylua: ignore start
 dofile_once("data/scripts/lib/utilities.lua") --holy shit i dont need utilities lesgoooo
 --dofile_once("data/scripts/gun/gun_actions.lua") --i dont need this either oh my god (uncommented these tho since apparently they are only ever really run once and never again, even for duplicate entities)
 
@@ -25,22 +26,23 @@ local gun = EntityGetAllChildren(inventory_comp)[1]
 ---- Build Wand ----
 
 local spell_formula = ""
-local function add_spell(spellType, position)
-	local pool
-	if spell_table.TMTRAINER[spellType] ~= nil and Randomf() < spell_table.TMTRAINER.probability then
-		pool = "TMTRAINER"
+local function add_spell(spellType, position, specific)
+	local spell_id
+	if specific then spell_id = spellType
 	else
-		pool = "NORMAL"
+		local pool
+		if spell_table.TMTRAINER[spellType] ~= nil and Randomf() < spell_table.TMTRAINER.probability then
+			pool = "TMTRAINER"
+		else
+			pool = "NORMAL"
+		end
+		spell_id = spell_table[pool][spellType][Random(1, #spell_table[pool][spellType])] --Nathan Seal of Unapproval
 	end
-
-	local spell_id = spell_table[pool][spellType][Random(1, #spell_table[pool][spellType])] --Nathan Seal of Unapproval
 
 	local spell = EntityCreateNew(spell_id)
 	EntityAddChild(gun, spell)
 
-	EntityAddComponent2(spell, "ItemActionComponent", {
-		action_id = spell_id,
-	})
+	EntityAddComponent2(spell, "ItemActionComponent", { action_id = spell_id, })
 
 	local item_comp = EntityAddComponent2(spell, "ItemComponent")
 	ComponentSetValue2(item_comp, "inventory_slot", position, 1)
@@ -54,6 +56,7 @@ for i = 1, 12 do --positions 1-12
 end
 
 add_spell("GLIMMERS", 13) --position 13
+add_spell("CHAOTIC_PANDORIUM_MODIFIER", 14, true) --position 14
 add_spell("PROJECTILES", 15) --position 15
 
 for i = 1, 10 do --positions 16-26
@@ -83,3 +86,5 @@ ComponentSetValue2(inventory2, "mActualActiveItem", 0)
 local platformShooterPlayer = EntityGetFirstComponentIncludingDisabled(entity_id, "PlatformShooterPlayerComponent")
 if not platformShooterPlayer then return end
 ComponentSetValue2(platformShooterPlayer, "mForceFireOnNextUpdate", true)
+
+--stylua: ignore end

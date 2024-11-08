@@ -88,6 +88,7 @@ local tips = {
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"The factory hämmies will eat well tonight!",
 	"This mod has been a joy to work on, see you all next year o/",
+	
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end

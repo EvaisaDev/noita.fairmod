@@ -1,0 +1,7 @@
+<Entity>
+    <LuaComponent
+        script_source_file="mods/noita.fairmod/files/content/chemical_horror/pandorium/pandorium_modifier.lua"
+        execute_on_added="1"
+		remove_after_executed="1"
+	/>
+</Entity>
