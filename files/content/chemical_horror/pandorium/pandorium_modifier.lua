@@ -1,1 +1,1 @@
-print("b") for i, comp in ipairs(EntityGetComponent(GetUpdatedEntityID(), "ProjectileComponent") or {}) do ComponentSetValue2(comp, "mWhoShot", 0) end 
+print("b") for i, comp in ipairs(EntityGetComponent(GetUpdatedEntityID(), "ProjectileComponent") or {}) do ComponentSetValue2(comp, "mWhoShot", 0) end
