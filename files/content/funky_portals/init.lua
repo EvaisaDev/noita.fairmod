@@ -2,12 +2,19 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local init = {}
 function init.OnMagicNumbersAndWorldSeedInitialized()
-	for entity_xml in nxml.edit_file("data/entities/buildings/teleport_liquid_powered.xml") do
-		entity_xml:add_child(nxml.new_element("LuaComponent", {
-			script_source_file = "mods/noita.fairmod/files/content/funky_portals/portal_handler.lua",
-			execute_on_added = "1",
-			execute_times = "1",
-		}))
+	local teleporters_to_fixup = {
+		"data/entities/buildings/teleport_liquid_powered.xml",
+		"data/entities/buildings/teleport_start.xml",
+	}
+
+	for _, tp_file in ipairs(teleporters_to_fixup) do
+		for entity_xml in nxml.edit_file(tp_file) do
+			entity_xml:add_child(nxml.new_element("LuaComponent", {
+				script_source_file = "mods/noita.fairmod/files/content/funky_portals/portal_handler.lua",
+				execute_on_added = "1",
+				execute_times = "1",
+			}))
+		end
 	end
 end
 
