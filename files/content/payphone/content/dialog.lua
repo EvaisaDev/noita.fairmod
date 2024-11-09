@@ -4,11 +4,11 @@ end
 
 local function statue_get_distance()
 	local player = (EntityGetWithTag("player_unit") or {})[1]
-	if player == nil then return true end
+	if player == nil or not EntityGetIsAlive(player) then return 10000 end
 	local x, y = EntityGetTransform(player)
 
 	local statue = EntityGetClosestWithTag(x, y, "phonecall_statue")
-	if statue == nil then return true end
+	if statue == nil or not EntityGetIsAlive(statue) then return 10000 end
 	local x2, y2 = EntityGetTransform(statue)
 
 	return get_distance(x, y, x2, y2)
