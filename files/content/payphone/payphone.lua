@@ -37,6 +37,12 @@ function hangup()
 		teleport_now()
 		do_random_teleport = false
 	end
+
+	if(not HasFlagPersistent("fairmod_copimail_letter"))then
+		AddFlagPersistent("fairmod_copimail_letter")
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copi,")
+	end
+
 end
 
 function disconnected()

@@ -588,3 +588,5 @@ Logo update
 Fixed time's up
 added Sea of Chaotic Pandorium
 fixed init (was in absolute fucking shambles)
+
+Added approximately 95,236,821,904,984 hamisket
