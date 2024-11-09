@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player" >
+<Entity name="$projectile_default" tags="projectile_player,mimic" >
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
@@ -64,4 +64,3 @@
 		>
 	</VariableStorageComponent>
 </Entity>
-

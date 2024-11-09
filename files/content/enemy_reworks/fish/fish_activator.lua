@@ -1,4 +1,3 @@
-GamePrint("Fish activate")
 
 local fish_entity = EntityGetParent(GetUpdatedEntityID())
 if EntityGetIsAlive(fish_entity) then

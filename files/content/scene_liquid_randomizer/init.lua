@@ -12,11 +12,11 @@ ModLuaFileAppend(
 	"data/scripts/biomes/temple_altar_top_shared.lua",
 	"mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/append_pool.lua"
 )
--- silly goober you broke the final portal
---[[ModLuaFileAppend(
+-- Final holy mountain portal (fixed this time)
+ModLuaFileAppend(
 	"data/scripts/biomes/temple_wall_ending.lua",
 	"mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/append_pool.lua"
-)]]
+)
 
 -- Holy Mountain pools
 ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/scene_liquid_randomizer/hm_pools/append_hm_direct.lua")
