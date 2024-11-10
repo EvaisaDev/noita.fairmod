@@ -202,10 +202,17 @@ if currently_gambling then
 					tostring((tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0) + 1)
 				)
 
-				GamePrint("You lost! Current jackpot: $" .. tostring(current_winnings))
 				GamePlayAnimation(entity_id, "lose", 1)
 				ComponentSetValue2(sprite_component, "rect_animation", "lose")
 				EntityRefreshSprite(entity_id, sprite_component)
+			end
+
+			-- Next cost/winnings
+			current_cost = math.floor(current_cost * 1.5)
+			current_winnings = current_winnings + (current_cost * 2)
+
+			if not will_win then
+				GamePrint("You lost! Current jackpot: $" .. tostring(current_winnings))
 			end
 		else
 			if GetValueBool("broken", false) then return end
@@ -263,6 +270,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GamePrint("You don't have enough money!")
 				return
 			else
+				ComponentSetValue2(wallet, "money", money - current_cost)
+
 				if Random(1, 100) <= 2 then
 					will_break = true
 					local interactible_component = EntityGetFirstComponent(entity_interacted, "InteractableComponent")
@@ -283,9 +292,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					time = -30
 					lets_go_gambling = true
 				end
-				current_cost = math.floor(current_cost * 1.5)
-				ComponentSetValue2(wallet, "money", money - current_cost)
-				current_winnings = current_winnings + (current_cost * 2)
 			end
 		end
 	end

@@ -83,13 +83,25 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 		local random_biome_list = {}
 		local function GenerateRandomBiomeList()
 			random_biome_list = {}
-			local added_biomes = {}
+			local biome_positions = {}
+		
+			-- Collect positions for each biome
 			for i, v in ipairs(positions) do
-				if not added_biomes[v.biome] then
-					for j = 1, v.weight do
-						table.insert(random_biome_list, v)
-					end
-					added_biomes[v.biome] = true
+				if not biome_positions[v.biome] then
+					biome_positions[v.biome] = {}
+				end
+				table.insert(biome_positions[v.biome], v)
+			end
+		
+			-- For each biome, pick a random position and add to random_biome_list
+			for biome, pos_list in pairs(biome_positions) do
+				-- Pick a random position from the list
+				local random_index = math.random(#pos_list)
+				local random_pos = pos_list[random_index]
+		
+				-- Add the random position to the list, considering its weight
+				for j = 1, random_pos.weight do
+					table.insert(random_biome_list, random_pos)
 				end
 			end
 		end
