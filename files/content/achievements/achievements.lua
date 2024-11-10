@@ -1,4 +1,5 @@
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+dofile_once("mods/noita.fairmod/files/content/fishing/definitions/fish_list.lua")
 
 achievements = {
 	{
@@ -215,6 +216,15 @@ achievements = {
 		flag = "achievement_fishing_novice",
 		unlock = function()
 			return GlobalsGetValue("fish_caught", "0") ~= "0"
+		end,
+	},
+	{
+		name = "Wrangling Literature",
+		description = "You caught a tablet.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/tablet.png",
+		flag = "has_tablet",
+		unlock = function()
+			return HasInventoryItemTag("tablet")
 		end,
 	},
 	{
@@ -846,7 +856,7 @@ local biome_achievements = {
 		name = "Big. Hard. Wood.",
 		description = "Discover the Giant Tree.",
 	},
-	mystery_teleport = { -- no image
+	mystery_teleport = {
 		name = "Entrance to the Tower",
 		description = "Discover the portal to the Tower.",
 	},
@@ -1082,7 +1092,7 @@ local biome_achievements = {
 		name = "Heat Death",
 		description = "Discover the Frozen Vault.",
 	},
-	wandcave = { -- no image
+	wandcave = {
 		name = "It's Maaagical!",
 		description = "Discover the Magical Temple.",
 	},
@@ -1102,7 +1112,7 @@ local biome_achievements = {
 		name = "It's Still Cold",
 		description = "Discover the Snowy Chasm.",
 	},
-	wizardcave = { -- no image
+	wizardcave = {
 		name = "There Be Wizards",
 		description = "Discover the Wizards' Den.",
 	},
@@ -1120,6 +1130,18 @@ for id, info in pairs(biome_achievements) do
 		flag = "biome_" .. id,
 		unlock = function()
 			return GetCurrentBiomeId() == id
+		end,
+	})
+end
+
+for _, fish in ipairs(fish_list) do
+	table.insert(achievements, {
+		name = "Catch " .. fish.name,
+		description = "Fish up a " .. fish.name .. ".",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/fish_" .. fish.id .. ".png",
+		flag = "achivement_fishing_" .. fish.id,
+		unlock = function()
+			return GameHasFlagRun("caught_fish_" .. fish.id)
 		end,
 	})
 end
