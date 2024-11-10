@@ -7,6 +7,7 @@ local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
@@ -306,6 +307,7 @@ end
 function OnWorldInitialized()
 	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
+	better_world.OnWorldInitialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

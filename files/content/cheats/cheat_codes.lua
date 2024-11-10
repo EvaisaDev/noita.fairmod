@@ -1,5 +1,5 @@
 --stylua: ignore start
---dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
+local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
@@ -271,7 +271,7 @@ return {
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
-			EntityApplyTransform(player, 1547 + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, 14900)
+			EntityApplyTransform(player, markers.noclip.x + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, markers.noclip.y)
 		end,
 	},
 	{
@@ -588,6 +588,22 @@ return {
 		not_cheat = true,
 		func = function()
 			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
+		end
+	},
+	{
+		code = "carrot",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/better_world/carrot/entity.xml", x, y - 10)
+		end
+	},
+	{
+		code = "mainworld",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityApplyTransform(player, x - (GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512), y)
 		end
 	},
 }

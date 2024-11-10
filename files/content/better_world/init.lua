@@ -1,0 +1,171 @@
+--stylua: ignore start
+
+local better_world = {}
+
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
+local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
+
+local nxml = dofile("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+
+local nil_pos = {x = 0, y = 0} --default thing so i dont have to keep writing this out
+
+ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
+
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
+
+
+--[[ rip old boss_arena splicer, you will be missed :pensive:
+local boss_arena = markers.boss_arena
+local boss_arena_splice_grid = {width = 6, height = 4}
+
+for xml in nxml.edit_file("data/biome_impl/spliced/boss_arena.xml") do --ill probs turn this into a function if theres another spliced pixel scene that needs moving --guess what, i did! and its better
+    local i = {x = 0, y = 0}
+    for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
+        if i.y >= boss_arena_splice_grid.height then
+            i.y = 0
+            i.x = i.x + 1
+        end
+        pixel_scene.attr.pos_x = tostring(boss_arena.x + (i.x * 512))
+        pixel_scene.attr.pos_y = tostring(boss_arena.y + (i.y * 512))
+        local x,y = pixel_scene.attr.pos_x / 512,pixel_scene.attr.pos_y / 512
+        i.y = i.y + 1
+        --print("[" .. tostring(x) .. ", " .. tostring(y) .. "]")
+    end
+end --]]
+
+local spliced_cutscenes = {
+    boss_arena = {
+        marker = markers.boss_arena,
+        filepath = "data/biome_impl/spliced/boss_arena.xml",
+    },
+    lake_statue = {
+        marker = markers.lake_statue,
+        filepath = "data/biome_impl/spliced/lake_statue.xml",
+    },
+}
+
+for key, value in pairs(spliced_cutscenes) do
+    for xml in nxml.edit_file(value.filepath) do
+        local origin
+        local marker = value.marker --just to make it a bit more readable
+        for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
+            if origin == nil then origin = { x = pixel_scene.attr.pos_x , y = pixel_scene.attr.pos_y } end --get origin of base pixel scene to for offset
+            pixel_scene.attr.pos_x = marker.x + (pixel_scene.attr.pos_x - origin.x) --offset is the pixel scene's old position relative to its origin
+            pixel_scene.attr.pos_y = marker.y + (pixel_scene.attr.pos_y - origin.y)
+        end
+    end
+end
+
+
+local _pixel_scenes = { --index should be according to the line-number in "noita.fairmod/files/content/better_world/_pixel_scenes list (its handy trustm).xml"
+    [3] = {
+        marker = markers.hiisi_anvil,
+    },
+    [4] = {
+        marker = markers.vault_entrance,
+    },
+    [6] = {
+        marker = markers.tower_start,
+    },
+    [10] = {
+        marker = markers.fishing_hut,
+    },
+    [17] = {
+        marker = markers.fishing_hut,
+        offset = { x = -3, y = 186 }
+    },
+    [18] = {
+        marker = markers.fishing_hut,
+        offset = { x = -353, y = 400 }
+    },
+    [91] = {
+        marker = markers.big_fish,
+    }
+}
+
+for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do --real handy that p much most of the non-spliced pixel scenes are in one file, if not all
+    local i = 1
+    for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
+        if _pixel_scenes[i] then
+            local marker = _pixel_scenes[i].marker or nil_pos
+            local offset = _pixel_scenes[i].offset or nil_pos
+            pixel_scene.attr.pos_x = tostring(marker.x + offset.x)
+            pixel_scene.attr.pos_y = tostring(marker.y + offset.y)
+        end
+        i = i + 1
+    end
+end
+
+
+better_world.OnWorldInitialized = function()
+    local new_pixel_scenes = {
+        desert_ruined_temple = {
+            materials = "mods/noita.fairmod/files/content/better_world/desert_teleport/desert_ruined_mountain.png",
+            visual = "mods/noita.fairmod/files/content/better_world/desert_teleport/desert_ruined_mountain_visual.png",
+            background = "mods/noita.fairmod/files/content/better_world/desert_teleport/desert_ruined_temple_background.png",
+            location = markers.desert_ruined_temple,
+            background_offset = { x = -1, y = 30 },
+            pw_range = 4, --0 spawns it in no neighbouring PWs (1 spawn), 1 makes it spawn in neighbouring PWs (3 spawns), 2 spawns it in PWs neighbouring at a range of 2 (5 spawns), etc, you get it
+        },
+    }
+
+    for key, value in pairs(new_pixel_scenes) do
+        local location = value.location or nil_pos
+        local pw_range = value.pw_range or 0
+        local offset = value.background_offset
+        if pw_range > 0 then
+            for i = 0 - pw_range, pw_range do
+                if value.background and offset then
+                    LoadBackgroundSprite( "data/biome_impl/temple/wall_background.png", location.x + offset.x, location.y + offset.y, 35 )
+                end
+
+                LoadPixelScene(value.materials, value.visual, location.x + (i * WORLD_WIDTH_HARDCODED), location.y, background or "")
+            end
+        else
+            LoadPixelScene(value.materials, value.visual, location.x, location.y, value.background)
+        end
+    end
+end
+
+
+
+local portals = {
+    tower_enter = {
+        destination = markers.tower_start,
+        filepath = "data/entities/buildings/mystery_teleport.xml",
+        offset = { x = 64, y = 64 },
+        make_pw_local = true --dexter apparently has his own PW-portal script so this is redundant, but shush i like my one (though i would recommend using his in general)
+    },
+    teleport_lake = {
+        destination = markers.lake_statue,
+        filepath = "data/entities/buildings/teleport_lake.xml",
+        offset = { x = 1427, y = -20 }
+    },
+}
+
+for key, value in pairs(portals) do
+    for xml in nxml.edit_file(value.filepath) do
+        local offset = value.offset or nil_pos
+        local tele_comp = xml:first_of("TeleportComponent")
+        if tele_comp ~= nil then
+            tele_comp.attr["target.x"] = value.destination.x + offset.x
+            tele_comp.attr["target.y"] = value.destination.y + offset.y
+        else
+            print("TeleportComponent is nil on " .. key)
+        end
+        
+        if value.make_pw_local then
+            xml:add_child(nxml.new_element("LuaComponent", {
+                execute_on_added = 1,
+                remove_after_executed = 1,
+                script_source_file = "mods/noita.fairmod/files/content/better_world/parallel_portals.lua",
+            }))
+        end
+    end
+end
+
+ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/snowcastle.lua") --remove safety region
+
+return better_world
+--stylua: ignore end
