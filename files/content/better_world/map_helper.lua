@@ -1,5 +1,5 @@
 --stylua: ignore start
-local markers = {
+local ngplus_markers = {
     noclip =                    { x = 1547,         y = 14900 },
     boss_arena =                { x = 1536,         y = 13312 },
     tower_start =               { x = 9676,         y = 10110 },
@@ -11,15 +11,25 @@ local markers = {
     desert_ruined_temple =      { x = 6144,         y = 0 },
 }
 
+local ng_markers = {
+    noclip =                    { x = 1547,         y = 13876 },
+}
+
+--[[
 function GetMapMarker(marker_id, return_table) --redundant but it can stay, for now
     if markers[marker_id] then
         return_table = return_table or true
         return markers[marker_id]
     end
     print_error("MARKER " .. marker_id .. " IS INVALID")
+end --]]
+
+local markers
+if (tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")) or 0) > 0 then
+    markers = ngplus_markers
+else
+    markers = ng_markers
 end
-
-
 
 return markers
 --stylua: ignore end
