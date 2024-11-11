@@ -30,10 +30,10 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 	local perk_icon_path = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/"
 
 	-- Set the maximum number of icons to process
-	local corrupted_sprite_count = #actions + 100 -- Account for additional icons
+	local action_count = #actions + 100 -- Account for additional icons
 
 	-- Make action (spell) icons editable
-	for i = 0, corrupted_sprite_count do
+	for i = 0, action_count do
 		local action_icon_filename = action_icon_path .. i .. ".png"
 		ModImageMakeEditable(action_icon_filename, 16, 16)
 
@@ -42,8 +42,9 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 		if action and action.sprite then ModImageMakeEditable(action.sprite, 16, 16) end
 	end
 
+	local perk_count = #perk_list
 	-- Make perk icons editable (both ui_icon and perk_icon)
-	for i = 1, corrupted_sprite_count do
+	for i = 1, perk_count do
 		local ui_icon_filename = perk_icon_path .. "ui_icon_" .. i .. ".png"
 		local perk_icon_filename = perk_icon_path .. "perk_icon_" .. i .. ".png"
 		ModImageMakeEditable(ui_icon_filename, 16, 16)
