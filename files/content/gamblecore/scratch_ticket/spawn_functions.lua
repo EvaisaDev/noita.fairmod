@@ -1,6 +1,6 @@
 --stylua: ignore start
 dofile_once("data/scripts/perks/perk.lua")
-
+dofile_once("data/scripts/gun/gun_actions.lua")
 return {
 	spawn_wand = function(player, x, y)
 		SetRandomSeed(x, y)
