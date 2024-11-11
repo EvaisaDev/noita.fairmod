@@ -238,7 +238,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				show = function(stats)
 					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then return true end
+						if EntityHasTag(item, "scratchoff_winner") then return true end
 					end
 					return false
 				end,
@@ -255,7 +255,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					local inventory_items = GameGetAllInventoryItems(entity_who_interacted) or {}
 
 					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratch_ticket") then EntityRemoveTag(item, "scratch_ticket") end
+						if EntityHasTag(item, "scratchoff_winner") then EntityRemoveTag(item, "scratch_ticket") end
 					end
 				end,
 			},

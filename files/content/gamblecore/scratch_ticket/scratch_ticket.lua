@@ -211,7 +211,7 @@ local function get_mouse_pos(gui)
 	return mx, my
 end
 
-local number_range = { 1, 60 }
+local number_range = { 1, 50 }
 
 local function get_line(x0, y0, x1, y1)
 	local points = {}
@@ -493,6 +493,9 @@ function scratch_ticket_methods.draw(self)
 				}
 				table.insert(self.particles, particle)
 			end
+			
+			local entity_ticket = GetUpdatedEntityID()
+			EntityAddTag(entity_ticket, "scratchoff_winner")
 
 			GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/win", 0, 0)
 
