@@ -56,8 +56,8 @@
 				color="ff233112"  
 				overwrite="0" 
 				percent="1" 
-				require_same_material="1" 
-				require_same_material_type="1" 
+				require_same_material="0" 
+				require_same_material_type="0" 
 				type="NORMAL_BASED" 
 				z="1" >
 				<Images>

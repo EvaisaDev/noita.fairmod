@@ -66,6 +66,10 @@ local users = {
         seed = "2434295611XXXXXXXXXXXXXXXXXXXX",
         type = "streamer",
     },
+    BabaUlai = {
+        seed = "XXXXXXXX173447994635XXXXXXXXXX",
+        type = "streamer",
+    },
 
     --funny numbers
     nearly_nonillionth = { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!
@@ -87,6 +91,11 @@ local users = {
     millionth = {
         seed = "000000000000000000000001000000",
         type = "funny_number"
+    },
+
+    Daboss = {
+        seed = "583423163984904130731284133024",
+        type = "other"
     },
 }
 

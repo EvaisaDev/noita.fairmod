@@ -606,6 +606,15 @@ return {
 			EntityApplyTransform(player, x - (GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512), y)
 		end
 	},
+	{
+		code = "thirsty",
+		name = "Thirsty",
+		description = "Hydration is key!",
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad("data/entities/projectiles/deck/sea_water.xml", x, y)
+		end
+	},
 }
 
 --stylua: ignore end

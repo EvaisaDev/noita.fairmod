@@ -72,12 +72,16 @@ local _pixel_scenes = { --index should be according to the line-number in "noita
         marker = markers.fishing_hut,
     },
     [17] = {
-        marker = markers.fishing_hut,
+        marker = markers.fishing_hut, --bunker 1
         offset = { x = -3, y = 186 }
     },
     [18] = {
-        marker = markers.fishing_hut,
-        offset = { x = -353, y = 400 }
+        marker = markers.fishing_hut, --bunker 2
+        offset = { x = -353, y = 400 },
+    },
+    [56] = {
+        marker = markers.fishing_hut, --hut check entity
+        offset = { x = 159, y = 50 },
     },
     [91] = {
         marker = markers.big_fish,
@@ -117,10 +121,10 @@ better_world.OnWorldInitialized = function()
         if pw_range > 0 then
             for i = 0 - pw_range, pw_range do
                 if value.background and offset then
-                    LoadBackgroundSprite( "data/biome_impl/temple/wall_background.png", location.x + offset.x, location.y + offset.y, 35 )
+                    LoadBackgroundSprite( "data/biome_impl/temple/wall_background.png", location.x + offset.x + (i * WORLD_WIDTH_HARDCODED), location.y + offset.y, 50 ) --nathan its my code, i can write it how i want
                 end
 
-                LoadPixelScene(value.materials, value.visual, location.x + (i * WORLD_WIDTH_HARDCODED), location.y, background or "")
+                LoadPixelScene(value.materials, value.visual, location.x + (i * WORLD_WIDTH_HARDCODED), location.y, value.background or "")
             end
         else
             LoadPixelScene(value.materials, value.visual, location.x, location.y, value.background)
@@ -129,6 +133,7 @@ better_world.OnWorldInitialized = function()
 end
 
 
+------------------ PORTALS ------------------
 
 local portals = {
     tower_enter = {
@@ -140,7 +145,22 @@ local portals = {
     teleport_lake = {
         destination = markers.lake_statue,
         filepath = "data/entities/buildings/teleport_lake.xml",
-        offset = { x = 1427, y = -20 }
+        offset = { x = 1427, y = -20 },
+    },
+    bunker1 = {
+        destination = markers.fishing_hut,
+        filepath = "data/entities/buildings/teleport_bunker.xml",
+        offset = { x = 200, y = 251},
+    },
+    bunker2 = {
+        destination = markers.fishing_hut,
+        filepath = "data/entities/buildings/teleport_bunker2.xml",
+        offset = { x = -200, y = 475 },
+    },
+    bunker_back = {
+        destination = markers.fishing_hut,
+        filepath = "data/entities/buildings/teleport_bunker_back.xml",
+        offset = { x = 43, y = 50 },
     },
 }
 

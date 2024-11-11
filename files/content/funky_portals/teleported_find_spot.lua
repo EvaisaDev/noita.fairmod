@@ -1,6 +1,8 @@
 -- Sorry this is deranged, however it was stolen from prototype code that I never bothered to rewrite, feel free to clean it up if you are even able to interpret it.
 -- by eba btw
 
+--Wrong Warp, WrongWarp (comments to make finding this script easier lmao)
+
 delay = delay or dofile("mods/noita.fairmod/files/lib/delay.lua")
 
 local max_search_range = 512
@@ -175,7 +177,7 @@ function teleported(from_x, from_y, to_x, to_y, portal_teleport)
 						-- create hole
 						delay.new(5, function()
 							create_hole_of_size(new_x, new_y, 6)
-							if not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost") then
+							if not GameHasFlagRun("no_return") and not GameHasFlagRun("always_lost") then --return rift
 								local return_portal = EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", new_x, new_y)
 								EntityAddComponent2(return_portal, "VariableStorageComponent", {
 									name = "target_x",

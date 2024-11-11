@@ -47,6 +47,7 @@ local Popups = {
 		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
 		"it's quick, it's easy and it's free: drinking deathium",
+		"Edit wands is a lame name for old people, who doesn't understand the unique and special name Tinker with wands everywhere. Editing is what you do to videos and profile, while true masters tinker with their highly intelligent magic tools",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -107,7 +108,7 @@ local Popups = {
 			OPEN_FUNCTION = function(self)
 				self.MESSAGE = self.MESSAGE:gsub(
 					"steamid",
-					ModSettingGet("fairmod.user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
+					tostring(ModSettingGet("fairmod.user_seed")):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
