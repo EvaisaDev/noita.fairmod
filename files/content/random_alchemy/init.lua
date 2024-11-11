@@ -1,3 +1,4 @@
+---@class fairmod_random_alchemy
 local randomizer = {
 	debug = false,
 }
@@ -62,15 +63,24 @@ local function add_reaction(xml, number)
 	end
 end
 
+function randomizer:init()
+	-- The game cashes xml content so i'm creating a new file with current date/time in order for random reactions to truly be random
+	-- Don't question my sanity
+	self.file = string.format("mods/noita.fairmod/vfs/random_alchemy_%s.xml", table.concat({ GameGetDateAndTimeUTC() }))
+	local materials = nxml.new_element("Materials")
+	ModTextFileSetContent(self.file, tostring(materials))
+	ModMaterialsFileAdd(self.file)
+end
+
 function randomizer:create()
 	SetRandomSeed(GameGetFrameNum(), GameGetRealWorldTimeSinceStarted())
 	local selected = generate_unique_random_numbers(random_reactions_to_add, 1, #reactions)
 
-	for xml in nxml.edit_file("data/materials.xml") do
+	for xml in nxml.edit_file(self.file) do
 		for i = 1, #selected do
 			add_reaction(xml, selected[i])
 		end
 	end
 end
 
-randomizer:create()
+return randomizer
