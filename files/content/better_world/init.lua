@@ -12,7 +12,7 @@ local nil_pos = {x = 0, y = 0} --default thing so i dont have to keep writing th
 
 ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
+--ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 
 --[[ rip old boss_arena splicer, you will be missed :pensive:

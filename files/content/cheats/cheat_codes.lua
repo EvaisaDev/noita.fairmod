@@ -379,7 +379,6 @@ return {
 	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
 	,{
 		code = "copi",
-		not_cheat = true,
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
 			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
@@ -537,7 +536,7 @@ return {
 				return
 			end
 
-			GamePrintImportant("Alright, just this once", "May you make the most of your single blessing")
+			GamePrintImportant("Activated Cheat: Super Chest", "Alright, just this once")
 			EntityLoad( "data/entities/items/pickup/chest_random_super.xml", x, y - 20)
 			AddFlagPersistent("fairmod_spawned_superchest")
 		end

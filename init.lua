@@ -8,6 +8,7 @@ dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 --local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --on hold, planned for NG+
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies

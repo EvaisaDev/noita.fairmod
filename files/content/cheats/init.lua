@@ -69,7 +69,7 @@ module.update = function()
 						if v.name then
 							GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
 						end
-						GameAddFlagRun("Epic_leet_hacker")
+						if not v.not_cheat then GameAddFlagRun("Epic_leet_hacker") print("cheat used, you dirty cheater!") end
 						v.func(player)
 						current_input_text = ""
 					end

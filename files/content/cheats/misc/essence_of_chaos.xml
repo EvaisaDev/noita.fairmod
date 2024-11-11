@@ -4,6 +4,7 @@
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/cheats/misc/chaos.lua"
 		execute_every_n_frame="2400"
+		execute_on_added = "1"
 	    >
 	</LuaComponent>
 </Entity>
