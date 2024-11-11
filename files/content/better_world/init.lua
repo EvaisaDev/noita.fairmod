@@ -85,7 +85,7 @@ local _pixel_scenes = { --index should be according to the line-number in "noita
     },
     [91] = {
         marker = markers.big_fish,
-    }
+    },
 }
 
 for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do --real handy that p much most of the non-spliced pixel scenes are in one file, if not all

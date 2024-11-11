@@ -8,7 +8,7 @@ local markers = {
     fishing_hut =               { x = -76088,       y = 140 },
     lake_statue =               { x = -78336,       y = 160 },
     big_fish =                  { x = -77488,       y = 10000 },
-    desert_ruined_temple =      { x = 6144,         y = 212 },
+    desert_ruined_temple =      { x = 6144,         y = 0 },
 }
 
 function GetMapMarker(marker_id, return_table) --redundant but it can stay, for now
