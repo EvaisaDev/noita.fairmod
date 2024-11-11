@@ -1,12 +1,36 @@
 <Materials>
+	<!-- Override vanilla cheese -->
+	<CellData
+		name="cheese_static"
+		ui_name="$mat_cheese_static"
+		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese]"
+		burnable="0"
+		density="5"
+		cell_type="liquid"
+		wang_color="ffF3CD67"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		solid_static_type="1"
+		durability="5"
+		on_fire="0"
+		hp="1000"
+		platform_type="1"
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime"
+		show_in_creative_mode="1"
+		/>
+
 	<!-- ###################################### SOLIDS ###################################### -->
 	<!-- Cheddar -->
 	<CellDataChild
 		_parent="cheese_static"
 		_inherit_reactions="1"
 		name="fairmod_cheddar"
-		ui_name="$fairmod_mat_cheddar"
+		ui_name="$fairmod_mat_cheese_cheddar"
 		wang_color="ffF3CD68"
+		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[hard_cheese]"
 		>
 		<Graphics
 			color="ffeba03f" />
@@ -18,8 +42,9 @@
 		_parent="cheese_static"
 		_inherit_reactions="1"
 		name="fairmod_white_cheddar"
-		ui_name="$fairmod_mat_white_cheddar"
+		ui_name="$fairmod_mat_cheese_white_cheddar"
 		wang_color="ffF3CD69"
+		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[hard_cheese]"
 		>
 		<Graphics
 			color="fff2e7c0" />
@@ -31,8 +56,9 @@
 		_parent="cheese_static"
 		_inherit_reactions="1"
 		name="fairmod_mozzarella"
-		ui_name="$fairmod_mat_mozzarella"
+		ui_name="$fairmod_mat_cheese_mozzarella"
 		wang_color="ffF3CD6A"
+		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[soft_cheese]"
 		>
 		<Graphics
 			color="fff9f5e7" />
@@ -44,8 +70,9 @@
 		_parent="cheese_static"
 		_inherit_reactions="1"
 		name="fairmod_swiss"
-		ui_name="$fairmod_mat_swiss"
+		ui_name="$fairmod_mat_cheese_swiss"
 		wang_color="ffF3CD6D"
+		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[hard_cheese]"
 		>
 		<Graphics 
 			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/swiss.png" 
@@ -58,9 +85,9 @@
 	<!-- Feta Cheese -->
 	<CellData
 		name="fairmod_feta"
-		ui_name="$fairmod_mat_feta"
+		ui_name="$fairmod_mat_cheese_feta"
 		wang_color="ffF3CD6B"
-		tags="[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food]"
+		tags="[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[soft_cheese]"
 		burnable="0"
 		density="5"
 		cell_type="liquid"
@@ -86,8 +113,9 @@
 		_parent="fairmod_feta"
 		_inherit_reactions="1"
 		name="fairmod_parmesan"
-		ui_name="$fairmod_mat_parmesan"
+		ui_name="$fairmod_mat_cheese_parmesan"
 		wang_color="ffF3CD6C"
+		tags="[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[hard_cheese]"
 		>
 		<Graphics 
 			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/parmesan.png" 
