@@ -114,14 +114,9 @@ local newgame_n = tonumber( SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") )
 -- local w = 64
 -- local h = 48
 
-if newgame_n == 0 then
-    BiomeMapLoadImage( 0, 0, "mods/noita.fairmod/files/content/better_world/better_world.png" )
-    return
-end
 
 BiomeMapSetSize( BIOME_MAP_WIDTH, BIOME_MAP_HEIGHT )
 BiomeMapLoadImage( 0, 0, "data/biome_impl/biome_map_newgame_plus.png" )
-
 
 SetRandomSeed( 4573, 4621 )
 

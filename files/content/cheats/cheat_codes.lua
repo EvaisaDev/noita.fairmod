@@ -586,7 +586,7 @@ return {
 		code = "printuserdiagnostic",
 		not_cheat = true,
 		func = function()
-			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
+			GamePrint(tostring(ModSettingGet("fairmod.user_seed")))
 		end
 	},
 	{
@@ -619,7 +619,7 @@ return {
 		devmode = true,
 		func = function(player)
 			dofile("data/scripts/newgame_plus.lua")
-			do_newgame_plus(0)
+			do_newgame_plus(-1)
 		end
 	}
 }

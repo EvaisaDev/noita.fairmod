@@ -6,6 +6,29 @@ function do_newgame_plus(iteration)
     
 	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", newgame_n )
 
+
+
+
+
+
+
+	if newgame_n == 0 then
+		BiomeMapLoad_KeepPlayer( "mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/backrooms_ngplus.lua", "data/biome/_pixel_scenes_newgame_plus.xml" )
+		return
+	end
+
+	if newgame_n < 0 then
+		BiomeMapLoad_KeepPlayer( "mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/backrooms_ngplus.lua", "data/biome/_pixel_scenes_newgame_plus.xml" )
+		return
+	end
+
+
+
+
+
+
+
+
 	-- scale the enemy difficulty
 	SessionNumbersSetValue( "DESIGN_SCALE_ENEMIES", "1" )
 
