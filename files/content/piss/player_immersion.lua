@@ -1,5 +1,8 @@
 dofile_once("mods/noita.fairmod/files/lib/status_helper.lua")
 
+local ingestion_threshold = 2250 -- 30% of 7500
+local ingestion_max = 7500 -- 100% ingestion level
+
 local entity = GetUpdatedEntityID()
 
 local piss_key = tonumber(ModSettingGet("noita.fairmod.rebind_pee")) or 19
@@ -15,7 +18,7 @@ local shit_pressed = InputIsKeyJustDown(shit_key)
 
 local x, y = EntityGetHotspot(entity, "belt_root", true, true)
 local controls_comp = EntityGetFirstComponentIncludingDisabled(entity, "ControlsComponent")
-local entity_x, entity_y, _, scale_x = EntityGetTransform(entity)
+local entity_x, entity_y, entity_rotation, scale_x, scale_y = EntityGetTransform(entity)
 
 last_ingestion_size = last_ingestion_size or nil
 last_notice_frame = last_notice_frame or 0
@@ -97,27 +100,16 @@ if ingestion_comp then
 
 			-- dir_x, dir_y by food_poisoning degrees
 			local angle_deg = Random(-deg, deg)
-			local angle_rad = math.rad(angle_deg)  -- Convert to radians
-			
+			local angle_rad = math.rad(angle_deg) -- Convert to radians
+
 			-- Calculate the rotated direction
 			local cos_theta = math.cos(angle_rad)
 			local sin_theta = math.sin(angle_rad)
-			
+
 			dir_x = dir_x * cos_theta - dir_y * sin_theta
 			dir_y = dir_x * sin_theta + dir_y * cos_theta
 
-			GameCreateParticle(
-				"poo",
-				x,
-				y,
-				shit_count,
-				dir_x * shit_velocity,
-				dir_y * shit_velocity,
-				false,
-				false,
-				false
-			)
-
+			GameCreateParticle("poo", x, y, shit_count, dir_x * shit_velocity, dir_y * shit_velocity, false, false, false)
 
 			ingestion_size = math.max(ingestion_size - 15, 0)
 			ComponentSetValue2(ingestion_comp, "ingestion_size", ingestion_size)
@@ -131,4 +123,8 @@ if ingestion_comp then
 	end
 
 	last_ingestion_size = ingestion_size
+	if last_ingestion_size > ingestion_threshold then
+		local scale_wide = 1 + (last_ingestion_size - ingestion_threshold) / (ingestion_max - ingestion_threshold)
+		EntitySetTransform(entity, entity_x, entity_y, entity_rotation, scale_x >= 0 and scale_wide or -scale_wide, scale_y)
+	end
 end

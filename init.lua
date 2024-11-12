@@ -50,6 +50,7 @@ local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/sn
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
+local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -121,6 +122,7 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
+	random_alchemy:init()
 end
 
 --- Seed init
@@ -135,7 +137,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
 	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
 
-	dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua")
+	random_alchemy:create()
 
 	dofile_once("mods/noita.fairmod/files/content/backrooms/init.lua")
 	tm_trainer.OnMagicNumbersAndWorldSeedInitialized()
