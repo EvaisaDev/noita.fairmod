@@ -157,15 +157,20 @@
 		look_for_failure="0"
 		kill_after_message="0">
 	</MaterialAreaCheckerComponent>
+
 	<LuaComponent
 		script_material_area_checker_failed="mods/noita.fairmod/files/content/better_world/desert_teleport/teleport_liquid_check.lua"
 		script_material_area_checker_success="mods/noita.fairmod/files/content/better_world/desert_teleport/teleport_liquid_check.lua" >
 	</LuaComponent>
 
     <LuaComponent
+        script_portal_teleport_used = "mods/noita.fairmod/files/content/better_world/portal_scripts/generate_return.lua"
+    />
+
+    <LuaComponent
         execute_on_added = "1"
         remove_after_executed = "1"
-        script_source_file = "mods/noita.fairmod/files/content/better_world/parallel_portals.lua"
+        script_source_file = "mods/noita.fairmod/files/content/better_world/portal_scripts/parallel_portals.lua"
     />
 
 </Entity>

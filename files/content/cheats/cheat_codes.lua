@@ -614,6 +614,14 @@ return {
 			EntityLoad("data/entities/projectiles/deck/sea_water.xml", x, y)
 		end
 	},
+	{
+		code = "ngplus",
+		devmode = true,
+		func = function(player)
+			dofile("data/scripts/newgame_plus.lua")
+			do_newgame_plus(0)
+		end
+	}
 }
 
 --stylua: ignore end

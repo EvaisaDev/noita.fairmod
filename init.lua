@@ -7,8 +7,6 @@ local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
---local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --on hold, planned for NG+
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
@@ -51,6 +49,7 @@ local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
+local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -99,6 +98,7 @@ dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -233,6 +233,8 @@ function OnPlayerSpawned(player)
 	dmca_warning.OnPlayerSpawned(player)
 
 	saw.OnPlayerSpawned(player)
+
+	user_seeds.OnPlayerSpawned(player)
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")

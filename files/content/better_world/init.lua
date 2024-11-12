@@ -10,10 +10,12 @@ local nxml = dofile("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local nil_pos = {x = 0, y = 0} --default thing so i dont have to keep writing this out
 
-ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
+--ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
 --ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
+ModTextFileSetContent("data/scripts/newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_enter_override.lua"))
+ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_biomes_override.lua"))
 
 --[[ rip old boss_arena splicer, you will be missed :pensive:
 local boss_arena = markers.boss_arena
@@ -33,6 +35,10 @@ for xml in nxml.edit_file("data/biome_impl/spliced/boss_arena.xml") do --ill pro
         --print("[" .. tostring(x) .. ", " .. tostring(y) .. "]")
     end
 end --]]
+
+do return end
+
+------------------ MOVE SPLICED PIXEL SCENES ------------------
 
 local spliced_cutscenes = {
     boss_arena = {
@@ -57,6 +63,8 @@ for key, value in pairs(spliced_cutscenes) do
     end
 end
 
+
+------------------ PORTALS ------------------
 
 local _pixel_scenes = { --index should be according to the line-number in "noita.fairmod/files/content/better_world/_pixel_scenes list (its handy trustm).xml"
     [3] = {
@@ -179,7 +187,7 @@ for key, value in pairs(portals) do
             xml:add_child(nxml.new_element("LuaComponent", {
                 execute_on_added = 1,
                 remove_after_executed = 1,
-                script_source_file = "mods/noita.fairmod/files/content/better_world/parallel_portals.lua",
+                script_source_file = "mods/noita.fairmod/files/content/better_world/portal_scripts/parallel_portals.lua",
             }))
         end
     end

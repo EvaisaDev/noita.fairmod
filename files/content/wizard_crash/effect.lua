@@ -24,7 +24,11 @@ local effects = {
 	end,
 	function()
 		dofile("data/scripts/newgame_plus.lua")
-		do_newgame_plus()
+		if Random(1,2) == 2 then
+			do_newgame_plus()
+		else
+			do_newgame_plus(tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")) - 1) --50% chance to go back a PW
+		end
 	end,
 	function()
 		-- Already-fucked-up root growers

@@ -10,12 +10,6 @@ local allow_dev_mode = true --set to false to disable dev_mode
 
 local flag = ("edom_repoleved_domriaf"):reverse()
 
-user_seeds.OnWorldInitialized = function() --fairmod.domriaf
-	if ModSettingGet(("epyt_resu.domriaf"):reverse()) == "mod_dev" and allow_dev_mode then
-		GameAddFlagRun(flag)
-	end
-end
-
 ModSettingRemove(("di_resu.domriaf"):reverse())
 ModSettingRemove(("epyt_resu.domriaf"):reverse())
 
@@ -137,8 +131,22 @@ end
 if user then
 	ModSettingSet(("di_resu.domriaf"):reverse(), user)
 	ModSettingSet(("epyt_resu.domriaf"):reverse(), users[user].type)
+    print(user)
 end
 
+
+user_seeds.OnPlayerSpawned = function(player)
+    if ModSettingGet("fairmod.user_id") == "Daboss" then
+        local a,b,c,d = EntityGetTransform(player)
+        EntitySetTransform(player, a, b, c, d, .8) --lmao short
+    end
+end
+
+user_seeds.OnWorldInitialized = function() --fairmod.domriaf
+	if ModSettingGet(("epyt_resu.domriaf"):reverse()) == "mod_dev" and allow_dev_mode then
+		GameAddFlagRun(flag)
+	end
+end
 
 return user_seeds
 --stylua: ignore end

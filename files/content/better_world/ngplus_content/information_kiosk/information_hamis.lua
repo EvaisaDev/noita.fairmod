@@ -11,7 +11,7 @@ local player_has_won = ModSettingGet("fairmod_win_count") or 0
 local useed = ModSettingGet("fairmod.user_seed")
 local uid = ModSettingGet("fairmod.user_id")
 
-local tips = {
+local free_tips = {
 	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
 	"Did you know that you can get a ~^free information booklet^~ \nhere?",
@@ -88,6 +88,11 @@ local tips = {
 	"This mod has been a joy to work on, see you all next year o/",
 }
 
+local tips = {
+	"The factory hämmies will eat well tonight!",
+	"Hiisi base has had some new reading lights installed!",
+}
+
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
 
 local seasonal = {
@@ -100,27 +105,14 @@ local seasonal = {
 	winter = {
 		"Brrr, it's getting cold out!",
 		"All my competitors are stocking up to hibernate for winter\nNot me! I'm on the grind!",
-		"Merry Christmas",
-		"Happy Christmas",
-		"For Christmas, I'm going to wish for your happiness!",
+		"Merry Christmas!",
+		"Happy Christmas!",
+		"Happy Holidays!",
+		"Merry Holidays!",
+		"For Christmas, I'm going to wish for your happiness.\n... And your donations, that too!",
 		"I hope we get snow!",
-		"Jingle Bells, Hämis Sells,\nLots and lots of tips!\nMinä buys, and then survives,\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
+		"Jingle Bells, Hämis Sells,\nLots and lots of tips!\nMinä buys, and then survives,\nAnd finds some cool secrets!",
 	},
-}
-
-local streamer_tips = {
-	general = {
-		"Are you sure your recording software is running?",
-		"~Woooo its us, chat, we're in your gaaaaammee~",
-		"Chat is this a W?",
-		"We can tell when OBS is open, like right now!",
-		"Don't forget streamer mode!",
-		"Streaming tip: Don't Die",
-		"Streaming tip: Throw for content!",
-		"This stream is pretty P.O.G-CHAMP!!!",
-		"Chat, kill this guy.",
-		'Streamer detected, activating "Fucking_Kill_Them" Mode...'
-	}
 }
 
 table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
@@ -129,7 +121,7 @@ table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 local testing_tips = {
 	--"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
 	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
-	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
+	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time\\~ ~",
 }
 --tips = testing_tips --uncomment/comment to enable/disable testing_tips
 
@@ -223,61 +215,19 @@ function interacting(player, entity_interacted, interactable_name)
 				end,
 			},
 			{
-				text = "I'd like to buy a scratch-off (50 gold)",
+				text = "I'd like to buy a scratch-off",
 				enabled = function(stats)
 					return stats.gold >= 50
 				end,
 				func = function(dialog)
 					dialog.show({
-						text = "Oh, you want to try your luck? Here you go!!\nYou can redeem your winnings here or at the loanprey!",
+						text = "Sorry! That is purely a New-Game service!\nAnd we earn 0% of profits from them, so we can't exactly afford to ship them out here\nand sell them for nothing...",
 						options = {
 							{
 								text = "Leave",
 							},
 						},
 					})
-
-					local item_count = 0
-					for i, child in ipairs(EntityGetAllChildren(player) or {}) do
-						if EntityGetName(child) == "inventory_quick" then
-							for i, v in ipairs(EntityGetAllChildren(child) or {}) do
-								local ability_component = EntityGetFirstComponentIncludingDisabled(v, "AbilityComponent")
-								if ability_component then
-									local use_gun_script = ComponentGetValue2(ability_component, "use_gun_script")
-									if not use_gun_script then item_count = item_count + 1 end
-								end
-							end
-						end
-					end
-
-					local ticket = EntityLoad("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/scratch_ticket.xml", x, y)
-
-					if item_count < 4 then GamePickUpInventoryItem(player, ticket, true) end
-
-					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
-					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 50)
-				end,
-			},
-			{
-				text = "I want to redeem my scratch-off(s)",
-				show = function(stats)
-					return has_scratch_ticket(player)
-				end,
-				func = function(dialog)
-					dialog.show({
-						text = "Oh man!! I hope you won big!\nHere's your winnings!",
-						options = {
-							{
-								text = "Leave",
-							},
-						},
-					})
-
-					local inventory_items = GameGetAllInventoryItems(player) or {}
-
-					for _, item in ipairs(inventory_items) do
-						if EntityHasTag(item, "scratchoff_winner") then EntityRemoveTag(item, "scratch_ticket") end
-					end
 				end,
 			},
 			{
@@ -298,7 +248,7 @@ function interacting(player, entity_interacted, interactable_name)
 						})
 					else
 						dialog.show({
-							text = "Wow! You're all dressed up! :)",
+							text = "Wow\\~! You're all dressed up! :)",
 							options = {
 								{
 									text = "Take treat",
