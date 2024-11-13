@@ -10,33 +10,16 @@ local nxml = dofile("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local nil_pos = {x = 0, y = 0} --default thing so i dont have to keep writing this out
 
---ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
-
---ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 ModTextFileSetContent("data/scripts/newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_enter_override.lua"))
 ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_biomes_override.lua"))
 
---[[ rip old boss_arena splicer, you will be missed :pensive:
-local boss_arena = markers.boss_arena
-local boss_arena_splice_grid = {width = 6, height = 4}
 
-for xml in nxml.edit_file("data/biome_impl/spliced/boss_arena.xml") do --ill probs turn this into a function if theres another spliced pixel scene that needs moving --guess what, i did! and its better
-    local i = {x = 0, y = 0}
-    for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
-        if i.y >= boss_arena_splice_grid.height then
-            i.y = 0
-            i.x = i.x + 1
-        end
-        pixel_scene.attr.pos_x = tostring(boss_arena.x + (i.x * 512))
-        pixel_scene.attr.pos_y = tostring(boss_arena.y + (i.y * 512))
-        local x,y = pixel_scene.attr.pos_x / 512,pixel_scene.attr.pos_y / 512
-        i.y = i.y + 1
-        --print("[" .. tostring(x) .. ", " .. tostring(y) .. "]")
-    end
-end --]]
 
-do return end
+
+do return end --lower stuff is unused for now since we've decided not to apply the world expansion to NG
+
+ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
 ------------------ MOVE SPLICED PIXEL SCENES ------------------
 

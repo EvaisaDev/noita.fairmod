@@ -17,6 +17,7 @@ local function print_ng_iteration(iteration)
 	text = text .. " "
 	local plusses = ""
 	if tonumber(iteration) ~= nil then
+		iteration = tonumber(iteration)
 		if iteration > 0 then
 			for i=1,iteration do
 				plusses = plusses .. "+"
@@ -52,7 +53,7 @@ local special_iterations = {
 		end,
 	},
 	NaN = {
-
+		redirect = -1 --im lazy im not making smth special for this rn
 	}
 }
 
@@ -76,23 +77,23 @@ function do_newgame_plus(iteration)
 	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", iteration )
 
 	local newgame_n
-	local newgame_id = tostring(iteration)
-	if iteration ~= nil and tonumber(iteration) == nil then
+	if tonumber(iteration) == nil then --if iteration is not a number
 		if special_iterations[iteration] == nil then
 			iteration = "NaN"
 		end
 		if special_iterations[iteration].redirect then
 			iteration = special_iterations[iteration].redirect()
 		end
+		if special_iterations[iteration].func then
+			newgame_n = special_iterations[iteration].func()
+		end
+	else
+		newgame_n = tonumber(iteration)
 	end
 
 
 
-	if special_iterations[iteration].func then
-		newgame_n = special_iterations[iteration].func()
-	end
 	
-	newgame_n = tonumber(newgame_n)
 	if newgame_n == nil then print(string.format('special iteration "%s" did not return a valid NG+ iterationm returned "%s"\ncancelling default script...', iteration, newgame_n)) return end
 
 
@@ -183,5 +184,5 @@ function do_newgame_plus(iteration)
 		LoadPixelScene( "data/biome_impl/clean_entrance.png", "", 128, 10750, "", true, true )
 	end
 
-	print_ng_iteration()
+	print_ng_iteration(iteration)
 end

@@ -57,6 +57,8 @@ module.update = function()
 							end
 
 							if args - 1 == #v.args then
+								current_input_text = ""
+
 								local input_args = {}
 								local i = 0
 								print("printing args:")
@@ -87,6 +89,8 @@ module.update = function()
 									if invalid and not value.allow_nil then
 										print(string.format('Argument [%s]: "%s", was invalid, expected %s', index, input_args[index], value.type))
 										GamePrint(string.format('Argument [%s]: "%s", was invalid, expected %s', index, input_args[index], value.type))
+										current_input_text = ""
+										command_locked_in = false
 										return false
 									end
 								end
@@ -100,10 +104,10 @@ module.update = function()
 										print(index .. ": " ..tostring(value))
 									end
 									v.func(player, input_args)
+									GamePrint("Running [" .. input:sub(1, -2) .. "]")
 									current_input_text = ""
 									command_locked_in = false
 								end
-								GamePrint("Running [" .. input:sub(1, -2) .. "]")
 							else
 								GamePrint(input)
 							end
