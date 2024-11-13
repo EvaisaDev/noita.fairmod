@@ -52,6 +52,8 @@ if not ModIsEnabled("Hydroxide") then
 	)
 end
 
+--ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/chemical_horror/pandorium/pandorium_modifier_append.lua") --im giving up on this fn, ill fix pandorium some other time
+
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/chemical_horror/status_effects.lua")
 dofile_once("mods/noita.fairmod/files/content/chemical_horror/potion_slowness/status_handling/2.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/chemical_horror/materials.xml")

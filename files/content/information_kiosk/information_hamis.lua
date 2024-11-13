@@ -65,7 +65,7 @@ local tips = {
 	"What do you mean it keeps changing?\nThe game has always looked like this.",
 	"You do not recognize the bodies in the water.",
 	"Buy scratch-offs now, trust me.\nGreat investment!",
-	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "!",
+	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "~!",
 	"Hiisi base has had some new reading lights installed!",
 	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
 	"There’s something behind you!{@pause 80}\n..?{@pause 100}\nOh{@pause 15}, no no{@pause 30}, ~silly!~{@pause 70} I meant in real life!",
@@ -86,7 +86,6 @@ local tips = {
 	"The Voices, they speak through me!",
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
-	"The factory hämmies will eat well tonight!",
 	"This mod has been a joy to work on, see you all next year o/",
 }
 
@@ -107,7 +106,7 @@ local seasonal = {
 		"For Christmas, I'm going to wish for your happiness!",
 		"I hope we get snow!",
 		"Jingle Bells, Hämis Sells,\nLots and lots of tips!\nMinä buys, and then survives,\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
-	}
+	},
 }
 
 local streamer_tips = {
@@ -127,13 +126,13 @@ local streamer_tips = {
 
 table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 
-
+--[[ uncomment/comment to enable/disable testing_tips
 local testing_tips = {
-	--"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
-	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
+	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	"Hello, " .. uid or useed or "{@color FF0000}ERROR",
 	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
 }
---tips = testing_tips --uncomment/comment to enable/disable testing_tips
+tips = testing_tips --]]
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -161,9 +160,9 @@ function interacting(player, entity_interacted, interactable_name)
 		text = "Heyyyy!! Welcome to this wonderful place!\nWhat can I do for you today?",
 		options = {
 			{
-				text = "Ask for some tips (1 gold)",
+				text = "Ask for some tips",
 				enabled = function(stats)
-					return stats.gold >= 1
+					return true
 				end,
 				func = function(dialog)
 					if #remaining_tips == 0 then
@@ -179,12 +178,6 @@ function interacting(player, entity_interacted, interactable_name)
 							},
 						},
 					})
-
-					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
-					if wallet_component == nil then return end
-					ComponentSetValue2(wallet_component, "money", ComponentGetValue2(wallet_component, "money") - 1)
-					ModSettingSet("fairmod.information_hamis_amount_given", (ModSettingGet("fairmod.information_hamis_amount_given") or 0) + 1) --planning on doing things with these dw
-					ModSettingSet("fairmod.information_hamis_wallet", (ModSettingGet("fairmod.information_hamis_wallet") or 0) + 1) --i have a vision that i dont have time to work on rn, but it will be funny
 				end,
 			},
 			{

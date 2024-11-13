@@ -659,21 +659,30 @@ for i = 2, #Windows do
         GuiOptionsAddForNextWidget(Gui, 21)
         GuiOptionsAddForNextWidget(Gui, 6)
         local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
-        if GuiImageButton(Gui, 1, x + ww - 1, y - 14, "", _button) then
-            if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
-            if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
-
+        
+        GuiImage(Gui, 1, x + ww - 1, y - 14, _button, 1, 1, 1)
+        local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
+        if guiPrev[3] and InputIsMouseButtonJustDown(1) then
+            local close_popup = false 
+            
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
-                if popup:CLOSE_FUNCTION(data) ~= false then
-                    table.remove(Windows, i)
-                    GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
-                    goto continue
+                if popup:CLOSE_FUNCTION(data) ~= false then --also require doubloons
+                    close_popup = true
                 end
             else
+                close_popup = true
+            end
+
+            if close_popup == true then
+                if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
                 table.remove(Windows, i)
                 GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
+                if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
                 goto continue
+            elseif popup.disableSound ~= true then
+                GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click_fail", GameGetCameraPos())
             end
+
         end
         GuiIdPop(Gui)
         GuiIdPushString(Gui, "ModMimicPopupImage" .. tostring(Windows[i].id))

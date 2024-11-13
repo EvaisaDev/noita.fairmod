@@ -24,7 +24,12 @@ local effects = {
 	end,
 	function()
 		dofile("data/scripts/newgame_plus.lua")
-		do_newgame_plus()
+		local current_ngplus = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") or 0
+		if tonumber(current_ngplus) ~= nil and Random(1,2) == 1 then
+			do_newgame_plus(current_ngplus - 1) --50% chance to go back a PW (unless current NG+ is not a numerical value))
+		else
+			do_newgame_plus()
+		end
 	end,
 	function()
 		-- Already-fucked-up root growers

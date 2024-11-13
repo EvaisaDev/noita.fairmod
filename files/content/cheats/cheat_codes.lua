@@ -1,5 +1,5 @@
 --stylua: ignore start
---dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
+local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		code = "motherlode",
@@ -271,7 +271,7 @@ return {
 		name = "Noclip",
 		description = "You idiot, what did you think was gonna happen",
 		func = function(player)
-			EntityApplyTransform(player, 1547 + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, 14900)
+			EntityApplyTransform(player, markers.noclip.x + GetParallelWorldPosition(EntityGetTransform(player))*BiomeMapGetSize()*512, markers.noclip.y)
 		end,
 	},
 	{
@@ -330,6 +330,7 @@ return {
 	},
 	{
 		code = "userk",
+		not_cheat = true,
 		func = function()
 			print("UserK")
 			GamePrint("UserK")
@@ -385,6 +386,7 @@ return {
 	},
 	{
 		code = "yourworldseed",
+		not_cheat = true,
 		func = function()
 			GameAddFlagRun("YOUBLITHINGIDIOT")
 		end,
@@ -441,6 +443,7 @@ return {
 	},
 	{
 		code = "wasdwasd",
+		not_cheat = true,
 		name = "oops!",
 		description = "be more careful!",
 		func = function(player)
@@ -449,6 +452,7 @@ return {
 	},
 	{
 		code = "wdsawdsa",
+		not_cheat = true,
 		name = "oops!",
 		description = "be more careful!",
 		func = function(player)
@@ -457,6 +461,7 @@ return {
 	},
 	{
 		code = "credits",
+		not_cheat = true,
 		func = function(player)
 			if HasFlagPersistent("fairmod_unlocked_credits") then
 				--yeah i didnt finish this
@@ -531,7 +536,7 @@ return {
 				return
 			end
 
-			GamePrintImportant("Alright, just this once", "May you make the most of your single blessing")
+			GamePrintImportant("Activated Cheat: Super Chest", "Alright, just this once")
 			EntityLoad( "data/entities/items/pickup/chest_random_super.xml", x, y - 20)
 			AddFlagPersistent("fairmod_spawned_superchest")
 		end
@@ -579,8 +584,34 @@ return {
 	},
 	{
 		code = "printuserdiagnostic",
+		not_cheat = true,
 		func = function()
-			GamePrint(ModSettingGet("fairmod.user_seed") or "nil")
+			GamePrint(tostring(ModSettingGet("fairmod.user_seed")))
+		end
+	},
+	{
+		code = "carrot",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad( "mods/noita.fairmod/files/content/better_world/carrot/entity.xml", x, y - 10)
+		end
+	},
+	{
+		code = "mainworld",
+		devmode = true,
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityApplyTransform(player, x - (GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512), y)
+		end
+	},
+	{
+		code = "thirsty",
+		name = "Thirsty",
+		description = "Hydration is key!",
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad("data/entities/projectiles/deck/sea_water.xml", x, y)
 		end
 	},
 }

@@ -1,0 +1,1 @@
+function safe( x, y ) return true end --there is no safety.

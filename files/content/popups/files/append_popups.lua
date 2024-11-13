@@ -47,6 +47,7 @@ local Popups = {
 		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
 		"it's quick, it's easy and it's free: drinking deathium",
+		"Edit wands is a lame name for old people, who doesn't understand the unique and special name Tinker with wands everywhere. Editing is what you do to videos and profile, while true masters tinker with their highly intelligent magic tools",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -60,7 +61,6 @@ local Popups = {
 			CLICK_EVENTS = { --click events should be in order, so the first hyperlink in a text will run the first function, second runs the second etc.
 				function(self) --if the hyperlink is clicked
 					self.hyperlink_clicked = true
-					self.disableSound = false
 					self.CUSTOM_9PIECE = nil
 					self.CUSTOM_9PIECE_BAR = nil
 					self.CUSTOM_X = nil
@@ -96,7 +96,6 @@ local Popups = {
 				print("Player closed the window >:|")
 			end,
 
-			disableSound = true, --this disables the sound made when popups open and close
 			CUSTOM_9PIECE = "mods/noita.fairmod/files/content/popups/custom_9piece.png",
 			CUSTOM_9PIECE_BAR = "mods/noita.fairmod/files/content/popups/custom_9piecebar.png",
 			CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
@@ -107,7 +106,7 @@ local Popups = {
 			OPEN_FUNCTION = function(self)
 				self.MESSAGE = self.MESSAGE:gsub(
 					"steamid",
-					ModSettingGet("fairmod.user_seed"):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
+					tostring(ModSettingGet("fairmod.user_seed")):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
@@ -169,42 +168,73 @@ local Popups = {
 		},--]=]
 		--[=[
 		{ -- Basic clicker game. Intention: On buying 10 of an autoclicker, it unlocks the next tier. Please make this work userk
-			EXE		= "COPI CLICKER V0.04",
-			MESSAGE = "Copis: 0\n\n%[Copi]%\n\n%[Buy 1x Copith: 10 Copis]%",
-			copis 	= 0,
-			clickers= {
-				{0,1}
-			},
-			IS_OPEN_FUNCTION = function(self)
-				if GameGetFrameNum()%60==0 then
-					self.value = self.value + 1 * self.clickers
+		EXE		= "COPI CLICKER V0.05",
+		MESSAGE = "Copis: 0 newline %[Copi]% newline newline [Buy Tier 1 Copi Clicker]: %10% %Copis%",
+		copis 	= 0,
+		clickers= {
+			1
+		},
+		IS_OPEN_FUNCTION = function(self)
+			for i=1, #self.clickers do
+				self.copis = self.copis + ( self.clickers[i]/ 60)
+			end
+		end,
+		create_new_clicker = function (self)
+			-- Cost of a clicker is 10^level * 1.05 per clicker you have
+			local level = #self.clickers+1
+			self.clickers[level] = {10^level, 1}
+			self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
+				if self.copis >= self.cost then
+					self.copis = self.copis - self.cost
+					self.clickers[level][1] = self.clickers[level][1] + 1
+					self.clickers[level][2] = self.clickers[level][2] + 1
+					self.cost = self.cost * 1.05
 				end
-				for i=1, #self.clickers do
-					self.value = self.value + (10^(i-1))*(self.clickers[i][1]) / 60
+			end
+		end,
+		OPEN_FUNCTION = function(self)
+			self:create_new_clicker()
+		end,
+		CLICK_EVENTS = {
+			function(self)
+				self.copis = self.copis + 1
+			end,
+		},
+	},
+	{ -- clicker game copicode
+		EXE		= "COPI CLICKER V0.04",
+		MESSAGE = "Copis: 0\n\n%[Copi]%\n\n%[Buy% %1x% %Copith:% %10% %Copis]%",
+		copis 	= 0,
+		clickers= {
+			1
+		},
+		IS_OPEN_FUNCTION = function(self)
+			for i=1, #self.clickers do
+				self.copis = self.copis + ( self.clickers[i]/ 60)
+			end
+		end,
+		create_new_clicker = function (self)
+			-- Cost of a clicker is 10^level * 1.05 per clicker you have
+			local level = #self.clickers+1
+			self.clickers[level] = {10^level, 1}
+			self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
+				if self.copis >= self.cost then
+					self.copis = self.copis - self.cost
+					self.clickers[level][1] = self.clickers[level][1] + 1
+					self.clickers[level][2] = self.clickers[level][2] + 1
+					self.cost = self.cost * 1.05
 				end
+			end
+		end,
+		OPEN_FUNCTION = function(self)
+			self:create_new_clicker()
+		end,
+		CLICK_EVENTS = {
+			function(self)
+				self.copis = self.copis + 1
 			end,
-			create_new_clicker = function (self)
-				-- Cost of a clicker is 10^level * 1.05 per clicker you have
-				local level = #self.clickers+1
-				self.clickers[level] = {10^level, 1}
-				self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
-					if self.value >= self.cost then
-						self.value = self.value - self.cost
-						self.clickers[level][1] = self.clickers[level][1] + 1
-						self.clickers[level][2] = self.clickers[level][2] + 1
-						self.cost = self.cost * 1.05
-					end
-				end
-			end,
-			OPEN_FUNCTION = function(self)
-				self.create_new_clicker()
-			end,
-			CLICK_EVENTS = {
-				function(self)
-					self.value = self.value + 1
-				end,
-			},
-		},--]=]
+		},
+	},--]=]
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

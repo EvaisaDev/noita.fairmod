@@ -49,6 +49,7 @@ local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
+local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 
@@ -99,6 +100,7 @@ dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
 
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
@@ -236,6 +238,8 @@ function OnPlayerSpawned(player)
 	dmca_warning.OnPlayerSpawned(player)
 
 	saw.OnPlayerSpawned(player)
+
+	user_seeds.OnPlayerSpawned(player)
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -311,6 +315,7 @@ end
 function OnWorldInitialized()
 	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
+	--better_world.OnWorldInitialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

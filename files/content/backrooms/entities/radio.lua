@@ -122,7 +122,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", false)
 		local audiocomp = EntityGetFirstComponent(entity, "AudioLoopComponent", "radio_on")
 		ComponentSetValue2(audiocomp, "m_volume", 1)
-
+		SetRandomSeed(x, y)
 		if audiocomp then ComponentSetValue2(audiocomp, "event_name", "radio/" .. (Random(1, 10) == 9 and "ill_see_you_when_i_see_you" or "loop")) end
 
 		local current_radios = tonumber(GlobalsGetValue("radios_activated", "0")) + 1

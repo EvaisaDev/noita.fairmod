@@ -1,0 +1,79 @@
+<Entity tags="hittable,teleportable_NOT,item_physics">
+
+  <!-- physical presence -->
+  <PhysicsBodyComponent
+    _tags="enabled_in_world"
+    uid="1"
+    allow_sleep="1"
+    angular_damping="0"
+    fixed_rotation="0"
+    is_bullet="1"
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="1"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+
+  <PhysicsImageShapeComponent
+    body_id="1"
+    centered="1"
+    image_file="mods/noita.fairmod/files/content/better_world/carrot/item_gfx.png"
+    material="fairmod_carrot"
+  ></PhysicsImageShapeComponent>
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <!-- item -->
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="1"
+    offset_x="3.5"
+    offset_y="3.5"
+    image_file="mods/noita.fairmod/files/content/better_world/carrot/item_gfx.png"
+  ></SpriteComponent>
+
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Porgand"
+    ui_description="Enchanted old carrot.
+Point and squeeze to instantly relocate the wielder. Do not eat.
+---
+Left-click to blink, right-click to hold.
+---
+Hang on, isn't this from the wrong mod!"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    ui_sprite="mods/noita.fairmod/files/content/better_world/carrot/ui_gfx.png"
+  ></ItemComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Porgand"
+  ></UIInfoComponent>
+
+  <AbilityComponent
+    ui_name="Porgand"
+    throw_as_item="0"
+    mana_max="0"
+    >
+    <gun_config
+      deck_capacity="0"
+    ></gun_config>
+  </AbilityComponent>
+
+  <LuaComponent
+    _tags="enabled_in_hand"
+    script_enabled_changed="mods/noita.fairmod/files/content/better_world/carrot/toggle_breathing.lua"
+  ></LuaComponent>
+
+  <!-- Blink shooting action -->
+  <LuaComponent
+    _tags="enabled_in_hand"
+    script_source_file="mods/noita.fairmod/files/content/better_world/carrot/blink.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+</Entity>
