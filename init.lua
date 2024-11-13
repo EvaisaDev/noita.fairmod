@@ -99,6 +99,7 @@ dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
+dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
