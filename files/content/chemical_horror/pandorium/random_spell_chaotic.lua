@@ -51,7 +51,7 @@ local function add_spell(spellType, position, specific)
 	--spell_formula = spell_formula .. spell_id .. ","
 end
 
-for i = 1, 12 do --positions 1-12
+for i = 1, Random(7, 12) do --positions 1-12
 	add_spell("MODIFIERS", i)
 end
 

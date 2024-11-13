@@ -61,7 +61,6 @@ local Popups = {
 			CLICK_EVENTS = { --click events should be in order, so the first hyperlink in a text will run the first function, second runs the second etc.
 				function(self) --if the hyperlink is clicked
 					self.hyperlink_clicked = true
-					self.disableSound = false
 					self.CUSTOM_9PIECE = nil
 					self.CUSTOM_9PIECE_BAR = nil
 					self.CUSTOM_X = nil
@@ -97,7 +96,6 @@ local Popups = {
 				print("Player closed the window >:|")
 			end,
 
-			disableSound = true, --this disables the sound made when popups open and close
 			CUSTOM_9PIECE = "mods/noita.fairmod/files/content/popups/custom_9piece.png",
 			CUSTOM_9PIECE_BAR = "mods/noita.fairmod/files/content/popups/custom_9piecebar.png",
 			CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
@@ -170,42 +168,73 @@ local Popups = {
 		},--]=]
 		--[=[
 		{ -- Basic clicker game. Intention: On buying 10 of an autoclicker, it unlocks the next tier. Please make this work userk
-			EXE		= "COPI CLICKER V0.04",
-			MESSAGE = "Copis: 0\n\n%[Copi]%\n\n%[Buy 1x Copith: 10 Copis]%",
-			copis 	= 0,
-			clickers= {
-				{0,1}
-			},
-			IS_OPEN_FUNCTION = function(self)
-				if GameGetFrameNum()%60==0 then
-					self.value = self.value + 1 * self.clickers
+		EXE		= "COPI CLICKER V0.05",
+		MESSAGE = "Copis: 0 newline %[Copi]% newline newline [Buy Tier 1 Copi Clicker]: %10% %Copis%",
+		copis 	= 0,
+		clickers= {
+			1
+		},
+		IS_OPEN_FUNCTION = function(self)
+			for i=1, #self.clickers do
+				self.copis = self.copis + ( self.clickers[i]/ 60)
+			end
+		end,
+		create_new_clicker = function (self)
+			-- Cost of a clicker is 10^level * 1.05 per clicker you have
+			local level = #self.clickers+1
+			self.clickers[level] = {10^level, 1}
+			self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
+				if self.copis >= self.cost then
+					self.copis = self.copis - self.cost
+					self.clickers[level][1] = self.clickers[level][1] + 1
+					self.clickers[level][2] = self.clickers[level][2] + 1
+					self.cost = self.cost * 1.05
 				end
-				for i=1, #self.clickers do
-					self.value = self.value + (10^(i-1))*(self.clickers[i][1]) / 60
+			end
+		end,
+		OPEN_FUNCTION = function(self)
+			self:create_new_clicker()
+		end,
+		CLICK_EVENTS = {
+			function(self)
+				self.copis = self.copis + 1
+			end,
+		},
+	},
+	{ -- clicker game copicode
+		EXE		= "COPI CLICKER V0.04",
+		MESSAGE = "Copis: 0\n\n%[Copi]%\n\n%[Buy% %1x% %Copith:% %10% %Copis]%",
+		copis 	= 0,
+		clickers= {
+			1
+		},
+		IS_OPEN_FUNCTION = function(self)
+			for i=1, #self.clickers do
+				self.copis = self.copis + ( self.clickers[i]/ 60)
+			end
+		end,
+		create_new_clicker = function (self)
+			-- Cost of a clicker is 10^level * 1.05 per clicker you have
+			local level = #self.clickers+1
+			self.clickers[level] = {10^level, 1}
+			self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
+				if self.copis >= self.cost then
+					self.copis = self.copis - self.cost
+					self.clickers[level][1] = self.clickers[level][1] + 1
+					self.clickers[level][2] = self.clickers[level][2] + 1
+					self.cost = self.cost * 1.05
 				end
+			end
+		end,
+		OPEN_FUNCTION = function(self)
+			self:create_new_clicker()
+		end,
+		CLICK_EVENTS = {
+			function(self)
+				self.copis = self.copis + 1
 			end,
-			create_new_clicker = function (self)
-				-- Cost of a clicker is 10^level * 1.05 per clicker you have
-				local level = #self.clickers+1
-				self.clickers[level] = {10^level, 1}
-				self.CLICK_EVENTS[#self.CLICK_EVENTS+1] = function(self)
-					if self.value >= self.cost then
-						self.value = self.value - self.cost
-						self.clickers[level][1] = self.clickers[level][1] + 1
-						self.clickers[level][2] = self.clickers[level][2] + 1
-						self.cost = self.cost * 1.05
-					end
-				end
-			end,
-			OPEN_FUNCTION = function(self)
-				self.create_new_clicker()
-			end,
-			CLICK_EVENTS = {
-				function(self)
-					self.value = self.value + 1
-				end,
-			},
-		},--]=]
+		},
+	},--]=]
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
