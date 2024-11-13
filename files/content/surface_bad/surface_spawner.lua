@@ -61,3 +61,6 @@ local biome_choices = biome_spawns[biome]
 SetRandomSeed(x, y)
 local spawn_entity = random_from_table(biome_choices, x, y)
 if spawn_entity ~= nil then EntityLoad(tostring(spawn_entity.entity), x, y) end
+
+local this_entity = GetUpdatedEntityID()
+EntityKill(this_entity)
