@@ -1,5 +1,5 @@
 --- Hardcoded world width for scripts that don't have access to BiomeMapGetSize.
-WORLD_WIDTH_HARDCODED = 318 * 512
+WORLD_WIDTH_HARDCODED = 70 * 512
 
 ---@vararg table
 ---@return table

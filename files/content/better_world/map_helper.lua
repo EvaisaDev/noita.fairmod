@@ -12,9 +12,9 @@ local ngplus_markers = {
 }
 
 local ng_markers = {
-    noclip =                    { x = 1547,         y = 13876 },
+    noclip =                    { x = 1547,         y = 14900 },
 }
-
+do return ng_markers end
 --[[
 function GetMapMarker(marker_id, return_table) --redundant but it can stay, for now
     if markers[marker_id] then

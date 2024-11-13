@@ -2,7 +2,7 @@ local fairmod_creatures = {
 	{
 		file = "mods/noita.fairmod/files/content/chemical_horror/pandorium/random_spell_chaotic.xml",
 		herd = "mage_swapper",
-		name = "Goddess Pandora", --this is not a creature but i think its funnier if i dont fix this
+		name = "Goddess Pandora", --this is kinda funny, handy for testing ig
 		tags = "teleportable_NOT",
 	},
 	{

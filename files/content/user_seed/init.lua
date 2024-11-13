@@ -64,6 +64,10 @@ local users = {
         seed = "XXXXXXXX173447994635XXXXXXXXXX",
         type = "streamer",
     },
+    Crimson_Agent = {
+        seed = "XXXXXXXX687261862069XXXXXXXXXX",
+        type = "streamer",
+    },
 
     --funny numbers
     nearly_nonillionth = { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!

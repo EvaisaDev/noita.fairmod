@@ -65,7 +65,8 @@ local tips = {
 	"What do you mean it keeps changing?\nThe game has always looked like this.",
 	"You do not recognize the bodies in the water.",
 	"Buy scratch-offs now, trust me.\nGreat investment!",
-	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "!~",
+	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "~!",
+	"Hiisi base has had some new reading lights installed!",
 	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
 	"There’s something behind you!{@pause 80}\n..?{@pause 100}\nOh{@pause 15}, no no{@pause 30}, ~silly!~{@pause 70} I meant in real life!",
 	'Type "Chaos" on your keyboard for some free digging',
@@ -125,13 +126,13 @@ local streamer_tips = {
 
 table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 
-
+--[[ uncomment/comment to enable/disable testing_tips
 local testing_tips = {
-	--"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
-	--"Hello, " .. uid or useed or "{@color FF0000}ERROR",
+	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	"Hello, " .. uid or useed or "{@color FF0000}ERROR",
 	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
 }
---tips = testing_tips --uncomment/comment to enable/disable testing_tips
+tips = testing_tips --]]
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -159,7 +160,7 @@ function interacting(player, entity_interacted, interactable_name)
 		text = "Heyyyy!! Welcome to this wonderful place!\nWhat can I do for you today?",
 		options = {
 			{
-				text = "Ask for a free tip",
+				text = "Ask for some tips",
 				enabled = function(stats)
 					return true
 				end,
