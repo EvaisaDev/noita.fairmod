@@ -50,6 +50,7 @@ local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/sn
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
+local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -88,7 +89,6 @@ dofile_once("mods/noita.fairmod/files/content/more_aggressive_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/statue_revenge/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_materium/init.lua")
 dofile_once("mods/noita.fairmod/files/content/teleporter_item/init.lua")
-dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua")
 dofile_once("mods/noita.fairmod/files/content/new_spells/init.lua")
 dofile_once("mods/noita.fairmod/files/content/credits/init.lua")
 dofile_once("mods/noita.fairmod/files/content/necopumpkin/init.lua")
@@ -122,6 +122,7 @@ function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
 	random_alchemy:init()
+	pixel_scenes:init()
 end
 
 --- Seed init
@@ -198,6 +199,7 @@ function OnPlayerSpawned(player)
 		print("Kolmi is not home on this one.")
 	end
 
+	pixel_scenes:on_player_spawn()
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
 	fishing.OnPlayerSpawned(player)
