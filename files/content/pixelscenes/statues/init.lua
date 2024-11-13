@@ -11,3 +11,6 @@ LoadPixelScene(
 	false,
 	{ ["fff6ffdc"] = "fairmod_truehealy" }
 )
+
+local entity = GetUpdatedEntityID()
+EntityKill(entity)
