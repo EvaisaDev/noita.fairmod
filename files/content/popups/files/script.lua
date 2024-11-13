@@ -1,3 +1,10 @@
+local function meta_leveling_add_exp()
+    local player = EntityGetWithTag("player_unit")[1]
+    if not player then return end
+    local meta_leveling_public = dofile_once("mods/meta_leveling/files/scripts/meta_leveling_public.lua")
+    meta_leveling_public:AddExpGlobal(0.1, player, "ad was killed")
+end
+
 -----------------------------------------------------------------------------
 -- Provides support for color manipulation in HSL color space.
 --
@@ -654,6 +661,7 @@ for i = 2, #Windows do
         local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
         if GuiImageButton(Gui, 1, x + ww - 1, y - 14, "", _button) then
             if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
+            if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
 
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
                 if popup:CLOSE_FUNCTION(data) ~= false then
