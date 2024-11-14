@@ -109,20 +109,6 @@ local seasonal = {
 	},
 }
 
-local streamer_tips = {
-	general = {
-		"Are you sure your recording software is running?",
-		"~Woooo its us, chat, we're in your gaaaaammee~",
-		"Chat is this a W?",
-		"We can tell when OBS is open, like right now!",
-		"Don't forget streamer mode!",
-		"Streaming tip: Don't Die",
-		"Streaming tip: Throw for content!",
-		"This stream is pretty P.O.G-CHAMP!!!",
-		"Chat, kill this guy.",
-		'Streamer detected, activating "Fucking_Kill_Them" Mode...'
-	}
-}
 
 table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 

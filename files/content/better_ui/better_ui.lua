@@ -92,6 +92,15 @@ local moon_phases = {
 	"Waxing Gibbous",
 }
 
+local objectives_codes = {
+	"copi",
+	"chaos",
+	"superchest",
+	"boob",
+	"thirsty",
+	"gimmetinker",
+}
+
 local objectives = {
 	"Find Dave",
 	"Hämis",
@@ -108,6 +117,15 @@ local objectives = {
 	"Download Copi's Things",
 	"Make 100 friends",
 	"Buy tips from Hämis",
+	"Throw for content",
+	"Keep Yourself Safe",
+	"Win",
+	"Survive",
+	"Lose",
+	"Tie",
+	"Eat Steve",
+	"Unlock dev_mode",
+	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!"
 }
 
 local game_speed_a = 0
