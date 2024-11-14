@@ -22,6 +22,22 @@ TimeUTC = {
 
 local is_leap_year = TimeLocal.year % 4 == 0
 
+---nabbed code
+if TimeLocal.year % 4 == 0 then --damn leap years are more complex than i thought, i thought it was just (year % 4 == 0) lmao
+    if TimeLocal.year % 100 == 0 then 
+        if TimeLocal.year % 400 == 0 then 
+            is_leap_year = true
+        else 
+            is_leap_year = false 
+        end
+    else 
+        is_leap_year = true 
+    end
+else 
+    is_leap_year = false
+end
+---nabbed code
+
 local month_lengths = {
     31,
     is_leap_year and 29 or 28,
@@ -93,6 +109,33 @@ local easter = nil --oh i cant be bothered, easter is also fucking weird cuz i n
 
 
 
+--[[ sorry christians, calculating easter fucking sucks lmao
+---nabbed code
+local a = TimeLocal.year % 19
+local b = math.floor(TimeLocal.year / 100)
+local c = TimeLocal.year % 100
+local d = math.floor(b / 4)
+local e = b % 4
+local f = math.floor((b + 8) / 25) 
+local g = math.floor((b - f + 1) / 3)
+local h = (19 * a + b - d - g + 15) % 30
+local i = math.floor(c / 4)
+local k = c % 4
+local L = (32 + 2 * e + 2 * i - h - k) %7
+local m = math.floor((a + 11 * h + 22 * L) / 451)
+local shrove_month = math.floor((h + L - 7 * m + 114 - 47) / 31)
+local shrove_day = (h + L - 7 * m + 114 - 47) % 31 + 1
+if shrove_month == 2 then    --adjust dates in February 
+    shrove_day = is_leap_year and shrove_day - 2 or shrove_day - 3
+end
+---nabbed code ]]
+
+
+local copiday = TimeLocal.day == 0 and TimeLocal.month == 0
+
+
+
+
 
 
 
@@ -111,6 +154,7 @@ return {
     halloween = halloween,
     christmas = christmas,
     hanukkah = hanukkah,
-    valentines = valentines, --nearly typo'd as valentnies without noticing, could've had a universe where im tearing my hair out in 3 months cuz i made a fucking typo the year before lmao
+    valentines = valentines,
 
+    copiday = copiday
 }

@@ -2,6 +2,8 @@
 -- written by IQuant, Refactored by Eba
 -- Rewrited again by Lamia using his *beautiful* lib
 
+local seasonal = dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
+
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class better_ui:UI_class
 ui.text_scale = 0.75
@@ -316,6 +318,14 @@ local ui_displays = {
 		},
 		{
 			text = function()
+				return "New Game+ Iteration: " .. SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")
+			end,
+			condition = function()
+				return SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") ~= nil
+			end
+		},
+		{
+			text = function()
 				return "Wins while using mod: " .. tostring((ModSettingGet("fairmod_win_count") or 0))
 			end,
 			condition = function()
@@ -496,6 +506,14 @@ local extra_ui = {
 		text = function()
 			return "Language: " .. GameTextGetTranslatedOrNot("$current_language")
 		end,
+	},
+	{
+		text = function()
+			local is_void = seasonal.void_day
+			is_void = (tonumber(tostring(ModSettingGet("fairmod.user_seed")):sub(21,21)) or 0) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
+			is_void = is_void and "yes" or "no"
+			return "Void Calendar: " .. is_void
+		end
 	},
 	{
 		text = function()

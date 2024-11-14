@@ -59,38 +59,69 @@ local special_iterations = {
 
 
 
-function do_newgame_plus(iteration)
+function do_newgame_plus(iteration, force_relative)
 	-- GameDoEnding2()
 	-- BiomeMapLoad( "mods/nightmare/files/biome_map.lua" )
 
-	local prev_iteration = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") --store previous ng+
+	local newgame_n --newgame value as number
+
+	local prev_number = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") --store previous ng+
+	local prev_id = GlobalsGetValue("NEW_GAME_PLUS_ID")
 	
-	if iteration == nil then --default iteration if nil
-		if tonumber(prev_iteration) then
-			iteration = tonumber(prev_iteration) + 1
-		else
-			iteration = prev_iteration
+	if force_relative then
+		SessionNumbersSetValue("convert_to_number", iteration)
+		newgame_n = tonumber(prev_number) + SessionNumbersGetValue("convert_to_number") --forcibly convert iteration to number and add it to previous iteration number
+	else
+		if iteration == nil then --default iteration if nil
+			if prev_id then
+				iteration = prev_id
+			else
+				iteration = tonumber(prev_number) + 1
+			end
+		end
+	
+		if special_iterations[iteration].redirect then	--redirect iteration value if redirect value is present
+			iteration = special_iterations[iteration].redirect()
 		end
 	end
 
-	print("NG+ ITERATION IS [" .. iteration .. "]")
-	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", iteration )
 
-	local newgame_n
-	if tonumber(iteration) == nil then --if iteration is not a number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if tonumber(iteration) == nil then 				--logic if iteration is not a number
 		if special_iterations[iteration] == nil then
 			iteration = "NaN"
-		end
-		if special_iterations[iteration].redirect then
-			iteration = special_iterations[iteration].redirect()
 		end
 		if special_iterations[iteration].func then
 			newgame_n = special_iterations[iteration].func()
 		end
+		GameAddFlagRun(iteration)
 	else
-		newgame_n = tonumber(iteration)
+		if special_iterations[iteration].func then
+			newgame_n = special_iterations[iteration].func()
+		end
 	end
 
+
+	print("NG+ ITERATION INPUT IS [" .. iteration .. "]")
+	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", iteration )
+	newgame_n = SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT")
+	print("NG+ ITERATION TONUMBER IS [" .. tostring(newgame_n) .. "]")
 
 
 	
