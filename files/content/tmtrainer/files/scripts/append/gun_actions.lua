@@ -67,12 +67,25 @@ local function generate_image(index, original_sprite, was_first)
 			end
 		end
 	else
-		-- Add random lines
-		for i = 0, corrupted_sprite_width - 1 do
-			if Random(0, 100) < 30 then
-				for j = 0, corrupted_sprite_height - 1 do
+		local guaranteed_part_count = 3
+		-- get 3 indexes for the guaranteed parts randomly which aren't already in the list
+		local guaranteed_parts = {}
+		local indexes_available = {}
+		for i = 0, original_sprite_width - 1 do
+			table.insert(indexes_available, i)
+		end
+
+		for i = 1, guaranteed_part_count do
+			local index = Random(1, #indexes_available)
+			guaranteed_parts[index] = true
+			table.remove(indexes_available, index)
+		end
+		-- Overlay random parts of the original icon onto the new icon
+		for i = 0, original_sprite_width - 1 do
+			if Random(0, 100) < 30 or guaranteed_parts[i] then
+				for j = 0, original_sprite_height - 1 do
 					local color = ModImageGetPixel(original_sprite_id, i, j)
-					ModImageSetPixel(corrupted_sprite_id, i, j, color)
+					ModImageSetPixel(new_sprite_id, i, j, color)
 				end
 			end
 		end
