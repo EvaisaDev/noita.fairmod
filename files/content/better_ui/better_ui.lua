@@ -104,7 +104,33 @@ local objectives_codes = {
 }
 
 local objectives = {
-	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!"
+	"Find Dave",
+	"Hämis",
+	"Complete the objective",
+	"Drink all water",
+	"Have 3 people visit your island",
+	"Loading...",
+	"Failed",
+	"Follow the purple lights",
+	"Forfeit material wealth for Hämis",
+	"Kill.",
+	"Fail this objective",
+	"Defeat God.",
+	"Download Copi's Things",
+	"Make 100 friends",
+	"Buy tips from Hämis",
+	"Throw for content",
+	"Keep Yourself Safe",
+	"Win",
+	"Survive",
+	"Lose",
+	"Tie",
+	"Eat Steve",
+	"Eat Scott",
+	"Unlock dev_mode",
+	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!",
+	"Be the last to be eliminated",
+	"Kill at least 5 other players",
 }
 
 local game_speed_a = 0

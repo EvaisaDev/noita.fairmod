@@ -1,5 +1,4 @@
 --stylua: ignore start
-dofile("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 local SetContent = ModTextFileSetContent
 
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
