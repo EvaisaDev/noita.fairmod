@@ -134,7 +134,7 @@ local seasonal_tips = {
 		"The Weekend will pass by just as fast as the last one did\nSavour and make the most of what little time you have",
 	},
 	Sunday = {
-		"Never hesitate to have a do-nothing day every once in a while!",
+		"Never hesitate to have a do-nothing day every once in a\nwhile!",
 	},
 }
 
