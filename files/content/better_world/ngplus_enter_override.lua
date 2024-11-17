@@ -66,8 +66,8 @@ function do_newgame_plus(iteration, force_relative)
 	local input = iteration --save input
 	local newgame_n --newgame value as number
 
-	local prev_number = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") --store previous ng+
-	local prev_id = GlobalsGetValue("NEW_GAME_PLUS_ITERATION")
+	local prev_number = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") or "0" --store previous ng+
+	local prev_id = GlobalsGetValue("NEW_GAME_PLUS_ITERATION") or prev_number
 	GlobalsSetValue("NEW_GAME_PLUS_ITERATION", "")
 
 	local data = { --set data
@@ -77,6 +77,8 @@ function do_newgame_plus(iteration, force_relative)
 		prev_id = prev_id,
 	}
 	
+	print(tostring(prev_number))
+	print(tostring(prev_id))
 
 	--setting iteration
 	if force_relative then
@@ -84,9 +86,11 @@ function do_newgame_plus(iteration, force_relative)
 		newgame_n = tonumber(prev_number) + SessionNumbersGetValue("convert_to_number") --forcibly convert iteration to number and add it to previous iteration number
 	else
 		if iteration == nil or iteration == "" then --default iteration if nil
-			if prev_id ~= "" then
+			if tonumber(prev_id) == nil and prev_id ~= "" then
+				print("repeating previous iteration: [" .. prev_id .. "]")
 				iteration = prev_id
 			else
+				print("incrementing previous iteration: [" .. prev_number .. "]")
 				iteration = tonumber(prev_number) + 1
 			end
 		end

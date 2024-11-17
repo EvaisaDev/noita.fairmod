@@ -130,7 +130,11 @@ local objectives = {
 	"Unlock dev_mode",
 	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!",
 	"Be the last to be eliminated",
-	"Kill at least 5 other players",
+	"Kill 5 other players",
+	"Find love",
+	"Forgive.",
+	"Remember yourself",
+	"Realise your ambitions",
 }
 
 local game_speed_a = 0
