@@ -4,7 +4,7 @@ dofile("mods/noita.fairmod/files/content/tmtrainer/files/scripts/icon_list.lua")
 -- Filter out perks not in the default perk pool
 local perk_pool = {}
 for _, perk in ipairs(perk_list) do
-	if not perk.not_in_default_perk_pool then table.insert(perk_pool, perk) end
+	if not perk.not_in_default_perk_pool and not perk.no_tmt then table.insert(perk_pool, perk) end
 end
 
 -- Function to get a random perk from the pool
@@ -42,9 +42,22 @@ local function generate_icon(index, original_icon, is_first, icon_type)
 			end
 		end
 	else
+		local guaranteed_part_count = 3
+		-- get 3 indexes for the guaranteed parts randomly which aren't already in the list
+		local guaranteed_parts = {}
+		local indexes_available = {}
+		for i = 0, original_icon_width - 1 do
+			table.insert(indexes_available, i)
+		end
+
+		for i = 1, guaranteed_part_count do
+			local index = Random(1, #indexes_available)
+			guaranteed_parts[index] = true
+			table.remove(indexes_available, index)
+		end
 		-- Overlay random parts of the original icon onto the new icon
 		for i = 0, original_icon_width - 1 do
-			if Random(0, 100) < 30 then
+			if Random(0, 100) < 30 or guaranteed_parts[i] then
 				for j = 0, original_icon_height - 1 do
 					local color = ModImageGetPixel(original_icon_id, i, j)
 					ModImageSetPixel(new_icon_id, i, j, color)
