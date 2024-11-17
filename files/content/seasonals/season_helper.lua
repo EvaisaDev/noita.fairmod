@@ -20,8 +20,22 @@ TimeUTC = {
     second = f,
 }
 
-local is_leap_year = TimeLocal.year % 4 == 0
+--[[ spoof dates by uncommenting stuff at the bottom
+local spoof_date = {
+    year = 2024,
+    month = 11,
+    day = 15,
+    hour = 7,
+    minute = 49,
+    second = 57,
+    jussi = false,
+    mammi = true,
+}
+TimeLocal = spoof_date
+TimeUTC = spoof_date --]]
 
+
+local is_leap_year
 ---nabbed code
 if TimeLocal.year % 4 == 0 then --damn leap years are more complex than i thought, i thought it was just (year % 4 == 0) lmao
     if TimeLocal.year % 100 == 0 then 
@@ -71,18 +85,13 @@ day_of_year = day_of_year + TimeLocal.day
 
     local val8 = dd + (mmx*2) +  math.floor(((mmx+1)*3)/5)   + yy + math.floor(yy/4)  - math.floor(yy/100)  + math.floor(yy/400) + 2
     local val9 = math.floor(val8/7)
-    local dw = val8-(val9*7) 
+    local day_of_week = val8-(val9*7) 
 
-    if (dw == 0) then
-      dw = 7
+    if (day_of_week == 0) then
+      day_of_week = 7
     end
 ---nabbed code
-  
-
-local weekday = days[dw]
-if dw == 1 then dw = 8 end
-local day_of_week = dw - 1
-
+local weekday = days[day_of_week]
 
 local void_calendar = {
     normal = "11001111010011110010100101011001000011111100110011010111010001010110001101110101010101011001111000110010111011000101100011010100001000001110101110111111001101100000001111101110100011101001110000000101100110110101101110010001110110110101110000111111011111000010111000000001100001000011100000011111110000011110010111100110101001110100100111100010011111111010001001000",
@@ -97,15 +106,20 @@ else
 end
 void_day = void_day == "1" and true or false
 
+
+
+
+--Custom stuff:
+
+
 local halloween = (TimeLocal.month == 10 and TimeLocal.day >= 7) or (TimeLocal.month == 11 and TimeLocal.day <= 7) --halloween from 7th of october to 7th of november, for 32 spooky days!
-local christmas = TimeLocal.month == 12 and TimeLocal.day >= 9 and TimeLocal.day <= 30 --boxing day is the day christmas dies. 
+local christmas = TimeLocal.month == 12 and TimeLocal.day >= 1 and TimeLocal.day <= 30 --boxing day is the day christmas dies. 
 
 dofile("mods/noita.fairmod/files/content/seasonals/gregorian_hebrew_conversion.lua")
-local hanukkah = get_hanukkah(TimeLocal)
---print("IS IT HANUKKAH???????? STUDY SHOWS: " .. tostring(get_hanukkah({day = 7, month = 12, year = 2023})))
+local hanukkah = get_hanukkah(TimeLocal) --this will return false if not hanukkah, and otherwise return what day of hanukkah it is
 
 local valentines = TimeLocal.month == 2 and TimeLocal.day == 14
-local easter = nil --oh i cant be bothered, easter is also fucking weird cuz i need the fucking day of the week and shit lmao, ill figure this out later. i literally just finished setting up hanukkah, i have at least like 5 months before i need to care about this
+local easter = nil --this is actually a pain to calculate, ill deal with this another time lmao
 
 
 
@@ -156,5 +170,10 @@ return {
     hanukkah = hanukkah,
     valentines = valentines,
 
-    copiday = copiday
+    spring = false,
+    summer = false,
+    autumn = false,
+    winter = false, --since when were all the seasons the exact same length :sob:
+
+    copiday = copiday,
 }

@@ -100,6 +100,11 @@
 		</Graphics>
 	</CellData>
 
+	<Reaction probability="1"
+		input_cell1="aa_chaotic_pandorium" input_cell2="air"
+		output_cell1="air" output_cell2="air"
+	/>
+
 	<Reaction probability="2"
 		input_cell1="aa_chaotic_pandorium" input_cell2="air"
 		output_cell1="air" output_cell2="air"

@@ -202,7 +202,6 @@ function OnPlayerSpawned(player)
 		print("Kolmi is not home on this one.")
 	end
 
-	pixel_scenes:on_player_spawn()
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
 	fishing.OnPlayerSpawned(player)
@@ -426,4 +425,6 @@ end
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
+
+-- ↓ anti-nathan wards my beloved
 --stylua: ignore end

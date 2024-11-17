@@ -359,20 +359,16 @@ function LastDayOfGregorianMonth(month, year)
         local absolute = AbsoluteFromGregorianDate(gregs_date) + offset + 1 --ignore the +1, p sure my math was off somewhere and i can't be bothered to fix it. if it works, it works.
         local hebs_date = HebrewDateFromAbsolute(absolute) --heb and greg are going on a date <3
         local shorty_offset = ShortKislev(hebs_date.year)
-        --return (hebs_date.month == 9 and hebs_date.day >= 25) or (hebs_date.month == 9 and hebs_date.day <= 3 + shorty_offset) actually imma return what day of hanukkah it is
         local day = 0
-        print(hebs_date.day .. "/" .. hebs_date.month)
+        --print(hebs_date.day .. "/" .. hebs_date.month)
         if hebs_date.month == 9 then
             for i = 1, hebs_date.day - 24 do
                 day = day + 1
             end
-            print(day)
         elseif hebs_date.month == 10 then
             for i = 1, hebs_date.day + 5 + shorty_offset do
                 day = day + 1
             end
-            print(day)
-            print(day)
         end
 
         if day == 0 then return false

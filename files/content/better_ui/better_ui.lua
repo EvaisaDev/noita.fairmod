@@ -104,29 +104,6 @@ local objectives_codes = {
 }
 
 local objectives = {
-	"Find Dave",
-	"Hämis",
-	"Complete the objective",
-	"Drink all water",
-	"Have 3 people visit your island",
-	"Loading...",
-	"Failed",
-	"Follow the purple lights",
-	"Forfeit material wealth for Hämis",
-	"Kill.",
-	"Fail this objective",
-	"Defeat God.",
-	"Download Copi's Things",
-	"Make 100 friends",
-	"Buy tips from Hämis",
-	"Throw for content",
-	"Keep Yourself Safe",
-	"Win",
-	"Survive",
-	"Lose",
-	"Tie",
-	"Eat Steve",
-	"Unlock dev_mode",
 	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!"
 }
 
@@ -220,6 +197,7 @@ local ui_displays = {
 
 				local wse = GameGetWorldStateEntity()
 				local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+				if wsc == nil then return end --if wsc is nil, god help us...
 				local rain = ComponentGetValue2(wsc, "rain")
 				local fog = ComponentGetValue2(wsc, "fog")
 				local day = ComponentGetValue2(wsc, "day_count")
@@ -318,10 +296,20 @@ local ui_displays = {
 		},
 		{
 			text = function()
-				return "New Game+ Iteration: " .. SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")
+				return "New Game+ Iteration: " .. (GlobalsGetValue("NEW_GAME_PLUS_ITERATION") == "NaN" and "NaN" or SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
 			end,
 			condition = function()
-				return SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") ~= nil
+				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
+			end
+		},
+		{
+			text = function()
+				return "Alias: " .. GlobalsGetValue("NEW_GAME_PLUS_ITERATION")
+			end,
+			condition = function()
+				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")
+				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
+				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= "NaN"
 			end
 		},
 		{
@@ -363,7 +351,7 @@ local ui_displays = {
 			text = function()
 				local times_lost_in_a_row = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0
 				if times_lost_in_a_row == 1 then
-					return "Lost " .. times_lost_in_a_row .. " time since last win"
+					return "Lost 1 time since last win"
 				else
 					return "Lost " .. times_lost_in_a_row .. " times since last win"
 				end

@@ -80,7 +80,6 @@ module.update = function()
 										
 									else
 										if value.type == "number" then
-											input_args[index] = input_args[index]:gsub("minus", "-")
 											if tonumber(input_args[index]) == nil then invalid = true end
 										end
 									end

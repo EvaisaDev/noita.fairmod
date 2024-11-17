@@ -63,78 +63,75 @@ function do_newgame_plus(iteration, force_relative)
 	-- GameDoEnding2()
 	-- BiomeMapLoad( "mods/nightmare/files/biome_map.lua" )
 
+	local input = iteration --save input
 	local newgame_n --newgame value as number
 
 	local prev_number = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") --store previous ng+
-	local prev_id = GlobalsGetValue("NEW_GAME_PLUS_ID")
+	local prev_id = GlobalsGetValue("NEW_GAME_PLUS_ITERATION")
+	GlobalsSetValue("NEW_GAME_PLUS_ITERATION", "")
+
+	local data = { --set data
+		input = input,
+		force_relative = force_relative,
+		prev_number = prev_number,
+		prev_id = prev_id,
+	}
 	
+
+	--setting iteration
 	if force_relative then
 		SessionNumbersSetValue("convert_to_number", iteration)
 		newgame_n = tonumber(prev_number) + SessionNumbersGetValue("convert_to_number") --forcibly convert iteration to number and add it to previous iteration number
 	else
-		if iteration == nil then --default iteration if nil
-			if prev_id then
+		if iteration == nil or iteration == "" then --default iteration if nil
+			if prev_id ~= "" then
 				iteration = prev_id
 			else
 				iteration = tonumber(prev_number) + 1
 			end
 		end
-	
-		if special_iterations[iteration].redirect then	--redirect iteration value if redirect value is present
-			iteration = special_iterations[iteration].redirect()
-		end
 	end
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	if tonumber(iteration) == nil then 				--logic if iteration is not a number
+	local return_data = {}
+	if tonumber(iteration) == nil then
+		--if not a number
 		if special_iterations[iteration] == nil then
 			iteration = "NaN"
-		end
-		if special_iterations[iteration].func then
-			newgame_n = special_iterations[iteration].func()
-		end
-		GameAddFlagRun(iteration)
-	else
-		if special_iterations[iteration].func then
-			newgame_n = special_iterations[iteration].func()
+		else
+			--redirect iteration value if redirect value is present
+			if special_iterations[iteration].redirect then	
+				iteration = special_iterations[iteration].redirect(data)
+			end
+			if special_iterations[iteration].func then
+				return_data = special_iterations[iteration].func(data)
+			end
 		end
 	end
+	GlobalsSetValue("NEW_GAME_PLUS_ITERATION", return_data.alias or iteration)
+
+
 
 
 	print("NG+ ITERATION INPUT IS [" .. iteration .. "]")
 	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", iteration )
-	newgame_n = SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT")
+
+
+	
+	if return_data.do_return == false then print(string.format('special iteration "%s" returned false for [do_continue], cancelling default script...', iteration, newgame_n)) return end
+
+	newgame_n = tonumber(SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT"))
 	print("NG+ ITERATION TONUMBER IS [" .. tostring(newgame_n) .. "]")
 
 
 	
-	if newgame_n == nil then print(string.format('special iteration "%s" did not return a valid NG+ iterationm returned "%s"\ncancelling default script...', iteration, newgame_n)) return end
+	local do_enemy_scaling = return_data.do_enemy_scaling or true
 
-
-
-	
-	local do_enemy_scaling = true
-
-	local map = "data/biome_impl/biome_map_newgame_plus.lua"
-	local _pixel_scenes = "data/biome/_pixel_scenes_newgame_plus.xml"
-	local clean_up_biome_entrances = true
+	local map = return_data.map or "data/biome_impl/biome_map_newgame_plus.lua"
+	local _pixel_scenes = return_data._pixel_scenes or "data/biome/_pixel_scenes_newgame_plus.xml"
+	local clean_up_biome_entrances = return_data.clean_up_biome_entrances or true
 	
 
 

@@ -85,6 +85,17 @@ local prizes = {
 		end,
 	},
 	{
+		text = "death",
+		description = "Free trip into your next life!",
+		weight = 1,
+		func = function(player)
+			local dmg_model = EntityGetFirstComponent(player, "DamageModelComponent")
+			if dmg_model then
+				EntityInflictDamage(player, ComponentGetValue2(dmg_model, "max_hp"), "DAMAGE_CURSE", "Cashed in bad prize", "NONE", 0, 0)
+			end
+		end
+	},
+	{
 		text = "$0.01",
 		weight = 40,
 		description = "You won 1 cent!",

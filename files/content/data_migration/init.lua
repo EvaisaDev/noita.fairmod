@@ -19,7 +19,7 @@ if detected_version == 0 and (tonumber(ModSettingGet("fairmod.plays")) or 0) > 0
 	MigrateSetting("fairmod.information_hamis_amount_given", "information_hamis_amount_given")
 	MigrateSetting("fairmod.information_hamis_wallet", "information_hamis_wallet")
 	MigrateSetting("fairmod.user_seed", "user_seed")
-	MigrateSetting("fairmod.cpand_tmtrainer_chance", "fairmod.cpand_tmtrainer_chance")
+	MigrateSetting("noita.fairmod.cpand_tmtrainer_chance", "noita.fairmod.fairmod.cpand_tmtrainer_chance")
 end
 
 ModSettingSet("fairmod.mod_setting_version", mod_setting_version)
