@@ -1,0 +1,72 @@
+<PixelScenes>
+  <mBufferedPixelScenes>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/0_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/0_visual.plz" material_filename="data/biome_impl/spliced/tree/0.plz" pos_x="32" pos_y="400" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/1_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/1_visual.plz" material_filename="data/biome_impl/spliced/tree/1.plz" pos_x="13" pos_y="512" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/2_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/2_visual.plz" material_filename="data/biome_impl/spliced/tree/2.plz" pos_x="16" pos_y="1024" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/3_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/3_visual.plz" material_filename="data/biome_impl/spliced/tree/3.plz" pos_x="32" pos_y="1536" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/4_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/4_visual.plz" material_filename="data/biome_impl/spliced/tree/4.plz" pos_x="69" pos_y="2048" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/5_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/5_visual.plz" material_filename="data/biome_impl/spliced/tree/5.plz" pos_x="13" pos_y="2560" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/6_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/6_visual.plz" material_filename="data/biome_impl/spliced/tree/6.plz" pos_x="32" pos_y="3072" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/7_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/7_visual.plz" material_filename="data/biome_impl/spliced/tree/7.plz" pos_x="61" pos_y="3584" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/8_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/8_visual.plz" material_filename="data/biome_impl/spliced/tree/8.plz" pos_x="13" pos_y="4096" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/9_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/9_visual.plz" material_filename="data/biome_impl/spliced/tree/9.plz" pos_x="32" pos_y="4608" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/10_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/10_visual.plz" material_filename="data/biome_impl/spliced/tree/10.plz" pos_x="40" pos_y="5120" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/11_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/11_visual.plz" material_filename="data/biome_impl/spliced/tree/11.plz" pos_x="13" pos_y="5632" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/12_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/12_visual.plz" material_filename="data/biome_impl/spliced/tree/12.plz" pos_x="71" pos_y="6144" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/13_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/13_visual.plz" material_filename="data/biome_impl/spliced/tree/13.plz" pos_x="32" pos_y="6656" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/14_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/14_visual.plz" material_filename="data/biome_impl/spliced/tree/14.plz" pos_x="13" pos_y="7168" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/15_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/15_visual.plz" material_filename="data/biome_impl/spliced/tree/15.plz" pos_x="0" pos_y="7680" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/16_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/16_visual.plz" material_filename="data/biome_impl/spliced/tree/16.plz" pos_x="0" pos_y="8192" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/17_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/17_visual.plz" material_filename="data/biome_impl/spliced/tree/17.plz" pos_x="519" pos_y="403" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/18_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/18_visual.plz" material_filename="data/biome_impl/spliced/tree/18.plz" pos_x="512" pos_y="512" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/19_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/19_visual.plz" material_filename="data/biome_impl/spliced/tree/19.plz" pos_x="512" pos_y="1024" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/20_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/20_visual.plz" material_filename="data/biome_impl/spliced/tree/20.plz" pos_x="512" pos_y="1536" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/21_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/21_visual.plz" material_filename="data/biome_impl/spliced/tree/21.plz" pos_x="512" pos_y="2048" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/22_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/22_visual.plz" material_filename="data/biome_impl/spliced/tree/22.plz" pos_x="512" pos_y="2560" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/23_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/23_visual.plz" material_filename="data/biome_impl/spliced/tree/23.plz" pos_x="512" pos_y="3072" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/24_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/24_visual.plz" material_filename="data/biome_impl/spliced/tree/24.plz" pos_x="512" pos_y="3584" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/25_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/25_visual.plz" material_filename="data/biome_impl/spliced/tree/25.plz" pos_x="512" pos_y="4096" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/26_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/26_visual.plz" material_filename="data/biome_impl/spliced/tree/26.plz" pos_x="512" pos_y="4608" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/27_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/27_visual.plz" material_filename="data/biome_impl/spliced/tree/27.plz" pos_x="512" pos_y="5120" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/28_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/28_visual.plz" material_filename="data/biome_impl/spliced/tree/28.plz" pos_x="512" pos_y="5632" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/29_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/29_visual.plz" material_filename="data/biome_impl/spliced/tree/29.plz" pos_x="512" pos_y="6144" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/30_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/30_visual.plz" material_filename="data/biome_impl/spliced/tree/30.plz" pos_x="512" pos_y="6656" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/31_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/31_visual.plz" material_filename="data/biome_impl/spliced/tree/31.plz" pos_x="512" pos_y="7168" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/32_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/32_visual.plz" material_filename="data/biome_impl/spliced/tree/32.plz" pos_x="512" pos_y="7680" skip_biome_checks="1" >
+    </PixelScene>
+    <PixelScene DEBUG_RELOAD_ME="1" background_filename="data/biome_impl/spliced/tree/33_background.png" clean_area_before="1" colors_filename="data/biome_impl/spliced/tree/33_visual.plz" material_filename="data/biome_impl/spliced/tree/33.plz" pos_x="512" pos_y="8192" skip_biome_checks="1" >
+    </PixelScene>
+  </mBufferedPixelScenes>
+</PixelScenes>
