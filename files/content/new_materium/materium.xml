@@ -116,7 +116,7 @@
 		name="fairmod_truehealy"
 		ui_name="Panacea"
 		tags="[liquid],[magic_liquid]"
-		wang_color="fff6ffdc"
+		wang_color="fff7ffdc"
 		cell_type="liquid"
 		liquid_sand="0"
 		electrical_conductivity="0"
@@ -129,7 +129,7 @@
 			</Stains>
 		
 			<Ingestion>
-				 <StatusEffect type="REGENERATION" amount="0.2" />
+				 <StatusEffect type="HP_REGENERATION" amount="0.2" />
 			</Ingestion>
 		</StatusEffects>
 	</CellData>

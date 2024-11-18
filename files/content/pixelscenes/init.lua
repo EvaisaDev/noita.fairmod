@@ -41,9 +41,4 @@ function pixel_scenes:init()
 	end
 end
 
-function pixel_scenes:on_player_spawn()
-	-- It's weird because tree sometimes overwrites the scene
-	EntityLoadCameraBound("mods/noita.fairmod/files/content/pixelscenes/statues/spawner.xml", -1700, -200)
-end
-
 return pixel_scenes

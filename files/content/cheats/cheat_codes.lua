@@ -571,7 +571,7 @@ return {
 		devmode = true,
 		func = function(player)
 			local x,y = EntityGetTransform(player)
-			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
+			EntityLoad( "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml", x, y - 20)
 		end
 	},
 	{
@@ -614,6 +614,35 @@ return {
 			EntityLoad("data/entities/projectiles/deck/sea_water.xml", x, y)
 		end
 	},
+	{
+		code = "hungryhungryportals",
+		name = "Hungry Hungry Portals!",
+		description = "Eat up!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+
+			for i = 1, 8 do
+				for j = 1, 100 do
+					-- get a random angle radian
+					local angle = math.rad(Random(0, 360))
+					-- get a random direction vector
+					local dx = math.cos(angle)
+					local dy = math.sin(angle)
+
+					local distance = Random(100, 400)
+
+					local target_x = x + (dx * distance)
+					local target_y = y + (dy * distance)
+
+					local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+					if not hit then
+						EntityLoad("mods/noita.fairmod/data/entities/animals/noita.fairmod_hm_portal_mimic.xml", target_x, target_y)
+						break
+					end
+				end
+			end
+		end
+	}
 }
 
 --stylua: ignore end

@@ -41,7 +41,7 @@ print()
 for k, data in pairs(actions) do
 	if data.related_projectiles ~= nil then
 		if data.pandorium_ignore then goto continue end
-		if data.tm_trainer and Randomf() >= (ModSettingGet("fairmod.cpand_tmtrainer_chance") or 0) then goto continue end
+		if data.tm_trainer and Randomf() >= (ModSettingGet("noita.fairmod.cpand_tmtrainer_chance") or 0) then goto continue end
 		for k2, v in pairs(data.related_projectiles) do
 			if table.has_value(spells, v) == false then table.insert(spells, v) end
 		end

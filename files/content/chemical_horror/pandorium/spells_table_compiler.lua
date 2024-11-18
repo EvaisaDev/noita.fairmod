@@ -56,6 +56,7 @@ end
 local tmtrainer
 local pandorium_safety = true
 for k, data in pairs(actions) do
+	--for key, value in pairs(data) do print(key .. ": " .. tostring(value)) end --helpful line that prints out every spell in the game
 	if data.pandorium_ignore then goto continue end
 	if pandorium_safety and (data.ai_never_uses or data.recursive) then goto continue end
 
@@ -88,7 +89,7 @@ for k, data in pairs(actions) do
 	::continue::
 end
 
-if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("fairmod.cpand_tmtrainer_chance") or 0 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
+if tmtrainer then chaotic.TMTRAINER.probability = ModSettingGet("noita.fairmod.cpand_tmtrainer_chance") or 0 end --caching probability here so i dont have to call ModSettingGet a bajillion times in random_spell_chaotic
 
 --unused funni stuff
 -- please use the funni stuff -c

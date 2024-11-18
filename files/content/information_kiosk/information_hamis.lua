@@ -4,6 +4,8 @@ dialog_system.dialog_box_height = 80
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
 
+local seasonals = dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
+
 SetRandomSeed(x + GameGetFrameNum(), y)
 
 local player_has_won = ModSettingGet("fairmod_win_count") or 0
@@ -91,38 +93,63 @@ local tips = {
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
 
-local seasonal = {
+local seasonal_tips = {
 	halloween = {
 		"Happy Halloween!",
 		"Trick or Treat!",
 		"Nice makeup, you really look like a Hiisi!",
 		"I'm dressing up as myself this year!",
 	},
-	winter = {
+	christmas = {
 		"Brrr, it's getting cold out!",
 		"All my competitors are stocking up to hibernate for winter\nNot me! I'm on the grind!",
+		"I hope we get snow!",
 		"Merry Christmas",
 		"Happy Christmas",
 		"For Christmas, I'm going to wish for your happiness!",
-		"I hope we get snow!",
-		"Jingle Bells, Hämis Sells,\nLots and lots of tips!\nMinä buys, and then survives,\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
+		"Jingle Bells,{@pause 10} Hämis Sells,{@pause 15}\nLots and lots of tips!{@pause 25}\nMinä buys,{@pause 10} and then survives,{@pause 15}\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
+		"All I want for Christmas, is you{@pause 50}'re wallet!"
+	},
+	hanukkah = {
+		"Happy Hanukkah",
+		"I can't make decisive seasonal comments about hanukkah\ndue to the date changing relative to the\nGregorian calendar, how troublesome!",
+	},
+	easter = {
+		"Calculating easter dates is a hard\nI'm writing this tip before I even know if I'll continue\nworking on it!",
+		"Find my 8 eggs!",
+	},
+	valentines = {
+		"A chocolate, for me? Aww thanks, shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20} Spiders are deathly allergic to chocolate)",
+		"Ask your crush out!\nUnless it's me, I'm married to my work!",
+	},
+	Monday = {
+		"lasgan",
+		"I love Mondays",
+		"The week only passes as slowly as you let it!",
+	},
+	Wednesday = {
+		"Wait,{@pause 10} how do you spell Wensday again?",
+	},
+	Friday = {
+		"The Weekend will pass by just as fast as the last one did\nSavour and make the most of what little time you have",
+	},
+	Sunday = {
+		"Never hesitate to have a do-nothing day every once in a\nwhile!",
 	},
 }
 
-local streamer_tips = {
-	general = {
-		"Are you sure your recording software is running?",
-		"~Woooo its us, chat, we're in your gaaaaammee~",
-		"Chat is this a W?",
-		"We can tell when OBS is open, like right now!",
-		"Don't forget streamer mode!",
-		"Streaming tip: Don't Die",
-		"Streaming tip: Throw for content!",
-		"This stream is pretty P.O.G-CHAMP!!!",
-		"Chat, kill this guy.",
-		'Streamer detected, activating "Fucking_Kill_Them" Mode...'
-	}
-}
+for key, value in pairs(seasonal_tips) do
+	if key == seasonals.weekday then
+		for k, v in ipairs(value) do
+			table.insert(tips, v)
+		end
+	elseif seasonals[key] then
+		for k, v in ipairs(value) do
+			table.insert(tips, v)
+		end
+	end
+end
+
 
 table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 

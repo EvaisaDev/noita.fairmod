@@ -1,9 +1,0 @@
-<Entity>
-	<CameraBoundComponent
-		distance="500">
-	</CameraBoundComponent>
-	<LuaComponent
-		script_source_file="mods/noita.fairmod/files/content/pixelscenes/statues/init.lua"
-		remove_after_executed="1">
-	</LuaComponent>
-</Entity>

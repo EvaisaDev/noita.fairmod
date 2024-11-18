@@ -41,10 +41,26 @@ if Random(1, 4) > 1 then
 
 	vel_x = math.cos(angle) * length
 	vel_y = 0 - math.sin(angle) * length
+	--found out there was no need to write this out since vanilla function wasnt the cause of the issue, but who cares, this is still slightly more streamlined than the vanilla function for our purposes anyway
+	local function better_shoot_projectile(shooter, filepath, x, y, vel_x, vel_y) 
+		local projectile = EntityLoad( filepath, x, y )
+	
+		GameShootProjectile( shooter, x, y, x+vel_x, y+vel_y, projectile)
+
+		local proj_comps = EntityGetComponent(projectile, "ProjectileComponent")
+		if proj_comps == nil then return end
+		for index, value in ipairs(proj_comps) do
+			ComponentSetValue2(value, "mWhoShot", shooter or 0)
+			ComponentSetValue2(value, "mShooterHerdId", -1)
+		end
+	
+		return projectile
+	end
 
 	if #EntityGetInRadiusWithTag(x, y, 25, "player_unit") > 0 then
-		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 1.1, vel_y * 1.1)
-		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 0.9, vel_y * 0.9)
-		shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y)
+		
+		better_shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 1.1, vel_y * 1.1)
+		better_shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x * 0.9, vel_y * 0.9)
+		better_shoot_projectile(entity_id, "mods/noita.fairmod/files/content/hm_portal_mimic/tentacle.xml", x, y, vel_x, vel_y)
 	end
 end
