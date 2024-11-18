@@ -16,10 +16,10 @@ ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileG
 
 
 
+ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
 do return end --lower stuff is unused for now since we've decided not to apply the world expansion to NG
 
-ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
 ------------------ MOVE SPLICED PIXEL SCENES ------------------
 

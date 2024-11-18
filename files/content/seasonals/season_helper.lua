@@ -22,8 +22,8 @@ TimeUTC = {
 
 --[[ spoof dates by uncommenting stuff at the bottom
 local spoof_date = {
-    year = 2024,
-    month = 11,
+    year = 2025,
+    month = 12,
     day = 15,
     hour = 7,
     minute = 49,
