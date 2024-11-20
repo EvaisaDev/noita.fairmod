@@ -18,6 +18,28 @@ ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileG
 
 ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
+local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
+
+local xml = nxml.parse_file("data/biome/_biomes_all.xml")
+
+
+
+for xml in nxml.edit_file("data/biome/_biomes_all.xml") do
+    xml:add_child(nxml.new_element("Biome", {
+		biome_filename="mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/backrooms.xml", 
+		height_index="0",
+		color="ff390d08",
+	}))
+    xml:add_child(nxml.new_element("Biome", {
+		biome_filename="mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/backrooms_void.xml", 
+		height_index="0",
+		color="ff460f0a",
+	}))
+end
+
+
+
+
 do return end --lower stuff is unused for now since we've decided not to apply the world expansion to NG
 
 
