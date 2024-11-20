@@ -1,5 +1,6 @@
 --stylua: ignore start
 local SetContent = ModTextFileSetContent
+dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
@@ -98,6 +99,7 @@ dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
+dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
@@ -201,7 +203,6 @@ function OnPlayerSpawned(player)
 		print("Kolmi is not home on this one.")
 	end
 
-	pixel_scenes:on_player_spawn()
 	tm_trainer.OnPlayerSpawned(player)
 	funky_portals.OnPlayerSpawned(player)
 	fishing.OnPlayerSpawned(player)
@@ -425,4 +426,6 @@ end
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
+
+-- ↓ anti-nathan wards my beloved
 --stylua: ignore end

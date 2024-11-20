@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 local entity = GetUpdatedEntityID()
 
 exploding = exploding or false
@@ -90,19 +92,6 @@ if current_pitch >= 9 then
 	-- remove audio loops
 	for i, comp in ipairs(EntityGetComponentIncludingDisabled(entity, "AudioLoopComponent") or {}) do
 		EntityRemoveComponent(entity, comp)
-	end
-
-	function EntityDropItem(entity, item_entity)
-		EntityRemoveFromParent(item_entity)
-		EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_hand", false)
-		EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_world", true)
-
-		local inventory_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
-		if inventory_comp ~= nil then
-			ComponentSetValue2(inventory_comp, "mActiveItem", 0)
-			ComponentSetValue2(inventory_comp, "mActualActiveItem", 0)
-			ComponentSetValue2(inventory_comp, "mForceRefresh", true)
-		end
 	end
 
 	EntityDropItem(EntityGetRootEntity(entity), entity)

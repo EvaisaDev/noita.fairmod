@@ -235,14 +235,15 @@ local function build_settings()
 			ui_description = "Miscellaneous settings",
 			settings = {
 				{
-					id = "fairmod.cpand_tmtrainer_chance",
+					id = "cpand_tmtrainer_chance",
 					ui_name = "Pandorium TMT%",
-					ui_description = "Probability for Pandorium to use TM-Trainer spells\nTMT Spells have a tendency to crash, set to max if you aren't a coward\nRanges 0-30%",
+					ui_description = "Probability for Pandorium and other random-spell casters to use TM-Trainer spells\nTMT Spells have a tendency to crash, set to max if you aren't a coward\nRanges 0-30%",
 					value_default = 0,
 					value_min = 0.0,
 					value_max = 0.3,
 					value_display_multiplier = 100,
 					value_display_formatting = " $0%",
+					scope = MOD_SETTING_SCOPE_NEW_GAME,
 				},
 				{
 					id = "max_corpse_count2",

@@ -2,6 +2,8 @@
 -- written by IQuant, Refactored by Eba
 -- Rewrited again by Lamia using his *beautiful* lib
 
+local seasonal = dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
+
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class better_ui:UI_class
 ui.text_scale = 0.75
@@ -92,6 +94,15 @@ local moon_phases = {
 	"Waxing Gibbous",
 }
 
+local objectives_codes = {
+	"copi",
+	"chaos",
+	"superchest",
+	"boob",
+	"thirsty",
+	"gimmetinker",
+}
+
 local objectives = {
 	"Find Dave",
 	"Hämis",
@@ -108,6 +119,22 @@ local objectives = {
 	"Download Copi's Things",
 	"Make 100 friends",
 	"Buy tips from Hämis",
+	"Throw for content",
+	"Keep Yourself Safe",
+	"Win",
+	"Survive",
+	"Lose",
+	"Tie",
+	"Eat Steve",
+	"Eat Scott",
+	"Unlock dev_mode",
+	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!",
+	"Be the last to be eliminated",
+	"Kill 5 other players",
+	"Find love",
+	"Forgive.",
+	"Remember yourself",
+	"Realise your ambitions",
 }
 
 local game_speed_a = 0
@@ -200,6 +227,7 @@ local ui_displays = {
 
 				local wse = GameGetWorldStateEntity()
 				local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
+				if wsc == nil then return end --if wsc is nil, god help us...
 				local rain = ComponentGetValue2(wsc, "rain")
 				local fog = ComponentGetValue2(wsc, "fog")
 				local day = ComponentGetValue2(wsc, "day_count")
@@ -298,6 +326,24 @@ local ui_displays = {
 		},
 		{
 			text = function()
+				return "New Game+ Iteration: " .. (GlobalsGetValue("NEW_GAME_PLUS_ITERATION") == "NaN" and "NaN" or SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
+			end,
+			condition = function()
+				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
+			end
+		},
+		{
+			text = function()
+				return "Alias: " .. GlobalsGetValue("NEW_GAME_PLUS_ITERATION")
+			end,
+			condition = function()
+				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")
+				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
+				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= "NaN"
+			end
+		},
+		{
+			text = function()
 				return "Wins while using mod: " .. tostring((ModSettingGet("fairmod_win_count") or 0))
 			end,
 			condition = function()
@@ -335,7 +381,7 @@ local ui_displays = {
 			text = function()
 				local times_lost_in_a_row = tonumber(GlobalsGetValue("GAMBLECORE_TIMES_LOST_IN_A_ROW", "0")) or 0
 				if times_lost_in_a_row == 1 then
-					return "Lost " .. times_lost_in_a_row .. " time since last win"
+					return "Lost 1 time since last win"
 				else
 					return "Lost " .. times_lost_in_a_row .. " times since last win"
 				end
@@ -478,6 +524,14 @@ local extra_ui = {
 		text = function()
 			return "Language: " .. GameTextGetTranslatedOrNot("$current_language")
 		end,
+	},
+	{
+		text = function()
+			local is_void = seasonal.void_day
+			is_void = (tonumber(tostring(ModSettingGet("fairmod.user_seed")):sub(21,21)) or 0) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
+			is_void = is_void and "yes" or "no"
+			return "Void Calendar: " .. is_void
+		end
 	},
 	{
 		text = function()
