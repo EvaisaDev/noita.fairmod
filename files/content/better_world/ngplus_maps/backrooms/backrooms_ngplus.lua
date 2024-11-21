@@ -22,7 +22,6 @@ for index, value in ipairs(EntityGetWithTag("player_unit")) do
     ComponentSetValue2(tele_comps[1], "target", safe_spawn.x + 448, safe_spawn.y + 192)
     ComponentSetValue2(tele_comps[1], "target_x_is_absolute_position", true)
     ComponentSetValue2(tele_comps[1], "target_y_is_absolute_position", true)
-    
 end
 
 LoadPixelScene("mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/start.png", "", safe_spawn.x, safe_spawn.y)
