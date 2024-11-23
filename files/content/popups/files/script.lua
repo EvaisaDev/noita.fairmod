@@ -506,7 +506,7 @@ local Popups = dofile_once("mods/noita.fairmod/files/content/popups/files/append
 if immersive_mimics then Popups = coper_things end
 GuiIdPushString(Gui, "ModMimicPopupWindow")
 
-local windowNumOverlappingElements = 4
+local windowNumOverlappingElements = 10
 local windowCounter = 0
 
 
@@ -514,7 +514,7 @@ local windowCounter = 0
 
 local minwidth, minheight = 100, 100 -- min width & height
 local maxwidth, maxheight = 3000, 270 -- max width & height
-for i = 2, #Windows do
+for i = 1, #Windows do
     if Windows[i] ~= nil then
         
 
@@ -540,6 +540,7 @@ for i = 2, #Windows do
         end
 
         local z = -1999999 - windowCounter * windowNumOverlappingElements
+        GuiZSet(gui, z)
 
         local imgwidth,imgheight = 0,0
         if popup.MESSAGE:sub(1,5)=="[IMG]" then
@@ -676,6 +677,7 @@ for i = 2, #Windows do
             if close_popup == true then
                 if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
                 table.remove(Windows, i)
+                -- i = i - 1
                 GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
                 if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
                 goto continue

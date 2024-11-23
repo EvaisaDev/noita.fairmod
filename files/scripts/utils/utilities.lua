@@ -92,3 +92,18 @@ function GetCurrentBiomeId()
 	local x, y = EntityGetTransform(plyr)
 	return GetBiomeId(x, y)
 end
+
+---@param entity int
+---@param item_entity int
+function EntityDropItem(entity, item_entity)
+	EntityRemoveFromParent(item_entity)
+	EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_hand", false)
+	EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_world", true)
+
+	local inventory_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
+	if inventory_comp ~= nil then
+		ComponentSetValue2(inventory_comp, "mActiveItem", 0)
+		ComponentSetValue2(inventory_comp, "mActualActiveItem", 0)
+		ComponentSetValue2(inventory_comp, "mForceRefresh", true)
+	end
+end

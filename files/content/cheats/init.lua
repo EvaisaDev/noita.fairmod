@@ -126,7 +126,7 @@ module.update = function()
 
 			local small_eyes = ("eyes"):sub(1, input:len())
 			if small_eyes == input:sub(1, 4) then
-				if input:len() == 9 then
+				if input:len() >= 9 then
 					local password = input:sub(5)
 					local key = 0
 					for i = 1, 5 do

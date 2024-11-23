@@ -164,9 +164,9 @@ local prizes = {
 	},
 	{
 		text = "$10000.00",
-		description = "You won 100000 gold!",
+		description = "You won 10000 gold!",
 		weight = 1,
-		func = get_money_func(100000),
+		func = get_money_func(10000),
 	},
 }
 

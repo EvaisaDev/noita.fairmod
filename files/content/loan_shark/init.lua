@@ -15,26 +15,31 @@ local loan_shark_goons = {
 		debt = 0,
 		entity = "data/entities/animals/rat.xml",
 		count = { 1, 3 },
+		hat_offset = { -1, 8 },
 	},
 	{
 		debt = 200,
 		entity = "data/entities/animals/shotgunner.xml",
 		count = { 1, 2 },
+		hat_offset = { 5, 17 },
 	},
 	{
 		debt = 500,
 		entity = "data/entities/animals/scavenger_smg.xml",
 		count = { 1, 3 },
+		hat_offset = { 4, 19 },
 	},
 	{
 		debt = 2000,
 		entity = "data/entities/animals/necromancer_shop.xml",
 		count = { 1 },
+		hat_offset = { 3, 23 },
 	},
 	{
 		debt = 7000,
 		entity = "data/entities/animals/necromancer_super.xml",
 		count = { 1 },
+		hat_offset = { 5, 22 },
 	},
 }
 
@@ -95,7 +100,20 @@ module.update = function()
 
 				local hit, x, y = Raytrace(x, y, x + random_x * 100, y + random_y * 100)
 
-				EntityLoad(goon.entity, x, y)
+				local entity_id = EntityLoad(goon.entity, x, y)
+
+				EntityAddComponent2(entity_id, "SpriteComponent", {
+					image_file = "mods/noita.fairmod/files/content/loan_shark/hats/shark_hood_front.png",
+					offset_x = goon.hat_offset[1],
+					offset_y = goon.hat_offset[2],
+					z_index = -1.01,
+				})
+				EntityAddComponent2(entity_id, "SpriteComponent", {
+					image_file = "mods/noita.fairmod/files/content/loan_shark/hats/shark_hood_back.png",
+					offset_x = goon.hat_offset[1],
+					offset_y = goon.hat_offset[2],
+					z_index = -0.99,
+				})
 			end
 		end
 	else

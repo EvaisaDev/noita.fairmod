@@ -8,3 +8,6 @@ dofile_once(BETTER_PROPS_PREFIX .. "init_wild_growth.lua")
 
 -- Makes cocoons spawn (m)any worms
 ModLuaFileAppend("data/scripts/buildings/worm_cocoon.lua", BETTER_PROPS_PREFIX .. "worm_cocoon_append.lua")
+
+-- Replace worm crystal with ghost crystal in temple of the art HM
+ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", BETTER_PROPS_PREFIX .. "temple_altar_append.lua")

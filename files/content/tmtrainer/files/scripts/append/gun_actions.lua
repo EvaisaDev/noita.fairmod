@@ -85,7 +85,7 @@ local function generate_image(index, original_sprite, was_first)
 			if Random(0, 100) < 30 or guaranteed_parts[i] then
 				for j = 0, original_sprite_height - 1 do
 					local color = ModImageGetPixel(original_sprite_id, i, j)
-					ModImageSetPixel(new_sprite_id, i, j, color)
+					ModImageSetPixel(corrupted_sprite_id, i, j, color)
 				end
 			end
 		end
