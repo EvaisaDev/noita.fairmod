@@ -187,9 +187,7 @@ function interacting(player, entity_interacted, interactable_name)
 			portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
 			typing_sound = "default", -- There are currently 6: default, sans, one, two, three, four and "none" to turn it off, if not specified uses "default"
 			text = "He is coming.",
-			options = {
-				text = "May he have mercy on my soul.",
-			},
+			options = {{ text = "May he have mercy on my soul.", }},
 		})
 		return
 	end
