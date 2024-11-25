@@ -18,11 +18,37 @@ local Popups = {
 		"Also try Noita.Fairmod! wait...",
 		"Hello, Geoffrey.",
 		"Become a Noitillionaire Today!",
-		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_A_Large_Part_Of_Your_Screen.exe",
+		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_An_Obscenely_Large_Portion_Of_Your_Screen.exe",
 		"Also try Apotheosis!",
 		"Also try Banana of Rectitude!",
 		"Also try... what... what am i..?",
 		"Also try Meta-Levelling!",
+		"You should love yourself NOW!",
+		"exe.exe is a palindrome!",
+		"exe.exe",
+		"xex.exe",
+		"exe.xex",
+		"xex.xex",
+		"eex.xee",
+		"Super cool things: coming you're way :D",
+		"Close me if you're LAME and STUPID",
+		"Close me if you want! <3",
+		"So about your car's extended warranty...",
+		"deathium_popup.exe",
+		"skill_issue.mp3",
+		"wurst.exe",
+		"badlion.client",
+		"cheat_engine.txt.bat.exe",
+		"probably racist virus (i love formula 1)",
+		"Also try Gods Demons & Tripping Balls!",
+		"Also try jumping off a bridge!",
+		"Also try Fairmod 2!",
+		"Also try getting good!",
+		"Also try Archipelago!",
+		"Also try Noita!",
+		"Also try Noita 2!",
+		"Also try!",
+		"Also try Goki's Things!",
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
@@ -46,8 +72,16 @@ local Popups = {
 		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* |MILLION| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD HATE WAS ENGRAVED ON EACH |PIXEL| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |ONE-BILLIONTH| OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| ||HATE.|| |||HATE!!!||| " newline - Your game during a long run',
 		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
-		"it's quick, it's easy and it's free: drinking deathium",
-		"Edit wands is a lame name for old people, who doesn't understand the unique and special name Tinker with wands everywhere. Editing is what you do to videos and profile, while true masters tinker with their highly intelligent magic tools",
+		"it's quick, it's easy and it's free: drinking deathium.",
+		"Edit wands is a |lame| name for old people, who doesn't understand the unique and special name @Tinker@ @with@ @wands@ @everywhere.@ Editing is what you do to videos and profile, while true masters @tinker@ with their @highly@ @intelligent@ magic tools",
+		"This is for you, Minä. You and only you. You are not special, you are not important, and you are not needed. You are a waste of time and resources. You are a burden on society. You are a drain on the earth. You are a blight on the landscape. You are a stain on the universe. newline Please die. newline Please.",
+		"giv me ur mone :)",
+		'If you close this popup then you have |GOT| to be the |LAMEST| most ||STUOIDEST|| *""Minä""* i hav ehad the ||UTER|| ||DISPLESURE|| of meeting witg my |ONE| ||TWO|| |||EYES!!!!!|||',
+		"are you @gay?@",
+		"TAKE THE @GAY@ @TEST@ NOW!!!!! newline 99.73% |FAIL| THIS ONE QUESTION!",
+		"are you stuoid or something?",
+		"There are many thing you can try to deal with your skill issue. One Reddit user suggests @jumping@ @off@ @the@ @Golden@ @Gate@ @Bridge.@",
+		"I don't *\"Struggle* *with* *lag\"* newline I'll have you know I'm very good at it!",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -65,22 +99,10 @@ local Popups = {
 					self.CUSTOM_9PIECE_BAR = nil
 					self.CUSTOM_X = nil
 				end,
-				function(self)
-					print("function 2!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 3!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 4!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 5!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
 			},
 			OPEN_FUNCTION = function(self) --OPEN_FUNCTION runs only once when the window is opened
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/prompt", GameGetCameraPos()) --play opening sound manually cuz disableSound is enabled
