@@ -1,0 +1,16 @@
+<Materials>
+	<CellDataChild
+		_parent="rock_static"
+		_inherit_reactions="1"
+		tags="[static],[alchemy],[solid],[earth]"
+		name="unknown" 
+		ui_name="Popup"
+		wang_color="ffbfb8bf"
+		hp="200000"
+		durability="12"
+		audio_physics_material_event="rock"
+		audio_physics_material_wall="rock"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="1"
+	/>  
+</Materials>

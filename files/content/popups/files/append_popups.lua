@@ -49,6 +49,11 @@ local Popups = {
 		"Also try Noita 2!",
 		"Also try!",
 		"Also try Goki's Things!",
+		"skissue_fixer.exe",
+		"download.exe",
+		"UNDRETALE.exe",
+		"Five at Nights Freddy's.exe",
+		"exe.exe.exe",
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
@@ -69,19 +74,24 @@ local Popups = {
 		"hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
 		"[IMG]mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png",
 		"note to self: add more trojans to popups",
-		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* |MILLION| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD HATE WAS ENGRAVED ON EACH |PIXEL| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |ONE-BILLIONTH| OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| ||HATE.|| |||HATE!!!||| " newline - Your game during a long run',
+		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* ||MILLION|| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD |HATE| WAS ENGRAVED ON EACH |||PIXEL||| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |||ONE-BILLIONTH||| OF THE |HATE| I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| |||HATE.||| |||||HATE!!!||||| " newline - Your game during a long run',
 		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
 		"it's quick, it's easy and it's free: drinking deathium.",
 		"Edit wands is a |lame| name for old people, who doesn't understand the unique and special name @Tinker@ @with@ @wands@ @everywhere.@ Editing is what you do to videos and profile, while true masters @tinker@ with their @highly@ @intelligent@ magic tools",
 		"This is for you, Minä. You and only you. You are not special, you are not important, and you are not needed. You are a waste of time and resources. You are a burden on society. You are a drain on the earth. You are a blight on the landscape. You are a stain on the universe. newline Please die. newline Please.",
 		"giv me ur mone :)",
-		'If you close this popup then you have |GOT| to be the |LAMEST| most ||STUOIDEST|| *""Minä""* i hav ehad the ||UTER|| ||DISPLESURE|| of meeting witg my |ONE| ||TWO|| |||EYES!!!!!|||',
+		'If you close this popup then you have ||GOT|| to be the |LAMEST| most ||STUOIDEST|| *""Minä""* i hav ehad the ||UTER|| ||DISPLESURE|| of meeting witg my |||ONE||| |||TWO||| |||EYES!!!!!|||',
 		"are you @gay?@",
 		"TAKE THE @GAY@ @TEST@ NOW!!!!! newline 99.73% |FAIL| THIS ONE QUESTION!",
 		"are you stuoid or something?",
 		"There are many thing you can try to deal with your skill issue. One Reddit user suggests @jumping@ @off@ @the@ @Golden@ @Gate@ @Bridge.@",
 		"I don't *\"Struggle* *with* *lag\"* newline I'll have you know I'm very good at it!",
+		"Can You Leave This |*Popup*| Open? newline Only 0.0012% Pass!",
+		"|||||||||||shakey||||||||||| |||||||||||shakey||||||||||| |||||||||||eggs||||||||||| |||||||||||and||||||||||| |||||||||||bakey|||||||||||",
+		"We could make a @religion@ out of this",
+		"\"You would not BELIEVE how immersive these popups are!\" newline -Person not being held at gunpoint",
+		"Popups so immersive, you'll regret the things you never knew and lament the things that never were!",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -132,6 +142,7 @@ local Popups = {
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
+
 
 		--[=[
 		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
@@ -257,9 +268,27 @@ local Popups = {
 			end,
 		},
 	},--]=]
+		{
+			EXE = "popup_REAL.exe",
+			MESSAGE = "Buy now, 40% more real popups! newline Immersion levels now at 1000%, what's the worst that could happen?!?",
+			CLOSE_FUNCTION = function(self, data)
+				local v_width,v_height = --awesome horscht code
+					MagicNumbersGetValue("VIRTUAL_RESOLUTION_X"),
+					MagicNumbersGetValue("VIRTUAL_RESOLUTION_Y")
+				local x, y = 
+					data.Windows[data.iteration].x,
+					data.Windows[data.iteration].y
+				local cx, cy = GameGetCameraBounds()
+				local ratio_x,ratio_y =
+					data.screen.x / v_width,
+					data.screen.y / v_height
+				local ent_x, ent_y = cx + (x / ratio_x), cy + (y / ratio_y)
+				LoadPixelScene("mods/noita.fairmod/files/content/popups/popup_real.png", "mods/noita.fairmod/files/content/popups/popup_real_visual.png", ent_x, ent_y, "")
+			end,
+		},
 	},
 
-	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
+	forcePrefab = 3, --set this to the prefab you wish to test, and it will guarantee it's spawning.
 	--false or nil means disabled, 0 or any other invalid index will pick randomly
 }
 
