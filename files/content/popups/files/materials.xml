@@ -1,10 +1,9 @@
 <Materials>
 	<CellDataChild
 		_parent="rock_static"
-		_inherit_reactions="1"
-		tags="[static],[alchemy],[solid],[earth]"
+		tags=""
 		name="unknown" 
-		ui_name="Popup"
+		ui_name="Advertisium"
 		wang_color="ffbfb8bf"
 		hp="200000"
 		durability="12"

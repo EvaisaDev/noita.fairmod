@@ -61,7 +61,7 @@ t.update = function()
 	local players = GetPlayers()
 
 	if(#players > 0)then
-		GameSetPostFxParameter("CARD_VISIBLE", 1, 0, 0, 0)
+		--GameSetPostFxParameter("CARD_VISIBLE", 1, 0, 0, 0)
 		
 		local player = players[1]
 
