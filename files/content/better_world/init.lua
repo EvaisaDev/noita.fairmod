@@ -40,6 +40,33 @@ end
 
 
 
+
+------------------ PIXEL SCENES ------------------
+
+local tree_extra_height = 6256
+local _pixel_scenes = { --index should be according to the line-number in "noita.fairmod/files/content/better_world/_pixel_scenes list (its handy trustm).xml"
+    [34] = { offset = {y = -tree_extra_height}},
+    [42] = { offset = {y = -tree_extra_height}}, --move mushrooms and music machine up to new tree top
+    [43] = { offset = {y = -tree_extra_height}},
+    [44] = { offset = {y = -tree_extra_height}},
+    [45] = { offset = {y = -tree_extra_height}},
+    [46] = { offset = {y = -tree_extra_height}},
+}
+
+for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do --real handy that p much most of the non-spliced pixel scenes are in one file, if not all
+    local i = 1
+    for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
+        if _pixel_scenes[i] then
+            local marker = _pixel_scenes[i].marker or {x = pixel_scene.attr.pos_x or 0, y = pixel_scene.attr.pos_y or 0}
+            local offset = _pixel_scenes[i].offset or nil_pos
+            offset.x = offset.x or 0; offset.y = offset.y or 0
+            pixel_scene.attr.pos_x = tostring(marker.x + offset.x)
+            pixel_scene.attr.pos_y = tostring(marker.y + offset.y)
+        end
+        i = i + 1
+    end
+end
+
 do return end --lower stuff is unused for now since we've decided not to apply the world expansion to NG
 
 
@@ -65,52 +92,6 @@ for key, value in pairs(spliced_cutscenes) do
             pixel_scene.attr.pos_x = marker.x + (pixel_scene.attr.pos_x - origin.x) --offset is the pixel scene's old position relative to its origin
             pixel_scene.attr.pos_y = marker.y + (pixel_scene.attr.pos_y - origin.y)
         end
-    end
-end
-
-
------------------- PORTALS ------------------
-
-local _pixel_scenes = { --index should be according to the line-number in "noita.fairmod/files/content/better_world/_pixel_scenes list (its handy trustm).xml"
-    [3] = {
-        marker = markers.hiisi_anvil,
-    },
-    [4] = {
-        marker = markers.vault_entrance,
-    },
-    [6] = {
-        marker = markers.tower_start,
-    },
-    [10] = {
-        marker = markers.fishing_hut,
-    },
-    [17] = {
-        marker = markers.fishing_hut, --bunker 1
-        offset = { x = -3, y = 186 }
-    },
-    [18] = {
-        marker = markers.fishing_hut, --bunker 2
-        offset = { x = -353, y = 400 },
-    },
-    [56] = {
-        marker = markers.fishing_hut, --hut check entity
-        offset = { x = 159, y = 50 },
-    },
-    [91] = {
-        marker = markers.big_fish,
-    },
-}
-
-for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do --real handy that p much most of the non-spliced pixel scenes are in one file, if not all
-    local i = 1
-    for pixel_scene in xml:first_of("mBufferedPixelScenes"):each_of("PixelScene") do
-        if _pixel_scenes[i] then
-            local marker = _pixel_scenes[i].marker or nil_pos
-            local offset = _pixel_scenes[i].offset or nil_pos
-            pixel_scene.attr.pos_x = tostring(marker.x + offset.x)
-            pixel_scene.attr.pos_y = tostring(marker.y + offset.y)
-        end
-        i = i + 1
     end
 end
 
@@ -198,7 +179,9 @@ for key, value in pairs(portals) do
     end
 end
 
-ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/snowcastle.lua") --remove safety region
+ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/snowcastle.lua") --remove safety region
+
+ModLuaFileAppend("data/scripts/biomes/vault.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/vault.lua")
 
 return better_world
 --stylua: ignore end
