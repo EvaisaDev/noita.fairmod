@@ -18,6 +18,10 @@ ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileG
 
 ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")
 
+ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/snowcastle.lua") --remove safety region
+ModLuaFileAppend("data/scripts/biomes/vault.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/vault.lua") --remove safety region and increase chaos
+
+
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
 
 local xml = nxml.parse_file("data/biome/_biomes_all.xml")
@@ -67,7 +71,7 @@ for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do --real handy that p
     end
 end
 
-do return end --lower stuff is unused for now since we've decided not to apply the world expansion to NG
+do return better_world end --the lower stuff is unused but still remains here so i can occasionally drench up the abominations from the murky depths when their time comes
 
 
 ------------------ MOVE SPLICED PIXEL SCENES ------------------
@@ -178,10 +182,4 @@ for key, value in pairs(portals) do
         end
     end
 end
-
-ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/snowcastle.lua") --remove safety region
-
-ModLuaFileAppend("data/scripts/biomes/vault.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/vault.lua")
-
-return better_world
 --stylua: ignore end

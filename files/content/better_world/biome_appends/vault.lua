@@ -11,6 +11,9 @@ for _, target_table in ipairs({g_small_enemies, g_big_enemies, g_props, g_hangin
             end
             if is_nil ~= false then
                 value = nil
+            else
+                value.min_count = (value.min_count or 1) + 1
+                value.max_count = (value.max_count or 2) + 3
             end
         end
     end
