@@ -12,10 +12,18 @@ for _, target_table in ipairs({g_small_enemies, g_big_enemies, g_props, g_hangin
             if is_nil ~= false then
                 value = nil
             else
-                value.min_count = (value.min_count or 1) + 1
-                value.max_count = (value.max_count or 2) + 3
+                value.max_count = (value.max_count or 2) + 2
             end
         end
     end
 end
 
+Old_Functions = {}
+for index, target_function in ipairs({"spawn_small_enemies", "spawn_big_enemies", "spawn_props"}) do
+    Old_Functions[index] = _G[target_function]
+    _G[target_function] = function(x, y, ...)
+        for i = 1, Random(1, 3) do
+            Old_Functions[index](x + i, y, ...)
+        end
+    end
+end
