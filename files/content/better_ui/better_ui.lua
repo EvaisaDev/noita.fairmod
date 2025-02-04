@@ -30,7 +30,7 @@ local function frames_to_time(frames)
 	local seconds_f = frames / 60
 	local minutes = math.floor(seconds_f / 60)
 	seconds_f = seconds_f % 60
-	return string.format("%i:%02.3f", minutes, seconds_f)
+	return string.format(seconds_f < 10 and "%i:0%02.3f" or "%i:%02.3f", minutes, seconds_f)
 end
 
 local function has_flag_run(flag)
