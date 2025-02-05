@@ -30,6 +30,25 @@ return {
 
 		end,
 	},
+	copi_evil = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_special = 1,
+		letter_title = "Take Control of your Life Today!", -- only used if create_letter is true
+		letter_content = [[
+		I know you've been struggling... dying to all kinds of things...
+		I can help you. I've rigged the game, stacked the cards against you. But?
+		Take this note, pick up the phone while holding it. Play along, and you
+		can win for once. ;)
+		- Copi]], -- only used if create_letter is true
+		letter_sprite = nil, -- only used if create_letter is true
+		letter_func = function(letter_entity) -- runs after the letter entity is created
+			EntityAddTag(letter_entity, "glue_NOT")
+			EntityAddTag(letter_entity, "grow")
+		end,
+		func = function(x, y) -- runs on mailbox open
+			GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/barren_puzzle_completed/create", x, y)
+		end,
+	},
 	gamebro = {
 		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
 		letter_title = "GameBrokenwand", -- only used if create_letter is true
@@ -47,7 +66,6 @@ return {
 		[#][\][ ][ ][ ]]=],
 		letter_sprite = "mods/noita.fairmod/files/content/mailbox/gamebrokenwand.png", -- only used if create_letter is true
 		letter_func = function(letter_entity) -- runs after the letter entity is created
-
 		end,
 		func = function(x, y) -- runs on mailbox open
 

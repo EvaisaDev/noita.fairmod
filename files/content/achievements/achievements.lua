@@ -462,6 +462,15 @@ achievements = {
 			return GameHasFlagRun("28_radios_tuned")
 		end,
 	},
+	{
+		name = "Appeased the old god",
+		description = "His boons are yours",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copi_evil.png",
+		flag = "copi_evil",
+		unlock = function()
+			return HasFlagPersistent("fairmod_copi_evil_letter")
+		end,
+	},
 }
 
 local function romanize(num)
