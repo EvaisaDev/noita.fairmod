@@ -151,7 +151,7 @@ local reactions = {
 		output_cell1 = "air",
 		output_cell2 = "air",
 		probability = "0.01",
-		entity = "data/entities/animals/longleg.xml",
+		entity = "mods/noita.fairmod/files/content/random_alchemy/hamis_spawner_limited.xml",
 	},
 	{
 		input_cell1 = "blood",
