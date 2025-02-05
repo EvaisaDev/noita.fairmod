@@ -112,7 +112,7 @@ if not in_call and ringing and ring_timer >= ring_end_time then
 	ring_timer = 0
 end
 
-local get_random_call = function()
+local get_random_call = function(entity_who_interacted)
 	-- get random call where call.can_call() returns true
 	-- first filter out calls that can't be called
 	local can_call = {}
@@ -121,7 +121,24 @@ local get_random_call = function()
 	end
 
 	-- then get a random call
-	return can_call[Random(1, #can_call)]
+	local call = can_call[Random(1, #can_call)]
+
+	-- egypt start
+	if not GameHasFlagRun("evil_call_ended") then
+		local invs = EntityGetAllChildren(entity_who_interacted) or {}; for i=1, #invs do
+			if EntityGetName(invs[i]) == "inventory_quick" then
+				local kids = EntityGetAllChildren(invs[i]) or {}; for j=1, #kids do
+					if EntityHasTag(kids[j], "grow") and EntityHasTag(kids[j], "glue_NOT") then
+						-- force the call if you're holding the incredibly shitty perk
+						call = dofile("mods/noita.fairmod/files/content/payphone/content/copilogue.lua")
+					end
+				end
+			end
+		end
+	end
+	-- egypt end
+
+	return call
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
@@ -146,7 +163,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		in_call = true
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
 		-- open random call
-		local call = get_random_call()
+		local call = get_random_call(entity_who_interacted)
 		call.on_closed = function()
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 		end
