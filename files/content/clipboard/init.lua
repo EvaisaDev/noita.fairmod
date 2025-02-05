@@ -47,6 +47,7 @@ function clipboard.OnPlayerSpawned()
 		"unknown.png",
 		"hehe im in your 'puter",
 		"This mod is so fair!",
+		"",
 	}
 
 	if imgui then
