@@ -241,6 +241,8 @@ function OnPlayerSpawned(player)
 	saw.OnPlayerSpawned(player)
 
 	user_seeds.OnPlayerSpawned(player)
+
+	achievements:init()
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -275,6 +277,7 @@ function OnWorldPreUpdate()
 		orbs_for_all:update()
 		surface_bad:update()
 		he_watches_you:update()
+		achievements:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
@@ -283,7 +286,6 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui:update()
 	loanshark.update()
-	achievements:update()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
