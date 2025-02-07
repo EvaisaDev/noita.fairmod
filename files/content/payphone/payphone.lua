@@ -142,14 +142,7 @@ local get_random_call = function(entity_who_interacted)
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	-- If viewing a scratch ticket, don't interact at the same time
-	if
-		EntityHasTag(entity_interacted, "viewing")
-		or GameHasFlagRun("fairmod_scratch_interacting")
-		or GameHasFlagRun("fairmod_dialog_interacting")
-	then
-		return
-	end
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 	GameAddFlagRun("fairmod_dialog_interacting")
