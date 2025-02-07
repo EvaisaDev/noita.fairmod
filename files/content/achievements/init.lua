@@ -1,5 +1,6 @@
 --- @alias achievement_data {name:{lines:string[], height:number}, description:{lines:string[],height:number}, icon:{path:string, width:number}, height:number}
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
+dofile_once("mods/noita.fairmod/files/content/achievements/achievements.lua")
 
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class achievement_ui:UI_class
 ui.scroll.height_max = 250
@@ -193,16 +194,17 @@ local function CheckAchievements()
 	end
 
 	local achievements_unlocked = 0
-	dofile("mods/noita.fairmod/files/content/achievements/achievements.lua")
-	for i, achievement in ipairs(achievements) do
-		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
-		if not HasFlagPersistent(flag) and achievement.unlock() then
+
+	for i = 1, #achievements do
+		local achievement = achievements[i]
+		local flag = achievement.flag
+		if HasFlagPersistent(flag) then
+			achievements_unlocked = achievements_unlocked + 1
+		elseif achievement.unlock() then
 			print("Achievement unlocked: " .. achievement.name)
 			AddNotification(achievement.icon, achievement.name, achievement.description, true)
 			GameAddFlagRun("fairmod_new_achievement")
 			AddFlagPersistent(flag)
-		elseif HasFlagPersistent(flag) then
-			achievements_unlocked = achievements_unlocked + 1
 		end
 	end
 
@@ -302,11 +304,10 @@ function ui:DrawAchievementsScrollbox()
 	self:Image(-10, self.scroll.height_max - 600, background_image)
 	for i = 1, #achievements do
 		local achievement = achievements[i]
-		local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
 		local achievement_data = self:GetAchievementData(achievement)
 
 		if y >= 0 - achievement_data.height and y <= self.scroll.height_max then
-			if HasFlagPersistent(flag) then
+			if HasFlagPersistent(achievement.flag) then
 				self:DrawAchievement(0, y, achievement_data)
 			else
 				self:DrawLockedAchievements(0, y, achievement_data)
@@ -342,8 +343,14 @@ function ui:DrawAchievementsWindow()
 	self:ScrollBox(x, y + 16, 1001, "mods/noita.fairmod/files/content/achievements/ui/ui_9piece_main.png", 3, 3, self.DrawAchievementsScrollbox)
 end
 
+function ui:init()
+	for i = 1, #achievements do
+		self:GetAchievementData(achievements[i])
+	end
+end
+
 function ui:update()
-	CheckAchievements()
+	if GameGetFrameNum() % 30 == 0 then CheckAchievements() end
 	self:StartFrame()
 	self.text_scale = 0.7
 	self:UpdateDimensions()
