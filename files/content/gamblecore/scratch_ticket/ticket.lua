@@ -62,7 +62,7 @@ end
 if not EntityHasTag(entity_id, "scratch_ticket") then
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "scratchoff/redeem", 0, 0)
 	ticket:redeem()
-	GameRemoveFlagRun("fairmod_scratch_interacting")
+	GameRemoveFlagRun("fairmod_dialog_interacting")
 	GuiDestroy(ticket.gui)
 	local parent = EntityGetRootEntity(entity_id)
 	GameKillInventoryItem(parent, entity_id)
@@ -70,22 +70,26 @@ end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	-- If interacting with a dialog system, don't open scratch ticket at the same time
-	if dialog_system.is_any_dialog_open() or GameHasFlagRun("fairmod_dialog_interacting") then return end
-	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
-	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 
 	if not EntityHasTag(entity_interacted, "viewing") then
+		if dialog_system.is_any_dialog_open() or GameHasFlagRun("fairmod_dialog_interacting") then return end
+		if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+		GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 		EntityAddTag(entity_interacted, "viewing")
-		GameAddFlagRun("fairmod_scratch_interacting")
+		GameAddFlagRun("fairmod_dialog_interacting")
 	else
 		EntityRemoveTag(entity_interacted, "viewing")
-		GameRemoveFlagRun("fairmod_scratch_interacting")
+		GameRemoveFlagRun("fairmod_dialog_interacting")
 	end
 end
 
 function enabled_changed(entity_id, is_enabled)
+
 	if not is_enabled then
 		EntityRemoveTag(entity_id, "viewing")
-		GameRemoveFlagRun("fairmod_scratch_interacting")
+		GameRemoveFlagRun("fairmod_dialog_interacting")
+		GameRemoveFlagRun("holding_interactible")
+	else
+		GameAddFlagRun("holding_interactible")
 	end
 end

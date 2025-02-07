@@ -26,6 +26,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	local mail_list = dofile("mods/noita.fairmod/files/content/mailbox/mail_list.lua")
 	local mail = get_mail()
 
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") or GameHasFlagRun("holding_interactible") then return end
+	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
 
 	if #mail == 0 then
@@ -135,6 +140,8 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			on_closed = function()
 				dialog = nil
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
+
+				GameRemoveFlagRun("fairmod_dialog_interacting")
 			end,
 		})
 	end

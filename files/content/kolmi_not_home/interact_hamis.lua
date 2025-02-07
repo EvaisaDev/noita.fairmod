@@ -15,6 +15,12 @@ local text = {
 SetRandomSeed(x + GameGetFrameNum(), y)
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
+	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
+	GameAddFlagRun("fairmod_dialog_interacting")
+
 	dialog = dialog_system.open_dialog({
 		name = "Hämis",
 		portrait = "mods/noita.fairmod/files/content/kolmi_not_home/hamis_portrait.png",
@@ -65,5 +71,9 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				text = "Leave",
 			},
 		},
+		on_closed = function()
+			dialog = nil
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+		end,
 	})
 end
