@@ -277,7 +277,6 @@ function OnWorldPreUpdate()
 		orbs_for_all:update()
 		surface_bad:update()
 		he_watches_you:update()
-		achievements:update()
 		dofile("mods/noita.fairmod/files/content/immortal_snail/scripts/spawn_snail.lua")
 	end
 	nukes.OnWorldPreUpdate()
@@ -293,7 +292,7 @@ function OnWorldPreUpdate()
 	payphone.update()
 	secret.update()
 	snail_radar.update()
-
+	achievements:update()
 	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then

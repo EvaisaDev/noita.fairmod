@@ -350,7 +350,7 @@ function ui:init()
 end
 
 function ui:update()
-	CheckAchievements()
+	if GameGetFrameNum() % 30 == 0 then CheckAchievements() end
 	self:StartFrame()
 	self.text_scale = 0.7
 	self:UpdateDimensions()
