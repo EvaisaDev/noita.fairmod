@@ -1,7 +1,7 @@
 --- @class enemy_reworks_helper
 local helper = {}
 
---- @param entity number
+--- @param entity entity_id
 --- @return boolean
 function helper.has_player_tag(entity)
 	local tags = EntityGetTags(entity)
@@ -12,7 +12,7 @@ function helper.has_player_tag(entity)
 	return false
 end
 
---- @param entity number
+--- @param entity entity_id
 --- @return boolean
 function helper.is_player_herd(entity)
 	local genome_comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
@@ -23,7 +23,7 @@ function helper.is_player_herd(entity)
 end
 
 --- Check if the entity is visible
---- @param entity number
+--- @param entity entity_id
 --- @return boolean
 function helper.is_entity_visible(entity)
 	local cam_x, cam_y, cam_w, cam_h = GameGetCameraBounds()
@@ -38,7 +38,7 @@ function helper.is_entity_visible(entity)
 end
 
 --- Returns true if kill is done by player
---- @param entity number
+--- @param entity entity_id
 --- @return boolean
 function helper.is_player_kill(entity)
 	return helper.is_player_herd(entity) or helper.has_player_tag(entity)
