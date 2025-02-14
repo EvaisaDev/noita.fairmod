@@ -19,17 +19,19 @@ end
 local nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "player_unit") or {}
 
 if #nearby_players <= 0 then 
-	nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {} 
+	nearby_players = EntityGetInRadiusWithTag(x, y, kill_radius, "polymorphed_player") or {}
 end
 
 local clearable_players = EntityGetInRadiusWithTag(x, y, status_clear_radius, "player_unit") or {}
 
 if #clearable_players <= 0 then 
-	clearable_players = EntityGetInRadiusWithTag(x, y, status_clear_radius, "polymorphed_player") or {} 
+	clearable_players = EntityGetInRadiusWithTag(x, y, status_clear_radius, "polymorphed_player") or {}
 end
 
-for i, player in ipairs(clearable_players) do
-	EntityRemoveStainStatusEffect(player, "PROTECTION_ALL", 1)
+for _, player in ipairs(clearable_players) do
+	-- vvvvvvv This line causes an insta crash if entity is unstable polymorphed
+	--EntityRemoveStainStatusEffect(player, "PROTECTION_ALL", 1)
+	-- ^^^^^^^
 	local children = EntityGetAllChildren(player) or {}
 	for _, child in ipairs(children) do
 		local game_effect_comp = EntityGetFirstComponent(child, "GameEffectComponent")
@@ -39,7 +41,7 @@ for i, player in ipairs(clearable_players) do
 	end
 end
 
-for i, player in ipairs(nearby_players) do
+for _, player in ipairs(nearby_players) do
 
 	local hp = 100 / 25
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
