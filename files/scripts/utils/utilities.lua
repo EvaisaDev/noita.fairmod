@@ -22,7 +22,7 @@ end
 ---@param x number
 ---@param y number
 ---@param radius number
----@return int[]
+---@return entity_id[]
 function GetEnemiesInRadius(x, y, radius)
 	local entities = MergeTables(EntityGetInRadiusWithTag(x, y, radius, "enemy"), EntityGetInRadiusWithTag(x, y, radius, "boss"))
 
@@ -57,7 +57,7 @@ function MaterialsFilter(mats)
 	return mats
 end
 
----@return table<int>
+---@return entity_id[]
 function GetInventoryItems()
 	local player_entity = GetPlayers()[1]
 	if player_entity ~= nil then return GameGetAllInventoryItems(player_entity) or {} end
@@ -93,8 +93,8 @@ function GetCurrentBiomeId()
 	return GetBiomeId(x, y)
 end
 
----@param entity int
----@param item_entity int
+---@param entity entity_id
+---@param item_entity entity_id
 function EntityDropItem(entity, item_entity)
 	EntityRemoveFromParent(item_entity)
 	EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_hand", false)

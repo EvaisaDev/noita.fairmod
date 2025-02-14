@@ -1,10 +1,12 @@
 <Entity>
 	<SpriteComponent
-		image_file="mods/noita.fairmod/files/content/payphone/payphone.png"
+		image_file="mods/noita.fairmod/files/content/payphone/payphone_gfx.xml"
 		offset_x="5"
 		offset_y="18"
 		z_index="1"
 	/>
+
+	<SpriteAnimatorComponent/>
 
 	<InteractableComponent
 		radius="20"

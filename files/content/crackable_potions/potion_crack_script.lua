@@ -2,7 +2,7 @@ dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 local CHANCE_TO_CRACK_PERCENT = 33
-local FRAMES_TOO_FAST_TO_CRACK = 10
+local FRAMES_TOO_FAST_TO_CRACK = 15
 local NUM_TOTAL_CRACKS = 3
 
 local function GetMaterialInventoryMainQuantity(entity_id)

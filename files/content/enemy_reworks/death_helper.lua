@@ -3,7 +3,7 @@ local helper = {}
 
 --- @param entity entity_id
 --- @return boolean
-function helper:has_player_tag(entity)
+function helper.has_player_tag(entity)
 	local tags = EntityGetTags(entity)
 	if not tags then return false end
 	for _, tag in ipairs({ "player_unit", "player_projectile", "projectile_player" }) do
@@ -14,7 +14,7 @@ end
 
 --- @param entity entity_id
 --- @return boolean
-function helper:is_player_herd(entity)
+function helper.is_player_herd(entity)
 	local genome_comp = EntityGetFirstComponentIncludingDisabled(entity, "GenomeDataComponent")
 	if not genome_comp then return false end
 	local herd_id = ComponentGetValue2(genome_comp, "herd_id")
@@ -25,7 +25,7 @@ end
 --- Check if the entity is visible
 --- @param entity entity_id
 --- @return boolean
-function helper:is_entity_visible(entity)
+function helper.is_entity_visible(entity)
 	local cam_x, cam_y, cam_w, cam_h = GameGetCameraBounds()
 	local ent_x, ent_y = EntityGetTransform(entity)
 
@@ -40,8 +40,8 @@ end
 --- Returns true if kill is done by player
 --- @param entity entity_id
 --- @return boolean
-function helper:is_player_kill(entity)
-	return self:is_player_herd(entity) or self:has_player_tag(entity)
+function helper.is_player_kill(entity)
+	return helper.is_player_herd(entity) or helper.has_player_tag(entity)
 end
 
 return helper
