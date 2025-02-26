@@ -5,13 +5,14 @@ if not EntityHasTag(ent, "player_unit") and not EntityHasTag(ent, "polymorphed_p
 end
 
 local x, y = EntityGetTransform(ent)
-SetRandomSeed(x, y)
+SetRandomSeed(x, y + GameGetFrameNum())
 
 local effects = {
 	function()
 		-- This immediately adds a file into the flags folder. Next time you
 		-- start Noita you get the achievement
 		AddFlagPersistent("crashed_by_wizard")
+		print_error("Master of Crashing got you!")
 		EntityKill(GameGetWorldStateEntity())
 	end,
 	function()
