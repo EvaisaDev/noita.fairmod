@@ -22,6 +22,10 @@ if IngestionComp then
 			for i = 1, 100 do
 				EntityInflictDamage( entity_id, 99999999999999999999999999999999999999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Heart Attack from satiety!", "NORMAL", 0, 0, entity_id, x, y, 0.1 )
 			end
+			local gsc_id = EntityGetFirstComponentIncludingDisabled(player, "GameStatsComponent")
+			if gsc_id ~= nil then
+				ComponentSetValue2(gsc_id, "extra_death_msg", "Heart Attack from satiety!")
+			end
 			EntityKill(entity_id)
 			GameAddFlagRun("heart_attacked")
 		end
