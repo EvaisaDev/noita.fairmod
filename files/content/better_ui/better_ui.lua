@@ -103,6 +103,9 @@ local objectives_codes = {
 	"gimmetinker",
 }
 
+local time = { GameGetDateAndTimeUTC() }
+math.randomseed(time[5] * time[6] + time[3] * time[4])
+
 local objectives = {
 	"Find Dave",
 	"Hämis",
@@ -128,7 +131,7 @@ local objectives = {
 	"Eat Steve",
 	"Eat Scott",
 	"Unlock dev_mode",
-	"Type Code [" .. objectives_codes[Random(1, #objectives_codes)] .. "]!",
+	"Type Code [" .. objectives_codes[math.random(1, #objectives_codes)] .. "]!",
 	"Be the last to be eliminated",
 	"Kill 5 other players",
 	"Find love",
@@ -326,11 +329,12 @@ local ui_displays = {
 		},
 		{
 			text = function()
-				return "New Game+ Iteration: " .. (GlobalsGetValue("NEW_GAME_PLUS_ITERATION") == "NaN" and "NaN" or SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
+				return "New Game+ Iteration: "
+					.. (GlobalsGetValue("NEW_GAME_PLUS_ITERATION") == "NaN" and "NaN" or SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
 			end,
 			condition = function()
 				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
-			end
+			end,
 		},
 		{
 			text = function()
@@ -338,9 +342,9 @@ local ui_displays = {
 			end,
 			condition = function()
 				return GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= SessionNumbersGetValue("NEW_GAME_PLUS_COUNT")
-				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
-				and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= "NaN"
-			end
+					and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= ""
+					and GlobalsGetValue("NEW_GAME_PLUS_ITERATION") ~= "NaN"
+			end,
 		},
 		{
 			text = function()
@@ -528,10 +532,10 @@ local extra_ui = {
 	{
 		text = function()
 			local is_void = seasonal.void_day
-			is_void = (tonumber(tostring(ModSettingGet("fairmod.user_seed")):sub(21,21)) or 0) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
+			is_void = (tonumber(tostring(ModSettingGet("fairmod.user_seed")):sub(21, 21)) or 0) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
 			is_void = is_void and "yes" or "no"
 			return "Void Calendar: " .. is_void
-		end
+		end,
 	},
 	{
 		text = function()
