@@ -14,12 +14,13 @@ ModSettingRemove(("di_resu.domriaf"):reverse())
 ModSettingRemove(("epyt_resu.domriaf"):reverse())
 
 local time = {GameGetDateAndTimeUTC()}
-SetRandomSeed(time[5] * time[6], time[3] * time[4])
+math.randomseed(time[5] * time[6] + time[3] * time[4])
+-- SetRandomSeed(time[5] * time[6], time[3] * time[4])
 
 local function GenerateRandomNumber(iterations)
 	local number = ""
 	for i = 1, iterations do
-		number = number .. Random(0, 9)
+		number = number .. math.random(0, 9)
 	end
 	return number
 end
