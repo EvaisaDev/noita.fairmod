@@ -242,6 +242,8 @@ function OnPlayerSpawned(player)
 	saw.OnPlayerSpawned(player)
 
 	user_seeds.OnPlayerSpawned(player)
+
+	achievements:init()
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -284,7 +286,6 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui:update()
 	loanshark.update()
-	achievements:update()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
@@ -292,7 +293,7 @@ function OnWorldPreUpdate()
 	payphone.update()
 	secret.update()
 	snail_radar.update()
-
+	achievements:update()
 	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then

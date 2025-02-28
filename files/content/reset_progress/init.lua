@@ -4,8 +4,7 @@ dofile_once("mods/noita.fairmod/files/content/achievements/achievements.lua")
 
 for i = 1, #achievements do
 	local achievement = achievements[i]
-	local flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
-	RemoveFlagPersistent(flag)
+	RemoveFlagPersistent(achievement.flag)
 end
 
 RemoveFlagPersistent("fairmod_dmca_warning_shown")
