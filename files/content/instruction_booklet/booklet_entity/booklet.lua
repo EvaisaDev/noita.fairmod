@@ -12,7 +12,6 @@ function enabled_changed(entity_id, is_enabled)
 end
 
 function wake_up_waiting_threads()
-	GameHasFlagRun("fairmod_interacted_with_anything_this_frame")
 	ui:update()
 end
 
