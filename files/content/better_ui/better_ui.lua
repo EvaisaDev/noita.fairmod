@@ -4,6 +4,9 @@
 
 local seasonal = dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 
+local userseed = ModSettingGet("fairmod.user_seed")
+if type(userseed) ~= "string" then error("broken seed") end
+
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local ui = dofile("mods/noita.fairmod/files/lib/ui_lib.lua") --- @class better_ui:UI_class
 ui.text_scale = 0.75
@@ -509,7 +512,7 @@ local extra_ui = {
 		text = "You smell: Bad",
 	},
 	{
-		text = "Terraria: No",
+		text = tonumber(userseed.sub(27,27)) > 7 and "Terraria: Maybe" or "Terraria: No",
 	},
 	{
 		text = function()
@@ -528,7 +531,7 @@ local extra_ui = {
 	{
 		text = function()
 			local is_void = seasonal.void_day
-			is_void = (tonumber(tostring(ModSettingGet("fairmod.user_seed")):sub(21,21)) or 0) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
+			is_void = userseed:sub(21,21) < 3 and not is_void or is_void --30% chance to just lie based on user_seed
 			is_void = is_void and "yes" or "no"
 			return "Void Calendar: " .. is_void
 		end

@@ -51,7 +51,7 @@ local users = {
 		type = "mod_dev",
 	},
 
-    --streamers (steamid 765611------------)
+    --streamers steamid is 765611------------ with dashes being 9-20, pause menu is 1-10
     XaqyzOne = {
         seed = "XXXXXXXX081665557096XXXXXXXXXX",
         type = "streamer",
@@ -66,6 +66,14 @@ local users = {
     },
     Crimson_Agent = {
         seed = "XXXXXXXX687261862069XXXXXXXXXX",
+        type = "streamer",
+    },
+    DunkOrSlam = {
+        seed = "00130639114681086286XXXXXXXXXX",
+        type = "streamer",
+    },
+    chevroletUS = {
+        seed = "XXXXXXXX398942599787XXXXXXXXXX",
         type = "streamer",
     },
 
