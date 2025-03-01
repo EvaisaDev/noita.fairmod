@@ -100,6 +100,7 @@ dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
+dofile_once("mods/noita.fairmod/files/content/fix_global_pickups/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
@@ -167,7 +168,6 @@ function OnPlayerSpawned(player)
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 	GameRemoveFlagRun("fairmod_dialog_interacting")
-	GameRemoveFlagRun("fairmod_scratch_interacting")
 
 	local x, y = EntityGetTransform(player)
 
@@ -241,6 +241,8 @@ function OnPlayerSpawned(player)
 	saw.OnPlayerSpawned(player)
 
 	user_seeds.OnPlayerSpawned(player)
+
+	achievements:init()
 	
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
@@ -283,7 +285,6 @@ function OnWorldPreUpdate()
 	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
 	better_ui:update()
 	loanshark.update()
-	achievements:update()
 	ping_attack.update()
 	cheats.update()
 	hescoming.update()
@@ -291,7 +292,7 @@ function OnWorldPreUpdate()
 	payphone.update()
 	secret.update()
 	snail_radar.update()
-
+	achievements:update()
 	gamblecore.Update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then

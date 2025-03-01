@@ -229,6 +229,10 @@ local dialogue_hear_the_words = function(dialogue)
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
+	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
+	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
+	GameAddFlagRun("fairmod_dialog_interacting")
 	bad_choice = true
 	dialog_system.open_dialog({
 		name = shuffle("Longest Hamis"),
@@ -246,6 +250,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			},
 		},
 		on_closed = function()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
 			if bad_choice then its_mad() end
 		end,
 	})

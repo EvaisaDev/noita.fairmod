@@ -1,0 +1,29 @@
+<Sprite 
+  filename="mods/noita.fairmod/files/content/payphone/payphone.png"
+  offset_x="0"
+  offset_y="0"
+  default_animation="idle" >
+
+  <RectAnimation 
+    frame_count="1"
+    frame_height="18"
+    frame_wait="0.2"
+    frame_width="11"
+    frames_per_row="10"
+    name="idle"
+    pos_x="0"
+    pos_y="0"
+    />
+
+  <RectAnimation 
+    frame_count="10"
+    frame_height="18"
+    frame_wait="0.06"
+    frame_width="11"
+    frames_per_row="10"
+    name="ringing"
+    pos_x="0"
+    pos_y="18"
+    loop="1"
+    />
+</Sprite>
