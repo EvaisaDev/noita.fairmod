@@ -33,7 +33,8 @@ local function frames_to_time(frames)
 	local seconds_f = frames / 60
 	local minutes = math.floor(seconds_f / 60)
 	seconds_f = seconds_f % 60
-	return string.format(seconds_f < 10 and "%i:0%02.3f" or "%i:%02.3f", minutes, seconds_f)
+	return string.format(seconds_f < 10 and minutes > 0 and "%i:0%02.3f" or "%i:%02.3f", minutes, seconds_f)
+    --statement above changes formatting to include a 0 before the seconds if the seconds are less than 10 and more than a minute has passed
 end
 
 local function has_flag_run(flag)
@@ -138,9 +139,11 @@ local objectives = {
 	"Be the last to be eliminated",
 	"Kill 5 other players",
 	"Find love",
-	"Forgive.",
+	"Learn to Forgive.",
 	"Remember yourself",
 	"Realise your ambitions",
+	"Play Noita Fairmod",
+	"Find joy in little things",
 }
 
 local game_speed_a = 0
@@ -176,13 +179,13 @@ local ui_displays = {
 		},
 		{
 			text = function()
-				return string.format("Radios tuned: %s", GlobalsGetValue("radios_activated", "0"))
+				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("fairmod.radios_activated_highscore")))
 			end,
 			condition = global_greater_than_zero("radios_activated"),
 		},
 		{
 			text = function()
-				return string.format("Radios tuned Highscore: %s", tostring(ModSettingGet("fairmod.radios_activated_highscore")))
+				return string.format("Radios tuned: %s", GlobalsGetValue("radios_activated", "0"))
 			end,
 			condition = global_greater_than_zero("radios_activated"),
 		},

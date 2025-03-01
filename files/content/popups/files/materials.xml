@@ -2,7 +2,7 @@
 	<CellDataChild
 		_parent="rock_static"
 		tags=""
-		name="unknown" 
+		name="fairmod_advert" 
 		ui_name="Advertisium"
 		wang_color="ffbfb8bf"
 		hp="200000"

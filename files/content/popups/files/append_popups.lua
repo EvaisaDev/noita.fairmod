@@ -268,7 +268,8 @@ local Popups = {
 			end,
 		},
 	},--]=]
-		{
+        --[=[
+        { --popup that seamlessly appears, shelved fn cuz i discovered GUI and world pixels arent 1:1, world pixels are 1.5 times bigger than GUI
 			EXE = "popup_REAL.exe",
 			MESSAGE = "Buy now, 40% more real popups! newline Immersion levels now at 1000%, what's the worst that could happen?!?",
 			CLOSE_FUNCTION = function(self, data)
@@ -285,10 +286,10 @@ local Popups = {
 				local ent_x, ent_y = cx + (x / ratio_x), cy + (y / ratio_y)
 				LoadPixelScene("mods/noita.fairmod/files/content/popups/popup_real.png", "mods/noita.fairmod/files/content/popups/popup_real_visual.png", ent_x, ent_y, "")
 			end,
-		},
+		},--]=]
 	},
 
-	forcePrefab = 3, --set this to the prefab you wish to test, and it will guarantee it's spawning.
+	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
 	--false or nil means disabled, 0 or any other invalid index will pick randomly
 }
 
