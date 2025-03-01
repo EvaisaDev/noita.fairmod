@@ -1,3 +1,5 @@
+local userseed = ModSettingGet("fairmod.userseed")
+
 local function get_distance(x1, y1, x2, y2)
 	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
@@ -642,7 +644,7 @@ return {
 									What are the 3 numbers on the back of your credit card?]],
 						options = {
 							{
-								text = tostring(Random(100, 999)),
+								text = userseed:sub(28, 30),
 								func = function(dialog)
 									dialog.show({
 										text = [[Correct! You've won 1000 gold! {@func disconnected}]],

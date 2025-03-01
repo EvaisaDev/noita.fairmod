@@ -178,7 +178,19 @@ function interacting(player, entity_interacted, interactable_name)
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 	GameAddFlagRun("fairmod_dialog_interacting")
-
+	
+	local _,_,_,h,m = GameGetDateAndTimeLocal()
+	if h == 3 and m == 33 then
+		dialog = dialog_system.open_dialog({
+			name = "Information Hämis",
+			portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
+			typing_sound = "default", -- There are currently 6: default, sans, one, two, three, four and "none" to turn it off, if not specified uses "default"
+			text = "He is coming.",
+			options = {{ text = "May he have mercy on my soul.", }},
+		})
+		return
+	end
+	
 	dialog = dialog_system.open_dialog({
 		name = "Information Hämis",
 		portrait = "mods/noita.fairmod/files/content/information_kiosk/portrait.png",
