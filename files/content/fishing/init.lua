@@ -1,4 +1,4 @@
-ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
+﻿ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/gun_actions.lua")
 --ModLuaFileAppend("data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/fishing/files/gun.lua")
 
 local module = {}
