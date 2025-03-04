@@ -202,7 +202,9 @@ local function CheckAchievements()
 			achievements_unlocked = achievements_unlocked + 1
 		elseif achievement.unlock() then
 			print("Achievement unlocked: " .. achievement.name)
-			AddNotification(achievement.icon, achievement.name, achievement.description, true)
+			if ModSettingGet("noita.fairmod.achievements_popup") then
+				AddNotification(achievement.icon, achievement.name, achievement.description, true)
+			end
 			GameAddFlagRun("fairmod_new_achievement")
 			AddFlagPersistent(flag)
 		end
