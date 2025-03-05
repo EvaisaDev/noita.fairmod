@@ -10,3 +10,10 @@ local append_to = {
 for _, script in ipairs(append_to) do
 	ModLuaFileAppend(script, chest_random_append)
 end
+
+for xml in nxml.edit_file("data/entities/items/orbs/orb_base.xml") do
+	local item_comp = xml:first_of("ItemComponent")
+	if item_comp ~= nil then
+		item_comp:set("auto_pickup", 1)
+	end
+end
