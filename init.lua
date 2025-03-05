@@ -53,6 +53,7 @@ local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
+local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -158,6 +159,8 @@ function OnMagicNumbersAndWorldSeedInitialized()
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
+	minecraft.Init()
+	
 end
 
 function OnPlayerSpawned(player)
@@ -260,6 +263,7 @@ function OnPlayerSpawned(player)
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
+	EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -293,6 +297,7 @@ function OnWorldPreUpdate()
 	snail_radar.update()
 
 	gamblecore.Update()
+	
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
