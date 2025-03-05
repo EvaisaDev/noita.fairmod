@@ -443,7 +443,7 @@ function module.Update(visible)
 	if fire1 then
 		local xml_file = "mods/noita.fairmod/files/content/minecraft/entities/" .. block.texture .. ".xml"
 
-		EntityLoad(xml_file, grid_x, grid_y + 2)
+		EntityLoad(xml_file, grid_x, grid_y)
 
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", block.sound, grid_x, grid_y)
 	end
