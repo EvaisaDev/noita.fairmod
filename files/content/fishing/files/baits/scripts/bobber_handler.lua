@@ -82,28 +82,12 @@ local function reel_in_objects(x, y, dir_x, dir_y)
 	for _, entity in ipairs(objects_to_reel) do
 		if EntityHasTag(entity, "bobber") then goto continue end
 
-		--[[local phys = EntityGetFirstComponent(entity, "PhysicsBodyComponent")
-		if phys then
-			-- Works for these
-			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys)
-			PhysicsComponentSetTransform(phys, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
-		end
-
-		local phys2 = EntityGetFirstComponent(entity, "PhysicsBody2Component")
-		if phys2 then
-			-- Works for these
-			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys2)
-			PhysicsComponentSetTransform(phys2, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
-		end]]
-		-- done with force application
-
 		local phys3 = EntityGetFirstComponent(entity, "SimplePhysicsComponent")
 		if phys3 and ComponentGetValue2(phys3, "can_go_up") then
-			-- Not working
-			--GamePrint("REEL IN phys3 " .. EntityGetName(entity))
-			local x, y, angle, vel_x, vel_y, angular_vel = PhysicsComponentGetTransform(phys3)
-			PhysicsComponentSetTransform(phys3, x, y, angle, vel_x + dir_x, vel_y + dir_y, angular_vel)
-			--PhysicsApplyForce(entity, dir_x * 100, dir_y * 100)
+			local velocity_comp = EntityGetFirstComponent(entity, "VelocityComponent")
+			if velocity_comp ~= nil then
+				ComponentSetValue2(velocity_comp, "mVelocity", dir_x * 10, dir_y * 10)
+			end
 		end
 
 		local chr = EntityGetFirstComponent(entity, "CharacterDataComponent")

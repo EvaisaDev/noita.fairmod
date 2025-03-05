@@ -2,6 +2,7 @@ local ring_chance = 1
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
+local sprite_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "SpriteComponent")
 dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
@@ -42,7 +43,6 @@ function hangup()
 		AddFlagPersistent("fairmod_copimail_letter")
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copi,")
 	end
-
 end
 
 function disconnected()
@@ -55,6 +55,22 @@ end
 
 function ng_portal()
 	EntityLoad("mods/noita.fairmod/files/content/payphone/content/rift/return_portal.xml", x, y - 45)
+end
+
+local function stop_ringing()
+	ringing = false
+	ring_timer = 0
+	if sprite_comp ~= nil then
+		ComponentSetValue2(sprite_comp, "rect_animation", "idle")
+	end
+end
+
+local function start_ringing()
+	ringing = true
+	ring_end_time = 60 * 15
+	if sprite_comp ~= nil then
+		ComponentSetValue2(sprite_comp, "rect_animation", "ringing")
+	end
 end
 
 if dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0 then hangup() end
@@ -101,15 +117,13 @@ if players == nil or #players == 0 then return end
 
 -- random chance for the phone to ring if the player is nearby
 if GameGetFrameNum() % 45 == 0 and not ringing and not in_call and Random(0, 100) <= ring_chance then
-	ringing = true
-	ring_end_time = 60 * 15
+	start_ringing()
 end
 
 if ringing then ring_timer = ring_timer + 1 end
 
 if not in_call and ringing and ring_timer >= ring_end_time then
-	ringing = false
-	ring_timer = 0
+	stop_ringing()
 end
 
 local get_random_call = function(entity_who_interacted)
@@ -142,14 +156,7 @@ local get_random_call = function(entity_who_interacted)
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	-- If viewing a scratch ticket, don't interact at the same time
-	if
-		EntityHasTag(entity_interacted, "viewing")
-		or GameHasFlagRun("fairmod_scratch_interacting")
-		or GameHasFlagRun("fairmod_dialog_interacting")
-	then
-		return
-	end
+	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 	GameAddFlagRun("fairmod_dialog_interacting")
@@ -158,8 +165,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 
 	SetRandomSeed(x, y + GameGetFrameNum())
 	if ringing then
-		ringing = false
-		ring_timer = 0
+		stop_ringing()
 		in_call = true
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
 		-- open random call
