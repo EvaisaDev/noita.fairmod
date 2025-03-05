@@ -102,6 +102,7 @@ dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fix_global_pickups/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
+dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
