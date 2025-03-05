@@ -200,7 +200,7 @@ local function build_settings()
 					ui_description = "Friends will occasionally try to reach out to you.",
 					value_default = true,
 					scope = MOD_SETTING_SCOPE_RUNTIME,
-				}
+				},
 			},
 		},
 		{
@@ -254,6 +254,13 @@ local function build_settings()
 					value_max = 2000,
 					ui_fn = mod_setting_integer,
 					scope = MOD_SETTING_SCOPE_NEW_GAME,
+				},
+				{
+					id = "achievements_popup",
+					ui_name = "Achievements popup",
+					ui_description = "Show the achievements popup",
+					value_default = true,
+					scope = MOD_SETTING_SCOPE_RUNTIME,
 				},
 				{
 					not_setting = true,

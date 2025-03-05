@@ -1154,3 +1154,8 @@ for _, fish in ipairs(fish_list) do
 		end,
 	})
 end
+
+-- setting flag
+for _, achievement in ipairs(achievements) do
+	achievement.flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+end

@@ -3,8 +3,10 @@ local ui = dofile_once("mods/noita.fairmod/files/content/instruction_booklet/gui
 
 function enabled_changed(entity_id, is_enabled)
 	if is_enabled then
+		GameAddFlagRun("fairmod_dialog_interacting")
 		ui.gui = GuiCreate()
 	else
+		GameRemoveFlagRun("fairmod_dialog_interacting")
 		GuiDestroy(ui.gui)
 	end
 end

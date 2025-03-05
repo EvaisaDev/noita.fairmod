@@ -40,7 +40,7 @@ end
 local script_damage_received = function(damage, message, entity_thats_responsible, is_fatal, projectile_thats_responsible)
 	if not EntityGetIsAlive(entity_thats_responsible) then return end
 
-	if helper:is_player_kill(entity_thats_responsible) then SetValueBool("fairmod_damaged_by_player", true) end
+	if helper.is_player_kill(entity_thats_responsible) then SetValueBool("fairmod_damaged_by_player", true) end
 end
 damage_received = script_damage_received
 

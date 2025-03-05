@@ -112,7 +112,9 @@ module.update = function()
 							end
 						end
 					end
-					print("current_cheat_text", input)
+					if #input > 2 then
+						print("current_cheat_text", input)
+					end
 					return true
 				end
 			end
@@ -162,7 +164,10 @@ module.update = function()
 							current_input_text = ""
 						end
 					end
-					print("current_cheat_text", input)
+
+					if #input > 2 then
+						print("current_cheat_text", input)
+					end
 					return true
 				end
 			end
