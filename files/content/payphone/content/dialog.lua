@@ -243,17 +243,17 @@ return {
 											},
 										},
 									})
-
+								
 									-- remove gold
 									local players = EntityGetWithTag("player_unit") or {}
-
+								
 									if players == nil or #players == 0 then return end
-
+								
 									local player = players[1]
-
+								
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
-
+								
 									ComponentSetValue2(wallet_component, "money", gold - 600)
 								end,
 							},
@@ -310,16 +310,16 @@ return {
 							},
 						},
 					})
-
+				
 					-- remove all gold
 					local players = EntityGetWithTag("player_unit") or {}
-
+				
 					if players == nil or #players == 0 then return end
-
+				
 					local player = players[1]
-
+				
 					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
-
+				
 					ComponentSetValue2(wallet_component, "money", 0)
 				end,
 			},
@@ -447,7 +447,7 @@ return {
 						local gold = ComponentGetValue2(wallet_component, "money")
 						ComponentSetValue2(wallet_component, "money", gold + 500)
 						local x, y = EntityGetTransform(player)
-
+					
 						dialog.show({
 							text = [[Thank you for participating in our survey! As a token of our
 	appreciation, please accept 500 gold! {@func disconnected}]],
@@ -465,14 +465,14 @@ return {
 												-- get a random direction vector
 												local dx = math.cos(angle)
 												local dy = math.sin(angle)
-
+											
 												local distance = Random(100, 250)
-
+											
 												local target_x = x + (dx * distance)
 												local target_y = y + (dy * distance)
-
+											
 												local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
-
+											
 												if not hit then
 													EntityLoad(
 														"mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml",
@@ -490,7 +490,7 @@ return {
 							},
 						})
 					end
-
+				
 					-- Add 500 gold
 					local function survey_question4(dialog)
 						dialog.show({
@@ -523,7 +523,7 @@ return {
 							},
 						})
 					end
-
+				
 					local function survey_question3(dialog)
 						dialog.show({
 							text = [[Interesting.. Have you experienced any glitches, strange
@@ -548,7 +548,7 @@ return {
 							},
 						})
 					end
-
+				
 					local function survey_question2(dialog)
 						dialog.show({
 							text = [[Have you seen a snail?]],
@@ -568,7 +568,7 @@ return {
 							},
 						})
 					end
-
+				
 					local function survey_question1(dialog)
 						dialog.show({
 							text = [[Great! On a scale of 1 to 5, how would you rate your recent
@@ -597,7 +597,7 @@ return {
 							},
 						})
 					end
-
+				
 					-- Start the survey
 					survey_question1(dialog)
 				end,
@@ -655,17 +655,17 @@ return {
 											},
 										},
 									})
-
+								
 									-- add gold
 									local players = EntityGetWithTag("player_unit") or {}
-
+								
 									if players == nil or #players == 0 then return end
-
+								
 									local player = players[1]
-
+								
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
-
+								
 									ComponentSetValue2(wallet_component, "money", gold + 1000)
 								end,
 							},
@@ -851,9 +851,9 @@ return {
 										local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 										local gold = ComponentGetValue2(wallet, "money")
 										ComponentSetValue2(wallet, "money", gold - price)
-
+									
 										local x, y = EntityGetTransform(player)
-
+									
 										EntityLoad(
 											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
 												.. tostring(hm_visits)
@@ -973,7 +973,7 @@ return {
 				func = function(dialog)
 					dialog.show({
 						text = [[Just calling to see if your ~Copi's Things~ mod is running!
-{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
+	{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
 						options = {
 							{
 								text = "No it is not..",
@@ -1313,25 +1313,25 @@ return {
 								text = "This surely won't backfire.",
 								func = function()
 									local players = EntityGetWithTag("player_unit") or {}
-
+								
 									if players == nil or #players == 0 then return end
-
+								
 									local player = players[1]
-
+								
 									GameDestroyInventoryItems(player)
-
+								
 									local hm_visits = math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
 									local x, y = EntityGetTransform(player)
-
+								
 									dofile("data/scripts/perks/perk.lua")
-
+								
 									local tmtrainer_perks = {}
-
+								
 									for i, v in ipairs(perk_list) do
 										-- if perk name starts with TMTRAINER_ then add it to the list
 										if string.sub(v.id, 1, 10) == "TMTRAINER_" then table.insert(tmtrainer_perks, v.id) end
 									end
-
+								
 									for i = 1, 4 do
 										local item = EntityLoad(
 											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
@@ -1340,15 +1340,15 @@ return {
 											x + Random(-15, 15),
 											y + Random(-15, 15)
 										)
-
+									
 										GamePickUpInventoryItem(player, item, false)
-
+									
 										local perk =
 											perk_spawn(x + Random(-15, 15), y + Random(-15, 15), tmtrainer_perks[Random(1, #tmtrainer_perks)], true)
-
+									
 										perk_pickup(perk, player, "", false, false)
 									end
-
+								
 									hangup()
 								end,
 							},
@@ -1450,7 +1450,7 @@ return {
 					dialog.show({
 						text = [[It's a multi-game, multi-world randomizer. You connect
 						with multiple games and items are shuffled between them.
-
+					
 						Work together to complete all the games!]],
 						options = {
 							{
@@ -1541,7 +1541,7 @@ return {
 		name = "Heavy Breather",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "breathing",
-
+	
 		text = [[{@delay 60}...]],
 		options = {
 			{
@@ -1627,7 +1627,7 @@ return {
 					if not player then return end
 					local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 					ComponentSetValue2(wallet, "money", ComponentGetValue2(wallet, "money") - 200)
-
+				
 					dialog.show({
 						text = "Good choice.",
 						options = {
@@ -1656,6 +1656,53 @@ return {
 						},
 					})
 				end
+			},
+		},
+	},
+	{
+		name = "Steve",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_steve.png",
+		text = "{@delay 5}I... Am Steve. \nAs a child I yearned for the mines.\nBut something always got in the way..",
+		typing_sound = "steve",
+		options = {
+			{
+				text = "Okay...?",
+				func = function(dialog)
+					dialog.show({
+						text = "But the call of the mines was too strong.. \nSo one day I started digging.. and digging.. \nUntil I found...",
+						options = {
+							{
+								text = "Found WHAT?",
+								func = function(dialog)
+
+									local players = EntityGetWithTag("player_unit") or {}
+									if players == nil or #players == 0 then return end
+									local player = players[1]
+									local x, y = EntityGetTransform(player)
+									EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", x, y)
+									dialog.show({
+										text = "This.{@func disconnected}",
+										options = {
+											{
+												text = "...",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+									
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Goodbye Steve.",
+				func = function(dialog)
+					hangup()
+				end,
 			},
 		},
 	},

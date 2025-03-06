@@ -53,6 +53,7 @@
 {d8013254-a757-4288-b07e-57017d694ce0} event:/minecraft/dirt
 {a33c7536-7744-4118-aa2b-af3e22647d03} event:/minecraft/implayingminecraft
 {4a84376c-b204-48e9-afc0-0ffe0e6eaae1} event:/minecraft/loop
+{91c1d48a-6dd8-4ffb-8f36-e003c8fe2a4a} event:/minecraft/steve
 {f14574a6-7679-4f93-917e-5da2f2f10c9d} event:/minecraft/stone
 {1d8915b7-d6e5-4f9f-967b-31734c7f4a2b} event:/minecraft/wood
 {044e65fe-1efb-42b4-a1df-7737b1263904} event:/necoarc/noises

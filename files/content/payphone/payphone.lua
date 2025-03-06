@@ -10,6 +10,7 @@ dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
 dialog_system.sounds.garbled = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/garbled" }
+dialog_system.sounds.steve = { bank = "mods/noita.fairmod/fairmod.bank", event = "minecraft/steve" }
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 SetRandomSeed(x, y + GameGetFrameNum())

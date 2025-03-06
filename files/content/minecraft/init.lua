@@ -464,9 +464,6 @@ function module.Update(visible)
 
 		-- raytrace in a grid to make sure the space is free
 
-
-		GamePrint("hit_count: "..tostring(hit_count))
-
 		if(hit_count > (module.grid_size * module.grid_size) * 0.9)then
 			return
 		end
