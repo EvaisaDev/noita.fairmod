@@ -283,7 +283,7 @@ function GenerateBlockEntity(block)
 	
 	xml:add_child(nxml.new_element("PhysicsBody2Component", {
 		is_static = "1",
-		kill_entity_after_initialized = "0",
+		kill_entity_after_initialized = "1",
 	}))
 
 	xml:add_child(nxml.new_element("PhysicsImageShapeComponent", {
@@ -442,6 +442,35 @@ function module.Update(visible)
 
 	if fire1 then
 		local xml_file = "mods/noita.fairmod/files/content/minecraft/entities/" .. block.texture .. ".xml"
+
+
+		local hit_count = 0
+		for x = 0, module.grid_size - 1, 1 do
+			for y = 0, module.grid_size - 1, 1 do
+				local hit = Raytrace(grid_x + x + 0.2, grid_y + y + 0.2, grid_x + x + 0.4, grid_y + y + 0.4)
+				if(hit)then
+					hit_count = hit_count + 1
+				end
+			end
+		end
+
+		if(grid_x < 0)then
+			grid_x = grid_x + 2
+		end
+
+		if(grid_y < 0)then
+			grid_y = grid_y + 2
+		end
+
+		-- raytrace in a grid to make sure the space is free
+
+
+		GamePrint("hit_count: "..tostring(hit_count))
+
+		if(hit_count > (module.grid_size * module.grid_size) * 0.9)then
+			return
+		end
+
 
 		EntityLoad(xml_file, grid_x, grid_y)
 
