@@ -138,6 +138,10 @@ local objectives = {
 	"Forgive.",
 	"Remember yourself",
 	"Realise your ambitions",
+	"CAPTURE THE TARGET",
+	"Craft 40x Purified Heciphron",
+	"Become 1% better every day",
+	"Become 1% worse every day",
 }
 
 local game_speed_a = 0
@@ -360,6 +364,14 @@ local ui_displays = {
 			end,
 			condition = function()
 				return (ModSettingGet("fairmod.deaths") or 0) > 0
+			end,
+		},
+		{
+			text = function()
+				return "Risk Factor: "..GlobalsGetValue("fair_risk")
+			end,
+			condition = function()
+				return GlobalsGetValue("fair_risk") ~= "0"
 			end,
 		},
 		{

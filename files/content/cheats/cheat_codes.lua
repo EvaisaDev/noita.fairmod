@@ -24,10 +24,10 @@ return {
 		name = "GOD HAMIS ARTIST-MARTIAL IMMORTALITY GAMER MODE",
 		description = "Enabled GHAMING MODE",
 		func = function(player)
-			if HasFlagPersistent("fairmod_noitillionare_winner") == false then
-				GamePrintImportant("This power is too great for you, young hämis.","Come back when you've completed your journey.")
+			if HasFlagPersistent("fairmod_copimail_letter") == false then
+				GamePrintImportant("This power is too great for you, young hämis.","Come back when you have recieved the dark lord's mail.")
 				GamePrint("This power is too great for you, young hämis.")
-				GamePrint("Come back when you've completed your journey.")
+				GamePrint("Come back when you have recieved the dark lord's mail.")
 				LoadGameEffectEntityTo( player, "mods/noita.fairmod/files/content/cheats/misc/polymorph_hamis.xml" )
 			else
 				if EntityHasTag(player, "no_hamis_bullet") then return end
@@ -579,6 +579,7 @@ return {
 		name = "protec",
 		description = "missing description",
 		func = function(player)
+			local x,y = EntityGetTransform(player)
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
 		end
 	},

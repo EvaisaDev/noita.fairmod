@@ -24,3 +24,10 @@ actions[#actions + 1] = {
 		mag = mag - 1
 	end,
 }
+
+
+for i=1, #actions do
+	if actions[i].mana > 0 then
+		actions[i].mana = actions[i].mana + 1
+	end
+end
