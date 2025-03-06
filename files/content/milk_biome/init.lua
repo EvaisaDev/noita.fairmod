@@ -61,6 +61,24 @@ for xml in nxml.edit_file("data/entities/items/pickup/potion_milk.xml") do
 end
 
 
+ModLuaFileAppend("data/scripts/items/egg_hatch.lua", "mods/noita.fairmod/files/content/milk_biome/egg_hatch_append.lua")
+
+for xml in nxml.edit_file("data/entities/items/pickup/egg_hollow.xml") do
+    xml:add_child(nxml.new_element("MaterialInventoryComponent", {
+        drop_as_item = 0,
+        on_death_spill = 1,
+        leak_on_damage_percent = 0.5,
+        leak_pressure_min = 0.2,
+        leak_pressure_max = 0.7,
+    }, {
+        nxml.new_element("count_per_material_type", {}, {
+            nxml.new_element("Material", { material = "fairmod_egg_white", count = 80 }),
+            nxml.new_element("Material", { material = "fairmod_egg_yolk", count = 60 }),
+        })
+    }))
+end
+
+
 function milk.OnMagicNumbersAndWorldSeedInitialized()
     --Conga: This commented out code inserts the milk biome on the right side of the vault
     for content in nxml.edit_file("data/biome/_biomes_all.xml") do

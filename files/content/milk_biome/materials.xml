@@ -1,5 +1,5 @@
 <Materials>
-	<!-- Cheese wang colors: ffF3CD67 through ffF3CD75 -->
+	<!-- Cheese wang colors: ffF3CD67 through ffF3CD76 -->
 	<!-- ###################################### SOLIDS ###################################### -->
 
 	<!-- Yellow Cheddar -->
@@ -234,6 +234,75 @@
 			/>
 		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
 	</CellDataChild>
+
+	<!-- ###################################### LIQUIDS ###################################### -->
+  <CellData
+		name="fairmod_egg_white"
+		ui_name="$fairmod_mat_egg_white"
+  	tags="[corrodible],[meltable_to_lava],[alchemy],[food],[egg]"
+		burnable="0"
+		density="4.95"
+		cell_type="liquid"
+		wang_color="ffF3DD11"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		liquid_sticks_to_ceiling="40"
+		liquid_slime="1"
+		liquid_stains="2"
+		stickyness="0.0"
+		solid_friction="1.0"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="10" 
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime" 
+		show_in_creative_mode="1"
+		>
+		<Graphics color="66F3EEE2" />
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="SLIMY" />
+			</Stains>
+			<Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion>
+		</StatusEffects>
+  </CellData>
+
+  <CellData
+		name="fairmod_egg_yolk"
+		ui_name="$fairmod_mat_egg_yolk"
+  	tags="[corrodible],[meltable_to_lava],[alchemy],[food],[egg]"
+		burnable="0"
+		density="4.96"
+		cell_type="liquid"
+		wang_color="ffF3DD12"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		liquid_sticks_to_ceiling="40"
+		liquid_slime="1"
+		liquid_stains="2"
+		stickyness="0.0"
+		solid_friction="1.0"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="10" 
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime" 
+		show_in_creative_mode="1"
+		>
+		<Graphics color="EEFFD23C" />
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="SLIMY" />
+			</Stains>
+			<Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion>
+		</StatusEffects>
+  </CellData>
+
+
 
 	<!-- ###################################### OVERRIDES ###################################### -->
 	<!-- Override vanilla cheese -->
