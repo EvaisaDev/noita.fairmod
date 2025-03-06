@@ -283,7 +283,7 @@ function GenerateBlockEntity(block)
 	
 	xml:add_child(nxml.new_element("PhysicsBody2Component", {
 		is_static = "1",
-		kill_entity_after_initialized = "1",
+		kill_entity_after_initialized = "0",
 	}))
 
 	xml:add_child(nxml.new_element("PhysicsImageShapeComponent", {
