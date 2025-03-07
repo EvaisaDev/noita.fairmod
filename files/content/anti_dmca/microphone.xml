@@ -1,0 +1,76 @@
+<Entity name="Pink Microphone" tags="hittable,teleportable_NOT,item_pickup" serialize="0" >
+  
+  <SimplePhysicsComponent
+	_tags="enabled_in_world"
+  />
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <!-- item -->
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+	_enabled="0"
+	offset_x="128"
+	offset_y="128"
+    image_file="mods/noita.fairmod/files/content/anti_dmca/microphone_hand.png"
+  ></SpriteComponent>
+
+	<SpriteComponent
+    _tags="enabled_in_world"
+	rect_animation="dance"
+    image_file="mods/noita.fairmod/files/content/anti_dmca/microphone_inventory.png"
+  ></SpriteComponent>
+
+	<SpriteAnimatorComponent
+	    _tags="enabled_in_world"
+	/>
+
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Pink Microphone"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+	play_spinning_animation="0"
+	play_hover_animation="0"
+    ui_sprite="mods/noita.fairmod/files/content/anti_dmca/microphone_inventory.png"
+    ui_description="A sparkly princess themed microphone."
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Pink Microphone" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="Pink Microphone"
+		throw_as_item="0"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/throwable"
+		>
+	</AudioComponent>
+
+
+
+	<InheritTransformComponent/>
+
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		script_source_file="mods/noita.fairmod/files/content/anti_dmca/microphone.lua"
+		execute_on_added="1"
+		execute_every_n_frame="1"
+	/>
+
+
+
+</Entity>

@@ -48,8 +48,12 @@
 {2784aafe-d908-42c3-8f02-62de748903b0} event:/hescoming/tubaloop
 {7c93adb7-d17f-42c6-8f23-c84b3d4625b9} event:/immersivepiss/diarrhea
 {d024882e-4a93-4b8e-9937-d476a54daaf0} event:/immersivepiss/timetotakeapiss
+{adaa7fcf-3e3f-4aeb-bdee-7064b218c6d7} event:/jerma/aa
 {899c539a-4ca5-4612-a8c5-c5199c274ef7} event:/jerma/aaeeoo
 {8691f07f-56d3-4ca4-b39b-433bdbc12f14} event:/jerma/aaeeoo_local
+{23c33e45-5bfe-4ef7-bdf2-cf423f306c05} event:/jerma/audiojungle
+{3112cf80-e3ef-4e30-a79c-5fbbf063f825} event:/jerma/ee
+{9a27729f-e8f5-4092-9110-b30767621e4a} event:/jerma/oo
 {42947374-a736-4c0b-b89a-ba9d79c30c98} event:/loanshark/pop
 {190c80f9-d744-445a-9ba5-8cc5c69002e8} event:/mailbox/open
 {d8013254-a757-4288-b07e-57017d694ce0} event:/minecraft/dirt
@@ -125,6 +129,8 @@
 {da85f1b5-2f13-45f7-a9a4-bdf601b8ee75} event:/squiwart/americano
 {3c94c1c8-5f4a-405c-9087-22a819d5fcb2} event:/squiwart/americano_super
 {616d3deb-0819-43c0-86de-709dcebff1ef} event:/teleporter/pickup
+{6210d56a-5128-4d27-b1e2-bb8beec40b59} event:/tenno/reload
+{1ca8b7bc-2b19-4f3f-bb4f-ab80f78968b2} event:/tennofire/create
 {da290cac-e139-4b99-b883-ce1fc690a283} parameter:/Distance
 {2f99f806-4b51-4b0a-a879-566644591f29} parameter:/Migration Name Conflict (3)/lowpass
 {6864bf18-2f50-4b34-aecc-63c1bdf7fdf4} parameter:/Migration Name Conflict (4)/Distance
