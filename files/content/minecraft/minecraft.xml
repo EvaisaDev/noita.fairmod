@@ -1,6 +1,6 @@
 <Entity tags="item_physics,item_pickup,minecraft">
 	<UIInfoComponent
-		name="Grass Block"
+		name="Strange Cube"
 	></UIInfoComponent>
 
 
@@ -21,7 +21,7 @@
 	<PhysicsImageShapeComponent 
 		body_id="1"
 		centered="1"
-		image_file="mods/noita.fairmod/files/content/minecraft/minecraft_world.png"
+		image_file="mods/noita.fairmod/files/content/minecraft/earth_crystal_world.png"
 		material="rock_box2d_hard"
 	></PhysicsImageShapeComponent>
 
@@ -41,25 +41,25 @@
 		_enabled="0"
 		offset_x="5"
 		offset_y="6"
-		image_file="mods/noita.fairmod/files/content/minecraft/minecraft_hand.png"
+		image_file="mods/noita.fairmod/files/content/minecraft/earth_crystal_hand.png"
 	></SpriteComponent>
 
 
 	<ItemComponent
 		_tags="enabled_in_world"
-		item_name="Grass Block"
+		item_name="Strange Cube"
 		max_child_items="0"
 		is_pickable="1"
 		is_equipable_forced="1"
 		play_spinning_animation="0"
 		play_hover_animation="0"
-		ui_sprite="mods/noita.fairmod/files/content/minecraft/minecraft_inventory.png"
-		ui_description="Get the fuck out of my room I'm playing minecraft!"
+		ui_sprite="mods/noita.fairmod/files/content/minecraft/earth_crystal_inventory.png"
+		ui_description="A strange crystaline cube. It makes you feel like placing blocks and shit."
 		preferred_inventory="QUICK"
 	></ItemComponent>
 
   <AbilityComponent
-		ui_name="Grass Block"
+		ui_name="Strange Cube"
 		throw_as_item="0"
 		><gun_config
 			deck_capacity="0"

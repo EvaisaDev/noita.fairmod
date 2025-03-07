@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{91c1d48a-6dd8-4ffb-8f36-e003c8fe2a4a}">
 		<property name="name">
-			<value>steve</value>
+			<value>sing</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{3c19e622-2248-4251-b3f6-22199458a285}</destination>
+			<destination>{91f27e66-a3fa-4c9e-b4bc-ca79a3c4e987}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{ac3222ea-21f0-46b4-a1b9-d98d1fc1b965}</destination>
@@ -64,8 +64,11 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{07f20a4a-b717-4a3a-9db1-7c7fb04cefa9}">
-		<property name="voiceStealing">
+		<property name="maxVoices">
 			<value>1</value>
+		</property>
+		<property name="voiceStealing">
+			<value>3</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{c7a60ec9-b28e-4538-b8bb-e6f9b6ee7b8b}" />

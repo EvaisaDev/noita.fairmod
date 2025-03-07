@@ -10,7 +10,7 @@ dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
 dialog_system.sounds.garbled = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/garbled" }
-dialog_system.sounds.steve = { bank = "mods/noita.fairmod/fairmod.bank", event = "minecraft/steve" }
+--dialog_system.sounds.steve = { bank = "mods/noita.fairmod/fairmod.bank", event = "minecraft/steve2" }
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 SetRandomSeed(x, y + GameGetFrameNum())
@@ -80,6 +80,9 @@ dialog_system.functions.hangup = hangup
 dialog_system.functions.disconnected = disconnected
 dialog_system.functions.teleport = teleport
 dialog_system.functions.ng_portal = ng_portal
+dialog_system.functions.iamsteve = function()
+	GamePlaySound("mods/noita.fairmod/fairmod.bank", "minecraft/iamsteve", x, y)
+end
 
 local call_options = dofile("mods/noita.fairmod/files/content/payphone/content/dialog.lua")
 

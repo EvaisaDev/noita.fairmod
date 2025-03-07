@@ -48,12 +48,15 @@
 {2784aafe-d908-42c3-8f02-62de748903b0} event:/hescoming/tubaloop
 {7c93adb7-d17f-42c6-8f23-c84b3d4625b9} event:/immersivepiss/diarrhea
 {d024882e-4a93-4b8e-9937-d476a54daaf0} event:/immersivepiss/timetotakeapiss
+{899c539a-4ca5-4612-a8c5-c5199c274ef7} event:/jerma/aaeeoo
+{8691f07f-56d3-4ca4-b39b-433bdbc12f14} event:/jerma/aaeeoo_local
 {42947374-a736-4c0b-b89a-ba9d79c30c98} event:/loanshark/pop
 {190c80f9-d744-445a-9ba5-8cc5c69002e8} event:/mailbox/open
 {d8013254-a757-4288-b07e-57017d694ce0} event:/minecraft/dirt
+{a51dccb7-3f62-442b-a05b-0436871caeb2} event:/minecraft/iamsteve
 {a33c7536-7744-4118-aa2b-af3e22647d03} event:/minecraft/implayingminecraft
 {4a84376c-b204-48e9-afc0-0ffe0e6eaae1} event:/minecraft/loop
-{91c1d48a-6dd8-4ffb-8f36-e003c8fe2a4a} event:/minecraft/steve
+{2416dd45-494b-4267-8766-8476430be04e} event:/minecraft/steve2
 {f14574a6-7679-4f93-917e-5da2f2f10c9d} event:/minecraft/stone
 {1d8915b7-d6e5-4f9f-967b-31734c7f4a2b} event:/minecraft/wood
 {044e65fe-1efb-42b4-a1df-7737b1263904} event:/necoarc/noises
@@ -69,6 +72,7 @@
 {e94bd9c0-4b86-4e3e-a138-ea0159ea20cf} event:/payphone/pickup
 {876eb51e-6244-4a21-b16e-b5f6b05e8677} event:/payphone/putdown
 {ed561f27-68f1-4211-87b1-b578ce7ee6df} event:/payphone/ring
+{91c1d48a-6dd8-4ffb-8f36-e003c8fe2a4a} event:/payphone/sing
 {a6fd0e95-e39e-4df0-9c69-1664c249c7e8} event:/pedro/pedro
 {3d44277a-15d9-4aa7-a066-6e86c4c89f46} event:/pedro/pedro_streamer
 {b846f6b5-b29c-4b60-9aa4-c0c97ff1d12c} event:/pickbanana/create
