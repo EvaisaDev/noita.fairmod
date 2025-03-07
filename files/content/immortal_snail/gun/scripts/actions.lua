@@ -76,7 +76,7 @@ actions[#actions + 1] = {
 				current_reload_time = current_reload_time + 40
 				mag2 = 200
 				Revs = 0
-				GamePlaySound("mods/noita.fairmod/fairmod.bank", "gun/reload", x, y)
+				GamePlaySound("mods/noita.fairmod/fairmod.bank", "tenno/reload", x, y)
 			end
 			--GameCreateParticle("plastic_red", x, y - 4, 1, math.random(-5, 5), -10, false)
 			add_projectile("mods/noita.fairmod/files/content/immortal_snail/gun/entities/bullet_soma.xml")
@@ -109,7 +109,9 @@ actions[#actions + 1] = {
 }
 
 for i=1, #actions do
-	if actions[i].mana > 0 then
-		actions[i].mana = actions[i].mana + 1
+	if mana then
+		if actions[i].mana > 0 then
+			actions[i].mana = actions[i].mana + 1
+		end
 	end
 end

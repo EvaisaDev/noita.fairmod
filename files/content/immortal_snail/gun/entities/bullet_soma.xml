@@ -179,7 +179,7 @@
 
 	<AudioComponent
 		file="mods/noita.fairmod/fairmod.bank"
-		event_root="gunshot"
+		event_root="tennofire"
 	/>
 
     <VariableStorageComponent
