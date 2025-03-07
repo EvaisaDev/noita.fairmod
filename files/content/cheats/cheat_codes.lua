@@ -24,10 +24,10 @@ return {
 		name = "GOD HAMIS ARTIST-MARTIAL IMMORTALITY GAMER MODE",
 		description = "Enabled GHAMING MODE",
 		func = function(player)
-			if HasFlagPersistent("fairmod_noitillionare_winner") == false then
-				GamePrintImportant("This power is too great for you, young hämis.","Come back when you've completed your journey.")
+			if HasFlagPersistent("fairmod_copimail_letter") == false then
+				GamePrintImportant("This power is too great for you, young hämis.","Come back when you have recieved the dark lord's mail.")
 				GamePrint("This power is too great for you, young hämis.")
-				GamePrint("Come back when you've completed your journey.")
+				GamePrint("Come back when you have recieved the dark lord's mail.")
 				LoadGameEffectEntityTo( player, "mods/noita.fairmod/files/content/cheats/misc/polymorph_hamis.xml" )
 			else
 				if EntityHasTag(player, "no_hamis_bullet") then return end
@@ -291,6 +291,16 @@ return {
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/items/glock.xml", x, y)
+		end,
+	},
+	{
+		code = "holyshitsomaprimewarframe",
+		name = "Look at them, they come to this place when they know they are not pure.",
+		description = "Tenno use the keys, but they are mere trespassers. Only I, Vor, know the true power of the Void. I was cut in half, destroyed, but through it's Janus Key, the Void called to me.",
+		decoration = "mods/noita.fairmod/files/content/immortal_snail/gun/ui_gfx/decoration/twin.png",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/soma/soma.xml", x, y)
 		end,
 	},
 	{
@@ -579,6 +589,7 @@ return {
 		name = "protec",
 		description = "missing description",
 		func = function(player)
+			local x,y = EntityGetTransform(player)
 			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
 		end
 	},

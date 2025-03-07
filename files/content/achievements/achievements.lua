@@ -471,6 +471,15 @@ achievements = {
 			return HasFlagPersistent("fairmod_copi_evil_letter")
 		end,
 	},
+	{
+		name = "THREAT ASSESSED",
+		description = "ENABLING T.R.O.L.L. UNITS",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/threat_level.png",
+		flag = "fair_risk",
+		unlock = function()
+			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= 84
+		end,
+	},
 }
 
 local function romanize(num)
