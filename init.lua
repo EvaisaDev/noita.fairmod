@@ -54,6 +54,7 @@ local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
+local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
