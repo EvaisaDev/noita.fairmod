@@ -11,7 +11,10 @@ module.spawn = function(x, y)
 
 	if Random(1,3)==1 and HasFlagPersistent("fairmod_first_time_mailbox") then
 		if(not HasFlagPersistent("fairmod_copi_evil_letter"))then
-			ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copi_evil,")
+			if not HasFlagPersistent("fairmod_evil_letter_buffer") then
+				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copi_evil,")
+				AddFlagPersistent("fairmod_evil_letter_buffer")
+			end
 		end
 	end
 
