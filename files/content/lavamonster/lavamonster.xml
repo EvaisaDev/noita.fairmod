@@ -1,0 +1,14 @@
+<Entity>
+
+  <SpriteComponent
+    image_file="mods/noita.fairmod/files/content/lavamonster/lavamonster_sprite.xml"
+    offset_x="0"
+    offset_y="0"
+  ></SpriteComponent>
+
+  <LuaComponent
+    script_source_file="mods/noita.fairmod/files/content/lavamonster/lavamonster.lua"
+    execute_every_n_frame="1"
+  ></LuaComponent>
+
+</Entity>
