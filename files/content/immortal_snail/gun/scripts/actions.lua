@@ -49,7 +49,6 @@ actions[#actions + 1] = {
 
 		else
 
-
 			Revs = Revs or 0
 			local caster = GetUpdatedEntityID()
 			local x, y = EntityGetTransform(caster)
@@ -71,8 +70,6 @@ actions[#actions + 1] = {
 				end
 				LastShootingStart = shooting_start
 			end
-
-
 
 			mag2 = mag2 or 200
 			if mag2 == 1 then
