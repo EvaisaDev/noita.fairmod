@@ -294,6 +294,16 @@ return {
 		end,
 	},
 	{
+		code = "holyshitsomaprimewarframe",
+		name = "Look at them, they come to this place when they know they are not pure.",
+		description = "Tenno use the keys, but they are mere trespassers. Only I, Vor, know the true power of the Void. I was cut in half, destroyed, but through it's Janus Key, the Void called to me.",
+		decoration = "mods/noita.fairmod/files/content/immortal_snail/gun/ui_gfx/decoration/twin.png",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/soma/soma.xml", x, y)
+		end,
+	},
+	{
 		code = "snoopdogg",
 		name = "Snoop Dogg",
 		description = "La-da-da-da-dah It's the motherfuckin' D-O-double-G (Snoop Dogg!)",
