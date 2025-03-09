@@ -36,7 +36,7 @@
 	play_spinning_animation="0"
 	play_hover_animation="0"
     ui_sprite="mods/noita.fairmod/files/content/anti_dmca/microphone_inventory.png"
-    ui_description="A sparkly princess themed microphone."
+    ui_description="A sparkly princess themed microphone. Seems to have anti DMCA properties."
     preferred_inventory="QUICK"
   ></ItemComponent>
 

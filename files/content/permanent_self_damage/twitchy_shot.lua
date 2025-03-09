@@ -2,7 +2,7 @@ dofile_once("data/scripts/lib/utilities.lua")
 
 function shot( entity_id )
 
-	if(EntityHasTag("no_fucky_wucky"))then
+	if(EntityHasTag(entity_id, "no_fucky_wucky"))then
 		return
 	end
 

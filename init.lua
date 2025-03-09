@@ -267,7 +267,7 @@ function OnPlayerSpawned(player)
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
-	GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/anti_dmca/microphone.xml", target_x - 40, target_y - 4), false)
+	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/anti_dmca/microphone.xml", target_x - 40, target_y - 4), false)
 
 end
 

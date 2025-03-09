@@ -159,7 +159,7 @@ function evil:BuffEnemy(enemy)
 	-- Chicanery ends
 
 	local file_name = EntityGetFilename(enemy)
-
+	
 	local animal_ai = EntityGetFirstComponentIncludingDisabled(enemy, "AnimalAIComponent")
 	if animal_ai then
 		self:TweakAnimalComponent(headache, animal_ai)
