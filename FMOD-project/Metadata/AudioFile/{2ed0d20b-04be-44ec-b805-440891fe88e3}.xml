@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{2ed0d20b-04be-44ec-b805-440891fe88e3}">
 		<property name="assetPath">
-			<value>iamsteve-02.mp3</value>
+			<value>Compress/iamsteve-02.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

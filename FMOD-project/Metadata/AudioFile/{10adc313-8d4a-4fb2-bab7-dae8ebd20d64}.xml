@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{10adc313-8d4a-4fb2-bab7-dae8ebd20d64}">
 		<property name="assetPath">
-			<value>TennoARClipIn.wav</value>
+			<value>Compress/TennoARClipIn.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.1310005</value>

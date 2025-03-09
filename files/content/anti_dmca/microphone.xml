@@ -13,14 +13,13 @@
   <SpriteComponent
     _tags="enabled_in_hand"
 	_enabled="0"
-	offset_x="128"
-	offset_y="128"
+	offset_x="1"
+	offset_y="4"
     image_file="mods/noita.fairmod/files/content/anti_dmca/microphone_hand.png"
   ></SpriteComponent>
 
 	<SpriteComponent
     _tags="enabled_in_world"
-	rect_animation="dance"
     image_file="mods/noita.fairmod/files/content/anti_dmca/microphone_inventory.png"
   ></SpriteComponent>
 

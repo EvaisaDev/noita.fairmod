@@ -1,0 +1,15 @@
+<Entity>
+
+	<SpriteComponent
+		_tags="eyes"
+		image_file="mods/noita.fairmod/files/content/anti_dmca/eyes_jerma.png"
+		offset_x="3"
+		offset_y="1"
+	></SpriteComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/anti_dmca/jerma.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+</Entity>

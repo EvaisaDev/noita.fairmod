@@ -22,7 +22,7 @@
 		body_id="1"
 		centered="1"
 		image_file="mods/noita.fairmod/files/content/minecraft/earth_crystal_world.png"
-		material="rock_box2d_hard"
+		material="gem_box2d"
 	></PhysicsImageShapeComponent>
 
 	<ProjectileComponent

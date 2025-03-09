@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{76b9d5e7-9f98-4630-aee1-49318bf5e685}">
 		<property name="assetPath">
-			<value>_I am Steve_ Jack Black - A Minecraft Movie FULL CLIP 4.mp3</value>
+			<value>Compress/_I am Steve_ Jack Black - A Minecraft Movie FULL CLIP 4.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
