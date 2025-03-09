@@ -110,7 +110,7 @@ actions[#actions + 1] = {
 
 for i=1, #actions do
 	if mana then
-		if actions[i].mana > 0 then
+		if actions[i].mana and actions[i].mana > 0 then
 			actions[i].mana = actions[i].mana + 1
 		end
 	end
