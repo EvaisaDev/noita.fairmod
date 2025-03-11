@@ -268,25 +268,8 @@ local Popups = {
 			end,
 		},
 	},--]=]
-        --[=[
-        { --popup that seamlessly appears, shelved fn cuz i discovered GUI and world pixels arent 1:1, world pixels are 1.5 times bigger than GUI
-			EXE = "popup_REAL.exe",
-			MESSAGE = "Buy now, 40% more real popups! newline Immersion levels now at 1000%, what's the worst that could happen?!?",
-			CLOSE_FUNCTION = function(self, data)
-				local v_width,v_height = --awesome horscht code
-					MagicNumbersGetValue("VIRTUAL_RESOLUTION_X"),
-					MagicNumbersGetValue("VIRTUAL_RESOLUTION_Y")
-				local x, y = 
-					data.Windows[data.iteration].x,
-					data.Windows[data.iteration].y
-				local cx, cy = GameGetCameraBounds()
-				local ratio_x,ratio_y =
-					data.screen.x / v_width,
-					data.screen.y / v_height
-				local ent_x, ent_y = cx + (x / ratio_x), cy + (y / ratio_y)
-				LoadPixelScene("mods/noita.fairmod/files/content/popups/popup_real.png", "mods/noita.fairmod/files/content/popups/popup_real_visual.png", ent_x, ent_y, "")
-			end,
-		},--]=]
+        --todo: popup that when you close it, it appears in the material world seamlessly so that the only observable change is the fact it is no longer following your camera
+        --shelved cuz pixel ratio of world to gui is not 1:1, will like
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
