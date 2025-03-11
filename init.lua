@@ -53,6 +53,7 @@ local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
+local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -159,6 +160,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
+    swapper.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
