@@ -54,6 +54,7 @@
 {23c33e45-5bfe-4ef7-bdf2-cf423f306c05} event:/jerma/audiojungle
 {3112cf80-e3ef-4e30-a79c-5fbbf063f825} event:/jerma/ee
 {9a27729f-e8f5-4092-9110-b30767621e4a} event:/jerma/oo
+{c3441bbf-4040-4aef-8745-0f637a33a5e3} event:/lavamonster/blargg
 {42947374-a736-4c0b-b89a-ba9d79c30c98} event:/loanshark/pop
 {190c80f9-d744-445a-9ba5-8cc5c69002e8} event:/mailbox/open
 {d8013254-a757-4288-b07e-57017d694ce0} event:/minecraft/dirt
