@@ -540,6 +540,20 @@ for i = 1, 10 do
 end
 
 for i = 1, 10 do
+	table.insert(achievements,{
+		name = "Nice Catch! " .. romanize(i),
+		description = "Gained 10 fishing power.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/KILL_FISH.png",
+		flag = "nice_catch_" .. i,
+		unlock = function()
+			local got = GameHasFlagRun("killed_boss_fish")
+			GameRemoveFlagRun("killed_boss_fish")
+			return got
+		end
+	})
+end
+
+for i = 1, 10 do
 	table.insert(achievements, {
 		name = "New Kicks " .. romanize(i),
 		description = "You kicked " .. tostring(2 ^ i) .. " times!",

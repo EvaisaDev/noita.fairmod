@@ -9,5 +9,9 @@ function death( damage_type_bit_field, damage_message, entity_thats_responsible,
 
 	EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", x, y)
 
+	local fishing_power_buff = GlobalsGetValue("FISHING_POWER_BUFF", "0")
+	GameAddFlagRun("killed_boss_fish")
+	local fishing_power = tonumber(fishing_power_buff) + 10
+	GlobalsSetValue("FISHING_POWER_BUFF", tostring(fishing_power))
 
 end
