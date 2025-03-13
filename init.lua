@@ -273,7 +273,7 @@ function OnPlayerSpawned(player)
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
-	GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
+	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
 
 end
 
@@ -316,10 +316,10 @@ function OnWorldPreUpdate()
 	end
 
 	-- debugging
-	if InputIsKeyJustDown(64) then
+	--[[if InputIsKeyJustDown(64) then
 		local mx, my = DEBUG_GetMouseWorld()
 		EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", mx, my)
-	end
+	end]]
 end
 
 function OnWorldPostUpdate() end
