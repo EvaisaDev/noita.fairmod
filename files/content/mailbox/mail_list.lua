@@ -105,4 +105,24 @@ return {
 		even as my flesh hardens, a wall of cursed rock awaits my joining!
 		- Captain Kolmisilma]], -- only used if create_letter is true
 	},
+	virus = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "YOURE PWNED!!", -- only used if create_letter is true
+		letter_content = [=[It's so over for you buddy. I HACKED you. you do NOT want to find out what happens at 99 mails.]=],
+		letter_sprite = "mods/noita.fairmod/files/content/mailbox/haxx.png", -- only used if create_letter is true
+		letter_func = function(letter_entity) -- runs after the letter entity is created
+			SetRandomSeed(GameGetFrameNum(), letter_entity)
+			if string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "virus,") >=99 then
+				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
+				string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "")
+			else
+				for i=1, 3 do
+					if Random()>0.5 then
+						ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
+					end
+				end
+			end
+		end,
+	},
+	-- @EBA ADD A COPIBUDDY MAIL :)))))
 }
