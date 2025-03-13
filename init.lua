@@ -116,6 +116,7 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/events/boss_fish/actions.lua" )
 ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/gun.lua" )
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
@@ -272,7 +273,7 @@ function OnPlayerSpawned(player)
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
-	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/anti_dmca/microphone.xml", target_x - 40, target_y - 4), false)
+	GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
 
 end
 
@@ -312,6 +313,12 @@ function OnWorldPreUpdate()
 		GameAddFlagRun("incremented_win_count")
 		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
+	end
+
+	-- debugging
+	if InputIsKeyJustDown(64) then
+		local mx, my = DEBUG_GetMouseWorld()
+		EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", mx, my)
 	end
 end
 
