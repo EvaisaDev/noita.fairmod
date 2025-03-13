@@ -61,13 +61,59 @@ local function statue_closeness_dialog(dialog)
 end
 
 -- I use this for debugging :)
---[[
-do 
-	return {
 
-	}
+do 
+	--[[return {
+		{
+			name = "Steve",
+			portrait = "mods/noita.fairmod/files/content/payphone/portrait_steve.png",
+			text = "{@func iamsteve}I... Am Steve. \nAs a child I yearned for the mines.\nBut something always got in the way..",
+			typing_sound = "none",
+			options = {
+				{
+					text = "Okay...?",
+					func = function(dialog)
+						dialog.show({
+							text = "{@func iamsteve}But the call of the mines was too strong.. \nSo one day I started digging.. and digging.. \nUntil I found...",
+							options = {
+								{
+									text = "Found WHAT?",
+									func = function(dialog)
+	
+										local players = EntityGetWithTag("player_unit") or {}
+										if players == nil or #players == 0 then return end
+										local player = players[1]
+										local x, y = EntityGetTransform(player)
+										EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", x, y)
+										dialog.show({
+											text = "{@func iamsteve}This.{@func disconnected}",
+											options = {
+												{
+													text = "...",
+													func = function(dialog)
+														hangup()
+													end,
+												},
+											},
+										})
+										
+									end,
+								},
+							},
+						})
+					end,
+				},
+				{
+					text = "Goodbye Steve.",
+					func = function(dialog)
+						hangup()
+					end,
+				},
+			},
+		},
+	}]]
 end
-]]
+
 return {
 	{
 		name = "Unknown Caller",
