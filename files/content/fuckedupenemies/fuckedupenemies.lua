@@ -1,6 +1,7 @@
 -- Eba made this
 -- Makes enemies very fucked up and evil.
 -- Idk
+-- Copi made this funnier
 local effects = {
 	"BERSERK",
 	"REGENERATION",
@@ -50,6 +51,40 @@ local effects = {
 local evil = {}
 
 function evil:GiveRandomEffect(enemy)
+
+	local pec = EntityAddComponent2(enemy, "ParticleEmitterComponent", {
+		emitted_material_name="spark_red",
+		render_ultrabright=true,
+		x_pos_offset_min="-1",
+		x_pos_offset_max="1",
+		y_pos_offset_min="-9",
+		y_pos_offset_max="-7",
+		x_vel_min="0",
+		x_vel_max="0",
+		y_vel_min="-50",
+		y_vel_max="-10",
+		count_min="2",
+		count_max="5",
+		lifetime_min="0.15",
+		lifetime_max="0.30",
+		airflow_force="0.1",
+		airflow_time="0.1",
+		airflow_scale="0.25",
+		is_trail=false,
+		create_real_particles=false,
+		emit_cosmetic_particles=true,
+		render_on_grid=true,
+		emission_interval_min_frames="1",
+		emission_interval_max_frames="1",
+		fade_based_on_lifetime=true,
+		is_emitting=true,
+		draw_as_long=true,
+		velocity_always_away_from_center="100",
+		direction_random_deg="360",
+	})
+	ComponentSetValue2(pec, "gravity", 0, 100)
+	ComponentSetValue2(pec, "area_circle_radius", 5, 5)
+
 	for _ = 1, 3 do
 		local comp = GetGameEffectLoadTo(enemy, effects[math.random(1, #effects)], true)
 		ComponentSetValue2(comp, "frames", -1)
@@ -155,7 +190,7 @@ function evil:BuffEnemy(enemy)
 	local ex, ey = EntityGetTransform(enemy)
 	SetRandomSeed(ex, ey)
 	-- Copious bullshit ensues
-	local headache = (math.random(0, 10000) / 100) <= 2
+	local headache = (math.random(0, 5000) / 100) <= 2
 	-- Chicanery ends
 
 	local file_name = EntityGetFilename(enemy)
