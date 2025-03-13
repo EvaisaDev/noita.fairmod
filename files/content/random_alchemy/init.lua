@@ -80,7 +80,8 @@ function randomizer:init()
 end
 
 function randomizer:create()
-	SetRandomSeed(GameGetFrameNum(), GameGetRealWorldTimeSinceStarted())
+	local year, month, day, hour, minute = GameGetDateAndTimeLocal()
+	SetRandomSeed(GameGetFrameNum(), minute + 60 * (hour + 24 * (day + 30 * (month + 12 * year))))
 	local selected = generate_unique_random_numbers(random_reactions_to_add, 1, #reactions)
 
 	for xml in nxml.edit_file(self.file) do
