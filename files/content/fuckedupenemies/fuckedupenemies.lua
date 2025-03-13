@@ -20,6 +20,7 @@ local effects = {
 	"SAVING_GRACE",
 	"DAMAGE_MULTIPLIER",
 	"RESPAWN",
+	"RESPAWN",
 	"PROTECTION_FIRE",
 	"PROTECTION_RADIOACTIVITY",
 	"PROTECTION_EXPLOSION",
@@ -28,23 +29,16 @@ local effects = {
 	"TELEPORTITIS",
 	"TELEPORTITIS",
 	"TELEPORTITIS",
-	"STAINLESS_ARMOUR",
-	"NO_SLIME_SLOWDOWN",
 	"MOVEMENT_FASTER_2X",
 	"LOW_HP_DAMAGE_BOOST",
 	"MOVEMENT_FASTER_2X",
 	"LOW_HP_DAMAGE_BOOST",
-	"STUN_PROTECTION_ELECTRICITY",
-	"STUN_PROTECTION_FREEZE",
 	"PROTECTION_ALL",
 	"INVISIBILITY",
 	"INVISIBILITY",
 	"INVISIBILITY",
-	"PROTECTION_DURING_TELEPORT",
-	"PROTECTION_POLYMORPH",
-	"PROTECTION_FREEZE",
-	"FROZEN_SPEED_UP",
 	"RAINBOW_FARTS",
+	"DAMAGE_MULTIPLIER ",
 }
 
 --- @class fuckupenemies
@@ -87,6 +81,22 @@ function evil:GiveRandomEffect(enemy)
 
 	for _ = 1, 3 do
 		local comp = GetGameEffectLoadTo(enemy, effects[math.random(1, #effects)], true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "PROTECTION_POLYMORPH", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "PROTECTION_FREEZE", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "STUN_PROTECTION_ELECTRICITY", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "STUN_PROTECTION_FREEZE", true)
 		ComponentSetValue2(comp, "frames", -1)
 	end
 end
@@ -154,13 +164,13 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 		attack_ranged_entity_count_max * damage_mult)
 	]]
 
-	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 50) == 1)
+	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 44) == 1)
 	local creature_detection_range_x = ComponentGetValue2(animal_ai, "creature_detection_range_x")
 	local creature_detection_range_y = ComponentGetValue2(animal_ai, "creature_detection_range_y")
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", creature_detection_range_x * (1 + (Random() / 2)))
 	ComponentSetValue2(animal_ai, "creature_detection_range_y", creature_detection_range_y * (1 + (Random() / 2)))
 	local attack_melee_enabled = ComponentGetValue2(animal_ai, "attack_melee_enabled")
-	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 30 and attack_melee_enabled or not attack_melee_enabled)
+	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 35 and attack_melee_enabled or not attack_melee_enabled)
 
 	--[[
 	local aggressiveness_min = ComponentGetValue2(animal_ai, "aggressiveness_min")
