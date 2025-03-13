@@ -17,7 +17,7 @@ local runner_tag = "mimic"
 
 for i, entity in ipairs(entities_all) do
 	if EntityGetRootEntity(entity) == entity then
-		if not EntityHasTag(entity, runner_tag) then
+		if not EntityHasTag(entity, runner_tag) and not EntityHasTag(entity, "no_spiders") then
 			local ex, ey = EntityGetTransform(entity)
 			local distance = math.sqrt((ex - x) ^ 2 + (ey - y) ^ 2)
 

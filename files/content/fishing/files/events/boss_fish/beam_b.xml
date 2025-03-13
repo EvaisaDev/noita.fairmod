@@ -1,0 +1,20 @@
+<Sprite
+        filename="mods/noita.fairmod/files/content/fishing/files/events/boss_fish/beam_b.png"
+offset_x="32"
+offset_y="5.5"
+default_animation="smoke"
+ >
+
+<!-- explosion -->
+<RectAnimation
+name="smoke"
+pos_x="0"
+pos_y="0"
+frame_count="3"
+frame_width="64"
+frame_height="11"
+frame_wait="0.1"
+frames_per_row="1"
+loop="1"   >
+</RectAnimation>
+</Sprite>

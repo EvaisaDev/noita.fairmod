@@ -1,0 +1,25 @@
+<Entity>
+	<InheritTransformComponent>
+    </InheritTransformComponent>
+	
+	<MagicConvertMaterialComponent
+		from_any_material="1"
+        to_material="water"
+        steps_per_frame="4"
+        loop="0"
+		is_circle="1"
+        radius="9" >
+    </MagicConvertMaterialComponent>
+	
+	
+	<LifetimeComponent
+		lifetime="4"
+	>
+	</LifetimeComponent>
+	
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/touch">
+	</AudioComponent>
+  
+</Entity>

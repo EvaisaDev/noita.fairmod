@@ -232,6 +232,10 @@ local ui_displays = {
 				-- TODO give 5 fishing power only when holding the fishing rod
 				local fishing_power = 5
 
+				local fishing_power_buff = GlobalsGetValue("FISHING_POWER_BUFF", "0")
+				
+				fishing_power = fishing_power + tonumber(fishing_power_buff)
+
 				local wse = GameGetWorldStateEntity()
 				local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
 				if wsc == nil then return end --if wsc is nil, god help us...

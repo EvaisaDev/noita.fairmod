@@ -109,6 +109,25 @@ fish_list = {
 		end,
 	},
 	{
+		id = "EVIL",
+		name = "Evil fucked up catfish",
+		description = "WHY",
+		drop_fish = false,
+		splash_screen = true,
+		sizes = { min = 0.5, max = 1.5 },
+		price = 10000,
+		probability = 20,
+		difficulty = 5,
+		catch_seconds = 3,
+		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
+		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/evil.png",
+		func = function(fish, x, y)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
+
+			EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", x, y)
+		end,
+	},
+	{
 		id = "wand",
 		name = "Wand",
 		description = "You caught a wand! Very cool.",
