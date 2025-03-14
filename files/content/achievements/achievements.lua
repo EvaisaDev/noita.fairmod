@@ -540,7 +540,7 @@ for i = 1, 10 do
 end
 
 for i = 1, 10 do
-	table.insert(achievements,{
+	table.insert(achievements, {
 		name = "Nice Catch! " .. romanize(i),
 		description = "Gained 10 fishing power.",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/KILL_FISH.png",
@@ -549,7 +549,7 @@ for i = 1, 10 do
 			local got = GameHasFlagRun("killed_boss_fish")
 			GameRemoveFlagRun("killed_boss_fish")
 			return got
-		end
+		end,
 	})
 end
 
@@ -1180,5 +1180,5 @@ end
 
 -- setting flag
 for _, achievement in ipairs(achievements) do
-	achievement.flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+	achievement.flag = string.lower("fairmod_" .. achievement.flag or ("achievement_" .. achievement.name))
 end
