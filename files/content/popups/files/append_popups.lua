@@ -116,8 +116,17 @@ local Popups = {
 			UPDATE_FUNCTION = function(window, self)
 				local w, h = GuiGetScreenDimensions(Gui)
 				local x, y = window.x, window.y
-				local dx = window.dx or (Random(-1000, 1000) / 1000)
-				local dy = window.dy or (1.0 - dx)
+
+				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
+				local abs_dy = 1 - abs_dx
+
+		
+				local sign_dx = (Random(0, 1) < 0.5) and -1 or 1
+				local sign_dy = (Random(0, 1) < 0.5) and -1 or 1
+
+
+				local dx = window.dx or (sign_dx * abs_dx)
+				local dy = window.dy or (sign_dy * abs_dy)
 				local width = window.ww or 1
 				local height = window.hh or 1
 				local speed = 5
