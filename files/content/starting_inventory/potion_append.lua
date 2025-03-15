@@ -20,6 +20,10 @@ ps.magicpotions = { --nested in tables due to probability field. Default probabi
 	{ "t_omega_slicing_liquid" },
 	{ "material_confusion" },
 	{ "magic_liquid_weakness" },
+	{ "fairmod_propanium", probability = 1 },
+	{ "fairmod_tntinium", probability = 1 },
+	{ "fairmod_minecartium", probability = 1 },
+	{ "fairmod_hamisium", probability = 1 },
 }
 
 ps.failpotions = { --same deal here with the nested tables
