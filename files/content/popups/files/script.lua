@@ -539,6 +539,10 @@ for i = 1, #Windows do
             end
         end
 
+		if Windows[i].popup and Windows[i].popup.UPDATE_FUNCTION then
+			Windows[i].popup.UPDATE_FUNCTION(Windows[i], Windows[i].popup)
+		end
+
         local z = -1999999 - windowCounter * windowNumOverlappingElements
         GuiZSet(gui, z)
 
@@ -577,8 +581,13 @@ for i = 1, #Windows do
         local py = 0
         local lastdy = 0
         local hyperlink_number = 0
+
+
+
+
         if s:sub(1,5)=="[IMG]" then
             GuiZSetForNextWidget(Gui, z - 3)
+			GuiColorSetForNextWidget(Gui, Windows[i].image_color and Windows[i].image_color[1] or 1, Windows[i].image_color and Windows[i].image_color[2] or 1, Windows[i].image_color and Windows[i].image_color[3] or 1, 1)
             GuiImage(Gui, 1, (ww - imgwidth) * .5, 0, s:sub(6), 1, 1, 1)
         else
             for w in s:gmatch("%S+") do

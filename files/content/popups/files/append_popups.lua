@@ -110,7 +110,66 @@ local Popups = {
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
+		{ 
+			EXE = "DVD_LOGO.EXE",
+			MESSAGE = "[IMG]Mods/noita.fairmod/files/content/popups/dvd.png",
+			UPDATE_FUNCTION = function(window, self)
+				local w, h = GuiGetScreenDimensions(Gui)
+				local x, y = window.x, window.y
 
+				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
+				local abs_dy = 1 - abs_dx
+
+		
+				local sign_dx = (Random(0, 1) < 0.5) and -1 or 1
+				local sign_dy = (Random(0, 1) < 0.5) and -1 or 1
+
+
+				local dx = window.dx or (sign_dx * abs_dx)
+				local dy = window.dy or (sign_dy * abs_dy)
+				local width = window.ww or 1
+				local height = window.hh or 1
+				local speed = 5
+				window.image_color = window.image_color or {Random(), Random(), Random()}
+
+				x = x + (dx * speed)
+				y = y + (dy * speed)
+
+				local hit1 = false
+				local hit2 = false
+
+				if x < 0 then
+					x = 0
+					dx = -dx
+					hit1 = true
+				elseif x + width > w then
+					x = w - width
+					dx = -dx
+					hit1 = true
+				end
+
+				if y < 0 then
+					y = 0
+					dy = -dy
+					hit2 = true
+				elseif y + height > h then
+					y = h - height
+					dy = -dy
+					hit2 = true
+				end
+				
+				if(hit1 and hit2) then
+					window.image_color = {Random(), Random(), Random()}
+				end
+
+				window.x = x
+				window.y = y
+				window.dx = dx
+				window.dy = dy
+
+
+			end,
+		},
 		--[=[
 		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
 			EXE					= "PROGRESS PAWN SHOP",
