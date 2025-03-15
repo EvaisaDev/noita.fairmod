@@ -10,22 +10,19 @@
 		hp="0.1"
 		ignore_self_reaction_warning="1">
 		<Graphics
-			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/minecartium.png">
-		</Graphics>
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/minecartium.png" />
 	</CellData>
 
 	<CellDataChild
 		_parent="fairmod_minecartium"
 		name="fairmod_minecartium_active"
 		tags="[liquid],[magic_liquid],[catastrophic]"
-		wang_color="af737c9b">
-	</CellDataChild>
+		wang_color="af737c9b" />
 
 	<Reaction probability="1" direction="top"
 		input_cell1="fairmod_minecartium_active" input_cell2="air"
 		output_cell1="air" output_cell2="air"
-		entity="data/entities/props/physics/minecart.xml">
-	</Reaction>
+		entity="data/entities/props/physics/minecart.xml" />
 
 	<!-- Hamisium -->
 	<CellData
@@ -38,22 +35,19 @@
 		hp="0.1"
 		ignore_self_reaction_warning="1">
 		<Graphics
-			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/hamisium.png">
-		</Graphics>
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/hamisium.png" />
 	</CellData>
 
 	<CellDataChild
 		_parent="fairmod_hamisium"
 		name="fairmod_hamisium_active"
 		tags="[liquid],[magic_liquid],[catastrophic]"
-		wang_color="af523170">
-	</CellDataChild>
+		wang_color="af523170" />
 
 	<Reaction probability="1" direction="top"
 		input_cell1="fairmod_hamisium_active" input_cell2="air"
 		output_cell1="air" output_cell2="air"
-		entity="data/entities/animals/longleg.xml">
-	</Reaction>
+		entity="mods/noita.fairmod/files/content/new_materium/spawners/hamis.xml" />
 
 	<!-- Propanium -->
 	<CellData
@@ -66,22 +60,19 @@
 		hp="0.1"
 		ignore_self_reaction_warning="1">
 		<Graphics
-			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/propanium.png">
-		</Graphics>
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/propanium.png" />
 	</CellData>
 
 	<CellDataChild
 		_parent="fairmod_propanium"
 		name="fairmod_propanium_active"
 		tags="[liquid],[magic_liquid],[catastrophic]"
-		wang_color="af8777af">
-	</CellDataChild>
+		wang_color="af8777af" />
 
 	<Reaction probability="1" direction="top"
 		input_cell1="fairmod_propanium_active" input_cell2="air"
 		output_cell1="air" output_cell2="air"
-		entity="data/entities/projectiles/propane_tank.xml">
-	</Reaction>
+		entity="mods/noita.fairmod/files/content/new_materium/spawners/propane.xml" />
 
 	<!-- Tntinium -->
 	<CellData
@@ -94,22 +85,19 @@
 		hp="0.1"
 		ignore_self_reaction_warning="1">
 		<Graphics
-			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/tntinium.png">
-		</Graphics>
+			texture_file="mods/noita.fairmod/files/content/new_materium/gfx/tntinium.png" />
 	</CellData>
 
 	<CellDataChild
 		_parent="fairmod_tntinium"
 		name="fairmod_tntinium_active"
 		tags="[liquid],[magic_liquid],[catastrophic]"
-		wang_color="afae4445">
-	</CellDataChild>
+		wang_color="afae4445" />
 
 	<Reaction probability="1" direction="top"
 		input_cell1="fairmod_tntinium_active" input_cell2="air"
 		output_cell1="air" output_cell2="air"
-		entity="data/entities/projectiles/tnt.xml">
-	</Reaction>
+		entity="mods/noita.fairmod/files/content/new_materium/spawners/tnt.xml" />
 
 	<!-- evil mario... -->
 	<CellData
@@ -122,60 +110,48 @@
 		electrical_conductivity="0"
 		gfx_glow="10"
 		liquid_stains="2"
-		>
+	>
 		<StatusEffects>
 			<Stains>
-				<StatusEffect type ="ALCOHOLIC"></StatusEffect>
+				<StatusEffect type="ALCOHOLIC" />
 			</Stains>
-		
+
 			<Ingestion>
-				 <StatusEffect type="HP_REGENERATION" amount="0.2" />
+				<StatusEffect type="HP_REGENERATION" amount="0.2" />
 			</Ingestion>
 		</StatusEffects>
 	</CellData>
-	
+
 	<Reaction probability="100"
 		input_cell1="magic_liquid_polymorph" input_cell2="magic_liquid_worm_attractor"
-		output_cell1="fairmod_truehealy" output_cell2="fairmod_truehealy"
-		>
-	</Reaction>
-	
+		output_cell1="fairmod_truehealy" output_cell2="fairmod_truehealy" />
+
 	<Reaction probability="100"
 		input_cell1="magic_liquid_polymorph" input_cell2="blood_worm"
-		output_cell1="magic_liquid_worm_attractor" output_cell2="smoke"
-		>
-	</Reaction>
-	
+		output_cell1="magic_liquid_worm_attractor" output_cell2="smoke" />
+
 	<Reaction probability="100"
 		input_cell1="magic_liquid_unstable_polymorph" input_cell2="magic_liquid_worm_attractor"
-		output_cell1="gunpowder_unstable" output_cell2="liquid_fire"
-		>
-	</Reaction>
-	
+		output_cell1="gunpowder_unstable" output_cell2="liquid_fire" />
+
 	<Reaction probability="100"
 		input_cell1="magic_liquid_random_polymorph" input_cell2="magic_liquid_worm_attractor"
-		output_cell1="gunpowder_unstable" output_cell2="liquid_fire"
-		>
-	</Reaction>
+		output_cell1="gunpowder_unstable" output_cell2="liquid_fire" />
 
 	<!-- tagged reactions -->
 	<Reaction probability="1"
 		input_cell1="[materium_activate]" input_cell2="air"
-		output_cell1="[materium_activate]_active" output_cell2="air">
-	</Reaction>
+		output_cell1="[materium_activate]_active" output_cell2="air" />
 
 	<Reaction probability="1"
 		input_cell1="[materium_activate]" input_cell2="[meat]"
-		output_cell1="[materium_activate]_active" output_cell2="[meat]">
-	</Reaction>
+		output_cell1="[materium_activate]_active" output_cell2="[meat]" />
 
 	<Reaction probability="1"
 		input_cell1="[materium_activate]" input_cell2="[blood]"
-		output_cell1="[materium_activate]_active" output_cell2="[blood]">
-	</Reaction>
+		output_cell1="[materium_activate]_active" output_cell2="[blood]" />
 
 	<Reaction probability="1"
 		input_cell1="[materium_activate]" input_cell2="[fire]"
-		output_cell1="[materium_activate]_active" output_cell2="[fire]">
-	</Reaction>
+		output_cell1="[materium_activate]_active" output_cell2="[fire]" />
 </Materials>
