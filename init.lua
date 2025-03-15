@@ -8,6 +8,7 @@ local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+dofile_once("mods/noita.fairmod/files/content/hamis_biome/init.lua")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
@@ -55,6 +56,7 @@ local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alch
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
 local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
+local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -100,7 +102,6 @@ dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
-dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fix_global_pickups/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
@@ -338,6 +339,7 @@ function OnWorldInitialized()
 	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
 	--better_world.OnWorldInitialized()
+	mod_compat.on_world_initialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
