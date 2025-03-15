@@ -13,7 +13,6 @@ RegisterSpawnFunction(0xff400080, "spawn_large_enemies")
 RegisterSpawnFunction(0xffC8C800, "spawn_lamp2")
 RegisterSpawnFunction(0xff00AC64, "load_pixel_scene4")
 RegisterSpawnFunction(0xff80FF5A, "spawn_vines")
-RegisterSpawnFunction(0xff943030, "spawn_dragonspot")
 RegisterSpawnFunction(0xff4c63e0, "spawn_root_grower")
 
 ------------ SMALL ENEMIES ----------------------------------------------------

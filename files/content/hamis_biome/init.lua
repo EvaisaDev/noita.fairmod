@@ -9,3 +9,4 @@ for xml in nxml.edit_file("data/biome/_biomes_all.xml") do
 end
 
 ModLuaFileAppend("data/scripts/biome_map.lua", "mods/noita.fairmod/files/content/hamis_biome/biome/biome_map_appends.lua")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/hamis_biome/materials/materials.xml")

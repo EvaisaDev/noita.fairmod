@@ -1,0 +1,56 @@
+<Materials>
+	<CellDataChild
+		_parent="meat_static"
+		_inherit_reactions="1"
+		name="fairmod_hamis_meat"
+		ui_name="$biome_hamis_biomass"
+		wang_color="ff9d00f3">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/meat_static.png"
+			color="ff9a5149">
+			<Edge>
+				<EdgeGraphics
+					color="ff9a5149"
+					overwrite="0"
+					percent="1"
+					require_same_material="0"
+					require_same_material_type="0"
+					type="NORMAL_BASED"
+					z="1">
+					<Images>
+						<Image
+							do_only_horizontal_stripe="1"
+							do_only_vertical_stripe="0"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_meat_hor.png"
+							min_angle="45"
+							max_angle="135" />
+						<Image
+							do_only_horizontal_stripe="1"
+							do_only_vertical_stripe="0"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_meat_hor.png"
+							min_angle="235"
+							max_angle="315" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_meat_ver.png"
+							min_angle="135"
+							max_angle="235" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_meat_ver.png"
+							min_angle="315"
+							max_angle="360" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_meat_ver.png"
+							min_angle="0"
+							max_angle="45" />
+					</Images>
+				</EdgeGraphics>
+			</Edge>
+		</Graphics>
+	</CellDataChild>
+</Materials>
