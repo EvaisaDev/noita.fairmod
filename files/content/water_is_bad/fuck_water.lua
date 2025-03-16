@@ -1,44 +1,30 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 local material_file = "data/materials.xml"
 
-local water_to_fuckup = { "water", "water_static", "water_ice", "water_swamp", "water_salt", "swamp" }
-
-local function is_water(name)
-	for i = 1, #water_to_fuckup do
-		if name == water_to_fuckup[i] then return true end
-	end
-	return false
-end
+local water_to_fuckup = {
+	water = true,
+	water_static = true,
+	water_ice = true,
+	water_swamp = true,
+	water_salt = true,
+	swamp = true,
+}
 
 local materials = nxml.parse(ModTextFileGetContent(material_file))
 
 for reaction in materials:each_of("Reaction") do
 	local attr = reaction.attr
+	local input1, input2 = attr.input_cell1, attr.input_cell2
 
-	if attr.input_cell2 == "radioactive_liquid" and is_water(attr.input_cell1) then
-		attr.output_cell1 = "cement"
-		attr.output_cell2 = "cement"
-	end
-
-	if is_water(attr.input_cell2) then
-		if attr.input_cell1 == "[lava]" then
-			attr.output_cell1 = "gunpowder_unstable"
-			attr.output_cell2 = "rainbow_gas"
+	if input2 == "radioactive_liquid" and water_to_fuckup[input1] then
+		attr.output_cell1, attr.output_cell2 = "cement", "cement"
+	elseif water_to_fuckup[input2] then
+		if input1 == "[lava]" then
+			attr.output_cell1, attr.output_cell2 = "gunpowder_unstable", "rainbow_gas"
+		elseif input1 == "magic_liquid_mana_regeneration" then
+			attr.output_cell1 = "lava"
 		end
-		if attr.input_cell1 == "magic_liquid_mana_regeneration" then attr.output_cell1 = "lava" end
 	end
 end
-
--- for celldata in materials:each_of("CellData") do
--- 	if is_water(celldata.attr.name) then
--- 		local graphics = celldata:first_of("Graphics")
--- 		if graphics then
--- 			graphics.attr.texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png"
--- 		else
--- 			celldata:add_child(nxml.new_element("Graphics",
--- 				{ texture_file = "mods/noita.fairmod/files/content/water_is_bad/concrete_wet.png" }))
--- 		end
--- 	end
--- end
 
 ModTextFileSetContent(material_file, tostring(materials))
