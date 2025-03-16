@@ -1,0 +1,5 @@
+<Entity>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/hamis_biome/entities/nest_spawner/nest_spawn.lua"
+		execute_every_n_frame="67" />
+</Entity>

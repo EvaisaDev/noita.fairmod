@@ -38,7 +38,6 @@ local effects = {
 	"INVISIBILITY",
 	"INVISIBILITY",
 	"RAINBOW_FARTS",
-	"DAMAGE_MULTIPLIER ",
 }
 
 --- @class fuckupenemies

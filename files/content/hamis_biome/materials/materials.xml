@@ -4,6 +4,7 @@
 		_inherit_reactions="1"
 		name="fairmod_hamis_meat"
 		ui_name="$biome_hamis_biomass"
+		solid_on_collision_material="fairmod_hamisium"
 		wang_color="ff9d00f3">
 		<Graphics
 			texture_file="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/meat_static.png"
