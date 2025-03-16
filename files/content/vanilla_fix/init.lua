@@ -68,5 +68,5 @@ end
 --  Parsing second time to apply fixes
 for file, xml in pairs(parsed_files) do
 	parse_file(xml)
-	ModTextFileSetContent(file, tostring(xml))
+	ModTextFileSetContent(file, nxml.to_string(xml))
 end
