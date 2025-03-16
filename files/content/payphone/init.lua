@@ -1,9 +1,14 @@
 ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", "mods/noita.fairmod/files/content/payphone/append_hm.lua")
 ModLuaFileAppend("data/scripts/biomes/boss_arena.lua", "mods/noita.fairmod/files/content/payphone/append_hm.lua")
 
+local larpa = dofile("mods/noita.fairmod/files/content/payphone/content/larpa/larpa.lua")
+
 local module = {}
 
 function module.update()
+
+	larpa.update()
+
 	local teleporting_end = tonumber(GlobalsGetValue("teleporting_end", "0"))
 	if teleporting_end >= 0 then
 		teleporting_end = teleporting_end - 0.1
