@@ -41,7 +41,9 @@ local effects = {
 }
 
 --- @class fuckupenemies
-local evil = {}
+local evil = {
+	processed = 2,
+}
 
 function evil:GiveRandomEffect(enemy)
 	local pec = EntityAddComponent2(enemy, "ParticleEmitterComponent", {
@@ -213,11 +215,13 @@ function evil:BuffEnemy(enemy)
 end
 
 function evil:OnWorldPreUpdate()
-	local enemies = EntityGetWithTag("enemy")
-
-	for _, enemy in ipairs(enemies) do
-		if not EntityHasTag(enemy, "evilified") then self:BuffEnemy(enemy) end
+	local max_entity = EntitiesGetMaxID()
+	for i = self.processed, max_entity do
+		---@diagnostic disable-next-line: cast-type-mismatch
+		---@cast i entity_id
+		if EntityHasTag(i, "enemy") and not EntityHasTag(i, "evilified") then self:BuffEnemy(i) end
 	end
+	self.processed = max_entity + 1
 end
 
 return evil
