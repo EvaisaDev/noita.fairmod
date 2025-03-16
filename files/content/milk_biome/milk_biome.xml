@@ -9,7 +9,8 @@
     background_edge_bottom="data/weather_gfx/edges/background_cave_04_alt_bottom.png"
     background_edge_priority="1"     
     limit_background_image="0"
-    
+
+    noise_biome_edges="1"
     wang_template_file="mods/noita.fairmod/files/content/milk_biome/wang_tiles/milk_biome.png" 
     lua_script="mods/noita.fairmod/files/content/milk_biome/scripts/milk_biome.lua"
     wang_map_width="256"
@@ -21,6 +22,17 @@
     color_grading_g="1.0"
     color_grading_b="1.0"
     >
+
+  <RandomMaterials>
+    <!-- random solid cheese (excluding cheddar and swiss) -->
+    <RandomColor input_color="FF01CFEE" output_colors="FFF3CD69,FFF3CD6A,FFF3CD6E,FFF3CD6F,FFF3CD70,FFF3CD71,FFF3CD72,FFF3CD73,FFF3CD75,FFF3CD76" />
+    <!-- random solid cheese (excluding cheddar and swiss) -->
+    <RandomColor input_color="FF01DFEE" output_colors="FFF3CD69,FFF3CD6A,FFF3CD6E,FFF3CD6F,FFF3CD70,FFF3CD71,FFF3CD72,FFF3CD73,FFF3CD75,FFF3CD76" />
+    <!-- random powder cheese -->
+    <RandomColor input_color="FF21CFEE" output_colors="FFF3CD6B,FFF3CD6C,FFF3CD74" />
+    <!-- random dairy-adjacent liquid (egg yolk, white, brine, molut) -->
+    <RandomColor input_color="FF41CFEE" output_colors="FFF3DD11,FFF3DD12,A02F754C,90D0FFE4" />
+  </RandomMaterials>
   </Topology>
 
   <Materials 
