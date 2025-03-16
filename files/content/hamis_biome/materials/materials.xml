@@ -54,4 +54,129 @@
 			</Edge>
 		</Graphics>
 	</CellDataChild>
+
+	<CellDataChild
+		_parent="soil_lush_dark"
+		_inherit_reactions="1"
+		density="10"
+		name="fairmod_hamis_soil_lush"
+		ui_name="$mat_soil_lush"
+		wang_color="ff40323e"
+		liquid_viscosity="0"
+		liquid_sticks_to_ceiling="100"
+		fire_hp="300"
+		temperature_of_fire="10"
+		autoignition_temperature="60"
+		burnable="1"
+		audio_physics_material_event="gravel"
+		audio_physics_material_wall="gravel"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="0"
+		hp="10000">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/soil.png"
+			color="ff40323d">
+			<Edge>
+				<EdgeGraphics
+					overwrite="0"
+					percent="0.3"
+					require_same_material="0"
+					require_same_material_type="1"
+					type="EVERYWHERE"
+					z="1">
+					<Images>
+						<Image
+							allow_random_rotation="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_soil.png"
+						/>
+					</Images>
+				</EdgeGraphics>
+			</Edge>
+		</Graphics>
+	</CellDataChild>
+
+	<CellDataChild
+		_parent="sand_static_rainforest_dark"
+		_inherit_reactions="0"
+		name="fairmod_hamis_sand_static_rainforest_dark"
+		ui_name="$mat_sand_static_rainforest"
+		wang_color="ff261f27"
+		hp="700000"
+		audio_physics_material_wall="gravel"
+		audio_physics_material_solid="rock"
+		show_in_creative_mode="0">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/earth_rainforest_dark.png"
+			color="ff261f26">
+			<Edge>
+				<EdgeGraphics
+					color="ff261f26"
+					overwrite="0"
+					percent="1"
+					require_same_material="0"
+					require_same_material_type="0"
+					type="NORMAL_BASED"
+					z="1">
+					<Images>
+						<Image
+							do_only_horizontal_stripe="1"
+							do_only_vertical_stripe="0"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_earth_rainforest_dark_hor.png"
+							min_angle="45"
+							max_angle="135" />
+						<Image
+							do_only_horizontal_stripe="1"
+							do_only_vertical_stripe="0"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_earth_rainforest_dark_hor.png"
+							min_angle="235"
+							max_angle="315" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_earth_rainforest_dark_ver.png"
+							min_angle="135"
+							max_angle="235" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_earth_rainforest_dark_ver.png"
+							min_angle="315"
+							max_angle="360" />
+						<Image
+							do_only_horizontal_stripe="0"
+							do_only_vertical_stripe="1"
+							filename="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/edge_earth_rainforest_dark_ver.png"
+							min_angle="0"
+							max_angle="45" />
+					</Images>
+				</EdgeGraphics>
+			</Edge>
+		</Graphics>
+	</CellDataChild>
+
+	<CellData
+		name="fairmod_hamis_plant_material"
+		ui_name="$mat_plant_material"
+		tags="[plant],[requires_air],[corrodible],[burnable]"
+		burnable="1"
+		density="6"
+		cell_type="liquid"
+		wang_color="ff33b83a"
+		generates_smoke="20"
+		liquid_gravity="0.8"
+		liquid_sand="1"
+		liquid_viscosity="101"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="50"
+		autoignition_temperature="85"
+		platform_type="0"
+		vegetation_full_lifetime_growth="700"
+		vegetation_sprite="mods/noita.fairmod/files/content/hamis_biome/biome/vegetation/bush_growth_$[1-8].xml"
+		hp="200"
+		show_in_creative_mode="1">
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/hamis_biome/materials/gfx/meat_static.png"
+			color="ff33b828" />
+	</CellData>
 </Materials>

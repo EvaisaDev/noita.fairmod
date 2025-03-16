@@ -200,45 +200,45 @@ g_lamp = {
 
 g_pixel_scene_01 = {
 	total_prob = 0,
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit01.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit02.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit03.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/pit01.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/pit02.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/pit03.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
 }
 
 g_pixel_scene_02 = {
 	total_prob = 0,
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/hut03.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
-	{
-		prob = 1.2,
-		material_file = "data/biome_impl/rainforest/symbolroom.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/hut03.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
+	-- {
+	-- 	prob = 1.2,
+	-- 	material_file = "data/biome_impl/rainforest/symbolroom.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
 }
 
 g_ghostlamp = {
@@ -359,11 +359,11 @@ function spawn_lamp(x, y)
 end
 
 function load_pixel_scene(x, y)
-	load_random_pixel_scene(g_pixel_scene_01, x, y)
+	-- load_random_pixel_scene(g_pixel_scene_01, x, y)
 end
 
 function load_pixel_scene2(x, y)
-	load_random_pixel_scene(g_pixel_scene_02, x, y)
+	-- load_random_pixel_scene(g_pixel_scene_02, x, y)
 end
 
 function load_pixel_scene4(x, y)
