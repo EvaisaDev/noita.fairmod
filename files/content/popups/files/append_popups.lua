@@ -300,7 +300,7 @@ local Popups = {
 	},--]=]
 	},
 
-	forcePrefab = 3, --set this to the prefab you wish to test, and it will guarantee it's spawning.
+	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.
 	--false or nil means disabled, 0 or any other invalid index will pick randomly
 }
 

@@ -674,7 +674,7 @@ for i = 1, #Windows do
         local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
         if guiPrev[3] and InputIsMouseButtonJustDown(1) then
             local close_popup = false 
-            
+
             if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
                 if popup:CLOSE_FUNCTION(data) ~= false then --also require doubloons
                     close_popup = true
@@ -682,6 +682,16 @@ for i = 1, #Windows do
             else
                 close_popup = true
             end
+
+			-- 50% chance to teleport the popup to a different place on the screen and not close
+			SetRandomSeed(GameGetFrameNum(), Windows[i]['seed'])
+			if Random(0, 100) < 50 then
+				
+				x = Random(5, swidth - ww - 5)
+				y = Random(5, sheight - wh - 5)
+				close_popup = false
+			end
+			
 
             if close_popup == true then
                 if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
