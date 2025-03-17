@@ -11,6 +11,7 @@ RegisterSpawnFunction(0xff8e2ab8, "spawn_stalactite_10")
 RegisterSpawnFunction(0xffac5cdd, "spawn_stalactite_11")
 RegisterSpawnFunction(0xff9146bf, "spawn_stalactite_12")
 RegisterSpawnFunction(0xff6c2895, "spawn_stalactite_13")
+RegisterSpawnFunction(0xffddcaec, "spawn_jerma")
 
 function spawn_stalactite_1(x, y)
 	EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/triggers/stalactite_entrance_1.xml", x + 5, y)
@@ -75,4 +76,9 @@ end
 
 function spawn_stalactite_13(x, y)
 	EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/triggers/stalactite_entrance_13.xml", x + 5, y)
+end
+
+
+function spawn_jerma(x, y)
+	EntityLoad("mods/noita.fairmod/files/content/anti_dmca/jerma.xml", x, y)
 end

@@ -40,6 +40,27 @@ local long_dynamite = {
 }
 actions[#actions + 1] = long_dynamite
 
+local beeg_dynamite = {
+	id = "FAIRMOD_BEEG_DYNAMITE",
+	name = "$action_bad_beeg_dynamite",
+	description = "$actiondesc_dynamite",
+	sprite = "data/ui_gfx/gun_actions/dynamite.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/dynamite_unidentified.png",
+	related_projectiles = { "mods/noita.fairmod/files/content/new_spells/bad_bombs/tnt_beeg.xml" },
+	type = ACTION_TYPE_PROJECTILE,
+	spawn_level = "0,1,2,3,4", -- DYNAMITE
+	spawn_probability = "1,0.9,0.8,0.7,0.6", -- DYNAMITE
+	price = 160,
+	mana = 50,
+	max_uses = 16,
+	action = function()
+		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/tnt_beeg.xml")
+		c.fire_rate_wait = c.fire_rate_wait + 50
+		c.spread_degrees = c.spread_degrees + 6.0
+	end,
+}
+actions[#actions + 1] = beeg_dynamite
+
 local bad_bomb = {
 	id = "FAIRMOD_BOMB",
 	name = "$action_bad_bomb_legacy",
@@ -101,3 +122,63 @@ local rocket = {
 	end,
 }
 actions[#actions + 1] = rocket
+
+-- Very unstable crystal that explodes almost immediately
+local very_unstable = {
+	id = "FAIRMOD_VERY_UNSTABLE_MINE",
+	name = "$action_mine_very_unstable",
+	description = "$actiondesc_mine",
+	sprite = "data/ui_gfx/gun_actions/mine.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/mine_unidentified.png",
+	related_projectiles = { "data/entities/projectiles/deck/mine.xml" },
+	type = ACTION_TYPE_PROJECTILE,
+	spawn_level = "1,3,4,6", -- MINE
+	spawn_probability = "1,0.75,1,0.5", -- MINE
+	price = 200,
+	mana = 20,
+	max_uses = 15,
+	action = function()
+		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/very_unstable_mine.xml")
+		c.fire_rate_wait = c.fire_rate_wait + 30
+		c.child_speed_multiplier = c.child_speed_multiplier * 0.75
+		c.speed_multiplier = c.speed_multiplier * 0.75
+		shot_effects.recoil_knockback = 60.0
+
+		if c.speed_multiplier >= 20 then
+			c.speed_multiplier = math.min(c.speed_multiplier, 20)
+		elseif c.speed_multiplier < 0 then
+			c.speed_multiplier = 0
+		end
+	end,
+}
+actions[#actions + 1] = very_unstable
+
+-- stable crystal, that doesn't react to proximity creatures
+local stable = {
+	id = "FAIRMOD_STABLE_MINE",
+	name = "$action_mine_stable",
+	description = "$actiondesc_mine",
+	sprite = "data/ui_gfx/gun_actions/mine.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/mine_unidentified.png",
+	related_projectiles = { "data/entities/projectiles/deck/mine.xml" },
+	type = ACTION_TYPE_PROJECTILE,
+	spawn_level = "1,3,4,6", -- MINE
+	spawn_probability = "1,0.75,1,0.5", -- MINE
+	price = 200,
+	mana = 20,
+	max_uses = 15,
+	action = function()
+		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/stable_mine.xml")
+		c.fire_rate_wait = c.fire_rate_wait + 30
+		c.child_speed_multiplier = c.child_speed_multiplier * 0.75
+		c.speed_multiplier = c.speed_multiplier * 0.75
+		shot_effects.recoil_knockback = 60.0
+
+		if c.speed_multiplier >= 20 then
+			c.speed_multiplier = math.min(c.speed_multiplier, 20)
+		elseif c.speed_multiplier < 0 then
+			c.speed_multiplier = 0
+		end
+	end,
+}
+actions[#actions + 1] = stable

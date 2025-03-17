@@ -23,6 +23,10 @@ local actions_to_edit = {
 
 			shot_effects.recoil_knockback = math.min(shot_effects.recoil_knockback - 10, 0)
 
+
+
+			Revs = Revs or 0
+
 			local entity_id = GetUpdatedEntityID()
 			local controls_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "ControlsComponent")
 			if controls_comp ~= nil then
@@ -30,11 +34,29 @@ local actions_to_edit = {
 				if character_data_comp ~= nil then
 					local velocity_x, velocity_y = ComponentGetValueVector2(character_data_comp, "mVelocity")
 					local aim_dir_x, aim_dir_y = ComponentGetValueVector2(controls_comp, "mAimingVectorNormalized")
+					local shooting_start = ComponentGetValue2(controls_comp, "mButtonFrameFire")
+					local shooting_now = ComponentGetValue2(controls_comp, "mButtonDownFire")
 
-					local target_velocity_x = velocity_x + (aim_dir_x * 100)
-					local target_velocity_y = velocity_y + (aim_dir_y * 100)
 
-					ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
+					LastShootingStart = LastShootingStart or 0
+					if not shooting_now then
+						Revs = 0
+					else
+						if LastShootingStart ~= shooting_start then
+							Revs = 0
+						else
+							
+							local force = 100 * (1-(Revs/20))
+							local target_velocity_x = velocity_x + (aim_dir_x * force)
+							local target_velocity_y = velocity_y + (aim_dir_y * force)
+							ComponentSetValue2(character_data_comp, "mVelocity", target_velocity_x, target_velocity_y)
+							Revs = Revs + 1
+						end
+					end
+					LastShootingStart = shooting_start
+
+
+
 				end
 			end
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{a70420f4-7d87-47a4-9874-efdda68296ae}">
+		<property name="assetPath">
+			<value>Compress/TennoARFireShotB.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.1409988</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.97433225346050156</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eb2a4d4a-1287-481b-8086-c8771a725107}</destination>
+		</relationship>
+	</object>
+</objects>

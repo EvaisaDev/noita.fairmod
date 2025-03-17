@@ -46,6 +46,7 @@ return {
 			EntityAddTag(letter_entity, "grow")
 		end,
 		func = function(x, y) -- runs on mailbox open
+			RemoveFlagPersistent("fairmod_evil_letter_buffer")
 			GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/barren_puzzle_completed/create", x, y)
 		end,
 	},
@@ -87,4 +88,41 @@ return {
 			EntityLoad("data/entities/projectiles/mine_explosion.xml", x, y)
 		end,
 	},
+	soma_prime = {
+		func = function(x, y)
+			RemoveFlagPersistent("fairmod_soma_prime_letter")
+			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/soma/soma.xml", x, y)
+		end,
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "A weapon from beyond the Void", -- only used if create_letter is true
+		letter_content = [[
+		What a waste. Your scarred robe comes to beg one more!?
+		You will never pry the Sampo from the clutches of its rightful owner!
+		I, Captain Kolmisilma, have ascended, and the New Game salutes me!
+		You will die a lifetime, an eternity, a parallel universe of deaths before 
+		you are blessed by the endlessness of this place, this paradise.
+		I will never close an eye to the gift that is the New Game,
+		even as my flesh hardens, a wall of cursed rock awaits my joining!
+		- Captain Kolmisilma]], -- only used if create_letter is true
+	},
+	virus = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "YOURE PWNED!!", -- only used if create_letter is true
+		letter_content = [=[It's so over for you buddy. I HACKED you. you do NOT want to find out what happens at 99 mails.]=],
+		letter_sprite = "mods/noita.fairmod/files/content/mailbox/haxx.png", -- only used if create_letter is true
+		letter_func = function(letter_entity) -- runs after the letter entity is created
+			SetRandomSeed(GameGetFrameNum(), letter_entity)
+			if string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "virus,") >=99 then
+				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
+				string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "")
+			else
+				for i=1, 3 do
+					if Random()>0.5 then
+						ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
+					end
+				end
+			end
+		end,
+	},
+	-- @EBA ADD A COPIBUDDY MAIL :)))))
 }

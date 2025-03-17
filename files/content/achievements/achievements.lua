@@ -471,6 +471,15 @@ achievements = {
 			return HasFlagPersistent("fairmod_copi_evil_letter")
 		end,
 	},
+	{
+		name = "THREAT ASSESSED",
+		description = "ENABLING T.R.O.L.L. UNITS",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/threat_level.png",
+		flag = "fair_risk",
+		unlock = function()
+			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= 84
+		end,
+	},
 }
 
 local function romanize(num)
@@ -526,6 +535,20 @@ for i = 1, 10 do
 		flag = "shot_count_" .. i,
 		unlock = function()
 			return tonumber(StatsGetValue("projectiles_shot")) >= 2 ^ i
+		end,
+	})
+end
+
+for i = 1, 10 do
+	table.insert(achievements, {
+		name = "Nice Catch! " .. romanize(i),
+		description = "Gained 10 fishing power.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/KILL_FISH.png",
+		flag = "nice_catch_" .. i,
+		unlock = function()
+			local got = GameHasFlagRun("killed_boss_fish")
+			GameRemoveFlagRun("killed_boss_fish")
+			return got
 		end,
 	})
 end
@@ -1157,5 +1180,5 @@ end
 
 -- setting flag
 for _, achievement in ipairs(achievements) do
-	achievement.flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+	achievement.flag = string.lower("fairmod_" .. achievement.flag or ("achievement_" .. achievement.name))
 end

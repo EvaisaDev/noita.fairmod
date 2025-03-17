@@ -113,4 +113,20 @@ pa.potions = {
 		probability = 20,
 		amount = 1000,
 	},
+	{
+		material = "fairmod_propanium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_tntinium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_minecartium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_hamisium",
+		probability = 1,
+	},
 }

@@ -2,20 +2,20 @@
 	<SpriteComponent
 		image_file="mods/noita.fairmod/files/content/rotate/rotta-cart-gfx.xml"
 		offset_x="0"
-		offset_y="0">
-	</SpriteComponent>
+		offset_y="0" />
 	<AudioLoopComponent
 		file="mods/noita.fairmod/fairmod.bank"
 		event_name="rats/rats"
 		auto_play="1"
 		play_on_component_enable="1"
-		calculate_material_lowpass="0"
-	>
-	</AudioLoopComponent>
+		calculate_material_lowpass="0" />
 
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/content/rotate/streamer_mode.lua"
 		execute_on_added="1"
-		execute_every_n_frame="-1">
-	</LuaComponent>
+		execute_every_n_frame="-1" />
+
+	<CameraBoundComponent
+		max_count="20"
+		distance="160000" />
 </Entity>

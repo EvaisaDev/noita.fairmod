@@ -4,6 +4,8 @@
 		offset_x="0"
 		offset_y="0"
 		has_special_scale="1"
-		special_scale_x="-1">
-	</SpriteComponent>
+		special_scale_x="-1" />
+	<CameraBoundComponent
+		max_count="20"
+		distance="160000" />
 </Entity>

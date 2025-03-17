@@ -8,6 +8,7 @@ local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+dofile_once("mods/noita.fairmod/files/content/hamis_biome/init.lua")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
@@ -53,6 +54,9 @@ local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
+local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
+local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
+local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
 local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
@@ -99,9 +103,12 @@ dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
-dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fix_global_pickups/init.lua")
+dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
+dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
+dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
+dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
@@ -111,10 +118,11 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/events/boss_fish/actions.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/gun.lua" )
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
-
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
@@ -124,7 +132,6 @@ ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
-	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
 	random_alchemy:init()
@@ -160,6 +167,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
+	minecraft.Init()
     swapper.OnMagicNumbersAndWorldSeedInitialized()
 end
 
@@ -264,6 +272,9 @@ function OnPlayerSpawned(player)
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
+	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
+	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
+	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -296,11 +307,19 @@ function OnWorldPreUpdate()
 	snail_radar.update()
 	achievements:update()
 	gamblecore.Update()
+	
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
 		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
+	end
+
+	-- debugging
+	if InputIsKeyJustDown(64) then
+		--local mx, my = DEBUG_GetMouseWorld()
+		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
+		GameAddFlagRun("SPAWN_POPUP")
 	end
 end
 
@@ -320,6 +339,7 @@ function OnWorldInitialized()
 	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
 	--better_world.OnWorldInitialized()
+	mod_compat.on_world_initialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)

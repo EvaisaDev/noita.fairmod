@@ -142,8 +142,10 @@ local objectives = {
 	"Learn to Forgive.",
 	"Remember yourself",
 	"Realise your ambitions",
-	"Play Noita Fairmod",
-	"Find joy in little things",
+    "CAPTURE THE TARGET",
+	"Craft 40x Purified Heciphron",
+	"Become 1% better every day",
+	"Become 1% worse every day",
 }
 
 local game_speed_a = 0
@@ -233,6 +235,10 @@ local ui_displays = {
 			text = function()
 				-- TODO give 5 fishing power only when holding the fishing rod
 				local fishing_power = 5
+
+				local fishing_power_buff = GlobalsGetValue("FISHING_POWER_BUFF", "0")
+				
+				fishing_power = fishing_power + tonumber(fishing_power_buff)
 
 				local wse = GameGetWorldStateEntity()
 				local wsc = EntityGetFirstComponent(wse, "WorldStateComponent")
@@ -366,6 +372,14 @@ local ui_displays = {
 			end,
 			condition = function()
 				return (ModSettingGet("fairmod.deaths") or 0) > 0
+			end,
+		},
+		{
+			text = function()
+				return "Risk Factor: "..GlobalsGetValue("fair_risk")
+			end,
+			condition = function()
+				return GlobalsGetValue("fair_risk") ~= "0"
 			end,
 		},
 		{
