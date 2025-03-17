@@ -48,8 +48,4 @@ popups.OnWorldInitialized = function()
 	)
 	if a ~= nil then a() end
 end
-function OnPlayerSpawned()
-	--GamePrintImportant("THE MOD IS A MIMIC", "Download Copi's Things!") if b~=nil then b() end
-end
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/popups/files/materials.xml")
 return popups
