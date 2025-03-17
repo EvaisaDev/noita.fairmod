@@ -317,7 +317,7 @@ function OnWorldPreUpdate()
 	-- debugging
 	if InputIsKeyJustDown(64) then
 		--local mx, my = DEBUG_GetMouseWorld()
-		--EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", mx, my)
+		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		GameAddFlagRun("SPAWN_POPUP")
 	end
 end
