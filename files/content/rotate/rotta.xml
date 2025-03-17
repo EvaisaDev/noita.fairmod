@@ -2,20 +2,18 @@
 	<SpriteComponent
 		image_file="data/enemies_gfx/rat.xml"
 		offset_x="0"
-		offset_y="0">
-	</SpriteComponent>
+		offset_y="0" />
 
-		<InteractableComponent
+	<InteractableComponent
 		ui_text="Press $0 to talk to the rat"
-		radius="30"
-		>
-	</InteractableComponent>
+		radius="30" />
 
 	<LuaComponent
 		script_interacting="mods/noita.fairmod/files/content/rotate/rat_dialog.lua"
 		script_source_file="mods/noita.fairmod/files/content/rotate/rat_dialog.lua"
 		execute_every_n_frame="1"
-		enable_coroutines="1"
-		>
-	</LuaComponent>	
+		enable_coroutines="1" />
+	<CameraBoundComponent
+		max_count="20"
+		distance="160000" />
 </Entity>

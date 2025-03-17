@@ -122,3 +122,63 @@ local rocket = {
 	end,
 }
 actions[#actions + 1] = rocket
+
+-- Very unstable crystal that explodes almost immediately
+local very_unstable = {
+	id = "FAIRMOD_VERY_UNSTABLE_MINE",
+	name = "$action_mine_very_unstable",
+	description = "$actiondesc_mine",
+	sprite = "data/ui_gfx/gun_actions/mine.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/mine_unidentified.png",
+	related_projectiles = { "data/entities/projectiles/deck/mine.xml" },
+	type = ACTION_TYPE_PROJECTILE,
+	spawn_level = "1,3,4,6", -- MINE
+	spawn_probability = "1,0.75,1,0.5", -- MINE
+	price = 200,
+	mana = 20,
+	max_uses = 15,
+	action = function()
+		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/very_unstable_mine.xml")
+		c.fire_rate_wait = c.fire_rate_wait + 30
+		c.child_speed_multiplier = c.child_speed_multiplier * 0.75
+		c.speed_multiplier = c.speed_multiplier * 0.75
+		shot_effects.recoil_knockback = 60.0
+
+		if c.speed_multiplier >= 20 then
+			c.speed_multiplier = math.min(c.speed_multiplier, 20)
+		elseif c.speed_multiplier < 0 then
+			c.speed_multiplier = 0
+		end
+	end,
+}
+actions[#actions + 1] = very_unstable
+
+-- stable crystal, that doesn't react to proximity creatures
+local stable = {
+	id = "FAIRMOD_STABLE_MINE",
+	name = "$action_mine_stable",
+	description = "$actiondesc_mine",
+	sprite = "data/ui_gfx/gun_actions/mine.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/mine_unidentified.png",
+	related_projectiles = { "data/entities/projectiles/deck/mine.xml" },
+	type = ACTION_TYPE_PROJECTILE,
+	spawn_level = "1,3,4,6", -- MINE
+	spawn_probability = "1,0.75,1,0.5", -- MINE
+	price = 200,
+	mana = 20,
+	max_uses = 15,
+	action = function()
+		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/stable_mine.xml")
+		c.fire_rate_wait = c.fire_rate_wait + 30
+		c.child_speed_multiplier = c.child_speed_multiplier * 0.75
+		c.speed_multiplier = c.speed_multiplier * 0.75
+		shot_effects.recoil_knockback = 60.0
+
+		if c.speed_multiplier >= 20 then
+			c.speed_multiplier = math.min(c.speed_multiplier, 20)
+		elseif c.speed_multiplier < 0 then
+			c.speed_multiplier = 0
+		end
+	end,
+}
+actions[#actions + 1] = stable

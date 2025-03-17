@@ -202,39 +202,39 @@ g_pixel_scene_01 = {
 	total_prob = 0,
 	{
 		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit01.png",
-		visual_file = "",
+		material_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/v_200_400_hamis.png",
+		visual_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/v_200_400_hamis_visual.png",
 		background_file = "",
 		is_unique = 0,
 	},
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit02.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/pit03.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/pit02.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/pit03.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
 }
 
 g_pixel_scene_02 = {
 	total_prob = 0,
-	{
-		prob = 0.5,
-		material_file = "data/biome_impl/rainforest/hut03.png",
-		visual_file = "",
-		background_file = "",
-		is_unique = 0,
-	},
+	-- {
+	-- 	prob = 0.5,
+	-- 	material_file = "data/biome_impl/rainforest/hut03.png",
+	-- 	visual_file = "",
+	-- 	background_file = "",
+	-- 	is_unique = 0,
+	-- },
 	{
 		prob = 1.2,
-		material_file = "data/biome_impl/rainforest/symbolroom.png",
+		material_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/h_400_200_garden.png",
 		visual_file = "",
 		background_file = "",
 		is_unique = 0,

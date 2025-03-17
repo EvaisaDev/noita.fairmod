@@ -131,7 +131,6 @@ ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
-	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
 	random_alchemy:init()
