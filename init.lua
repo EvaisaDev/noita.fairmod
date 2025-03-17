@@ -123,7 +123,6 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
 
-
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
@@ -275,7 +274,7 @@ function OnPlayerSpawned(player)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
 	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
-
+	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
