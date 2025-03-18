@@ -57,6 +57,7 @@ local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/i
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
 local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
 local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
+local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -167,7 +168,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
 	minecraft.Init()
-	
+	--swapper.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
