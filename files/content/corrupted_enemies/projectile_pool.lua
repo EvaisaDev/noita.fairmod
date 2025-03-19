@@ -12,7 +12,7 @@ local projPoolVanilla = {
 	"bomb_cart",
 	"bomb_holy",
 	"cocktail",
-	"bomb_holy_giga", -- pepeLaugh
+	"bomb_holy_giga", -- pepeLaugh --dunk is crying and sobbing rn
 	"bomb_small",
 	"bossdragon",
 	"bossdragon_ray",

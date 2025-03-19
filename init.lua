@@ -57,6 +57,7 @@ local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/i
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
 local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
 local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
+local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -123,7 +124,6 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/c
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
 
-
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
@@ -168,7 +168,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
 	minecraft.Init()
-	
+	--swapper.OnMagicNumbersAndWorldSeedInitialized()
 end
 
 function OnPlayerSpawned(player)
@@ -274,7 +274,7 @@ function OnPlayerSpawned(player)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
 	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
 	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
-
+	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
@@ -318,7 +318,7 @@ function OnWorldPreUpdate()
 	-- debugging
 	if InputIsKeyJustDown(64) then
 		--local mx, my = DEBUG_GetMouseWorld()
-		--EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", mx, my)
+		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		GameAddFlagRun("SPAWN_POPUP")
 	end
 end

@@ -50,6 +50,7 @@ local special_iterations = {
 	backrooms = {
 		func = function()
 			BiomeMapLoad_KeepPlayer("mods/noita.fairmod/files/content/better_world/ngplus_maps/backrooms/backrooms_ngplus.lua")
+			return {do_continue = false}
 		end,
 	},
 	NaN = {
@@ -59,7 +60,7 @@ local special_iterations = {
 
 
 
-function do_newgame_plus(iteration, force_relative)
+function do_newgame_plus(iteration, force_relative, force_custom)
 	-- GameDoEnding2()
 	-- BiomeMapLoad( "mods/nightmare/files/biome_map.lua" )
 
@@ -99,35 +100,49 @@ function do_newgame_plus(iteration, force_relative)
 
 
 
-	local return_data = {}
-	if tonumber(iteration) == nil then
-		--if not a number
-		if special_iterations[iteration] == nil then
-			iteration = "NaN"
-		else
-			--redirect iteration value if redirect value is present
-			if special_iterations[iteration].redirect then	
+	local return_data
+	
+	if tonumber(iteration) == nil then --if not a number
+		if special_iterations[iteration] == nil and not force_custom then
+			iteration = "NaN" --default to NaN if not recognised UNLESS force_custom
+		end
+	end
+
+
+	if special_iterations[iteration] ~= nil then
+		--redirect iteration value if redirect value is present
+		if special_iterations[iteration].redirect then
+			if type(special_iterations[iteration].redirect) == "function" then
 				iteration = special_iterations[iteration].redirect(data)
-			end
-			if special_iterations[iteration].func then
-				return_data = special_iterations[iteration].func(data)
+			else
+				iteration = special_iterations[iteration].redirect
 			end
 		end
 	end
+
+	if special_iterations[iteration] ~= nil then --check again cuz redirecting can mean its no longer a special_iteration
+		if special_iterations[iteration].func then
+			return_data = special_iterations[iteration].func(data)
+		end
+	end
+	
+
+	return_data = return_data or {}
 	GlobalsSetValue("NEW_GAME_PLUS_ITERATION", return_data.alias or iteration)
 
 
-
+	
 
 	print("NG+ ITERATION INPUT IS [" .. iteration .. "]")
 	SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", iteration )
 
-
-	
-	if return_data.do_return == false then print(string.format('special iteration "%s" returned false for [do_continue], cancelling default script...', iteration, newgame_n)) return end
-
+	--if iteration is a string, the invert it so the game doesnt have to render like 5 million plusses, nolla pls fix 🙏
+	if tonumber(iteration) == nil then SessionNumbersSetValue( "NEW_GAME_PLUS_COUNT", SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT") * -1) end
 	newgame_n = tonumber(SessionNumbersGetValue( "NEW_GAME_PLUS_COUNT"))
 	print("NG+ ITERATION TONUMBER IS [" .. tostring(newgame_n) .. "]")
+
+	if return_data.do_continue == false then print(string.format('special iteration "%s" returned false for [do_continue], cancelling default script...', iteration, newgame_n)) return end
+
 
 
 	

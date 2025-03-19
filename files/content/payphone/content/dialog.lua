@@ -1,3 +1,5 @@
+local userseed = ModSettingGet("fairmod.userseed")
+
 local function get_distance(x1, y1, x2, y2)
 	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
@@ -64,53 +66,6 @@ end
 
 do 
 	--[[return {
-		{
-			name = "Steve",
-			portrait = "mods/noita.fairmod/files/content/payphone/portrait_steve.png",
-			text = "{@func iamsteve}I... Am Steve. \nAs a child I yearned for the mines.\nBut something always got in the way..",
-			typing_sound = "none",
-			options = {
-				{
-					text = "Okay...?",
-					func = function(dialog)
-						dialog.show({
-							text = "{@func iamsteve}But the call of the mines was too strong.. \nSo one day I started digging.. and digging.. \nUntil I found...",
-							options = {
-								{
-									text = "Found WHAT?",
-									func = function(dialog)
-	
-										local players = EntityGetWithTag("player_unit") or {}
-										if players == nil or #players == 0 then return end
-										local player = players[1]
-										local x, y = EntityGetTransform(player)
-										EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", x, y)
-										dialog.show({
-											text = "{@func iamsteve}This.{@func disconnected}",
-											options = {
-												{
-													text = "...",
-													func = function(dialog)
-														hangup()
-													end,
-												},
-											},
-										})
-										
-									end,
-								},
-							},
-						})
-					end,
-				},
-				{
-					text = "Goodbye Steve.",
-					func = function(dialog)
-						hangup()
-					end,
-				},
-			},
-		},
 	}]]
 end
 
@@ -537,6 +492,8 @@ return {
 											end
 										elseif reward_final == "liminal" then
 											EntityApplyTransform(player, 1547, 14900)
+										elseif reward_final == "larpa" then
+											GameAddFlagRun("payphone_larpa")
 										end
 										hangup()
 									end,
@@ -554,6 +511,12 @@ return {
 									text = "Nope, it is perfect!",
 									func = function(dialog)
 										survey_end(dialog)
+									end,
+								},
+								{
+									text = "Everybody loves larpa.",
+									func = function(dialog)
+										survey_end(dialog, "larpa")
 									end,
 								},
 								{
@@ -696,7 +659,7 @@ return {
 									What are the 3 numbers on the back of your credit card?]],
 						options = {
 							{
-								text = tostring(Random(100, 999)),
+								text = userseed:sub(28, 30),
 								func = function(dialog)
 									dialog.show({
 										text = [[Correct! You've won 1000 gold! {@func disconnected}]],

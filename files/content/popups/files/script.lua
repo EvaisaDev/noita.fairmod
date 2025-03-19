@@ -567,7 +567,7 @@ for i = 1, #Windows do
         GuiZSetForNextWidget(Gui, z - 2)
         GuiBeginScrollContainer(Gui, Windows[i].id, x, y, ww, wh, true)
 
-        local data = {Windows = Windows, iteration = i}
+        local data = {Windows = Windows, iteration = i, screen = {x = swidth, y = sheight}}
         --if has_opened flag is not present, add it and run check for OPEN_FUNCTION()
         if not Windows[i].has_opened then
             Windows[i].has_opened = true
