@@ -145,9 +145,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
 	math.randomseed(seed)
 
-	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
-	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
-	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/language_tomfoolery/init.lua")
 	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
 
 	random_alchemy:create()
@@ -162,8 +160,6 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/corrupted_enemies/init.lua")
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
-
-	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
 
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
