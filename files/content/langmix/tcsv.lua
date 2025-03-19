@@ -65,8 +65,9 @@ local function parse_csv_line(line, filename, line_nr)
 	local in_quote = false
 
 	while idx <= #line do
-		local chr = line:sub(idx, idx)
-		if chr == '"' then
+		-- local chr = line:sub(idx, idx)
+		local char = line:byte(idx)
+		if char == 34 then -- ASCII for '"'
 			if idx < #line and line:sub(idx + 1, idx + 1) == '"' then
 				idx = idx + 1
 				goto continue
@@ -77,27 +78,24 @@ local function parse_csv_line(line, filename, line_nr)
 				idx = idx + 1
 				field_start = idx
 			else
-				table.insert(ret, line:sub(field_start, idx - 1))
+				ret[#ret + 1] = line:sub(field_start, idx - 1)
 
 				if idx < #line and line:sub(idx + 1, idx + 1) ~= "," then
-					table.insert(
-						warnings,
-						table.concat({
-							"Text -",
-							filename,
-							"on line",
-							line_nr,
-							"expected a ',' at around",
-							idx + 1,
-						}, " ")
-					)
+					warnings[#warnings + 1] = table.concat({
+						"Text -",
+						filename,
+						"on line",
+						line_nr,
+						"expected a ',' at around",
+						idx + 1,
+					})
 				end
 
 				field_start = idx + 2
 				idx = idx + 1
 			end
-		elseif not in_quote and chr == "," then
-			table.insert(ret, line:sub(field_start, idx - 1))
+		elseif not in_quote and char == 44 then -- ASCII for ','
+			ret[#ret + 1] = line:sub(field_start, idx - 1)
 			field_start = idx + 1
 		end
 
@@ -133,7 +131,7 @@ function tcsv.parse(content, filename, is_mod_translation)
 	while line ~= nil and line ~= "" do
 		local values, line_warns = parse_csv_line(line, filename, line_nr)
 		for _, lw in ipairs(line_warns) do
-			table.insert(warnings, lw)
+			warnings[#warnings + 1] = lw
 		end
 
 		if line_nr == 1 then
@@ -149,13 +147,10 @@ function tcsv.parse(content, filename, is_mod_translation)
 					end
 				end
 				if num_langs == nil then
-					table.insert(
-						warnings,
-						table.concat({
-							"There should be an empty value on the header",
-							"row after the last language",
-						}, " ")
-					)
+					warnings[#warnings + 1] = table.concat({
+						"There should be an empty value on the header",
+						"row after the last language",
+					})
 
 					num_langs = math.max(1, #values - 1)
 				end
@@ -163,47 +158,38 @@ function tcsv.parse(content, filename, is_mod_translation)
 
 			for i = 2, num_langs + 1 do
 				if i <= #values then
-					table.insert(langs, values[i])
+					langs[#langs + 1] = values[i]
 				else
-					table.insert(langs, "#lang" .. i - 1)
+					langs[#langs + 1] = "#lang" .. i - 1
 				end
 			end
 		else
 			if #values == 0 then
-				table.insert(
-					warnings,
-					table.concat({
-						"Incomplete CSV row on line",
-						line_nr,
-						"(missing comma?)",
-					}, " ")
-				)
+				warnings[#warnings + 1] = table.concat({
+					"Incomplete CSV row on line",
+					line_nr,
+					"(missing comma?)",
+				})
 				goto continue
 			end
 
 			if #values < num_langs + 1 then
-				table.insert(
-					warnings,
-					table.concat({
-						"Missing values on line",
-						line_nr,
-						"expected",
-						num_langs + 1,
-						"values but got",
-						#values,
-					}, " ")
-				)
+				warnings[#warnings + 1] = table.concat({
+					"Missing values on line",
+					line_nr,
+					"expected",
+					num_langs + 1,
+					"values but got",
+					#values,
+				})
 			elseif #values >= 2 * (num_langs + 1) and #values > first_row_columns then
-				table.insert(
-					warnings,
-					table.concat({
-						"Found two or more times the expected values on line",
-						line_nr .. ".",
-						"Number of values:",
-						#values,
-						"(missing newline?)",
-					}, " ")
-				)
+				warnings[#warnings + 1] = table.concat({
+					"Found two or more times the expected values on line",
+					line_nr .. ".",
+					"Number of values:",
+					#values,
+					"(missing newline?)",
+				})
 			end
 
 			for i = 2, math.min(num_langs + 1, #values) do
@@ -212,9 +198,9 @@ function tcsv.parse(content, filename, is_mod_translation)
 
 			local row = {}
 			for i = 1, num_langs + 1 do
-				table.insert(row, values[i] or "")
+				row[#row + 1] = values[i] or ""
 			end
-			table.insert(rows, row)
+			rows[#rows + 1] = row
 		end
 
 		::continue::
@@ -229,16 +215,13 @@ function tcsv.parse(content, filename, is_mod_translation)
 		line_nr = line_nr + 1
 
 		if line ~= nil and line ~= "" then
-			table.insert(
-				warnings,
-				table.concat({
-					"CSV reader stopped on line",
-					stopped_nr,
-					"because there was an empty line, but",
-					"there's more content on line",
-					line_nr,
-				}, " ")
-			)
+			warnings[#warnings + 1] = table.concat({
+				"CSV reader stopped on line",
+				stopped_nr,
+				"because there was an empty line, but",
+				"there's more content on line",
+				line_nr,
+			})
 			break
 		end
 	end
