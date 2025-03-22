@@ -5,16 +5,6 @@
 	    	_enabled="1" 
 	    	radius="150" 
 	    	blinking_freq="1"
-	    	offset_x="-6"
-	    	r="107"
-	    	g="5"
-	    	b="168">
-	    </LightComponent>
-
-	    <LightComponent 
-	    	_enabled="1" 
-	    	radius="150" 
-	    	blinking_freq="1"
 	    	offset_x="6"
 	    	r="107"
 	    	g="5"

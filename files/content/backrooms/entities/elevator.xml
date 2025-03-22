@@ -1,0 +1,15 @@
+<Entity>
+
+	<InteractableComponent
+		radius="50"
+		ui_text="Press $0 to use elevator"
+		name="interact"
+	/>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/backrooms/entities/elevator.lua"
+		script_interacting="mods/noita.fairmod/files/content/backrooms/entities/elevator.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+</Entity>

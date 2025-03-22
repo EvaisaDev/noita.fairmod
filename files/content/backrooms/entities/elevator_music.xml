@@ -1,0 +1,10 @@
+<Entity>
+	<AudioLoopComponent
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="elevator/loop"
+		auto_play="1"
+		play_on_component_enable="1"
+		calculate_material_lowpass="0">
+	</AudioLoopComponent>
+
+</Entity>

@@ -1405,10 +1405,10 @@ return {
 				end,
 			},
 			{
-				text = "*Pulls out uno reverse card*",
+				text = "No u.",
 				func = function(dialog)
 					dialog.show({
-						text = "Wait you can't do that! \n\\*Faint teleporing noise\\*{@func disconnected}",
+						text = "Wait you can't do that! \n\\*Faint teleporting noise\\*{@func disconnected}",
 						options = {
 							{
 								text = "He didn't see that one coming.",
