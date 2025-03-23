@@ -128,6 +128,7 @@ ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.f
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
+dofile_once("mods/noita.fairmod/files/content/dynamic_magic_numbers/init.lua")
 
 --- I hate doing things without a hook
 function OnModPostInit()
