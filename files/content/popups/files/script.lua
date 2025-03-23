@@ -685,7 +685,7 @@ for i = 1, #Windows do
 
 			-- 50% chance to teleport the popup to a different place on the screen and not close
 			SetRandomSeed(GameGetFrameNum(), Windows[i]['seed'])
-			if Random(0, 100) < 50 then
+			if Random(0, 100) < 10 then
 				
 				x = Random(5, swidth - ww - 5)
 				y = Random(5, sheight - wh - 5)
