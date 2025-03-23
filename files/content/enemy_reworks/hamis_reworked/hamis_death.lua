@@ -47,8 +47,6 @@ damage_received = script_damage_received
 --- Hellish creature if killed by player
 --- @type script_death
 local script_death = function(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items)
-	local died_entity = GetUpdatedEntityID()
-
-	if GetValueBool("fairmod_damaged_by_player", false) then hamis_land() end
+	hamis_land()
 end
 death = script_death
