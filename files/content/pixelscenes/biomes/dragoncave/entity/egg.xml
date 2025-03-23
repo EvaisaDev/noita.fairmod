@@ -1,0 +1,75 @@
+<Entity>
+	<PhysicsBody2Component
+		angular_damping="-0.4"
+		linear_damping="-1"
+		auto_clean="0"
+		buoyancy="2" />
+
+	<PhysicsImageShapeComponent
+		is_root="1"
+		centered="1"
+		image_file="mods/noita.fairmod/files/content/pixelscenes/biomes/dragoncave/entity/egg.png"
+		material="rock_box2d" />
+
+	<DamageModelComponent
+		air_needed="0"
+		blood_material=""
+		drop_items_on_death="0"
+		falling_damages="0"
+		fire_damage_amount="0"
+		fire_probability_of_ignition="0"
+		critical_damage_resistance="1"
+		hp="30"
+		is_on_fire="0"
+		materials_create_messages="0"
+		materials_damage="0"
+		ragdoll_filenames_file=""
+		ragdoll_material=""
+		blood_multiplier="0"
+		ui_report_damage="0">
+		<damage_multipliers
+			melee="0.1" />
+	</DamageModelComponent>
+
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/throwable" />
+
+	<ExplodeOnDamageComponent
+		explode_on_death_percent="1"
+		explode_on_damage_percent="0.01"
+		physics_body_modified_death_probability="0.9"
+		physics_body_destruction_required="0.15">
+		<config_explosion
+			never_cache="0"
+			damage="2.6"
+			camera_shake="40"
+			explosion_radius="45"
+			explosion_sprite="data/particles/explosion_128.xml"
+			explosion_sprite_lifetime="10"
+			create_cell_probability="80"
+			hole_destroy_liquid="0"
+			load_this_entity="mods/noita.fairmod/files/content/pixelscenes/biomes/dragoncave/entity/load_dragon.xml"
+			hole_enabled="1"
+			ray_energy="4000000"
+			particle_effect="1"
+			damage_mortals="1"
+			physics_explosion_power.min="1.9"
+			physics_explosion_power.max="2.5"
+			physics_throw_enabled="1"
+			shake_vegetation="1"
+			sparks_count_min="10"
+			sparks_count_max="25"
+			sparks_enabled="1"
+			stains_enabled="1"
+			stains_radius="15"
+			delay.min="1"
+			delay.max="4"
+			explosion_delay_id="1"
+			audio_event_name="explosions/barrel_oil" />
+	</ExplodeOnDamageComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/pixelscenes/biomes/dragoncave/entity/wiggle.lua"
+		execute_every_n_frame="16" />
+</Entity>

@@ -18,6 +18,7 @@ function pixel_scenes:init()
 	ModMaterialsFileAdd("mods/noita.fairmod/files/content/pixelscenes/snail/snail_material.xml")
 	ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/pixelscenes/snail/effect/effect_snail_add.lua")
 	ModLuaFileAppend("data/scripts/biomes/scale.lua", "mods/noita.fairmod/files/content/pixelscenes/biomes/scale/scale.lua")
+	ModLuaFileAppend("data/scripts/biomes/dragoncave.lua", "mods/noita.fairmod/files/content/pixelscenes/biomes/dragoncave/dragoncave.lua")
 
 	-- Don't question my sanity, it replaces the steel with cursed rock in fungal cavern
 	local weird_steel = -12500928
