@@ -165,6 +165,7 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
 	minecraft.Init()
 	--swapper.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/add_space_to_item/init.lua")
 end
 
 function OnPlayerSpawned(player)
