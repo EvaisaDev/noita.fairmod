@@ -31,5 +31,7 @@ end
 RegisterSpawnFunction(0xff523160, "spawn_longest")
 
 function spawn_longest(x, y)
+	if GameHasFlagRun("fairmod_longest_spawned") then return end
+	GameAddFlagRun("fairmod_longest_spawned")
 	EntityLoad("mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest.xml", x, y)
 end

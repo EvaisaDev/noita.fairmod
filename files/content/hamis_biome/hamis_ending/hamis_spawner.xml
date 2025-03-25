@@ -1,0 +1,7 @@
+<Entity>
+	<InheritTransformComponent />
+	<LuaComponent
+		execute_every_n_frame="16"
+		script_source_file="mods/noita.fairmod/files/content/hamis_biome/hamis_ending/hamis_spawner.lua"
+	/>
+</Entity>
