@@ -58,6 +58,7 @@ local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.l
 local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
 local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
 local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
+local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -277,6 +278,8 @@ end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
+local pause_button_pressed = false
+
 function OnWorldPreUpdate()
 	ModTextFileSetContent = SetContent
 
@@ -305,7 +308,7 @@ function OnWorldPreUpdate()
 	snail_radar.update()
 	achievements:update()
 	gamblecore.Update()
-	
+	logo_splash.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -321,7 +324,10 @@ function OnWorldPreUpdate()
 	end
 end
 
-function OnWorldPostUpdate() end
+function OnWorldPostUpdate()
+		
+
+end
 
 local time_paused = 0
 local last_pause_was_inventory = false
@@ -329,8 +335,17 @@ function OnPausePreUpdate()
 	show_user_id.OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
+	if(InputIsKeyDown(41))then
+		pause_button_pressed = true
+	end
+
+	if not last_pause_was_inventory and pause_button_pressed and time_paused == 5 then 
+		GameAddFlagRun("draw_evil_mode_text") 
+		GameAddFlagRun("draw_logo_splash")
+		pause_button_pressed = false
+	end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
+	logo_splash.update()
 end
 
 function OnWorldInitialized()
@@ -343,6 +358,9 @@ end
 function OnPausedChanged(is_paused, is_inventory_pause)
 	show_user_id.OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
+
+
+	
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
 		funny_settings.OnPausedChanged()
@@ -351,6 +369,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	elseif not is_paused then
 		-- unpaused
 		GameRemoveFlagRun("draw_evil_mode_text")
+		GameRemoveFlagRun("draw_logo_splash")
 		time_paused = 0
 	end
 end
