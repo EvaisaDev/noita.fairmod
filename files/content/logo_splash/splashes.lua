@@ -10,13 +10,4 @@ return {
 	"Wear a hard hat!",
 	"Pick up the phone you fool.",
 	"100% fair",
-	"Black sun, Blood moon. Oceans of pain are here for yooouuuuuu!!!",
-	"Copiquest!",
-	"(not) sponsored by Apotheosis!",
-	"Read your mails!",
-	"Help, I've been locked in the basement writing splashes for two mods!!!",
-	"Labor of Loathing!",
-	"*Your",
-	"*You're",
-	"CURSE OF RA!!",
 }
