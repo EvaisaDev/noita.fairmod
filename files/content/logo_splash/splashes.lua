@@ -12,4 +12,5 @@ return {
 	"100% fair",
 	"Black sun, Blood moon. Oceans of pain are here for yooouuuuuu!!!",
 	"Copiquest!",
+	"(not) sponsored by Apotheosis!",
 }
