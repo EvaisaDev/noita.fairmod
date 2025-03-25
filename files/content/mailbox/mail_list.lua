@@ -124,5 +124,21 @@ return {
 			end
 		end,
 	},
+	hardhat = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Hard Hat", -- only used if create_letter is true
+		letter_content = [[Hello player,
+		I couldn't help but notice you seem to be getting hit by heavy objects all over the place.
+		Firstly I would like to say, skill issue. 
+		However as I am a kind soul in this letter I have attached a hard hat which should help you survive.
+		Please stop dying I am getting bored.
+		- Eba]], -- only used if create_letter is true
+		letter_sprite = nil, -- only used if create_letter is true
+		func = function(x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.xml", x, y)
+
+			PhysicsApplyForce(entity, Random(-100, 100), -100)
+		end,
+	}
 	-- @EBA ADD A COPIBUDDY MAIL :)))))
 }

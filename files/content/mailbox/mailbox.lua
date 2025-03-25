@@ -16,7 +16,6 @@ local function get_mail()
 	return mail
 end
 
-
 local has_mail = #get_mail() > 0
 EntitySetComponentsWithTagEnabled(entity_id, "has_mail", has_mail)
 EntitySetComponentsWithTagEnabled(entity_id, "no_mail", not has_mail)

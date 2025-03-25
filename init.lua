@@ -174,6 +174,10 @@ function OnPlayerSpawned(player)
 	surface_bad:spawn()
 	funny_settings.OnPlayerSpawned(player)
 
+	EntityAddComponent2(player, "LuaComponent", {
+		script_damage_received = "mods/noita.fairmod/files/content/stalactite/entities/hard_hat/damage_blocker.lua"
+	})
+
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 	GameRemoveFlagRun("fairmod_dialog_interacting")
@@ -271,7 +275,7 @@ function OnPlayerSpawned(player)
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
-	--EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", target_x - 40, target_y - 4)
+	--EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.xml", target_x - 40, target_y - 4)
 	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
 	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end

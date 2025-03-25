@@ -1,0 +1,13 @@
+<Entity name="hat"> 
+    <InheritTransformComponent
+        parent_hotspot_tag="cape_root" >
+    </InheritTransformComponent>  
+
+    <SpriteComponent
+        _enabled="1"
+        offset_x="3"
+        offset_y="9"
+        z_index="0.5"
+        image_file="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat_player.png"
+    ></SpriteComponent>
+</Entity>

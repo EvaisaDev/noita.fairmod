@@ -1,0 +1,89 @@
+<Entity tags="hittable,teleportable_NOT,item_physics" >
+
+  <!-- physical presence -->
+  
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="0" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="1"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.png"
+    material="plastic"
+  ></PhysicsImageShapeComponent>
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="4"
+    image_file="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.png"
+  ></SpriteComponent>
+
+
+  <LuaComponent
+    script_throw_item="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.lua"
+	script_item_picked_up="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.lua"
+  >
+  </LuaComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Hard Hat">
+  </UIInfoComponent>
+  
+    <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Hard Hat"
+    ui_description="A hard hat, this will surely protect against falling debris."
+    ui_sprite="mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat_ui.png"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+	
+	<AbilityComponent
+		ui_name="Hard Hat"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+  
+  <LightComponent 
+    _tags="enabled_in_hand,enabled_in_world,item_identified"
+    _enabled="1" 
+    radius="130"
+    fade_out_time="1.5" 
+    r="240"
+    g="180"
+    b="120" >
+  </LightComponent>
+
+  <LightComponent 
+    _tags="enabled_in_hand,enabled_in_world,item_identified"
+    _enabled="1" 
+    radius="16"
+    fade_out_time="1.5" 
+    r="255"
+    g="255"
+    b="255" >
+  </LightComponent>
+
+
+</Entity>
