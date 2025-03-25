@@ -398,6 +398,8 @@ if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) =
 end
 
 
+
+
 local coper_things = {
     Random_EXEs = {
         "copis_ads.exe",
@@ -503,6 +505,50 @@ local Popups = dofile_once("mods/noita.fairmod/files/content/popups/files/append
 
     forcePrefab = false
 }
+
+local function get_special_popups()
+	local popups_str = ModSettingGet("noita.fairmod.popups") or ""
+
+	-- split mail by comma
+	local popups = {}
+	for str in string.gmatch(popups_str, "([^,]+)") do
+		table.insert(popups, str)
+	end
+
+	ModSettingSet("noita.fairmod.popups", "")
+
+	return popups
+end
+
+local special_popups_to_spawn = get_special_popups()
+
+for i, popup_id in ipairs(special_popups_to_spawn)do
+	local _popup = Popups.Special[popup_id]
+
+	if(_popup)then
+		SeedCount = SeedCount + 1
+		Windows[#Windows + 1] = {
+			seed = math.random(1, 1000000),
+			id = SeedCount,
+			x = nil,
+			y = nil,
+			ww = nil,
+			wh = nil,
+			popup = nil
+		}
+		local window = Windows[#Windows]
+		window.popup = window.popup or {}
+
+		for k, v in pairs(_popup) do --loop over prefab
+			window.popup[k] = v
+		end
+		window.popup.EXE = window.popup.EXE or Popups.Random_EXEs[math.random(1, #Popups.Random_EXEs)]
+		window.popup.MESSAGE = window.popup.MESSAGE or Popups.Random_Ads[math.random(1, #Popups.Random_Ads)]
+
+	end
+end
+
+
 if immersive_mimics then Popups = coper_things end
 GuiIdPushString(Gui, "ModMimicPopupWindow")
 
@@ -546,10 +592,51 @@ for i = 1, #Windows do
         local z = -1999999 - windowCounter * windowNumOverlappingElements
         GuiZSet(gui, z)
 
-        local imgwidth,imgheight = 0,0
-        if popup.MESSAGE:sub(1,5)=="[IMG]" then
-            imgwidth,imgheight =  GuiGetImageDimensions(Gui, popup.MESSAGE:sub(6))
-        end
+		local imgwidth, imgheight = 0, 0
+		local image_path = nil
+		local message = popup.MESSAGE
+		
+		if(popup.img_cache)then
+			image_path = popup.img_cache
+			imgwidth = popup.img_cache_width
+			imgheight = popup.img_cache_height
+		elseif message:sub(1,4) == "[IMG" then
+			-- Try to capture parameters in parentheses (if they exist)
+			local params, path = message:match("^%[IMG(%b())%](.+)$")
+			if params then
+				image_path = path  -- store the image path for later use
+				-- params is like "(w=175;h=128)", so extract width and height individually
+				local w = params:match("w=(%d+)")
+				local h = params:match("h=(%d+)")
+				if w and h then
+					-- Both width and height provided
+					imgwidth = tonumber(w)
+					imgheight = tonumber(h)
+				else
+					-- Retrieve full dimensions as fallback
+					local fallback_width, fallback_height = GuiGetImageDimensions(Gui, image_path)
+					if w then
+						imgwidth = tonumber(w)
+						imgheight = fallback_height
+					elseif h then
+						imgwidth = fallback_width
+						imgheight = tonumber(h)
+					else
+						-- No valid parameters in parentheses; fallback on GuiGetImageDimensions
+						imgwidth, imgheight = fallback_width, fallback_height
+					end
+				end
+			else
+				-- No parentheses provided: assume the simple [IMG] case
+				image_path = message:sub(6)
+				imgwidth, imgheight = GuiGetImageDimensions(Gui, image_path)
+			end
+
+			-- Cache the image path and dimensions for later use
+			popup.img_cache = image_path
+			popup.img_cache_width = imgwidth
+			popup.img_cache_height = imgheight
+		end
         local ww = Windows[i].ww or math.min(maxwidth, math.max(GuiGetTextDimensions(Gui, popup.EXE) + 10, minwidth, imgwidth))
         local wh = Windows[i].wh or math.min(maxheight, math.max(minheight, imgheight))
         local x = Windows[i].x or math.random(5, swidth - ww - 5)
@@ -585,10 +672,10 @@ for i = 1, #Windows do
 
 
 
-        if s:sub(1,5)=="[IMG]" then
+        if image_path then
             GuiZSetForNextWidget(Gui, z - 3)
 			GuiColorSetForNextWidget(Gui, Windows[i].image_color and Windows[i].image_color[1] or 1, Windows[i].image_color and Windows[i].image_color[2] or 1, Windows[i].image_color and Windows[i].image_color[3] or 1, 1)
-            GuiImage(Gui, 1, (ww - imgwidth) * .5, 0, s:sub(6), 1, 1, 1)
+            GuiImage(Gui, Windows[i].id * 10000, (ww - imgwidth) * .5, 0, image_path, 1, 1, 1, 0, 2)
         else
             for w in s:gmatch("%S+") do
                 GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)

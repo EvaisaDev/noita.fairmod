@@ -58,6 +58,14 @@ module.spawn = function(x, y)
 		end
 	end
 
+	if( Random(1, 100) < 10)then
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "nokia,")
+	end
+
+	if( Random(1, 100) < 5)then
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "zipbomb,")
+	end
+
 	if(HasFlagPersistent("should_wear_hardhat"))then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hardhat,")
 		RemoveFlagPersistent("should_wear_hardhat")

@@ -85,6 +85,7 @@
 {45df62bd-e538-4abb-bd0b-ef852804e875} event:/pingattack/discord
 {35632fa5-79e5-462f-84f9-43f64c57fbdb} event:/popups/click
 {9476719b-51e4-4f03-8279-9d427e496a98} event:/popups/click_fail
+{64d04214-53e4-4950-8263-41d82ef436dc} event:/popups/idiot
 {ed114a2b-9633-4bc9-a45c-e20428231ef2} event:/popups/prompt
 {31777440-bd17-44a7-bb56-8f441bd2a725} event:/radio/1
 {4561ae88-b7eb-49ba-94b5-2d1042053fb7} event:/radio/10

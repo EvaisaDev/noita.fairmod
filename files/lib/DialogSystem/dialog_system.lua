@@ -134,6 +134,7 @@ local dialog_system = {
 	dialog_box_width = config.dialog_box_width or 300,
 	dialog_box_height = config.dialog_box_height or 70,
 	distance_to_close = config.distance_to_close,
+	use_entity_pos_for_close_distance = config.use_entity_pos_for_close_distance or false,
 	disable_controls = config.disable_controls or false,
 }
 
@@ -242,11 +243,14 @@ dialog_system.open_dialog = function(message)
 		end
 
 		local entity_id = GetUpdatedEntityID()
+		local entity_x, entity_y = EntityGetTransform(entity_id)
 		local interactable_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "InteractableComponent")
 		local interactable_comp_radius
 		if interactable_comp then interactable_comp_radius = ComponentGetValue2(interactable_comp, "radius") end
 		local radius = dialog_system.distance_to_close or interactable_comp_radius or 15
-		return get_distance(dialog.opened_at_position.x, dialog.opened_at_position.y, px, py) > radius
+		local use_entity_pos = dialog_system.use_entity_pos_for_close_distance
+
+		return get_distance(use_entity_pos and entity_x or dialog.opened_at_position.x, use_entity_pos and entity_y or dialog.opened_at_position.y, px, py) > radius
 	end
 
 	dialog.close = function(on_closed_callback)

@@ -148,6 +148,9 @@ local Popups = {
 			UPDATE_FUNCTION = function(window, self)
 				local w, h = GuiGetScreenDimensions(Gui)
 				local x, y = window.x, window.y
+
+				x = x or Random(0, w)
+				y = y or Random(0, h)
 		
 				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
 				local abs_dy = 1 - abs_dx
@@ -159,9 +162,7 @@ local Popups = {
 				local dy = window.dy or (sign_dy * abs_dy)
 				local width = window.ww or 1
 				local height = window.wh or 1
-		
-				GamePrint("width: " .. width .. " height: " .. height)
-		
+
 				local speed = 2
 				window.image_color = window.image_color or {Random(), Random(), Random()}
 		
@@ -332,6 +333,80 @@ local Popups = {
 	},--]=]
         --todo: popup that when you close it, it appears in the material world seamlessly so that the only observable change is the fact it is no longer following your camera
         --shelved cuz pixel ratio of world to gui is not 1:1, will like
+	},
+	-- these are not automatically triggered, works similarly to the mailbox :3
+	Special = {
+		idiot = { 
+			EXE = "IDIOT.EXE",
+			MESSAGE = "[IMG(w=170;h=128)]Mods/noita.fairmod/files/content/popups/idiot.xml",
+			UPDATE_FUNCTION = function(window, self)
+				local w, h = GuiGetScreenDimensions(Gui)
+				local x, y = window.x, window.y
+
+				x = x or Random(0, w)
+				y = y or Random(0, h)
+		
+				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
+				local abs_dy = 1 - abs_dx
+		
+				local sign_dx = (Random(0, 1) < 0.5) and -1 or 1
+				local sign_dy = (Random(0, 1) < 0.5) and -1 or 1
+		
+				local dx = window.dx or (sign_dx * abs_dx)
+				local dy = window.dy or (sign_dy * abs_dy)
+				local width = window.ww or 1
+				local height = window.wh or 1
+		
+				local speed = 2
+
+				x = x + (dx * speed)
+				y = y + (dy * speed)
+		
+				-- Define margin
+				local margin = 4
+
+				-- Check horizontal boundaries with margin
+				if x < margin then
+					x = margin
+					dx = -dx
+				elseif x + width > w - (margin + 10) then
+					x = w - (margin + 10) - width
+					dx = -dx
+				end
+		
+				-- Check vertical boundaries with margin
+				if y < (margin + 10) then
+					y = (margin + 10)
+					dy = -dy
+				elseif y + height > h - margin then
+					y = h - margin - height
+					dy = -dy
+				end
+
+		
+				window.x = x
+				window.y = y
+				window.dx = dx
+				window.dy = dy
+			end,
+			OPEN_FUNCTION = function(self)
+				local players = EntityGetWithTag("player_unit")
+				if #players > 0 then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+					local idiot = EntityLoad("mods/noita.fairmod/files/content/popups/idiot_entity.xml", x, y)
+					EntityAddChild(player, idiot)
+
+				end
+			end,
+			CLOSE_FUNCTION = function(self) --returning false AND ONLY FALSE will not close the window. Anything else, such as not returning at all, will close the window still.
+				local idiot = EntityGetWithName("idiot")
+				if idiot then
+					EntityKill(idiot)
+				end
+				return true
+			end,
+		},
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

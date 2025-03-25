@@ -8,6 +8,8 @@ dialog_system.distance_to_close = 35
 local function get_mail()
 	local mail_str = ModSettingGet("noita.fairmod.mail") or ""
 
+	print(mail_str)
+
 	-- split mail by comma
 	local mail = {}
 	for str in string.gmatch(mail_str, "([^,]+)") do
@@ -72,6 +74,19 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									if(ui_info_component)then
 										ComponentSetValue2(ui_info_component, "name", mail_data.letter_title or "Letter")
 									end
+
+									local ability_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "AbilityComponent")
+									if(ability_component)then
+										ComponentSetValue2(ability_component, "ui_name", mail_data.letter_title or "Letter")
+									end
+									
+									local velocity_comp = EntityGetFirstComponentIncludingDisabled(letter_entity, "VelocityComponent")
+									if(velocity_comp)then
+										local vel_x = math.random(-100, 100)
+										local vel_y = -100
+										ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+									end
+
 									local item_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "ItemComponent")
 									if(item_component)then
 										ComponentSetValue2(item_component, "item_name", mail_data.letter_title or "Letter")
@@ -106,24 +121,18 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 											mail_data.letter_func(letter_entity)
 										end
 									end
-									local ability_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "AbilityComponent")
-									if(ability_component)then
-										ComponentSetValue2(ability_component, "ui_name", mail_data.letter_title or "Letter")
-									end
-									
-									local velocity_comp = EntityGetFirstComponentIncludingDisabled(letter_entity, "VelocityComponent")
-									if(velocity_comp)then
-										local vel_x = math.random(-100, 100)
-										local vel_y = -100
-										ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
-									end
+				
 								end
 
 								if mail_data.func ~= nil then
+									wait(30)
 									mail_data.func(x, y - 17)
 								end
 							end
+
+							wait(30)
 						end
+
 
 						ModSettingSet("noita.fairmod.mail", "")
 						dialog.close()

@@ -137,8 +137,42 @@ return {
 		func = function(x, y)
 			local entity = EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.xml", x, y)
 
-			PhysicsApplyForce(entity, Random(-100, 100), -100)
+			PhysicsApplyForce(entity, Random(-40, 40), -70)
 		end,
-	}
+	},
+	nokia = { -- won a free Nokia 3310
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Congratulations! You've Won a FREE Nokia 3310!", -- only used if create_letter is true
+		letter_content = [[
+			Dear Valued Customer,
+			We are excited to announce that you have been selected as the lucky winner of a brand new Nokia 3310! 
+			Your prize has been included in the mailbox, note that no warranty is provided for the product.
+			If you have any questions, please feel free to contact our support team at support@notascamcompany.com.
+			Congratulations once again, and thank you for being a valued customer.
+
+			Best regards,
+			The Prize Fulfillment Team
+			Not A Scam Company LTD]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.xml", x, y)
+			PhysicsApplyForce(entity, Random(-150, 150), -150)
+		end,
+
+	},
+	zipbomb = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "ILOVEYOU", -- only used if create_letter is true
+		letter_content = [[Kindly check the attached LOVELETTER coming from me.]], -- only used if create_letter is true
+		letter_sprite = nil, -- only used if create_letter is true
+		func = function(x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/zip_bomb/zip_bomb.xml", x, y)
+			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
+			if(velocity_comp)then
+				local vel_x = math.random(-100, 100)
+				local vel_y = -100
+				ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+			end
+		end,
+	},
 	-- @EBA ADD A COPIBUDDY MAIL :)))))
 }

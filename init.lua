@@ -275,7 +275,7 @@ function OnPlayerSpawned(player)
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
-	--EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.xml", target_x - 40, target_y - 4)
+	--EntityLoad("mods/noita.fairmod/files/content/mailbox/zip_bomb/zip_bomb.xml", target_x - 40, target_y - 4)
 	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
 	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
@@ -324,7 +324,8 @@ function OnWorldPreUpdate()
 	if InputIsKeyJustDown(64) then
 		--local mx, my = DEBUG_GetMouseWorld()
 		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
-		GameAddFlagRun("SPAWN_POPUP")
+		--GameAddFlagRun("SPAWN_POPUP")
+		ModSettingSet("noita.fairmod.popups", ModSettingGet("noita.fairmod.popups", "") .. "idiot,")
 	end
 end
 

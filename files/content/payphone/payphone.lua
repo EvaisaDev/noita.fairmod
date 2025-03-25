@@ -6,6 +6,7 @@ local sprite_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "SpriteC
 dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.use_entity_pos_for_close_distance = true
 dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "loanshark/pop" }
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
@@ -160,6 +161,7 @@ local get_random_call = function(entity_who_interacted)
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+	print("Interacting")
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
@@ -174,8 +176,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
 		-- open random call
 		local call = get_random_call(entity_who_interacted)
+		local old_on_closed = call.on_closed
 		call.on_closed = function()
+			if old_on_closed ~= nil then old_on_closed() end
 			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
 		end
 		dialog_system.dialog_box_height = 70
 
@@ -199,11 +204,13 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					end,
 				},
 			},
-			on_closed = function()
-				GameAddFlagRun("ask_for_gerald")
-				GameRemoveFlagRun("fairmod_dialog_interacting")
-			end,
+			
 		})
+		dialog.on_closed = function()
+			GameAddFlagRun("ask_for_gerald")
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
+		end
 	elseif not in_call then
 		in_call = true
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
@@ -221,9 +228,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					end,
 				},
 			},
-			on_closed = function()
-				GameRemoveFlagRun("fairmod_dialog_interacting")
-			end,
 		})
+		dialog.on_closed = function()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
+			print("Call ended")
+		end
 	end
 end

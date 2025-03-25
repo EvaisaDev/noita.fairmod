@@ -1,0 +1,84 @@
+<Entity name="ZIP" tags="hittable,teleportable_NOT,item_pickup" serialize="0" >
+  
+  <SimplePhysicsComponent
+	_tags="enabled_in_world"
+  />
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <!-- item -->
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+	_enabled="0"
+	offset_x="8"
+	offset_y="8"
+    image_file="mods/noita.fairmod/files/content/mailbox/zip_bomb/zip.png"
+  ></SpriteComponent>
+
+	<SpriteComponent
+	_enabled="1"
+    _tags="enabled_in_world"
+	offset_x="8"
+	offset_y="16"
+    image_file="mods/noita.fairmod/files/content/mailbox/zip_bomb/zip.png"
+  ></SpriteComponent>
+
+	<SpriteAnimatorComponent
+	    _tags="enabled_in_world"
+	/>
+
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="ILOVEYOU.zip"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+	play_spinning_animation="0"
+	play_hover_animation="0"
+    ui_sprite="mods/noita.fairmod/files/content/mailbox/zip_bomb/zip.png"
+    ui_description="A strange folder with a zipper on it?"
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="ILOVEYOU.zip" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="ILOVEYOU.zip"
+		throw_as_item="0"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/throwable"
+		>
+	</AudioComponent>
+
+
+
+	<InheritTransformComponent/>
+	
+	<InteractableComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		radius="20"
+		ui_text="Press $0 to open folder."
+		name="interact"
+	/>
+
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		script_interacting="mods/noita.fairmod/files/content/mailbox/zip_bomb/zip_bomb.lua"
+		execute_on_added="0"
+		execute_every_n_frame="-1"
+	/>
+
+</Entity>
