@@ -16,4 +16,5 @@ return {
 	"Read your mails!",
 	"Help, I've been locked in the basement writing splashes for two mods!!!",
 	"Labor of Loathing!",
+	"*Your",
 }
