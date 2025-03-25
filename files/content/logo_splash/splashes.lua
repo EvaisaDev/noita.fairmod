@@ -18,4 +18,5 @@ return {
 	"Labor of Loathing!",
 	"*Your",
 	"*You're",
+	"CURSE OF RA!!",
 }
