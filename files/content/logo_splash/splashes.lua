@@ -14,4 +14,5 @@ return {
 	"Copiquest!",
 	"(not) sponsored by Apotheosis!",
 	"Read your mails!",
+	"Help, I've been locked in the basement writing splashes for two mods!!!",
 }
