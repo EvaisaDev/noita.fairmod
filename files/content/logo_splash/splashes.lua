@@ -7,4 +7,7 @@ return {
 	"Touch grass.",
 	"Try talking to the snail.",
 	"Help me.",
+	"Wear a hard hat!",
+	"Pick up the phone you fool.",
+	"100% fair",
 }
