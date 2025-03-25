@@ -10,4 +10,5 @@ return {
 	"Wear a hard hat!",
 	"Pick up the phone you fool.",
 	"100% fair",
+	"Black sun, Blood moon. Oceans of pain are here for yooouuuuuu!!!",
 }
