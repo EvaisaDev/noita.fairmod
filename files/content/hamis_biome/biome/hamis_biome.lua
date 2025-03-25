@@ -10,6 +10,7 @@ RegisterSpawnFunction(0xffffeedd, "init")
 RegisterSpawnFunction(0xff00AC64, "load_pixel_scene4") -- wtf?
 RegisterSpawnFunction(0xff80FF5A, "spawn_vines")
 RegisterSpawnFunction(0xff0000ff, "spawn_nest")
+RegisterSpawnFunction(0xff523160, "spawn_longest")
 
 ------------ SMALL ENEMIES ----------------------------------------------------
 
@@ -201,26 +202,19 @@ g_lamp = {
 g_pixel_scene_01 = {
 	total_prob = 0,
 	{
-		prob = 0.5,
+		prob = 0.2,
 		material_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/v_200_400_hamis.png",
 		visual_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/v_200_400_hamis_visual.png",
 		background_file = "",
 		is_unique = 0,
 	},
-	-- {
-	-- 	prob = 0.5,
-	-- 	material_file = "data/biome_impl/rainforest/pit02.png",
-	-- 	visual_file = "",
-	-- 	background_file = "",
-	-- 	is_unique = 0,
-	-- },
-	-- {
-	-- 	prob = 0.5,
-	-- 	material_file = "data/biome_impl/rainforest/pit03.png",
-	-- 	visual_file = "",
-	-- 	background_file = "",
-	-- 	is_unique = 0,
-	-- },
+	{
+		prob = 1,
+		material_file = "mods/noita.fairmod/files/content/hamis_biome/biome/pixelscenes/v_200_400_longest.png",
+		visual_file = "",
+		background_file = "",
+		is_unique = 1,
+	},
 }
 
 g_pixel_scene_02 = {
@@ -378,4 +372,10 @@ function spawn_vines(x, y)
 	spawn(g_vines, x + 5, y + 5)
 	-- chance for an extra spawn for denser vineage
 	if ProceduralRandomf(x, y) < 0.5 then spawn(g_vines, x, y + 5) end
+end
+
+function spawn_longest(x, y)
+	if GameHasFlagRun("fairmod_longest_spawned") then return end
+	GameAddFlagRun("fairmod_longest_spawned")
+	EntityLoad("mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest.xml", x, y)
 end

@@ -10,3 +10,4 @@ end
 
 ModLuaFileAppend("data/scripts/biome_map.lua", "mods/noita.fairmod/files/content/hamis_biome/biome/biome_map_appends.lua")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/hamis_biome/materials/materials.xml")
+dofile_once("mods/noita.fairmod/files/content/hamis_biome/hamis_ending/append.lua")
