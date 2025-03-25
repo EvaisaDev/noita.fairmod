@@ -168,7 +168,7 @@ function set_controls_enabled(enabled) --Disable's player's controls
 end
 
 function interacting(player_id, building_id, interactable_name)
-	if #sampo_check > 0 then
+	if #sampo_check > 0 and GameHasFlagRun("kolmi_killed") then
 		set_controls_enabled(false)
 		local quiz_table = generate_quiz_table()
 		GameTriggerMusicFadeOutAndDequeueAll(1)
@@ -206,6 +206,8 @@ function interacting(player_id, building_id, interactable_name)
 				},
 			},
 		})
+	elseif( #sampo_check > 0 and not GameHasFlagRun("kolmi_killed") )then
+		GamePrint("Nuh uh uh, kill big guy over there first!")
 	end
 end
 --stylua: ignore end

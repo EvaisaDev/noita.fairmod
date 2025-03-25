@@ -3,13 +3,16 @@ function damage_received( damage, message, entity_thats_responsible, is_fatal, p
     if message == "$damage_physicshit" then
 		if(GameHasFlagRun("hard_hat_worn"))then
 			local entity_id = GetUpdatedEntityID()
-			local name = EntityGetName(entity_id)
-			local damageModelComponent = EntityGetFirstComponentIncludingDisabled( entity_id, "DamageModelComponent" )
+			local damageModelComponent = EntityGetFirstComponentIncludingDisabled(entity_id, "DamageModelComponent")
 			if damageModelComponent ~= nil then
-				local health = ComponentGetValue2( damageModelComponent, "hp" )
-				if health - damage <= 0 then
-					ComponentSetValue2( damageModelComponent, "hp", damage + 0.04 )
+				local health = ComponentGetValue2(damageModelComponent, "hp")
+				local new_pre_damage_hp
+				if health - (damage * 0.2) >= 0.04 then
+					new_pre_damage_hp = health + (damage * 0.8)
+				else
+					new_pre_damage_hp = damage + 0.04
 				end
+				ComponentSetValue2(damageModelComponent, "hp", new_pre_damage_hp)
 			end
 		else
 			local entity_id = GetUpdatedEntityID()
