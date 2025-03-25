@@ -8,4 +8,4 @@ local hamis_list = {
 }
 
 SetRandomSeed(x, y + GameGetFrameNum())
-EntityLoad(hamis_list[Random(1, #hamis_list)], x + Random(-15, 15), y + Random(0, 30))
+EntityLoad(hamis_list[Random(1, #hamis_list)], x + Random(-120, 120), y - Random(0, 30))
