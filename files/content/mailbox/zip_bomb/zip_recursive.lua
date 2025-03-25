@@ -7,7 +7,7 @@ elseif(frames == 30)then
 	frames = 0
 end
 
-if(Random(1, 100) > 30)then
+if(Random(1, 100) > 10)then
 	return
 end
 
@@ -23,4 +23,4 @@ if(velocity_comp)then
 	ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
 end
 
-ModSettingSet("noita.fairmod.popups", ModSettingGet("noita.fairmod.popups", "") .. "idiot,")
+ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")

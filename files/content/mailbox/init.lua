@@ -62,7 +62,7 @@ module.spawn = function(x, y)
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "nokia,")
 	end
 
-	if( Random(1, 100) < 5)then
+	if( Random(1, 100) < 500)then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "zipbomb,")
 	end
 

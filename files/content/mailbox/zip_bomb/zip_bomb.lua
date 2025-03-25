@@ -16,7 +16,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
 	end
 
-	ModSettingSet("noita.fairmod.popups", ModSettingGet("noita.fairmod.popups", "") .. "idiot,")
+	ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
 
 	EntityDropItem(entity_who_interacted, entity_interacted)
 	EntityKill(entity)

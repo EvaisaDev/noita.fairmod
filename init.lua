@@ -142,6 +142,7 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	ModSettingSet("noita.fairmod.popups", "")
 	-- Seed translations changes rng with system time
 	local tv = { GameGetDateAndTimeUTC() }
 	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
@@ -325,7 +326,7 @@ function OnWorldPreUpdate()
 		--local mx, my = DEBUG_GetMouseWorld()
 		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		--GameAddFlagRun("SPAWN_POPUP")
-		ModSettingSet("noita.fairmod.popups", ModSettingGet("noita.fairmod.popups", "") .. "idiot,")
+		ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
 	end
 end
 

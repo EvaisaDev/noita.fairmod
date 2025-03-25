@@ -653,7 +653,13 @@ return {
 				end
 			end
 		end
-	}
+	},
+	{
+		code = "gullible",
+		func = function(player)
+			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
+		end,
+	},
 }
 
 --stylua: ignore end
