@@ -177,6 +177,16 @@ function interacting(player_id, building_id, interactable_name)
 			EntityKill(sampo_check[k])
 		end
 
+		--Gameshow?? Kolmisilma loves gameshows!
+		--Kolmi will get real close to the player to watch... although they're a bit hungry...
+		GameAddFlagRun("fair_gameshow_kolmi")
+		local boss = EntityGetWithTag( "boss_centipede" ) or {}
+		for bp=1,#boss 
+		do local kolmi = boss[bp]
+			local limbbosscomp = EntityGetFirstComponentIncludingDisabled( kolmi, "LimbBossComponent" )
+			ComponentSetValue2(limbbosscomp, "state", 5)
+    		end
+
 		dialog = dialog_system.open_dialog({
 			name = "Noitillionare Host",
 			portrait = "mods/noita.fairmod/files/content/ending_quiz/portrait_noitillionare.png",
