@@ -1723,5 +1723,47 @@ return {
 			},
 		},
 	},
-
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my top secret project!]],
+		can_call = function() -- optional
+			return not GameHasFlagRun("copibuddy")
+		end,
+		options = {
+			{
+				text = "Uhhh... okay?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Thank you, oh copious one.",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
 }
