@@ -1,9 +1,6 @@
-local log = ModTextFileGetContent("mods/noita.fairmod/files/content/credits/commit_log.txt")
-
-local log = [[Fair Mod Commit History
-
-]] .. log .. [[
-
-Added approximately 95,236,821,904,984 hamisket]]
-
-ModTextFileSetContent("data/credits.txt", log)
+ModTextFileSetContent("data/credits.txt", table.concat{[[Fair Mod Commit History
+]], ModTextFileGetContent("mods/noita.fairmod/files/content/credits/commit_log.txt"), [[
+(pst, copi was here!! this isn't a commit! Use the cheat code INIGOMONTOYA if you see this!)
+(or maybe it won't work if I'm too lazy to finish it :))) hahahahahahaha)
+Added approximately 95,236,821,904,984 hamisket
+]], string.rep("Copi\n", math.random(5,20)*(math.random()>0.9 and 10 or 1))})
