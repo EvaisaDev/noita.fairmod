@@ -147,7 +147,7 @@ return {
 			Dear Valued Customer,
 			We are excited to announce that you have been selected as the lucky winner of a brand new Nokia 3310! 
 			Your prize has been included in the mailbox, note that no warranty is provided for the product.
-			If you have any questions, please feel free to contact our support team at support@notascamcompany.com.
+			If you have any questions, please feel free to contact our support team at copisthings@gmail.com.
 			Congratulations once again, and thank you for being a valued customer.
 
 			Best regards,
@@ -175,4 +175,13 @@ return {
 		end,
 	},
 	-- @EBA ADD A COPIBUDDY MAIL :)))))
+	hampill = { -- won a free Nokia 3310
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Silkyroad delivery", -- only used if create_letter is true
+		letter_content = [[
+			Your order of HAMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("FILEPATH TO HAMIS PILL ITEM!!!! KILL PLAYER AFTER 2:30!!!!", x, y)
+		end,
+	},
 }

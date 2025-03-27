@@ -55,6 +55,10 @@ function teleport()
 	do_random_teleport = true
 end
 
+function copibuddy()
+	GameAddFlagRun("copibuddy")
+end
+
 function ng_portal()
 	EntityLoad("mods/noita.fairmod/files/content/payphone/content/rift/return_portal.xml", x, y - 45)
 end
