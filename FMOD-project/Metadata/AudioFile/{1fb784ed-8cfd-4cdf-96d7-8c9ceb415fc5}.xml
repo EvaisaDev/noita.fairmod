@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{1fb784ed-8cfd-4cdf-96d7-8c9ceb415fc5}">
 		<property name="assetPath">
-			<value>smw_blargg.wav</value>
+			<value>Compress/smw_blargg.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>22.0499992</value>

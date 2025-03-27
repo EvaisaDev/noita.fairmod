@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{598ca2d4-a646-4f09-a2bb-6e2b2ecc9a76}">
 		<property name="assetPath">
-			<value>You are an idiot!!.mp3</value>
+			<value>Compress_Extra/You are an idiot!!.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

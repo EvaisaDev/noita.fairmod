@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EventFolder" id="{f9695628-cbc1-4f2a-8931-02f8c8bd3eaf}">
+		<property name="name">
+			<value>fairmod</value>
+		</property>
+		<relationship name="folder">
+			<destination>{10e6d6ec-60e7-4ef7-bc59-7b52daafd30a}</destination>
+		</relationship>
+	</object>
+</objects>

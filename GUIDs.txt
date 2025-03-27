@@ -33,6 +33,14 @@
 {27644ff2-751d-40f8-af10-e66408b99be0} event:/ending_quiz/millionare_ask
 {0f4e14a4-6f76-4123-8546-bb99c8a40c16} event:/ending_quiz/millionare_music
 {1575ea21-d6eb-471f-b3de-2ff53f3aced6} event:/ending_quiz/millionare_music_stop
+{d886f693-28ff-4493-b2dd-1fc44364250b} event:/fairmod/song/00
+{df6874c1-bc83-4f25-88b7-67659197cced} event:/fairmod/song/01
+{042ad314-fae3-45a6-bf96-09279765c1e0} event:/fairmod/song/02
+{03cb4b38-5e64-4908-bde5-d133e83ead0e} event:/fairmod/song/03
+{12d260d2-20d5-4ee1-a997-9b52db061179} event:/fairmod/song_streamer/00
+{f663a587-c01f-4064-b9b5-4e22ddd9852c} event:/fairmod/song_streamer/01
+{83abe442-f1eb-4bce-bfa5-68d91a9fa1db} event:/fairmod/song_streamer/02
+{1049fcca-af5d-42f7-836a-c159c4a29e2d} event:/fairmod/song_streamer/03
 {d8a4ad2e-0e21-41c5-80bd-e1e311bf3e36} event:/fish/i_am_just_a_fish
 {28c37bc3-b2d1-4472-9436-7c0749d0a6f2} event:/fish/i_am_just_a_fish_streamer
 {9a22eb81-5c7a-418f-b8ee-3bda69e2fbd9} event:/gamblecore/awdangit
