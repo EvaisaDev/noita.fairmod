@@ -99,24 +99,24 @@ g_props = {
 	-- 	max_count = 1,
 	-- 	entity = "data/entities/props/physics_barrel_radioactive.xml",
 	-- },
-	-- {
-	-- 	prob = 0.1,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/props/physics_fungus_small.xml",
-	-- },
-	-- {
-	-- 	prob = 0.1,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/props/physics_fungus.xml",
-	-- },
-	-- {
-	-- 	prob = 0.08,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/props/physics_fungus_big.xml",
-	-- },
+	{
+		prob = 0.08,
+		min_count = 1,
+		max_count = 1,
+		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/fungus/physics_fungus_small.xml",
+	},
+	{
+		prob = 0.1,
+		min_count = 1,
+		max_count = 1,
+		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/fungus/physics_fungus.xml",
+	},
+	{
+		prob = 0.06,
+		min_count = 1,
+		max_count = 1,
+		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/fungus/physics_fungus_big.xml",
+	},
 }
 
 g_lamp = {
@@ -134,12 +134,12 @@ g_lamp = {
 		max_count = 3,
 		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/lamp_hamis/lamp_hamis.xml",
 	},
-	-- {
-	-- 	prob = 1.0,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/props/physics_fungus_small.xml",
-	-- },
+	{
+		prob = 1.0,
+		min_count = 1,
+		max_count = 1,
+		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/fungus/physics_fungus_small.xml",
+	},
 	-- {
 	-- 	prob = 1.0,
 	-- 	min_count = 1,
