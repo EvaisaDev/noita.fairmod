@@ -26,65 +26,20 @@ g_small_enemies = {
 	-- add skullflys after this step
 	{
 		prob = 0.5,
-		min_count = 1,
-		max_count = 3,
+		min_count = 2,
+		max_count = 8,
 		entity = "data/entities/animals/longleg.xml",
 	},
+	{
+		prob = 0.2,
+		min_count = 1,
+		max_count = 1,
+		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/lukki/lukki.xml",
+	},
 }
 
-g_unique_enemy = {
-	total_prob = 0,
-	-- this is air, so nothing spawns at 0.6
-	{
-		prob = 1.0,
-		min_count = 0,
-		max_count = 0,
-		entity = "",
-	},
-	-- add skullflys after this step
-	-- {
-	-- 	prob = 0.1,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/animals/drone_shield.xml",
-	-- },
-	-- {
-	-- 	prob = 0.1,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/animals/lurker.xml",
-	-- },
-	-- {
-	-- 	prob = 0.09,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/animals/lukki/lukki_dark.xml",
-	-- },
-}
-
-g_unique_enemy2 = {
-	total_prob = 0,
-	-- this is air, so nothing spawns at 0.6
-	{
-		prob = 1.0,
-		min_count = 0,
-		max_count = 0,
-		entity = "",
-	},
-	-- add skullflys after this step
-	-- {
-	-- 	prob = 1.0,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/buildings/lukki_eggs.xml",
-	-- },
-	-- {
-	-- 	prob = 0.09,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/animals/lukki/lukki_dark.xml",
-	-- },
-}
+g_unique_enemy = g_small_enemies
+g_unique_enemy2 = g_small_enemies
 
 ------------ ITEMS ------------------------------------------------------------
 
@@ -176,7 +131,7 @@ g_lamp = {
 	{
 		prob = 0.6,
 		min_count = 1,
-		max_count = 1,
+		max_count = 3,
 		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/lamp_hamis/lamp_hamis.xml",
 	},
 	-- {
@@ -235,39 +190,8 @@ g_pixel_scene_02 = {
 	},
 }
 
-g_ghostlamp = {
-	total_prob = 0,
-	-- add skullflys after this step
-	{
-		prob = 1.0,
-		min_count = 1,
-		max_count = 1,
-		offset_y = 10,
-		entity = "data/entities/props/physics_chain_torch_ghostly.xml",
-	},
-}
-
-g_candles = {
-	total_prob = 0,
-	{
-		prob = 0.33,
-		min_count = 1,
-		max_count = 1,
-		entity = "data/entities/props/physics_candle_1.xml",
-	},
-	{
-		prob = 0.33,
-		min_count = 1,
-		max_count = 1,
-		entity = "data/entities/props/physics_candle_2.xml",
-	},
-	{
-		prob = 0.33,
-		min_count = 1,
-		max_count = 1,
-		entity = "data/entities/props/physics_candle_3.xml",
-	},
-}
+g_ghostlamp = g_lamp
+g_candles = g_lamp
 
 g_vines = {
 	total_prob = 0,
@@ -311,12 +235,6 @@ g_nest = {
 		max_count = 1,
 		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/nest_spawner/nest_spawner.xml",
 	},
-	-- {
-	-- 	prob = 0.5,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "",
-	-- },
 }
 
 -- actual functions that get called from the wang generator

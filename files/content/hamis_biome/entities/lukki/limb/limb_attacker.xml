@@ -1,0 +1,25 @@
+<Entity>
+	<InheritTransformComponent />
+
+	<IKLimbComponent
+		length="60" />
+
+	<IKLimbAttackerComponent
+		radius="40" />
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/hamis_biome/entities/lukki/limb/leg.png"
+		z_index="1.1"
+		offset_x="0"
+		offset_y="2"
+		update_transform="0"
+		update_transform_rotation="0" />
+
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/hamis_biome/entities/lukki/limb/leg_end.png"
+		z_index="1.1"
+		offset_x="1"
+		offset_y="2"
+		update_transform="0"
+		update_transform_rotation="0" />
+</Entity>
