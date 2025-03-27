@@ -70,7 +70,7 @@ local Popups = {
 		"*STOP* doing *ORBS!* newline *COLLECTABLES* were not supposed to be given *UNLOCKS* newline YEARS of *SEEDSEARCH* yet no *LEGIT* @34@ *ORB* FOUND for going higher than *SEVEN* *ORBS* newline Wanted to go higher anyway for a laugh? we had a tool for that: it was called @COPIS@ @CHEAT@ @MENU@ newline 'yes please give me @CLOUD@ @OF@ @THUNDER'@ - STATEMENTS DREAMED UP BY THE |UTTERLY.| |DERANGED.|",
 		[[Are you *kidding* ??? What the |!%#$| are you talking about man ? You are a *biggest* |looser| i ever seen in my life ! You was casting *firebolt* in your *mines* when i was casting @copis@ @things@ |die| much more faster then *you!* You are not *proffesional*, because *proffesionals* knew how to *build* *wands* and |not| |cheese,| you are like a |hiisi| *crying* after i |beat| |you!| Be *brave*, be *honest* to yourself and stop this |trush| |talkings!!!| *Everybody* know that i am @very@ @good@ @modder,@ i can make *any* *spell* in the world in *single* *sitting!* And *"g"raham* *"b"urger* is |nobody| for me, just a *modder* who are |nerfing| every single time when *modding,* ( remember what you say about @Mana@ @Heart@ ) !!! Stop playing with my name, i deserve to have a @good@ @name@ during whole my *modding* carrier, I am *Officially* *inviting* you to |MOD| |JAM|  with the |Prize| |fund!| Both of us will @invest@ @5000$@ and *winner* takes it @all!@ I suggest all other people who's intrested in this situation, just take a look at *my* *results* in @2022@ and @2023@ @github,@ and that should be enough... No need to listen for |every| |crying| |hesii,| @Copernicus@ @Things@ is *always* *play* @Fair@ ! And if someone will continue *Officially* talk about me like that, *we* *will* |meet| |in| |Court!| @God@ @bless@ @with@ @true!@ *True* will |never| |die| ! Liers will |kicked| |off...|]],
 		"imagine having to start with *2x* *gc* + the |demolitionist| *perk* from @copi's@ @things@ i think??? and then *giga* *nuke* or *giga* *holy* *bomb*",
-		"[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
+		"[IMG]mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
 		"hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
 		"[IMG]mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png",
 		"note to self: add more trojans to popups",
@@ -144,7 +144,7 @@ local Popups = {
 		}, -- i hope these help, have fun!
 		{ 
 			EXE = "DVD_LOGO.EXE",
-			MESSAGE = "[IMG]Mods/noita.fairmod/files/content/popups/dvd.png",
+			MESSAGE = "[IMG]mods/noita.fairmod/files/content/popups/dvd.png",
 			UPDATE_FUNCTION = function(window, self)
 				local w, h = GuiGetScreenDimensions(Gui)
 				local x, y = window.x, window.y
@@ -338,7 +338,7 @@ local Popups = {
 	Special = {
 		idiot = { 
 			EXE = "IDIOT.EXE",
-			MESSAGE = "[IMG(w=170;h=128)]Mods/noita.fairmod/files/content/popups/idiot.xml",
+			MESSAGE = "[IMG(w=170;h=128)]mods/noita.fairmod/files/content/popups/idiot.xml",
 			UPDATE_FUNCTION = function(window, self)
 				local w, h = GuiGetScreenDimensions(Gui)
 				local x, y = window.x, window.y
