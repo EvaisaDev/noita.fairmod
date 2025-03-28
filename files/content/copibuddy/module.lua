@@ -452,7 +452,6 @@ function module.update()
 		local edge_margin = 6
 		local lines = wrap_segments(module.gui, visible_segments, module.max_text_width)
 		local total_text_width, total_text_height, line_heights = measure_lines(module.gui, lines)
-		-- Determine placement as before…
 
 		margin = margin + edge_margin
 		local bubble_x, bubble_y
@@ -473,7 +472,6 @@ function module.update()
 			bubble_y = (screen_h - total_text_height) / 2
 		end
 
-		-- Clamp bubble position to screen bounds
 		bubble_x = math.max(margin, math.min(bubble_x, screen_w - total_text_width - margin))
 		bubble_y = math.max(margin, math.min(bubble_y, screen_h - total_text_height - margin))
 
@@ -487,7 +485,7 @@ function module.update()
 	
 		local sprite_size = 6
 
-		-- check if bubble center is below the module.y
+
 		local topleft_x = bubble_x - (sprite_size / 2)
 		local topleft_y = bubble_y - (sprite_size / 2)
 		local bottomright_x = bubble_x + bubble_w - (sprite_size / 2)
