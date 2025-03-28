@@ -44,8 +44,8 @@ return {
 	{
 		text = "Click this [on_click=hello_world][color=0000ff]cool button[/color][/on_click] to test this code!",
 		anim = "talk",
-		weight = 1000,
-		frames = 900,
+		weight = 1,
+		frames = 400,
 		condition = function(copibuddy)
 			return true
 		end,
@@ -54,5 +54,32 @@ return {
 				GamePrint("Hello world!")
 			end,
 		},
-	}
+	},
+	{
+		text = nil,
+		anim = "fade_out",
+		frames = 280,
+		weight = 1,
+		condition = function(copibuddy)
+			return true
+		end,
+		update = function(copibuddy) -- this function is called every frame while event is active
+			print("copibuddy timer: " .. tostring(copibuddy.timer))
+		
+			if(copibuddy.timer == 180)then
+				copibuddy.animation = "missing"
+			end
+
+			if(copibuddy.timer == 80)then
+				local screen_w, screen_h = GuiGetScreenDimensions(copibuddy.gui)
+				copibuddy.x = Random(0, screen_w - copibuddy.width)
+				copibuddy.y = Random(0, screen_h - copibuddy.height)
+				copibuddy.animation = "fade_in"
+			end
+
+		end,
+		post_func = function(copibuddy) 
+
+		end,
+	},
 }

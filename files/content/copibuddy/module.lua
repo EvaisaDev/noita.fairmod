@@ -330,6 +330,11 @@ function module.update()
 		id = id + 1
 		return id
 	end
+
+	if(module.event and module.event.update)then
+		module.event.update(module)
+	end
+
 	GuiStartFrame(module.gui)
 	local screen_w, screen_h = GuiGetScreenDimensions(module.gui)
 	if (not module.was_active) then
@@ -342,6 +347,11 @@ function module.update()
 	if (module.timer > 0) then
 		module.timer = module.timer - 1
 		if (module.timer == 0) then
+
+			if(module.event and module.event.post_func)then
+				module.event.post_func(module)
+			end
+
 			module.animation = "idle"
 			module.event = nil
 			module.parsed_text = nil
