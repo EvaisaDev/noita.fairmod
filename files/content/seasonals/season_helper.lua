@@ -146,7 +146,7 @@ end
 ---nabbed code for shrove tuesday (which should be exactly 47 days before easter)]]
 
 
-local copiday = TimeLocal.day == 0 and TimeLocal.month == 0
+local copiday = TimeLocal.day == 11 and TimeLocal.month == 11
 
 
 
