@@ -446,6 +446,7 @@ function module.update()
 		local margin = 5
 		local lines = wrap_segments(module.gui, visible_segments, module.max_text_width)
 		local total_text_width, total_text_height, line_heights = measure_lines(module.gui, lines)
+		-- Determine placement as before…
 		local bubble_x, bubble_y
 		if (module.y - total_text_height - margin >= 0) then
 			bubble_x = module.x + module.width / 2 - total_text_width / 2
@@ -463,6 +464,10 @@ function module.update()
 			bubble_x = (screen_w - total_text_width) / 2
 			bubble_y = (screen_h - total_text_height) / 2
 		end
+
+		-- Clamp bubble position to screen bounds
+		bubble_x = math.max(margin, math.min(bubble_x, screen_w - total_text_width - margin))
+		bubble_y = math.max(margin, math.min(bubble_y, screen_h - total_text_height - margin))
 		GuiBeginAutoBox(module.gui)
 		render_wrapped_text(module.gui, new_id, bubble_x, bubble_y, lines, line_heights)
 		GuiZSetForNextWidget(module.gui, -999)
