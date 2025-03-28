@@ -60,6 +60,7 @@ local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/in
 local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
 local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
+local copibuddy = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -315,6 +316,7 @@ function OnWorldPreUpdate()
 	achievements:update()
 	gamblecore.Update()
 	logo_splash.update()
+	copibuddy.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -327,7 +329,10 @@ function OnWorldPreUpdate()
 		--local mx, my = DEBUG_GetMouseWorld()
 		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		--GameAddFlagRun("SPAWN_POPUP")
-		ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
+		--ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
+	
+		GameAddFlagRun("copibuddy")
+		GameAddFlagRun("reset_copibuddy")
 	end
 end
 

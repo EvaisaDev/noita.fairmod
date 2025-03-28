@@ -8,7 +8,7 @@ dialog_system.distance_to_close = 35
 local function get_mail()
 	local mail_str = ModSettingGet("noita.fairmod.mail") or ""
 
-	print(mail_str)
+	--print(mail_str)
 
 	-- split mail by comma
 	local mail = {}

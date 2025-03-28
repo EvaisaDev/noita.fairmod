@@ -52,7 +52,7 @@ local bobber = EntityGetVariable(rod, "bobber_entity", "int")
 if bobber ~= nil then
 
 	if(not EntityGetIsAlive(bobber))then
-		print("bobber is dead")
+		--print("bobber is dead")
 		EntitySetVariable(rod, "bobber_entity", "int", 0)
 		return
 	end

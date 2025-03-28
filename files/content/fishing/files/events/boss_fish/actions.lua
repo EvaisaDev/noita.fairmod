@@ -9,7 +9,7 @@ actions[#actions + 1] = {
 	price = 170,
 	mana = 0,
 	action = function()
-		print("WATER_BEAM")
+		--print("WATER_BEAM")
 		add_projectile("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/beam.xml")
 	end,
 }

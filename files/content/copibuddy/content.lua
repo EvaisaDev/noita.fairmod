@@ -1,31 +1,58 @@
+-- Supported formatting for text is as follows:
+-- [color=ffffff]text[/color] - Sets the text color to white
+-- [size=1.2]text[/size] - Sets the text size to 1.2
+-- [on_click=function]text[/on_click] - Sets the text to be clickable and calls the function when clicked, functions can be defined in entries
+-- [on_hover=function]text[/on_hover] - Sets the text to be hoverable and calls the function when hovered, functions can be defined in entries
+-- [on_right_click=function]text[/on_right_click] - Sets the text to be right-clickable and calls the function when right-clicked, functions can be defined in entries
+
 return {
 	{
-		text = function() -- can be either a function or a string
-			return "Well hello there! I don't think we've been properly introduced. \n\nI'm copibuddy."
+		text = function(copibuddy) -- can be either a function or a string
+			return "Well hello there! \nI don't think we've been properly introduced. \n\nI'm copi."
 		end,
-		audio = "copibuddybuddy/voice_intro",  -- can be either a function or a string
-		
-		condition = function()
-			local first_time = GameHasFlagRun("copibuddybuddy") and not GameHasFlagRun("copibuddybuddy_intro_done") and not HasFlagPersistent("copibuddybuddy_met_before")
+		--audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/voice_intro"},  -- can be either a function or a table, or nil
+		anim = "talk", -- can be either a function or a string, or nil
+		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
+		frames = nil, -- this is the number of frames the event will last. If nil, it will last the default time.
+		weight = 1000000,
+		condition = function(copibuddy)
+			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and not HasFlagPersistent("copibuddy_met_before")
 			return first_time
 		end,
-		func = function()
-			GameAddFlagRun("copibuddybuddy_intro_done")
-			AddFlagPersistent("copibuddybuddy_met_before")
+		func = function(copibuddy) -- this function is called when the event is triggered
+			GameAddFlagRun("copibuddy_intro_done")
+			AddFlagPersistent("copibuddy_met_before")
+		end,
+		update = function(copibuddy) -- this function is called every frame while event is active
+			
 		end
 	},
 	{
-		text = function() -- can be either a function or a string
-			return "Hello there! Good to see you again. Let's have lots of fun together."
-		end,
-		audio = "copibuddybuddy/voice_intro_met_before",
-		condition = function()
-			local first_time = GameHasFlagRun("copibuddybuddy") and not GameHasFlagRun("copibuddybuddy_intro_done") and HasFlagPersistent("copibuddybuddy_met_before")
+		text = "Hello there! Good to see you again.\nLet's have lots of fun together.",
+		--audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/voice_intro_met_before"},
+		anim = "talk",
+		weight = 1000000,
+		condition = function(copibuddy)
+			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and HasFlagPersistent("copibuddy_met_before")
 			return first_time
 		end,
-		func = function() 
-			GameAddFlagRun("copibuddybuddy_intro_done")
-			AddFlagPersistent("copibuddybuddy_met_before")
+		func = function(copibuddy) 
+			GameAddFlagRun("copibuddy_intro_done")
+			AddFlagPersistent("copibuddy_met_before")
 		end
 	},
+	{
+		text = "Click this [on_click=hello_world][color=0000ff]cool button[/color][/on_click] to test this code!",
+		anim = "talk",
+		weight = 1000,
+		frames = 900,
+		condition = function(copibuddy)
+			return true
+		end,
+		functions = {
+			hello_world = function(copibuddy)
+				GamePrint("Hello world!")
+			end,
+		},
+	}
 }

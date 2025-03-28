@@ -19,4 +19,6 @@ return {
 	"*Your",
 	"*You're",
 	"CURSE OF RA!!",
+	"file was changed in the watch folder",
+	"Look I implemented multi line text.\nJust for this stupid fucking splash text\nAnyway I don't actually know what to write here\n:3\nHave you eaten?\nDid you drink water?\nGet up and stretch.\n...\nAnyway goodbye.\n-eba",
 }
