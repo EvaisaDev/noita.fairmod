@@ -23,9 +23,12 @@ return {
 			GameAddFlagRun("copibuddy_intro_done")
 			AddFlagPersistent("copibuddy_met_before")
 		end,
+		post_func = function(copibuddy) -- this runs after the event ends
+
+		end,
 		update = function(copibuddy) -- this function is called every frame while event is active
 			
-		end
+		end,
 	},
 	{
 		text = "Hello there! Good to see you again.\nLet's have lots of fun together.",
@@ -42,7 +45,7 @@ return {
 		end
 	},
 	{
-		text = "Click this [on_click=hello_world][color=0000ff]cool button[/color][/on_click] to test this code!",
+		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
 		anim = "talk",
 		weight = 1,
 		frames = 400,
@@ -50,8 +53,8 @@ return {
 			return true
 		end,
 		functions = {
-			hello_world = function(copibuddy)
-				GamePrint("Hello world!")
+			surprise = function(copibuddy)
+				GamePrint("Surprise!")
 			end,
 		},
 	},
@@ -78,8 +81,14 @@ return {
 			end
 
 		end,
-		post_func = function(copibuddy) 
-
+	},
+	{
+		text = nil,
+		anim = "spin",
+		frames = 135,
+		weight = 1,
+		condition = function(copibuddy)
+			return true
 		end,
 	},
 }
