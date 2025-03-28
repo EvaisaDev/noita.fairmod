@@ -259,9 +259,9 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 			local clicked, right_clicked
 			GuiColorSetForNextWidget(gui, 1, 1, 1, 0)
 			if (seg.format and (seg.format.on_click or seg.format.on_right_click)) then
-				clicked, right_clicked = GuiButton(gui, new_id(), current_x, current_y, seg.text, seg_size, "", true)
+				clicked, right_clicked = GuiButton(gui, new_id(), current_x, current_y, seg.text, seg_size, "data/fonts/font_pixel_noshadow.xml", true)
 			else
-				GuiText(gui, current_x, current_y, seg.text, seg_size, "", true)
+				GuiText(gui, current_x, current_y, seg.text, seg_size, "data/fonts/font_pixel_noshadow.xml", true)
 			end
 			local _, _, hovered = GuiGetPreviousWidgetInfo(gui)
 			
@@ -281,16 +281,21 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 					GuiColorSetForNextWidget(gui, math.max(c[1] - 0.5, 0), math.max(c[2] - 0.5, 1), math.max(c[3] - 0.5, 1), c[4] or 1)
 				end
 			else
-				GuiColorSetForNextWidget(gui, 1, 1, 1, 1)
+				if(hoverable)then
+					GuiColorSetForNextWidget(gui, 0 / 255, 43 / 255, 150 / 255, 1)
+				else
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				end
+
 				if is_hovered then
-					GuiColorSetForNextWidget(gui, 255 / 255, 255 / 255, 178 / 255, 1)
+					GuiColorSetForNextWidget(gui, 31 / 255, 87 / 255, 224 / 255, 1)
 				elseif clicked or right_clicked then
-					GuiColorSetForNextWidget(gui, 227 / 255, 227 / 255, 48 / 255, 1)
+					GuiColorSetForNextWidget(gui, 0 / 255, 29 / 255, 99 / 255, 1)
 				end
 			end
 			
 			GuiZSetForNextWidget(gui, -1001)
-			GuiText(gui, current_x, current_y, seg.text, seg_size, "", true)
+			GuiText(gui, current_x, current_y, seg.text, seg_size, "data/fonts/font_pixel_noshadow.xml", true)
 	
 			if clicked and seg.format and seg.format.on_click then
 				seg.format.on_click()
@@ -444,9 +449,12 @@ function module.update()
 	if module.parsed_text then
 		local visible_segments = slice_parsed_segments(module.parsed_text, module.current_progress)
 		local margin = 5
+		local edge_margin = 6
 		local lines = wrap_segments(module.gui, visible_segments, module.max_text_width)
 		local total_text_width, total_text_height, line_heights = measure_lines(module.gui, lines)
 		-- Determine placement as before…
+
+		margin = margin + edge_margin
 		local bubble_x, bubble_y
 		if (module.y - total_text_height - margin >= 0) then
 			bubble_x = module.x + module.width / 2 - total_text_width / 2
@@ -468,10 +476,63 @@ function module.update()
 		-- Clamp bubble position to screen bounds
 		bubble_x = math.max(margin, math.min(bubble_x, screen_w - total_text_width - margin))
 		bubble_y = math.max(margin, math.min(bubble_y, screen_h - total_text_height - margin))
+
+		margin = margin - edge_margin
 		GuiBeginAutoBox(module.gui)
 		render_wrapped_text(module.gui, new_id, bubble_x, bubble_y, lines, line_heights)
 		GuiZSetForNextWidget(module.gui, -999)
-		GuiEndAutoBoxNinePiece(module.gui, margin, 0, 0, false, 0, "data/ui_gfx/decorations/9piece0_gray.png", "data/ui_gfx/decorations/9piece0_gray.png")
+		GuiEndAutoBoxNinePiece(module.gui, margin, 0, 0, false, 0, "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png", "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png")
+	
+		local _, _, _, _, _, _, _, bubble_x, bubble_y, bubble_w, bubble_h = GuiGetPreviousWidgetInfo(module.gui)
+	
+		local sprite_size = 6
+
+		-- check if bubble center is below the module.y
+		local topleft_x = bubble_x - (sprite_size / 2)
+		local topleft_y = bubble_y - (sprite_size / 2)
+		local bottomright_x = bubble_x + bubble_w - (sprite_size / 2)
+		local bottomright_y = bubble_y + bubble_h - (sprite_size / 2)
+
+
+		--[[GuiZSetForNextWidget(module.gui, -9999)
+		GuiImage(module.gui, new_id(), topleft_x, topleft_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
+		
+		GuiZSetForNextWidget(module.gui, -9999)
+		GuiImage(module.gui, new_id(), bottomright_x, bottomright_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
+		]]
+		
+		local bubble_center_x = bubble_x + bubble_w / 2
+		local bubble_center_y = bubble_y + bubble_h / 2
+
+		local arrow_y = bubble_center_y > module.y and bubble_y + 1 or bubble_y + bubble_h - 1
+
+		local arrow_x = bubble_center_y > module.y and (bubble_center_x + sprite_size / 2) or (bubble_center_x - sprite_size / 2)
+
+		local is_left = bubble_center_x + 2 < module.x + (module.width / 2)
+		local is_right = bubble_center_x - 2 > module.x + (module.width / 2)
+
+		local is_above = module.y < bubble_center_y
+
+		local arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_center.png"
+
+		if(is_above)then
+			if(is_left)then
+				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
+			elseif(is_right)then
+				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
+			end
+		else
+			if(is_left)then
+				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
+			elseif(is_right)then
+				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
+			end
+		end
+		
+		GuiZSetForNextWidget(module.gui, -9999)
+		GuiImage(module.gui, new_id(), arrow_x, arrow_y, arrow_sprite, 1, 1, 1, not is_above and 0 or math.pi)
+
+
 	end
 end
 
