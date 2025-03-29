@@ -6,7 +6,7 @@ local ref = {
 	animation = "idle",
 	parsed_text = nil,
 	on_cooldown = true,
-	event_cooldown = {10, 10},--{60 * 15, 60 * 30}, -- 15 to 30 seconds
+	event_cooldown = {60 * 5, 60 * 30}, -- 15 to 30 seconds
 	current_progress = 0,
 	total_length = 0,
 	type_delay = 5,
@@ -37,7 +37,7 @@ local content = dofile_once("mods/noita.fairmod/files/content/copibuddy/content.
 local function weighted_random(t)
 	local total = 0
 	for _, v in ipairs(t) do
-		local weight = v.weight
+		local weight = v.weight or 1
 		if type(weight) == "function" then
 			weight = weight(module)
 		end
@@ -45,7 +45,7 @@ local function weighted_random(t)
 	end
 	local r = Random(0, total)
 	for _, v in ipairs(t) do
-		local weight = v.weight
+		local weight = v.weight or 1
 		if type(weight) == "function" then
 			weight = weight(module)
 		end
@@ -352,6 +352,21 @@ function module.update()
 		module.x = Random(0, screen_w - module.width)
 		module.y = Random(0, screen_h - module.height)
 	end
+
+	local next_event = nil
+	if(module.on_cooldown)then
+		for _, event in ipairs(content) do
+			if ((not event.condition or event.condition(module)) and event.force) then
+				print("forced event")
+				module.timer = 0
+				next_event = event
+				goto continue
+			end
+		end
+	end
+
+	::continue::
+
 	if (module.timer > 0) then
 		module.timer = module.timer - 1
 		if (module.timer == 0) then
@@ -373,13 +388,24 @@ function module.update()
 	elseif (module.event == nil) then
 		
 		local options = {}
-		for _, event in ipairs(content) do
-			if (not event.condition or event.condition(module)) then
-				table.insert(options, event)
+		if(not next_event)then
+			for _, event in ipairs(content) do
+				if (not event.condition or event.condition(module)) then
+					if(event.force)then
+						options = {event}
+						break
+					end
+					table.insert(options, event)
+				end
 			end
 		end
-		if (#options > 0) then
-			module.event = weighted_random(options)
+
+		if (#options > 0 or next_event) then
+			module.event = #options > 0 and weighted_random(options) or next_event
+
+			if(next_event)then
+				print("event was forced what the hell is happening")
+			end
 
 			if(module.event == nil)then
 				return

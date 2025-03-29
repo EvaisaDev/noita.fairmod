@@ -14,7 +14,8 @@ return {
 		anim = "talk", -- can be either a function or a string, or nil
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
 		frames = nil, -- this is the number of frames the event will last. If nil, it will last the default time.
-		weight = 1000000,
+		weight = 1,
+		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and not HasFlagPersistent("copibuddy_met_before")
 			return first_time
@@ -34,7 +35,8 @@ return {
 		text = "Hello there! Good to see you again.\nLet's have lots of fun together.",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reintroduction"},
 		anim = "talk",
-		weight = 1000000,
+		weight = 1,
+		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and HasFlagPersistent("copibuddy_met_before")
 			return first_time
@@ -183,6 +185,7 @@ return {
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"Wow you stink.",
+				"You know how to play this game right?\nJust go down.",
 			}
 			return taunts[Random(1, #taunts)]
 		end,
@@ -190,8 +193,43 @@ return {
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"copibuddy/taunt_1",
+				"copibuddy/taunt_2", -- havent added audio yet
 			}
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
+		end,
+	},
+	{
+		text = function(copibuddy)
+			-- little bit of seed rigging to sync the audio and text entries
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local taunts = {
+				"Stop taking damage, idiot.",
+				"skill issue.",
+				"issue of skill.",
+				"Maybe if you installed copith you would stop taking damage.",
+			}
+			return taunts[Random(1, #taunts)]
+		end,
+		audio = function(copibuddy)
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local taunts = {
+				"copibuddy/damage_response_1",
+				"copibuddy/damage_response_2",
+				"copibuddy/damage_response_3",
+				"copibuddy/damage_response_4",
+			}
+			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
+		end,		
+		
+		anim = "talk", -- can be either a function or a string, or nil
+		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
+		frames = nil, -- this is the number of frames the event will last. If nil, it will last the default time.
+		weight = 1,
+		force = true, -- forces event if possible
+		condition = function(copibuddy)
+			local took_damage = GameHasFlagRun("copibuddy.just_took_damage") and Random(1, 100) <= 100
+			GameRemoveFlagRun("copibuddy.just_took_damage")
+			return took_damage
 		end,
 	},
 }
