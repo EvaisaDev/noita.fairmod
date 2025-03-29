@@ -229,7 +229,11 @@ return {
 		condition = function(copibuddy)
 			local took_damage = GameHasFlagRun("copibuddy.just_took_damage") and Random(1, 100) <= 20
 			GameRemoveFlagRun("copibuddy.just_took_damage")
+			GameAddFlagRun("copibuddy.pause_damage_check")
 			return took_damage
+		end,
+		post_func = function(copibuddy) -- this runs after the event ends
+			GameRemoveFlagRun("copibuddy.pause_damage_check")
 		end,
 	},
 }

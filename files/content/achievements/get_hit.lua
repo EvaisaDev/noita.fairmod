@@ -5,7 +5,7 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
 	if EntityHasTag(projectile_thats_responsible, "snowball") then GameAddFlagRun("fairmod_snowball_hit") end
 
 
-    if damage > 0 then
+    if damage > 0 and not GameHasFlagRun("copibuddy.pause_damage_check") then
 		local current_frame = GameGetFrameNum()
 
         -- Record this damage event with the current frame number
@@ -23,8 +23,6 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
         for _, event in ipairs(damage_history) do
             total_damage = total_damage + event.damage
         end
-		
-		print(total_damage * 25)
 
         -- If the copibuddy flag is set and total damage is above 10, trigger the copibuddy event
         if GameHasFlagRun("copibuddy") and total_damage * 25 > 5 then
