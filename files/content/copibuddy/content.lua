@@ -227,7 +227,7 @@ return {
 		weight = 1,
 		force = true, -- forces event if possible
 		condition = function(copibuddy)
-			local took_damage = GameHasFlagRun("copibuddy.just_took_damage") and Random(1, 100) <= 100
+			local took_damage = GameHasFlagRun("copibuddy.just_took_damage") and Random(1, 100) <= 20
 			GameRemoveFlagRun("copibuddy.just_took_damage")
 			return took_damage
 		end,
