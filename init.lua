@@ -115,6 +115,7 @@ dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/copibuddy/materials.xml")
 
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")

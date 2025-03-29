@@ -98,7 +98,7 @@
 		tags="[static],[corrodible],[meltable_to_lava],[alchemy],[solid],[earth],[food],[cheese],[hard_cheese]"
 		>
 		<Graphics
-			texture_file="mods/noita.fairmod/files/content/milk_biome/materials_gfx/marble.png"
+			texture_file="mods/noita.fairmod/files/content/milk_biome//marble.png"
 			color="ffeba03f" />
 		<StatusEffects><Ingestion><StatusEffect type="NONE" amount="1"/></Ingestion></StatusEffects>
 	</CellDataChild>
