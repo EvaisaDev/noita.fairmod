@@ -22,6 +22,11 @@
 {e96881c9-26ea-48eb-9a5a-f53002e42bc3} event:/badapple/song_streamer
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {5b276062-bc6c-45ba-bf76-3edeff3c316f} event:/book/page
+{8b4d6300-5652-430a-a382-6328f33c6e91} event:/copibuddy/button_surprise
+{dcf372ee-06eb-4414-9141-009657b2f266} event:/copibuddy/copi_blast
+{830ae439-3c35-4114-ba78-e25a002a9633} event:/copibuddy/introduction
+{8e68c2b2-faad-4c2c-b61a-d827efc39471} event:/copibuddy/reintroduction
+{0e15fb47-ad54-491b-bb7a-3dc58fb1536b} event:/copibuddy/taunt_1
 {540b5473-9d8e-46f5-9070-d30554f0ae0a} event:/dingus/loop
 {50c1ee47-0450-4302-85d5-5624d936dcdc} event:/dingus/loop_streamer
 {2ac7e916-cd8f-431f-9b41-36c3680c0ae0} event:/dingus/meow

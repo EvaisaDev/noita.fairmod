@@ -374,12 +374,17 @@ function module.update()
 		
 		local options = {}
 		for _, event in ipairs(content) do
-			if (event.condition(module)) then
+			if (not event.condition or event.condition(module)) then
 				table.insert(options, event)
 			end
 		end
 		if (#options > 0) then
 			module.event = weighted_random(options)
+
+			if(module.event == nil)then
+				return
+			end
+
 			if (module.event.func) then
 				module.event.func(module)
 			end

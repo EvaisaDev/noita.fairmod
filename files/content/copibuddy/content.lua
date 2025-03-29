@@ -10,7 +10,7 @@ return {
 		text = function(copibuddy) -- can be either a function or a string
 			return "Well hello there! \nI don't think we've been properly introduced. \n\nI'm copi."
 		end,
-		--audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/voice_intro"},  -- can be either a function or a table, or nil
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/introduction"},  -- can be either a function or a table, or nil
 		anim = "talk", -- can be either a function or a string, or nil
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
 		frames = nil, -- this is the number of frames the event will last. If nil, it will last the default time.
@@ -32,7 +32,7 @@ return {
 	},
 	{
 		text = "Hello there! Good to see you again.\nLet's have lots of fun together.",
-		--audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/voice_intro_met_before"},
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reintroduction"},
 		anim = "talk",
 		weight = 1000000,
 		condition = function(copibuddy)
@@ -46,6 +46,7 @@ return {
 	},
 	{
 		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/button_surprise"},
 		anim = "talk",
 		weight = 1,
 		frames = 400,
@@ -93,6 +94,7 @@ return {
 	{
 		text = "copi BLAST!",
 		anim = "copi_blast",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/copi_blast"},
 		frames = 135,
 		type_delay = 1,
 		weight = function(copibuddy)
@@ -172,6 +174,24 @@ return {
 				
 				end
 			end
+		end,
+	},
+	{ -- random taunts
+		weight = 1,
+		text = function(copibuddy)
+			-- little bit of seed rigging to sync the audio and text entries
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local taunts = {
+				"Wow you stink.",
+			}
+			return taunts[Random(1, #taunts)]
+		end,
+		audio = function(copibuddy)
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local taunts = {
+				"copibuddy/taunt_1",
+			}
+			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
 		end,
 	},
 }
