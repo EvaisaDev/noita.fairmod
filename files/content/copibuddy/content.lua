@@ -91,4 +91,89 @@ return {
 			return true
 		end,
 	},
+	{
+		text = "copi BLAST!",
+		anim = "copi_blast",
+		frames = 135,
+		type_delay = 1,
+		weight = function(copibuddy)
+			-- if you wanna make it guaranteed if a healer is nearby for example you can manipulate the weight here.
+			return 0.8
+		end,
+		condition = function(copibuddy)
+			local x, y = GameGetCameraPos()
+			local enemies = EntityGetInRadiusWithTag(x, y, 512, "enemy")
+
+			return #enemies > 0
+		end,
+		func = function(copibuddy) -- this function is called when the event is triggered
+			copibuddy.current_target = nil
+		end,
+		update = function(copibuddy) -- this function is called every frame while event is active
+
+			print("copibuddy timer: " .. tostring(copibuddy.timer))
+		
+			local this = copibuddy.event
+		
+			local function ScreenToWorldPos(sx, sy)
+				local virt_x = MagicNumbersGetValue("VIRTUAL_RESOLUTION_X")
+				local virt_y = MagicNumbersGetValue("VIRTUAL_RESOLUTION_Y")
+				local screen_width, screen_height = GuiGetScreenDimensions(copibuddy.gui)
+				local scale_x = virt_x / screen_width
+				local scale_y = virt_y / screen_height
+				local cx, cy = GameGetCameraPos()
+				
+				-- Reverse the math: subtract the offset and then apply scaling.
+				local x = cx + (sx - screen_width / 2 - 1.5) * scale_x
+				local y = cy + (sy - screen_height / 2) * scale_y
+				
+				return x, y
+			end
+
+			if(copibuddy.timer == 100)then
+				copibuddy.animation = "copi_blast_active"
+			end
+
+			if(copibuddy.timer <= 100 and copibuddy.timer > 1 and GameGetFrameNum() % 1 == 0)then
+				if(not this.current_target)then
+					local x, y = GameGetCameraPos()
+					local enemies = EntityGetInRadiusWithTag(x, y, 512, "enemy")
+					if(#enemies > 0)then
+						this.current_target = EntityGetClosestWithTag(x, y, "enemy")
+					end
+				elseif(not EntityGetIsAlive(this.current_target))then
+					this.current_target = nil
+					copibuddy.timer = 1
+				else
+
+					local players = EntityGetWithTag("player_unit")
+
+					local world_x, world_y = ScreenToWorldPos(copibuddy.x + (copibuddy.width / 2), copibuddy.y + (copibuddy.height / 2) + 2)
+					local target_x, target_y = EntityGetTransform(this.current_target)
+
+					local distance = math.sqrt((target_x - world_x)^2 + (target_y - world_y)^2)
+
+					-- normalize the direction vector
+					local direction_x = (target_x - world_x) / distance
+					local direction_y = (target_y - world_y) / distance
+					
+
+					local speed = 1000 -- Adjust the speed of the projectile as needed
+
+					local projectile = EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/copi_blast_projectile.xml", world_x, world_y)
+				
+					local velocity_comp = EntityGetFirstComponentIncludingDisabled(projectile, "VelocityComponent")
+					if velocity_comp then
+						ComponentSetValue2(velocity_comp, "mVelocity", direction_x * speed, direction_y * speed)
+					end
+
+					local projectile_comp = EntityGetFirstComponentIncludingDisabled(projectile, "ProjectileComponent")
+					if projectile_comp and players and players[1] then
+						ComponentSetValue2(projectile_comp, "mWhoShot", players[1])
+					end
+				
+				end
+			end
+		end,
+	},
 }

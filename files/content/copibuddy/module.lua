@@ -6,7 +6,7 @@ local ref = {
 	animation = "idle",
 	parsed_text = nil,
 	on_cooldown = true,
-	event_cooldown = {60 * 15, 60 * 30}, -- 15 to 30 seconds
+	event_cooldown = {10, 10},--{60 * 15, 60 * 30}, -- 15 to 30 seconds
 	current_progress = 0,
 	total_length = 0,
 	type_delay = 5,
@@ -37,11 +37,19 @@ local content = dofile_once("mods/noita.fairmod/files/content/copibuddy/content.
 local function weighted_random(t)
 	local total = 0
 	for _, v in ipairs(t) do
-		total = total + v.weight
+		local weight = v.weight
+		if type(weight) == "function" then
+			weight = weight(module)
+		end
+		total = total + weight
 	end
 	local r = Random(0, total)
 	for _, v in ipairs(t) do
-		r = r - v.weight
+		local weight = v.weight
+		if type(weight) == "function" then
+			weight = weight(module)
+		end
+		r = r - weight
 		if r <= 0 then
 			return v
 		end

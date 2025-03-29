@@ -20,11 +20,11 @@
 	name="talk"
 	pos_x="0"
 	pos_y="0"
-	frame_count="4"
+	frame_count="11"
 	frame_width="64"
 	frame_height="96"
-	frame_wait="0.2"
-	frames_per_row="4"
+	frame_wait="0.1"
+	frames_per_row="11"
 	loop="1"   >
 	</RectAnimation>
 
@@ -75,5 +75,30 @@
 	frames_per_row="1"
 	loop="1"   >
 	</RectAnimation>
+
+	<RectAnimation
+	name="copi_blast"
+	pos_x="0"
+	pos_y="480"
+	frame_count="6"
+	frame_width="64"
+	frame_height="96"
+	frame_wait="0.3"
+	frames_per_row="6"
+	loop="0"   >
+	</RectAnimation>
+
+	<RectAnimation
+	name="copi_blast_active"
+	pos_x="320"
+	pos_y="480"
+	frame_count="1"
+	frame_width="64"
+	frame_height="96"
+	frame_wait="0.3"
+	frames_per_row="1"
+	loop="0"   >
+	</RectAnimation>
+
 
 </Sprite>	
