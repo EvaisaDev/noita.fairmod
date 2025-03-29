@@ -51,10 +51,6 @@ return {
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reintroduction"},
 		anim = "talk",
 		weight = 1,
-		func = function(copibuddy) 
-			GameAddFlagRun("copibuddy_intro_done")
-			AddFlagPersistent("copibuddy_met_before")
-		end
 	},
 	{
 		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
