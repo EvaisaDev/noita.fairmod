@@ -67,8 +67,7 @@ return {
 			return true
 		end,
 		update = function(copibuddy) -- this function is called every frame while event is active
-			print("copibuddy timer: " .. tostring(copibuddy.timer))
-		
+
 			if(copibuddy.timer == 180)then
 				copibuddy.animation = "missing"
 			end
@@ -111,8 +110,6 @@ return {
 		end,
 		update = function(copibuddy) -- this function is called every frame while event is active
 
-			print("copibuddy timer: " .. tostring(copibuddy.timer))
-		
 			local this = copibuddy.event
 		
 			local function ScreenToWorldPos(sx, sy)
