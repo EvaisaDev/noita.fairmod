@@ -390,7 +390,7 @@ function module.update()
 			end
 		end
 	elseif (module.event == nil) then
-		
+		SetRandomSeed(GameGetFrameNum() + module.x, GameGetFrameNum() + module.y)
 		local options = {}
 		if(not next_event)then
 			for _, event in ipairs(content) do
