@@ -131,12 +131,14 @@ return {
 				copibuddy.animation = "copi_blast_active"
 			end
 
+			local world_x, world_y = ScreenToWorldPos(copibuddy.x + (copibuddy.width / 2), copibuddy.y + (copibuddy.height / 2) + 2)
+
 			if(copibuddy.timer <= 100 and copibuddy.timer > 1 and GameGetFrameNum() % 1 == 0)then
 				if(not this.current_target)then
 					local x, y = GameGetCameraPos()
 					local enemies = EntityGetInRadiusWithTag(x, y, 512, "enemy")
 					if(#enemies > 0)then
-						this.current_target = EntityGetClosestWithTag(x, y, "enemy")
+						this.current_target = EntityGetClosestWithTag(world_x, world_y, "enemy")
 					end
 				elseif(not EntityGetIsAlive(this.current_target))then
 					this.current_target = nil
@@ -145,7 +147,6 @@ return {
 
 					local players = EntityGetWithTag("player_unit")
 
-					local world_x, world_y = ScreenToWorldPos(copibuddy.x + (copibuddy.width / 2), copibuddy.y + (copibuddy.height / 2) + 2)
 					local target_x, target_y = EntityGetTransform(this.current_target)
 
 					local distance = math.sqrt((target_x - world_x)^2 + (target_y - world_y)^2)
