@@ -6,7 +6,7 @@ local ref = {
 	animation = "idle",
 	parsed_text = nil,
 	on_cooldown = true,
-	event_cooldown = {60 * 5, 60 * 90}, -- 15 to 90 seconds
+	event_cooldown = {10, 10}, -- 15 to 90 seconds
 	current_progress = 0,
 	total_length = 0,
 	type_delay = 5,
@@ -323,6 +323,12 @@ end
 
 reset()
 
+local id = 1241
+function module.new_id()
+	id = id + 1
+	return id
+end
+
 function module.update()
 	if (GameHasFlagRun("reset_copibuddy")) then
 		GameRemoveFlagRun("reset_copibuddy")
@@ -335,11 +341,7 @@ function module.update()
 	module.prev_hover_ids = module.current_hover_ids or {}
 	module.current_hover_ids = {}
 	
-	local id = 1241
-	local function new_id()
-		id = id + 1
-		return id
-	end
+	id = 1241
 
 	if(module.event and module.event.update)then
 		module.event.update(module)
@@ -496,7 +498,7 @@ function module.update()
 		end
 	end
 	GuiZSetForNextWidget(module.gui, -998)
-	GuiImage(module.gui, new_id(), module.x, module.y, module.spritesheet, 1, 1, 1, 0, 2, module.animation or "idle")
+	GuiImage(module.gui, module.new_id(), module.x, module.y, module.spritesheet, 1, 1, 1, 0, 2, module.animation or "idle")
 	if module.parsed_text then
 		local visible_segments = slice_parsed_segments(module.parsed_text, module.current_progress)
 		local margin = 5
@@ -528,7 +530,7 @@ function module.update()
 
 		margin = margin - edge_margin
 		GuiBeginAutoBox(module.gui)
-		render_wrapped_text(module.gui, new_id, bubble_x, bubble_y, lines, line_heights)
+		render_wrapped_text(module.gui, module.new_id, bubble_x, bubble_y, lines, line_heights)
 		GuiZSetForNextWidget(module.gui, -999)
 		GuiEndAutoBoxNinePiece(module.gui, margin, 0, 0, false, 0, "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png", "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png")
 	
@@ -579,7 +581,7 @@ function module.update()
 		end
 		
 		GuiZSetForNextWidget(module.gui, -9999)
-		GuiImage(module.gui, new_id(), arrow_x, arrow_y, arrow_sprite, 1, 1, 1, not is_above and 0 or math.pi)
+		GuiImage(module.gui, module.new_id(), arrow_x, arrow_y, arrow_sprite, 1, 1, 1, not is_above and 0 or math.pi)
 
 
 	end

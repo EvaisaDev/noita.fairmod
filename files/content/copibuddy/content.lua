@@ -47,16 +47,27 @@ return {
 		end
 	},
 	{
+		text = "I'm copi, inventor of all things!",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reintroduction"},
+		anim = "talk",
+		weight = 1,
+		func = function(copibuddy) 
+			GameAddFlagRun("copibuddy_intro_done")
+			AddFlagPersistent("copibuddy_met_before")
+		end
+	},
+	{
 		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/button_surprise"},
 		anim = "talk",
-		weight = 1,
+		weight = 0.2,
 		frames = 400,
 		condition = function(copibuddy)
 			return true
 		end,
 		functions = {
 			surprise = function(copibuddy)
+				-- spawn random shit, gold items glock whatever, open popups
 				GamePrint("Surprise!")
 			end,
 		},
@@ -101,11 +112,12 @@ return {
 		type_delay = 1,
 		weight = function(copibuddy)
 			-- if you wanna make it guaranteed if a healer is nearby for example you can manipulate the weight here.
-			return 0.8
+			-- eba make it scale with enemy density :3 @evaisa hi hi hi 
+			return 0.7
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
-			local enemies = EntityGetInRadiusWithTag(x, y, 512, "enemy")
+			local enemies = EntityGetInRadiusWithTag(x, y, 192, "enemy")
 
 			return #enemies > 0
 		end,
@@ -130,13 +142,32 @@ return {
 				
 				return x, y
 			end
-
+			local world_x, world_y = ScreenToWorldPos(copibuddy.x + (copibuddy.width / 2), copibuddy.y + (copibuddy.height / 2) + 2)
 			if(copibuddy.timer == 100)then
 				copibuddy.animation = "copi_blast_active"
+				
+				local enemies = EntityGetInRadiusWithTag( world_x, world_y, 346, "enemy" )
+				for i=1, #enemies do
+					if EntityGetName(enemies[i])~="$animal_longleg" then
+						EntityInflictDamage(enemies[i], math.huge, "DAMAGE_PHYSICS_BODY_DAMAGED", "COPI BLAST", "DISINTEGRATED", 0, 0, EntityGetWithTag("player_unit")[1])
+						EntityConvertToMaterial(enemies[i], "fairmod_ash")
+						local ex, ey = EntityGetTransform(enemies[i])
+						GameCreateParticle("fairmod_ash", ex, ey, 4, 0, 0, false, true)
+						GameCreateParticle("smoke", ex, ey, 8, 0, 0, false, true)
+					end
+				end
+				GamePlaySound( "data/audio/Desktop/misc.bank", "misc/beam_from_sky_hit", GameGetCameraPos() )
 			end
 
-			local world_x, world_y = ScreenToWorldPos(copibuddy.x + (copibuddy.width / 2), copibuddy.y + (copibuddy.height / 2) + 2)
+			if copibuddy.timer <100 then
+				local w, h = GuiGetImageDimensions(copibuddy.gui, "mods/noita.fairmod/files/content/copibuddy/copiblast.png", 1)
+				local screen_width, screen_height = GuiGetScreenDimensions(copibuddy.gui)
+				
+				GuiImage(copibuddy.gui, copibuddy.new_id(), 0, 0, "mods/noita.fairmod/files/content/copibuddy/copiblast.png", 1-((135-copibuddy.timer)/100)^3, screen_width/w, screen_height/h)
+			end
 
+
+			--[[
 			if(copibuddy.timer <= 100 and copibuddy.timer > 1 and GameGetFrameNum() % 1 == 0)then
 				if(not this.current_target)then
 					local x, y = GameGetCameraPos()
@@ -149,43 +180,22 @@ return {
 					copibuddy.timer = 1
 				else
 
-					local players = EntityGetWithTag("player_unit")
 
-					local target_x, target_y = EntityGetTransform(this.current_target)
-
-					local distance = math.sqrt((target_x - world_x)^2 + (target_y - world_y)^2)
-
-					-- normalize the direction vector
-					local direction_x = (target_x - world_x) / distance
-					local direction_y = (target_y - world_y) / distance
-					
-
-					local speed = 1000 -- Adjust the speed of the projectile as needed
-
-					local projectile = EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/copi_blast_projectile.xml", world_x, world_y)
-				
-					local velocity_comp = EntityGetFirstComponentIncludingDisabled(projectile, "VelocityComponent")
-					if velocity_comp then
-						ComponentSetValue2(velocity_comp, "mVelocity", direction_x * speed, direction_y * speed)
-					end
-
-					local projectile_comp = EntityGetFirstComponentIncludingDisabled(projectile, "ProjectileComponent")
-					if projectile_comp and players and players[1] then
-						ComponentSetValue2(projectile_comp, "mWhoShot", players[1])
-					end
-				
 				end
-			end
+			end]]
 		end,
 	},
 	{ -- random taunts
-		weight = 1,
+		weight = 0.5,
 		text = function(copibuddy)
 			-- little bit of seed rigging to sync the audio and text entries
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"Wow you stink.",
 				"You know how to play this game right?\nJust go down.",
+				"Holy shit you suck.",
+				"Do you need me to beat this game for you?",
+				"I've simulated 500 future runs and you win in 0 of them.",
 			}
 			return taunts[Random(1, #taunts)]
 		end,
@@ -193,6 +203,9 @@ return {
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"copibuddy/taunt_1",
+				"copibuddy/taunt_2", -- havent added audio yet
+				"copibuddy/taunt_2", -- havent added audio yet
+				"copibuddy/taunt_2", -- havent added audio yet
 				"copibuddy/taunt_2", -- havent added audio yet
 			}
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
