@@ -66,6 +66,7 @@ end
 
 do 
 	--[[return {
+
 	}]]
 end
 
@@ -1727,7 +1728,8 @@ return {
 		name = "Copi",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
 		typing_sound = "sans",
-		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my top secret project!]],
+		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my 
+		top secret project!]],
 		can_call = function() -- optional
 			return not GameHasFlagRun("copibuddy")
 		end,

@@ -321,6 +321,8 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 	end
 end
 
+reset()
+
 function module.update()
 	if (GameHasFlagRun("reset_copibuddy")) then
 		GameRemoveFlagRun("reset_copibuddy")
@@ -494,7 +496,7 @@ function module.update()
 		end
 	end
 	GuiZSetForNextWidget(module.gui, -998)
-	GuiImage(module.gui, new_id(), module.x, module.y, module.spritesheet, 1, 1, 1, 0, 2, module.animation)
+	GuiImage(module.gui, new_id(), module.x, module.y, module.spritesheet, 1, 1, 1, 0, 2, module.animation or "idle")
 	if module.parsed_text then
 		local visible_segments = slice_parsed_segments(module.parsed_text, module.current_progress)
 		local margin = 5

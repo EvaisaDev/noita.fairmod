@@ -82,6 +82,7 @@ end
 if dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0 then hangup() end
 
 dialog_system.functions.hangup = hangup
+dialog_system.functions.copibuddy = copibuddy
 dialog_system.functions.disconnected = disconnected
 dialog_system.functions.teleport = teleport
 dialog_system.functions.ng_portal = ng_portal
