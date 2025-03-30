@@ -83,7 +83,7 @@ function milk.OnMagicNumbersAndWorldSeedInitialized()
     --Conga: This commented out code inserts the milk biome on the right side of the vault
     for content in nxml.edit_file("data/biome/_biomes_all.xml") do
         content:add_child(nxml.new_element("Biome", {
-            biome_filename = "mods/noita.fairmod/files/content/milk_biome/milk_biome.xml", 
+            biome_filename = "data/biome/fairmod_milk_biome.xml",
             height_index = 0,
             color = "ff83cd35"
         }))

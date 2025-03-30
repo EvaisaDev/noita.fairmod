@@ -36,7 +36,7 @@
   </Topology>
 
   <Materials 
-    name="milk_biome" 
+    name="fairmod_milk_biome" 
      >
 	
 	<MaterialComponent 

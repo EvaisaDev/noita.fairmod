@@ -24,7 +24,7 @@ local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") ---@type nxml
 
 for xml in nxml.edit_file("data/biome/_biomes_all.xml") do
 	xml:add_child(nxml.new_element("Biome", {
-		biome_filename = "mods/noita.fairmod/files/content/cauldron/biome/cauldron.xml",
+		biome_filename = "data/biome/fairmod_cauldron.xml",
 		height_index = 0,
 		color = "ff83cd37",
 	}))
