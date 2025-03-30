@@ -5,11 +5,12 @@ local ref = {
 	spritesheet = "mods/noita.fairmod/files/content/copibuddy/sprites/copi.xml",
 	animation = "idle",
 	parsed_text = nil,
+	target_text = nil,
 	on_cooldown = true,
-	event_cooldown = {10, 10}, -- 15 to 90 seconds
+	event_cooldown = {60 * 5, 60 * 90}, -- 15 to 90 seconds
 	current_progress = 0,
 	total_length = 0,
-	type_delay = 5,
+	type_delay = 3,
 	width = 64,
 	height = 96,
 	timer = 0,
@@ -306,13 +307,13 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 			GuiText(gui, current_x, current_y, seg.text, seg_size, "data/fonts/font_pixel_noshadow.xml", true)
 	
 			if clicked and seg.format and seg.format.on_click then
-				seg.format.on_click()
+				seg.format.on_click(module)
 			end
 			if right_clicked and seg.format and seg.format.on_right_click then
-				seg.format.on_right_click()
+				seg.format.on_right_click(module)
 			end
 			if hovered and seg.format and seg.format.on_hover then
-				seg.format.on_hover()
+				seg.format.on_hover(module)
 			end
 			local w, _ = GuiGetTextDimensions(gui, seg.text)
 			current_x = current_x + w * seg_size
@@ -361,7 +362,6 @@ function module.update()
 	if(module.on_cooldown)then
 		for _, event in ipairs(content) do
 			if ((not event.condition or event.condition(module)) and event.force) then
-				print("forced event")
 				module.timer = 0
 				next_event = event
 				goto continue
@@ -407,9 +407,6 @@ function module.update()
 		if (#options > 0 or next_event) then
 			module.event = #options > 0 and weighted_random(options) or next_event
 
-			if(next_event)then
-				print("event was forced what the hell is happening")
-			end
 
 			if(module.event == nil)then
 				return
@@ -472,16 +469,30 @@ function module.update()
 				module.current_progress = 0
 			end
 
-			module.type_delay = module.event.type_delay or 5
+			module.type_delay = module.event.type_delay or 3
 			module.timer = module.event.frames or 60
 
 			module.on_cooldown = false
 		end
 	end
+
+	if(module.target_text ~= nil)then
+
+		module.parsed_text = parse_formatted_text(module.target_text)
+		--print(pretty_table(module.parsed_text))
+		module.total_length = 0
+		for _, seg in ipairs(module.parsed_text) do
+			module.total_length = module.total_length + #seg.text
+		end
+		module.current_progress = 0
+		module.target_text = nil
+	end
+
+
 	if module.parsed_text and module.current_progress < module.total_length then
 		module.type_delay = module.type_delay - 1
 		if module.type_delay <= 0 then
-			module.type_delay = module.event.type_delay or 5
+			module.type_delay = module.event.type_delay or 3
 			module.current_progress = module.current_progress + 1
 			if module.current_progress > module.total_length then
 				module.current_progress = module.total_length
