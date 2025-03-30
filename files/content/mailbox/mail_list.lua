@@ -105,6 +105,9 @@ return {
 		even as my flesh hardens, a wall of cursed rock awaits my joining!
 		- Captain Kolmisilma]], -- only used if create_letter is true
 	},
+	-- NEEDS SPAWN CONDITIOn
+	-- NEEDS clear_duplicates IGNORE
+	-- NEEDS COPIBUDDY MAIL
 	virus = {
 		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
 		letter_title = "YOURE PWNED!!", -- only used if create_letter is true
@@ -174,14 +177,15 @@ return {
 			end
 		end,
 	},
-	hampill = { -- won a free Nokia 3310
+	hampill = { -- illegal drug
 		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
 		letter_title = "Silkyroad delivery", -- only used if create_letter is true
 		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: Copi 'c' Things.
 			Your order of HÄMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
 		func = function(x, y) -- runs on mailbox open
 			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
-
 			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
 			if(velocity_comp)then
 				local vel_x = math.random(-100, 100)

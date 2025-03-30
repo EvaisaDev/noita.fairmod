@@ -64,7 +64,7 @@ end
 
 -- I use this for debugging :)
 
-do 
+do
 	--[[return {
 
 	}]]
@@ -253,17 +253,17 @@ return {
 											},
 										},
 									})
-								
+
 									-- remove gold
 									local players = EntityGetWithTag("player_unit") or {}
-								
+
 									if players == nil or #players == 0 then return end
-								
+
 									local player = players[1]
-								
+
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
-								
+
 									ComponentSetValue2(wallet_component, "money", gold - 600)
 								end,
 							},
@@ -320,16 +320,16 @@ return {
 							},
 						},
 					})
-				
+
 					-- remove all gold
 					local players = EntityGetWithTag("player_unit") or {}
-				
+
 					if players == nil or #players == 0 then return end
-				
+
 					local player = players[1]
-				
+
 					local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
-				
+
 					ComponentSetValue2(wallet_component, "money", 0)
 				end,
 			},
@@ -457,7 +457,7 @@ return {
 						local gold = ComponentGetValue2(wallet_component, "money")
 						ComponentSetValue2(wallet_component, "money", gold + 500)
 						local x, y = EntityGetTransform(player)
-					
+
 						dialog.show({
 							text = [[Thank you for participating in our survey! As a token of our
 	appreciation, please accept 500 gold! {@func disconnected}]],
@@ -475,14 +475,14 @@ return {
 												-- get a random direction vector
 												local dx = math.cos(angle)
 												local dy = math.sin(angle)
-											
+
 												local distance = Random(100, 250)
-											
+
 												local target_x = x + (dx * distance)
 												local target_y = y + (dy * distance)
-											
+
 												local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
-											
+
 												if not hit then
 													EntityLoad(
 														"mods/noita.fairmod/files/content/immortal_snail/entities/snail.xml",
@@ -502,7 +502,7 @@ return {
 							},
 						})
 					end
-				
+
 					-- Add 500 gold
 					local function survey_question4(dialog)
 						dialog.show({
@@ -541,7 +541,7 @@ return {
 							},
 						})
 					end
-				
+
 					local function survey_question3(dialog)
 						dialog.show({
 							text = [[Interesting.. Have you experienced any glitches, strange
@@ -566,7 +566,7 @@ return {
 							},
 						})
 					end
-				
+
 					local function survey_question2(dialog)
 						dialog.show({
 							text = [[Have you seen a snail?]],
@@ -586,7 +586,7 @@ return {
 							},
 						})
 					end
-				
+
 					local function survey_question1(dialog)
 						dialog.show({
 							text = [[Great! On a scale of 1 to 5, how would you rate your recent
@@ -615,7 +615,7 @@ return {
 							},
 						})
 					end
-				
+
 					-- Start the survey
 					survey_question1(dialog)
 				end,
@@ -673,17 +673,17 @@ return {
 											},
 										},
 									})
-								
+
 									-- add gold
 									local players = EntityGetWithTag("player_unit") or {}
-								
+
 									if players == nil or #players == 0 then return end
-								
+
 									local player = players[1]
-								
+
 									local wallet_component = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 									local gold = ComponentGetValue2(wallet_component, "money")
-								
+
 									ComponentSetValue2(wallet_component, "money", gold + 1000)
 								end,
 							},
@@ -869,9 +869,9 @@ return {
 										local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 										local gold = ComponentGetValue2(wallet, "money")
 										ComponentSetValue2(wallet, "money", gold - price)
-									
+
 										local x, y = EntityGetTransform(player)
-									
+
 										EntityLoad(
 											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
 												.. tostring(hm_visits)
@@ -984,26 +984,26 @@ return {
 		name = "Copi",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
 		typing_sound = "sans",
-		text = [[Hello, It is I. Copi of things!!]],
+		text = [[{@color C0FFC0}Hello, It is I. Copi of things!!]],
 		options = {
 			{
 				text = "H.. Hello?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Just calling to see if your ~Copi's Things~ mod is running!
+						text = [[{@color C0FFC0}Just calling to see if your ~Copi's Things~ mod is running!
 	{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
 						options = {
 							{
 								text = "No it is not..",
 								func = function(dialog)
 									dialog.show({
-										text = [[Oh what the scallop!! you better enable it #NOW#.]],
+										text = [[{@color C0FFC0}Oh what the scallop!! you better enable it #NOW#.]],
 										options = {
 											{
 												text = "No I don't think I will.",
 												func = function(dialog)
 													dialog.show({
-														text = [[What if I promise you an achievement if you do{@delay 15} #.# #.# #?#]],
+														text = [[{@color C0FFC0}What if I promise you an ~achievement~ if you do{@delay 15} #.# #.# #?#]],
 														options = {
 															{
 																text = "Deal!",
@@ -1037,7 +1037,7 @@ return {
 									if ModIsEnabled("copis_things") then
 										if tonumber(GlobalsGetValue("copis_things_version")) <= 0.5 then
 											dialog.show({
-												text = [[Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
+												text = [[{@color C0FFC0}Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
 	Your version is not up to date! Make sure to update it!{@func disconnected}]],
 												options = {
 													{
@@ -1050,7 +1050,7 @@ return {
 											})
 										else
 											dialog.show({
-												text = [[Well you better go catch it! ~hehehe!~ {@func disconnected}]],
+												text = [[{@color C0FFC0}Well you better go catch it! ~hehehe!~ {@func disconnected}]],
 												options = {
 													{
 														text = "...",
@@ -1085,7 +1085,7 @@ return {
 										end
 										dialog.show({
 											text = [[{@sound default}{@delay 10}{@color FF0000}#LIAR.#
-	{@delay 3}{@color FFFFFF}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
+	{@delay 3}{@color C0FFC0}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
 											options = {
 												{
 													text = "...",
@@ -1331,25 +1331,25 @@ return {
 								text = "This surely won't backfire.",
 								func = function()
 									local players = EntityGetWithTag("player_unit") or {}
-								
+
 									if players == nil or #players == 0 then return end
-								
+
 									local player = players[1]
-								
+
 									GameDestroyInventoryItems(player)
-								
+
 									local hm_visits = math.max(math.min(tonumber(GlobalsGetValue("HOLY_MOUNTAIN_VISITS", "0")) or 0, 6), 1)
 									local x, y = EntityGetTransform(player)
-								
+
 									dofile("data/scripts/perks/perk.lua")
-								
+
 									local tmtrainer_perks = {}
-								
+
 									for i, v in ipairs(perk_list) do
 										-- if perk name starts with TMTRAINER_ then add it to the list
 										if string.sub(v.id, 1, 10) == "TMTRAINER_" then table.insert(tmtrainer_perks, v.id) end
 									end
-								
+
 									for i = 1, 4 do
 										local item = EntityLoad(
 											"mods/noita.fairmod/files/content/payphone/entities/corrupted_wands/wand_level_0"
@@ -1358,15 +1358,15 @@ return {
 											x + Random(-15, 15),
 											y + Random(-15, 15)
 										)
-									
+
 										GamePickUpInventoryItem(player, item, false)
-									
+
 										local perk =
 											perk_spawn(x + Random(-15, 15), y + Random(-15, 15), tmtrainer_perks[Random(1, #tmtrainer_perks)], true)
-									
+
 										perk_pickup(perk, player, "", false, false)
 									end
-								
+
 									hangup()
 								end,
 							},
@@ -1392,15 +1392,15 @@ return {
 				func = function(dialog)
 					GameAddFlagRun("random_teleport_next")
 					--GameAddFlagRun("no_return")
-				
+
 					local players = EntityGetWithTag("player_unit") or {}
-				
+
 					if players == nil or #players == 0 then return end
-				
+
 					local player = players[1]
-				
+
 					local x, y = EntityGetTransform(player)
-				
+
 					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 					hangup()
 				end,
@@ -1559,7 +1559,7 @@ return {
 		name = "Heavy Breather",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
 		typing_sound = "breathing",
-	
+
 		text = [[{@delay 60}...]],
 		options = {
 			{
@@ -1645,7 +1645,7 @@ return {
 					if not player then return end
 					local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 					ComponentSetValue2(wallet, "money", ComponentGetValue2(wallet, "money") - 200)
-				
+
 					dialog.show({
 						text = "Good choice.",
 						options = {
@@ -1709,7 +1709,7 @@ return {
 											},
 										},
 									})
-									
+
 								end,
 							},
 						},
@@ -1759,6 +1759,97 @@ return {
 							{
 								text = "...",
 								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my 
+		top secret project!]],
+		can_call = function() -- optional
+			return not GameHasFlagRun("copibuddy")
+		end,
+		options = {
+			{
+				text = "Uhhh... okay?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Thank you, oh copious one.",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[{@color C0FFC0}Kneel kneel!
+		Your lord ~Copi~ {@pause 5}~Of~ {@pause 5}~Things~ {@pause 5} is here!]],
+		options = {
+			{
+				text = "I'm such a big fan!",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}I will grant you one of my boons! Go forth! Win fairmod!{@func disconnected}]],
+						options = {
+							{
+								text = "Thank you copi!",
+								func = function()
+									local players = EntityGetWithTag("player_unit") or {}
+									if #players<1 then hangup() return end
+									local x, y = EntityGetTransform(players[1])
+									dofile("data/scripts/perks/perk.lua")
+									perk_pickup(perk_spawn(x + Random(-15, 15), y + Random(-15, 15), perk_list[Random(1, #perk_list)], true), players[1], "", false, false)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "I hate you!",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}In time you will learn to appreciate me! ~Hahaha!~{@func disconnected}]],
+						options = {
+							{
+								text = "What?",
+								func = function()
+									ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hampill,")
 									hangup()
 								end,
 							},
