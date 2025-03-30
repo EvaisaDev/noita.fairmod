@@ -1,13 +1,10 @@
 local color = 0xff83cd35
 
 local positions = {
-	{ 41, 24 },
-	-- { 42, 24 }, -- cauldron entrance
+	--{ 42, 24 }, -- cauldron entrance
 	{ 42, 25 },
 	{ 42, 26 },
 	{ 42, 27 },
-	{ 43, 24 },
-	{ 43, 25 },
 	{ 43, 26 },
 	{ 43, 27 },
 	{ 43, 28 },
