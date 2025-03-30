@@ -23,7 +23,3 @@ if e_id ~= 0 then
 		ComponentSetValue2(comp, "mVelocity", (x - pos_x) * 100, (y - pos_y) * 100)
 	end
 end
-
-function SetValueInteger(...)
-	-- do nothing
-end
