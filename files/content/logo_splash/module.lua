@@ -21,7 +21,16 @@ module.update = function()
 	GuiStartFrame(module.gui)
 
 	if visible and not module.was_visible then
-		module.current_splash = splashes[math.random(1, #splashes)]
+		local function update_splash()
+			local splash = splashes[math.random(1, #splashes)]
+			
+			if(splash ~= module.current_splash) then
+				module.current_splash = splash
+			else
+				update_splash()
+			end
+		end
+		update_splash()
 		module.was_visible = true
 	elseif not visible and module.was_visible then
 		module.was_visible = false
