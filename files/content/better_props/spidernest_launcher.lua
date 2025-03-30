@@ -1,7 +1,7 @@
 local entity_id = GetUpdatedEntityID()
 local pos_x, pos_y = EntityGetTransform(entity_id)
 
-local spawn_distance_sq = 200 * 200
+local spawn_distance_sq = 180 * 180
 local e_id = EntityGetClosestWithTag(pos_x, pos_y, "player_unit")
 
 if e_id ~= 0 then
