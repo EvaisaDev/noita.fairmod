@@ -407,6 +407,29 @@ local Popups = {
 				return true
 			end,
 		},
+		hampilled = {
+			EXE = "Hämis pills are not meant for Noita consumption",
+			MESSAGE = [[N: "Hello, Pill Seller, I am going to kill Kolmi and I want your strongest pills" newline newline
+PS: "My pills are too strong for you, noita." newline newline
+N: "Pill Seller, I tell you I am going to kill Kolmi, and I want only your strongest pills" newline newline
+PS: "You can't handle my pills They're too strong for you." newline newline
+N: "Pill Seller, listen to me; I want only your strongest pills" newline newline
+PS: "My pills would kill you, noita. You cannot handle my pills" newline newline
+N: "Pill Seller, enough of these games. I'm going to kill Kolmi and I need your strongest pills" newline newline
+PS: "My strongest pills would kill you, noita. You can't handle my strongest pills You'd better go to a seller that sells weaker pills" newline newline
+N: "Pill Seller, I'm telling you right now; I'm going to kill Kolmi and I need only your strongest pills" newline newline
+PS: "You don't know what you ask, noita. My strongest pills will kill a dragon, let alone a witch. You need a seller that sells weaker pills, because my pills are too strong." newline newline
+N: "Pill Seller, I'm telling you I need your strongest pills I'm going to Kolmi! I'm going to Kolmi and I need your strongest pills!" newline newline
+PS: "You can't handle my strongest pills! Only hämis can! My strongest pills aren't fit for a hiisi let alone a witch." newline newline
+N: "Pill Seller, what do I have to tell you to get your pills? Why won't you trust me with your strongest pills, Pill Seller? I need them if I'm to be successful killing Kolmi!" newline newline
+PS: "I can't give you my strongest pills because my strongest pills are only for the strongest hämis and you are of the weakest." newline newline
+N: "Well then that's it, Pill Seller. I'll go elsewhere. I'll go elsewhere for my pills" newline newline
+PS: "That's what you'd better do." newline newline
+N: "I'll go elsewhere for my pills and I'll never come back!" newline newline
+PS: "Good. You're not welcome here! My pills are only for the strongest and you're clearly are not of the strongest you're clearly the weakest." newline newline
+N: "You've had your say, Pill Seller but I'll have mine. You're a rascal, you're a rascal with no respect for knights. No respect for anything... except your pills! (and hämis)" newline newline
+PS: "Why respect noitas... when my pills can do anything that you can."]],
+		}
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

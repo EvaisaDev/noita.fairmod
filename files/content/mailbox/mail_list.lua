@@ -174,14 +174,20 @@ return {
 			end
 		end,
 	},
-	-- @EBA ADD A COPIBUDDY MAIL :)))))
 	hampill = { -- won a free Nokia 3310
 		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
 		letter_title = "Silkyroad delivery", -- only used if create_letter is true
 		letter_content = [[
-			Your order of HAMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
+			Your order of HÄMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
 		func = function(x, y) -- runs on mailbox open
-			local entity = EntityLoad("FILEPATH TO HAMIS PILL ITEM!!!! KILL PLAYER AFTER 2:30!!!!", x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
+
+			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
+			if(velocity_comp)then
+				local vel_x = math.random(-100, 100)
+				local vel_y = -100
+				ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+			end
 		end,
 	},
 }

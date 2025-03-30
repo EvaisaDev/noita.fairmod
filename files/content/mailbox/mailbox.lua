@@ -4,17 +4,16 @@ dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
 
-
 local function get_mail()
 	local mail_str = ModSettingGet("noita.fairmod.mail") or ""
 
-	--print(mail_str)
 
 	-- split mail by comma
 	local mail = {}
 	for str in string.gmatch(mail_str, "([^,]+)") do
 		table.insert(mail, str)
 	end
+
 	return mail
 end
 

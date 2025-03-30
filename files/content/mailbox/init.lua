@@ -12,16 +12,17 @@ local function get_mail()
 end
 
 local function clear_duplicates()
+	local mail_list = dofile("mods/noita.fairmod/files/content/mailbox/mail_list.lua")
 	local mail = get_mail()
 	local mail_set = {}
 	local new_mail = {}
 	for i, mail_id in ipairs(mail) do
-		if not mail_set[mail_id] then
+		if not mail_set[mail_id] and mail_list[mail_id] then
 			mail_set[mail_id] = true
 			table.insert(new_mail, mail_id)
 		end
 	end
-	ModSettingSet("noita.fairmod.mail", table.concat(new_mail, ","))
+	ModSettingSet("noita.fairmod.mail", table.concat(new_mail, ",")..",")
 end
 
 
@@ -64,6 +65,10 @@ module.spawn = function(x, y)
 
 	if( Random(1, 100) < 5)then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "zipbomb,")
+	end
+
+	if( Random(1, 100) < 5)then
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hampill,")
 	end
 
 	if(HasFlagPersistent("should_wear_hardhat"))then

@@ -1,0 +1,18 @@
+<Entity >
+
+	<InheritTransformComponent />
+
+	<LifetimeComponent
+		lifetime="600"
+		>
+	</LifetimeComponent>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/mailbox/hampill/trial_ended.lua"
+		execute_every_n_frame="-1"
+		execute_on_added="0"
+		execute_on_removed="1"
+		>
+	</LuaComponent>
+
+</Entity>
