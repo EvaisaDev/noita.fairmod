@@ -216,7 +216,7 @@ function OnPlayerSpawned(player)
 
 	SetRandomSeed(2152, 12523)
 
-	if Random(1, 100) <= 50 then
+	if Random(1, 100) <= 33 then
 		GameAddFlagRun("kolmi_not_home")
 		print("Kolmi is not home on this one.")
 	end
