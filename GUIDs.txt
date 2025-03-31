@@ -43,6 +43,7 @@
 {2b797f43-776c-41cf-8876-1324298c19ab} event:/copibuddy/saved
 {3d7d0997-dabe-4b21-af9a-725c495301cf} event:/copibuddy/scam_caller
 {ac1677f4-bc25-4a3b-97ef-29c6d593df8d} event:/copibuddy/snap
+{4e953b9c-ecb1-46c7-844b-2d8fad62d85f} event:/copibuddy/steal
 {0e15fb47-ad54-491b-bb7a-3dc58fb1536b} event:/copibuddy/taunt_1
 {9d3b49f6-7b0f-467e-9f73-c6b7fe321b82} event:/copibuddy/taunt_2
 {e8b8f4a6-39db-449a-b478-0cfdb18c0b18} event:/copibuddy/taunt_3

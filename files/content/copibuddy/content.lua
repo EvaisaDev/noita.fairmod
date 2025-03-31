@@ -661,9 +661,9 @@ return {
 				end
 			end
 
-			local roll = Random(1, 100)
+			local roll = Random(0, 100)
 
-			local valid = #event.tracked_positions == 10 and roll <= 15
+			local valid = #event.tracked_positions == 10 and roll <= 3
 
 			event.tracked_positions = {}
 
@@ -698,6 +698,105 @@ return {
 				copibuddy.animation = "talk"
 				copibuddy.target_text = "You seemed lost so I dug you a hole :)"
 				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/hole", 0, 0 )
+			end
+
+		end,
+	},
+	{
+		text = "You don't need to pay for those, I got you covered.",
+		anim = "talk",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/steal"},
+		frames = 260,
+		weight = 1,
+		condition = function(copibuddy)
+			local players = EntityGetWithTag("player_unit")
+			if(players[1])then
+				local player = players[1]
+				local x, y = EntityGetTransform(player)
+
+				local valid = false
+
+				local entities_nearby = EntityGetInRadius(x, y, 512)
+				for i=1, #entities_nearby do
+					local entity = entities_nearby[i]
+					if(EntityGetRootEntity(entity) == entity)then
+						local price_tag = EntityGetFirstComponent(entity, "ItemCostComponent")
+						if(price_tag)then
+							valid = true
+							ComponentSetValue2(price_tag, "stealable", true)
+						end
+					end
+				end
+
+				return tonumber(GlobalsGetValue("TEMPLE_SPAWN_GUARDIAN", "0")) == 0 and valid
+			end
+
+			return false
+		end,
+		update = function(copibuddy) -- this function is called every frame while event is active
+
+			if(copibuddy.timer == 30)then
+				copibuddy.animation = "copi_snap"
+			end
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			
+			if(copibuddy.timer == 20)then
+	
+				local players = EntityGetWithTag("player_unit")
+				if(players[1])then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+
+					local entities_nearby = EntityGetInRadius(x, y, 256)
+					for i=1, #entities_nearby do
+						local entity = entities_nearby[i]
+						if(EntityGetRootEntity(entity) == entity)then
+							local price_tag = EntityGetFirstComponent(entity, "ItemCostComponent")
+							if(price_tag)then
+								local stealable = ComponentGetValue2(price_tag, "stealable")
+								if(stealable)then
+									local e_x, e_y = EntityGetTransform(entity)
+									EntityApplyTransform(entity, e_x, e_y + 200)
+									EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/poof.xml", e_x, e_y)
+									EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/poof.xml", e_x, e_y + 200)
+								end
+							end
+						end
+					end
+						
+				
+
+					if( GlobalsGetValue( "TEMPLE_PEACE_WITH_GODS" ) == "1" ) then
+						GamePrintImportant( "$logdesc_temple_peace_temple_break", "" )
+						GamePlaySound( "data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", x, y )
+					else
+						dofile_once("data/scripts/lib/utilities.lua")
+						dofile_once("data/scripts/biomes/temple_shared.lua" )
+
+						-- spawn workshop guard
+						if( GlobalsGetValue( "TEMPLE_SPAWN_GUARDIAN" ) ~= "1" ) then
+							temple_spawn_guardian( x, y )
+						end
+
+						GlobalsSetValue( "TEMPLE_SPAWN_GUARDIAN", "1" )
+
+										
+				
+						if tonumber(GlobalsGetValue("STEVARI_DEATHS", 0)) < 3 then
+							GamePrintImportant( "$logdesc_temple_spawn_guardian", "" )
+						else
+							GamePrintImportant( "$logdesc_gods_are_very_angry", "" )
+							GameGiveAchievement( "GODS_ENRAGED" )
+						end
+
+						GamePlaySound( "data/audio/Desktop/event_cues.bank", "event_cues/angered_the_gods/create", x, y )
+						GameScreenshake( 150 )
+				
+					end
+				
+				end
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
 			end
 
 		end,
