@@ -59,7 +59,7 @@
 
 
 	<CellData
-		name="aa_chaotic_pandorium"
+		name="fairmod_chaotic_pandorium"
 		ui_name="$mat_fairmod_chaotic_pandorium"
 		tags="[liquid],[magic_liquid],[water],[impure],[catastrophic]"
 		burnable="0"
@@ -101,12 +101,12 @@
 	</CellData>
 
 	<Reaction probability="1"
-		input_cell1="aa_chaotic_pandorium" input_cell2="air"
+		input_cell1="fairmod_chaotic_pandorium" input_cell2="air"
 		output_cell1="air" output_cell2="air"
 	/>
 
 	<Reaction probability="2"
-		input_cell1="aa_chaotic_pandorium" input_cell2="air"
+		input_cell1="fairmod_chaotic_pandorium" input_cell2="air"
 		output_cell1="air" output_cell2="air"
 	>
 		<ExplosionConfig
@@ -126,7 +126,7 @@
 
 
 	<CellData
-		name="t_giga_slicing_liquid"
+		name="fairmod_giga_slicing_liquid"
 		ui_name="$mat_fairmod_giga_slicing_liquid"
 		tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible]"
 		density="2.31"
@@ -160,21 +160,21 @@
 	</CellData> <!-- giga slicing liquid-->
 
 	<Reaction probability="21"
-		input_cell1="t_giga_slicing_liquid" input_cell2="[fire]"
+		input_cell1="fairmod_giga_slicing_liquid" input_cell2="[fire]"
 		output_cell1="air" output_cell2="air"
 		entity="mods/noita.fairmod/files/content/chemical_horror/slicing_liquid/disc_bullet_big.xml"
 	>
 	</Reaction>
 
 	<Reaction probability="31"
-		input_cell1="t_giga_slicing_liquid" input_cell2="[fire]"
+		input_cell1="fairmod_giga_slicing_liquid" input_cell2="[fire]"
 		output_cell1="air" output_cell2="air"
 	>
 	</Reaction>
 
 
 	<CellDataChild
-		_parent="t_giga_slicing_liquid"
+		_parent="fairmod_giga_slicing_liquid"
 		name="t_omega_slicing_liquid"
 		tags="[liquid],[magic_liquid],[impure],[burnable_fast],[corrodible],[catastrophic]"
 		ui_name="$mat_fairmod_omega_slicing_liquid"
@@ -202,7 +202,7 @@
 
 
 	<CellData
-		name="cc_deceleratium"
+		name="fairmod_deceleratium"
 		ui_name="$mat_fairmod_deceleratium"
 		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
 		burnable="0"
@@ -241,7 +241,7 @@
 	</CellData>
 
 	<CellData
-		name="cc_heftium"
+		name="fairmod_heftium"
 		ui_name="$mat_fairmod_heftium"
 		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
 		burnable="0"
@@ -281,7 +281,7 @@
 
 
 	<CellData
-		name="cc_stillium"
+		name="fairmod_stillium"
 		ui_name="$mat_fairmod_stillium"
 		tags="[liquid],[water],[magic_liquid],[impure],[magic_slower]"
 		burnable="0"
@@ -325,7 +325,7 @@
 
 
 	<CellData
-		name="cc_grease"
+		name="fairmod_grease"
 		ui_name="$mat_fairmod_grease"
 		tags="[liquid],[impure],[liquid_common]"
 		burnable="1"

@@ -19,13 +19,13 @@
     audio_collision_size_modifier_amount="0.8"
     >
     <count_per_material_type>
-      <Material material="cc_grease" count="1000"  />
+      <Material material="fairmod_grease" count="1000"  />
 	  </count_per_material_type>
   </MaterialInventoryComponent>
 
   <DamageModelComponent 
     air_needed="0" 
-    blood_material="cc_grease" 
+    blood_material="fairmod_grease" 
     drop_items_on_death="0" 
     falling_damage_damage_max="1.2" 
     falling_damage_damage_min="0.1" 
