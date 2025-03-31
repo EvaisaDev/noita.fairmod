@@ -335,10 +335,10 @@ function OnWorldPreUpdate()
 		--local mx, my = DEBUG_GetMouseWorld()
 		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		--GameAddFlagRun("SPAWN_POPUP")
-		ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "antivirus,")
+		--ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "antivirus,")
 	
-		--GameAddFlagRun("copibuddy")
-		--GameAddFlagRun("reset_copibuddy")
+		GameAddFlagRun("copibuddy")
+		GameAddFlagRun("reset_copibuddy")
 	end
 
 	if(GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5)then

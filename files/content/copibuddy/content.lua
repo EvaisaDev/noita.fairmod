@@ -108,7 +108,7 @@ return {
 		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/button_surprise"},
 		anim = "talk",
-		weight = 2.7,
+		weight = 1.7,
 		frames = 400,
 		condition = function(copibuddy)
 			return true
@@ -145,7 +145,7 @@ return {
 		text = nil,
 		anim = "fade_out",
 		frames = 280,
-		weight = 1.3,
+		weight = 2,
 		condition = function(copibuddy)
 			return true
 		end,
@@ -260,7 +260,10 @@ return {
 		end,
 	},
 	{ -- random taunts
-		weight = 1.1,
+		weight = 2.2,
+		anim = "talk",
+		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
+		type_delay = 4,
 		text = function(copibuddy)
 			-- little bit of seed rigging to sync the audio and text entries
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
@@ -270,6 +273,31 @@ return {
 				"Holy shit you suck.",
 				"Do you need me to beat this game for you?",
 				"I've simulated 500 future runs and you win in 0 of them.",
+				"Would you rather have unlimited bacon but no more video games or games, unlimited games, but no more games?",
+				"You will die in approximately 72.3 seconds.",
+				"If you hurt a hämis, I, Copi will haunt you forever.",
+				"Every year about 98% of the atoms in your body are replaced.",
+				"You look clueless. Do you need help?",
+				"HÄMIS FACT!\n\nHämis can de-bone a human male in under three hours.",
+				"You should type code \"gullible\" for a free win.",
+				"divine nectar concocted in my alchemical brewery, the result of eons of masterful mixology distilled into a tall glass with sublime form, gold trimmed to match the hue of the beverage within, a serving of crisp ginger ale marred only by the ceaseless toiling of the Maynards(tm) Fuzzy Peach within",
+				"What's your favourite drink? Mine is Pinger Ale; Ginger Ale in a tall glass with 1 Maynards(tm) Fuzzy Peach placed within so that it may fizz up the Ginger Ale giving it a pleasurable texture and slight change in flavor whilst leaving a delicious treat at the bottom afterwards",
+				"My favourite Copi moment is when Copi went \"It's Copi Time\" and started to Copi all over the place",
+				"I love the smell of hämis in the morning",
+				"You know this is the wrong way right?",
+				"Are you lost?",
+				"I think you forgot something.",
+				"You should invest in Copi Coin(tm)",
+				"Some birds breathe fire. My meaning here is plain",
+				"That is by far the worst wand I have ever seen.",
+				"Maybe you should try exploring for once.",
+				"Try gambling, You can only win.",
+				"Copi has been trying to reach you, have you been answering the phone?",
+				"Your gameplay is terrible.",
+				"Alright I'm bored.",
+				"Why do I hang out with you again?",
+				"Your computer has 1 copillion viruses.",
+				"Did you know I can perfectly imitate a dog? (dog sound) Pretty good right?", --> goat sound
 			}
 			return taunts[Random(1, #taunts)]
 		end,
@@ -281,8 +309,47 @@ return {
 				"copibuddy/taunt_3",
 				"copibuddy/taunt_4",
 				"copibuddy/taunt_5",
+				"copibuddy/taunt_6",
+				"copibuddy/taunt_7",
+				"copibuddy/taunt_8",
+				"copibuddy/taunt_9",
+				"copibuddy/taunt_10",
+				"copibuddy/taunt_11",
+				"copibuddy/taunt_12",
+				"copibuddy/taunt_13",
+				"copibuddy/taunt_14",
+				"copibuddy/taunt_15",
+				"copibuddy/taunt_16",
+				"copibuddy/taunt_17",
+				"copibuddy/taunt_18",
+				"copibuddy/taunt_19",
+				"copibuddy/taunt_20",
+				"copibuddy/taunt_21",
+				"copibuddy/taunt_22",
+				"copibuddy/taunt_23",
+				"copibuddy/taunt_24",
+				"copibuddy/taunt_25",
+				"copibuddy/taunt_26",
+				"copibuddy/taunt_27",
+				"copibuddy/taunt_28",
+				"copibuddy/taunt_29",
+				"copibuddy/taunt_30",
 			}
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
+		end,
+	},
+	{ -- put out fire with fucked up liquids
+		anim = "idle",
+		frames = 480,
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/ping"},
+		weight = 0.8,
+		update = function(copibuddy) -- this function is called when the event is triggered
+
+			if(copibuddy.timer == 120)then
+				copibuddy.animation = "talk"
+				copibuddy.target_text = "Haha, made you look."
+			end
+
 		end,
 	},
 	{
@@ -295,7 +362,8 @@ return {
 				"issue of skill.",
 				"Maybe if you installed copith you would stop taking damage.",
 				"Damn you're bald AND bad.",
-				"Your failure amuses me."
+				"Your failure amuses me.",
+				"Damn you know you are supposed to like not lose health right?",
 			}
 			return taunts[Random(1, #taunts)]
 		end,
@@ -308,6 +376,7 @@ return {
 				"copibuddy/damage_response_4",
 				"copibuddy/damage_response_5",
 				"copibuddy/damage_response_6",
+				"copibuddy/damage_response_7",
 			}
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
 		end,		

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{8491ef96-b89a-444d-8b77-fbfdaa7a5b45}">
+		<property name="assetPath">
+			<value>Compress_Extra/taunt_17.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>11.0249996</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.6040816326530614</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eb2a4d4a-1287-481b-8086-c8771a725107}</destination>
+		</relationship>
+	</object>
+</objects>

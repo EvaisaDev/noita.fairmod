@@ -7,7 +7,7 @@ local ref = {
 	parsed_text = nil,
 	target_text = nil,
 	on_cooldown = true,
-	event_cooldown = {60 * 5, 60 * 90}, -- 15 to 90 seconds
+	event_cooldown = {60 * 5, 60 * 30}, -- 5 to 30 seconds
 	current_progress = 0,
 	total_length = 0,
 	type_delay = 3,
@@ -420,7 +420,7 @@ function module.update()
 				return
 			end
 
-			module.last_event = module.event
+			--module.last_event = module.event
 
 			if (module.event.func) then
 				module.event.func(module)
