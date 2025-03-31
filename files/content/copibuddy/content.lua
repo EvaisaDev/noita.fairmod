@@ -655,5 +655,17 @@ return {
 
 			return valid
 		end,
+	},
+	{
+		text = "It looks like you're trying to get every achievement, here's one on the house!",
+		anim = "talk",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/scam_caller"},
+		weight = 0.3,
+		condition = function(copibuddy)
+			return not HasFlagPersistent("COPIBUDDY_ACHEEV")
+		end,
+		post_func = function(copibuddy) -- this function is called when the event is triggered
+			AddFlagPersistent("COPIBUDDY_ACHEEV")
+		end,
 	}
 }

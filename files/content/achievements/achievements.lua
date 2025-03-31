@@ -489,6 +489,15 @@ achievements = {
 			return GameHasFlagRun("copibuddy")
 		end,
 	},
+	{
+		name = "My Gift unto You",
+		description = "You're 1 closer to 100%!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy2.png",
+		flag = "copibuddy2",
+		unlock = function()
+			return HasFlagPersistent("COPIBUDDY_ACHEEV")
+		end,
+	},
 }
 
 local function romanize(num)
