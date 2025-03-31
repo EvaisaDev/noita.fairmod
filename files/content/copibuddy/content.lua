@@ -663,7 +663,7 @@ return {
 
 			local roll = Random(0, 100)
 
-			local valid = #event.tracked_positions == 10 and roll <= 2
+			local valid = #event.tracked_positions == 10 and roll <= 1
 
 			event.tracked_positions = {}
 

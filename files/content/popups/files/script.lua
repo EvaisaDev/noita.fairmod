@@ -668,81 +668,86 @@ for i = 1, #Windows do
         local py = 0
         local lastdy = 0
         local hyperlink_number = 0
+		local auto_close = false
+
+		if(popup.custom_gui)then
+			ww, wh, x, y, auto_close = popup.custom_gui(Gui, Windows[i], z)
+		else
 
 
+			if image_path then
+				GuiZSetForNextWidget(Gui, z - 3)
+				GuiColorSetForNextWidget(Gui, Windows[i].image_color and Windows[i].image_color[1] or 1, Windows[i].image_color and Windows[i].image_color[2] or 1, Windows[i].image_color and Windows[i].image_color[3] or 1, 1)
+				GuiImage(Gui, Windows[i].id * 10000, (ww - imgwidth) * .5, 0, image_path, 1, 1, 1, 0, 2)
+			else
+				for w in s:gmatch("%S+") do
+					GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)
+					local shake = 0
+					local underline = false
+					local hyperlink = false
+					if (w == "newline") then
+						l = 0
+						py = py + lastdy
+						goto innercontinue
+					end
+					if w:sub(1, 1) == "%" and w:gsub("%(%d+%)", ""):sub(-1, -1) == "%" then
+						GuiColorSetForNextWidget(Gui, 0, 0.039, 1, 1)
+						local func = popup.CLICK_EVENTS[string.match(w, '%d[%d.,]*')]
+						hyperlink = true
+						hyperlink_number = hyperlink_number + 1
+						w = w:gsub("%(%d+%)", ""):sub(2, -2)
+					end
+					if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
+						GuiColorSetForNextWidget(Gui, 1, 0.2, 0.2, 1)
+						shake = shake + 1
+						w = string.sub(w, 2, -2)
+						for i = 1, 10 do --check for continued layers of ||
+							if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
+								shake = shake + 1
+								w = string.sub(w, 2, -2)
+							end
+						end
+					end
+					if w:sub(1, 1) == "@" and w:sub(-1, -1) == "@" then
+						local color = Color:new(((Windows[i].seed+l-py) * 25 + GameGetFrameNum() * 5) % 360, 0.8, 0.4)
+						local r, g, b = color:get_rgb()
+						GuiColorSetForNextWidget(Gui, r, g, b, 1)
+						w = string.sub(w, 2,-2)
+					end
+					if w:sub(1, 1) == "*" and w:sub(-1, -1) == "*" then
+						GuiColorSetForNextWidget(Gui, 0.4, 0.4, 0.4, 1)
+						w = string.sub(w, 2, -2)
+					end
+					local dimx, dimy = GuiGetTextDimensions(Gui, w)
+					GuiZSetForNextWidget(Gui, z - 3)
+					lastdy = dimy
+					if l + dimx > ww then
+						l = 0
+						py = py + dimy
+					end
+					SetRandomSeed(GameGetFrameNum(), Windows[i]['seed']+l-py)
+					local o1 = 0
+					local o2 = 0
+					if shake > 0 then
+						o1 = math.sin(Random(1,10000+1)-1)/2 * shake
+						o2 = math.sin(Random(1,10000-1)+1)/2 * shake
+					end
 
+					GuiText(Gui, l+o1, py+o2, w)
+					local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
+					if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
+						local click_events = popup.CLICK_EVENTS or {}
+						if click_events[hyperlink_number] then click_events[hyperlink_number](popup, click_events, data)
+						else print("NO CLICK FUNCTION ATTACHED: " .. hyperlink_number)
+						end
+					end
 
-        if image_path then
-            GuiZSetForNextWidget(Gui, z - 3)
-			GuiColorSetForNextWidget(Gui, Windows[i].image_color and Windows[i].image_color[1] or 1, Windows[i].image_color and Windows[i].image_color[2] or 1, Windows[i].image_color and Windows[i].image_color[3] or 1, 1)
-            GuiImage(Gui, Windows[i].id * 10000, (ww - imgwidth) * .5, 0, image_path, 1, 1, 1, 0, 2)
-        else
-            for w in s:gmatch("%S+") do
-                GuiColorSetForNextWidget(Gui, 0.25, 0.25, 0.25, 1)
-                local shake = 0
-                local underline = false
-                local hyperlink = false
-                if (w == "newline") then
-                    l = 0
-                    py = py + lastdy
-                    goto innercontinue
-                end
-                if w:sub(1, 1) == "%" and w:gsub("%(%d+%)", ""):sub(-1, -1) == "%" then
-                    GuiColorSetForNextWidget(Gui, 0, 0.039, 1, 1)
-                    local func = popup.CLICK_EVENTS[string.match(w, '%d[%d.,]*')]
-                    hyperlink = true
-                    hyperlink_number = hyperlink_number + 1
-                    w = w:gsub("%(%d+%)", ""):sub(2, -2)
-                end
-                if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
-                    GuiColorSetForNextWidget(Gui, 1, 0.2, 0.2, 1)
-                    shake = shake + 1
-                    w = string.sub(w, 2, -2)
-                    for i = 1, 10 do --check for continued layers of ||
-                        if w:sub(1, 1) == "|" and w:sub(-1, -1) == "|" then
-                            shake = shake + 1
-                            w = string.sub(w, 2, -2)
-                        end
-                    end
-                end
-                if w:sub(1, 1) == "@" and w:sub(-1, -1) == "@" then
-                    local color = Color:new(((Windows[i].seed+l-py) * 25 + GameGetFrameNum() * 5) % 360, 0.8, 0.4)
-                    local r, g, b = color:get_rgb()
-                    GuiColorSetForNextWidget(Gui, r, g, b, 1)
-                    w = string.sub(w, 2,-2)
-                end
-                if w:sub(1, 1) == "*" and w:sub(-1, -1) == "*" then
-                    GuiColorSetForNextWidget(Gui, 0.4, 0.4, 0.4, 1)
-                    w = string.sub(w, 2, -2)
-                end
-                local dimx, dimy = GuiGetTextDimensions(Gui, w)
-                GuiZSetForNextWidget(Gui, z - 3)
-                lastdy = dimy
-                if l + dimx > ww then
-                    l = 0
-                    py = py + dimy
-                end
-                SetRandomSeed(GameGetFrameNum(), Windows[i]['seed']+l-py)
-                local o1 = 0
-                local o2 = 0
-                if shake > 0 then
-                    o1 = math.sin(Random(1,10000+1)-1)/2 * shake
-                    o2 = math.sin(Random(1,10000-1)+1)/2 * shake
-                end
+					l = l + dimx + 4
+					::innercontinue::
+				end
+			end
+		end
 
-                GuiText(Gui, l+o1, py+o2, w)
-                local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
-                if hyperlink and guiPrev[3] and InputIsMouseButtonJustDown(1) then
-                    local click_events = popup.CLICK_EVENTS or {}
-                    if click_events[hyperlink_number] then click_events[hyperlink_number](popup, click_events, data)
-                    else print("NO CLICK FUNCTION ATTACHED: " .. hyperlink_number)
-                    end
-                end
-
-                l = l + dimx + 4
-                ::innercontinue::
-            end
-        end
 
         GuiZSetForNextWidget(Gui, z - 3)
         GuiText(Gui, 0, 100, " ")
@@ -757,41 +762,54 @@ for i = 1, #Windows do
         GuiOptionsAddForNextWidget(Gui, 6)
         local _button = popup.CUSTOM_X or "mods/noita.fairmod/files/content/popups/button.png"
         
-        GuiImage(Gui, 1, x + ww - 1, y - 14, _button, 1, 1, 1)
-        local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
-        if guiPrev[3] and InputIsMouseButtonJustDown(1) then
-            local close_popup = false 
+		if(not Windows[i].no_close_button)then
+			GuiImage(Gui, 1, x + ww - 1, y - 14, _button, 1, 1, 1)
+			local guiPrev = {GuiGetPreviousWidgetInfo(Gui)}
+			if guiPrev[3] and InputIsMouseButtonJustDown(1) then
+				local close_popup = false 
 
-            if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
-                if popup:CLOSE_FUNCTION(data) ~= false then --also require doubloons
-                    close_popup = true
-                end
-            else
-                close_popup = true
-            end
+				if popup.CLOSE_FUNCTION ~= nil then --if function exists, run it. if function returns false, dont close window, close window in all other cases.
+					if popup:CLOSE_FUNCTION(data) ~= false then --also require doubloons
+						close_popup = true
+					end
+				else
+					close_popup = true
+				end
 
-			-- 50% chance to teleport the popup to a different place on the screen and not close
-			SetRandomSeed(GameGetFrameNum(), Windows[i]['seed'])
-			if Random(0, 100) < 10 then
+				-- 50% chance to teleport the popup to a different place on the screen and not close
+				SetRandomSeed(GameGetFrameNum(), Windows[i]['seed'])
+				if Random(0, 100) < 10 then
+					
+					x = Random(5, swidth - ww - 5)
+					y = Random(5, sheight - wh - 5)
+					close_popup = false
+				end
 				
-				x = Random(5, swidth - ww - 5)
-				y = Random(5, sheight - wh - 5)
-				close_popup = false
+
+				if close_popup == true then
+					if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
+					table.remove(Windows, i)
+					-- i = i - 1
+					GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
+					if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
+					goto continue
+				elseif popup.disableSound ~= true then
+					GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click_fail", GameGetCameraPos())
+				end
+
 			end
-			
+		end
+		
+		if auto_close then
+			if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
+			table.remove(Windows, i)
+			-- i = i - 1
+			GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
+			if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
+			goto continue
+		end
 
-            if close_popup == true then
-                if popup.disableSound ~= true then GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos()) end
-                table.remove(Windows, i)
-                -- i = i - 1
-                GlobalsSetValue("POPUPS_CLOSED", tostring(tonumber(GlobalsGetValue("POPUPS_CLOSED" , "0")) + 1))
-                if ModIsEnabled("meta_leveling") then meta_leveling_add_exp() end
-                goto continue
-            elseif popup.disableSound ~= true then
-                GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click_fail", GameGetCameraPos())
-            end
 
-        end
         GuiIdPop(Gui)
         GuiIdPushString(Gui, "ModMimicPopupImage" .. tostring(Windows[i].id))
         GuiZSetForNextWidget(Gui, z)
