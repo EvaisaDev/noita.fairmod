@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{070bca78-9d0d-4eaa-b4ef-71060d256369}">
 		<property name="assetPath">
-			<value>hole.wav</value>
+			<value>Compress_Extra/hole.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>11.0249996</value>

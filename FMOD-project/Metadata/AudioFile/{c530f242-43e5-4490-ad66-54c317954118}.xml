@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{c530f242-43e5-4490-ad66-54c317954118}">
 		<property name="assetPath">
-			<value>steal.wav</value>
+			<value>Compress_Extra/steal.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>11.0249996</value>

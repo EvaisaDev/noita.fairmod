@@ -33,11 +33,13 @@
 {53d84f89-7c8d-45a1-8f1e-ffdce76fa35f} event:/copibuddy/damage_response_5
 {32c56f1b-d359-4b6e-ae1e-3d22d503ba3b} event:/copibuddy/damage_response_6
 {7274df86-1ede-4b15-94ce-d75a6ca14a97} event:/copibuddy/drop_inventory
+{7bde6419-00c3-48bf-b2e4-14ad2dca2585} event:/copibuddy/friends
 {8318d354-2348-43ee-a1ed-e4046eb3c112} event:/copibuddy/hamis_time
 {925ba81b-0209-4e7f-86f0-8e1d77f57043} event:/copibuddy/hole
 {830ae439-3c35-4114-ba78-e25a002a9633} event:/copibuddy/introduction
 {a1550c6a-97d5-4753-b795-4bb0c964b631} event:/copibuddy/inventor_of_things
 {e9ec4109-ee2e-4f24-bb99-dc51c6c9e575} event:/copibuddy/makeover
+{cc451753-e885-4d90-bb34-1f4b24291814} event:/copibuddy/on_fire
 {8e68c2b2-faad-4c2c-b61a-d827efc39471} event:/copibuddy/reintroduction
 {5962eb96-d2e0-4f24-9bb4-7ef9a6e45e4a} event:/copibuddy/reorganize
 {2b797f43-776c-41cf-8876-1324298c19ab} event:/copibuddy/saved

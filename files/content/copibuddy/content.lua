@@ -663,7 +663,7 @@ return {
 
 			local roll = Random(0, 100)
 
-			local valid = #event.tracked_positions == 10 and roll <= 3
+			local valid = #event.tracked_positions == 10 and roll <= 2
 
 			event.tracked_positions = {}
 
@@ -795,6 +795,125 @@ return {
 				
 					end
 				
+				end
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
+			end
+
+		end,
+	},
+	{ -- put out fire with fucked up liquids
+		anim = "copi_snap",
+		frames = 300,
+		force = true,
+		condition = function(copibuddy, event)
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local players = EntityGetWithTag("player_unit")
+			if(players[1] and GameGetFrameNum() % 20 == 0)then
+				local player = players[1]
+
+				local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
+
+				if(damage_model_comp)then
+					return ComponentGetValue2(damage_model_comp, "is_on_fire") and Random(1, 1000) < 50
+				end
+			end
+
+			return false
+		end,
+		update = function(copibuddy) -- this function is called when the event is triggered
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+
+			local table_of_liquids = {"water", "blood", "magic_liquid_weakness", "magic_liquid_movement_faster", "magic_liquid_faster_levitation", "magic_liquid_random_polymorph", "magic_liquid_polymorph", "radioactive_liquid", "material_confusion", "cc_grease"}
+		
+			if(copibuddy.timer == 289)then
+				local players = EntityGetWithTag("player_unit")
+
+				if(players[1])then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+
+
+					local liquid = EntityCreateNew();
+
+					local index = Random(1, #table_of_liquids)
+
+					local material = table_of_liquids[index];
+					EntitySetTransform(liquid, x, y - 10, 0, 1, 1);
+		
+					EntityAddComponent2(liquid, "InheritTransformComponent")
+					
+					EntityAddComponent2(liquid, "ParticleEmitterComponent", {
+						emitted_material_name=material,
+						create_real_particles=true,
+						lifetime_min=8,
+						lifetime_max=15,
+						count_min=3,
+						count_max=3,
+						render_on_grid=true,
+						fade_based_on_lifetime=true,
+						airflow_force=0.251,
+						airflow_time=1.01,
+						airflow_scale=0.05,
+						emission_interval_min_frames=1,
+						emission_interval_max_frames=1,
+						emit_cosmetic_particles=false,
+						image_animation_file="data/particles/image_emitters/circle_reverse_64.png",
+						image_animation_speed=10,
+						image_animation_loop=false,
+						image_animation_raytrace_from_center=true,
+						set_magic_creation=true,
+						is_emitting=true,
+					});
+					EntityAddComponent(liquid, "LifetimeComponent", {
+						lifetime="120",
+					});	
+				end
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
+			end
+
+			if(copibuddy.timer == 272)then
+				copibuddy.animation = "talk"
+				copibuddy.target_text = "You appeared to be on fire, I put that out for you :D"
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/on_fire", 0, 0 )
+			end
+
+		end,
+	},
+	{
+		text = "You look like you need some friends",
+		anim = "talk",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/friends"},
+		frames = 180,
+		weight = 0.5,
+		update = function(copibuddy) -- this function is called every frame while event is active
+
+			if(copibuddy.timer == 30)then
+				copibuddy.animation = "copi_snap"
+			end
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			
+			if(copibuddy.timer == 20)then
+	
+				local players = EntityGetWithTag("player_unit")
+				if(players[1])then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+
+					for i = 1, 15 do
+						if(#EntityGetInRadiusWithTag(x, y, 512, "copi") < 10)then
+			
+							SetRandomSeed(x + GameGetFrameNum(), y + i * 100)
+							local target_x, target_y = x + Random(-5, 5), y + Random(-5, 5)
+
+							EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", target_x, target_y)
+					
+							-- spawn poof
+							EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/poof.xml", target_x, target_y)
+						end
+					end
 				end
 				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
 			end
