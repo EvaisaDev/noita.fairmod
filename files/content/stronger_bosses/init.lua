@@ -26,3 +26,5 @@ for _, filename in ipairs(filenames) do
 		if damage_comp then visit(damage_comp) end
 	end
 end
+
+dofile_once("mods/noita.fairmod/files/content/stronger_bosses/dragon/init.lua")
