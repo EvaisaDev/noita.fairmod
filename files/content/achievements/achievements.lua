@@ -498,6 +498,15 @@ achievements = {
 			return HasFlagPersistent("COPIBUDDY_ACHEEV")
 		end,
 	},
+	{
+		name = "COPROTECTION ANTIVRIUS",
+		description = "Protecting users from scam callers since 283 BC!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy3.png",
+		flag = "copibuddy3",
+		unlock = function()
+			return GameHasFlagRun("copibuddy.call_rerouted")
+		end,
+	},
 }
 
 local function romanize(num)
