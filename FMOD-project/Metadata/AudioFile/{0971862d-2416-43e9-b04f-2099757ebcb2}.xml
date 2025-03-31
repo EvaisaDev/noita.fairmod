@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{0971862d-2416-43e9-b04f-2099757ebcb2}">
 		<property name="assetPath">
-			<value>scam_caller.wav</value>
+			<value>Compress_Extra/scam_caller.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>11.0249996</value>

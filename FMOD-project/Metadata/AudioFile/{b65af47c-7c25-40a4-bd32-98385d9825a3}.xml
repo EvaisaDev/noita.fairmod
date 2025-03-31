@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{b65af47c-7c25-40a4-bd32-98385d9825a3}">
 		<property name="assetPath">
-			<value>makeover.wav</value>
+			<value>Compress_Extra/makeover.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>11.0249996</value>

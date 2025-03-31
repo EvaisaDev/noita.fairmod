@@ -18,6 +18,7 @@ local ref = {
 	y = 0,
 	max_text_width = 200,
 	event = nil,
+	last_event = nil,
 	gui = GuiCreate(),
 	functions = {
 		test = function()
@@ -361,7 +362,7 @@ function module.update()
 	local next_event = nil
 	if(module.on_cooldown)then
 		for _, event in ipairs(content) do
-			if ((not event.condition or event.condition(module)) and event.force) then
+			if (event.force and (not event.condition or event.condition(module, event)) and (event ~= module.last_event)) then
 				module.timer = 0
 				next_event = event
 				goto continue
@@ -394,7 +395,7 @@ function module.update()
 		local options = {}
 		if(not next_event)then
 			for _, event in ipairs(content) do
-				if (not event.condition or event.condition(module)) then
+				if ((not event.condition or event.condition(module, event)) and (event ~= module.last_event)) then
 					if(event.force)then
 						options = {event}
 						break
@@ -411,6 +412,8 @@ function module.update()
 			if(module.event == nil)then
 				return
 			end
+
+			module.last_event = module.event
 
 			if (module.event.func) then
 				module.event.func(module)

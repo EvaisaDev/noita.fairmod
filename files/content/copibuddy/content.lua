@@ -390,10 +390,8 @@ return {
 
 		end,
 	},
-	{
-		text = "There was a lot of gold here, for performance reasons I removed it.",
-		anim = "talk",
-		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/clear_gold"},
+	{ 
+		anim = "copi_snap",
 		frames = 300,
 		weight = function(copibuddy)
 			return 1+(#EntityGetInRadiusWithTag(x, y, 346, "gold_nugget"))*0.05
@@ -403,16 +401,9 @@ return {
 			local entities = EntityGetInRadiusWithTag(x, y,346, "gold_nugget")
 			return #entities > 0
 		end,
-		update = function(copibuddy) -- this function is called every frame while event is active
-
-			local this = copibuddy.event
-
+		update = function(copibuddy) -- this function is called when the event is triggered
 			local world_x, world_y = GameGetCameraPos()
-			if(copibuddy.timer == 30)then
-				copibuddy.animation = "copi_snap"
-			end
-
-			if(copibuddy.timer == 20)then
+			if(copibuddy.timer == 289)then
 				local entities = EntityGetInRadiusWithTag( world_x, world_y, 346, "gold_nugget" )
 				for i=1, #entities do
 					local entity = entities[i]
@@ -427,43 +418,10 @@ return {
 				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
 			end
 
-		end,
-	},
-	{
-		text = "There was a lot of gold here, for performance reasons I removed it.",
-		anim = "talk",
-		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/clear_gold"},
-		frames = 300,
-		weight = function(copibuddy)
-			return 1+(#EntityGetInRadiusWithTag(x, y, 346, "gold_nugget"))*0.05
-		end,
-		condition = function(copibuddy)
-			local x, y = GameGetCameraPos()
-			local entities = EntityGetInRadiusWithTag(x, y,346, "gold_nugget")
-			return #entities > 0
-		end,
-		update = function(copibuddy) -- this function is called every frame while event is active
-
-			local this = copibuddy.event
-
-			local world_x, world_y = GameGetCameraPos()
-			if(copibuddy.timer == 30)then
-				copibuddy.animation = "copi_snap"
-			end
-
-			if(copibuddy.timer == 20)then
-				local entities = EntityGetInRadiusWithTag( world_x, world_y, 346, "gold_nugget" )
-				for i=1, #entities do
-					local entity = entities[i]
-					local ex, ey = EntityGetTransform(entity)
-
-					EntityConvertToMaterial(entity, "fairmod_ash")
-					local ex, ey = EntityGetTransform(entity)
-					GameCreateParticle("smoke", ex, ey, 8, 0, 0, false, true)
-
-					EntityKill(entity)
-				end
-				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
+			if(copibuddy.timer == 272)then
+				copibuddy.animation = "talk"
+				copibuddy.target_text = "There was a lot of gold here, for performance reasons I removed it."
+				GamePlaySound("mods/noita.fairmod/fairmod.bank", "copibuddy/clear_gold", 0, 0 )
 			end
 
 		end,
@@ -659,7 +617,7 @@ return {
 	{
 		text = "It looks like you're trying to get every achievement, here's one on the house!",
 		anim = "talk",
-		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/scam_caller"},
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/achievement"},
 		weight = 0.3,
 		condition = function(copibuddy)
 			return not HasFlagPersistent("COPIBUDDY_ACHEEV")
@@ -667,5 +625,81 @@ return {
 		post_func = function(copibuddy) -- this function is called when the event is triggered
 			AddFlagPersistent("COPIBUDDY_ACHEEV")
 		end,
-	}
+	},
+	{ 
+		anim = "copi_snap",
+		frames = 300,
+		force = true,
+		tracked_positions = {},
+		condition = function(copibuddy, event)
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			local players = EntityGetWithTag("player_unit")
+			if(players[1] and GameGetFrameNum() % 20 == 0)then
+				local player = players[1]
+				local x, y = EntityGetTransform(player)
+
+				table.insert(event.tracked_positions, {x, y})
+			end
+
+			if(#event.tracked_positions > 10)then
+				table.remove(event.tracked_positions, 1)
+			end
+
+			-- check if all positions are within 250 pixels of each other
+			if(#event.tracked_positions < 10)then
+				return false
+			end
+
+			local first_x, first_y = event.tracked_positions[1][1], event.tracked_positions[1][2]
+
+			for i=2, #event.tracked_positions do
+				local x, y = event.tracked_positions[i][1], event.tracked_positions[i][2]
+				if(math.abs(x - first_x) > 250 or math.abs(y - first_y) > 250)then
+					print("Failed position check: " .. tostring(x) .. ", " .. tostring(y))
+					return false
+				end
+			end
+
+			local roll = Random(1, 100)
+
+			local valid = #event.tracked_positions == 10 and roll <= 15
+
+			event.tracked_positions = {}
+
+			return valid
+		end,
+		update = function(copibuddy) -- this function is called when the event is triggered
+			local function create_hole_of_size(x, y, r)
+				local hole_maker = EntityCreateNew( "hole" )
+				EntitySetTransform(hole_maker, x, y)
+				EntityAddComponent(hole_maker, "CellEaterComponent", {
+					radius=tostring(r)
+				})
+				EntityAddComponent(hole_maker, "LifetimeComponent", {
+					lifetime="1"
+				})
+			end
+		
+			if(copibuddy.timer == 289)then
+				local players = EntityGetWithTag("player_unit")
+
+				if(players[1])then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+					for i = 1, 35 do
+						create_hole_of_size(x, y + (i * 8), 28)
+					end
+				end
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
+			end
+
+			if(copibuddy.timer == 272)then
+				copibuddy.animation = "talk"
+				copibuddy.target_text = "You seemed lost so I dug you a hole :)"
+				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/hole", 0, 0 )
+			end
+
+		end,
+	},
 }

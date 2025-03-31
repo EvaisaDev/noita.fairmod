@@ -22,6 +22,7 @@
 {e96881c9-26ea-48eb-9a5a-f53002e42bc3} event:/badapple/song_streamer
 {d4843d6d-3df8-4f7b-aa03-2e6b106a0ad1} event:/bananapeel/slip_and_fall
 {5b276062-bc6c-45ba-bf76-3edeff3c316f} event:/book/page
+{6092d883-9c86-45b4-b671-6423886b18bb} event:/copibuddy/achievement
 {8b4d6300-5652-430a-a382-6328f33c6e91} event:/copibuddy/button_surprise
 {f6e4a4a5-cdd3-4bce-940a-b602af14236c} event:/copibuddy/clear_gold
 {dcf372ee-06eb-4414-9141-009657b2f266} event:/copibuddy/copi_blast
@@ -33,6 +34,7 @@
 {32c56f1b-d359-4b6e-ae1e-3d22d503ba3b} event:/copibuddy/damage_response_6
 {7274df86-1ede-4b15-94ce-d75a6ca14a97} event:/copibuddy/drop_inventory
 {8318d354-2348-43ee-a1ed-e4046eb3c112} event:/copibuddy/hamis_time
+{925ba81b-0209-4e7f-86f0-8e1d77f57043} event:/copibuddy/hole
 {830ae439-3c35-4114-ba78-e25a002a9633} event:/copibuddy/introduction
 {a1550c6a-97d5-4753-b795-4bb0c964b631} event:/copibuddy/inventor_of_things
 {e9ec4109-ee2e-4f24-bb99-dc51c6c9e575} event:/copibuddy/makeover
