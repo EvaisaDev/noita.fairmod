@@ -186,6 +186,10 @@ function OnPlayerSpawned(player)
 	GameRemoveFlagRun("draw_evil_mode_text")
 	GameRemoveFlagRun("fairmod_dialog_interacting")
 
+	if GameHasFlagRun("fairmod_init") then return end
+	GameAddFlagRun("fairmod_init")
+	-- stuff after here only runs once on initial run start
+
 	local x, y = EntityGetTransform(player)
 
 	-- move player to a random parallel world.
@@ -204,10 +208,6 @@ function OnPlayerSpawned(player)
 	EntityApplyTransform(player, target_x, target_y)
 
 	----------------------------------
-
-	if GameHasFlagRun("fairmod_init") then return end
-	GameAddFlagRun("fairmod_init")
-	-- stuff after here only runs once on initial run start
 
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 	-- you gain the booklet from the information kiosk
