@@ -1791,7 +1791,7 @@ return {
 									if #players<1 then hangup() return end
 									local x, y = EntityGetTransform(players[1])
 									dofile("data/scripts/perks/perk.lua")
-									perk_pickup(perk_spawn(x + Random(-15, 15), y + Random(-15, 15), perk_list[Random(1, #perk_list)], true), players[1], "", false, false)
+									perk_pickup(perk_spawn(x + Random(-15, 15), y + Random(-15, 15), perk_list[Random(1, #perk_list)].id, true), players[1], "", false, false)
 									hangup()
 								end,
 							},
