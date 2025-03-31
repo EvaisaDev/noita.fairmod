@@ -1774,6 +1774,9 @@ return {
 		typing_sound = "sans",
 		text = [[{@color C0FFC0}Kneel kneel!
 		Your lord ~Copi~ {@pause 5}~Of~ {@pause 5}~Things~ {@pause 5} is here!]],
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
 		options = {
 			{
 				text = "I'm such a big fan!",
@@ -1820,6 +1823,9 @@ return {
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
 		typing_sound = "sans",
 		text = "{@color C0FFC0}Have you heard of the Apotheosis mod for noita?",
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
 		options = {
 			{
 				text = "No..?",
@@ -1861,6 +1867,9 @@ return {
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi3.png",
 		typing_sound = "sans",
 		text = [[{@color 800000}{@delay 15} !pesj !pfo !jmnoh !pede !it !pemd" Jxof !gtnpfxm !bbfu !fpfuj@Hp !vl]],
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
 		options = {
 			{
 				text = "What?",

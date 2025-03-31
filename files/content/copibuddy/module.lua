@@ -338,6 +338,13 @@ function module.update()
 	end
 	if (not GameHasFlagRun("copibuddy")) then
 		return
+	elseif(not GameHasFlagRun("copibuddy_activated"))then
+		GameAddFlagRun("copibuddy_activated")
+		if(Random(0, 100) < 40)then
+			-- 40% chance to happen next run aswell
+			AddFlagPersistent("copibuddy_next_run")
+			print("Copibuddy will repeat!")
+		end
 	end
 	
 	module.prev_hover_ids = module.current_hover_ids or {}
