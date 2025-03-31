@@ -40,8 +40,8 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
 			local max_hp_cap = ComponentGetValue2(damage_model, "max_hp_cap")
 			-- check if hp - damage is under 10% of max hp and current hp is above 10% of max hp
 
-			print("hp: " .. tostring(hp) .. " max_hp: " .. tostring(max_hp) .. " max_hp_cap: " .. tostring(max_hp_cap))
-			print("hp - damage: " .. tostring(hp - damage) .. " max_hp * 0.1: " .. tostring(max_hp * 0.1) .. " hp > max_hp * 0.1: " .. tostring(hp > max_hp * 0.1))
+			--print("hp: " .. tostring(hp) .. " max_hp: " .. tostring(max_hp) .. " max_hp_cap: " .. tostring(max_hp_cap))
+			--print("hp - damage: " .. tostring(hp - damage) .. " max_hp * 0.1: " .. tostring(max_hp * 0.1) .. " hp > max_hp * 0.1: " .. tostring(hp > max_hp * 0.1))
 
 			if(hp - damage < max_hp * 0.2 and hp > max_hp * 0.2)then
 				GameAddFlagRun("copibuddy.almost_died_clearly")

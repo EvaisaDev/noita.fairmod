@@ -506,7 +506,7 @@ return {
 
 							ComponentSetValue2(item_component, "inventory_slot", slot, 0)
 
-							print("Reorganizing item " .. tostring(item) .. " to slot " .. tostring(slot))
+							--print("Reorganizing item " .. tostring(item) .. " to slot " .. tostring(slot))
 						end
 					end
 				end
@@ -656,7 +656,7 @@ return {
 			for i=2, #event.tracked_positions do
 				local x, y = event.tracked_positions[i][1], event.tracked_positions[i][2]
 				if(math.abs(x - first_x) > 250 or math.abs(y - first_y) > 250)then
-					print("Failed position check: " .. tostring(x) .. ", " .. tostring(y))
+					--print("Failed position check: " .. tostring(x) .. ", " .. tostring(y))
 					return false
 				end
 			end
