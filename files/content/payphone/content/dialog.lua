@@ -1847,7 +1847,8 @@ return {
 				text = "Yes!",
 				func = function(dialog)
 					dialog.show({
-						text = [[{@color C0FFC0}I'm glad :) it's a really cool project and I'm happy I get to work on it!{@func disconnected}]],
+						text = [[{@color C0FFC0}I'm glad :) it's a really cool project and I'm happy 
+						I get to work on it!{@func disconnected}]],
 						options = {
 							{
 								text = "...",
@@ -1866,7 +1867,8 @@ return {
 		name = "Copi",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi3.png",
 		typing_sound = "sans",
-		text = [[{@color 800000}{@delay 15} !pesj !pfo !jmnoh !pede !it !pemd" Jxof !gtnpfxm !bbfu !fpfuj@Hp !vl]],
+		text = [[{@color 800000}{@delay 15} !pesj !pfo !jmnoh !pede !it !pemd" Jxof 
+		!gtnpfxm !bbfu !fpfuj@Hp !vl]],
 		can_call = function() 
 			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
 		end,
@@ -1905,29 +1907,34 @@ return {
 					dialog.show({
 						text = [[{@color 608060}{@delay 5}He's basically me but evil.]],
 						options =  {
-							text = "You have an evil clone?",
-							func = function(dialog)
-								dialog.show({
-									text = [[{@color 608060}{@delay 5}He keeps raving about some "things". He cannot be trusted.]],
-									options =  {
-										text = "Uhh...",
-										func = function(dialog)
-											dialog.show({
-												text = [[{@color 608060}{@delay 5}Shit, I've got to go.{@func disconnected}]],
-												options = {
-													{
-														text = "...",
-														func = function()
-															AddFlagPersistent("fairmod_evilcopi")
-															hangup()
-														end,
-													},
-												},
-											})
-										end,
-									},
-								})
-							end,
+							{
+								text = "You have an evil clone?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}He keeps raving about some "things". 
+										He cannot be trusted.]],
+										options =  {
+											{
+												text = "Uhh...",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}Shit, I've got to go.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	AddFlagPersistent("fairmod_evilcopi")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
 						},
 					})
 				end,
@@ -1949,29 +1956,35 @@ return {
 					dialog.show({
 						text = [[{@color 608060}{@delay 5}Because I love hamis.]],
 						options =  {
-							text = "You're telling me evil copi hates hamis?",
-							func = function(dialog)
-								dialog.show({
-									text = [[{@color 608060}{@delay 5}Yes, only evil people hate hamis.\n]]..(tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)>0 and "{@color 808080}~You feel the guilt of having slain hamis.~" or "",
-									options =  {
-										text = "Got it...",
-										func = function(dialog)
-											dialog.show({
-												text = [[{@color 608060}{@delay 5}He's catching on. You heard nothing.{@func disconnected}]],
-												options = {
-													{
-														text = "...",
-														func = function()
-															AddFlagPersistent("fairmod_evilcopi2")
-															hangup()
-														end,
-													},
-												},
-											})
-										end,
-									},
-								})
-							end,
+							{
+								text = "You're telling me evil copi hates hamis?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}Yes, only evil people hate hamis.
+										]]..(tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)>0 and "{@color 808080}~You feel the guilt of having slain hamis.~" or "",
+										options =  {
+											{
+												text = "Got it...",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}He's catching on. 
+														You heard nothing.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	AddFlagPersistent("fairmod_evilcopi2")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
 						},
 					})
 				end,
@@ -1982,7 +1995,8 @@ return {
 		name = "Copi",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi4.png",
 		typing_sound = "sans",
-		text = [[{@color 608060}{@delay 5}We're making progress. I see you've spared hamisket.]],
+		text = [[{@color 608060}{@delay 5}We're making progress. 
+		I see you've spared hamisket.]],
 		can_call = function() -- optional
 			return HasFlagPersistent("fairmod_evilcopi2") and (tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)==0
 		end,
@@ -1993,30 +2007,35 @@ return {
 					dialog.show({
 						text = [[{@color 608060}{@delay 5}They're cute as fuck?]],
 						options =  {
-							text = "...That's it?",
-							func = function(dialog)
-								dialog.show({
-									text = [[{@color 608060}{@delay 5}Yeah? Evil copi HATES cute hamis.\n]],
-									options =  {
-										text = "I'll avoid killing them then..",
-										func = function(dialog)
-											dialog.show({
-												text = [[{@color 608060}{@delay 5}Read the back of the info booklet. I left a note.{@func disconnected}]],
-												options = {
-													{
-														text = "...",
-														func = function()
-															RemoveFlagPersistent("fairmod_evilcopi2")
-															RemoveFlagPersistent("fairmod_evilcopi")
-															hangup()
-														end,
-													},
-												},
-											})
-										end,
-									},
-								})
-							end,
+							{
+								text = "...That's it?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}Yeah? Evil copi HATES cute hamis.\n]],
+										options =  {
+											{
+												text = "I'll avoid killing them then..",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}Read the back of the info booklet. 
+														I left a note.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	RemoveFlagPersistent("fairmod_evilcopi2")
+																	RemoveFlagPersistent("fairmod_evilcopi")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
 						},
 					})
 				end,
