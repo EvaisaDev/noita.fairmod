@@ -480,6 +480,15 @@ achievements = {
 			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= 84
 		end,
 	},
+	{
+		name = "Copibuddy! :D",
+		description = "Met your best friend!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy.png",
+		flag = "copibuddy",
+		unlock = function()
+			return GameHasFlagRun("copibuddy")
+		end,
+	},
 }
 
 local function romanize(num)
