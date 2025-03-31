@@ -58,7 +58,7 @@ local get_wands = function()
 end
 
 return {
-	{
+	--[[{
 		text = function(copibuddy) -- can be either a function or a string
 			return "Well hello there! \nI don't think we've been properly introduced. \n\nI'm copi."
 		end,
@@ -97,7 +97,7 @@ return {
 			GameAddFlagRun("copibuddy_intro_done")
 			AddFlagPersistent("copibuddy_met_before")
 		end
-	},
+	},]]
 	{
 		text = "I'm copi, inventor of all things!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/inventor_of_things"},
@@ -989,4 +989,30 @@ return {
 
 		end,
 	},
+	--[[{
+		anim = "copi_call_start",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/call_1"},
+		frames = 160000,
+		weight = 0.5,
+		force = true,
+		update = function(copibuddy) -- this function is called every frame while event is active
+
+
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			
+			if(copibuddy.timer == copibuddy.event.frames - math.floor(7.5*60))then
+	
+				copibuddy.animation = "copi_call_pickup"
+				copibuddy.target_text = "Hold on a moment, I'm receiving a very important call."
+
+			end
+
+			if(copibuddy.timer == copibuddy.event.frames - math.floor(11*60))then
+	
+				copibuddy.animation = "copi_call_calling"
+				
+			end
+
+		end,
+	},]]
 }
