@@ -7,7 +7,7 @@ local entity_x = scene_x + 62
 local entity_y = scene_y + 80
 
 local children = {}
-for i = -2, 2 do
+for i = -1, 1 do
 	if i ~= 0 then
 		children[#children + 1] = nxml.new_element("PixelScene", {
 			DEBUG_RELOAD_ME = "0",
