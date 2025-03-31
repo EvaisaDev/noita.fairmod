@@ -277,6 +277,11 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame = 1,
 	})
 
+	if(Random(0, 1000) < 5 or HasFlagPersistent("copibuddy_next_run"))then
+		GameAddFlagRun("copibuddy_will_haunt")
+		RemoveFlagPersistent("copibuddy_next_run")
+	end
+
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
@@ -335,6 +340,12 @@ function OnWorldPreUpdate()
 	
 		GameAddFlagRun("copibuddy")
 		GameAddFlagRun("reset_copibuddy")
+	end
+
+	if(GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5)then
+		GameAddFlagRun("copibuddy")
+		GameAddFlagRun("reset_copibuddy")
+		GameRemoveFlagRun("copibuddy_will_haunt")
 	end
 end
 

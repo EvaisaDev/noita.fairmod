@@ -117,6 +117,7 @@ return {
 			SetRandomSeed(GameGetFrameNum(), letter_entity)
 			if string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "virus,") >=99 then
 				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
+				AddFlagPersistent("copibuddy_next_run")
 				string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "")
 			else
 				for i=1, 3 do
