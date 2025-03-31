@@ -28,3 +28,4 @@ for _, filename in ipairs(filenames) do
 end
 
 dofile_once("mods/noita.fairmod/files/content/stronger_bosses/dragon/init.lua")
+dofile_once("mods/noita.fairmod/files/content/stronger_bosses/alchemist/init.lua")
