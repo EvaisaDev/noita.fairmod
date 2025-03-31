@@ -14,7 +14,11 @@ if e_id ~= 0 then
 		pos_y = pos_y + Random(-4, 4)
 
 		-- forever spawns
-		EntityLoad("data/entities/animals/longleg.xml", pos_x, pos_y - 12)
+		local hamis = EntityGetWithTag( "spawned_hamis" )
+		if ( #hamis < 50 ) then
+			local ham_id = EntityLoad("data/entities/animals/longleg.xml", pos_x, pos_y - 12)
+			EntityAddTag(ham_id, "spawned_hamis")
+		end
 	elseif RaytraceSurfaces(pos_x, pos_y, x, y) == false then
 		-- yeet hamis at the player
 		local e = EntityLoad("mods/noita.fairmod/files/content/better_props/projectile_hamis.xml", pos_x, pos_y)
