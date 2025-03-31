@@ -14,7 +14,7 @@ function pixel_scenes:init()
 	ModLuaFileAppend("data/scripts/biomes/vault.lua", "mods/noita.fairmod/files/content/pixelscenes/biomes/vault/vault.lua")
 	ModLuaFileAppend("data/scripts/biomes/crypt.lua", "mods/noita.fairmod/files/content/pixelscenes/biomes/crypt/crypt.lua")
 
-	dofile_once("mods/noita.fairmod/files/content/pixelscenes/fish/joel_add.lua")
+	dofile_once("mods/noita.fairmod/files/content/pixelscenes/_pixel_scenes.lua")
 	ModMaterialsFileAdd("mods/noita.fairmod/files/content/pixelscenes/snail/snail_material.xml")
 	ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/noita.fairmod/files/content/pixelscenes/snail/effect/effect_snail_add.lua")
 	ModLuaFileAppend("data/scripts/biomes/scale.lua", "mods/noita.fairmod/files/content/pixelscenes/biomes/scale/scale.lua")

@@ -825,7 +825,7 @@ return {
 
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 
-			local table_of_liquids = {"water", "blood", "magic_liquid_weakness", "magic_liquid_movement_faster", "magic_liquid_faster_levitation", "magic_liquid_random_polymorph", "magic_liquid_polymorph", "radioactive_liquid", "material_confusion", "cc_grease"}
+			local table_of_liquids = {"water", "blood", "magic_liquid_weakness", "magic_liquid_movement_faster", "magic_liquid_faster_levitation", "magic_liquid_random_polymorph", "magic_liquid_polymorph", "radioactive_liquid", "material_confusion", "fairmod_grease"}
 		
 			if(copibuddy.timer == 289)then
 				local players = EntityGetWithTag("player_unit")
