@@ -145,6 +145,16 @@ function phase_chase_slow()
 	next_phase()
 end
 
+function phase_fuck_off()
+	close_eye()
+	set_logic_state( states.Escape )
+
+	shield_on()
+	boss_wait(600)
+	shield_off()
+	next_phase()
+end
+
 function phase_chase()
 	close_eye()
 	set_logic_state( states.FollowPlayer )
@@ -314,7 +324,7 @@ end
 
 function phase_clean_materials()
 	set_logic_state( states.FollowPlayer )
-	boss_wait(25)
+	boss_wait(5)
 	GameEntityPlaySound( GetUpdatedEntityID(), "shoot_clean_materials" )
 	clear_materials()
 	next_phase()
@@ -365,6 +375,10 @@ function next_phase()
 			{ phase_firepillar, 2 },
 		}
 
+		if not GameHasFlagRun("kolmi_not_home") then
+			phases[1] = { phase_fuck_off, 0 }
+		end
+
 		-- additional attack mode on higher orbcount
 		if orbcount >= 2 then phases[#phases+1] = { phase_homingshot, 0 } end
 
@@ -405,7 +419,7 @@ function next_phase()
 				phase = phase_clean_materials
 			end
 		else -- further away: start chasin'
-			phase = phase_chase_direct
+			phase = phase_fuck_off
 		end
 
 		--Gameshow?? Kolmisilma loves gameshows!

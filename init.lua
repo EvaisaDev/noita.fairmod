@@ -112,6 +112,7 @@ dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
 dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
+dofile_once("mods/noita.fairmod/files/content/better_helpers/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
@@ -186,6 +187,10 @@ function OnPlayerSpawned(player)
 	GameRemoveFlagRun("draw_evil_mode_text")
 	GameRemoveFlagRun("fairmod_dialog_interacting")
 
+	if GameHasFlagRun("fairmod_init") then return end
+	GameAddFlagRun("fairmod_init")
+	-- stuff after here only runs once on initial run start
+
 	local x, y = EntityGetTransform(player)
 
 	-- move player to a random parallel world.
@@ -205,17 +210,13 @@ function OnPlayerSpawned(player)
 
 	----------------------------------
 
-	if GameHasFlagRun("fairmod_init") then return end
-	GameAddFlagRun("fairmod_init")
-	-- stuff after here only runs once on initial run start
-
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 	-- you gain the booklet from the information kiosk
 	--dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
 
 	SetRandomSeed(2152, 12523)
 
-	if Random(1, 100) <= 50 then
+	if Random(1, 100) <= 33 then
 		GameAddFlagRun("kolmi_not_home")
 		print("Kolmi is not home on this one.")
 	end

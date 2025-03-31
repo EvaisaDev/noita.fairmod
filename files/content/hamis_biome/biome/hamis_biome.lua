@@ -88,17 +88,17 @@ g_items = {
 g_props = {
 	total_prob = 0,
 	{
-		prob = 2.5,
+		prob = 2,
 		min_count = 0,
 		max_count = 0,
 		entity = "",
 	},
-	-- {
-	-- 	prob = 0.5,
-	-- 	min_count = 1,
-	-- 	max_count = 1,
-	-- 	entity = "data/entities/props/physics_barrel_radioactive.xml",
-	-- },
+	{
+		prob = 0.1,
+		min_count = 1,
+		max_count = 2,
+		entity = "data/entities/props/physics_vase_longleg.xml",
+	},
 	{
 		prob = 0.08,
 		min_count = 1,
@@ -139,6 +139,12 @@ g_lamp = {
 		min_count = 1,
 		max_count = 1,
 		entity = "mods/noita.fairmod/files/content/hamis_biome/entities/fungus/physics_fungus_small.xml",
+	},
+	{
+		prob = 0.1,
+		min_count = 1,
+		max_count = 2,
+		entity = "data/entities/props/physics_vase_longleg.xml",
 	},
 	-- {
 	-- 	prob = 1.0,

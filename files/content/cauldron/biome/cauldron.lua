@@ -53,7 +53,7 @@ function init(x, y, w, h)
 		"",
 		x + 512,
 		y + 512,
-		"mods/noita.fairmod/files/content/cauldron/scenes/altar_background-2.png",
+		"mods/noita.fairmod/files/content/cauldron/scenes/altar_background-3.png",
 		true
 	)
 	LoadPixelScene(
@@ -61,7 +61,7 @@ function init(x, y, w, h)
 		"",
 		x,
 		y + 512,
-		"mods/noita.fairmod/files/content/cauldron/scenes/altar_background-3.png",
+		"",
 		true
 	)
 end

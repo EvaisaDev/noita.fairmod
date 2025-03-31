@@ -1,4 +1,4 @@
-<Entity name="$animal_longleg">
+<Entity name="$animal_longleg" tags="teleportable_NOT,enemy,spawned_hamis">
 
 	<Base file="data/entities/base_enemy_basic.xml">
 		<ItemChestComponent level="1"> </ItemChestComponent>

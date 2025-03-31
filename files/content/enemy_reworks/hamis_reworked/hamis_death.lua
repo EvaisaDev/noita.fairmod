@@ -18,12 +18,15 @@ local function hamis_land(kill_count)
 	local x, y = EntityGetTransform(hamis)
 
 	for i = 1, kill_count do
-		for j, body_part in ipairs(hamisits) do
-			SetRandomSeed(x + j, y + i)
-			local x_off = Random(-10, 10)
-			SetRandomSeed(x + i, y + j)
-			local y_off = Random(-10, 10)
-			EntityLoad("mods/noita.fairmod/vfs/hamis/" .. body_part .. "/longleg.xml", x + x_off, y + y_off)
+		local allhamis = EntityGetWithTag( "spawned_hamis" )
+		if ( #allhamis < 50 ) then
+			for j, body_part in ipairs(hamisits) do
+				SetRandomSeed(x + j, y + i)
+				local x_off = Random(-10, 10)
+				SetRandomSeed(x + i, y + j)
+				local y_off = Random(-10, 10)
+				EntityLoad("mods/noita.fairmod/vfs/hamis/" .. body_part .. "/longleg.xml", x + x_off, y + y_off)
+			end
 		end
 	end
 

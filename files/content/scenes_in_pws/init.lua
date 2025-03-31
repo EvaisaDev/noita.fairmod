@@ -2,7 +2,7 @@
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
-local MAX_PARALLEL = 2 -- does NOT support large numbers
+local MAX_PARALLEL = 1 -- does NOT support large numbers
 
 local pixel_scene_files = {
 	"data/biome_impl/spliced/lavalake2.xml",

@@ -1179,6 +1179,18 @@ local biome_achievements = {
 		name = "The Illuminati",
 		description = "Discover the Gate Guardian.",
 	},
+	fairmod_cauldron = {
+		name = "Don't Forget to Flush",
+		description = "Someone solved the cauldron!",
+	},
+	fairmod_hamis_biome = {
+		name = "Hämis Our Beloved",
+		description = "Hamis is cool.",
+	},
+	fairmod_milk_biome = {
+		name = "Got Milk?",
+		description = "Lactose intolerants' worst nightmare.",
+	},
 }
 
 for id, info in pairs(biome_achievements) do

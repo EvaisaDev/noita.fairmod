@@ -19,7 +19,7 @@
     game_enemy_hp_scale="2"
     game_enemy_attack_speed="2" />
 
-  <Materials name="hamis_biome">
+  <Materials name="fairmod_hamis_biome">
     <MaterialComponent
       is_rare="1"
       material_index="10"

@@ -298,46 +298,6 @@ g_acidtank_left =
 	},
 }
 
-g_pixel_scene_04 =
-{
-	total_prob = 0,
-	{
-		prob   			= 0.5,
-		material_file 	= "",
-		visual_file		= "",
-		background_file	= "",
-		is_unique		= 0
-	},
-	{
-		prob   			= 0.5,
-		material_file 	= "data/biome_impl/snowcave/icicles.png",
-		visual_file		= "",
-		background_file	= "",
-		is_unique		= 0
-	},
-	{
-		prob   			= 0.5,
-		material_file 	= "data/biome_impl/snowcave/icicles2.png",
-		visual_file		= "",
-		background_file	= "",
-		is_unique		= 0
-	},
-	{
-		prob   			= 0.5,
-		material_file 	= "data/biome_impl/snowcave/icicles3.png",
-		visual_file		= "",
-		background_file	= "",
-		is_unique		= 0
-	},
-	{
-		prob   			= 0.5,
-		material_file 	= "data/biome_impl/snowcave/icicles4.png",
-		visual_file		= "",
-		background_file	= "",
-		is_unique		= 0
-	},
-}
-
 g_puzzle_capsule =
 {
 	total_prob = 0,
@@ -426,122 +386,6 @@ g_props =
 		offset_y 	= 0,
 		entity 	= "data/entities/props/physics_trap_electricity_enabled.xml"
 	},
-	
-}
-
-g_skulls =
-{
-	total_prob = 0,
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_skull_01.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_skull_02.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_skull_03.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_01.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_02.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_03.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_04.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_05.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_bone_06.xml"
-	},
-}
-
-g_stones =
-{
-	total_prob = 0,
-	{
-		prob   		= 2,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/stonepile.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_stone_01.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_stone_02.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_stone_03.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= "data/entities/props/physics_stone_04.xml"
-	},
-	{
-		prob   		= 4,
-		min_count	= 1,
-		max_count	= 1,    
-		offset_y 	= 0,
-		entity 	= ""
-	},
 }
 
 g_ghostlamp =
@@ -580,41 +424,6 @@ g_candles =
 	},
 }
 
-g_vines =
-{
-	total_prob = 0,
-	{
-		prob   		= 0.4,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/verlet_chains/cords/verlet_cord.xml"
-	},
-	{
-		prob   		= 0.3,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/verlet_chains/cords/verlet_cord_long.xml"
-	},
-	{
-		prob   		= 1.5,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= ""
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/verlet_chains/cords/verlet_cord_short.xml"
-	},
-	{
-		prob   		= 0.5,
-		min_count	= 1,
-		max_count	= 1,    
-		entity 	= "data/entities/verlet_chains/cords/verlet_cord_shorter.xml"
-	},
-}
-
 g_fish =
 {
 	total_prob = 0,
@@ -633,71 +442,41 @@ g_fish =
 	},
 }
 
-function safe( x, y )
-	local result = true
-	
-	if ( x >= 125 ) and ( x <= 249 ) and ( y >= 3070 ) and ( y <= 3187 ) then
-		result = false
-	end
-	
-	return result
-end
-
 -- actual functions that get called from the wang generator
 
 function init(x, y, w, h)
-	-- figure out positions for 8 statues within the biome
-	-- and spawn them if a position is within the bounds of this function call
-	-- NOTE: only 3 statues need to be destroyed to complete sequence
 end
 
 function spawn_small_enemies(x, y)
-	if safe( x, y ) then
-		spawn(g_small_enemies,x,y)
-	end
+	spawn(g_small_enemies,x,y)
 end
 
 function spawn_big_enemies(x, y)
-	if safe( x, y ) then
-		spawn(g_big_enemies,x,y)
-	end
+	spawn(g_big_enemies,x,y)
 end
 
 function spawn_unique_enemy(x, y)
-	if safe( x, y ) then
-		spawn(g_unique_enemy,x,y)
-	end
+	spawn(g_unique_enemy,x,y)
 end
 
 function spawn_unique_enemy2(x, y)
-	if safe( x, y ) then
-		spawn(g_unique_enemy2,x,y)
-	end
+	spawn(g_unique_enemy2,x,y)
 end
 
 function spawn_scavenger_party(x,y)
-	if safe( x, y ) then
-		spawn(g_scavenger_party, x, y)
-	end
+	spawn(g_scavenger_party, x, y)
 end
 
 function spawn_aquatic(x,y)
-	if safe( x, y ) then
-		spawn(g_aquatic, x, y)
-	end
+	spawn(g_aquatic, x, y)
 end
 
 function spawn_mist_colossal(x,y)
-	if safe( x, y ) then
-		spawn(g_mist_colossal, x, y)
-		--EntityLoad("mods/Apotheosis/files/entities/buildings/pylon_hex_water.xml", x, y)
-	end
+	spawn(g_mist_colossal, x, y)
 end
 
 function spawn_pylon(x,y)
-	if safe( x, y ) then
-		spawn(g_pylon, x, y)
-	end
+	spawn(g_pylon, x, y)
 end
 
 function spawn_items(x, y)
@@ -709,29 +488,17 @@ function spawn_items(x, y)
 end
 
 function spawn_lamp(x, y)
-	if safe( x, y ) then
-		spawn(g_lamp,x+5,y+10,0,0)
-	end
+	spawn(g_lamp,x+5,y+10,0,0)
 end
 
 function spawn_props(x, y)
-	if safe( x, y ) then
-		local r = ProceduralRandom( x-11.231, y+10.2157 )
-		
-		--if (r < 0.9) then
-			spawn(g_props,x,y-3,0,0)
-		--else
-		--	LoadPixelScene( "data/biome_impl/snowperson.png", "data/biome_impl/snowperson_visual.png", x-12, y-38, "", true )
-		--end
-	end
+	spawn(g_props,x,y-3,0,0)
 end
 
 function spawn_skulls(x, y)
-	spawn(g_skulls,x,y,0,0)
 end
 
 function spawn_stones(x, y)
-	spawn(g_stones,x,y,0,0)
 end
 
 function load_pixel_scene( x, y )
@@ -765,9 +532,7 @@ function spawn_altar_torch(x, y)
 end
 
 function spawn_acid(x, y)
-	if safe( x, y ) then
-		EntityLoad( "data/entities/props/dripping_acid_gas.xml", x, y )
-	end
+	EntityLoad( "data/entities/props/dripping_acid_gas.xml", x, y )
 end
 
 function load_altar( x, y )
@@ -776,15 +541,11 @@ function load_altar( x, y )
 end
 
 function load_acidtank_right( x, y )
-	if safe( x, y ) then
-		load_random_pixel_scene( g_acidtank_right, x-12, y-12 )
-	end
+	load_random_pixel_scene( g_acidtank_right, x-12, y-12 )
 end
 
 function load_acidtank_left( x, y )
-	if safe( x, y ) then
-		load_random_pixel_scene( g_acidtank_left, x-252, y-12 )
-	end
+	load_random_pixel_scene( g_acidtank_left, x-252, y-12 )
 end
 
 function spawn_shopitem( x, y )
@@ -792,7 +553,6 @@ function spawn_shopitem( x, y )
 end
 
 function spawn_vines(x, y)
-	spawn(g_vines,x+5,y+5)
 end
 
 function spawn_electricity_trap(x, y)
@@ -800,9 +560,7 @@ function spawn_electricity_trap(x, y)
 end
 
 function spawn_burning_barrel(x, y)
-	if safe( x, y ) then
-		EntityLoad( "data/entities/props/physics_barrel_burning.xml", x, y )
-	end
+	EntityLoad( "data/entities/props/physics_barrel_burning.xml", x, y )
 end
 
 function spawn_fish(x, y)
