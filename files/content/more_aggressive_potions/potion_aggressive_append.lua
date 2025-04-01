@@ -87,19 +87,19 @@ pa.potions = {
 		material = "blood_cold",
 	},
 	{
-		material = "cc_deceleratium",
+		material = "fairmod_deceleratium",
 		probability = 5,
 	},
 	{
-		material = "cc_heftium",
+		material = "fairmod_heftium",
 		probability = 5,
 	},
 	{
-		material = "cc_stillium",
+		material = "fairmod_stillium",
 		probability = 2,
 	},
 	{
-		material = "t_giga_slicing_liquid",
+		material = "fairmod_giga_slicing_liquid",
 		probability = 4,
 		amount = 500,
 	},
@@ -109,8 +109,24 @@ pa.potions = {
 		amount = 250,
 	},
 	{
-		material = "cc_grease",
+		material = "fairmod_grease",
 		probability = 20,
 		amount = 1000,
+	},
+	{
+		material = "fairmod_propanium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_tntinium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_minecartium",
+		probability = 1,
+	},
+	{
+		material = "fairmod_hamisium",
+		probability = 1,
 	},
 }

@@ -99,6 +99,9 @@ function EntityDropItem(entity, item_entity)
 	EntityRemoveFromParent(item_entity)
 	EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_hand", false)
 	EntitySetComponentsWithTagEnabled(item_entity, "enabled_in_world", true)
+	EntitySetComponentsWithTagEnabled(item_entity, "item_unidentified", false)
+
+
 
 	local inventory_comp = EntityGetFirstComponentIncludingDisabled(entity, "Inventory2Component")
 	if inventory_comp ~= nil then

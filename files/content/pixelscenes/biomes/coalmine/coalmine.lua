@@ -19,3 +19,31 @@ local horizontal_index = #g_pixel_scene_02
 for i = 1, #horizontal do
 	g_pixel_scene_02[horizontal_index + i] = horizontal[i]
 end
+
+g_items = {
+	total_prob = 0,
+	{
+		prob = 0,
+		min_count = 0,
+		max_count = 0,
+		entity = "",
+	},
+	{
+		prob = 2,
+		min_count = 1,
+		max_count = 1,
+		entity = "data/entities/items/wand_unshuffle_01.xml",
+	},
+	{
+		prob = 2,
+		min_count = 1,
+		max_count = 1,
+		entity = "data/entities/items/wand_level_01.xml",
+	},
+	{
+		prob = 2,
+		min_count = 1,
+		max_count = 1,
+		entity = "data/entities/items/wand_level_01_better.xml",
+	},
+}

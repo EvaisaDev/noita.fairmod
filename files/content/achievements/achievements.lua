@@ -471,6 +471,42 @@ achievements = {
 			return HasFlagPersistent("fairmod_copi_evil_letter")
 		end,
 	},
+	{
+		name = "THREAT ASSESSED",
+		description = "ENABLING T.R.O.L.L. UNITS",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/threat_level.png",
+		flag = "fair_risk",
+		unlock = function()
+			return tonumber(GlobalsGetValue("STEVARI_DEATHS", "0")) >= 84
+		end,
+	},
+	{
+		name = "Copibuddy! :D",
+		description = "Met your best friend!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy.png",
+		flag = "copibuddy",
+		unlock = function()
+			return GameHasFlagRun("copibuddy")
+		end,
+	},
+	{
+		name = "My Gift unto You",
+		description = "You're 1 closer to 100%!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy2.png",
+		flag = "copibuddy2",
+		unlock = function()
+			return HasFlagPersistent("COPIBUDDY_ACHEEV")
+		end,
+	},
+	{
+		name = "COPROTECTION ANTIVRIUS",
+		description = "Protecting users from scam callers since 283 BC!",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy3.png",
+		flag = "copibuddy3",
+		unlock = function()
+			return GameHasFlagRun("copibuddy.call_rerouted")
+		end,
+	},
 }
 
 local function romanize(num)
@@ -526,6 +562,20 @@ for i = 1, 10 do
 		flag = "shot_count_" .. i,
 		unlock = function()
 			return tonumber(StatsGetValue("projectiles_shot")) >= 2 ^ i
+		end,
+	})
+end
+
+for i = 1, 10 do
+	table.insert(achievements, {
+		name = "Nice Catch! " .. romanize(i),
+		description = "Gained 10 fishing power.",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/KILL_FISH.png",
+		flag = "nice_catch_" .. i,
+		unlock = function()
+			local got = GameHasFlagRun("killed_boss_fish")
+			GameRemoveFlagRun("killed_boss_fish")
+			return got
 		end,
 	})
 end
@@ -1129,6 +1179,18 @@ local biome_achievements = {
 		name = "The Illuminati",
 		description = "Discover the Gate Guardian.",
 	},
+	fairmod_cauldron = {
+		name = "Don't Forget to Flush",
+		description = "Someone solved the cauldron!",
+	},
+	fairmod_hamis_biome = {
+		name = "Hämis Our Beloved",
+		description = "Hamis is cool.",
+	},
+	fairmod_milk_biome = {
+		name = "Got Milk?",
+		description = "Lactose intolerants' worst nightmare.",
+	},
 }
 
 for id, info in pairs(biome_achievements) do
@@ -1157,5 +1219,5 @@ end
 
 -- setting flag
 for _, achievement in ipairs(achievements) do
-	achievement.flag = "fairmod_" .. achievement.flag or ("achievement_" .. achievement.name)
+	achievement.flag = string.lower("fairmod_" .. achievement.flag or ("achievement_" .. achievement.name))
 end

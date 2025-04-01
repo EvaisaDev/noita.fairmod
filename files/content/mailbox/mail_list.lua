@@ -46,6 +46,7 @@ return {
 			EntityAddTag(letter_entity, "grow")
 		end,
 		func = function(x, y) -- runs on mailbox open
+			RemoveFlagPersistent("fairmod_evil_letter_buffer")
 			GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/barren_puzzle_completed/create", x, y)
 		end,
 	},
@@ -85,6 +86,122 @@ return {
 	bomb = {
 		func = function(x, y)
 			EntityLoad("data/entities/projectiles/mine_explosion.xml", x, y)
+		end,
+	},
+	soma_prime = {
+		func = function(x, y)
+			RemoveFlagPersistent("fairmod_soma_prime_letter")
+			EntityLoad("mods/noita.fairmod/files/content/immortal_snail/gun/entities/soma/soma.xml", x, y)
+		end,
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "A weapon from beyond the Void", -- only used if create_letter is true
+		letter_content = [[
+		What a waste. Your scarred robe comes to beg one more!?
+		You will never pry the Sampo from the clutches of its rightful owner!
+		I, Captain Kolmisilma, have ascended, and the New Game salutes me!
+		You will die a lifetime, an eternity, a parallel universe of deaths before 
+		you are blessed by the endlessness of this place, this paradise.
+		I will never close an eye to the gift that is the New Game,
+		even as my flesh hardens, a wall of cursed rock awaits my joining!
+		- Captain Kolmisilma]], -- only used if create_letter is true
+	},
+	-- NEEDS SPAWN CONDITIOn
+	-- NEEDS clear_duplicates IGNORE
+	-- NEEDS COPIBUDDY MAIL
+	virus = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "YOURE PWNED!!", -- only used if create_letter is true
+		letter_content = [[It's so over for you buddy. I HACKED you. you do NOT want to find out what happens at 99 mails.]],
+		letter_sprite = "mods/noita.fairmod/files/content/mailbox/haxx.png", -- only used if create_letter is true
+		post_func = function(x, y, index) -- runs after the letter entity is created
+			SetRandomSeed(GameGetFrameNum() + index * 435, GameGetFrameNum() * 324)
+			-- check how many virus, mails there are
+			local mail = ModSettingGet("noita.fairmod.mail") or ""
+			local count = 0
+			for i in string.gmatch(mail, "virus,") do
+				count = count + 1
+			end
+
+			if count >=99 then
+				--ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
+				--AddFlagPersistent("copibuddy_next_run")
+				ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "copibuddyinstaller,")
+				ModSettingSet("noita.fairmod.mail", string.gsub((ModSettingGet("noita.fairmod.mail") or ""), "virus,", ""))
+			else
+				for i=1, 3 do
+					if Random()>0.5 then
+						print("Adding virus mail")
+						ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
+					end
+				end
+			end
+		end,
+	},
+	hardhat = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Hard Hat", -- only used if create_letter is true
+		letter_content = [[Hello player,
+		I couldn't help but notice you seem to be getting hit by heavy objects all over the place.
+		Firstly I would like to say, skill issue. 
+		However as I am a kind soul in this letter I have attached a hard hat which should help you survive.
+		Please stop dying I am getting bored.
+		- Eba]], -- only used if create_letter is true
+		letter_sprite = nil, -- only used if create_letter is true
+		func = function(x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/stalactite/entities/hard_hat/hard_hat.xml", x, y)
+
+			PhysicsApplyForce(entity, Random(-40, 40), -70)
+		end,
+	},
+	nokia = { -- won a free Nokia 3310
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Congratulations! You've Won a FREE Nokia 3310!", -- only used if create_letter is true
+		letter_content = [[
+			Dear Valued Customer,
+			We are excited to announce that you have been selected as the lucky winner of a brand new Nokia 3310! 
+			Your prize has been included in the mailbox, note that no warranty is provided for the product.
+			If you have any questions, please feel free to contact our support team at copisthings@gmail.com.
+			Congratulations once again, and thank you for being a valued customer.
+
+			Best regards,
+			The Prize Fulfillment Team
+			Not A Scam Company LTD]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.xml", x, y)
+			PhysicsApplyForce(entity, Random(-150, 150), -150)
+		end,
+
+	},
+	zipbomb = {
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "ILOVEYOU", -- only used if create_letter is true
+		letter_content = [[Kindly check the attached LOVELETTER coming from me.]], -- only used if create_letter is true
+		letter_sprite = nil, -- only used if create_letter is true
+		func = function(x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/zip_bomb/zip_bomb.xml", x, y)
+			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
+			if(velocity_comp)then
+				local vel_x = math.random(-100, 100)
+				local vel_y = -100
+				ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+			end
+		end,
+	},
+	hampill = { -- illegal drug
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Silkyroad delivery", -- only used if create_letter is true
+		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: Copi 'c' Things.
+			Your order of HÄMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
+			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
+			if(velocity_comp)then
+				local vel_x = math.random(-100, 100)
+				local vel_y = -100
+				ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+			end
 		end,
 	},
 }

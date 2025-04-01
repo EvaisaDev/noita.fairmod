@@ -1,0 +1,30 @@
+<Sprite
+	filename="mods/noita.fairmod/files/content/lavamonster/lavamonster.png"
+	offset_x="46"
+	offset_y="12"
+	default_animation="look"
+  >
+
+	<RectAnimation
+		frame_count="1"
+		frame_width="93"
+		frame_height="33"
+		frame_wait="1"
+		frames_per_row="1"
+		name="look"
+		pos_x="0"
+		pos_y="0"
+  ></RectAnimation>
+
+	<RectAnimation
+		frame_count="2"
+		frame_width="93"
+		frame_height="33"
+		frame_wait="0.5"
+		frames_per_row="2"
+		name="chomp"
+		pos_x="0"
+		pos_y="33"
+  ></RectAnimation>
+
+</Sprite>

@@ -1,0 +1,125 @@
+<Biome>
+  <Topology
+    name="$biome_hamis_biome"
+    type="BIOME_WANG_TILE"
+    background_image="mods/noita.fairmod/files/content/hamis_biome/biome/gfx/bg.png"
+    background_edge_left="mods/noita.fairmod/files/content/hamis_biome/biome/gfx/bg_left.png"
+    background_edge_right="mods/noita.fairmod/files/content/hamis_biome/biome/gfx/bg_right.png"
+    background_edge_top="mods/noita.fairmod/files/content/hamis_biome/biome/gfx/bg_top.png"
+    background_edge_bottom="mods/noita.fairmod/files/content/hamis_biome/biome/gfx/bg_bottom.png"
+    background_edge_priority="9"
+    limit_background_image="0"
+    wang_template_file="mods/noita.fairmod/files/content/hamis_biome/biome/wang.png"
+    lua_script="mods/noita.fairmod/files/content/hamis_biome/biome/hamis_biome.lua"
+    wang_map_width="260"
+    wang_map_height="260"
+    audio_music_2="rainforest"
+    audio_ambience="rainforest"
+    color_grading_g="0.8"
+    game_enemy_hp_scale="2"
+    game_enemy_attack_speed="2" />
+
+  <Materials name="fairmod_hamis_biome">
+    <MaterialComponent
+      is_rare="1"
+      material_index="10"
+      material_max="0.46"
+      material_min="0.443701"
+      material_name="gold"
+      rare_polka_is_boxed="0"
+      rare_polka_probability="0.960871"
+      rare_polka_radius_high="0.771429"
+      rare_polka_radius_low="0.357143"
+      rare_required_max="10"
+      rare_required_min="0"
+      rare_scale_x="0.0100004"
+      rare_scale_y="0.00357165"
+      rare_use_perlin="0"
+      rare_use_polka="1" />
+
+    <MaterialComponent
+      is_rare="0"
+      material_index="8"
+      material_max="0.86"
+      material_min="0.7"
+      material_name="fairmod_hamis_soil_lush"
+      rare_polka_is_boxed="1"
+      rare_polka_probability="0.2"
+      rare_polka_radius_high="0.65"
+      rare_polka_radius_low="0.2"
+      rare_required_max="10"
+      rare_required_min="0.2"
+      rare_scale_x="0.05"
+      rare_scale_y="0.05"
+      rare_use_perlin="0"
+      rare_use_polka="1" />
+
+    <MaterialComponent
+      is_rare="0"
+      material_index="10"
+      material_max="1.65"
+      material_min="0.86"
+      material_name="fairmod_hamis_sand_static_rainforest_dark"
+      rare_polka_is_boxed="1"
+      rare_polka_probability="0.2"
+      rare_polka_radius_high="0.65"
+      rare_polka_radius_low="0.2"
+      rare_required_max="10"
+      rare_required_min="0.2"
+      rare_scale_x="0.05"
+      rare_scale_y="0.05"
+      rare_use_perlin="0"
+      rare_use_polka="1" />
+
+    <MaterialComponent
+      is_rare="1"
+      material_index="8"
+      material_max="1.2"
+      material_min="0.65"
+      material_name="fairmod_hamis_meat"
+      rare_polka_is_boxed="1"
+      rare_polka_probability="0.157143"
+      rare_polka_radius_high="0.864286"
+      rare_polka_radius_low="0.0428571"
+      rare_required_max="10"
+      rare_required_min="0.371429"
+      rare_scale_x="0.0214286"
+      rare_scale_y="0.0214286"
+      rare_use_perlin="0"
+      rare_use_polka="1" />
+
+    <VegetationComponent
+      is_visual="1"
+      rand_seed="8376.86"
+      tree_extra_y="0"
+      tree_image_file=""
+      tree_image_visual=""
+      tree_material="sand_blue"
+      tree_probability="0.428571"
+      tree_radius_high="0.214286"
+      tree_radius_low="0.228571"
+      tree_width="1.1143"
+      visual_color="0xffb89f6c"
+      visual_offset_x="3"
+      visual_offset_y="7.5"
+      is_grass="1"
+      grass_requires_neighbors="0"
+      material_on_top_of="fairmod_hamis_soil_lush" />
+
+
+    <VegetationComponent
+      is_visual="1"
+      tree_image_file="mods/noita.fairmod/files/content/hamis_biome/biome/vegetation/bush_growth_$[1-8].xml"
+      tree_image_visual=""
+      tree_extra_y="-1"
+      tree_material="fairmod_hamis_plant_material"
+      tree_probability="0.3"
+      tree_radius_high="0.5"
+      tree_radius_low="0.5"
+      tree_width="10"
+      visual_color="0xff4d5d44"
+      visual_offset_x="15"
+      visual_offset_y="32" />
+  </Materials>
+
+</Biome>

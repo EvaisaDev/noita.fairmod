@@ -109,6 +109,57 @@ fish_list = {
 		end,
 	},
 	{
+		id = "orb",
+		name = "Orb of True Knowledge",
+		description = "Nice! An orb of true knowledge. Your wisdom is unmatched.",
+		drop_fish = false,
+		splash_screen = true,
+		sizes = { min = 0.5, max = 1.5 },
+		price = 10000,
+		probability = 25,
+		difficulty = 5,
+		catch_seconds = 3,
+		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
+		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/orb.png",
+		func = function(fish, x, y)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
+			_, x, y = RaytraceSurfaces(x + Random(-50, 50) / 50, y, x, y + 100)
+
+			local eid = EntityLoad("data/entities/items/orbs/orb_11.xml", x, y - 4)
+
+			local orb_comp = EntityGetFirstComponentIncludingDisabled(eid, "OrbComponent")
+			if orb_comp ~= nil then
+				ComponentSetValue2(orb_comp, "orb_id", GameGetOrbCountThisRun() + 1)
+			end
+
+			local item_comp = EntityGetFirstComponent( eid, "ItemComponent" )
+			if item_comp ~= nil then
+				if( ComponentGetValue2( item_comp, "auto_pickup") ) then
+					ComponentSetValue2( item_comp, "next_frame_pickable", GameGetFrameNum() + 60)
+				end
+			end
+		end,
+	},
+	{
+		id = "EVIL",
+		name = "Evil fucked up catfish",
+		description = "WHY",
+		drop_fish = false,
+		splash_screen = true,
+		sizes = { min = 0.5, max = 1.5 },
+		price = 10000,
+		probability = 20,
+		difficulty = 5,
+		catch_seconds = 3,
+		sprite = "mods/noita.fairmod/files/content/fishing/files/fish/sprites/standard_fish.png",
+		ui_sprite = "mods/noita.fairmod/files/content/fishing/files/ui/fish/evil.png",
+		func = function(fish, x, y)
+			SetRandomSeed(x + GameGetFrameNum(), y * GameGetFrameNum())
+
+			EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/boss_pit.xml", x, y)
+		end,
+	},
+	{
 		id = "wand",
 		name = "Wand",
 		description = "You caught a wand! Very cool.",

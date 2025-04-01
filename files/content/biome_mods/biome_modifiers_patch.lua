@@ -66,6 +66,9 @@ local added_biomes = {
 	"meat",
 	"robobase",
 	"funroom",
+	"fairmod_cauldron",
+	"fairmod_hamis_biome",
+	"fairmod_milk_biome",
 }
 
 for _, v in ipairs(added_biomes) do

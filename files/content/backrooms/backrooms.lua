@@ -28,12 +28,27 @@ RegisterSpawnFunction(0xfff5c944, "load_lamp")
 RegisterSpawnFunction(0xfff31919, "load_decal")
 RegisterSpawnFunction(0xff48a55e, "load_radio")
 
+RegisterSpawnFunction(0xfff688b4, "elevator_music")
+RegisterSpawnFunction(0xffac2a74, "elevator_trigger")
+
 function load_scene_1(x, y)
 	LoadPixelScene("mods/noita.fairmod/files/content/backrooms/wang/scenes/1.png", "", x, y, "", true)
 end
 
 function load_scene_2(x, y)
-	LoadPixelScene("mods/noita.fairmod/files/content/backrooms/wang/scenes/2.png", "", x, y, "", true)
+	if(Random(0, 100) < 80) then
+		LoadPixelScene("mods/noita.fairmod/files/content/backrooms/wang/scenes/2.png", "", x, y, "", true)
+	else
+		LoadPixelScene("mods/noita.fairmod/files/content/backrooms/wang/scenes/2exit.png", "mods/noita.fairmod/files/content/backrooms/wang/scenes/2exit-overlay.png", x, y, "mods/noita.fairmod/files/content/backrooms/wang/scenes/2exit-background.png", true)
+	end
+end
+
+function elevator_music(x, y)
+	EntityLoad("mods/noita.fairmod/files/content/backrooms/entities/elevator_music.xml", x, y)
+end
+
+function elevator_trigger(x, y)
+	EntityLoad("mods/noita.fairmod/files/content/backrooms/entities/elevator.xml", x, y)
 end
 
 function load_scene_3(x, y)

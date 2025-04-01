@@ -1,0 +1,147 @@
+<Biome>
+  <Topology 
+    name="$fairmod_biome_milkcaves"
+    type="BIOME_WANG_TILE"
+    background_image="mods/noita.fairmod/files/content/milk_biome/cheesebackground.png"
+    background_edge_left="mods/noita.fairmod/files/content/milk_biome/cheesebackground-left.png"
+    background_edge_right="mods/noita.fairmod/files/content/milk_biome/cheesebackground-right.png"
+    background_edge_top="mods/noita.fairmod/files/content/milk_biome/cheesebackground-top.png"
+    background_edge_bottom="mods/noita.fairmod/files/content/milk_biome/cheesebackground-bottom.png"
+    background_edge_priority="1"     
+    limit_background_image="0"
+
+    noise_biome_edges="1"
+    wang_template_file="mods/noita.fairmod/files/content/milk_biome/wang_tiles/milk_biome.png" 
+    lua_script="mods/noita.fairmod/files/content/milk_biome/scripts/milk_biome.lua"
+    wang_map_width="256"
+    wang_map_height="256"
+    audio_music_2="smokecave"
+    audio_ambience="snowcave"
+
+    color_grading_r="1.0"
+    color_grading_g="1.0"
+    color_grading_b="1.0"
+    >
+
+  <RandomMaterials>
+    <!-- random solid cheese (excluding cheddar and swiss) -->
+    <RandomColor input_color="FF01CFEE" output_colors="FFF3CD69,FFF3CD6A,FFF3CD6E,FFF3CD6F,FFF3CD70,FFF3CD71,FFF3CD72,FFF3CD73,FFF3CD75,FFF3CD76" />
+    <!-- random solid cheese (excluding cheddar and swiss) -->
+    <RandomColor input_color="FF01DFEE" output_colors="FFF3CD69,FFF3CD6A,FFF3CD6E,FFF3CD6F,FFF3CD70,FFF3CD71,FFF3CD72,FFF3CD73,FFF3CD75,FFF3CD76" />
+    <!-- random powder cheese -->
+    <RandomColor input_color="FF21CFEE" output_colors="FFF3CD6B,FFF3CD6C,FFF3CD74" />
+    <!-- random dairy-adjacent liquid (egg yolk, white, brine, molut) -->
+    <RandomColor input_color="FF41CFEE" output_colors="FFF3DD11,FFF3DD12,A02F754C,90D0FFE4" />
+  </RandomMaterials>
+  </Topology>
+
+  <Materials 
+    name="fairmod_milk_biome" 
+     >
+	
+	<MaterialComponent 
+      _enabled="1" 
+      is_rare="0" 
+      limit_max_y="2048" 
+      limit_min_y="100" 
+      limit_y="0" 
+      material_index="9" 
+      material_max="3.6" 
+      material_min="0.9" 
+      material_name="fairmod_swiss" 
+      rare_polka_is_boxed="1" 
+      rare_polka_probability="0.2" 
+      rare_polka_radius_high="0.65" 
+      rare_polka_radius_low="0.2" 
+      rare_required_max="10" 
+      rare_required_min="0.2" 
+      rare_scale_x="0.05" 
+      rare_scale_y="0.05" 
+      rare_use_perlin="0" 
+      rare_use_polka="1" >
+    </MaterialComponent>
+	
+	<MaterialComponent 
+      _enabled="1" 
+      is_rare="0" 
+      limit_max_y="2048" 
+      limit_min_y="100" 
+      limit_y="0" 
+      material_index="10" 
+      material_max="1.05" 
+      material_min="0.53" 
+      material_name="fairmod_cheddar" 
+      rare_polka_is_boxed="1" 
+      rare_polka_probability="0.2" 
+      rare_polka_radius_high="0.65" 
+      rare_polka_radius_low="0.2" 
+      rare_required_max="10" 
+      rare_required_min="0.2" 
+      rare_scale_x="0.05" 
+      rare_scale_y="0.05" 
+      rare_use_perlin="0" 
+      rare_use_polka="1" >
+    </MaterialComponent>
+	
+	<MaterialComponent 
+      _enabled="1" 
+      is_rare="0" 
+      limit_max_y="2248" 
+      limit_min_y="50" 
+      limit_y="0" 
+      material_index="9" 
+      material_max="0.58" 
+      material_min="0.1" 
+      material_name="milk" 
+      >
+    </MaterialComponent>
+
+    <MaterialComponent 
+      _enabled="1" 
+      is_rare="1" 
+      limit_max_y="2048" 
+      limit_min_y="100" 
+      limit_y="0" 
+      material_index="5" 
+      material_max="3.5" 
+      material_min="0.9" 
+      material_name="fairmod_mozzarella" 
+      rare_polka_is_boxed="0" 
+      rare_polka_probability="0.1" 
+      rare_polka_radius_high="1.8" 
+      rare_polka_radius_low="0.8" 
+      rare_required_max="10" 
+      rare_required_min="0.5" 
+      rare_scale_x="0.05" 
+      rare_scale_y="0.05" 
+      rare_use_perlin="0" 
+      rare_use_polka="1" >
+    </MaterialComponent>
+    
+    <!-- for the gold vein biome modifier. material_max and material_min must initially be 0 -->
+     <!-- parmesan is so damn expensive it might as well be gold -->
+    <MaterialComponent 
+      _enabled="1" 
+      is_rare="1" 
+      limit_max_y="2048" 
+      limit_min_y="750" 
+      limit_y="0" 
+      material_index="9" 
+      material_max="0" 
+      material_min="0" 
+      material_name="fairmod_parmesan" 
+      rare_polka_is_boxed="0" 
+      rare_polka_probability="0.357143" 
+      rare_polka_radius_high="0.564286" 
+      rare_polka_radius_low="0.328571" 
+      rare_required_max="10" 
+      rare_required_min="0.019" 
+      rare_scale_x="0.027514286" 
+      rare_scale_y="0.057514286" 
+      rare_use_perlin="1" 
+      rare_use_polka="1" >
+    </MaterialComponent>
+
+  </Materials>
+
+</Biome>

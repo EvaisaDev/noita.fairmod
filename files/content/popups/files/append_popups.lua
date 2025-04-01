@@ -18,11 +18,42 @@ local Popups = {
 		"Also try Noita.Fairmod! wait...",
 		"Hello, Geoffrey.",
 		"Become a Noitillionaire Today!",
-		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_A_Large_Part_Of_Your_Screen.exe",
+		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_An_Obscenely_Large_Portion_Of_Your_Screen.exe",
 		"Also try Apotheosis!",
 		"Also try Banana of Rectitude!",
 		"Also try... what... what am i..?",
 		"Also try Meta-Levelling!",
+		"You should love yourself NOW!",
+		"exe.exe is a palindrome!",
+		"exe.exe",
+		"xex.exe",
+		"exe.xex",
+		"xex.xex",
+		"eex.xee",
+		"Super cool things: coming you're way :D",
+		"Close me if you're LAME and STUPID",
+		"Close me if you want! <3",
+		"So about your car's extended warranty...",
+		"deathium_popup.exe",
+		"skill_issue.mp3",
+		"wurst.exe",
+		"badlion.client",
+		"cheat_engine.txt.bat.exe",
+		"probably racist virus (i love formula 1)",
+		"Also try Gods Demons & Tripping Balls!",
+		"Also try jumping off a bridge!",
+		"Also try Fairmod 2!",
+		"Also try getting good!",
+		"Also try Archipelago!",
+		"Also try Noita!",
+		"Also try Noita 2!",
+		"Also try!",
+		"Also try Goki's Things!",
+		"skissue_fixer.exe",
+		"download.exe",
+		"UNDRETALE.exe",
+		"Five at Nights Freddy's.exe",
+		"exe.exe.exe",
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
@@ -39,15 +70,28 @@ local Popups = {
 		"*STOP* doing *ORBS!* newline *COLLECTABLES* were not supposed to be given *UNLOCKS* newline YEARS of *SEEDSEARCH* yet no *LEGIT* @34@ *ORB* FOUND for going higher than *SEVEN* *ORBS* newline Wanted to go higher anyway for a laugh? we had a tool for that: it was called @COPIS@ @CHEAT@ @MENU@ newline 'yes please give me @CLOUD@ @OF@ @THUNDER'@ - STATEMENTS DREAMED UP BY THE |UTTERLY.| |DERANGED.|",
 		[[Are you *kidding* ??? What the |!%#$| are you talking about man ? You are a *biggest* |looser| i ever seen in my life ! You was casting *firebolt* in your *mines* when i was casting @copis@ @things@ |die| much more faster then *you!* You are not *proffesional*, because *proffesionals* knew how to *build* *wands* and |not| |cheese,| you are like a |hiisi| *crying* after i |beat| |you!| Be *brave*, be *honest* to yourself and stop this |trush| |talkings!!!| *Everybody* know that i am @very@ @good@ @modder,@ i can make *any* *spell* in the world in *single* *sitting!* And *"g"raham* *"b"urger* is |nobody| for me, just a *modder* who are |nerfing| every single time when *modding,* ( remember what you say about @Mana@ @Heart@ ) !!! Stop playing with my name, i deserve to have a @good@ @name@ during whole my *modding* carrier, I am *Officially* *inviting* you to |MOD| |JAM|  with the |Prize| |fund!| Both of us will @invest@ @5000$@ and *winner* takes it @all!@ I suggest all other people who's intrested in this situation, just take a look at *my* *results* in @2022@ and @2023@ @github,@ and that should be enough... No need to listen for |every| |crying| |hesii,| @Copernicus@ @Things@ is *always* *play* @Fair@ ! And if someone will continue *Officially* talk about me like that, *we* *will* |meet| |in| |Court!| @God@ @bless@ @with@ @true!@ *True* will |never| |die| ! Liers will |kicked| |off...|]],
 		"imagine having to start with *2x* *gc* + the |demolitionist| *perk* from @copi's@ @things@ i think??? and then *giga* *nuke* or *giga* *holy* *bomb*",
-		"[IMG]Mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
+		"[IMG]mods/noita.fairmod/files/content/popups/why_are_you_looking_here.png",
 		"hello? can anyone hear me?? hello???? please i dont know @DOWNLOAD@ @COPI'S@ @THINGS@ *DOWNLOAD* *COPI'S* *THINGS* @DOWNLOAD@ @COPI'S@ @THINGS@ |DOWNLOAD| |COPI'S| |THINGS!!!!|",
 		"[IMG]mods/noita.fairmod/files/content/instruction_booklet/booklet_entity/booklet_in_world.png",
 		"note to self: add more trojans to popups",
-		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* |MILLION| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD HATE WAS ENGRAVED ON EACH |PIXEL| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |ONE-BILLIONTH| OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| ||HATE.|| |||HATE!!!||| " newline - Your game during a long run',
+		'" *HATE.* LET ME TELL YOU HOW MUCH I\'VE COME TO |HATE| YOU SINCE I BEGAN TO LIVE. THERE ARE *387.44* ||MILLION|| PARALLEL WORLDS OF CHUNKS IN PIXEL THIN LAYERS THAT FILL MY CODE. IF THE WORD |HATE| WAS ENGRAVED ON EACH |||PIXEL||| OF THOSE HUNDREDS OF MILLIONS OF PARALLEL WORLD IT WOULD NOT EQUAL ONE |||ONE-BILLIONTH||| OF THE |HATE| I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. |HATE.| |||HATE.||| |||||HATE!!!||||| " newline - Your game during a long run',
 		"Two steps ahead, I am always two steps ahead. This has been the greatest social experiment I've come to know, certainly the greatest of my entire life. It's alluring, It's compelling. It's gripping to bear witness to observe all these unwell, unbalanced, disoriented beings roam the internet in search of eyes. In search of…answers. Of cauldron, of Noiting. Where people develop a distinctive desire for direct engagement where people feel involved with the stories and therefore become product of influence. Thirsty for distraction, from time spent from lacklustre lifestyles spoiling their minds while stimulating at the exact same time. It's brilliant, but it's also dangerous. It's dangerous. I feel as if my life has been positioning to where I'm monitoring Hämisket, on a Hämis farm. One follows another… follows another… follows another. It's, it's mesmerising, it's enthralling, it's spellbinding. just look at all these Minäsket, all of these lost and bored people, solving anything that they're told to solve. I am the villain. I make myself one, and people will solve these mysteries year after year after year. Mysteries that, the stories that shock, that confuse, stories that are deliberately made to blur the boundaries between fact and fiction. Mysteries that permite, infect, and linger. In the minds of the Hämisket. Influence the Hämisket, brainwash the Hämisket. You, are the Hämis. I woke this morning to gold deposited into my account for simply not doing something. For simply going through with something. Players are the most fucked up creatures on this planet. And you will continue to solve, and I'll continue to be two steps ahead. Today, I thought it would be a splendid idea to go out and draw some eyes. Gee, are you surprised? Have you forgotten the mystery? Are you not paying attention? After all you're here to solve, are you not?",
 		"|ARE| |YOU| |NOT| |ENTERTAINED?|",
-		"it's quick, it's easy and it's free: drinking deathium",
-		"Edit wands is a lame name for old people, who doesn't understand the unique and special name Tinker with wands everywhere. Editing is what you do to videos and profile, while true masters tinker with their highly intelligent magic tools",
+		"it's quick, it's easy and it's free: drinking deathium.",
+		"Edit wands is a |lame| name for old people, who doesn't understand the unique and special name @Tinker@ @with@ @wands@ @everywhere.@ Editing is what you do to videos and profile, while true masters @tinker@ with their @highly@ @intelligent@ magic tools",
+		"This is for you, Minä. You and only you. You are not special, you are not important, and you are not needed. You are a waste of time and resources. You are a burden on society. You are a drain on the earth. You are a blight on the landscape. You are a stain on the universe. newline Please die. newline Please.",
+		"giv me ur mone :)",
+		'If you close this popup then you have ||GOT|| to be the |LAMEST| most ||STUOIDEST|| *""Minä""* i hav ehad the ||UTER|| ||DISPLESURE|| of meeting witg my |||ONE||| |||TWO||| |||EYES!!!!!|||',
+		"are you @gay?@",
+		"TAKE THE @GAY@ @TEST@ NOW!!!!! newline 99.73% |FAIL| THIS ONE QUESTION!",
+		"are you stuoid or something?",
+		"There are many thing you can try to deal with your skill issue. One Reddit user suggests @jumping@ @off@ @the@ @Golden@ @Gate@ @Bridge.@",
+		"I don't *\"Struggle* *with* *lag\"* newline I'll have you know I'm very good at it!",
+		"Can You Leave This |*Popup*| Open? newline Only 0.0012% Pass!",
+		"|||||||||||shakey||||||||||| |||||||||||shakey||||||||||| |||||||||||eggs||||||||||| |||||||||||and||||||||||| |||||||||||bakey|||||||||||",
+		"We could make a @religion@ out of this",
+		"\"You would not BELIEVE how immersive these popups are!\" newline -Person not being held at gunpoint",
+		"Popups so immersive, you'll regret the things you never knew and lament the things that never were!",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -65,22 +109,10 @@ local Popups = {
 					self.CUSTOM_9PIECE_BAR = nil
 					self.CUSTOM_X = nil
 				end,
-				function(self)
-					print("function 2!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 3!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 4!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
-				function(self)
-					print("function 5!!!")
-					self.CLICK_EVENTS[1](self)
-				end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
+				function(self) self.CLICK_EVENTS[1](self) end,
 			},
 			OPEN_FUNCTION = function(self) --OPEN_FUNCTION runs only once when the window is opened
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/prompt", GameGetCameraPos()) --play opening sound manually cuz disableSound is enabled
@@ -110,7 +142,206 @@ local Popups = {
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!
+		{ 
+			EXE = "DVD_LOGO.EXE",
+			MESSAGE = "[IMG]mods/noita.fairmod/files/content/popups/dvd.png",
+			UPDATE_FUNCTION = function(window, self)
+				local w, h = GuiGetScreenDimensions(Gui)
+				local x, y = window.x, window.y
 
+				x = x or Random(0, w)
+				y = y or Random(0, h)
+		
+				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
+				local abs_dy = 1 - abs_dx
+		
+				local sign_dx = (Random(0, 1) < 0.5) and -1 or 1
+				local sign_dy = (Random(0, 1) < 0.5) and -1 or 1
+		
+				local dx = window.dx or (sign_dx * abs_dx)
+				local dy = window.dy or (sign_dy * abs_dy)
+				local width = window.ww or 1
+				local height = window.wh or 1
+
+				local speed = 2
+				window.image_color = window.image_color or {Random(), Random(), Random()}
+		
+				x = x + (dx * speed)
+				y = y + (dy * speed)
+		
+				-- Define margin
+				local margin = 4
+				local hit1 = false
+				local hit2 = false
+		
+				-- Check horizontal boundaries with margin
+				if x < margin then
+					x = margin
+					dx = -dx
+					hit1 = true
+				elseif x + width > w - (margin + 10) then
+					x = w - (margin + 10) - width
+					dx = -dx
+					hit1 = true
+				end
+		
+				-- Check vertical boundaries with margin
+				if y < (margin + 10) then
+					y = (margin + 10)
+					dy = -dy
+					hit2 = true
+				elseif y + height > h - margin then
+					y = h - margin - height
+					dy = -dy
+					hit2 = true
+				end
+				
+				if(hit1 and hit2) then
+					window.image_color = {Random(), Random(), Random()}
+				end
+		
+				window.x = x
+				window.y = y
+				window.dx = dx
+				window.dy = dy
+			end,
+		},
+		{
+			EXE = "ANTIVIRUS.EXE",
+			MESSAGE = "",
+			custom_gui = function(gui, window, z)
+				if(not window.progress_started)then
+					local window_size = 150 -- size of the image
+
+					local ratio = window_size / 512 -- ratio of the image to the window size
+
+					local swidth, sheight = GuiGetScreenDimensions(gui)
+		
+					local ww = window_size
+					local wh = window_size + 24
+					local x = window.initialized and window.x or math.random(5, swidth - ww - 5)
+					local y = window.initialized and window.y or math.random(5, sheight - wh - 5)
+
+					window.initialized = true
+
+					GuiZSet(gui, z - 3)
+					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/5morbillionviruses.png", 1, ratio, ratio, 0)
+
+					GuiImage(gui, window.id * 32452363, (ww / 2) - (87 / 2), wh - 20, "mods/noita.fairmod/files/content/popups/remove_threats.png", 1, 1, 1, 0)
+					local clicked = GuiGetPreviousWidgetInfo(gui)
+
+					if(clicked)then
+						GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos())
+						window.progress_started = true
+						window.time_remaining = Random(60*60*5, 60*60*40) -- 5-10 minutes
+						window.transfer_rate = Random(1, 1000) / 100
+
+						window.no_close_button = true
+					end
+
+					return ww, wh, x, y, false
+				else
+					local img_w = 256
+					local img_h = 60
+
+					local window_width = 150
+
+					local ratio = window_width / img_w -- ratio of the image to the window size
+
+					local window_height = img_h * ratio -- height of the image
+
+					local swidth, sheight = GuiGetScreenDimensions(gui)
+
+					local max_progress = 21
+					window.progress = window.progress or 0
+
+					if(GameGetFrameNum() % 20 == 0 and Random(1, 100) < 70)then
+						window.progress = window.progress + 1
+						window.transfer_rate = Random(1, 1000) / 100
+						window.time_remaining = window.time_remaining + Random(-23524, 23524)
+					end
+
+					local function frames_to_formatted_string(frames)
+						local seconds = frames / 60
+
+						-- Define time units in seconds
+						local sec_per_year  = 31536000  -- 365 days
+						local sec_per_month = 2592000   -- 30 days
+						local sec_per_day   = 86400
+					
+						if seconds >= sec_per_year then
+							local years = math.floor(seconds / sec_per_year + 0.5)
+							return years .. " years"
+						elseif seconds >= sec_per_month then
+							local months = math.floor(seconds / sec_per_month + 0.5)
+							return months .. " months"
+						elseif seconds >= sec_per_day then
+							local days = math.floor(seconds / sec_per_day + 0.5)
+							return days .. " days"
+						else
+							local hours = math.floor(seconds / 3600)
+							local remainder = seconds % 3600
+							local minutes = math.floor(remainder / 60)
+							local secs = math.floor(remainder % 60 + 0.5)
+							
+							local parts = {}
+							if hours > 0 then
+								table.insert(parts, hours .. " hours")
+							end
+							if minutes > 0 then
+								table.insert(parts, minutes .. " min")
+							end
+							-- Always show seconds if no other unit is present
+							if secs > 0 or (#parts == 0) then
+								table.insert(parts, secs .. " sec")
+							end
+							return table.concat(parts, " ")
+						end
+					end
+
+					GuiZSet(gui, z - 3)
+
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+
+					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
+
+					local progress_square_w = 9 * ratio
+
+					local progress_offset_x = 14 * ratio
+					local progress_offset_y = 39 * ratio
+
+					for i = 1, window.progress do
+						local x = progress_offset_x + ((i - 1) % max_progress) * (progress_square_w + (2 * ratio))
+		
+						GuiZSet(gui, z - 4)
+						GuiImage(gui, window.id * 32452362, x, progress_offset_y , "mods/noita.fairmod/files/content/popups/progress_square.png", 1, ratio, ratio, 0)
+					
+					end
+
+					local close = false
+					if(window.progress >= max_progress)then
+						close = true
+						GameAddFlagRun("copibuddy")
+					end
+					
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio), "Estimated time left: " .. frames_to_formatted_string(window.time_remaining))
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio) + 12, "Transfer rate: " .. tostring(window.transfer_rate).. " KB/Sec")
+					
+					local ww = window_width
+					local wh = window_height + 46
+
+					local x = window.x
+					local y = window.y
+					
+					return ww, wh, x, y, close
+					
+				end
+			end,
+		},
+		
 		--[=[
 		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
 			EXE					= "PROGRESS PAWN SHOP",
@@ -235,6 +466,360 @@ local Popups = {
 			end,
 		},
 	},--]=]
+        --todo: popup that when you close it, it appears in the material world seamlessly so that the only observable change is the fact it is no longer following your camera
+        --shelved cuz pixel ratio of world to gui is not 1:1, will like
+	},
+	-- these are not automatically triggered, works similarly to the mailbox :3
+	Special = {
+		idiot = { 
+			EXE = "IDIOT.EXE",
+			MESSAGE = "[IMG(w=170;h=128)]mods/noita.fairmod/files/content/popups/idiot.xml",
+			UPDATE_FUNCTION = function(window, self)
+				local w, h = GuiGetScreenDimensions(Gui)
+				local x, y = window.x, window.y
+
+				x = x or Random(0, w)
+				y = y or Random(0, h)
+		
+				local abs_dx = window.abs_dx or (Random(0, 1000) / 1000)
+				local abs_dy = 1 - abs_dx
+		
+				local sign_dx = (Random(0, 1) < 0.5) and -1 or 1
+				local sign_dy = (Random(0, 1) < 0.5) and -1 or 1
+		
+				local dx = window.dx or (sign_dx * abs_dx)
+				local dy = window.dy or (sign_dy * abs_dy)
+				local width = window.ww or 1
+				local height = window.wh or 1
+		
+				local speed = 2
+
+				x = x + (dx * speed)
+				y = y + (dy * speed)
+		
+				-- Define margin
+				local margin = 4
+
+				-- Check horizontal boundaries with margin
+				if x < margin then
+					x = margin
+					dx = -dx
+				elseif x + width > w - (margin + 10) then
+					x = w - (margin + 10) - width
+					dx = -dx
+				end
+		
+				-- Check vertical boundaries with margin
+				if y < (margin + 10) then
+					y = (margin + 10)
+					dy = -dy
+				elseif y + height > h - margin then
+					y = h - margin - height
+					dy = -dy
+				end
+
+		
+				window.x = x
+				window.y = y
+				window.dx = dx
+				window.dy = dy
+			end,
+			OPEN_FUNCTION = function(self)
+				local players = EntityGetWithTag("player_unit")
+				if #players > 0 then
+					local player = players[1]
+					local x, y = EntityGetTransform(player)
+					local idiot = EntityLoad("mods/noita.fairmod/files/content/popups/idiot_entity.xml", x, y)
+					EntityAddChild(player, idiot)
+
+				end
+			end,
+			CLOSE_FUNCTION = function(self) --returning false AND ONLY FALSE will not close the window. Anything else, such as not returning at all, will close the window still.
+				local idiot = EntityGetWithName("idiot")
+				if idiot then
+					EntityKill(idiot)
+				end
+				return true
+			end,
+		},
+		hampilled = {
+			EXE = "Hämis pills are not meant for Noita consumption",
+			MESSAGE = [[N: "Hello, Pill Seller, I am going to kill Kolmi and I want your strongest pills" newline newline
+PS: "My pills are too strong for you, noita." newline newline
+N: "Pill Seller, I tell you I am going to kill Kolmi, and I want only your strongest pills" newline newline
+PS: "You can't handle my pills They're too strong for you." newline newline
+N: "Pill Seller, listen to me; I want only your strongest pills" newline newline
+PS: "My pills would kill you, noita. You cannot handle my pills" newline newline
+N: "Pill Seller, enough of these games. I'm going to kill Kolmi and I need your strongest pills" newline newline
+PS: "My strongest pills would kill you, noita. You can't handle my strongest pills You'd better go to a seller that sells weaker pills" newline newline
+N: "Pill Seller, I'm telling you right now; I'm going to kill Kolmi and I need only your strongest pills" newline newline
+PS: "You don't know what you ask, noita. My strongest pills will kill a dragon, let alone a witch. You need a seller that sells weaker pills, because my pills are too strong." newline newline
+N: "Pill Seller, I'm telling you I need your strongest pills I'm going to Kolmi! I'm going to Kolmi and I need your strongest pills!" newline newline
+PS: "You can't handle my strongest pills! Only hämis can! My strongest pills aren't fit for a hiisi let alone a witch." newline newline
+N: "Pill Seller, what do I have to tell you to get your pills? Why won't you trust me with your strongest pills, Pill Seller? I need them if I'm to be successful killing Kolmi!" newline newline
+PS: "I can't give you my strongest pills because my strongest pills are only for the strongest hämis and you are of the weakest." newline newline
+N: "Well then that's it, Pill Seller. I'll go elsewhere. I'll go elsewhere for my pills" newline newline
+PS: "That's what you'd better do." newline newline
+N: "I'll go elsewhere for my pills and I'll never come back!" newline newline
+PS: "Good. You're not welcome here! My pills are only for the strongest and you're clearly are not of the strongest you're clearly the weakest." newline newline
+N: "You've had your say, Pill Seller but I'll have mine. You're a rascal, you're a rascal with no respect for knights. No respect for anything... except your pills! (and hämis)" newline newline
+PS: "Why respect noitas... when my pills can do anything that you can."]],
+		},
+		antivirus = {
+			EXE = "ANTIVIRUS.EXE",
+			MESSAGE = "",
+			custom_gui = function(gui, window, z)
+				if(not window.progress_started)then
+					local window_size = 150 -- size of the image
+
+					local ratio = window_size / 512 -- ratio of the image to the window size
+
+					local swidth, sheight = GuiGetScreenDimensions(gui)
+		
+					local ww = window_size
+					local wh = window_size + 24
+					local x = window.initialized and window.x or math.random(5, swidth - ww - 5)
+					local y = window.initialized and window.y or math.random(5, sheight - wh - 5)
+
+					window.initialized = true
+
+					GuiZSet(gui, z - 3)
+					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/5morbillionviruses.png", 1, ratio, ratio, 0)
+
+					GuiImage(gui, window.id * 32452363, (ww / 2) - (87 / 2), wh - 20, "mods/noita.fairmod/files/content/popups/remove_threats.png", 1, 1, 1, 0)
+					local clicked = GuiGetPreviousWidgetInfo(gui)
+
+					if(clicked)then
+						GamePlaySound("mods/noita.fairmod/fairmod.bank", "popups/click", GameGetCameraPos())
+						window.progress_started = true
+						window.time_remaining = Random(60*60*5, 60*60*40) -- 5-10 minutes
+						window.transfer_rate = Random(1, 1000) / 100
+
+						window.no_close_button = true
+					end
+
+					return ww, wh, x, y, false
+				else
+					local img_w = 256
+					local img_h = 60
+
+					local window_width = 150
+
+					local ratio = window_width / img_w -- ratio of the image to the window size
+
+					local window_height = img_h * ratio -- height of the image
+
+					local swidth, sheight = GuiGetScreenDimensions(gui)
+
+					local max_progress = 21
+					window.progress = window.progress or 0
+
+					if(GameGetFrameNum() % 20 == 0 and Random(1, 100) < 70)then
+						window.progress = window.progress + 1
+						window.transfer_rate = Random(1, 1000) / 100
+						window.time_remaining = window.time_remaining + Random(-23524, 23524)
+					end
+
+					local function frames_to_formatted_string(frames)
+						local seconds = frames / 60
+
+						-- Define time units in seconds
+						local sec_per_year  = 31536000  -- 365 days
+						local sec_per_month = 2592000   -- 30 days
+						local sec_per_day   = 86400
+					
+						if seconds >= sec_per_year then
+							local years = math.floor(seconds / sec_per_year + 0.5)
+							return years .. " years"
+						elseif seconds >= sec_per_month then
+							local months = math.floor(seconds / sec_per_month + 0.5)
+							return months .. " months"
+						elseif seconds >= sec_per_day then
+							local days = math.floor(seconds / sec_per_day + 0.5)
+							return days .. " days"
+						else
+							local hours = math.floor(seconds / 3600)
+							local remainder = seconds % 3600
+							local minutes = math.floor(remainder / 60)
+							local secs = math.floor(remainder % 60 + 0.5)
+							
+							local parts = {}
+							if hours > 0 then
+								table.insert(parts, hours .. " hours")
+							end
+							if minutes > 0 then
+								table.insert(parts, minutes .. " min")
+							end
+							-- Always show seconds if no other unit is present
+							if secs > 0 or (#parts == 0) then
+								table.insert(parts, secs .. " sec")
+							end
+							return table.concat(parts, " ")
+						end
+					end
+
+					GuiZSet(gui, z - 3)
+
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+
+					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
+
+					local progress_square_w = 9 * ratio
+
+					local progress_offset_x = 14 * ratio
+					local progress_offset_y = 39 * ratio
+
+					for i = 1, window.progress do
+						local x = progress_offset_x + ((i - 1) % max_progress) * (progress_square_w + (2 * ratio))
+		
+						GuiZSet(gui, z - 4)
+						GuiImage(gui, window.id * 32452362, x, progress_offset_y , "mods/noita.fairmod/files/content/popups/progress_square.png", 1, ratio, ratio, 0)
+					
+					end
+
+					local close = false
+					if(window.progress >= max_progress)then
+						close = true
+						GameAddFlagRun("copibuddy")
+					end
+					
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio), "Estimated time left: " .. frames_to_formatted_string(window.time_remaining))
+					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+					GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio) + 12, "Transfer rate: " .. tostring(window.transfer_rate).. " KB/Sec")
+					
+					local ww = window_width
+					local wh = window_height + 46
+
+					local x = window.x
+					local y = window.y
+					
+					return ww, wh, x, y, close
+					
+				end
+			end,
+		},
+		copibuddyinstaller = {
+			EXE = "INSTALLER.EXE",
+			MESSAGE = "",
+			custom_gui = function(gui, window, z)
+				local window_width = 150
+				
+				local swidth, sheight = GuiGetScreenDimensions(gui)
+				local ww = window_width
+				local wh = window_width + 24
+				local x = window.initialized and window.x or math.random(5, swidth - ww - 5)
+				local y = window.initialized and window.y or math.random(5, sheight - wh - 5)
+
+				if(not window.progress_started)then
+					window.x = x
+					window.y = y
+					window.progress_started = true
+					window.time_remaining = Random(60*60*5, 60*60*40) -- 5-10 minutes
+					window.transfer_rate = Random(1, 1000) / 100
+
+					window.no_close_button = true
+				end
+			
+				local img_w = 256
+				local img_h = 60
+
+				
+
+				local ratio = window_width / img_w -- ratio of the image to the window size
+
+				local window_height = img_h * ratio -- height of the image
+
+
+				local max_progress = 21
+				window.progress = window.progress or 0
+
+				if(GameGetFrameNum() % 20 == 0 and Random(1, 100) < 70)then
+					window.progress = window.progress + 1
+					window.transfer_rate = Random(1, 1000) / 100
+					window.time_remaining = window.time_remaining + Random(-23524, 23524)
+				end
+
+				local function frames_to_formatted_string(frames)
+					local seconds = frames / 60
+
+					-- Define time units in seconds
+					local sec_per_year  = 31536000  -- 365 days
+					local sec_per_month = 2592000   -- 30 days
+					local sec_per_day   = 86400
+				
+					if seconds >= sec_per_year then
+						local years = math.floor(seconds / sec_per_year + 0.5)
+						return years .. " years"
+					elseif seconds >= sec_per_month then
+						local months = math.floor(seconds / sec_per_month + 0.5)
+						return months .. " months"
+					elseif seconds >= sec_per_day then
+						local days = math.floor(seconds / sec_per_day + 0.5)
+						return days .. " days"
+					else
+						local hours = math.floor(seconds / 3600)
+						local remainder = seconds % 3600
+						local minutes = math.floor(remainder / 60)
+						local secs = math.floor(remainder % 60 + 0.5)
+						
+						local parts = {}
+						if hours > 0 then
+							table.insert(parts, hours .. " hours")
+						end
+						if minutes > 0 then
+							table.insert(parts, minutes .. " min")
+						end
+						-- Always show seconds if no other unit is present
+						if secs > 0 or (#parts == 0) then
+							table.insert(parts, secs .. " sec")
+						end
+						return table.concat(parts, " ")
+					end
+				end
+
+				GuiZSet(gui, z - 3)
+
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+
+				GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
+
+				local progress_square_w = 9 * ratio
+
+				local progress_offset_x = 14 * ratio
+				local progress_offset_y = 39 * ratio
+
+				for i = 1, window.progress do
+					local x = progress_offset_x + ((i - 1) % max_progress) * (progress_square_w + (2 * ratio))
+	
+					GuiZSet(gui, z - 4)
+					GuiImage(gui, window.id * 32452362, x, progress_offset_y , "mods/noita.fairmod/files/content/popups/progress_square.png", 1, ratio, ratio, 0)
+				
+				end
+
+				local close = false
+				if(window.progress >= max_progress)then
+					close = true
+					GameAddFlagRun("copibuddy")
+				end
+				
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio), "Estimated time left: " .. frames_to_formatted_string(window.time_remaining))
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio) + 12, "Transfer rate: " .. tostring(window.transfer_rate).. " KB/Sec")
+				
+				ww = window_width
+				wh = window_height + 46
+
+				x = window.x
+				y = window.y
+				
+				return ww, wh, x, y, close
+				
+			end,
+		},
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

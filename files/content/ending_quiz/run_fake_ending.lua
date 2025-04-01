@@ -168,7 +168,7 @@ function set_controls_enabled(enabled) --Disable's player's controls
 end
 
 function interacting(player_id, building_id, interactable_name)
-	if #sampo_check > 0 then
+	if #sampo_check > 0 and GameHasFlagRun("kolmi_killed") then
 		set_controls_enabled(false)
 		local quiz_table = generate_quiz_table()
 		GameTriggerMusicFadeOutAndDequeueAll(1)
@@ -176,6 +176,16 @@ function interacting(player_id, building_id, interactable_name)
 		for k = 1, #sampo_check do
 			EntityKill(sampo_check[k])
 		end
+
+		--Gameshow?? Kolmisilma loves gameshows!
+		--Kolmi will get real close to the player to watch... although they're a bit hungry...
+		GameAddFlagRun("fair_gameshow_kolmi")
+		local boss = EntityGetWithTag( "boss_centipede" ) or {}
+		for bp=1,#boss 
+		do local kolmi = boss[bp]
+			local limbbosscomp = EntityGetFirstComponentIncludingDisabled( kolmi, "LimbBossComponent" )
+			ComponentSetValue2(limbbosscomp, "state", 5)
+    		end
 
 		dialog = dialog_system.open_dialog({
 			name = "Noitillionare Host",
@@ -206,6 +216,8 @@ function interacting(player_id, building_id, interactable_name)
 				},
 			},
 		})
+	elseif( #sampo_check > 0 and not GameHasFlagRun("kolmi_killed") )then
+		GamePrint("Nuh uh uh, kill big guy over there first!")
 	end
 end
 --stylua: ignore end

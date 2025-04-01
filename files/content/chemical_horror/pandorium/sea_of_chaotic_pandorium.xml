@@ -7,7 +7,7 @@
 	    offset.y="-79"
 	    speed="10"
 	    noise_threshold="0.0"
-	    material="aa_chaotic_pandorium" >
+	    material="fairmod_chaotic_pandorium" >
 	</MaterialSeaSpawnerComponent>
 
 	<LifetimeComponent

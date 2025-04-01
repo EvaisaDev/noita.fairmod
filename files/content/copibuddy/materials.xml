@@ -1,0 +1,18 @@
+<Materials>
+	<CellDataChild
+		_parent="sand"
+		_inherit_reactions="0"
+		tags="[sand_other]"
+		name="fairmod_ash"
+		ui_name="Ashes of a fool"
+		liquid_sand="1"  
+		platform_type="0"
+		density="4"  
+		wang_color="C0FFEE"
+		cell_type="liquid" >
+		<Graphics
+			texture_file="mods/noita.fairmod/files/content/copibuddy/materials_gfx/ashes.png"
+			color="ff4d2d3c">
+		</Graphics>
+	</CellDataChild>
+</Materials>

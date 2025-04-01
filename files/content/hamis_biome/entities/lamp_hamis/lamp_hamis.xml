@@ -1,0 +1,81 @@
+<Entity name="$animal_longleg">
+	<Base file="data/entities/base_enemy_basic.xml">
+		<ItemChestComponent level="1" />
+
+		<AnimalAIComponent
+			escape_if_damaged_probability="100"
+			sense_creatures="1"
+			attack_melee_max_distance="10"
+			attack_dash_enabled="1"
+			eating_area_radius_x="8"
+			eating_area_radius_y="8"
+			mouth_offset_x="0"
+			mouth_offset_y="6" />
+
+		<SpriteComponent
+			image_file="data/enemies_gfx/longleg.xml"
+			offset_x="6"
+			offset_y="12" />
+
+		<SpriteAnimatorComponent
+			rotate_to_surface_normal="0" />
+
+		<DamageModelComponent
+			hp="1"
+			ragdoll_filenames_file="data/ragdolls/longleg/filenames.txt"
+			ragdoll_offset_y="-6"
+			blood_sprite_directional="data/particles/bloodsplatters/bloodsplatter_directional_green_$[1-3].xml"
+			blood_sprite_large="data/particles/bloodsplatters/bloodsplatter_green_$[1-3].xml"
+			blood_spray_material="spark_green_bright"
+			blood_spray_create_some_cosmetic="1" />
+
+		<CharacterPlatformingComponent
+			jump_velocity_y="-140"
+			run_velocity="25" />
+
+		<GenomeDataComponent
+			herd_id="spider" />
+
+		<HitboxComponent
+			_enabled="1"
+			aabb_min_x="-5"
+			aabb_min_y="-6"
+			aabb_max_x="5"
+			aabb_max_y="6" />
+
+		<CharacterDataComponent
+			collision_aabb_min_x="-2"
+			collision_aabb_max_x="2"
+			collision_aabb_min_y="-6"
+			collision_aabb_max_y="3"
+			mass="0.4" />
+	</Base>
+
+	<AudioComponent
+		file="data/audio/Desktop/animals.bank"
+		event_root="animals/longleg" />
+
+	<SpriteComponent
+		_tags="character"
+		image_file="mods/noita.fairmod/files/content/hamis_biome/entities/lamp_hamis/lamp_hamis_gfx.xml"
+		offset_x="6"
+		offset_y="12"
+		emissive="1"
+		additive="1"
+		rect_animation="stand" />
+
+	<LightComponent
+		update_properties="1"
+		radius="64"
+		r="150"
+		g="256"
+		b="150"
+		offset_x="2"
+		offset_y="2" />
+
+	<SpriteComponent
+		alpha="0.55"
+		image_file="data/particles/fog_of_war_hole_64.xml"
+		smooth_filtering="1"
+		fog_of_war_hole="1" />
+</Entity>

@@ -1,0 +1,32 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/content/pixelscenes/zote/gfx.xml"
+		offset_x="32"
+		offset_y="128"
+		has_special_scale="1"
+		special_scale_x="0.1"
+		special_scale_y="0.1" />
+
+	<VelocityComponent />
+	<SimplePhysicsComponent />
+
+	<InteractableComponent
+		ui_text="Press $0 to talk to the bug"
+		radius="30" />
+
+	<AudioLoopComponent
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="zote/talk"
+		auto_play="1"
+		play_on_component_enable="1"
+		calculate_material_lowpass="0" />
+
+	<LuaComponent
+		script_interacting="mods/noita.fairmod/files/content/pixelscenes/zote/dialog.lua"
+		script_source_file="mods/noita.fairmod/files/content/pixelscenes/zote/dialog.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1" />
+	<CameraBoundComponent
+		max_count="20"
+		distance="160000" />
+</Entity>

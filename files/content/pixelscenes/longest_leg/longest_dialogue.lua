@@ -47,9 +47,11 @@ end
 local dialogue_read_the_words_8 = function(dialogue)
 	dialogue.show({
 		name = shuffle("Longest Hamis"),
-		text = shuffle("And so, from the fires of the Hamis Lord") .. "\n" .. shuffle(
-			"the world was made whole and its purpose set aflame."
-		) .. "\n" .. shuffle("Hope you learned something from this story."),
+		text = shuffle("And so, from the fires of the Hamis Lord")
+			.. "\n"
+			.. shuffle("the world was made whole and its purpose set aflame.")
+			.. "\n"
+			.. shuffle("Hope you learned something from this story."),
 		options = {
 			{
 				text = "I believe in Hamis now",
@@ -233,6 +235,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
 	GameAddFlagRun("fairmod_dialog_interacting")
+	GameAddFlagRun("fairmod_longest_hamis_interacted")
 	bad_choice = true
 	dialog_system.open_dialog({
 		name = shuffle("Longest Hamis"),

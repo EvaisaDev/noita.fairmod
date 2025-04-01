@@ -5,9 +5,12 @@ dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
+dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
 dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+dofile_once("mods/noita.fairmod/files/content/hamis_biome/init.lua")
+dofile_once("mods/noita.fairmod/files/content/music_machine/init.lua")
 
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
@@ -53,6 +56,12 @@ local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
 local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
+local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
+local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/init.lua")
+local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
+local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
+local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
+local copibuddy = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -71,14 +80,12 @@ dofile_once("mods/noita.fairmod/files/content/collapse/init.lua")
 dofile_once("mods/noita.fairmod/files/content/perk_tomfoolery/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bonce/init.lua")
 dofile_once("mods/noita.fairmod/files/content/hearts_owie/init.lua")
-dofile_once("mods/noita.fairmod/files/content/cat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/quality_of_life/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cauldron/init.lua")
 dofile_once("mods/noita.fairmod/files/content/cactus/init.lua")
 dofile_once("mods/noita.fairmod/files/content/bad_apple/init.lua")
 dofile_once("mods/noita.fairmod/files/content/snowman/init.lua")
 dofile_once("mods/noita.fairmod/files/content/runaway_items/init.lua")
-dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/shield_generator/init.lua")
 dofile_once("mods/noita.fairmod/files/content/permanent_self_damage/init.lua")
 dofile_once("mods/noita.fairmod/files/content/mask_box/init.lua")
@@ -98,32 +105,38 @@ dofile_once("mods/noita.fairmod/files/content/stronger_bosses/init.lua")
 dofile_once("mods/noita.fairmod/files/content/worse_materials/init.lua")
 dofile_once("mods/noita.fairmod/files/content/tnt_thrower/init.lua")
 dofile_once("mods/noita.fairmod/files/content/otherworld_shop/init.lua")
-dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua")
 dofile_once("mods/noita.fairmod/files/content/crackable_potions/init.lua")
 dofile_once("mods/noita.fairmod/files/content/fix_global_pickups/init.lua")
+dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
+dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
+dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
+dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
+dofile_once("mods/noita.fairmod/files/content/better_helpers/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
+ModMaterialsFileAdd("mods/noita.fairmod/files/content/copibuddy/materials.xml")
 
 
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/rework_spells/rework_spells.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/minus_life/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/mon_wands/perk.lua")
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/actions.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/noita.fairmod/files/content/fishing/files/events/boss_fish/actions.lua" )
+ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/immortal_snail/gun/scripts/gun.lua" )
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
-
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
 
 ModMagicNumbersFileAdd("mods/noita.fairmod/files/magic_numbers.xml")
+dofile_once("mods/noita.fairmod/files/content/dynamic_magic_numbers/init.lua")
 
 --- I hate doing things without a hook
 function OnModPostInit()
 	dofile_once("mods/noita.fairmod/files/content/enemy_reworks/reworks.lua")
-	dofile_once("mods/noita.fairmod/files/content/water_is_bad/fuck_water.lua")
 	dofile_once("mods/noita.fairmod/files/content/fungal_shift/init.lua")
 	surface_bad:init()
 	random_alchemy:init()
@@ -132,14 +145,13 @@ end
 
 --- Seed init
 function OnMagicNumbersAndWorldSeedInitialized()
+	ModSettingSet("noita.fairmod.popups", "")
 	-- Seed translations changes rng with system time
 	local tv = { GameGetDateAndTimeUTC() }
 	local seed = tv[6] + tv[5] * 60 + tv[4] * 60 * 60
 	math.randomseed(seed)
 
-	dofile_once("mods/noita.fairmod/files/content/langmix/init.lua")
-	dofile_once("mods/noita.fairmod/files/content/butts/init.lua")
-	dofile_once("mods/noita.fairmod/files/content/translation_shuffle/init.lua")
+	dofile_once("mods/noita.fairmod/files/content/language_tomfoolery/init.lua")
 	--dofile_once("mods/noita.fairmod/files/content/langmix_extras/init.lua") --wretched thing, struggling to make this function with higher min values (different min value seems to break TLs)
 
 	random_alchemy:create()
@@ -155,19 +167,28 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	fakegold.OnMagicNumbersAndWorldSeedInitialized()
 	dofile_once("mods/noita.fairmod/files/content/vanilla_fix/init.lua")
 
-	dofile("mods/noita.fairmod/files/content/file_was_changed/init.lua")
-
 	dofile_once("mods/noita.fairmod/files/content/worse_items/init.lua")
 	milk_biome.OnMagicNumbersAndWorldSeedInitialized()
+	minecraft.Init()
+	--swapper.OnMagicNumbersAndWorldSeedInitialized()
+	dofile_once("mods/noita.fairmod/files/content/add_space_to_item/init.lua")
 end
 
 function OnPlayerSpawned(player)
 	surface_bad:spawn()
 	funny_settings.OnPlayerSpawned(player)
 
+	EntityAddComponent2(player, "LuaComponent", {
+		script_damage_received = "mods/noita.fairmod/files/content/stalactite/entities/hard_hat/damage_blocker.lua"
+	})
+
 	GameRemoveFlagRun("pause_snail_ai")
 	GameRemoveFlagRun("draw_evil_mode_text")
 	GameRemoveFlagRun("fairmod_dialog_interacting")
+
+	if GameHasFlagRun("fairmod_init") then return end
+	GameAddFlagRun("fairmod_init")
+	-- stuff after here only runs once on initial run start
 
 	local x, y = EntityGetTransform(player)
 
@@ -188,17 +209,13 @@ function OnPlayerSpawned(player)
 
 	----------------------------------
 
-	if GameHasFlagRun("fairmod_init") then return end
-	GameAddFlagRun("fairmod_init")
-	-- stuff after here only runs once on initial run start
-
 	dofile_once("mods/noita.fairmod/files/content/rotate/spawn_rats.lua")
 	-- you gain the booklet from the information kiosk
 	--dofile_once("mods/noita.fairmod/files/content/instruction_booklet/init.lua")
 
 	SetRandomSeed(2152, 12523)
 
-	if Random(1, 100) <= 50 then
+	if Random(1, 100) <= 33 then
 		GameAddFlagRun("kolmi_not_home")
 		print("Kolmi is not home on this one.")
 	end
@@ -259,12 +276,22 @@ function OnPlayerSpawned(player)
 		execute_every_n_frame = 1,
 	})
 
+	if(Random(0, 1000) < 5 or HasFlagPersistent("copibuddy_next_run"))then
+		GameAddFlagRun("copibuddy_will_haunt")
+		RemoveFlagPersistent("copibuddy_next_run")
+	end
+
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
+	--EntityLoad("mods/noita.fairmod/files/content/mailbox/zip_bomb/zip_bomb.xml", target_x - 40, target_y - 4)
+	--GamePickUpInventoryItem(player, EntityLoad("mods/noita.fairmod/files/content/fishing/files/events/boss_fish/fish_wand.xml", target_x - 40, target_y - 4), false)
+	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
 ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
+
+local pause_button_pressed = false
 
 function OnWorldPreUpdate()
 	ModTextFileSetContent = SetContent
@@ -294,15 +321,39 @@ function OnWorldPreUpdate()
 	snail_radar.update()
 	achievements:update()
 	gamblecore.Update()
+	logo_splash.update()
+	copibuddy.update()
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
 		-- GlobalsSetValue("fairmod_win_count", tostring(tonumber(GlobalsGetValue("fairmod_win_count", "0")) + 1))
 		ModSettingSet("fairmod_win_count", (ModSettingGet("fairmod_win_count") or 0) + 1)
 	end
+
+	-- debugging
+	if InputIsKeyJustDown(64) then
+		--local mx, my = DEBUG_GetMouseWorld()
+		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
+		--GameAddFlagRun("SPAWN_POPUP")
+		--ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "antivirus,")
+	
+		--[[GameAddFlagRun("copibuddy")
+		GameAddFlagRun("reset_copibuddy")
+		GameRemoveFlagRun("copibuddy_will_haunt")
+		RemoveFlagPersistent("copibuddy_next_run")]]
+	end
+
+	if(GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5)then
+		GameAddFlagRun("copibuddy")
+		GameAddFlagRun("reset_copibuddy")
+		GameRemoveFlagRun("copibuddy_will_haunt")
+	end
 end
 
-function OnWorldPostUpdate() end
+function OnWorldPostUpdate()
+		
+
+end
 
 local time_paused = 0
 local last_pause_was_inventory = false
@@ -310,19 +361,32 @@ function OnPausePreUpdate()
 	show_user_id.OnPausePreUpdate()
 	time_paused = time_paused + 1
 
-	if not last_pause_was_inventory and time_paused == 5 then GameAddFlagRun("draw_evil_mode_text") end
+	if(InputIsKeyDown(41))then
+		pause_button_pressed = true
+	end
+
+	if not last_pause_was_inventory and pause_button_pressed and time_paused == 5 then 
+		GameAddFlagRun("draw_evil_mode_text") 
+		GameAddFlagRun("draw_logo_splash")
+		pause_button_pressed = false
+	end
 	dofile("mods/noita.fairmod/files/content/misc/draw_pause_evil_mode.lua")
+	logo_splash.update()
 end
 
 function OnWorldInitialized()
 	popups.OnWorldInitialized()
 	user_seeds.OnWorldInitialized()
 	--better_world.OnWorldInitialized()
+	mod_compat.on_world_initialized()
 end
 
 function OnPausedChanged(is_paused, is_inventory_pause)
 	show_user_id.OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
+
+
+	
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
 		funny_settings.OnPausedChanged()
@@ -331,6 +395,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	elseif not is_paused then
 		-- unpaused
 		GameRemoveFlagRun("draw_evil_mode_text")
+		GameRemoveFlagRun("draw_logo_splash")
 		time_paused = 0
 	end
 end

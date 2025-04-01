@@ -1,0 +1,5 @@
+<Entity>
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/new_materium/spawners/propane.lua"
+		execute_on_added="1" />
+</Entity>

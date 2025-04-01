@@ -1,4 +1,4 @@
-<Entity name="$projectile_default" tags="projectile_player,mimic" >
+<Entity name="$projectile_default" tags="projectile_player,mimic,no_fucky_wucky" >
 
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent

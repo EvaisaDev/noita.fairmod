@@ -59,7 +59,7 @@
   </ProjectileComponent>
 	
 	<ParticleEmitterComponent 
-		emitted_material_name="cc_grease"
+		emitted_material_name="fairmod_grease"
 		gravity.y="0.3"
 		lifetime_min="0.25"
 		lifetime_max="1.0"

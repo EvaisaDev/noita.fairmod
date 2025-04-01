@@ -4,18 +4,18 @@ dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
 
-
 local function get_mail()
 	local mail_str = ModSettingGet("noita.fairmod.mail") or ""
+
 
 	-- split mail by comma
 	local mail = {}
 	for str in string.gmatch(mail_str, "([^,]+)") do
 		table.insert(mail, str)
 	end
+
 	return mail
 end
-
 
 local has_mail = #get_mail() > 0
 EntitySetComponentsWithTagEnabled(entity_id, "has_mail", has_mail)
@@ -53,6 +53,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			end,
 		})
 	else
+		local to_call = {}
 		dialog = dialog_system.open_dialog({
 			name = "Mailbox",
 			portrait = "mods/noita.fairmod/files/content/mailbox/portrait.png",
@@ -63,8 +64,12 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					text = "Empty the mailbox.",
 					func = function(dialog)
 
+						
+
 						-- loop through mail and call the function
 						for i, mail_id in ipairs(mail) do
+							local delay = math.max(30 - i, 1)
+
 							local mail_data = mail_list[mail_id]
 							if(mail_data)then
 								if(mail_data.create_letter)then
@@ -73,6 +78,19 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									if(ui_info_component)then
 										ComponentSetValue2(ui_info_component, "name", mail_data.letter_title or "Letter")
 									end
+
+									local ability_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "AbilityComponent")
+									if(ability_component)then
+										ComponentSetValue2(ability_component, "ui_name", mail_data.letter_title or "Letter")
+									end
+									
+									local velocity_comp = EntityGetFirstComponentIncludingDisabled(letter_entity, "VelocityComponent")
+									if(velocity_comp)then
+										local vel_x = math.random(-100, 100)
+										local vel_y = -100
+										ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
+									end
+
 									local item_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "ItemComponent")
 									if(item_component)then
 										ComponentSetValue2(item_component, "item_name", mail_data.letter_title or "Letter")
@@ -107,26 +125,28 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 											mail_data.letter_func(letter_entity)
 										end
 									end
-									local ability_component = EntityGetFirstComponentIncludingDisabled(letter_entity, "AbilityComponent")
-									if(ability_component)then
-										ComponentSetValue2(ability_component, "ui_name", mail_data.letter_title or "Letter")
-									end
-									
-									local velocity_comp = EntityGetFirstComponentIncludingDisabled(letter_entity, "VelocityComponent")
-									if(velocity_comp)then
-										local vel_x = math.random(-100, 100)
-										local vel_y = -100
-										ComponentSetValue2(velocity_comp, "mVelocity", vel_x, vel_y)
-									end
+				
 								end
 
 								if mail_data.func ~= nil then
-									mail_data.func(x, y - 17)
+									wait(delay)
+									mail_data.func(x, y - 17, i)
+								end
+
+								if(mail_data.post_func)then
+									table.insert(to_call, function() 
+										mail_data.post_func(x, y - 17, i)
+									end)
 								end
 							end
+
+							wait(delay)
 						end
 
+
 						ModSettingSet("noita.fairmod.mail", "")
+
+
 						dialog.close()
 					end,
 				},
@@ -142,6 +162,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
 
 				GameRemoveFlagRun("fairmod_dialog_interacting")
+
+				-- run post_funcs 
+				for i, func in ipairs(to_call) do
+					func()
+				end
 			end,
 		})
 	end

@@ -821,4 +821,178 @@ tweaks
 fixed ngplus iteration logic
 fixed void calendar
 updated tree visual
+fixing up the tree a bit
 fix bug
+Potions can crack/break in your inventory
+Fuck up temple of the art some more
+Give loan shark goons a hat
+Include credit update script
+working a bit more on NG+ backrooms
+some fix ig
+untested hammy "He's coming" dialogue
+fixed flickering
+Update scratch_ticket.lua
+new entry in HoF
+added more popup random msgs and exes
+working a bit on real_popup and tarot cards
+slight alteration to Advertisium (added copi suggested name)
+better world & bigger tree updates
+added better vault spawns
+funni vault changes
+minor stuff
+the copiquest
+Limit hamis material spawn quantity
+Limit acid shooter spawns further
+Make it easier for potions to crack
+Remove interaction from the stall I was working on
+Fix issue with boss arena in PW getting deleted on mod restart (DunkOrSlam)
+Add payphone ringing animation
+Only print current cheat into logger if it's at least 3 characters
+Should fix interactible stunlocks
+achievements less greedy per frame
+also flag here
+whoops, gui draw once per 30 frames
+Use entity_id instead of int
+Fix crash with unstable poly and snail
+Don't announce pickups if they were picked by enemies
+Fix heart attack death message
+Fixed a bug where fishing didn't work on pickups
+Leave a logger message for master of crashing attack
+Update booklet.lua
+remade into math.random
+more userseed shenanigans
+general stuffs and nonsense
+added a setting to disable achievements popup (it bothers some people)
+put some sfx into mixer
+attempt to failsafe the fishing somewhat
+Convert world to cheese if cheats are used
+Chests can drop orbs frequently
+Orbs are auto picked and enemies can pick them
+33% chance of snowman troll in boss arena
+Remove good TI events
+Ignore an error in spidernest
+minecraft WIP
+minecraft sounds
+minecraft disable for now
+confusion at misalignment
+Added egg whites and yolks which come from eggs
+please  help me anyone
+minecraft fixes
+I... am steve
+copi
+steve stuff
+sounds and stuff
+copi gun sounds
+broken audio pls fix this eba ok
+jerma
+fix snail and jerma
+randomize wands in mines
+fixed better ui
+began work on swapper content
+Add lavamonster to lavalake
+WAAAHG catfish thingy meow
+remove debugging stuffs
+remade rng for random alchemy
+ADD FUSG ACHIEVEMENT
+turn off debugging again clueless emoji
+Update rework_spells.lua
+copi hiiiiii copi hii
+copi test your code
+lowercase flag for achievements
+started on hamis biome, teleport compat
+dvd logo popup
+better direction rng for dvd logo
+hamis biome, connected to cheese and cauldron
+more hamis stuff
+some changes to materials
+added new materials to some potions
+random popup teleports
+copi please
+10 times faster bad water
+combined water tweaks with worse materials (less parsing)
+everybody loves larpa survey response
+no water
+nxml go brr
+nxml tostring
+camerabound for rats
+fixed the audio volume yet again
+ha:mis
+hamis pixelscenes
+only check new entities
+more mines
+new nxml
+made invisibility more fucked up and evil
+eviler wizard
+Merge remote-tracking branch 'upstream/labor-of-hate'
+did more work on swapper module
+faster for 50ms on parsing
+combined language tweaking into one function, now it doesn't parse it three times
+zote
+add elevator to backrooms
+fmod project changes
+git, no
+update fmod
+MY BIGGEST (LITERALLY) CONTRIBUTION
+more sane
+long names for spells
+randomized some magic numbers
+heh
+dragon egg
+eviler egg
+fuck the tablet
+Minecraft logo splashes
+Update splashes.lua
+add hard hat, also remove duplicate mail from mailbox upon loading
+hardhat reduces physics damage, work cannot be completed without killing kolmi
+nokia, virus, better mailbox :3
+fix issues i caused with the idiot virus
+whoops accidentally made the idiot virus 500% chance
+more random
+Revert "Update splashes.lua"
+I see the player you mean. Mina? Yes. Take care. It has reached a higher level now. It can read our thoughts.
+That doesn't matter. It thinks we are part of the game. I like this player it played well. It did not give up.
+ It is reading our thoughts as though they were words on a screen.  That is how it chooses to imagine many things, when it is deep in the dream of a game.
+Words make a wonderful interface. Very flexible. And less terrifying than staring at the reality behind the screen.
+They used to hear voices. Before players could read. Back in the days when those who did not play called the players witches, and warlocks. And players dreamed they flew through the air, on sticks powered by demons.
+ What did this player dream?  This player dreamed of sunlight and trees. Of fire and water. It dreamed it created. And it dreamed it destroyed. It dreamed it hunted, and was hunted. It dreamed of shelter.
+Hah, the original interface. A million years old, and it still works. But what true structure did this player create, in the reality behind the screen?
+It worked, with a million others, to sculpt a true world in a fold of the [scrambled], and created a [scrambled] for [scrambled], in the [scrambled].
+ It cannot read that thought.  No. It has not yet achieved the highest level. That, it must achieve in the long dream of life, not the short dream of a game.
+Does it know that we love it? That the fair mod is kind?
+entry to cauldron
+balls
+hamishamishamishamis
+music machine
+hamishroom
+Sometimes, through the noise of its thoughts, it hears copi, yes.
+But there are times it is sad, in the long runs. It creates new worlds that have no fairmod, and it shivers under a black sun, and it takes its sad player for reality.
+To cure it of modlessness would be BASED. The sorrow is part of its own shitty modlessness. We for narrative reasons cannot interfere.
+Sometimes when they are deep in god runs, I want to tell them, they are cringe without fairmod. Sometimes I want to tell them of their unimportance to the universe. Sometimes, when they have not made a modded run in a while, I want to help them install the mods they fear.
+It reads our commit log.
+Sometimes I do not care. Sometimes I wish to tell them, this run you take for truth is merely UNMODDED and SHIT!!!!!, I wish to tell them that they are COPILESS in the COPIGAME. They see so little of the workshop, in their long runs.
+And yet they play the mod.
+But it would be so much effort to tell them...
+better text bubble for copi
+"Too weak for this mod. To tell them how to play is to prevent them dying"
+I will not tell the player how to survive.
+add spinny
+COPI BLAST
+remove timer prints
+Update content.lua
+copi taunts
+damage responses
+fix copi payphone call
+Update module.lua
+fix copibuddy damage check stuffs
+try to fix rng for copibuddy maybe?
+eba do your work
+evil eba
+ The player is growing restless.  I will tell the player a story.  But not the truth.
+based and hämispilled
+Extend and randomize milk biome
+Fix spidernest error
+Tweak distance for spider launching
+Fix cauldron entrance issues
+Update milk biome background
+Biome modifiers for hamis/milk
+Fix a milk biome texture

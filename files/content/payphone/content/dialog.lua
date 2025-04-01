@@ -1,3 +1,5 @@
+local userseed = ModSettingGet("fairmod.userseed")
+
 local function get_distance(x1, y1, x2, y2)
 	return math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
 end
@@ -58,6 +60,14 @@ local function statue_closeness_dialog(dialog)
 			},
 		},
 	})
+end
+
+-- I use this for debugging :)
+
+do
+	--[[return {
+
+	}]]
 end
 
 return {
@@ -483,6 +493,8 @@ return {
 											end
 										elseif reward_final == "liminal" then
 											EntityApplyTransform(player, 1547, 14900)
+										elseif reward_final == "larpa" then
+											GameAddFlagRun("payphone_larpa")
 										end
 										hangup()
 									end,
@@ -500,6 +512,12 @@ return {
 									text = "Nope, it is perfect!",
 									func = function(dialog)
 										survey_end(dialog)
+									end,
+								},
+								{
+									text = "Everybody loves larpa.",
+									func = function(dialog)
+										survey_end(dialog, "larpa")
 									end,
 								},
 								{
@@ -642,7 +660,7 @@ return {
 									What are the 3 numbers on the back of your credit card?]],
 						options = {
 							{
-								text = tostring(Random(100, 999)),
+								text = userseed:sub(28, 30),
 								func = function(dialog)
 									dialog.show({
 										text = [[Correct! You've won 1000 gold! {@func disconnected}]],
@@ -966,26 +984,26 @@ return {
 		name = "Copi",
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
 		typing_sound = "sans",
-		text = [[Hello, It is I. Copi of things!!]],
+		text = [[{@color C0FFC0}Hello, It is I. Copi of things!!]],
 		options = {
 			{
 				text = "H.. Hello?",
 				func = function(dialog)
 					dialog.show({
-						text = [[Just calling to see if your ~Copi's Things~ mod is running!
-{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
+						text = [[{@color C0FFC0}Just calling to see if your ~Copi's Things~ mod is running!
+	{@color 808080}{@pause 15}(Don't lie, or you'll #suffer#!)]],
 						options = {
 							{
 								text = "No it is not..",
 								func = function(dialog)
 									dialog.show({
-										text = [[Oh what the scallop!! you better enable it #NOW#.]],
+										text = [[{@color C0FFC0}Oh what the scallop!! you better enable it #NOW#.]],
 										options = {
 											{
 												text = "No I don't think I will.",
 												func = function(dialog)
 													dialog.show({
-														text = [[What if I promise you an achievement if you do{@delay 15} #.# #.# #?#]],
+														text = [[{@color C0FFC0}What if I promise you an ~achievement~ if you do{@delay 15} #.# #.# #?#]],
 														options = {
 															{
 																text = "Deal!",
@@ -1019,7 +1037,7 @@ return {
 									if ModIsEnabled("copis_things") then
 										if tonumber(GlobalsGetValue("copis_things_version")) <= 0.5 then
 											dialog.show({
-												text = [[Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
+												text = [[{@color C0FFC0}Hmmmmm{@delay 15}#.# #.# #.# {@delay 3}{@pause 30}My copisenses are {@pause 20}~tingling~!{@pause 30}
 	Your version is not up to date! Make sure to update it!{@func disconnected}]],
 												options = {
 													{
@@ -1032,7 +1050,7 @@ return {
 											})
 										else
 											dialog.show({
-												text = [[Well you better go catch it! ~hehehe!~ {@func disconnected}]],
+												text = [[{@color C0FFC0}Well you better go catch it! ~hehehe!~ {@func disconnected}]],
 												options = {
 													{
 														text = "...",
@@ -1067,7 +1085,7 @@ return {
 										end
 										dialog.show({
 											text = [[{@sound default}{@delay 10}{@color FF0000}#LIAR.#
-	{@delay 3}{@color FFFFFF}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
+	{@delay 3}{@color C0FFC0}Go install it now to end the curse! {@delay 30}{@color FF0000}:3]],
 											options = {
 												{
 													text = "...",
@@ -1374,24 +1392,24 @@ return {
 				func = function(dialog)
 					GameAddFlagRun("random_teleport_next")
 					--GameAddFlagRun("no_return")
-				
+
 					local players = EntityGetWithTag("player_unit") or {}
-				
+
 					if players == nil or #players == 0 then return end
-				
+
 					local player = players[1]
-				
+
 					local x, y = EntityGetTransform(player)
-				
+
 					EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 					hangup()
 				end,
 			},
 			{
-				text = "*Pulls out uno reverse card*",
+				text = "No u.",
 				func = function(dialog)
 					dialog.show({
-						text = "Wait you can't do that! \n\\*Faint teleporing noise\\*{@func disconnected}",
+						text = "Wait you can't do that! \n\\*Faint teleporting noise\\*{@func disconnected}",
 						options = {
 							{
 								text = "He didn't see that one coming.",
@@ -1450,7 +1468,7 @@ return {
 					dialog.show({
 						text = [[It's a multi-game, multi-world randomizer. You connect
 						with multiple games and items are shuffled between them.
-
+					
 						Work together to complete all the games!]],
 						options = {
 							{
@@ -1656,6 +1674,371 @@ return {
 						},
 					})
 				end
+			},
+		},
+	},
+	{
+		name = "Steve",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_steve.png",
+		text = "{@func iamsteve}I... Am Steve. \nAs a child I yearned for the mines.\nBut something always got in the way..",
+		typing_sound = "none",
+		options = {
+			{
+				text = "Okay...?",
+				func = function(dialog)
+					dialog.show({
+						text = "{@func iamsteve}But the call of the mines was too strong.. \nSo one day I started digging.. and digging.. \nUntil I found...",
+						options = {
+							{
+								text = "Found WHAT?",
+								func = function(dialog)
+
+									local players = EntityGetWithTag("player_unit") or {}
+									if players == nil or #players == 0 then return end
+									local player = players[1]
+									local x, y = EntityGetTransform(player)
+									EntityLoad("mods/noita.fairmod/files/content/minecraft/minecraft.xml", x, y)
+									dialog.show({
+										text = "{@func iamsteve}This.{@func disconnected}",
+										options = {
+											{
+												text = "...",
+												func = function(dialog)
+													hangup()
+												end,
+											},
+										},
+									})
+
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Goodbye Steve.",
+				func = function(dialog)
+					hangup()
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my 
+		top secret project!]],
+		can_call = function() -- optional
+			return not GameHasFlagRun("copibuddy")
+		end,
+		options = {
+			{
+				text = "Uhhh... okay?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Thank you, oh copious one.",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 808080}{@pause 15}#INSTALLING#{@delay 15} #.# #.# #.#{@func copibuddy}{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function(dialog)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = [[{@color C0FFC0}Kneel kneel!
+		Your lord ~Copi~ {@pause 5}~Of~ {@pause 5}~Things~ {@pause 5} is here!]],
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
+		options = {
+			{
+				text = "I'm such a big fan!",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}I will grant you one of my boons! Go forth! Win fairmod!{@func disconnected}]],
+						options = {
+							{
+								text = "Thank you copi!",
+								func = function()
+									local players = EntityGetWithTag("player_unit") or {}
+									if #players<1 then hangup() return end
+									local x, y = EntityGetTransform(players[1])
+									dofile("data/scripts/perks/perk.lua")
+									perk_pickup(perk_spawn(x + Random(-15, 15), y + Random(-15, 15), perk_list[Random(1, #perk_list)].id, true), players[1], "", false, false)
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "I hate you!",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}In time you will learn to appreciate me! ~Hahaha!~{@func disconnected}]],
+						options = {
+							{
+								text = "What?",
+								func = function()
+									ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hampill,")
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+		typing_sound = "sans",
+		text = "{@color C0FFC0}Have you heard of the Apotheosis mod for noita?",
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
+		options = {
+			{
+				text = "No..?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}Well now you have!{@func disconnected}]],
+						options = {
+							{
+								text = "Hmm, how insightful. I will look it up on steam workshop now!",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+			{
+				text = "Yes!",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color C0FFC0}I'm glad :) it's a really cool project and I'm happy 
+						I get to work on it!{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function()
+									ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hampill,")
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi3.png",
+		typing_sound = "sans",
+		text = [[{@color 800000}{@delay 15} !pesj !pfo !jmnoh !pede !it !pemd" Jxof 
+		!gtnpfxm !bbfu !fpfuj@Hp !vl]],
+		can_call = function() 
+			return GameHasFlagRun("copibuddy") or Random(1, 3) == 1
+		end,
+		options = {
+			{
+				text = "What?",
+				func = function(dialog)
+					dialog.show({
+						portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi.png",
+						text = [[{@color C0FFC0}Huh? My head hurts.{@func disconnected}]],
+						options = {
+							{
+								text = "...",
+								func = function()
+									hangup()
+								end,
+							},
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi4.png",
+		typing_sound = "sans",
+		text = [[{@color 608060}{@delay 5}Shhhhh, #evil copi# might be listening....]],
+		can_call = function() -- optional
+			return not HasFlagPersistent("fairmod_evilcopi")
+		end,
+		options = {
+			{
+				text = "Who?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 608060}{@delay 5}He's basically me but evil.]],
+						options =  {
+							{
+								text = "You have an evil clone?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}He keeps raving about some "things". 
+										He cannot be trusted.]],
+										options =  {
+											{
+												text = "Uhh...",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}Shit, I've got to go.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	AddFlagPersistent("fairmod_evilcopi")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi4.png",
+		typing_sound = "sans",
+		text = [[{@color 608060}{@delay 5}Good, so you remembered.]],
+		can_call = function() -- optional
+			return HasFlagPersistent("fairmod_evilcopi") and not HasFlagPersistent("fairmod_evilcopi2")
+		end,
+		options = {
+			{
+				text = "How can I know you're not evil copi?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 608060}{@delay 5}Because I love hamis.]],
+						options =  {
+							{
+								text = "You're telling me evil copi hates hamis?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}Yes, only evil people hate hamis.
+										]]..(tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)>0 and "{@color 808080}~You feel the guilt of having slain hamis.~" or "",
+										options =  {
+											{
+												text = "Got it...",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}He's catching on. 
+														You heard nothing.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	AddFlagPersistent("fairmod_evilcopi2")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		name = "Copi",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi4.png",
+		typing_sound = "sans",
+		text = [[{@color 608060}{@delay 5}We're making progress. 
+		I see you've spared hamisket.]],
+		can_call = function() -- optional
+			return HasFlagPersistent("fairmod_evilcopi2") and (tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)==0
+		end,
+		options = {
+			{
+				text = "Why are they so special anyways?",
+				func = function(dialog)
+					dialog.show({
+						text = [[{@color 608060}{@delay 5}They're cute as fuck?]],
+						options =  {
+							{
+								text = "...That's it?",
+								func = function(dialog)
+									dialog.show({
+										text = [[{@color 608060}{@delay 5}Yeah? Evil copi HATES cute hamis.\n]],
+										options =  {
+											{
+												text = "I'll avoid killing them then..",
+												func = function(dialog)
+													dialog.show({
+														text = [[{@color 608060}{@delay 5}Read the back of the info booklet. 
+														I left a note.{@func disconnected}]],
+														options = {
+															{
+																text = "...",
+																func = function()
+																	RemoveFlagPersistent("fairmod_evilcopi2")
+																	RemoveFlagPersistent("fairmod_evilcopi")
+																	hangup()
+																end,
+															},
+														},
+													})
+												end,
+											}
+										},
+									})
+								end,
+							}
+						},
+					})
+				end,
 			},
 		},
 	},

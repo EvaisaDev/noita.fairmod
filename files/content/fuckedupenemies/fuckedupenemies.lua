@@ -1,6 +1,7 @@
 -- Eba made this
 -- Makes enemies very fucked up and evil.
 -- Idk
+-- Copi made this funnier
 local effects = {
 	"BERSERK",
 	"REGENERATION",
@@ -18,6 +19,8 @@ local effects = {
 	"STAINS_DROP_FASTER",
 	"SAVING_GRACE",
 	"DAMAGE_MULTIPLIER",
+	"DAMAGE_MULTIPLIER",
+	"RESPAWN",
 	"RESPAWN",
 	"PROTECTION_FIRE",
 	"PROTECTION_RADIOACTIVITY",
@@ -27,31 +30,74 @@ local effects = {
 	"TELEPORTITIS",
 	"TELEPORTITIS",
 	"TELEPORTITIS",
-	"STAINLESS_ARMOUR",
-	"NO_SLIME_SLOWDOWN",
 	"MOVEMENT_FASTER_2X",
 	"LOW_HP_DAMAGE_BOOST",
 	"MOVEMENT_FASTER_2X",
 	"LOW_HP_DAMAGE_BOOST",
-	"STUN_PROTECTION_ELECTRICITY",
-	"STUN_PROTECTION_FREEZE",
 	"PROTECTION_ALL",
 	"INVISIBILITY",
 	"INVISIBILITY",
 	"INVISIBILITY",
-	"PROTECTION_DURING_TELEPORT",
-	"PROTECTION_POLYMORPH",
-	"PROTECTION_FREEZE",
-	"FROZEN_SPEED_UP",
 	"RAINBOW_FARTS",
 }
 
 --- @class fuckupenemies
-local evil = {}
+local evil = {
+	processed = 2,
+}
 
 function evil:GiveRandomEffect(enemy)
+	local pec = EntityAddComponent2(enemy, "ParticleEmitterComponent", {
+		emitted_material_name = "spark_red",
+		render_ultrabright = true,
+		x_pos_offset_min = -1,
+		x_pos_offset_max = 1,
+		y_pos_offset_min = -9,
+		y_pos_offset_max = -7,
+		x_vel_min = 0,
+		x_vel_max = 0,
+		y_vel_min = -50,
+		y_vel_max = -10,
+		count_min = 2,
+		count_max = 5,
+		lifetime_min = 0.15,
+		lifetime_max = 0.30,
+		airflow_force = 0.1,
+		airflow_time = 0.1,
+		airflow_scale = 0.25,
+		is_trail = false,
+		create_real_particles = false,
+		emit_cosmetic_particles = true,
+		render_on_grid = true,
+		emission_interval_min_frames = 1,
+		emission_interval_max_frames = 1,
+		fade_based_on_lifetime = true,
+		is_emitting = true,
+		draw_as_long = true,
+		velocity_always_away_from_center = 100,
+		direction_random_deg = 360,
+	})
+	ComponentSetValue2(pec, "gravity", 0, 100)
+	ComponentSetValue2(pec, "area_circle_radius", 5, 5)
+
 	for _ = 1, 3 do
 		local comp = GetGameEffectLoadTo(enemy, effects[math.random(1, #effects)], true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "PROTECTION_POLYMORPH", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "PROTECTION_FREEZE", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "STUN_PROTECTION_ELECTRICITY", true)
+		ComponentSetValue2(comp, "frames", -1)
+	end
+	do
+		local comp = GetGameEffectLoadTo(enemy, "STUN_PROTECTION_FREEZE", true)
 		ComponentSetValue2(comp, "frames", -1)
 	end
 end
@@ -119,13 +165,13 @@ function evil:TweakAnimalComponent(headache, animal_ai)
 		attack_ranged_entity_count_max * damage_mult)
 	]]
 
-	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 50) == 1)
+	ComponentSetValue2(animal_ai, "defecates_and_pees", math.random(1, 44) == 1)
 	local creature_detection_range_x = ComponentGetValue2(animal_ai, "creature_detection_range_x")
 	local creature_detection_range_y = ComponentGetValue2(animal_ai, "creature_detection_range_y")
 	ComponentSetValue2(animal_ai, "creature_detection_range_x", creature_detection_range_x * (1 + (Random() / 2)))
 	ComponentSetValue2(animal_ai, "creature_detection_range_y", creature_detection_range_y * (1 + (Random() / 2)))
 	local attack_melee_enabled = ComponentGetValue2(animal_ai, "attack_melee_enabled")
-	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 30 and attack_melee_enabled or not attack_melee_enabled)
+	ComponentSetValue2(animal_ai, "attack_melee_enabled", math.random(1, 100) < 35 and attack_melee_enabled or not attack_melee_enabled)
 
 	--[[
 	local aggressiveness_min = ComponentGetValue2(animal_ai, "aggressiveness_min")
@@ -155,7 +201,7 @@ function evil:BuffEnemy(enemy)
 	local ex, ey = EntityGetTransform(enemy)
 	SetRandomSeed(ex, ey)
 	-- Copious bullshit ensues
-	local headache = (math.random(0, 10000) / 100) <= 2
+	local headache = (math.random(0, 5000) / 100) <= 2
 	-- Chicanery ends
 
 	local file_name = EntityGetFilename(enemy)
@@ -170,11 +216,13 @@ function evil:BuffEnemy(enemy)
 end
 
 function evil:OnWorldPreUpdate()
-	local enemies = EntityGetWithTag("enemy")
-
-	for _, enemy in ipairs(enemies) do
-		if not EntityHasTag(enemy, "evilified") then self:BuffEnemy(enemy) end
+	local max_entity = EntitiesGetMaxID()
+	for i = self.processed, max_entity do
+		---@diagnostic disable-next-line: cast-type-mismatch
+		---@cast i entity_id
+		if EntityHasTag(i, "enemy") and not EntityHasTag(i, "evilified") then self:BuffEnemy(i) end
 	end
+	self.processed = max_entity + 1
 end
 
 return evil

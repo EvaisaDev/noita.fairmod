@@ -9,6 +9,6 @@ for spidernest_xml in nxml.edit_file("data/entities/buildings/spidernest.xml") d
 		execute_every_n_frame = "60",
 		execute_times = "-1",
 		remove_after_executed = "0",
-		script_source_file = "mods/noita.fairmod/files/content/better_props/spidernest_append.lua",
+		script_source_file = "mods/noita.fairmod/files/content/better_props/spidernest_launcher.lua",
 	}))
 end

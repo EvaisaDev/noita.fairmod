@@ -1,4 +1,4 @@
-local ring_chance = 1
+local ring_chance = 100
 
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
@@ -6,10 +6,15 @@ local sprite_comp = EntityGetFirstComponentIncludingDisabled(entity_id, "SpriteC
 dialog = dialog or nil
 dialog_system = dialog_system or dofile_once("mods/noita.fairmod/files/lib/DialogSystem/dialog_system.lua")
 dialog_system.distance_to_close = 35
+dialog_system.use_entity_pos_for_close_distance = true
 dialog_system.sounds.pop = { bank = "mods/noita.fairmod/fairmod.bank", event = "loanshark/pop" }
 dialog_system.sounds.breathing = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/breathing" }
 dialog_system.sounds.gibberish = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/gibberish" }
 dialog_system.sounds.garbled = { bank = "mods/noita.fairmod/fairmod.bank", event = "payphone/garbled" }
+
+last_interactor = last_interactor or nil
+
+--dialog_system.sounds.steve = { bank = "mods/noita.fairmod/fairmod.bank", event = "minecraft/steve2" }
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 SetRandomSeed(x, y + GameGetFrameNum())
@@ -53,6 +58,10 @@ function teleport()
 	do_random_teleport = true
 end
 
+function copibuddy()
+	GameAddFlagRun("copibuddy")
+end
+
 function ng_portal()
 	EntityLoad("mods/noita.fairmod/files/content/payphone/content/rift/return_portal.xml", x, y - 45)
 end
@@ -76,9 +85,13 @@ end
 if dialog and in_call and #(EntityGetInRadiusWithTag(x, y, 30, "player_unit") or {}) == 0 then hangup() end
 
 dialog_system.functions.hangup = hangup
+dialog_system.functions.copibuddy = copibuddy
 dialog_system.functions.disconnected = disconnected
 dialog_system.functions.teleport = teleport
 dialog_system.functions.ng_portal = ng_portal
+dialog_system.functions.iamsteve = function()
+	GamePlaySound("mods/noita.fairmod/fairmod.bank", "minecraft/iamsteve", x, y)
+end
 
 local call_options = dofile("mods/noita.fairmod/files/content/payphone/content/dialog.lua")
 
@@ -155,7 +168,39 @@ local get_random_call = function(entity_who_interacted)
 	return call
 end
 
+
+if(last_interactor and dialog_system.is_any_dialog_open and GameHasFlagRun("copibuddy") and dialog and dialog.message.name ~= "Copi")then
+	if(Random(1, 100) <= 2 and GameGetFrameNum() % 30 == 0)then
+
+		GameAddFlagRun("copibuddy.call_rerouted")
+		
+		--dialog.close()
+		local can_call = {}
+		for i, call in ipairs(call_options) do
+			if (call.can_call == nil or call.can_call()) and call.name == "Copi" then table.insert(can_call, call) end
+		end
+		GlobalsSetValue("DialogSystem_dialog_last_frame_open", "0")
+		-- get random call
+		local call = can_call[Random(1, #can_call)]
+		local old_on_closed = call.on_closed
+		call.on_closed = function()
+			if old_on_closed ~= nil then old_on_closed() end
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(last_interactor, "viewing")
+		end
+		dialog_system.dialog_box_height = 70
+
+		dialog = dialog_system.open_dialog(call)
+		if call.func ~= nil then call.func(dialog) end
+
+	end
+end
+
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
+
+	last_interactor = entity_who_interacted
+
+	print("Interacting")
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then return end
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
 	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
@@ -170,8 +215,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
 		-- open random call
 		local call = get_random_call(entity_who_interacted)
+		local old_on_closed = call.on_closed
 		call.on_closed = function()
+			if old_on_closed ~= nil then old_on_closed() end
 			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
 		end
 		dialog_system.dialog_box_height = 70
 
@@ -195,11 +243,13 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					end,
 				},
 			},
-			on_closed = function()
-				GameAddFlagRun("ask_for_gerald")
-				GameRemoveFlagRun("fairmod_dialog_interacting")
-			end,
+			
 		})
+		dialog.on_closed = function()
+			GameAddFlagRun("ask_for_gerald")
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
+		end
 	elseif not in_call then
 		in_call = true
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "payphone/pickup", x, y)
@@ -217,9 +267,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					end,
 				},
 			},
-			on_closed = function()
-				GameRemoveFlagRun("fairmod_dialog_interacting")
-			end,
 		})
+		dialog.on_closed = function()
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+			EntityRemoveTag(entity_interacted, "viewing")
+			print("Call ended")
+		end
 	end
 end

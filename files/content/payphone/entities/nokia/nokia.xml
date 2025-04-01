@@ -1,0 +1,118 @@
+<Entity name="Nokia 3310" tags="hittable,teleportable_NOT,item_pickup" serialize="0" >
+  
+  <PhysicsBodyComponent 
+    _tags="enabled_in_world"
+    uid="1" 
+    allow_sleep="1" 
+    angular_damping="0" 
+    fixed_rotation="0" 
+    is_bullet="0" 
+    linear_damping="0"
+    auto_clean="0"
+    on_death_leave_physics_body="1"
+    hax_fix_going_through_ground="1"
+  ></PhysicsBodyComponent>
+  
+  <PhysicsImageShapeComponent 
+    body_id="1"
+    centered="1"
+    image_file="mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.png"
+    material="rock_box2d"
+  ></PhysicsImageShapeComponent>
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+  ></VelocityComponent>
+
+  <SpriteComponent
+    _tags="enabled_in_hand"
+    _enabled="0"
+    offset_x="4"
+    offset_y="4"
+    image_file="mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.png"
+  ></SpriteComponent>
+
+  <PhysicsThrowableComponent
+    max_throw_speed="180"
+    throw_force_coeff="1.5"
+  ></PhysicsThrowableComponent>
+
+	<SpriteAnimatorComponent
+	    _tags="enabled_in_world"
+	/>
+
+  <ItemComponent
+    _tags="enabled_in_world"
+    item_name="Nokia 3310"
+    max_child_items="0"
+    is_pickable="1"
+    is_equipable_forced="1"
+	play_spinning_animation="0"
+	play_hover_animation="0"
+    ui_sprite="mods/noita.fairmod/files/content/payphone/entities/nokia/nokia_ui.png"
+    ui_description="Also works as a blunt force projectile!"
+    preferred_inventory="QUICK"
+  ></ItemComponent>
+
+  <UIInfoComponent
+    _tags="enabled_in_world"
+    name="Nokia 3310" >
+  </UIInfoComponent>
+  
+  <AbilityComponent
+		ui_name="Nokia 3310"
+		throw_as_item="1"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<AudioComponent
+		file="data/audio/Desktop/projectiles.bank"
+		event_root="player_projectiles/throwable"
+		>
+	</AudioComponent>
+
+
+
+	<InheritTransformComponent/>
+	
+	<InteractableComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		radius="20"
+		ui_text="Press $0 to answer phone."
+		name="interact"
+	/>
+
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		script_source_file="mods/noita.fairmod/files/content/payphone/payphone.lua"
+		script_interacting="mods/noita.fairmod/files/content/payphone/payphone.lua"
+		execute_every_n_frame="1"
+		execute_on_added="1"
+		enable_coroutines="1"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
+	/>
+
+	<AudioLoopComponent
+		_tags="disconnected,enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="payphone/hungup"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+
+	<AudioLoopComponent
+		_tags="ring,enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="payphone/ring"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+
+</Entity>

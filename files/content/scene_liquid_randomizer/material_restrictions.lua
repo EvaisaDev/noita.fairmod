@@ -37,7 +37,6 @@ local inner_hm_banned_materials = {
 	-- Boring
 	water = true,
 	water_ice = true,
-	water_temp = true,
 	mimic_liquid = true,
 }
 
