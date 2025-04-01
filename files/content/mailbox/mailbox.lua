@@ -53,6 +53,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			end,
 		})
 	else
+		local to_call = {}
 		dialog = dialog_system.open_dialog({
 			name = "Mailbox",
 			portrait = "mods/noita.fairmod/files/content/mailbox/portrait.png",
@@ -63,8 +64,12 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 					text = "Empty the mailbox.",
 					func = function(dialog)
 
+						
+
 						-- loop through mail and call the function
 						for i, mail_id in ipairs(mail) do
+							local delay = math.max(30 - i, 1)
+
 							local mail_data = mail_list[mail_id]
 							if(mail_data)then
 								if(mail_data.create_letter)then
@@ -124,16 +129,24 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 								end
 
 								if mail_data.func ~= nil then
-									wait(30)
-									mail_data.func(x, y - 17)
+									wait(delay)
+									mail_data.func(x, y - 17, i)
+								end
+
+								if(mail_data.post_func)then
+									table.insert(to_call, function() 
+										mail_data.post_func(x, y - 17, i)
+									end)
 								end
 							end
 
-							wait(30)
+							wait(delay)
 						end
 
 
 						ModSettingSet("noita.fairmod.mail", "")
+
+
 						dialog.close()
 					end,
 				},
@@ -149,6 +162,11 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
 
 				GameRemoveFlagRun("fairmod_dialog_interacting")
+
+				-- run post_funcs 
+				for i, func in ipairs(to_call) do
+					func()
+				end
 			end,
 		})
 	end

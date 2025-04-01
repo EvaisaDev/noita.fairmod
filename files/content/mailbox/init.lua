@@ -17,7 +17,7 @@ local function clear_duplicates()
 	local mail_set = {}
 	local new_mail = {}
 	for i, mail_id in ipairs(mail) do
-		if not mail_set[mail_id] and mail_list[mail_id] then
+		if mail_id == "virus" or (not mail_set[mail_id] and mail_list[mail_id]) then
 			mail_set[mail_id] = true
 			table.insert(new_mail, mail_id)
 		end
@@ -66,6 +66,11 @@ module.spawn = function(x, y)
 	if( Random(0, 1000) <= 20)then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "zipbomb,")
 	end
+
+	if( Random(0, 1000) <= 8)then
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
+	end
+
 
 	if( Random(0, 1000) <= 20) and HasFlagPersistent("fairmod_first_time_mailbox") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "hampill,")

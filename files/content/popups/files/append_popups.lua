@@ -341,6 +341,7 @@ local Popups = {
 				end
 			end,
 		},
+		
 		--[=[
 		{	-- Window with 2 buttons, 1 deletes 3 progress and gives you an amount of gold. The other doubles the amount of gold. Trying to close it the first time tells you to wait and doubles it. Please make this work userk
 			EXE					= "PROGRESS PAWN SHOP",
@@ -698,7 +699,127 @@ PS: "Why respect noitas... when my pills can do anything that you can."]],
 					
 				end
 			end,
-		}
+		},
+		copibuddyinstaller = {
+			EXE = "INSTALLER.EXE",
+			MESSAGE = "",
+			custom_gui = function(gui, window, z)
+				local window_width = 150
+				
+				local swidth, sheight = GuiGetScreenDimensions(gui)
+				local ww = window_width
+				local wh = window_width + 24
+				local x = window.initialized and window.x or math.random(5, swidth - ww - 5)
+				local y = window.initialized and window.y or math.random(5, sheight - wh - 5)
+
+				if(not window.progress_started)then
+					window.x = x
+					window.y = y
+					window.progress_started = true
+					window.time_remaining = Random(60*60*5, 60*60*40) -- 5-10 minutes
+					window.transfer_rate = Random(1, 1000) / 100
+
+					window.no_close_button = true
+				end
+			
+				local img_w = 256
+				local img_h = 60
+
+				
+
+				local ratio = window_width / img_w -- ratio of the image to the window size
+
+				local window_height = img_h * ratio -- height of the image
+
+
+				local max_progress = 21
+				window.progress = window.progress or 0
+
+				if(GameGetFrameNum() % 20 == 0 and Random(1, 100) < 70)then
+					window.progress = window.progress + 1
+					window.transfer_rate = Random(1, 1000) / 100
+					window.time_remaining = window.time_remaining + Random(-23524, 23524)
+				end
+
+				local function frames_to_formatted_string(frames)
+					local seconds = frames / 60
+
+					-- Define time units in seconds
+					local sec_per_year  = 31536000  -- 365 days
+					local sec_per_month = 2592000   -- 30 days
+					local sec_per_day   = 86400
+				
+					if seconds >= sec_per_year then
+						local years = math.floor(seconds / sec_per_year + 0.5)
+						return years .. " years"
+					elseif seconds >= sec_per_month then
+						local months = math.floor(seconds / sec_per_month + 0.5)
+						return months .. " months"
+					elseif seconds >= sec_per_day then
+						local days = math.floor(seconds / sec_per_day + 0.5)
+						return days .. " days"
+					else
+						local hours = math.floor(seconds / 3600)
+						local remainder = seconds % 3600
+						local minutes = math.floor(remainder / 60)
+						local secs = math.floor(remainder % 60 + 0.5)
+						
+						local parts = {}
+						if hours > 0 then
+							table.insert(parts, hours .. " hours")
+						end
+						if minutes > 0 then
+							table.insert(parts, minutes .. " min")
+						end
+						-- Always show seconds if no other unit is present
+						if secs > 0 or (#parts == 0) then
+							table.insert(parts, secs .. " sec")
+						end
+						return table.concat(parts, " ")
+					end
+				end
+
+				GuiZSet(gui, z - 3)
+
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+
+				GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
+
+				local progress_square_w = 9 * ratio
+
+				local progress_offset_x = 14 * ratio
+				local progress_offset_y = 39 * ratio
+
+				for i = 1, window.progress do
+					local x = progress_offset_x + ((i - 1) % max_progress) * (progress_square_w + (2 * ratio))
+	
+					GuiZSet(gui, z - 4)
+					GuiImage(gui, window.id * 32452362, x, progress_offset_y , "mods/noita.fairmod/files/content/popups/progress_square.png", 1, ratio, ratio, 0)
+				
+				end
+
+				local close = false
+				if(window.progress >= max_progress)then
+					close = true
+					GameAddFlagRun("copibuddy")
+				end
+				
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio), "Estimated time left: " .. frames_to_formatted_string(window.time_remaining))
+				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
+				GuiText(gui, 12 * ratio, (35 * ratio) + (23 * ratio) + 12, "Transfer rate: " .. tostring(window.transfer_rate).. " KB/Sec")
+				
+				ww = window_width
+				wh = window_height + 46
+
+				x = window.x
+				y = window.y
+				
+				return ww, wh, x, y, close
+				
+			end,
+		},
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

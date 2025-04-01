@@ -111,17 +111,26 @@ return {
 	virus = {
 		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
 		letter_title = "YOURE PWNED!!", -- only used if create_letter is true
-		letter_content = [=[It's so over for you buddy. I HACKED you. you do NOT want to find out what happens at 99 mails.]=],
+		letter_content = [[It's so over for you buddy. I HACKED you. you do NOT want to find out what happens at 99 mails.]],
 		letter_sprite = "mods/noita.fairmod/files/content/mailbox/haxx.png", -- only used if create_letter is true
-		letter_func = function(letter_entity) -- runs after the letter entity is created
-			SetRandomSeed(GameGetFrameNum(), letter_entity)
-			if string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "virus,") >=99 then
-				ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
-				AddFlagPersistent("copibuddy_next_run")
-				string.gsub(ModSettingGet("noita.fairmod.mail"), "virus,", "")
+		post_func = function(x, y, index) -- runs after the letter entity is created
+			SetRandomSeed(GameGetFrameNum() + index * 435, GameGetFrameNum() * 324)
+			-- check how many virus, mails there are
+			local mail = ModSettingGet("noita.fairmod.mail") or ""
+			local count = 0
+			for i in string.gmatch(mail, "virus,") do
+				count = count + 1
+			end
+
+			if count >=99 then
+				--ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
+				--AddFlagPersistent("copibuddy_next_run")
+				ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "copibuddyinstaller,")
+				ModSettingSet("noita.fairmod.mail", string.gsub((ModSettingGet("noita.fairmod.mail") or ""), "virus,", ""))
 			else
 				for i=1, 3 do
 					if Random()>0.5 then
+						print("Adding virus mail")
 						ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
 					end
 				end

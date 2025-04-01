@@ -58,7 +58,7 @@ local get_wands = function()
 end
 
 return {
-	--[[{
+	{
 		text = function(copibuddy) -- can be either a function or a string
 			return "Well hello there! \nI don't think we've been properly introduced. \n\nI'm copi."
 		end,
@@ -97,7 +97,7 @@ return {
 			GameAddFlagRun("copibuddy_intro_done")
 			AddFlagPersistent("copibuddy_met_before")
 		end
-	},]]
+	},
 	{
 		text = "I'm copi, inventor of all things!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/inventor_of_things"},
