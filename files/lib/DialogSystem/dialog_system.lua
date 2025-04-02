@@ -275,6 +275,11 @@ dialog_system.open_dialog = function(message)
 			if type(on_closed_callback) == "function" then on_closed_callback() end
 			if dialog.on_closed and type(dialog.on_closed) == "function" then dialog.on_closed() end
 			if dialog_system.disable_controls then set_controls_enabled(true) end
+
+			-- deranged but might fix softlocks
+			GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
+			GameRemoveFlagRun("fairmod_dialog_interacting")
+
 		end)
 	end
 
