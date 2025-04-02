@@ -337,8 +337,8 @@ function OnWorldPreUpdate()
 		--GameAddFlagRun("SPAWN_POPUP")
 		--ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "antivirus,")
 	
-		GameAddFlagRun("copibuddy")
-		GameAddFlagRun("reset_copibuddy")
+		--GameAddFlagRun("copibuddy")
+		--GameAddFlagRun("reset_copibuddy")
 		--[[GameRemoveFlagRun("copibuddy_will_haunt")
 		RemoveFlagPersistent("copibuddy_next_run")]]
 	end
