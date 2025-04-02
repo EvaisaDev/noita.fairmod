@@ -45,7 +45,7 @@ local grease_barrels = {
 for index, value in ipairs(grease_barrels) do --why append when you can do the most jank fucking shit imagineable
 	ModTextFileSetContent(value, ModTextFileGetContent(value) .. [[
     table.insert(g_props, {
-        prob		= 0.5,
+        prob		= 0.2,
         min_count	= 1,
         max_count	= 1,
         offset_y 	= 0,
