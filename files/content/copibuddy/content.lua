@@ -109,7 +109,7 @@ return {
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/button_surprise"},
 		anim = "talk",
 		weight = 1.7,
-		frames = 400,
+		frames = 600,
 		condition = function(copibuddy)
 			return true
 		end,

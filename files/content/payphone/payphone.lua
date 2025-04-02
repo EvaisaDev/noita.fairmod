@@ -169,7 +169,7 @@ local get_random_call = function(entity_who_interacted)
 end
 
 
-if(last_interactor and dialog_system.is_any_dialog_open and GameHasFlagRun("copibuddy") and dialog and dialog.message.name ~= "Copi")then
+if(in_call and last_interactor and dialog_system.is_any_dialog_open and GameHasFlagRun("copibuddy") and dialog and dialog.message.name ~= "Copi")then
 	if(Random(1, 100) <= 2 and GameGetFrameNum() % 30 == 0)then
 
 		GameAddFlagRun("copibuddy.call_rerouted")

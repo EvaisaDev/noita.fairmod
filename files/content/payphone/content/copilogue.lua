@@ -33,17 +33,6 @@ Well done, {@color 80FF80}{@pause 15}disciple{@pause 15}-to{@pause 15}-be{@pause
 										text = [[Wonderful.]],
 										options = {
 											{
-												text = "That's... it?",
-												func = function(dialog)
-													local players = GetPlayers() or {}
-													GamePrintImportant("Your greed sickens me.")
-													for i=1, #players do
-														EntityKill(players[i])
-													end
-													hangup()
-												end,
-											},
-											{
 												text = "I concur.",
 												func = function(dialog)
 													local players = GetPlayers() or {}
@@ -60,6 +49,17 @@ Well done, {@color 80FF80}{@pause 15}disciple{@pause 15}-to{@pause 15}-be{@pause
 													hangup()
 												end,
 											},
+											{
+												text = "That's... it?",
+												func = function(dialog)
+													local players = GetPlayers() or {}
+													GamePrintImportant("Your greed sickens me.")
+													for i=1, #players do
+														EntityKill(players[i])
+													end
+													hangup()
+												end,
+											}
 										},
 									})
 								end,
