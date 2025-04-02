@@ -562,7 +562,7 @@ N: "Well then that's it, Pill Seller. I'll go elsewhere. I'll go elsewhere for m
 PS: "That's what you'd better do." newline newline
 N: "I'll go elsewhere for my pills and I'll never come back!" newline newline
 PS: "Good. You're not welcome here! My pills are only for the strongest and you're clearly are not of the strongest you're clearly the weakest." newline newline
-N: "You've had your say, Pill Seller but I'll have mine. You're a rascal, you're a rascal with no respect for knights. No respect for anything... except your pills! (and hämis)" newline newline
+N: "You've had your say, Pill Seller but I'll have mine. You're a rascal, you're a rascal with no respect for witches. No respect for anything... except your pills! (and hämis)" newline newline
 PS: "Why respect noitas... when my pills can do anything that you can."]],
 		},
 		antivirus = {
