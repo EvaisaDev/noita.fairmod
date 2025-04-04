@@ -193,7 +193,8 @@ return {
 		letter_content = [[
 			SHIP TO: 1 Mountain Blvd.
 			Purchaser info: Copi 'c' Things.
-			Your order of HÄMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.]],
+			Your order of HÄMIS ENHANCEMENT PILLS have arrived. It is not recommended that non-hamis consume them.
+			MAKE SURE TO KICK!]],
 		func = function(x, y) -- runs on mailbox open
 			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
 			local velocity_comp = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
