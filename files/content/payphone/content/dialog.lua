@@ -495,6 +495,8 @@ return {
 											EntityApplyTransform(player, 1547, 14900)
 										elseif reward_final == "larpa" then
 											GameAddFlagRun("payphone_larpa")
+										elseif reward_final == "copibuddy" then
+											GameAddFlagRun("copibuddy")
 										end
 										hangup()
 									end,
@@ -536,6 +538,12 @@ return {
 									text = "Make it liminal.",
 									func = function(dialog)
 										survey_end(dialog, "liminal")
+									end,
+								},
+								{
+									text = "Give me a friend.",
+									func = function(dialog)
+										survey_end(dialog, "copibuddy")
 									end,
 								},
 							},
