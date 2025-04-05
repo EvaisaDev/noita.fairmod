@@ -542,6 +542,9 @@ return {
 								},
 								{
 									text = "Give me a friend.",
+									enabled = function(stats)
+										return not GameHasFlagRun("copibuddy")
+									end,
 									func = function(dialog)
 										survey_end(dialog, "copibuddy")
 									end,
