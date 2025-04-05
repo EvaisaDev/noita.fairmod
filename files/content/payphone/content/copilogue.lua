@@ -12,7 +12,7 @@ Well done, {@color 80FF80}{@pause 15}disciple{@pause 15}-to{@pause 15}-be{@pause
 					dialog.show({
 						portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi2.png",
 						text = [[I will bequeath upon you my mightiest weapon.
-{@sound garbled}{@delay 10}{@color FF0000}#Slay 20 hiidet with it.#]],
+{@sound garbled}{@delay 10}{@color FF0000}#Slay 20 hiidet# {@color 808080}{@delay 1}{@sound default}(plural of hiisi){@sound garbled}{@delay 10}{@color FF0000} #with it.#]],
 						options = {
 							{
 								text = "Yes, milord.",
