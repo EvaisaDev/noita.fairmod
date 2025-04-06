@@ -402,7 +402,7 @@ return {
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/hamis_time"},
 		frames = 300,
 		weight = function(copibuddy)
-			return 0.75+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
+			return 0.65+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
