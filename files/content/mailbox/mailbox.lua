@@ -68,7 +68,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 
 						-- loop through mail and call the function
 						for i, mail_id in ipairs(mail) do
-							local delay = math.max(30 - i, 1)
+							local delay = math.max(20 - i, 1)
 
 							local mail_data = mail_list[mail_id]
 							if(mail_data)then
@@ -146,13 +146,17 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 
 						ModSettingSet("noita.fairmod.mail", "")
 
-
+						GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
+						GameRemoveFlagRun("fairmod_dialog_interacting")
+					
 						dialog.close()
 					end,
 				},
 				{
 					text = "Close the mailbox.",
 					func = function(dialog)
+						GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
+						GameRemoveFlagRun("fairmod_dialog_interacting")
 						dialog.close()
 					end,
 				},
@@ -162,6 +166,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GamePlaySound("mods/noita.fairmod/fairmod.bank", "mailbox/open", x, y)
 
 				GameRemoveFlagRun("fairmod_dialog_interacting")
+				GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
 
 				-- run post_funcs 
 				for i, func in ipairs(to_call) do
