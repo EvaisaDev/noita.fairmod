@@ -122,13 +122,16 @@ return {
 				count = count + 1
 			end
 
+			if(GameHasFlagRun("virus_finished"))then
+				return
+			end
+
 			if count >=99 then
-				--ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "copibuddy,")
-				--AddFlagPersistent("copibuddy_next_run")
+				GameAddFlagRun("virus_finished")
 				ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "copibuddyinstaller,")
 				ModSettingSet("noita.fairmod.mail", string.gsub((ModSettingGet("noita.fairmod.mail") or ""), "virus,", ""))
 			else
-				for i=1, 3 do
+				for i=1, 5 do
 					if Random()>0.5 then
 						print("Adding virus mail")
 						ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
