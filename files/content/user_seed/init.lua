@@ -77,6 +77,10 @@ local users = {
         seed = "XXXXXXXX398942599787XXXXXXXXXX",
         type = "streamer",
     },
+    xytio = {
+        seed = "XXXXXXXX412481022532XXXXXXXXXX",
+        type = "streamer",
+    },
 
     --funny numbers
     nearly_nonillionth = { --"wah wah wah these are astronomically unlikely to appear in the lifetime of any human on this earth-" shutup! its funny!
