@@ -21,5 +21,11 @@ function kick()
 	ComponentSetValue2(velcomp, "mVelocity", vel_x, vel_y)
 	local audio_loop = EntityGetFirstComponentIncludingDisabled(shooter, "AudioLoopComponent", "music")
 	ComponentSetValue2(audio_loop, "m_volume", math.min(2, ComponentGetValue2(audio_loop, "m_volume") + 0.6))
+	local snails = EntityGetInRadiusWithTag(x, y, 128, "snail") or {}
+	for i=1, #snails do
+		EntityInflictDamage( snails[i], 99999999999999999999999999999999999999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "KACHOW!!!", "DISINTEGRATED", 0, 0, shooter, x, y, 0.1 )
+		EntityKill(snails[i])
+		GameAddFlagRun("snailkill")
+	end
 	-- stylua: ignore end
 end

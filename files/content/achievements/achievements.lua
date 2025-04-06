@@ -490,6 +490,15 @@ achievements = {
 		end,
 	},
 	{
+		name = "Snail Slayer",
+		description = "yoiure french",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/snailkill.png",
+		flag = "snailkill",
+		unlock = function()
+			return GameHasFlagRun("snailkill")
+		end,
+	},
+	{
 		name = "My Gift unto You",
 		description = "You're 1 closer to 100%!",
 		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy2.png",
