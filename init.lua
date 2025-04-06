@@ -1,4 +1,8 @@
 --stylua: ignore start
+
+-- if you need to do a breaking change on persistent data, put it here
+dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
+
 local SetContent = ModTextFileSetContent
 dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 
