@@ -284,6 +284,15 @@ return {
 		end,
 	},
 	{
+		code = "haveanygamesonyourphone",
+		name = "kbidhbny",
+		description = "nokia get",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.xml", x, y)
+		end,
+	},
+	{
 		code = "secondamendment",
 		name = "Second Amendment",
 		description = "Oh, I'm Sorry, I Thought This Was America.",
