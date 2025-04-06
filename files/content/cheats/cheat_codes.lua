@@ -293,6 +293,14 @@ return {
 		end,
 	},
 	{
+		code = "whatsadotexey",
+		name = "installing ram",
+		description = ":)",
+		func = function(player)
+			ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "virus,")
+		end,
+	},
+	{
 		code = "secondamendment",
 		name = "Second Amendment",
 		description = "Oh, I'm Sorry, I Thought This Was America.",
