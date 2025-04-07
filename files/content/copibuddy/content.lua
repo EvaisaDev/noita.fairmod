@@ -134,6 +134,8 @@ return {
 
 				local twitch_event = streaming_events[Random(1, #streaming_events)]
 
+				GamePrintImportant(twitch_event.ui_name, twitch_event.ui_description)
+
 				_streaming_run_event(twitch_event.id)
 
 				copibuddy.event.taken_surprise = true
