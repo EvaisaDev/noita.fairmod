@@ -7,10 +7,15 @@ local devs = {
 	["conga_lyne"]=true,
 	-- Add yourselves
 }
+print("HOLY SHIT DOES THIS WORK")
 
 -- monkey patch message recieved callback
 local old_streaming_on_irc = _streaming_on_irc
-function streaming_on_irc_hook( is_userstate, sender_username, message, raw )
+function _streaming_on_irc( is_userstate, sender_username, message, raw )
+	print(sender_username:lower())
+	print(devs[sender_username:lower() or "INVALID_USER"])
+	print(message:sub(1, 5):lower():match("sudo "))
+	print(message:sub(6, -1))
 	if devs[sender_username:lower() or "INVALID_USER"] then
 		if message:sub(1, 5):lower():match("sudo ") then
 			message = message:sub(6, -1)
