@@ -820,6 +820,83 @@ PS: "Why respect noitas... when my pills can do anything that you can."]],
 				
 			end,
 		},
+		blindstreamer = {
+			EXE = "BLIND.PDF",
+			MESSAGE = "",
+			custom_gui = function(gui, window, z)
+				if(not window.progress_started)then
+					local window_size = 150 -- size of the image
+
+					local ratio = window_size / 512 -- ratio of the image to the window size
+
+					local swidth, sheight = GuiGetScreenDimensions(gui)
+		
+					local ww = window_size
+					local wh = window_size
+					local x = window.initialized and window.x or math.random(5, swidth - ww - 5)
+					local y = window.initialized and window.y or math.random(5, sheight - wh - 5)
+
+					window.initialized = true
+
+					GuiZSet(gui, z - 3)
+					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/blindstreamer.png", 1, ratio, ratio, 0)
+					return ww, wh, x, y, false
+				end
+			end,
+			CLOSE_FUNCTION = function(self) --returning false AND ONLY FALSE will not close the window. Anything else, such as not returning at all, will close the window still.
+				if not self.unlocked then return false end
+				print("Player closed the window >:|")
+			end,
+			CUSTOM_X = "mods/noita.fairmod/files/content/popups/custom_button.png",
+			UPDATE_FUNCTION = function(window, self)
+				window.progress = window.progress or 600
+				window.progress = window.progress - 1
+				if window.progress > 0 then
+					local function frames_to_formatted_string(frames)
+						local seconds = frames / 60
+	
+						-- Define time units in seconds
+						local sec_per_year  = 31536000  -- 365 days
+						local sec_per_month = 2592000   -- 30 days
+						local sec_per_day   = 86400
+					
+						if seconds >= sec_per_year then
+							local years = math.floor(seconds / sec_per_year + 0.5)
+							return years .. " years"
+						elseif seconds >= sec_per_month then
+							local months = math.floor(seconds / sec_per_month + 0.5)
+							return months .. " months"
+						elseif seconds >= sec_per_day then
+							local days = math.floor(seconds / sec_per_day + 0.5)
+							return days .. " days"
+						else
+							local hours = math.floor(seconds / 3600)
+							local remainder = seconds % 3600
+							local minutes = math.floor(remainder / 60)
+							local secs = math.floor(remainder % 60 + 0.5)
+							
+							local parts = {}
+							if hours > 0 then
+								table.insert(parts, hours .. " hours")
+							end
+							if minutes > 0 then
+								table.insert(parts, minutes .. " min")
+							end
+							-- Always show seconds if no other unit is present
+							if secs > 0 or (#parts == 0) then
+								table.insert(parts, secs .. " sec")
+							end
+							return table.concat(parts, " ")
+						end
+					end
+					self.EXE = table.concat{"BLIND.PDF: Closeable in ", frames_to_formatted_string(window.progress)}
+				else
+					self.CUSTOM_X = nil
+					self.EXE = "BLIND.PDF: Sponsored by Copi!"
+					self.unlocked = true
+				end
+			end
+		},
 	},
 
 	forcePrefab = nil, --set this to the prefab you wish to test, and it will guarantee it's spawning.

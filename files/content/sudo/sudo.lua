@@ -5,6 +5,7 @@ local devs = {
 	["lamia_zamia"]=true,
 	["userkuserk"]=true,
 	["conga_lyne"]=true,
+	["heinermann"]=true,
 	-- Add yourselves
 }
 print("HOLY SHIT DOES THIS WORK")
@@ -26,12 +27,15 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 				local cheat = cheat_codes[i]
 				local code = cheat.code
 				if type(code) == "function" then code = code() end
-				print(code)
+				--print(code)
 				if message == code then
 					if cheat.name then GamePrintImportant("Cheat activated: " .. cheat.name, cheat.description, cheat.decoration or "") end
-					cheat.func(player)
+					cheat.func(EntityGetWithTag("player_unit")[1])
 				end
 			end
+		elseif message:sub(1, 6):lower():match("print ") then
+			message = message:sub(7, -1)
+			GamePrintImportant(message, "From:" ..sender_username, "mods/noita.fairmod/files/content/sudo/3piece_meta.png")
 		end
 	end
 	if old_streaming_on_irc then

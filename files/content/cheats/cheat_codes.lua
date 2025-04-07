@@ -307,6 +307,12 @@ return {
 		end,
 	},
 	{
+		code = "blindstreamer",
+		func = function(player)
+			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "blindstreamer,")
+		end,
+	},
+	{
 		code = "secondamendment",
 		name = "Second Amendment",
 		description = "Oh, I'm Sorry, I Thought This Was America.",
