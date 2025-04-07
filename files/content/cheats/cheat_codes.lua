@@ -301,6 +301,12 @@ return {
 		end,
 	},
 	{
+		code = "copibuddy",
+		func = function(player)
+			GameAddFlagRun("copibuddy")
+		end,
+	},
+	{
 		code = "secondamendment",
 		name = "Second Amendment",
 		description = "Oh, I'm Sorry, I Thought This Was America.",

@@ -131,6 +131,7 @@ ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/noita.fairmod/files/content/
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/achievements/hooking/perk.lua")
 ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/funky_portals/perk.lua")
 ModLuaFileAppend( "data/scripts/projectiles/all_spells_stage.lua", "mods/noita.fairmod/files/content/achievements/hooking/all_spells.lua" )
+ModLuaFileAppend("data/scripts/streaming_integration/event_utilities.lua", "mods/noita.fairmod/files/content/sudo/sudo.lua")
 
 -- Optional imgui dep
 imgui = load_imgui and load_imgui({ mod = "noita.fairmod", version = "1.0.0" })
