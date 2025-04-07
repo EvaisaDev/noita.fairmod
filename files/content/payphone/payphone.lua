@@ -219,8 +219,8 @@ if(in_call and last_interactor and dialog_system.is_any_dialog_open and GameHasF
 
 	dialog = dialog_system.open_dialog(call)
 	if call.func ~= nil then call.func(dialog) end
-	GameRemoveFlagRun("safecall_redirect")
 end
+GameRemoveFlagRun("safecall_redirect")
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 

@@ -184,7 +184,7 @@ return {
 		weight = function(copibuddy)
 			-- if you wanna make it guaranteed if a healer is nearby for example you can manipulate the weight here.
 			-- eba make it scale with enemy density :3 @evaisa hi hi hi 
-			return 0.8+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
+			return 0.9+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
