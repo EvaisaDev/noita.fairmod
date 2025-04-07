@@ -313,6 +313,18 @@ return {
 		end,
 	},
 	{
+		code = "moshimoshi",
+		func = function(player)
+			GameAddFlagRun("moshimoshi")
+		end,
+	},
+	{
+		code = "safecaller",
+		func = function(player)
+			GameAddFlagRun("safecall_redirect")
+		end,
+	},
+	{
 		code = "secondamendment",
 		name = "Second Amendment",
 		description = "Oh, I'm Sorry, I Thought This Was America.",

@@ -133,6 +133,11 @@ if GameGetFrameNum() % 45 == 0 and not ringing and not in_call and Random(0, 100
 	start_ringing()
 end
 
+if GameHasFlagRun("moshimoshi") and not ringing and not in_call then
+	start_ringing()
+	GameRemoveFlagRun("moshimoshi")
+end
+
 if ringing then ring_timer = ring_timer + 1 end
 
 if not in_call and ringing and ring_timer >= ring_end_time then
@@ -192,8 +197,29 @@ if(in_call and last_interactor and dialog_system.is_any_dialog_open and GameHasF
 
 		dialog = dialog_system.open_dialog(call)
 		if call.func ~= nil then call.func(dialog) end
-
 	end
+end
+
+if(in_call and last_interactor and dialog_system.is_any_dialog_open and GameHasFlagRun("safecall_redirect") and dialog and dialog.message.name ~= "Copi")then
+	--dialog.close()
+	local can_call = {}
+	for i, call in ipairs(call_options) do
+		if (call.can_call == nil or call.can_call()) and call.name == "Copi" then table.insert(can_call, call) end
+	end
+	GlobalsSetValue("DialogSystem_dialog_last_frame_open", "0")
+	-- get random call
+	local call = can_call[Random(1, #can_call)]
+	local old_on_closed = call.on_closed
+	call.on_closed = function()
+		if old_on_closed ~= nil then old_on_closed() end
+		GameRemoveFlagRun("fairmod_dialog_interacting")
+		EntityRemoveTag(last_interactor, "viewing")
+	end
+	dialog_system.dialog_box_height = 70
+
+	dialog = dialog_system.open_dialog(call)
+	if call.func ~= nil then call.func(dialog) end
+	GameRemoveFlagRun("safecall_redirect")
 end
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
