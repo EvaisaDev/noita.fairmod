@@ -48,7 +48,7 @@ local Popups = {
 		"Also try Noita!",
 		"Also try Noita 2!",
 		"Also try!",
-		"Also try Goki's Things!",
+		-- "Also try Goki's Things!", FUCK YOU!!!!!!!!!!!
 		"skissue_fixer.exe",
 		"download.exe",
 		"UNDRETALE.exe",
