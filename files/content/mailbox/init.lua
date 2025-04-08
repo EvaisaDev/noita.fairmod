@@ -11,6 +11,7 @@ local function get_mail()
 	return mail
 end
 
+
 local function clear_duplicates()
 	local mail_list = dofile("mods/noita.fairmod/files/content/mailbox/mail_list.lua")
 	local mail = get_mail()

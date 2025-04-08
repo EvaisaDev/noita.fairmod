@@ -36,6 +36,12 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 		elseif message:sub(1, 6):lower():match("print ") then
 			message = message:sub(7, -1)
 			GamePrintImportant(message, "From:" ..sender_username, "mods/noita.fairmod/files/content/sudo/3piece_meta.png")
+		elseif message:sub(1, 5):lower():match("mail ") then
+			message = message:sub(6, -1)
+
+			print("sudo_mail", message)
+			
+			GlobalsSetValue("noita.fairmod.sudo_mail", GlobalsGetValue("noita.fairmod.sudo_mail", "")..sender_username.."\n"..message .."\n")
 		end
 	end
 	if old_streaming_on_irc then
