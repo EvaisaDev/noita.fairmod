@@ -54,7 +54,7 @@ local Popups = {
 		"UNDRETALE.exe",
 		"Five at Nights Freddy's.exe",
 		"exe.exe.exe",
-        "Goki's Curse shall consume all.",
+		"Goki's Curse shall consume all.",
 	},
 
 	-- [IMG]path = image NOTE must be start of line and only works alone
