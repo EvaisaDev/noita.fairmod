@@ -20,6 +20,7 @@ ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/con
 
 ModLuaFileAppend("data/scripts/biomes/snowcastle.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/snowcastle.lua") --remove safety region
 ModLuaFileAppend("data/scripts/biomes/vault.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/vault.lua") --remove safety region and increase chaos
+ModLuaFileAppend("data/scripts/biomes/hills.lua", "mods/noita.fairmod/files/content/better_world/biome_appends/hills.lua") --spawn worms underground occasionally
 
 
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")

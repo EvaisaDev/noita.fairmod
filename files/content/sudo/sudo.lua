@@ -8,7 +8,7 @@ local devs = {
 	["heinermann"]=true,
 	-- Add yourselves
 }
-print("HOLY SHIT DOES THIS WORK")
+--print("HOLY SHIT DOES THIS WORK") yes; it does, now shut up.
 
 -- monkey patch message recieved callback
 local old_streaming_on_irc = _streaming_on_irc
