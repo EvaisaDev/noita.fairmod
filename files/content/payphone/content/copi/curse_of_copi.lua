@@ -10,8 +10,8 @@ if not ModIsEnabled("copis_things") then
 	if(#EntityGetInRadiusWithTag(x, y, 512, "copi") < 10)then
 			
 		SetRandomSeed(x + GameGetFrameNum(), y)
-		EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", x + Random(-5, 5), y + Random(-5, 5))
-
+		local copi = EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", x + Random(-5, 5), y + Random(-5, 5))
+		EntityRemoveTag(copi, "enemy")
 	end
 
 

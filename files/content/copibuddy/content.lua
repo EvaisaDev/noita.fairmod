@@ -184,7 +184,7 @@ return {
 		weight = function(copibuddy)
 			-- if you wanna make it guaranteed if a healer is nearby for example you can manipulate the weight here.
 			-- eba make it scale with enemy density :3 @evaisa hi hi hi 
-			return 0.9+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
+			return 0.6+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.1
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
@@ -198,7 +198,7 @@ return {
 			return count > 0
 		end,
 		func = function(copibuddy) -- this function is called when the event is triggered
-			copibuddy.current_target = nil
+			--copibuddy.current_target = nil
 		end,
 		update = function(copibuddy) -- this function is called every frame while event is active
 
@@ -979,8 +979,8 @@ return {
 							SetRandomSeed(x + GameGetFrameNum(), y + i * 100)
 							local target_x, target_y = x + Random(-5, 5), y + Random(-5, 5)
 
-							EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", target_x, target_y)
-					
+							local copi = EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", target_x, target_y)
+							EntityRemoveTag(copi, "enemy")
 							-- spawn poof
 							EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/poof.xml", target_x, target_y)
 						end

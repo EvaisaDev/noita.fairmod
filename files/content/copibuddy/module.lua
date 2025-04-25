@@ -7,7 +7,7 @@ local ref = {
 	parsed_text = nil,
 	target_text = nil,
 	on_cooldown = true,
-	event_cooldown = {60 * 5, 60 * 60}, -- 5 to 60 seconds
+	event_cooldown = {5, 5},--{60 * 5, 60 * 60}, -- 5 to 60 seconds
 	current_progress = 0,
 	total_length = 0,
 	type_delay = 3,
@@ -37,20 +37,21 @@ end
 local content = dofile_once("mods/noita.fairmod/files/content/copibuddy/content.lua")
 
 local function weighted_random(t)
+	local weights = {}
 	local total = 0
 	for _, v in ipairs(t) do
 		local weight = v.weight or 1
 		if type(weight) == "function" then
 			weight = weight(module)
 		end
+
+		weights[v] = weight
+
 		total = total + weight
 	end
 	local r = Random(0, total)
 	for _, v in ipairs(t) do
-		local weight = v.weight or 1
-		if type(weight) == "function" then
-			weight = weight(module)
-		end
+		local weight = weights[v]
 		r = r - weight
 		if r <= 0 then
 			return v
