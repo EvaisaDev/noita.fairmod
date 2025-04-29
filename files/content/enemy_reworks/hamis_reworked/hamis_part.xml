@@ -92,4 +92,5 @@
 
 		<LuaComponent script_death=""/>
 	</Base>
+	<LuaComponent script_death = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death2.lua" />
 </Entity>
