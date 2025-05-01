@@ -184,7 +184,7 @@ return {
 		weight = function(copibuddy)
 			-- if you wanna make it guaranteed if a healer is nearby for example you can manipulate the weight here.
 			-- eba make it scale with enemy density :3 @evaisa hi hi hi 
-			return 0.6+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.1
+			return 1+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.15
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
@@ -404,7 +404,7 @@ return {
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/hamis_time"},
 		frames = 300,
 		weight = function(copibuddy)
-			return 0.65+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.05
+			return 0.35+(#EntityGetInRadiusWithTag(x, y, 192, "enemy"))*0.04333333333333333333
 		end,
 		condition = function(copibuddy)
 			local x, y = GameGetCameraPos()
@@ -611,7 +611,7 @@ return {
 
 		end,
 	},
-	{ -- 20% chance for copi to save you if your health falls below 20%
+	{ -- 20% chance for copi to save you if your health falls below 5%
 		anim = "copi_snap",
 		frames = 300,
 		force = true,
@@ -622,7 +622,7 @@ return {
 			local players = EntityGetWithTag("player_unit")
 
 
-			return almost_died and Random(1, 100) <= 20 and players[1] and EntityGetIsAlive(players[1])
+			return almost_died and Random(1, 100) <= 5 and players[1] and EntityGetIsAlive(players[1])
 		end,
 		update = function(copibuddy) -- this function is called when the event is triggered
 			if(copibuddy.timer == 289)then
