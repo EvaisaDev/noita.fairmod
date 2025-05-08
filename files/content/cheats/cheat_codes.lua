@@ -696,11 +696,42 @@ return {
 		end
 	},
 	{
-		code = "gullible",
+		code = "gullible", --i still personally think itd be funny if we referenced code gullible in a few places but it didnt do anything
 		func = function(player)
 			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "idiot,")
 		end,
 	},
+    {
+        code = "pandoriumbomb",
+        name = "Pandorium Bottle-Bomb",
+        description = "idk i just needed to test this feature ig this is a cheat now",
+        func = function(player) --i blatantly stole this code from the hungry portals cheat for no other reason outside of i think its cool as fuck, kudos to whoever wrote that
+            local flask_spawned
+            local x,y = EntityGetTransform(player)
+            for j = 1, 100 do
+                -- get a random angle radian
+                local angle = math.rad(Random(0, 360))
+                -- get a random direction vector
+                local dx = math.cos(angle)
+                local dy = math.sin(angle)
+
+                local distance = Random(40, 10)
+
+                local target_x = x + (dx * distance)
+                local target_y = y + (dy * distance)
+
+                local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+                if not hit then
+                    flask_spawned = true
+                    EntityLoad("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/pandorium_potion.xml", target_x, target_y)
+                    break
+                end
+            end
+            if not flask_spawned then
+			    EntityLoad( "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/pandorium_potion.xml", x, y - 20)
+            end
+        end,
+    }
 }
 
 --stylua: ignore end
