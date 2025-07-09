@@ -105,6 +105,7 @@ local objectives_codes = {
 	"boob",
 	"thirsty",
 	"gimmetinker",
+	"gullible",
 }
 
 local time = { GameGetDateAndTimeUTC() }
