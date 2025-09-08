@@ -486,7 +486,7 @@ return {
 		description = "we murderin",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
-			for k, v in ipairs(GetEnemiesInRadius(x, y, 256)) do
+			for k, v in ipairs(GetEnemiesInRadius(x, y, 256) or {}) do
 				EntityConvertToMaterial(v, "blood")
 				EntityKill(v)
 			end

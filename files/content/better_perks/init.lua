@@ -1,0 +1,1 @@
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/better_perks/append.lua")

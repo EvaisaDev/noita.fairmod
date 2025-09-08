@@ -3,7 +3,7 @@ old_init = init
 function init(x, y, w, h)
     old_init(x, y, w, h)
 
-    SetRandomSeed(x + w, y + h)
+    SetRandomSeed(x, y)
 
     if y > 0 then
         if Random(0, 100) == 0 then --a classic nolla 1/101 random check :D
