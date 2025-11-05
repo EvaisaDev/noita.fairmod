@@ -63,7 +63,7 @@ local Popups = {
 	-- @@ = rainbow
 	-- ** = white
 
-	-- if you wish to use more than one of these, they must be in the corret order of the last one being the centremost one, the order is as listed above
+	-- if you wish to use more than one of these, they must be in the corret order of the last one being the centre-most one, the order is as listed above
 	-- so something like *|text|* will display as "|text|" in white but without the shake, whereas ||@text@|| will display as "text" in rainbow with double shake
 
 	Random_Ads = {

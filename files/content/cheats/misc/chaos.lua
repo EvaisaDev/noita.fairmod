@@ -10,7 +10,7 @@ local length = 300
 
 local parent_id = EntityGetParent(entity_id)
 
-if parent_id ~= NULL_ENTITY then
+if parent_id ~= 0 then
 	local vel_x = math.cos(theta) * length
 	local vel_y = math.sin(theta) * length
 
