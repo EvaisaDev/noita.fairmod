@@ -60,27 +60,27 @@ module.spawn = function(x, y)
 		end
 	end
 
-	if Random()>0.9 and not HasFlagPersistent("spam1") then
+	if Random(1,10)==1 and not HasFlagPersistent("spam1") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam1,")
 		AddFlagPersistent("spam1")
 	end
 
-	if Random()>0.9 and not HasFlagPersistent("spam2") then
+	if Random(1,10)==1 and not HasFlagPersistent("spam2") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam2,")
 		AddFlagPersistent("spam2")
 	end
 
-	if Random()>0.9 and not HasFlagPersistent("spam3") then
+	if Random(1,10)==1 and not HasFlagPersistent("spam3") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam3,")
 		AddFlagPersistent("spam3")
 	end
 
-	if Random()>0.9 and not HasFlagPersistent("spam4") then
+	if Random(1,10)==1 and not HasFlagPersistent("spam4") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam4,")
 		AddFlagPersistent("spam4")
 	end
 
-	if Random()>0.75 and not HasFlagPersistent("spam5") then
+	if Random(1,10)==1 and not HasFlagPersistent("spam5") then
 		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam5,")
 		AddFlagPersistent("spam5")
 	end
