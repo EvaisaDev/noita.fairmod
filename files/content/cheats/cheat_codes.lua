@@ -737,6 +737,15 @@ return {
 			    EntityLoad( "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/pandorium_potion.xml", x, y - 20)
             end
         end,
+    },
+    {
+        code = "mailme",
+        description = "pony express",
+        func = function(player)
+            local x,y = EntityGetTransform(player)
+			local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
+			mailbox.spawn(x, y)
+        end,
     }
 }
 
