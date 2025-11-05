@@ -435,7 +435,7 @@ return {
 	--[[Fixed it again -c]] --[[W COPI -k]]
 	{code="/spawn",name="/spawn",description="Teleporting in 3... 2... wait, you're already there!",func=function(a)local b=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_X"))local c=tonumber(MagicNumbersGetValue("DESIGN_PLAYER_START_POS_Y"))local d=GetParallelWorldPosition(EntityGetTransform(a))*BiomeMapGetSize()*512;EntityApplyTransform(a,b+d,c)end}
 	,{
-		code = "copi",
+		code = "copith",
 		func = function()
 			GameAddFlagRun("COPI_IMMERSIVE_MIMICS")
 			GamePrintImportant("THE CHEAT IS A MIMIC", "Setting Immersion: 100%!")
