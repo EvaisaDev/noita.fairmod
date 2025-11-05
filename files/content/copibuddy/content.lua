@@ -916,7 +916,7 @@ return {
 					EntityAddComponent2(liquid, "InheritTransformComponent")
 					
 					EntityAddComponent2(liquid, "ParticleEmitterComponent", {
-						emitted_material_name=material,
+						emitted_material_name="blood",
 						create_real_particles=true,
 						lifetime_min=8,
 						lifetime_max=15,
@@ -957,7 +957,7 @@ return {
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/friends"},
 		frames = 180,
-		weight = 0.5,
+		weight = 0.75,
 		update = function(copibuddy) -- this function is called every frame while event is active
 
 			if(copibuddy.timer == 30)then
