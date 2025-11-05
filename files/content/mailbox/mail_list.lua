@@ -229,7 +229,7 @@ return {
 			OHOHOHOHOHO!! MERRY CHRISTMASCERATE!!
 			I GOT YOU THIS SNOWBALL! FROM THE ANTIARCTIC!]],
 		func = function(x, y) -- runs on mailbox open
-			local entity = EntityLoad("mods/noita.fairmod/files/content/snowman/snowball_item.xml", x, y)
+			local entity = EntityLoad("mods/noita.fairmod/files/content/snowman/snowball_item.xml", x, y-10)
 		 	RemoveFlagPersistent("spam2")
 		end,
 	},
