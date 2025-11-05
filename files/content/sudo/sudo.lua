@@ -40,7 +40,7 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 			message = message:sub(6, -1)
 
 			print("sudo_mail", message)
-			
+
 			GlobalsSetValue("noita.fairmod.sudo_mail", GlobalsGetValue("noita.fairmod.sudo_mail", "")..sender_username.."\n"..message .."\n")
 		end
 	end
