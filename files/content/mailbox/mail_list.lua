@@ -265,4 +265,19 @@ return {
 		 	RemoveFlagPersistent("spam4")
 		end,
 	},
+	spam5 = { -- spam
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "GAMEMEGALODON", -- only used if create_letter is true
+		letter_content = [[
+			Type these secret magical phrases.
+			motherlode. duplicateme. dingus. tacobell. noclip. gamba. haveanygamesonyourphone.
+			whatsadotexey. copibuddy. secondamendment. holyshitsomaprimewarframe.
+			snoopdogg. moshimoshi (while next to a phone). copith. london (photosensitive warning)
+			thebodies. genocide. chaos. allsight. scam. whereami. superchest. gimmetinker.
+			gloobus. radio. thirsty. hungryhungryportals. gullible. pandoriumbomb. mailme.
+			]],
+		func = function(x, y) -- runs on mailbox open
+		 	RemoveFlagPersistent("spam5")
+		end,
+	},
 }

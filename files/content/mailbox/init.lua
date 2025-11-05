@@ -80,6 +80,11 @@ module.spawn = function(x, y)
 		AddFlagPersistent("spam4")
 	end
 
+	if Random()>0.75 and not HasFlagPersistent("spam5") then
+		ModSettingSet("noita.fairmod.mail", (ModSettingGet("noita.fairmod.mail") or "") .. "spam5,")
+		AddFlagPersistent("spam5")
+	end
+
 
 
 
