@@ -6,6 +6,7 @@ local entity_id = GetUpdatedEntityID()
 if GameGetFrameNum() > last_blink + next_blink then
 	EntitySetComponentsWithTagEnabled(entity_id, "eyes", false)
 
+    SetRandomSeed(-45 + last_blink, 8439 - next_blink)
 	last_blink = GameGetFrameNum()
 	next_blink = Random(150, 300)
 elseif GameGetFrameNum() > last_blink + 15 then

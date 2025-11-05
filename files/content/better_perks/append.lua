@@ -1,4 +1,3 @@
-
 SetRandomSeed(11, -419)
 
 local improvements = {
@@ -21,8 +20,8 @@ local improvements = {
         modifications = {
             ui_name = "$fairmod_perk_bleed_grease",
             ui_description = "$fairmod_perkdesc_bleed_grease",
-            ui_icon = "mods/noita.fairmod/files/content/better_perks/ui_icons/grease_blood.png",
-            perk_icon = "mods/noita.fairmod/files/content/better_perks/perk_icons/grease_blood.png",
+            ui_icon = "mods/noita.fairmod/files/content/better_perks/grease_blood/ui.png",
+            perk_icon = "mods/noita.fairmod/files/content/better_perks/grease_blood/perk.png",
             func = function( entity_perk_item, entity_who_picked, item_name )
 
                 local damagemodels = EntityGetComponent( entity_who_picked, "DamageModelComponent" )
@@ -40,7 +39,7 @@ local improvements = {
     },
 }
 
-local userseed = ModSettingGet("fairmod.user_seed") or ""
+local userseed = tostring(ModSettingGet("fairmod.user_seed") or "000000000000000000000000000000")
 math.randomseed(tonumber(userseed:sub(7, 12)), tonumber(userseed:sub(15, 19)))
 for index, perk in ipairs(perk_list) do
     local template = improvements[perk.id]
