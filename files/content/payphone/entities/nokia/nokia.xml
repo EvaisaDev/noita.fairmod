@@ -108,7 +108,7 @@
 	<AudioLoopComponent
 		_tags="ring,enabled_in_world,enabled_in_hand,enabled_in_inventory"
 		file="mods/noita.fairmod/fairmod.bank"
-		event_name="payphone/ring"
+		event_name="payphone/nokia_ring"
 		auto_play="0"
 		auto_play_if_enabled="0"
 		play_on_component_enable="0"

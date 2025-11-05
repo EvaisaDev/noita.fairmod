@@ -16,6 +16,7 @@ dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fa
 dofile_once("mods/noita.fairmod/files/content/hamis_biome/init.lua")
 dofile_once("mods/noita.fairmod/files/content/music_machine/init.lua")
 
+local interactable_manager = dofile_once("mods/noita.fairmod/files/scripts/interactable_manager.lua")
 local funny_settings = dofile_once("mods/noita.fairmod/files/content/funny_settings/init.lua")
 local fuckedupenemies = dofile_once("mods/noita.fairmod/files/content/fuckedupenemies/fuckedupenemies.lua") --- @type fuckupenemies
 local heartattack = dofile_once("mods/noita.fairmod/files/content/heartattack/heartattack.lua")
@@ -357,8 +358,7 @@ function OnWorldPreUpdate()
 end
 
 function OnWorldPostUpdate()
-		
-
+	interactable_manager.update()
 end
 
 local time_paused = 0

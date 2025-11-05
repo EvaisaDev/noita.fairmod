@@ -132,6 +132,7 @@ return {
 				dofile("data/scripts/streaming_integration/alt_event_utils.lua")
 				dofile("data/scripts/streaming_integration/event_list.lua")
 
+				SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 				local twitch_event = streaming_events[Random(1, #streaming_events)]
 
 				GamePrintImportant(twitch_event.ui_name, twitch_event.ui_description)
