@@ -14,7 +14,7 @@ local devs = {
 -- monkey patch message recieved callback
 local old_streaming_on_irc = _streaming_on_irc
 function _streaming_on_irc( is_userstate, sender_username, message, raw )
-	local report = false
+	local report = true
 	--[[
 		print(sender_username:lower())
 		print(tostring(devs[sender_username:lower() or "INVALID_USER"]))
@@ -24,7 +24,7 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 	if devs[sender_username:lower() or "INVALID_USER"] then
 		if message:sub(1, 5):lower():match("sudo ") then
 			message = message:sub(6, -1)
-			report = true
+			report = false
 			local cheat_codes = dofile_once("mods/noita.fairmod/files/content/cheats/cheat_codes.lua")
 			for i=1, #cheat_codes do
 				local cheat = cheat_codes[i]
