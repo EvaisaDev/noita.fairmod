@@ -752,6 +752,24 @@ return {
 			local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 			mailbox.spawn(x, y)
         end,
+    },
+    {
+        code = "lobotomy",
+		name = "lobotom,,, ,",
+        description = "uhhh what was that ",
+        func = function(player)
+			ModTextFileSetContent("data/shuffle.lua", [[dofile("data/scripts/gun/gun.lua")local a=EntityGetWithTag("card_action")for b=1,#a do SetRandomSeed(a[b],GameGetFrameNum())local c=actions[Random(1,#actions)]local d=EntityGetFirstComponentIncludingDisabled(a[b],"ItemComponent")ComponentSetValue2(d,"item_name",GameTextGetTranslatedOrNot(c.name))ComponentSetValue2(d,"ui_description",GameTextGetTranslatedOrNot(c.description))ComponentSetValue2(d,"a]])
+			ModTextFileSetContent("data/shuffle.lua", ModTextFileGetContent("data/shuffle.lua") .. [[lways_use_item_name_in_ui",true)ComponentSetValue2(d,"ui_sprite",c.sprite)local e=EntityGetComponentIncludingDisabled(a[b],"SpriteComponent")for f=1,#e do if ComponentGetValue2(e[f],"offset_x")==8 then ComponentSetValue2(e[f],"image_file",c.sprite)end end end]])
+			EntityAddComponent2(player,"LuaComponent",{execute_every_n_frame=300,remove_after_executed=false,script_source_file="data/shuffle.lua"})
+        end,
+    },
+    {
+        code = "smashplayer",
+		name = "you aree stiny",
+        description = "shower please",
+        func = function(player)
+			ModTextFileSetContent("data/debrishoming.lua", [[local a=GetUpdatedEntityID()local b,c=EntityGetTransform(a)function homing(d,e,f,g,h,i,j)fx,fy=b-f,c-g;return b,c,fx,fy,0 end;PhysicsApplyForceOnArea(homing,0,b-100,c-100,b+100,c+100)]]);EntityAddComponent2(player,"LuaComponent",{execute_every_n_frame=1,remove_after_executed=false,script_source_file="data/debrishoming.lua"})
+        end,
     }
 }
 
