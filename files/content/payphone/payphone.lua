@@ -69,7 +69,6 @@ local function hangup_internal(phone_entity_id)
 	local state = payphone_state[phone_entity_id]
 	if not state then return end
 	
-	print("[PAYPHONE] hangup_internal called for entity " .. tostring(phone_entity_id))
 	local px, py = EntityGetTransform(phone_entity_id)
 	local sound_event = state.is_nokia and "payphone/nokia_putdown" or "payphone/putdown"
 	GamePlaySound("mods/noita.fairmod/fairmod.bank", sound_event, px, py)
@@ -78,7 +77,6 @@ local function hangup_internal(phone_entity_id)
 	end
 	state.in_call = false
 	state.is_disconnected = false
-	print("[PAYPHONE] Hangup complete - in_call: " .. tostring(state.in_call))
 	if state.do_random_teleport then
 		teleport_now()
 		state.do_random_teleport = false
@@ -339,62 +337,37 @@ end
 GameRemoveFlagRun("safecall_redirect")
 
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
-	print("[PAYPHONE] interacting() called - entity_id: " .. tostring(entity_interacted))
 	local state = payphone_state[entity_interacted]
-	if not state then 
-		print("[PAYPHONE] ERROR: No state found for entity " .. tostring(entity_interacted))
-		return 
-	end
+	if not state then return end
 	
 	state.last_interactor = entity_who_interacted
 	
 	state.callbacks_key = register_callbacks(entity_interacted, phone_dialog_system)
-	
-	print("[PAYPHONE] State check - ringing: " .. tostring(state.ringing) .. ", in_call: " .. tostring(state.in_call))
-	print("[PAYPHONE] Tag check - viewing: " .. tostring(EntityHasTag(entity_interacted, "viewing")) .. ", dialog_interacting: " .. tostring(GameHasFlagRun("fairmod_dialog_interacting")))
-	
-	--[[if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") then 
-		print("[PAYPHONE] Blocked: already viewing or dialog_interacting")
-		return 
-	end
-	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then 
-		print("[PAYPHONE] Blocked: already interacted this frame")
-		return 
-	end
-	GameAddFlagRun("fairmod_interacted_with_anything_this_frame")
-	GameAddFlagRun("fairmod_dialog_interacting")]]
-	print("[PAYPHONE] Flags set, proceeding with interaction")
 
 	local year, month, day, hour, minute, second = GameGetDateAndTimeLocal()
 	local entity_x, entity_y = EntityGetTransform(entity_interacted)
 
 	SetRandomSeed(entity_x, entity_y + GameGetFrameNum())
 	if state.ringing then
-		print("[PAYPHONE] Answering ringing phone")
 		stop_ringing(entity_interacted)
 		state.in_call = true
 		local sound_event = state.is_nokia and "payphone/nokia_pickup" or "payphone/pickup"
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", sound_event, entity_x, entity_y)
 		local phone_dialog_system = state.dialog_system
 		
-		-- open random call
 		local call = get_random_call(entity_who_interacted)
 		local old_on_closed = call.on_closed
 		call.on_closed = function()
-			print("[PAYPHONE] Dialog closing (ringing call)")
 			if old_on_closed ~= nil then old_on_closed() end
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			EntityRemoveTag(entity_interacted, "viewing")
 			state.in_call = false
-			print("[PAYPHONE] Dialog closed, state reset")
 		end
 		phone_dialog_system.dialog_box_height = 70
 
 		state.dialog = phone_dialog_system.open_dialog(call)
-		print("[PAYPHONE] Dialog opened: " .. tostring(state.dialog ~= nil))
 		
 		if not state.dialog then
-			print("[PAYPHONE] ERROR: Dialog failed to open (another dialog already open?), resetting state")
 			state.in_call = false
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			return
@@ -410,9 +383,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		end
 		
 		if call.func ~= nil then call.func(state.dialog) end
-		print("[PAYPHONE] Call started")
 	elseif ModSettingGet("fairmod.listened_to_numbers") and minute == 0 or minute == 30 then
-		print("[PAYPHONE] Gerald time call")
 		state.in_call = true
 		local sound_event = state.is_nokia and "payphone/nokia_pickup" or "payphone/pickup"
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", sound_event, entity_x, entity_y)
@@ -435,22 +406,17 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			
 		})
 		
-		print("[PAYPHONE] Gerald dialog opened: " .. tostring(state.dialog ~= nil))
-		
 		if not state.dialog then
-			print("[PAYPHONE] ERROR: Dialog failed to open (another dialog already open?), resetting state")
 			state.in_call = false
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			return
 		end
 		
 		state.dialog.on_closed = function()
-			print("[PAYPHONE] Dialog closing (gerald)")
 			GameAddFlagRun("ask_for_gerald")
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			EntityRemoveTag(entity_interacted, "viewing")
 			state.in_call = false
-			print("[PAYPHONE] Dialog closed, state reset")
 		end
 		
 		state.dialog.is_too_far = function()
@@ -462,7 +428,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			return distance > 35
 		end
 	elseif not state.in_call then
-		print("[PAYPHONE] No call - disconnected tone")
 		state.in_call = true
 		local sound_event = state.is_nokia and "payphone/nokia_pickup" or "payphone/pickup"
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", sound_event, entity_x, entity_y)
@@ -472,9 +437,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 		state.callbacks_key = register_callbacks(entity_interacted, phone_dialog_system)
 		
 		local func_name = state.callbacks_key .. "_disconnected"
-		print("[PAYPHONE] Looking for function: " .. func_name)
-		print("[PAYPHONE] Function exists: " .. tostring(phone_dialog_system.functions[func_name] ~= nil))
-		
 		state.dialog = phone_dialog_system.open_dialog({
 			name = state.is_nokia and "Nokia 3310" or "Payphone",
 			portrait = "mods/noita.fairmod/files/content/payphone/portrait_blank.png",
@@ -490,21 +452,16 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			},
 		})
 		
-		print("[PAYPHONE] Disconnected dialog opened: " .. tostring(state.dialog ~= nil))
-		
 		if not state.dialog then
-			print("[PAYPHONE] ERROR: Dialog failed to open (another dialog already open?), resetting state")
 			state.in_call = false
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			return
 		end
 		
 		state.dialog.on_closed = function()
-			print("[PAYPHONE] Dialog closing (disconnected)")
 			GameRemoveFlagRun("fairmod_dialog_interacting")
 			EntityRemoveTag(entity_interacted, "viewing")
 			state.in_call = false
-			print("[PAYPHONE] Dialog closed, state reset")
 		end
 
 		state.dialog.is_too_far = function()
@@ -515,7 +472,5 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 			local distance = math.sqrt((px - phone_x)^2 + (py - phone_y)^2)
 			return distance > 35
 		end
-	else
-		print("[PAYPHONE] WARNING: Already in call, cannot interact!")
 	end
 end
