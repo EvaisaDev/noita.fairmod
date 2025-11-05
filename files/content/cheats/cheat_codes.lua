@@ -764,9 +764,9 @@ return {
         end,
     },
     {
-        code = "smashplayer",
-		name = "you aree stiny",
-        description = "shower please",
+        code = "magnet",
+		name = "I put a magnet in your skull",
+        description = "ow",
         func = function(player)
 			ModTextFileSetContent("data/debrishoming.lua", [[local a=GetUpdatedEntityID()local b,c=EntityGetTransform(a)function homing(d,e,f,g,h,i,j)fx,fy=b-f,c-g;return b,c,fx,fy,0 end;PhysicsApplyForceOnArea(homing,0,b-100,c-100,b+100,c+100)]]);EntityAddComponent2(player,"LuaComponent",{execute_every_n_frame=1,remove_after_executed=false,script_source_file="data/debrishoming.lua"})
         end,
