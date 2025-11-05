@@ -6,6 +6,7 @@ local devs = {
 	["userkuserk"]=true,
 	["conga_lyne"]=true,
 	["heinermann"]=true,
+	["theonetheonlyspoopyboi"]=true,
 	-- Add yourselves
 }
 --print("HOLY SHIT DOES THIS WORK") yes; it does, now shut up.
