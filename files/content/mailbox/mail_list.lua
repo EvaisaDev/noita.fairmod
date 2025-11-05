@@ -208,4 +208,61 @@ return {
 			end
 		end,
 	},
+	spam1 = { -- spam
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Azathoth Prime", -- only used if create_letter is true
+		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: Copi 'c' Things.
+			Here are the results. Be careful.]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("data/entities/items/pickup/potion.xml", x, y)
+		 	RemoveFlagPersistent("spam1")
+		end,
+	},
+	spam2 = { -- spam
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Azathoth Prime", -- only used if create_letter is true
+		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: John Pork.
+			OHOHOHOHOHO!! MERRY CHRISTMASCERATE!!
+			I GOT YOU THIS SNOWBALL! FROM THE ANTIARCTIC!]],
+		func = function(x, y) -- runs on mailbox open
+			local entity = EntityLoad("mods/noita.fairmod/files/content/snowman/snowball_item.xml", x, y)
+		 	RemoveFlagPersistent("spam2")
+		end,
+	},
+	spam3 = { -- spam
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Azathoth Prime", -- only used if create_letter is true
+		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: Eric from Cuba.
+			wtf is this strange specimin bro. good luck with it.]],
+		func = function(x, y) -- runs on mailbox open
+			local copi = EntityLoad("mods/noita.fairmod/files/content/payphone/content/copi/copi_ghost.xml", x, y)
+			EntityRemoveTag(copi, "enemy")
+			-- spawn poof
+			EntityLoad("mods/noita.fairmod/files/content/copibuddy/sprites/poof.xml", x, y)
+		 	RemoveFlagPersistent("spam3")
+		end,
+	},
+	spam4 = { -- spam
+		create_letter = true, -- creates a letter that spawns when the mailbox is opened.
+		letter_title = "Azathoth Prime", -- only used if create_letter is true
+		letter_content = [[
+			SHIP TO: 1 Mountain Blvd.
+			Purchaser info: bonga line.
+			Here's some spells I stole. These will help you.]],
+		func = function(x, y) -- runs on mailbox open
+			dofile("data/scripts/gun/gun.lua")
+			for j=1, 5 do
+				SetRandomSeed(GameGetFrameNum()+x, 69+j)
+				local result = actions[Random(1, #actions)]
+				CreateItemActionEntity( result.id, x, y )
+			end
+		 	RemoveFlagPersistent("spam4")
+		end,
+	},
 }
