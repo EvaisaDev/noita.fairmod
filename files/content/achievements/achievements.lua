@@ -504,7 +504,7 @@ achievements = {
 		icon = "mods/noita.fairmod/files/content/achievements/icons/copibuddy2.png",
 		flag = "copibuddy2",
 		unlock = function()
-			return HasFlagPersistent("COPIBUDDY_ACHEEV")
+			return HasFlagPersistent("copibuddy_acheev")
 		end,
 	},
 	{

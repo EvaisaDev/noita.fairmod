@@ -692,10 +692,10 @@ return {
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/achievement"},
 		weight = 0.3,
 		condition = function(copibuddy)
-			return not HasFlagPersistent("COPIBUDDY_ACHEEV")
+			return not HasFlagPersistent("copibuddy_acheev")
 		end,
 		post_func = function(copibuddy) -- this function is called when the event is triggered
-			AddFlagPersistent("COPIBUDDY_ACHEEV")
+			AddFlagPersistent("copibuddy_acheev")
 		end,
 	},
 	{ 
