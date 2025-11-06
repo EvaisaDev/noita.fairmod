@@ -94,7 +94,7 @@ module.update = function()
 									end
 								end
 							
-								if (v.devmode == false) or GameHasFlagRun("fairmod_developer_mode") then
+								if (not v.devmode) or GameHasFlagRun("fairmod_developer_mode") then
 									if v.name then
 										GamePrintImportant("Command activated: " .. v.name, string.format(v.description, input_args[1],  input_args[2],  input_args[3]), v.decoration or "")
 									end

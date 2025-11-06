@@ -1,4 +1,3 @@
-
 return {
 	{
 		command = "ngplus",
@@ -29,7 +28,7 @@ return {
             },
         },
         func = function(player, input_args)
-            GamePrintImportant(input_args[1], input_args[2])
+            GamePrintImportant(input_args[1], input_args[2] or "")
         end
     }
 }
