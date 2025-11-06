@@ -140,6 +140,9 @@
 {ef02546b-97c6-48ad-9604-7498f300aaeb} event:/payphone/garbled
 {81ed466e-7c7a-4991-ae53-60a8340c8c22} event:/payphone/gibberish
 {0205183a-406d-4bb5-ad07-3716b4621518} event:/payphone/hungup
+{14cc7b12-2830-4c9c-bb8e-c818d9b350b6} event:/payphone/nokia_pickup
+{e698a81c-bcd6-4eca-9afd-1cc39cd64b75} event:/payphone/nokia_putdown
+{23df94da-aa27-44a1-b550-97ee1c60b31e} event:/payphone/nokia_ring
 {e94bd9c0-4b86-4e3e-a138-ea0159ea20cf} event:/payphone/pickup
 {876eb51e-6244-4a21-b16e-b5f6b05e8677} event:/payphone/putdown
 {ed561f27-68f1-4211-87b1-b578ce7ee6df} event:/payphone/ring

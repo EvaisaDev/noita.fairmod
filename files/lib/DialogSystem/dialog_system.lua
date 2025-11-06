@@ -191,6 +191,7 @@ dialog_system.open_dialog = function(message)
 		opened_at_position = { x = x, y = y },
 		on_closing = message.on_closing,
 		on_closed = message.on_closed,
+		_dialog_system_instance = dialog_system, -- Store reference to THIS instance
 	}
 	dialog.current_line = dialog.lines[1]
 	dialog.show = function(message)
@@ -590,8 +591,8 @@ dialog_system.open_dialog = function(message)
 			elseif char == "#" and prev_char ~= "\\" then
 				shake = not shake
 			elseif char == "{" and prev_char ~= "\\" then
-				-- Look ahead 20 characters and get that substring
-				local str = utf8.sub(dialog.message.text, i, i + 20)
+				-- Look ahead 50 characters and get that substring
+				local str = utf8.sub(dialog.message.text, i, i + 50)
 				local command, param1 = string.gmatch(str, "@(%w+)%s+([^}]+)")()
 				if command then
 					if command == "delay" then
@@ -611,7 +612,13 @@ dialog_system.open_dialog = function(message)
 					elseif command == "sound" then
 						typing_sound = param1
 					elseif command == "func" then
-						dialog_system.functions[param1](dialog)
+						-- Use the dialog instance's reference to find the correct functions table
+						local ds_instance = dialog._dialog_system_instance or dialog_system
+						local func = ds_instance.functions[param1]
+						if not func then
+							error(("Function '%s' not found in dialog_system.functions"):format(param1))
+						end
+						func(dialog)
 					end
 					i = i + string.find(str, "}") - 1
 				else

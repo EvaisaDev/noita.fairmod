@@ -293,6 +293,15 @@ return {
 		end,
 	},
 	{
+		code = "3310",
+		name = "kbidhbny",
+		description = "nokia get",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/payphone/entities/nokia/nokia.xml", x, y)
+		end,
+	},	
+	{
 		code = "whatsadotexey",
 		name = "installing ram",
 		description = ":)",
