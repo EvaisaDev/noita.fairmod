@@ -161,7 +161,7 @@ module.update = function()
 					if string.len(code) == string.len(input) then
 						if (v.devmode and GameHasFlagRun("fairmod_developer_mode")) or not v.devmode then
 							if GameHasFlagRun("fairmod.no_cheats") and not v.not_cheat then
-								GamePrintImportant("SILENCED", "A mysterious force blocks your attempts")
+								GamePrintImportant("$log_fairmod_cheats_silenced", "$log_fairmod_cheats_silenced_desc")
 								return
 							end
 							if v.name then
