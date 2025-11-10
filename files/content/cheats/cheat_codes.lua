@@ -322,6 +322,12 @@ return {
 		end,
 	},
 	{
+		code = "antivirus",
+		func = function(player)
+			GameRemoveFlagRun("copibuddy")
+		end,
+	},
+	{
 		code = "blindstreamer",
 		func = function(player)
 			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "blindstreamer,")
@@ -782,7 +788,16 @@ return {
 			local x, y = EntityGetTransform(player)
 			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
         end,
-    }
+    },
+    {
+        code = "anticheat",
+		name = "",
+        not_cheat = true,
+        description = ":D",
+        func = function(player)
+            GameAddFlagRun("fairmod.no_cheats")
+        end,
+    },
 }
 
 --stylua: ignore end
