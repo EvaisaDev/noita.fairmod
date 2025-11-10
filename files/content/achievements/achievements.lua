@@ -516,6 +516,15 @@ achievements = {
 			return GameHasFlagRun("copibuddy.call_rerouted")
 		end,
 	},
+	{
+		name = "Infinite Karmic Debt",
+		description = "You're a dirty cheater",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/karmic_debt.png",
+		flag = "karmic_debt",
+		unlock = function()
+			return GameHasFlagRun("infinite_karmic_debt")
+		end,
+	},
 }
 
 local function romanize(num)

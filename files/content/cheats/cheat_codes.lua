@@ -792,6 +792,18 @@ return {
             GameAddFlagRun("fairmod.no_cheats")
         end,
     },
+    {
+        code = "freevbucks",
+		name = "",
+        not_cheat = true,
+        description = "",
+        func = function(player)
+			if GameHasFlagRun("fairmod.no_cheats") then
+				GameAddFlagRun("infinite_karmic_debt")
+           		GameRemoveFlagRun("fairmod.no_cheats")
+			end
+        end,
+    },
 }
 
 --stylua: ignore end
