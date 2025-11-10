@@ -543,7 +543,7 @@ return {
 		description = "this is surely a good idea",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
-			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium.xml", x, y)
+			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium_nerfed.xml", x, y)
 		end,
 	},
 	{
