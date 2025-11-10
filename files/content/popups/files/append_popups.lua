@@ -305,7 +305,7 @@ local Popups = {
 					GuiZSet(gui, z - 3)
 
 					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
-					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("is_copibuddied") and "Removing threats..." or "Installing CopiBuddy...")
 
 					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
 
@@ -665,7 +665,7 @@ PS: "Why respect noitas... when my pills can do anything that you can."]],
 					GuiZSet(gui, z - 3)
 
 					GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
-					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+					GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("is_copibuddied") and "Removing threats..." or "Installing CopiBuddy...")
 
 					GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
 
@@ -786,7 +786,7 @@ PS: "Why respect noitas... when my pills can do anything that you can."]],
 				GuiZSet(gui, z - 3)
 
 				GuiColorSetForNextWidget(gui, 0, 0, 0, 1)
-				GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("copibuddy") and "Removing threats..." or "Installing CopiBuddy...")
+				GuiText(gui, 12 * ratio, (35 * ratio) - 12, GameHasFlagRun("is_copibuddied") and "Removing threats..." or "Installing CopiBuddy...")
 
 				GuiImage(gui, window.id * 32452362, 0, 0, "mods/noita.fairmod/files/content/popups/progress_bar.png", 1, ratio, ratio, 0)
 

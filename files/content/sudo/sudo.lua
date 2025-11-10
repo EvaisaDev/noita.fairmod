@@ -47,6 +47,13 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 
 			GlobalsSetValue("noita.fairmod.sudo_mail", GlobalsGetValue("noita.fairmod.sudo_mail", "")..sender_username.."\n"..message .."\n")
 			report = false
+		elseif message:sub(1, 6):lower():match("speak ") then
+			message = message:sub(7, -1)
+			
+			if GameHasFlagRun("is_copibuddied") then
+				GlobalsSetValue("copibuddy_speak_text", message)
+				report = false
+			end
 		end
 	end
 	if old_streaming_on_irc then

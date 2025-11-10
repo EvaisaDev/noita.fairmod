@@ -26,7 +26,7 @@ function damage_received(damage, message, entity_thats_responsible, is_fatal, pr
         end
 
         -- If the copibuddy flag is set and total damage is above 10, trigger the copibuddy event
-        if GameHasFlagRun("copibuddy") and total_damage * 25 > 5 then
+        if GameHasFlagRun("is_copibuddied") and total_damage * 25 > 5 then
 			print("skill issue")
             GameAddFlagRun("copibuddy.just_took_damage")
         end

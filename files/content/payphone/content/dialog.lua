@@ -542,9 +542,6 @@ return {
 								},
 								{
 									text = "Give me a friend.",
-									enabled = function(stats)
-										return not GameHasFlagRun("copibuddy")
-									end,
 									func = function(dialog)
 										survey_end(dialog, "copibuddy")
 									end,
@@ -1742,7 +1739,7 @@ return {
 		text = [[{@color C0FFC0}Greetings! {@pause 10}You've been selected to playtest my 
 		top secret project!]],
 		can_call = function() -- optional
-			return not GameHasFlagRun("copibuddy")
+			return not GameHasFlagRun("is_copibuddied")
 		end,
 		options = {
 			{

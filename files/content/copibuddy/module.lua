@@ -1,6 +1,6 @@
 local module = {}
 
-local ref = {
+local ref_template = {
 	was_active = false,
 	spritesheet = "mods/noita.fairmod/files/content/copibuddy/sprites/copi.xml",
 	animation = "idle",
@@ -19,7 +19,6 @@ local ref = {
 	max_text_width = 200,
 	event = nil,
 	last_event = nil,
-	gui = GuiCreate(),
 	functions = {
 		test = function()
 			print("test")
@@ -27,10 +26,11 @@ local ref = {
 	}
 }
 
-local function reset()
-	GameRemoveFlagRun("copibuddy_intro_done")
-	for k, v in pairs(ref) do
-		module[k] = v
+local function reset(instance)
+	for k, v in pairs(ref_template) do
+		if k ~= "gui" and k ~= "id_counter" then
+			instance[k] = v
+		end
 	end
 end
 
@@ -49,14 +49,19 @@ local function weighted_random(t)
 
 		total = total + weight
 	end
-	local r = Random(0, total)
+	local camera_x, camera_y = GameGetCameraPos()
+	-- Use floating point random to avoid edge cases and ensure proper distribution
+	SetRandomSeed(GameGetFrameNum() + camera_x, GameGetFrameNum() + camera_y * total)
+	local r = Random() * total
 	for _, v in ipairs(t) do
 		local weight = weights[v]
 		r = r - weight
-		if r <= 0 then
+		if r < 0 then
 			return v
 		end
 	end
+	-- Fallback to last item if rounding errors occur
+	return t[#t]
 end
 
 local function merge_formatting(stack)
@@ -95,7 +100,7 @@ local function pretty_table(tbl, indent)
     return toprint
 end
 
-local function parse_formatted_text(text)
+local function parse_formatted_text(text, instance)
 	local segments = {}
 	local pos = 1
 	local stack = {}
@@ -150,11 +155,11 @@ local function parse_formatted_text(text)
 				elseif tag == "size" then
 					fmt.size = tonumber(value)
 				elseif tag == "on_click" then
-					fmt.on_click = module.functions[value]
+					fmt.on_click = instance and instance.functions and instance.functions[value]
 				elseif tag == "on_hover" then
-					fmt.on_hover = module.functions[value]
+					fmt.on_hover = instance and instance.functions and instance.functions[value]
 				elseif tag == "on_right_click" then
-					fmt.on_right_click = module.functions[value]
+					fmt.on_right_click = instance and instance.functions and instance.functions[value]
 				end
 				fmt.tag = tag
 				table.insert(stack, fmt)
@@ -260,7 +265,7 @@ local function measure_lines(gui, lines)
 	return total_width, total_height, line_heights
 end
 
-local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
+local function render_wrapped_text(gui, new_id, x, y, lines, line_heights, instance)
 	local current_y = y
 	for i, line in ipairs(lines) do
 		local current_x = x
@@ -278,9 +283,9 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 			
 			local hoverable = seg.format and (seg.format.on_click or seg.format.on_hover or seg.format.on_right_click)
 
-			local is_hovered = hoverable and (hovered or (seg.seg_id and module.prev_hover_ids and module.prev_hover_ids[seg.seg_id]))
+			local is_hovered = hoverable and (hovered or (seg.seg_id and instance.prev_hover_ids and instance.prev_hover_ids[seg.seg_id]))
 			if hovered and seg.seg_id then
-				module.current_hover_ids[seg.seg_id] = true
+				instance.current_hover_ids[seg.seg_id] = true
 			end
 			
 			if seg.format and seg.format.color then
@@ -324,289 +329,321 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights)
 	end
 end
 
-reset()
+function module.create()
+	local instance = {
+		gui = GuiCreate(),
+		id_counter = 1241
+	}
 
-local id = 1241
-function module.new_id()
-	id = id + 1
-	return id
-end
-
-function module.update()
-	if (GameHasFlagRun("reset_copibuddy")) then
-		GameRemoveFlagRun("reset_copibuddy")
-		reset()
+	for k, v in pairs(ref_template) do
+		instance[k] = v
 	end
-	if (not GameHasFlagRun("copibuddy")) then
-		return
-	elseif(not GameHasFlagRun("copibuddy_activated"))then
-		GameAddFlagRun("copibuddy_activated")
-		if(Random(0, 100) < 40)then
-			-- 40% chance to happen next run aswell
-			AddFlagPersistent("copibuddy_next_run")
-			print("Copibuddy will repeat!")
+
+	function instance.new_id()
+		instance.id_counter = instance.id_counter + 1
+		return instance.id_counter
+	end
+
+	function instance.update()
+		if (GameHasFlagRun("reset_copibuddy")) then
+			reset(instance)
 		end
-	end
-	
-	module.prev_hover_ids = module.current_hover_ids or {}
-	module.current_hover_ids = {}
-	
-	id = 1241
-
-	if(module.event and module.event.update)then
-		module.event.update(module)
-	end
-
-	GuiStartFrame(module.gui)
-	local screen_w, screen_h = GuiGetScreenDimensions(module.gui)
-	if (not module.was_active) then
-		module.animation = "fade_in"
-		module.was_active = true
-		module.timer = 60
-		module.x = Random(0, screen_w - module.width)
-		module.y = Random(0, screen_h - module.height)
-	end
-
-	local next_event = nil
-	if(module.on_cooldown)then
-		for _, event in ipairs(content) do
-			if (event.force and (not event.condition or event.condition(module, event)) and (event ~= module.last_event)) then
-				module.timer = 0
-				next_event = event
-				goto continue
+		if (not GameHasFlagRun("is_copibuddied")) then
+			return
+		elseif(not GameHasFlagRun("copibuddy_activated"))then
+			GameAddFlagRun("copibuddy_activated")
+			if(Random(0, 100) < 40)then
+				AddFlagPersistent("copibuddy_next_run")
+				print("Copibuddy will repeat!")
 			end
 		end
-	end
-
-	::continue::
-
-	if (module.timer > 0) then
-		module.timer = module.timer - 1
-		if (module.timer == 0) then
-
-			if(module.event and module.event.post_func)then
-				module.event.post_func(module)
-			end
-
-			module.animation = "idle"
-			module.event = nil
-			module.parsed_text = nil
-			module.current_progress = nil
-			module.total_length = nil
-			if(not module.on_cooldown)then
-				module.on_cooldown = true
-				module.timer = Random(module.event_cooldown[1], module.event_cooldown[2])
-			end
-		end
-	elseif (module.event == nil) then
-		SetRandomSeed(GameGetFrameNum() + module.x, GameGetFrameNum() + module.y)
-		local options = {}
-		if(not next_event)then
-			for _, event in ipairs(content) do
-				if ((not event.condition or event.condition(module, event)) and (event ~= module.last_event)) then
-					if(event.force)then
-						options = {event}
-						break
+		
+		local speak_text = GlobalsGetValue("copibuddy_speak_text", "")
+		if speak_text ~= "" and not instance.event then
+			GlobalsSetValue("copibuddy_speak_text", "")
+			local id = "speak_event_" .. tostring(GameGetFrameNum())
+			local speak_event = {
+				id = id,
+				text = speak_text,
+				anim = "talk",
+				frames = 300,
+				force = true,
+				func = function(copibuddy)
+					GlobalsSetValue("copi_tts", speak_text)
+					-- remove itself from content after speaking
+					for i, event in ipairs(content) do
+						if event.id and event.id == id then
+							table.remove(content, i)
+							break
+						end
 					end
-					table.insert(options, event)
+
+				end,
+			}
+			content = content or {}
+			table.insert(content, 1, speak_event)
+		end
+		
+		instance.prev_hover_ids = instance.current_hover_ids or {}
+		instance.current_hover_ids = {}
+		instance.prev_hover_ids = instance.current_hover_ids or {}
+		instance.current_hover_ids = {}
+		
+		instance.id_counter = 1241
+
+		if(instance.event and instance.event.update)then
+			instance.event.update(instance)
+		end
+
+		GuiStartFrame(instance.gui)
+		local screen_w, screen_h = GuiGetScreenDimensions(instance.gui)
+		if (not instance.was_active) then
+			instance.animation = "fade_in"
+			instance.was_active = true
+			instance.timer = 60
+			instance.x = Random(0, screen_w - instance.width)
+			instance.y = Random(0, screen_h - instance.height)
+		end
+
+		local next_event = nil
+		if(instance.on_cooldown)then
+			for _, event in ipairs(content) do
+				if (event.force and (not event.condition or event.condition(instance, event)) and (event ~= instance.last_event)) then
+					instance.timer = 0
+					next_event = event
+					goto continue
 				end
 			end
 		end
 
-		if (#options > 0 or next_event) then
-			module.event = #options > 0 and weighted_random(options) or next_event
+		::continue::
 
+		if (instance.timer > 0) then
+			instance.timer = instance.timer - 1
+			if (instance.timer == 0) then
 
-			if(module.event == nil)then
-				return
-			end
-
-			--module.last_event = module.event
-
-			if (module.event.func) then
-				module.event.func(module)
-			end
-			if (module.event.anim and type(module.event.anim) == "function") then
-				module.animation = module.event.anim(module)
-			elseif (module.event.anim) then
-				module.animation = module.event.anim
-			else
-				module.animation = "idle"
-			end
-
-			if (module.event.post_talk_anim and type(module.event.post_talk_anim) == "function") then
-				module.post_talk_anim = module.event.post_talk_anim(module)
-			elseif (module.event.post_talk_anim) then
-				module.post_talk_anim = module.event.post_talk_anim
-			else
-				module.post_talk_anim = "idle"
-			end
-			
-			if (module.event.audio and type(module.event.audio) == "function") then
-				local audio = module.event.audio(module)
-				if (audio) then
-					GamePlaySound(audio[1], audio[2], 0, 0)
+				if(instance.event and instance.event.post_func)then
+					instance.event.post_func(instance)
 				end
-			elseif (module.event.audio) then
-				GamePlaySound(module.event.audio[1], module.event.audio[2], 0, 0)
-			end
-			local raw_text = nil
-			if (module.event.text and type(module.event.text) == "function") then
-				raw_text = module.event.text(module)
-			elseif (module.event.text) then
-				raw_text = module.event.text
-			end
 
-
-			module.functions = {}
-			for k, v in pairs(ref.functions) do
-				module.functions[k] = v
-			end
-
-			if (module.event.functions) then
-				for k, v in pairs(module.event.functions) do
-					module.functions[k] = v
+				instance.animation = "idle"
+				instance.event = nil
+				instance.parsed_text = nil
+				instance.current_progress = nil
+				instance.total_length = nil
+				if(not instance.on_cooldown)then
+					instance.on_cooldown = true
+					instance.timer = Random(instance.event_cooldown[1], instance.event_cooldown[2])
 				end
+			end
+		elseif (instance.event == nil) then
+			SetRandomSeed(GameGetFrameNum() + instance.x, GameGetFrameNum() + instance.y)
+			local options = {}
+			if(not next_event)then
+				for _, event in ipairs(content) do
+					if ((not event.condition or event.condition(instance, event)) and (event ~= instance.last_event)) then
+						if(event.force)then
+							options = {event}
+							break
+						end
+						table.insert(options, event)
+					end
+				end
+			end
+
+			if (#options > 0 or next_event) then
+				instance.event = #options > 0 and weighted_random(options) or next_event
+
+
+				if(instance.event == nil)then
+					return
+				end
+
+				--instance.last_event = instance.event
+
+				if (instance.event.func) then
+					instance.event.func(instance)
+				end
+				if (instance.event.anim and type(instance.event.anim) == "function") then
+					instance.animation = instance.event.anim(instance)
+				elseif (instance.event.anim) then
+					instance.animation = instance.event.anim
+				else
+					instance.animation = "idle"
+				end
+
+				if (instance.event.post_talk_anim and type(instance.event.post_talk_anim) == "function") then
+					instance.post_talk_anim = instance.event.post_talk_anim(instance)
+				elseif (instance.event.post_talk_anim) then
+					instance.post_talk_anim = instance.event.post_talk_anim
+				else
+					instance.post_talk_anim = "idle"
+				end
+				
+				if (instance.event.audio and type(instance.event.audio) == "function") then
+					local audio = instance.event.audio(instance)
+					if (audio) then
+						GamePlaySound(audio[1], audio[2], 0, 0)
+					end
+				elseif (instance.event.audio) then
+					GamePlaySound(instance.event.audio[1], instance.event.audio[2], 0, 0)
+				end
+				local raw_text = nil
+				if (instance.event.text and type(instance.event.text) == "function") then
+					raw_text = instance.event.text(instance)
+				elseif (instance.event.text) then
+					raw_text = instance.event.text
+				end
+
+
+				instance.functions = {}
+				for k, v in pairs(ref_template.functions) do
+					instance.functions[k] = v
+				end
+
+				if (instance.event.functions) then
+					for k, v in pairs(instance.event.functions) do
+						instance.functions[k] = v
+					end
 			end
 			
 
 			if raw_text then
-				module.parsed_text = parse_formatted_text(raw_text)
-				--print(pretty_table(module.parsed_text))
-				module.total_length = 0
-				for _, seg in ipairs(module.parsed_text) do
-					module.total_length = module.total_length + #seg.text
+				instance.parsed_text = parse_formatted_text(raw_text, instance)
+				--print(pretty_table(instance.parsed_text))
+				instance.total_length = 0
+				for _, seg in ipairs(instance.parsed_text) do
+					instance.total_length = instance.total_length + #seg.text
 				end
-				module.current_progress = 0
+				instance.current_progress = 0
+			end				instance.type_delay = instance.event.type_delay or 3
+				instance.timer = instance.event.frames or 60
+
+				instance.on_cooldown = false
+			end
+		end
+
+	if(instance.target_text ~= nil)then
+
+		instance.parsed_text = parse_formatted_text(instance.target_text, instance)
+		--print(pretty_table(instance.parsed_text))
+		instance.total_length = 0
+		for _, seg in ipairs(instance.parsed_text) do
+			instance.total_length = instance.total_length + #seg.text
+		end
+		instance.current_progress = 0
+		instance.target_text = nil
+	end
+		if instance.parsed_text and instance.current_progress < instance.total_length then
+			instance.type_delay = instance.type_delay - 1
+			if instance.type_delay <= 0 then
+				instance.type_delay = (instance.event and instance.event.type_delay) or 3
+				instance.current_progress = instance.current_progress + 1
+				if instance.current_progress > instance.total_length then
+					instance.current_progress = instance.total_length
+				end
+
+				if instance.current_progress == instance.total_length then
+					instance.animation = instance.post_talk_anim
+				end
+
+
+				if (not instance.event or not instance.event.frames) then
+					instance.timer = instance.timer + instance.type_delay
+				end
+			end
+		end
+		GuiZSetForNextWidget(instance.gui, -998)
+		GuiImage(instance.gui, instance.new_id(), instance.x, instance.y, instance.spritesheet, 1, 1, 1, 0, 2, instance.animation or "idle")
+		if instance.parsed_text then
+			local visible_segments = slice_parsed_segments(instance.parsed_text, instance.current_progress)
+			local margin = 5
+			local edge_margin = 6
+			local lines = wrap_segments(instance.gui, visible_segments, instance.max_text_width)
+			local total_text_width, total_text_height, line_heights = measure_lines(instance.gui, lines)
+
+			margin = margin + edge_margin
+			local bubble_x, bubble_y
+			if (instance.y - total_text_height - margin >= 0) then
+				bubble_x = instance.x + instance.width / 2 - total_text_width / 2
+				bubble_y = instance.y - total_text_height - margin
+			elseif (instance.y + instance.height + total_text_height + margin <= screen_h) then
+				bubble_x = instance.x + instance.width / 2 - total_text_width / 2
+				bubble_y = instance.y + instance.height + margin
+			elseif (instance.x - total_text_width - margin >= 0) then
+				bubble_x = instance.x - total_text_width - margin
+				bubble_y = instance.y + instance.height / 2 - total_text_height / 2
+			elseif (instance.x + instance.width + total_text_width + margin <= screen_w) then
+				bubble_x = instance.x + instance.width + margin
+				bubble_y = instance.y + instance.height / 2 - total_text_height / 2
+			else
+				bubble_x = (screen_w - total_text_width) / 2
+				bubble_y = (screen_h - total_text_height) / 2
 			end
 
-			module.type_delay = module.event.type_delay or 3
-			module.timer = module.event.frames or 60
+			bubble_x = math.max(margin, math.min(bubble_x, screen_w - total_text_width - margin))
+			bubble_y = math.max(margin, math.min(bubble_y, screen_h - total_text_height - margin))
 
-			module.on_cooldown = false
+			margin = margin - edge_margin
+			GuiBeginAutoBox(instance.gui)
+			render_wrapped_text(instance.gui, instance.new_id, bubble_x, bubble_y, lines, line_heights, instance)
+			GuiZSetForNextWidget(instance.gui, -999)
+			GuiEndAutoBoxNinePiece(instance.gui, margin, 0, 0, false, 0, "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png", "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png")
+		
+			local _, _, _, _, _, _, _, bubble_x, bubble_y, bubble_w, bubble_h = GuiGetPreviousWidgetInfo(instance.gui)
+		
+			local sprite_size = 6
+
+
+			local topleft_x = bubble_x - (sprite_size / 2)
+			local topleft_y = bubble_y - (sprite_size / 2)
+			local bottomright_x = bubble_x + bubble_w - (sprite_size / 2)
+			local bottomright_y = bubble_y + bubble_h - (sprite_size / 2)
+
+
+			--[[GuiZSetForNextWidget(instance.gui, -9999)
+			GuiImage(instance.gui, new_id(), topleft_x, topleft_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
+			
+			GuiZSetForNextWidget(instance.gui, -9999)
+			GuiImage(instance.gui, new_id(), bottomright_x, bottomright_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
+			]]
+			
+			local bubble_center_x = bubble_x + bubble_w / 2
+			local bubble_center_y = bubble_y + bubble_h / 2
+
+			local arrow_y = bubble_center_y > instance.y and bubble_y + 1 or bubble_y + bubble_h - 1
+
+			local arrow_x = bubble_center_y > instance.y and (bubble_center_x + sprite_size / 2) or (bubble_center_x - sprite_size / 2)
+
+			local is_left = bubble_center_x + 2 < instance.x + (instance.width / 2)
+			local is_right = bubble_center_x - 2 > instance.x + (instance.width / 2)
+
+			local is_above = instance.y < bubble_center_y
+
+			local arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_center.png"
+
+			if(is_above)then
+				if(is_left)then
+					arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
+				elseif(is_right)then
+					arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
+				end
+			else
+				if(is_left)then
+					arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
+				elseif(is_right)then
+					arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
+				end
+			end
+			
+			GuiZSetForNextWidget(instance.gui, -9999)
+			GuiImage(instance.gui, instance.new_id(), arrow_x, arrow_y, arrow_sprite, 1, 1, 1, not is_above and 0 or math.pi)
+
+
 		end
 	end
-
-	if(module.target_text ~= nil)then
-
-		module.parsed_text = parse_formatted_text(module.target_text)
-		--print(pretty_table(module.parsed_text))
-		module.total_length = 0
-		for _, seg in ipairs(module.parsed_text) do
-			module.total_length = module.total_length + #seg.text
-		end
-		module.current_progress = 0
-		module.target_text = nil
-	end
-
-
-	if module.parsed_text and module.current_progress < module.total_length then
-		module.type_delay = module.type_delay - 1
-		if module.type_delay <= 0 then
-			module.type_delay = module.event.type_delay or 3
-			module.current_progress = module.current_progress + 1
-			if module.current_progress > module.total_length then
-				module.current_progress = module.total_length
-			end
-
-			if module.current_progress == module.total_length then
-				module.animation = module.post_talk_anim
-			end
-
-
-			if (not module.event.frames) then
-				module.timer = module.timer + module.type_delay
-			end
-		end
-	end
-	GuiZSetForNextWidget(module.gui, -998)
-	GuiImage(module.gui, module.new_id(), module.x, module.y, module.spritesheet, 1, 1, 1, 0, 2, module.animation or "idle")
-	if module.parsed_text then
-		local visible_segments = slice_parsed_segments(module.parsed_text, module.current_progress)
-		local margin = 5
-		local edge_margin = 6
-		local lines = wrap_segments(module.gui, visible_segments, module.max_text_width)
-		local total_text_width, total_text_height, line_heights = measure_lines(module.gui, lines)
-
-		margin = margin + edge_margin
-		local bubble_x, bubble_y
-		if (module.y - total_text_height - margin >= 0) then
-			bubble_x = module.x + module.width / 2 - total_text_width / 2
-			bubble_y = module.y - total_text_height - margin
-		elseif (module.y + module.height + total_text_height + margin <= screen_h) then
-			bubble_x = module.x + module.width / 2 - total_text_width / 2
-			bubble_y = module.y + module.height + margin
-		elseif (module.x - total_text_width - margin >= 0) then
-			bubble_x = module.x - total_text_width - margin
-			bubble_y = module.y + module.height / 2 - total_text_height / 2
-		elseif (module.x + module.width + total_text_width + margin <= screen_w) then
-			bubble_x = module.x + module.width + margin
-			bubble_y = module.y + module.height / 2 - total_text_height / 2
-		else
-			bubble_x = (screen_w - total_text_width) / 2
-			bubble_y = (screen_h - total_text_height) / 2
-		end
-
-		bubble_x = math.max(margin, math.min(bubble_x, screen_w - total_text_width - margin))
-		bubble_y = math.max(margin, math.min(bubble_y, screen_h - total_text_height - margin))
-
-		margin = margin - edge_margin
-		GuiBeginAutoBox(module.gui)
-		render_wrapped_text(module.gui, module.new_id, bubble_x, bubble_y, lines, line_heights)
-		GuiZSetForNextWidget(module.gui, -999)
-		GuiEndAutoBoxNinePiece(module.gui, margin, 0, 0, false, 0, "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png", "mods/noita.fairmod/files/content/copibuddy/sprites/bubble.png")
 	
-		local _, _, _, _, _, _, _, bubble_x, bubble_y, bubble_w, bubble_h = GuiGetPreviousWidgetInfo(module.gui)
-	
-		local sprite_size = 6
-
-
-		local topleft_x = bubble_x - (sprite_size / 2)
-		local topleft_y = bubble_y - (sprite_size / 2)
-		local bottomright_x = bubble_x + bubble_w - (sprite_size / 2)
-		local bottomright_y = bubble_y + bubble_h - (sprite_size / 2)
-
-
-		--[[GuiZSetForNextWidget(module.gui, -9999)
-		GuiImage(module.gui, new_id(), topleft_x, topleft_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
-		
-		GuiZSetForNextWidget(module.gui, -9999)
-		GuiImage(module.gui, new_id(), bottomright_x, bottomright_y, "mods/noita.fairmod/files/content/copibuddy/sprites/debug.png", 1, 1, 1, 0)
-		]]
-		
-		local bubble_center_x = bubble_x + bubble_w / 2
-		local bubble_center_y = bubble_y + bubble_h / 2
-
-		local arrow_y = bubble_center_y > module.y and bubble_y + 1 or bubble_y + bubble_h - 1
-
-		local arrow_x = bubble_center_y > module.y and (bubble_center_x + sprite_size / 2) or (bubble_center_x - sprite_size / 2)
-
-		local is_left = bubble_center_x + 2 < module.x + (module.width / 2)
-		local is_right = bubble_center_x - 2 > module.x + (module.width / 2)
-
-		local is_above = module.y < bubble_center_y
-
-		local arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_center.png"
-
-		if(is_above)then
-			if(is_left)then
-				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
-			elseif(is_right)then
-				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
-			end
-		else
-			if(is_left)then
-				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_right.png"
-			elseif(is_right)then
-				arrow_sprite = "mods/noita.fairmod/files/content/copibuddy/sprites/bubble_arrow_left.png"
-			end
-		end
-		
-		GuiZSetForNextWidget(module.gui, -9999)
-		GuiImage(module.gui, module.new_id(), arrow_x, arrow_y, arrow_sprite, 1, 1, 1, not is_above and 0 or math.pi)
-
-
-	end
+	return instance
 end
 
 return module

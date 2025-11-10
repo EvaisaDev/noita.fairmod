@@ -66,7 +66,11 @@ local lavamonster = dofile_once("mods/noita.fairmod/files/content/lavamonster/in
 local mod_compat = dofile_once("mods/noita.fairmod/files/content/mod_compat/init.lua") ---@type fairmod_mod_compat
 local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
-local copibuddy = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
+local copibuddy_module = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
+local TTS = dofile_once("mods/noita.fairmod/files/content/copibuddy/tts.lua")
+
+-- Table to store multiple copibuddy instances
+local copibuddy_instances = {}
 
 if ModIsEnabled("component-explorer") then dofile("mods/noita.fairmod/files/content/component-explorer/init.lua") end
 
@@ -288,6 +292,12 @@ function OnPlayerSpawned(player)
 		RemoveFlagPersistent("copibuddy_next_run")
 	end
 
+	if GameHasFlagRun("is_copibuddied") then
+		local new_instance = copibuddy_module.create()
+		table.insert(copibuddy_instances, new_instance)
+	end
+	
+
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
 	--EntityLoad("mods/noita.fairmod/files/content/gamblecore/slotmachine.xml", target_x, target_y)
@@ -329,7 +339,33 @@ function OnWorldPreUpdate()
 	achievements:update()
 	gamblecore.Update()
 	logo_splash.update()
-	copibuddy.update()
+	
+	-- Handle reset flag
+	if GameHasFlagRun("reset_copibuddy") then
+		GameRemoveFlagRun("reset_copibuddy")
+		GameRemoveFlagRun("copibuddy_intro_done")
+		-- Reset all instances
+		for i = #copibuddy_instances, 1, -1 do
+			copibuddy_instances[i] = nil
+		end
+		copibuddy_instances = {}
+	end
+	
+	if GameHasFlagRun("copibuddy") then
+		print("Spawning copibuddy due to flag")
+		local new_instance = copibuddy_module.create()
+		table.insert(copibuddy_instances, new_instance)
+		GameAddFlagRun("is_copibuddied")
+		GameRemoveFlagRun("copibuddy")
+	end
+	
+	-- Update all copibuddy instances
+	for i = #copibuddy_instances, 1, -1 do
+		local instance = copibuddy_instances[i]
+		if instance then
+			instance.update()
+		end
+	end
 
 	if GameHasFlagRun("ending_game_completed") and not GameHasFlagRun("incremented_win_count") then
 		GameAddFlagRun("incremented_win_count")
@@ -351,10 +387,32 @@ function OnWorldPreUpdate()
 	end
 
 	if(GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5)then
+		-- Only spawn one copibuddy naturally
+		if #copibuddy_instances == 0 then
+			local new_instance = copibuddy_module.create()
+			table.insert(copibuddy_instances, new_instance)
+		end
 		GameAddFlagRun("copibuddy")
-		GameAddFlagRun("reset_copibuddy")
 		GameRemoveFlagRun("copibuddy_will_haunt")
 	end
+
+	if not tts_player then
+		tts_player = TTS.new()
+	end
+
+	if(GlobalsGetValue("copi_tts", "") ~= "")then
+		
+		local phonemes = TTS.text_to_phonemes(GlobalsGetValue("copi_tts", ""))
+
+		tts_player:speak(phonemes)
+
+		GlobalsSetValue("copi_tts", "")
+	end
+
+	if tts_player then
+		tts_player:update()
+	end
+
 end
 
 function OnWorldPostUpdate()

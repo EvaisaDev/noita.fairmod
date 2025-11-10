@@ -69,7 +69,7 @@ return {
 		weight = 1,
 		force = true, -- forces event if possible
 		condition = function(copibuddy)
-			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and not HasFlagPersistent("copibuddy_met_before")
+			local first_time = GameHasFlagRun("is_copibuddied") and not GameHasFlagRun("copibuddy_intro_done") and not HasFlagPersistent("copibuddy_met_before")
 			return first_time
 		end,
 		func = function(copibuddy) -- this function is called when the event is triggered
@@ -90,7 +90,7 @@ return {
 		weight = 1,
 		force = true, -- forces event if possible
 		condition = function(copibuddy)
-			local first_time = GameHasFlagRun("copibuddy") and not GameHasFlagRun("copibuddy_intro_done") and HasFlagPersistent("copibuddy_met_before")
+			local first_time = GameHasFlagRun("is_copibuddied") and not GameHasFlagRun("copibuddy_intro_done") and HasFlagPersistent("copibuddy_met_before")
 			return first_time
 		end,
 		func = function(copibuddy) 
@@ -263,7 +263,7 @@ return {
 		end,
 	},
 	{ -- random taunts
-		weight = 2.2,
+		weight = 5.2,
 		anim = "talk",
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
 		type_delay = 4,
@@ -387,7 +387,7 @@ return {
 		anim = "talk", -- can be either a function or a string, or nil
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
 		frames = nil, -- this is the number of frames the event will last. If nil, it will last the default time.
-		weight = 1,
+		weight = 15,
 		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			local took_damage = GameHasFlagRun("copibuddy.just_took_damage") and Random(1, 100) <= 20

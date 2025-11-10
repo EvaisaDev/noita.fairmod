@@ -50,7 +50,7 @@ function clipboard.OnPlayerSpawned()
 		"",
 	}
 
-	if imgui then
+	if imgui and not GameHasFlagRun("fairmod_developer_mode") then
 		SetRandomSeed(123, 456)
 		imgui.SetClipboardText(messages[Random(1, #messages)])
 	end
