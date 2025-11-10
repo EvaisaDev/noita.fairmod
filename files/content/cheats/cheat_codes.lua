@@ -322,6 +322,12 @@ return {
 		end,
 	},
 	{
+		code = "antivirus",
+		func = function(player)
+			GameRemoveFlagRun("copibuddy")
+		end,
+	},
+	{
 		code = "blindstreamer",
 		func = function(player)
 			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "blindstreamer,")
@@ -543,7 +549,7 @@ return {
 		description = "this is surely a good idea",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
-			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium.xml", x, y)
+			EntityLoad("mods/noita.fairmod/files/content/chemical_horror/pandorium/sea_of_chaotic_pandorium_nerfed.xml", x, y)
 		end,
 	},
 	{
@@ -782,7 +788,16 @@ return {
 			local x, y = EntityGetTransform(player)
 			local entity = EntityLoad("mods/noita.fairmod/files/content/mailbox/hampill/hampill.xml", x, y)
         end,
-    }
+    },
+    {
+        code = "anticheat",
+		name = "",
+        not_cheat = true,
+        description = ":D",
+        func = function(player)
+            GameAddFlagRun("fairmod.no_cheats")
+        end,
+    },
 }
 
 --stylua: ignore end
