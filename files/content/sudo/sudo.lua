@@ -79,6 +79,7 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 				GameScreenshake(120)
 				GamePrintImportant(GameTextGet("$log_fairmod_dev_sacrifice", target), "$log_fairmod_dev_sacrifice_desc")
 			else
+				Devs[sender_username:lower()] = false
 				-- lol >:3
 				GamePrintImportant("$log_fairmod_dev_sacrifice_fail", "$log_fairmod_dev_sacrifice_desc_fail")
 			end
