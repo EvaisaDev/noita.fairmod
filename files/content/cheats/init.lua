@@ -66,7 +66,7 @@ module.update = function()
 									if arg == "" then input_args[i] = nil
 									else input_args[i] = arg end
 									print(i .. ": " .. tostring(input_args[i]))
-								   	i = i + 1
+									i = i + 1
 								end
 								
 								for index, value in ipairs(v.args) do
@@ -93,10 +93,14 @@ module.update = function()
 										return false
 									end
 								end
-							
+
 								if (not v.devmode) or GameHasFlagRun("fairmod_developer_mode") then
+									if GameHasFlagRun("fairmod.no_cheats") and not v.not_cheat then
+										GamePrintImportant("SILENCED", "A mysterious force blocks your attempts")
+										return
+									end
 									if v.name then
-										GamePrintImportant("Command activated: " .. v.name, string.format(v.description, input_args[1],  input_args[2],  input_args[3]), v.decoration or "")
+										GamePrintImportant("Command activated: " .. v.name, string.format(v.description, input_args[1], input_args[2], input_args[3]), v.decoration or "")
 									end
 									if not v.not_cheat then GameAddFlagRun("Epic_leet_hacker") print("command used, you dirty cheater!") end
 									for index, value in ipairs(input_args) do
@@ -156,6 +160,10 @@ module.update = function()
 				if string.sub(code, 1, string.len(input)) == input then
 					if string.len(code) == string.len(input) then
 						if (v.devmode and GameHasFlagRun("fairmod_developer_mode")) or not v.devmode then
+							if GameHasFlagRun("fairmod.no_cheats") and not v.not_cheat then
+								GamePrintImportant("SILENCED", "A mysterious force blocks your attempts")
+								return
+							end
 							if v.name then
 								GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
 							end
