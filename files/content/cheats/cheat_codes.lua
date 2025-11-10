@@ -322,12 +322,6 @@ return {
 		end,
 	},
 	{
-		code = "antivirus",
-		func = function(player)
-			GameRemoveFlagRun("copibuddy")
-		end,
-	},
-	{
 		code = "blindstreamer",
 		func = function(player)
 			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "blindstreamer,")
