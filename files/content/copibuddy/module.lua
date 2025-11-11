@@ -330,6 +330,21 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights, insta
 	end
 end
 
+function DeepCopy(orig)
+	local orig_type = type(orig)
+	local copy
+	if orig_type == 'table' then
+		copy = {}
+		for orig_key, orig_value in next, orig, nil do
+			copy[DeepCopy(orig_key)] = DeepCopy(orig_value)
+		end
+		setmetatable(copy, DeepCopy(getmetatable(orig)))
+	else
+		copy = orig
+	end
+	return copy
+end
+
 function module.create()
 	local instance = {
 		gui = GuiCreate(),
@@ -388,10 +403,22 @@ function module.create()
 		local force_event_id = GlobalsGetValue("copi_force_event", "")
 		if force_event_id ~= "" then
 			GlobalsSetValue("copi_force_event", "")
+			-- split force_event_id by spaces
+			local args = {}
+			for id in force_event_id:gmatch("%S+") do
+				table.insert(args, id)
+			end
 			-- Find the event with matching id and add it to the queue
 			for _, event in ipairs(content) do
-				if event.id == force_event_id then
-					table.insert(instance.forced_event_queue, event)
+				if event.id == args[1] then
+					table.remove(args, 1)
+					local new_event = DeepCopy(event)
+					if(#args > 0)then
+						new_event.override_params = args
+					else
+						new_event.override_params = nil
+					end
+					table.insert(instance.forced_event_queue, new_event)
 					break
 				end
 			end
@@ -405,7 +432,7 @@ function module.create()
 		instance.id_counter = 1241
 
 		if(instance.event and instance.event.update)then
-			instance.event.update(instance)
+			instance.event.update(instance, unpack(instance.event.override_params or {}))
 		end
 
 		GuiStartFrame(instance.gui)
@@ -500,7 +527,7 @@ function module.create()
 				end
 				
 				if (instance.event.audio and type(instance.event.audio) == "function") then
-					local audio = instance.event.audio(instance)
+					local audio = instance.event.audio(instance, unpack(instance.event.override_params or {}))
 					if (audio) then
 						GamePlaySound(audio[1], audio[2], 0, 0)
 					end
@@ -509,7 +536,7 @@ function module.create()
 				end
 				local raw_text = nil
 				if (instance.event.text and type(instance.event.text) == "function") then
-					raw_text = instance.event.text(instance)
+					raw_text = instance.event.text(instance, unpack(instance.event.override_params or {}))
 				elseif (instance.event.text) then
 					raw_text = instance.event.text
 				end

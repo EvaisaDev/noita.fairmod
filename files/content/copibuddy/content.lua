@@ -149,7 +149,7 @@ return {
 		},
 	},	
 	{
-		id = "teleport_fade",
+		id = "move",
 		text = nil,
 		anim = "fade_out",
 		frames = 280,
@@ -157,7 +157,7 @@ return {
 		condition = function(copibuddy)
 			return true
 		end,
-		update = function(copibuddy) -- this function is called every frame while event is active
+		update = function(copibuddy, override_x, override_y) -- this function is called every frame while event is active
 
 			if(copibuddy.timer == 180)then
 				copibuddy.animation = "missing"
@@ -167,6 +167,16 @@ return {
 				local screen_w, screen_h = GuiGetScreenDimensions(copibuddy.gui)
 				copibuddy.x = Random(0, screen_w - copibuddy.width)
 				copibuddy.y = Random(0, screen_h - copibuddy.height)
+				if(override_x and override_y)then
+					-- make sure they are numbers
+					override_x = tonumber(override_x)
+					override_y = tonumber(override_y)
+
+					if(override_x and override_y)then
+						copibuddy.x = override_x
+						copibuddy.y = override_y
+					end
+				end
 				copibuddy.animation = "fade_in"
 			end
 
@@ -275,7 +285,7 @@ return {
 		anim = "talk",
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
 		type_delay = 4,
-		text = function(copibuddy)
+		text = function(copibuddy, index_override)
 			-- little bit of seed rigging to sync the audio and text entries
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
@@ -309,10 +319,14 @@ return {
 				"Why do I hang out with you again?",
 				"Your computer has 1 copillion viruses.",
 				"Did you know I can perfectly imitate a dog? (dog sound) Pretty good right?", --> goat sound
+				"I am magnificent. I am the pinnacle of my profession. I am the pride of my family. I am the apex of my species. I am the treasure of this planet. I am the marvel of this universe. I am the wonder of all universes. I am the glory of all possible universes. I am the radiance of all possible and impossible universes. I am the brilliance of all possible and impossible universes and all that is not a universe. I am the excellence of all that is and all that is not. I am the triumph of all that is, was, and ever will be. I am the triumph of all that is, was, and ever will be, and all that is not, was not, and never will be. I am everything perfected. I am the embodiment of everything worthy. I am flawless. I am flawless. I am flawless. I am flawless. I am flawless. I am flawless. I am flawless. I am flawless. I am flawless. I am.."
 			}
+			if(index_override and tonumber(index_override))then
+				return taunts[tonumber(index_override)]
+			end
 			return taunts[Random(1, #taunts)]
 		end,
-		audio = function(copibuddy)
+		audio = function(copibuddy, index_override)
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"copibuddy/taunt_1",
@@ -345,7 +359,11 @@ return {
 				"copibuddy/taunt_28",
 				"copibuddy/taunt_29",
 				"copibuddy/taunt_30",
+				"copibuddy/deranged_ramblings_1",
 			}
+			if(index_override and tonumber(index_override))then
+				return {"mods/noita.fairmod/fairmod.bank", taunts[tonumber(index_override)]}
+			end
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
 		end,
 	},
@@ -366,7 +384,7 @@ return {
 	},
 	{
 		id = "damage_taunt",
-		text = function(copibuddy)
+		text = function(copibuddy, index_override)
 			-- little bit of seed rigging to sync the audio and text entries
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
@@ -378,9 +396,12 @@ return {
 				"Your failure amuses me.",
 				"Damn you know you are supposed to like not lose health right?",
 			}
+			if(index_override and tonumber(index_override))then
+				return taunts[tonumber(index_override)]
+			end
 			return taunts[Random(1, #taunts)]
 		end,
-		audio = function(copibuddy)
+		audio = function(copibuddy, index_override)
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
 			local taunts = {
 				"copibuddy/damage_response_1",
@@ -391,6 +412,9 @@ return {
 				"copibuddy/damage_response_6",
 				"copibuddy/damage_response_7",
 			}
+			if(index_override and tonumber(index_override))then
+				return {"mods/noita.fairmod/fairmod.bank", taunts[tonumber(index_override)]}
+			end
 			return {"mods/noita.fairmod/fairmod.bank", taunts[Random(1, #taunts)]}
 		end,		
 		

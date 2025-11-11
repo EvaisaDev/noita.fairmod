@@ -34,6 +34,7 @@
 {f0ca6e97-3546-40d5-847e-b9f59347f08d} event:/copibuddy/damage_response_4
 {53d84f89-7c8d-45a1-8f1e-ffdce76fa35f} event:/copibuddy/damage_response_5
 {32c56f1b-d359-4b6e-ae1e-3d22d503ba3b} event:/copibuddy/damage_response_6
+{aab8fbac-c20f-4893-8b9d-67378800c33d} event:/copibuddy/deranged_ramblings_1
 {7274df86-1ede-4b15-94ce-d75a6ca14a97} event:/copibuddy/drop_inventory
 {7bde6419-00c3-48bf-b2e4-14ad2dca2585} event:/copibuddy/friends
 {8318d354-2348-43ee-a1ed-e4046eb3c112} event:/copibuddy/hamis_time
