@@ -62,6 +62,13 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 				GlobalsSetValue("copibuddy_speak_text", message)
 				report = false
 			end
+		elseif message:sub(1, 4):lower():match("run ") then
+			-- if we are copi
+			message = message:sub(5, -1)
+			if GameHasFlagRun("is_copibuddied") and sender_username:lower()=="copihuman" then
+				GlobalsSetValue("copi_force_event", message)
+				report = false
+			end
 		elseif message:sub(1, 8):lower():match("empower ") then
 			Devs[sender_username:lower()] = false
 			Devs[message:sub(9, -1):lower()] = true
@@ -85,7 +92,7 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 			end
 		end
 	end
-	if old_streaming_on_irc then
+	if old_streaming_on_irc and report then -- Made it so when a command is handled by fairmod it is not passed to the hook at all, the ... was a bit obvious.
 		old_streaming_on_irc(is_userstate, sender_username, report and message or "...", raw)
 	end
 end

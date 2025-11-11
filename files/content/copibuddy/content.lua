@@ -59,6 +59,7 @@ end
 
 return {
 	{
+		id = "introduction",
 		text = function(copibuddy) -- can be either a function or a string
 			return "Well hello there! \nI don't think we've been properly introduced. \n\nI'm copi."
 		end,
@@ -84,6 +85,7 @@ return {
 		end,
 	},
 	{
+		id = "reintroduction",
 		text = "Hello there! Good to see you again.\nLet's have lots of fun together.",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reintroduction"},
 		anim = "talk",
@@ -99,12 +101,14 @@ return {
 		end
 	},
 	{
+		id = "inventor_of_things",
 		text = "I'm copi, inventor of all things!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/inventor_of_things"},
 		anim = "talk",
 		weight = 0.3,
 	},
 	{
+		id = "button_surprise",
 		text = "Click this [on_click=surprise][color=0000ff]cool button[/color][/on_click] to get a free surprise!",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/button_surprise"},
 		anim = "talk",
@@ -145,6 +149,7 @@ return {
 		},
 	},	
 	{
+		id = "teleport_fade",
 		text = nil,
 		anim = "fade_out",
 		frames = 280,
@@ -168,6 +173,7 @@ return {
 		end,
 	},
 	{
+		id = "spin",
 		text = nil,
 		anim = "spin",
 		frames = 135,
@@ -177,6 +183,7 @@ return {
 		end,
 	},
 	{
+		id = "copi_blast",
 		text = "copi BLAST!",
 		anim = "copi_blast",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/copi_blast"},
@@ -263,6 +270,7 @@ return {
 		end,
 	},
 	{ -- random taunts
+		id = "taunt",
 		weight = 5.2,
 		anim = "talk",
 		post_talk_anim = "idle", -- this is the animation that will play after the text is done, can be either a function or a string, or nil
@@ -342,6 +350,7 @@ return {
 		end,
 	},
 	{ -- put out fire with fucked up liquids
+		id = "discord",
 		anim = "idle",
 		frames = 480,
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/ping"},
@@ -356,6 +365,7 @@ return {
 		end,
 	},
 	{
+		id = "damage_taunt",
 		text = function(copibuddy)
 			-- little bit of seed rigging to sync the audio and text entries
 			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
@@ -400,6 +410,7 @@ return {
 		end,
 	},
 	{
+		id = "enemies_to_hamis",
 		text = "Those enemies seem to be in your way, let me turn them into something more friendly.",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/hamis_time"},
@@ -463,6 +474,7 @@ return {
 		end,
 	},
 	{ 
+		id = "remove_gold",
 		anim = "copi_snap",
 		frames = 300,
 		weight = function(copibuddy)
@@ -499,6 +511,7 @@ return {
 		end,
 	},
 	{
+		id = "drop_inventory",
 		text = "You seem to be carrying a heavy load, let me help you with that.",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/drop_inventory"},
@@ -541,6 +554,7 @@ return {
 		end,
 	},
 	{
+		id = "reorganize_wands",
 		text = "Your loadout looks inefficient, I will reorganize it.",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/reorganize"},
@@ -613,6 +627,7 @@ return {
 		end,
 	},
 	{ -- 20% chance for copi to save you if your health falls below 5%
+		id = "go_home",
 		anim = "copi_snap",
 		frames = 300,
 		force = true,
@@ -649,6 +664,7 @@ return {
 		end,
 	},
 	{
+		id = "makeover",
 		text = "You deserve a makeover!",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/makeover"},
@@ -675,6 +691,7 @@ return {
 		end,
 	},
 	{
+		id = "route_caller", -- This one cannot be triggered manually due to how it is implemented.
 		text = "I have detected a scam caller and routed your call to a safe caller.",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/scam_caller"},
@@ -687,6 +704,7 @@ return {
 		end,
 	},
 	{
+		id = "achievement",
 		text = "It looks like you're trying to get every achievement, here's one on the house!",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/achievement"},
@@ -699,6 +717,7 @@ return {
 		end,
 	},
 	{ 
+		id = "dig_hole",
 		anim = "copi_snap",
 		frames = 300,
 		force = true,
@@ -775,6 +794,7 @@ return {
 		end,
 	},
 	{
+		id = "steal_shop",
 		text = "You don't need to pay for those, I got you covered.",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/steal"},
@@ -874,6 +894,7 @@ return {
 		end,
 	},
 	{ -- put out fire with fucked up liquids
+		id = "extinguish",
 		anim = "copi_snap",
 		frames = 300,
 		force = true,
@@ -954,6 +975,7 @@ return {
 		end,
 	},
 	{
+		id = "spawn_friends",
 		text = "You look like you need some friends",
 		anim = "talk",
 		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/friends"},

@@ -19,6 +19,7 @@ local ref_template = {
 	max_text_width = 200,
 	event = nil,
 	last_event = nil,
+	forced_event_queue = {},
 	functions = {
 		test = function()
 			print("test")
@@ -384,6 +385,18 @@ function module.create()
 			table.insert(content, 1, speak_event)
 		end
 		
+		local force_event_id = GlobalsGetValue("copi_force_event", "")
+		if force_event_id ~= "" then
+			GlobalsSetValue("copi_force_event", "")
+			-- Find the event with matching id and add it to the queue
+			for _, event in ipairs(content) do
+				if event.id == force_event_id then
+					table.insert(instance.forced_event_queue, event)
+					break
+				end
+			end
+		end
+		
 		instance.prev_hover_ids = instance.current_hover_ids or {}
 		instance.current_hover_ids = {}
 		instance.prev_hover_ids = instance.current_hover_ids or {}
@@ -407,11 +420,17 @@ function module.create()
 
 		local next_event = nil
 		if(instance.on_cooldown)then
-			for _, event in ipairs(content) do
-				if (event.force and (not event.condition or event.condition(instance, event)) and (event ~= instance.last_event)) then
-					instance.timer = 0
-					next_event = event
-					goto continue
+			-- Check if there's a forced event in the queue
+			if #instance.forced_event_queue > 0 then
+				next_event = table.remove(instance.forced_event_queue, 1)
+				instance.timer = 0
+			else
+				for _, event in ipairs(content) do
+					if (event.force and (not event.condition or event.condition(instance, event)) and (event ~= instance.last_event)) then
+						instance.timer = 0
+						next_event = event
+						goto continue
+					end
 				end
 			end
 		end
