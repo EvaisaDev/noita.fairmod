@@ -408,7 +408,7 @@ return {
 		name = "Ouch!",
 		description = "Player fell out of the world.",
 		func = function(player)
-			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Fell out of the world", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
@@ -785,18 +785,17 @@ return {
     },
     {
         code = "anticheat",
-		name = "",
+		name = "A mysterious seal",
+        description = "A mysterious seal has been enforced",
         not_cheat = true,
-        description = ":D",
         func = function(player)
             GameAddFlagRun("fairmod.no_cheats")
         end,
     },
     {
         code = "freevbucks",
-		name = "",
         not_cheat = true,
-        description = "",
+        description = "The mysterious seal has been vanquished",
         func = function(player)
 			if GameHasFlagRun("fairmod.no_cheats") then
 				GameAddFlagRun("infinite_karmic_debt")
@@ -804,6 +803,7 @@ return {
 			end
         end,
     },
+    {
 }
 
 --stylua: ignore end
