@@ -803,7 +803,6 @@ return {
 			end
         end,
     },
-    {
 }
 
 --stylua: ignore end
