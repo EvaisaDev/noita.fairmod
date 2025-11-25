@@ -292,11 +292,10 @@ function OnPlayerSpawned(player)
 		RemoveFlagPersistent("copibuddy_next_run")
 	end
 
-	if GameHasFlagRun("is_copibuddied") then
+	if(GameHasFlagRun("is_copibuddied") and #copibuddy_instances == 0)then
 		local new_instance = copibuddy_module.create()
 		table.insert(copibuddy_instances, new_instance)
 	end
-	
 
 	-- debugging
 	-- EntityLoad("mods/noita.fairmod/files/content/funky_portals/return_portal.xml", target_x, target_y - 30)
@@ -351,12 +350,12 @@ function OnWorldPreUpdate()
 		copibuddy_instances = {}
 	end
 	
-	if GameHasFlagRun("copibuddy") then
+	if GameHasFlagRun("copibuddy") and #copibuddy_instances == 0 then
+		GameRemoveFlagRun("copibuddy")
 		print("Spawning copibuddy due to flag")
 		local new_instance = copibuddy_module.create()
 		table.insert(copibuddy_instances, new_instance)
 		GameAddFlagRun("is_copibuddied")
-		GameRemoveFlagRun("copibuddy")
 	end
 	
 	-- Update all copibuddy instances
@@ -386,13 +385,12 @@ function OnWorldPreUpdate()
 		RemoveFlagPersistent("copibuddy_next_run")]]
 	end
 
-	if(GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5)then
+	if(not GameHasFlagRun("is_copibuddied") and (GameHasFlagRun("copibuddy_will_haunt") and GameGetFrameNum() > 200 and GameGetFrameNum() % 60 == 0 and Random(0, 100) < 5))then
 		-- Only spawn one copibuddy naturally
 		if #copibuddy_instances == 0 then
 			local new_instance = copibuddy_module.create()
 			table.insert(copibuddy_instances, new_instance)
 		end
-		GameAddFlagRun("copibuddy")
 		GameRemoveFlagRun("copibuddy_will_haunt")
 	end
 

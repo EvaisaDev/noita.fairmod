@@ -80,6 +80,8 @@
 {cded1620-46ec-4120-8074-7175b26d347c} event:/copibuddy/taunt_7
 {4dbc5929-8a97-4936-a606-51dae611ec6b} event:/copibuddy/taunt_8
 {49badd04-9a16-4a64-ada8-6eda93cb4c9a} event:/copibuddy/taunt_9
+{7d51b7da-2dc3-4972-bdea-41e0d0817839} event:/copibuddy/twitch_vote_1
+{b7816e14-cfd7-48a6-8b15-0d6fed65a1d8} event:/copibuddy/twitch_vote_2
 {31eb99f6-f376-4c94-ad8e-80d7bdfcdd0b} event:/copibuddytts/AA0
 {741883da-42ec-4135-9080-a6fc9e81db82} event:/copibuddytts/AA1
 {e14e6dad-3118-4847-9ae2-e76f7cb713e0} event:/copibuddytts/AE1
