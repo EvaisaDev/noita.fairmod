@@ -39,7 +39,11 @@ function init.OnMagicNumbersAndWorldSeedInitialized()
 
 		-- If the action exists, make its sprite editable
 		local action = actions[i]
-		if action and action.sprite then ModImageMakeEditable(action.sprite, 16, 16) end
+		if action and action.sprite then 
+			if string.sub(action.sprite, -4) == ".png" then
+				ModImageMakeEditable(action.sprite, 16, 16) 
+			end
+		end
 	end
 
 	local perk_count = #perk_list

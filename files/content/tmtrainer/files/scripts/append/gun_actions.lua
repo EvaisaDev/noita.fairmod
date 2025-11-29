@@ -56,8 +56,20 @@ local function generate_image(index, original_sprite, was_first)
 
 	-- Randomly overlay parts of the original sprite onto the corrupted sprite
 
-	local original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename(original_sprite)
-	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename(corrupted_sprite)
+	local original_sprite_id, original_sprite_width, original_sprite_height
+	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height
+
+	if(ModImageWhoSetContent(original_sprite) == "" )then
+		original_sprite_id, original_sprite_width, original_sprite_height = ModImageMakeEditable(original_sprite, 0, 0)
+	else
+		original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename( original_sprite )
+	end
+
+	if(ModImageWhoSetContent(corrupted_sprite) == "" )then
+		corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageMakeEditable(corrupted_sprite, original_sprite_width, original_sprite_height)
+	else
+		corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename( corrupted_sprite )
+	end
 
 	if was_first then
 		for i = 0, corrupted_sprite_width - 1 do
@@ -127,6 +139,10 @@ local function create_tmtrainer_action(action_type, index)
 			if twitch_event then table.insert(twitch_events, twitch_event) end
 		else
 			local action_info = get_random_action(mix_type)
+			-- if sprite is not .png then get a new one
+			while action_info and (not action_info.sprite or string.sub(action_info.sprite, -4) ~= ".png") do
+				action_info = get_random_action(mix_type)
+			end
 			if action_info then table.insert(added_actions, action_info) end
 		end
 	end
@@ -147,6 +163,11 @@ local function create_tmtrainer_action(action_type, index)
 
 	for i, added_action in ipairs(added_actions) do
 		local id = added_action.id
+
+		if added_action.sprite == nil or string.sub(added_action.sprite, -4) ~= ".png" then
+			-- skip actions without valid sprite
+			goto continue
+		end
 
 		-- if id starts with RANDOM_ we ignore it
 		if string.sub(id, 1, 7) == "RANDOM_" then goto continue end
