@@ -1,3 +1,4 @@
+RegisterSpawnFunction = function()end
 dofile_once("data/scripts/director_helpers.lua")
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
@@ -59,6 +60,7 @@ local biome = GetBiomeId(x, y)
 local biome_choices = biome_spawns[biome]
 
 SetRandomSeed(x, y)
+
 local spawn_entity = random_from_table(biome_choices, x, y)
 if spawn_entity ~= nil then EntityLoad(tostring(spawn_entity.entity), x, y) end
 
