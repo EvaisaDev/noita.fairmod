@@ -29,20 +29,17 @@ local function generate_icon(index, original_icon, is_first, icon_type)
 	local icon_dir = "mods/noita.fairmod/files/content/tmtrainer/files/perk_icons/"
 	local new_icon_path = icon_dir .. icon_type .. "_" .. index .. ".png"
 
-	local original_icon_id, original_icon_width, original_icon_height
-	local new_icon_id, new_icon_width, new_icon_height
-
-	if(ModImageWhoSetContent(original_icon) == "" )then
-		original_icon_id, original_icon_width, original_icon_height = ModImageMakeEditable(original_icon, 0, 0)
-	else
-		original_icon_id, original_icon_width, original_icon_height = ModImageIdFromFilename( original_icon )
+	if(not ModImageDoesExist(original_icon) or not ModImageDoesExist(new_icon_path) or ModImageWhoSetContent(original_icon) == "" or ModImageWhoSetContent(new_icon_path) == "" 	)then
+		return
 	end
 
-	if(ModImageWhoSetContent(new_icon_path) == "" )then
-		new_icon_id, new_icon_width, new_icon_height = ModImageMakeEditable(new_icon_path, original_icon_width, original_icon_height)
-	else
-		new_icon_id, new_icon_width, new_icon_height = ModImageIdFromFilename( new_icon_path )
+	local original_icon_id, original_icon_width, original_icon_height = ModImageIdFromFilename( original_icon )
+	local new_icon_id, new_icon_width, new_icon_height = ModImageIdFromFilename( new_icon_path )
+
+	if(original_icon_width == nil or original_icon_height == nil or new_icon_width == nil or new_icon_height == nil)then
+		return
 	end
+
 
 	if is_first then
 		-- Copy the entire original icon onto the new icon

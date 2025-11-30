@@ -56,20 +56,19 @@ local function generate_image(index, original_sprite, was_first)
 
 	-- Randomly overlay parts of the original sprite onto the corrupted sprite
 
-	local original_sprite_id, original_sprite_width, original_sprite_height
-	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height
-
-	if(ModImageWhoSetContent(original_sprite) == "" )then
-		original_sprite_id, original_sprite_width, original_sprite_height = ModImageMakeEditable(original_sprite, 0, 0)
-	else
-		original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename( original_sprite )
+	if(not ModImageDoesExist(original_sprite) or not ModImageDoesExist(corrupted_sprite) or ModImageWhoSetContent(original_sprite) == "" or ModImageWhoSetContent(corrupted_sprite) == "" 	)then
+		return
 	end
 
-	if(ModImageWhoSetContent(corrupted_sprite) == "" )then
-		corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageMakeEditable(corrupted_sprite, original_sprite_width, original_sprite_height)
-	else
-		corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename( corrupted_sprite )
+	local original_sprite_id, original_sprite_width, original_sprite_height = ModImageIdFromFilename( original_sprite )
+
+	local corrupted_sprite_id, corrupted_sprite_width, corrupted_sprite_height = ModImageIdFromFilename( corrupted_sprite )
+
+	if(original_sprite_width == nil or original_sprite_height == nil or corrupted_sprite_width == nil or corrupted_sprite_height == nil)then
+		return
 	end
+
+
 
 	if was_first then
 		for i = 0, corrupted_sprite_width - 1 do
