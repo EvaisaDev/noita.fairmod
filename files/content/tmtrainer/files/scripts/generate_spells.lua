@@ -121,9 +121,12 @@ table.insert(output, [[
 dofile_once("data/scripts/streaming_integration/event_list.lua")
 dofile_once("data/scripts/streaming_integration/alt_event_utils.lua")
 
+local _tmt_recursion_depth = 0
+local _tmt_max_recursion = 10
+
 local function _tmt_get_action_by_id(action_id)
 	for _, action in ipairs(actions) do
-		if action.id == action_id then
+		if action.id == action_id and not action.tm_trainer then
 			return action
 		end
 	end
@@ -132,6 +135,8 @@ end
 ]])
 
 local action_func_body = [[
+		if _tmt_recursion_depth >= _tmt_max_recursion then return end
+		_tmt_recursion_depth = _tmt_recursion_depth + 1
 		local orig_add_proj = add_projectile
 		local orig_add_proj_timer = add_projectile_trigger_timer
 		local orig_add_proj_hit = add_projectile_trigger_hit_world
@@ -170,6 +175,7 @@ local action_func_body = [[
 				if EntityHasTag(caster, "player_unit") or EntityHasTag(caster, "polymorphed_player") then _streaming_run_event(eid) end
 			end
 		end
+		_tmt_recursion_depth = _tmt_recursion_depth - 1
 ]]
 
 for action_type, action_list in pairs(action_info_map) do
