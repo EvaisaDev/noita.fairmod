@@ -117,6 +117,7 @@ return {
 		anim = "talk",
 		weight = 1.7,
 		frames = 600,
+		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			return true
 		end,
@@ -125,6 +126,9 @@ return {
 		end,
 		functions = {
 			surprise = function(copibuddy)
+				if not copibuddy.event then
+					return
+				end
 				if(copibuddy.event.taken_surprise)then 
 					local players = EntityGetWithTag("player_unit")
 					if(players[1])then
@@ -135,6 +139,8 @@ return {
 					
 					return
 				end
+				
+				print("yeah.")
 
 				dofile("data/scripts/streaming_integration/alt_event_utils.lua")
 				dofile("data/scripts/streaming_integration/event_list.lua")
