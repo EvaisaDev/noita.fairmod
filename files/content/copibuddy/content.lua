@@ -1049,7 +1049,6 @@ return {
 		frames = 60 * 120,
 		weight = 1,
 		condition = function(copibuddy)
-
 			local vote_active = GlobalsGetValue("copibuddy_vote_active", "0")
 			return vote_active == "0" and StreamingGetIsConnected()
 		end,
@@ -1079,6 +1078,10 @@ return {
 			copibuddy.event.base_text = nil
 			copibuddy.event.vote_start_time = nil
 			copibuddy.event.initial_text_shown = false
+			copibuddy.event.initial_text_wait_start = nil
+			copibuddy.event.vote_options_shown = false
+			copibuddy.event.countdown_start_frame = nil
+			copibuddy.event.completion_timer = nil
 			
 			GlobalsSetValue("copibuddy_vote_active", "0")
 			GlobalsSetValue("copibuddy_vote_result", "")
@@ -1243,7 +1246,7 @@ return {
 					end
 					
 					if this.completion_timer == 0 then
-						copibuddy.timer = 0
+						copibuddy.timer = 1
 					end
 				end
 			end

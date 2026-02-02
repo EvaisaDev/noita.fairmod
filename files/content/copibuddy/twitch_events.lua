@@ -1,3 +1,4 @@
+local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
 return {
 	{
 		id = "event_scratch_ticket",
@@ -218,18 +219,6 @@ return {
 				local player = players[1]
 				local x, y = EntityGetTransform(player)
 				EntityLoad("mods/noita.fairmod/files/content/dingus/dingus.xml", x, y - 20)
-			end
-		end,
-	},
-	{
-		id = "event_send_to_backrooms",
-		name = "Send to Backrooms",
-		description = "Have fun in the yellow rooms!",
-		func = function(copibuddy)
-			local players = EntityGetWithTag("player_unit")
-			if players[1] then
-				local player = players[1]
-				EntityLoad("mods/noita.fairmod/files/content/backrooms/entities/elevator.xml", EntityGetTransform(player))
 			end
 		end,
 	},
