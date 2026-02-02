@@ -37,13 +37,13 @@ end
 
 local content = dofile_once("mods/noita.fairmod/files/content/copibuddy/content.lua")
 
-local function weighted_random(t)
+local function weighted_random(t, instance)
 	local weights = {}
 	local total = 0
 	for _, v in ipairs(t) do
 		local weight = v.weight or 1
 		if type(weight) == "function" then
-			weight = weight(module)
+			weight = weight(instance)
 		end
 
 		weights[v] = weight
@@ -315,13 +315,13 @@ local function render_wrapped_text(gui, new_id, x, y, lines, line_heights, insta
 			GuiText(gui, current_x, current_y, seg.text, seg_size, "data/fonts/font_pixel_noshadow.xml", true)
 	
 			if clicked and seg.format and seg.format.on_click then
-				seg.format.on_click(module)
+				seg.format.on_click(instance)
 			end
 			if right_clicked and seg.format and seg.format.on_right_click then
-				seg.format.on_right_click(module)
+				seg.format.on_right_click(instance)
 			end
 			if hovered and seg.format and seg.format.on_hover then
-				seg.format.on_hover(module)
+				seg.format.on_hover(instance)
 			end
 			local w, _ = GuiGetTextDimensions(gui, seg.text)
 			current_x = current_x + w * seg_size
@@ -498,7 +498,7 @@ function module.create()
 			end
 
 			if (#options > 0 or next_event) then
-				instance.event = #options > 0 and weighted_random(options) or next_event
+				instance.event = #options > 0 and weighted_random(options, instance) or next_event
 
 
 				if(instance.event == nil)then

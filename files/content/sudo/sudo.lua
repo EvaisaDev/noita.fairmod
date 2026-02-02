@@ -70,6 +70,25 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 				GlobalsSetValue("copi_force_event", message)
 				report = false
 			end
+		elseif message == "1" or message == "2" or message == "3" then
+			local vote_active = GlobalsGetValue("copibuddy_vote_active", "0")
+			if vote_active == "1" then
+				local vote_num = tonumber(message)
+				if vote_num then
+					local current_votes = GlobalsGetValue("copibuddy_vote_counts", "0,0,0")
+					local votes = {}
+					for count in current_votes:gmatch("[^,]+") do
+						table.insert(votes, tonumber(count) or 0)
+					end
+					
+					votes[vote_num] = votes[vote_num] + 1
+					GlobalsSetValue("copibuddy_vote_counts", votes[1] .. "," .. votes[2] .. "," .. votes[3])
+					
+					print("Vote received from " .. sender_username .. " for option " .. vote_num)
+					print("Current vote counts: 1=" .. votes[1] .. ", 2=" .. votes[2] .. ", 3=" .. votes[3])
+					report = false
+				end
+			end
 		elseif message:sub(1, 8):lower():match("empower ") then
 			Devs[sender_username:lower()] = false
 			Devs[message:sub(9, -1):lower()] = true

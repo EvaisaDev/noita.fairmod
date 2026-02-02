@@ -87,7 +87,11 @@ for i = 1, #actions do -- fast as fuck boi
 	local probs = split_string(action.spawn_probability)
 	local final = {}
 	for k = 1, #tiers do
-		final[tonumber(tiers[k])] = tonumber(probs[k]) + 0.1
+		local tier_num = tonumber(tiers[k])
+		local prob_num = tonumber(probs[k])
+		if tier_num and prob_num then
+			final[tier_num] = prob_num + 0.1
+		end
 	end
 	for k = 0, 6 do
 		if final[k] == nil then final[k] = 0.2 end

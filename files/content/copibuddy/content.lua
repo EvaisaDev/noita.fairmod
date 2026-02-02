@@ -5,6 +5,9 @@
 -- [on_hover=function]text[/on_hover] - Sets the text to be hoverable and calls the function when hovered, functions can be defined in entries
 -- [on_right_click=function]text[/on_right_click] - Sets the text to be right-clickable and calls the function when right-clicked, functions can be defined in entries
 dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
+local voting_events = dofile_once("mods/noita.fairmod/files/content/copibuddy/twitch_events.lua")
+
 local get_spells = function()
 	local items = {}
 	local player = EntityGetWithTag("player_unit") or {}
@@ -114,6 +117,7 @@ return {
 		anim = "talk",
 		weight = 1.7,
 		frames = 600,
+		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			return true
 		end,
@@ -122,6 +126,9 @@ return {
 		end,
 		functions = {
 			surprise = function(copibuddy)
+				if not copibuddy.event then
+					return
+				end
 				if(copibuddy.event.taken_surprise)then 
 					local players = EntityGetWithTag("player_unit")
 					if(players[1])then
@@ -132,6 +139,8 @@ return {
 					
 					return
 				end
+				
+				print("yeah.")
 
 				dofile("data/scripts/streaming_integration/alt_event_utils.lua")
 				dofile("data/scripts/streaming_integration/event_list.lua")
@@ -1036,6 +1045,223 @@ return {
 				GamePlaySound( "mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0 )
 			end
 
+		end,
+	},
+	{
+		id = "twitch_vote",
+		text = "Let's see what chat wants to happen!",
+		anim = "talk",
+		audio = {"mods/noita.fairmod/fairmod.bank", "copibuddy/twitch_vote_1"},
+		frames = 60 * 120,
+		weight = 1,
+		condition = function(copibuddy)
+			local vote_active = GlobalsGetValue("copibuddy_vote_active", "0")
+			return vote_active == "0" and StreamingGetIsConnected()
+		end,
+		func = function(copibuddy)
+			SetRandomSeed(GameGetFrameNum() + copibuddy.x, GameGetFrameNum() + copibuddy.y)
+			
+			local selected_events = {}
+			local available_events = {}
+			for _, event in ipairs(voting_events) do
+				table.insert(available_events, event)
+			end
+			
+			for i = 1, 3 do
+				if #available_events > 0 then
+					local index = Random(1, #available_events)
+					table.insert(selected_events, available_events[index])
+					table.remove(available_events, index)
+				end
+			end
+			
+			copibuddy.event.selected_events = selected_events
+			copibuddy.event.vote_started = false
+			copibuddy.event.vote_complete = false
+			copibuddy.event.winning_option = nil
+			copibuddy.event.is_vote_owner = true
+			copibuddy.event.last_seconds = nil
+			copibuddy.event.base_text = nil
+			copibuddy.event.vote_start_time = nil
+			copibuddy.event.initial_text_shown = false
+			copibuddy.event.initial_text_wait_start = nil
+			copibuddy.event.vote_options_shown = false
+			copibuddy.event.countdown_start_frame = nil
+			copibuddy.event.completion_timer = nil
+			
+			GlobalsSetValue("copibuddy_vote_active", "0")
+			GlobalsSetValue("copibuddy_vote_result", "")
+			GlobalsSetValue("copibuddy_vote_counts", "0,0,0")
+		end,
+		update = function(copibuddy)
+			local this = copibuddy.event
+			
+			if not this.is_vote_owner then
+				return
+			end
+
+			if not this.initial_text_shown and copibuddy.current_progress >= copibuddy.total_length then
+				this.initial_text_shown = true
+				this.initial_text_wait_start = GameGetFrameNum()
+			end
+			
+			if this.initial_text_shown and not this.vote_options_shown then
+				local frames_waited = GameGetFrameNum() - this.initial_text_wait_start
+				if frames_waited >= 80 then
+					local current_vote_active = GlobalsGetValue("copibuddy_vote_active", "0")
+					if current_vote_active ~= "0" then
+						copibuddy.timer = 0
+						return
+					end
+					
+					local vote_data = ""
+					for i, event in ipairs(this.selected_events) do
+						if i > 1 then
+							vote_data = vote_data .. "|"
+						end
+						vote_data = vote_data .. event.id .. ":" .. event.name
+					end
+					
+					GlobalsSetValue("copibuddy_vote_options", vote_data)
+					GlobalsSetValue("copibuddy_vote_active", "1")
+					GlobalsSetValue("copibuddy_vote_result", "")
+					GlobalsSetValue("copibuddy_vote_counts", "0,0,0")
+
+					local option_text = ""
+					for i, event in ipairs(this.selected_events) do
+						option_text = option_text .. "\n" .. tostring(i) .. ". " .. event.name
+					end
+					
+					this.base_text = "Twitch chat, vote for one of these options:" .. option_text .. "\n\nTime remaining: "
+					-- play audio twitch_vote_2
+					this.last_seconds = nil
+					this.vote_options_shown = true
+					copibuddy.animation = "talk"
+					GamePlaySound("mods/noita.fairmod/fairmod.bank", "copibuddy/twitch_vote_2", 0, 0 )
+					copibuddy.target_text = this.base_text .. "30 seconds"
+				end
+				return
+			end
+			
+			if this.vote_options_shown and not this.vote_started then
+				if copibuddy.current_progress >= copibuddy.total_length then
+					this.vote_started = true
+					this.countdown_start_frame = GameGetFrameNum()
+				end
+			end
+			
+			if not this.vote_started then
+				return
+			end
+			
+			if not this.vote_complete then
+				local frames_elapsed = GameGetFrameNum() - this.countdown_start_frame
+				local seconds_remaining = math.max(0, 30 - math.floor(frames_elapsed / 60))
+	
+				if seconds_remaining == 0 and not this.vote_complete then
+	
+					local current_votes = GlobalsGetValue("copibuddy_vote_counts", "0,0,0")
+					local votes = {}
+					for count in current_votes:gmatch("[^,]+") do
+						table.insert(votes, tonumber(count) or 0)
+					end
+					
+					local winner = 1
+					for i = 2, 3 do
+						if votes[i] > votes[winner] then
+							winner = i
+						end
+					end
+
+					GlobalsSetValue("copibuddy_vote_result", tostring(winner))
+					GlobalsSetValue("copibuddy_vote_counts", "0,0,0")
+				end
+				
+				if this.last_seconds ~= seconds_remaining then
+					this.last_seconds = seconds_remaining
+					
+					if copibuddy.parsed_text and this.base_text then
+						local base_length = #this.base_text
+						local total_chars = 0
+						local cutoff_index = nil
+						
+						for i, seg in ipairs(copibuddy.parsed_text) do
+							total_chars = total_chars + #seg.text
+							if total_chars >= base_length and cutoff_index == nil then
+								cutoff_index = i
+								local chars_into_segment = total_chars - base_length
+								if chars_into_segment > 0 then
+									seg.text = seg.text:sub(1, #seg.text - chars_into_segment)
+								end
+							elseif cutoff_index ~= nil then
+								copibuddy.parsed_text[i] = nil
+							end
+						end
+						
+						local new_time_text = tostring(seconds_remaining) .. " second"
+						if seconds_remaining ~= 1 then
+							new_time_text = new_time_text .. "s"
+						end
+						table.insert(copibuddy.parsed_text, {text = new_time_text, format = {}, seg_id = #copibuddy.parsed_text + 1})
+						
+						copibuddy.total_length = 0
+						for _, s in ipairs(copibuddy.parsed_text) do
+							copibuddy.total_length = copibuddy.total_length + #s.text
+						end
+						copibuddy.current_progress = copibuddy.total_length
+					end
+				end
+			end
+			
+			if this.vote_started and not this.vote_complete then
+				local vote_result = GlobalsGetValue("copibuddy_vote_result", "")
+				
+				if vote_result ~= "" then
+					this.vote_complete = true
+					this.winning_option = tonumber(vote_result)
+					this.completion_timer = 90
+					GlobalsSetValue("copibuddy_vote_active", "0")
+					
+					if this.winning_option and this.selected_events[this.winning_option] then
+						local winning_event = this.selected_events[this.winning_option]
+						copibuddy.animation = "talk"
+						copibuddy.target_text = "Interesting choice."
+					end
+				end
+			end
+			
+			if this.vote_complete then
+				if this.completion_timer and this.completion_timer > 0 then
+					this.completion_timer = this.completion_timer - 1
+					
+					if this.completion_timer == 50 then
+						copibuddy.animation = "copi_snap"
+						if this.winning_option and this.selected_events[this.winning_option] then
+							local winning_event = this.selected_events[this.winning_option]
+							print("Executing winning event: " .. winning_event.name)
+							if winning_event.func then
+								winning_event.func(copibuddy)
+								print("Event function executed")
+							else
+								print("Warning: No func for event " .. winning_event.name)
+							end
+						else
+							print("Error: Invalid winning option or event")
+						end
+						GamePlaySound("mods/noita.fairmod/fairmod.bank", "copibuddy/snap", 0, 0)
+					end
+					
+					if this.completion_timer == 0 then
+						copibuddy.timer = 1
+					end
+				end
+			end
+		end,
+		post_func = function(copibuddy)
+			if copibuddy.event.is_vote_owner then
+				GlobalsSetValue("copibuddy_vote_active", "0")
+				GlobalsSetValue("copibuddy_vote_counts", "0,0,0")
+			end
 		end,
 	},
 	--[[{

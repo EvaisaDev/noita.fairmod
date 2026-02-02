@@ -1,8 +1,5 @@
 dofile_once("mods/noita.fairmod/files/content/scene_liquid_randomizer/material_restrictions.lua")
 
--- Duplicated in temple_altar.lua, but the others don't have this
-RegisterSpawnFunction( 0xff03deaf, "fairmod_spawn_liquid_converter" )
-
 local function rand_material(x, y)
 	SetRandomSeed(x, y + GameGetFrameNum())
 
@@ -25,8 +22,12 @@ function fairmod_spawn_liquid_converter(x, y)
 	})
 end
 
-local old_spawn_fish = spawn_fish
-function spawn_fish(x, y)
-	fairmod_spawn_liquid_converter(x, y)
-	old_spawn_fish(x, y)
+if spawn_fish then
+	local old_spawn_fish = spawn_fish
+	function spawn_fish(x, y)
+		fairmod_spawn_liquid_converter(x, y)
+		old_spawn_fish(x, y)
+	end
+else
+	RegisterSpawnFunction( 0xff03deaf, "fairmod_spawn_liquid_converter" )
 end
