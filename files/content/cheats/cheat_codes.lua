@@ -795,8 +795,8 @@ local cheats = {
     },
     {
         code = "freevbucks",
-        not_cheat = true,
         description = "The mysterious seal has been vanquished",
+        not_cheat = true,
         func = function(player)
 			if GameHasFlagRun("fairmod.no_cheats") then
 				GameAddFlagRun("infinite_karmic_debt")
@@ -804,10 +804,18 @@ local cheats = {
 			end
         end,
     },
+	{
+		code = "",
+		not_cheat = true,
+		do_not_sudo = true, --prevents power users from activating this
+		func = function()
+			GameAddFlagRun("fairmod.no_sudo")
+		end
+
+	} --added this cuz for the `anticheat` code, i originally wanted to make smth the streamer can use to decrease the chaos without entirely disconnecting twitch (and then never finished adding that)
 }
 
 local num_cheats = #cheats
-print(tostring(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")))
 for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")) do
 	local id = "goto" .. value.id
 	cheats[num_cheats + i] = {
