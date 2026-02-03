@@ -1,6 +1,6 @@
 --stylua: ignore start
 local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
-return {
+local cheats = {
 	{
 		code = "motherlode",
 		name = "Motherlode",
@@ -408,7 +408,7 @@ return {
 		name = "Ouch!",
 		description = "Player fell out of the world.",
 		func = function(player)
-			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
+			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Fell out of the world", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
 		end,
 	},
@@ -502,8 +502,10 @@ return {
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 			for k, v in ipairs(GetEnemiesInRadius(x, y, 256) or {}) do
-				EntityConvertToMaterial(v, "blood")
-				EntityKill(v)
+				if EntityGetName(v) ~= "$animal_longleg" then --check to avoid nuking hammies
+					EntityConvertToMaterial(v, "blood")
+					EntityKill(v)
+				end
 			end
 		end,
 	},
@@ -580,9 +582,8 @@ return {
 		func = function(player)
 			GameAddFlagRun("random_teleport_next")
 			GameAddFlagRun("no_return")
-		
+
 			local x, y = EntityGetTransform(player)
-		
 			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 		end
 	},
@@ -785,18 +786,17 @@ return {
     },
     {
         code = "anticheat",
-		name = "",
+		name = "A mysterious seal",
+        description = "A mysterious seal has been enforced",
         not_cheat = true,
-        description = ":D",
         func = function(player)
             GameAddFlagRun("fairmod.no_cheats")
         end,
     },
     {
         code = "freevbucks",
-		name = "",
         not_cheat = true,
-        description = "",
+        description = "The mysterious seal has been vanquished",
         func = function(player)
 			if GameHasFlagRun("fairmod.no_cheats") then
 				GameAddFlagRun("infinite_karmic_debt")
@@ -805,5 +805,24 @@ return {
         end,
     },
 }
+
+local num_cheats = #cheats
+print(tostring(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")))
+for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")) do
+	local id = "goto" .. value.id
+	cheats[num_cheats + i] = {
+		code = id,
+		name = value.name or id,
+		description = value.desc,
+		func = function(player)
+			EntityApplyTransform(player,
+				value.x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512,
+				value.y
+			)
+		end
+	}
+end
+
+return cheats
 
 --stylua: ignore end

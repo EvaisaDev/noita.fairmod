@@ -54,6 +54,7 @@ local beeg_dynamite = {
 	mana = 50,
 	max_uses = 16,
     pandorium_ignore = true,
+	ai_never_uses = true,
 	action = function()
 		add_projectile("mods/noita.fairmod/files/content/new_spells/bad_bombs/tnt_beeg.xml")
 		c.fire_rate_wait = c.fire_rate_wait + 50

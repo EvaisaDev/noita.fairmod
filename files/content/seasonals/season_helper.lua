@@ -157,24 +157,33 @@ local copiday = TimeLocal.day == 11 and TimeLocal.month == 11
 return {
     TimeLocal = TimeLocal,
     TimeUTC = TimeUTC,
+    Timezone = TimeLocal.hour - TimeUTC.hour,
 
     ----local: (stuff based on localtime)
-    day_of_year = day_of_year, -- day of year 1-366
-    day_of_week = day_of_week, --day of week 1-7
-    weekday = weekday, --probs pointless but eh, who cares
+    ---@type int day of the year within the range [1, 366]
+    day_of_year = day_of_year,
+    day_of_week = day_of_week,
+    weekday = weekday, --day of the week string
+
 
     --bools:
+
+    ---@type bool is it currently a leap year?
     is_leap_year = is_leap_year,
+    ---@type bool|nil --`true` if Void, `false` if Air, `nil` if Random
     void_day = void_day,
+    ---@type bool is it currently Halloween?
     halloween = halloween,
+    ---@type bool is it currently Christmas?
     christmas = christmas,
+    ---@type false|number false if not Hanukkah, otherwise returns what day of Hanukkah it is
     hanukkah = hanukkah,
-    valentines = valentines,
+    valentines = valentines, --is it valentine's day?
 
     spring = false,
     summer = false,
     autumn = false,
-    winter = false, --since when were all the seasons the exact same length :sob:
+    winter = false,
 
     copiday = copiday,
 }
