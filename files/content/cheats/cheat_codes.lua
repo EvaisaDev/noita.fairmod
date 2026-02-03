@@ -1,6 +1,6 @@
 --stylua: ignore start
 local markers = dofile_once("mods/noita.fairmod/files/content/better_world/map_helper.lua")
-return {
+local cheats = {
 	{
 		code = "motherlode",
 		name = "Motherlode",
@@ -502,8 +502,10 @@ return {
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 			for k, v in ipairs(GetEnemiesInRadius(x, y, 256) or {}) do
-				EntityConvertToMaterial(v, "blood")
-				EntityKill(v)
+				if EntityGetName(v) ~= "$animal_longleg" then --check to avoid nuking hammies
+					EntityConvertToMaterial(v, "blood")
+					EntityKill(v)
+				end
 			end
 		end,
 	},
@@ -580,9 +582,8 @@ return {
 		func = function(player)
 			GameAddFlagRun("random_teleport_next")
 			GameAddFlagRun("no_return")
-		
+
 			local x, y = EntityGetTransform(player)
-		
 			EntityLoad("mods/noita.fairmod/files/content/speedrun_door/portal_kolmi.xml", x, y)
 		end
 	},
@@ -804,5 +805,24 @@ return {
         end,
     },
 }
+
+local num_cheats = #cheats
+print(tostring(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")))
+for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")) do
+	local id = "goto" .. value.id
+	cheats[num_cheats + i] = {
+		code = id,
+		name = value.name or id,
+		description = value.desc,
+		func = function(player)
+			EntityApplyTransform(player,
+				value.x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512,
+				value.y
+			)
+		end
+	}
+end
+
+return cheats
 
 --stylua: ignore end
