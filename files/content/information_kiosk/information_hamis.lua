@@ -155,7 +155,7 @@ table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 
 --[[ uncomment/comment to enable/disable testing_tips
 local testing_tips = {
-	"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+	"When fire rains from above, remember:\nthe ground is only safe until it isn’t.",
 }
 tips = testing_tips --]]
 
@@ -167,7 +167,7 @@ local function tips_post_processing(list)
 
 	local function line_break(str)
 		local new_str = ""
-		for word in str:gmatch("%S+") do
+		for word in str:gmatch("([^ ]+)") do
 			local test_line = (new_str == "") and word or new_str .. " " .. word
 			local test_line_w = GuiGetTextDimensions(gui, test_line)
 			if test_line_w > max_line_length then
