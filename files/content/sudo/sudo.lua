@@ -5,7 +5,6 @@ local devs = {
 	["copihuman"]=true,
 	["evaisadev"]=true,
 	["lamia_zamia"]=true,
-	["userkuserk"]=true,
 	["conga_lyne"]=true,
 	["heinermann"]=true,
 	["theonetheonlyspoopyboi"]=true,
@@ -42,10 +41,10 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 
 	--general power-user stuff
 	local sender_lower = sender_username:lower()
-	if PowerUsers[sender_username:lower() or "INVALID_USER"] or GameHasFlagRun("fairmod.empower_all_chatters") then
+	if PowerUsers[sender_lower or "INVALID_USER"] or GameHasFlagRun("fairmod.empower_all_chatters") then
 		if message:sub(1, 5):lower():match("sudo ") and not GameHasFlagRun("fairmod.no_sudo") then
-			message = message:sub(6, -1)
-			report = false
+			message = message:sub(6, -1):lower()
+			local valid_cheat_found
 			local cheat_codes = dofile_once("mods/noita.fairmod/files/content/cheats/cheat_codes.lua")
 			for i=1, #cheat_codes do
 				local cheat = cheat_codes[i]
@@ -54,10 +53,13 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 				--print(code)
 				if message == code then
 					if cheat.do_not_sudo then break end
+					valid_cheat_found = true
 					if cheat.name then GamePrintImportant("Cheat activated: " .. cheat.name, cheat.description, cheat.decoration or "") end
 					cheat.func(EntityGetWithTag("player_unit")[1])
 				end
 			end
+
+			report = not valid_cheat_found --if cheat is not valid, report, if valid then dont
 		elseif message:sub(1, 6):lower():match("print ") then
 			message = message:sub(7, -1)
 			GamePrintImportant(message, "From:" ..sender_username, "mods/noita.fairmod/files/content/sudo/3piece_meta.png")
@@ -97,7 +99,7 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 			GamePrintImportant(GameTextGet("$log_fairmod_dev_empower", sender_username), GameTextGet("$log_fairmod_dev_empower_desc", target))
 		elseif message:sub(1, 8):lower():match("silence ") and false then --disabled until a fun way to implement this is decided
 			local target = tostring(message:sub(9, -1)):lower()
-			PowerUsers[sender_username:lower()] = false
+			PowerUsers[sender_lower] = false
 			PowerUsers[target] = false
 			GamePlaySound("data/audio/Desktop/explosion.bank", "explosions/holy", GameGetCameraPos())
 			GameScreenshake(120)
@@ -108,20 +110,16 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 	--true dev stuff (so unique stuff like copi's copibuddy control cannot be revoked)
 	if devs[sender_lower or "INVALID_USER"] then
         GameAddFlagRun("fairmod.developer_present." .. sender_lower)
-		if sender_lower == copi then
+		if sender_lower == copi and GameHasFlagRun("is_copibuddied") then
 			if message:sub(1, 6):lower():match("speak ") then
 				message = message:sub(7, -1)
-				if GameHasFlagRun("is_copibuddied") and sender_username:lower()=="copihuman" then
-					GlobalsSetValue("copibuddy_speak_text", message)
-					report = false
-				end
-			elseif message:sub(1, 4):lower():match("run ") then
+				GlobalsSetValue("copibuddy_speak_text", message)
+				report = false
+			elseif message:sub(1, 4):lower():match("run ") and not GameHasFlagRun("fairmod.no_sudo") then
 				-- if we are copi
 				message = message:sub(5, -1)
-				if GameHasFlagRun("is_copibuddied") and sender_username:lower()=="copihuman" then
-					GlobalsSetValue("copi_force_event", message)
-					report = false
-				end
+				GlobalsSetValue("copi_force_event", message)
+				report = false
 			end
 		end
 	end
