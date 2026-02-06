@@ -806,6 +806,8 @@ local cheats = {
     },
 	{
 		code = "praisethelord",
+		name = "Exorcise the Unholy from thineself",
+		description = "Exorcizamus te, omnis immundus spiritus, omnis satanica potestas. Omnis incursio infernalis adversii omnis congregatio et secta diabolica. Ergo, draco maledicte, ecclesiam tuam securi tibi facias libertate servire. Te rogamus. Audi nos.",
 		not_cheat = true,
 		do_not_sudo = true, --prevents power users from activating this
 		func = function()
@@ -814,12 +816,24 @@ local cheats = {
 	},
 	{
 		code = "hailsatan",
+		name = "Free the Damned",
+		description = "Lets the devils OOOUUUTTTT!!",
 		not_cheat = true,
 		do_not_sudo = true,
 		func = function()
 			GameRemoveFlagRun("fairmod.no_sudo")
 		end
-	}
+	},
+	{
+		code = "iagreetothetermsandconditions",
+		name = "Power for All",
+		description = "You should have read the fine print, my friend.",
+		not_cheat = true,
+		do_not_sudo = true,
+		func = function()
+			GameAddFlagRun("fairmod.empower_all_chatters")
+		end
+	},
 }
 
 local num_cheats = #cheats

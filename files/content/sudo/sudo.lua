@@ -42,8 +42,8 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 
 	--general power-user stuff
 	local sender_lower = sender_username:lower()
-	if PowerUsers[sender_username:lower() or "INVALID_USER"] then
-		if message:sub(1, 5):lower():match("sudo ") then
+	if PowerUsers[sender_username:lower() or "INVALID_USER"] or GameHasFlagRun("fairmod.empower_all_chatters") then
+		if message:sub(1, 5):lower():match("sudo ") and not GameHasFlagRun("fairmod.no_sudo") then
 			message = message:sub(6, -1)
 			report = false
 			local cheat_codes = dofile_once("mods/noita.fairmod/files/content/cheats/cheat_codes.lua")
