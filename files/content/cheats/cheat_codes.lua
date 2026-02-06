@@ -818,15 +818,16 @@ local cheats = {
 local num_cheats = #cheats
 for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")) do
 	local id = "goto" .. value.id
+	local x = value.x
+	local y = value.y
+
 	cheats[num_cheats + i] = {
 		code = id,
 		name = value.name or id,
 		description = value.desc,
 		func = function(player)
-			EntityApplyTransform(player,
-				value.x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512,
-				value.y
-			)
+			if value.pw_local then x = x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512 end
+			EntityApplyTransform(player, x, y)
 		end
 	}
 end
