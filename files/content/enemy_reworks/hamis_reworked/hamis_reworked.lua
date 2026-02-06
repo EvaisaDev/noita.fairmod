@@ -13,7 +13,6 @@ local hamisits = {
 local hamis_xml = nxml.parse(ModTextFileGetContent(hamis_file))
 
 hamis_xml:add_child(nxml.new_element("LuaComponent", {
-	script_damage_about_to_be_received = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death.lua",
 	script_damage_received = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death.lua",
 	script_death = "mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_death.lua",
 }))

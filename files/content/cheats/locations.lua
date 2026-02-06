@@ -56,11 +56,4 @@ return {
 		y = markers.tota_entrance.y,
 		pw_local = true,
 	},
-	{
-		id = "kantele",
-		name = "Tree Nook!",
-		desc = "This is a little different from what I remember...",
-		x = markers.kantele_spot.x,
-		y = markers.kantele_spot.y,
-	}
 }

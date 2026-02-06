@@ -35,22 +35,6 @@ local function hamis_land(kill_count)
 	GameCreateParticle("material_darkness", x, y, 10, 10, 10, false)
 end
 
-
-
---- Only accept damage from the player
---- @type script_damage_about_to_be_received
-local script_damage_about_to_be_received = function(damage, x, y, entity_thats_responsible, critical_hit_chance)
-	if entity_thats_responsible and entity_thats_responsible ~= 0 and (
-			EntityHasTag(entity_thats_responsible, "player_unit") or
-			EntityHasTag(entity_thats_responsible, "polymorphed_player")
- 			) then
-		return damage,critical_hit_chance
-	end
-	return 0,0
-end
-damage_about_to_be_received = script_damage_about_to_be_received
-
-
 --- Sets flag if was damaged by player
 --- @type script_damage_received
 local script_damage_received = function(damage, message, entity_thats_responsible, is_fatal, projectile_thats_responsible)
