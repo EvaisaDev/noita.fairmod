@@ -805,14 +805,21 @@ local cheats = {
         end,
     },
 	{
-		code = "",
+		code = "praisethelord",
 		not_cheat = true,
 		do_not_sudo = true, --prevents power users from activating this
 		func = function()
 			GameAddFlagRun("fairmod.no_sudo")
 		end
-
-	} --added this cuz for the `anticheat` code, i originally wanted to make smth the streamer can use to decrease the chaos without entirely disconnecting twitch (and then never finished adding that)
+	},
+	{
+		code = "hailsatan",
+		not_cheat = true,
+		do_not_sudo = true,
+		func = function()
+			GameRemoveFlagRun("fairmod.no_sudo")
+		end
+	}
 }
 
 local num_cheats = #cheats
