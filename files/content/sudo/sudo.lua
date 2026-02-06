@@ -5,6 +5,7 @@ local devs = {
 	["copihuman"]=true,
 	["evaisadev"]=true,
 	["lamia_zamia"]=true,
+	["userkuserk"]=true,
 	["conga_lyne"]=true,
 	["heinermann"]=true,
 	["theonetheonlyspoopyboi"]=true,

@@ -61,7 +61,7 @@
         do_reactions_explosions="1"
         do_reactions_entities="1"
         >
-        <count_per_material_type> <Material material="fairmod_chaotic_pandorium" count="150"/> </count_per_material_type>
+        <count_per_material_type> <Material material="fairmod_chaotic_pandorium" count="60"/> </count_per_material_type>
     </MaterialInventoryComponent>
 
     <DamageModelComponent 

@@ -510,6 +510,30 @@ local cheats = {
 		end,
 	},
 	{
+		code = "killhammies",
+		devmode = true,
+		name = "killhammies",
+		description = "FOR TESTING!!!!!!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			for _,v in ipairs(GetEnemiesInRadius(x, y, 256) or {}) do
+				if EntityGetName(v) == "$animal_longleg" then --check to avoid nuking hammies
+					EntityInflictDamage(v, 4000, "DAMAGE_PHYSICS_BODY_DAMAGED", "", "NONE", 0, 0)
+				end
+			end
+		end,
+	},
+	{
+		code = "ghamis",
+		devmode = true,
+		name = "ghosthamis",
+		description = "AGAIN!!! FOR TESTING!!!!!!",
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_part.xml", x, y-10)
+		end
+	},
+	{
 		code = "wasdwasd",
 		not_cheat = true,
 		name = "oops!",
@@ -680,6 +704,15 @@ local cheats = {
 		func = function(player)
 			local x,y = EntityGetTransform(player)
 			EntityLoad("data/entities/projectiles/deck/sea_water.xml", x, y)
+		end
+	},
+	{
+		code = "notthirsty",
+		name = "Not Thirsty",
+		description = "Hydration is not!",
+		func = function(player)
+			local x,y = EntityGetTransform(player)
+			EntityLoad("data/entities/projectiles/deck/sea_lava.xml", x, y)
 		end
 	},
 	{
