@@ -117,7 +117,6 @@ return {
 		anim = "talk",
 		weight = 1.7,
 		frames = 600,
-		force = true, -- forces event if possible
 		condition = function(copibuddy)
 			return true
 		end,
@@ -136,10 +135,10 @@ return {
 					end
 
 					GamePrint("Stop being greedy!")
-					
+
 					return
 				end
-				
+
 				print("yeah.")
 
 				dofile("data/scripts/streaming_integration/alt_event_utils.lua")

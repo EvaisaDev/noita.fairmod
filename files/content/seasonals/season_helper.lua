@@ -41,13 +41,13 @@ if TimeLocal.year % 4 == 0 then --damn leap years are more complex than i though
     if TimeLocal.year % 100 == 0 then 
         if TimeLocal.year % 400 == 0 then 
             is_leap_year = true
-        else 
+        else
             is_leap_year = false 
         end
-    else 
+    else
         is_leap_year = true 
     end
-else 
+else
     is_leap_year = false
 end
 ---nabbed code
@@ -85,7 +85,7 @@ day_of_year = day_of_year + TimeLocal.day
 
     local val8 = dd + (mmx*2) +  math.floor(((mmx+1)*3)/5)   + yy + math.floor(yy/4)  - math.floor(yy/100)  + math.floor(yy/400) + 2
     local val9 = math.floor(val8/7)
-    local day_of_week = val8-(val9*7) 
+    local day_of_week = val8-(val9*7)
 
     if (day_of_week == 0) then
       day_of_week = 7

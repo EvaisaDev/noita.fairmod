@@ -16,24 +16,24 @@ local uid = ModSettingGet("fairmod.user_id")
 local tips = {
 	"I think I saw a {@color 760606}#snail#{@color FFFFFF} earlier!",
 	"You can get a cool mask at the entrance!\nI didn't get one because I am already cute!!",
-	"Did you know that you can get a ~^free information booklet^~ \nhere?",
+	"Did you know that you can get a ~^free information booklet^~ here?",
 	"99% of gamblers quit before they win big!",
-	"Did you know we added a helpful UI\n that gives you lots of info?\nPay attention to the right side of the screen!",
+	"Did you know we added a helpful UI that gives you lots of info?\nPay attention to the right side of the screen!",
 	"If you see spells that looks wrong..\nIgnore them! They are clearly bugs!!",
 	"Did you know you can fish up all kinds of stuff?",
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
 	"Don't drink and drive.",
-	"Hey, if you combine Whiskey and Berserkium\nit makes my own patented ~Hamis Bars~!!",
-	"Fairmod contains no bugs.\nIf you see any bugs, ignore them.",
+	"Hey, if you combine Whiskey and Berserkium it makes my own patented ~Hamis Bars~!!",
+	"Fairmod contains no bugs. If you see anything that may be a bug, ignore it.",
 	"Follow the {@color 6b05a8}purple lights{@color FFFFFF}.",
 	"Always pay off your debts!",
 	"Make sure to configure your settings.",
 	-- table.concat{"There are ",GlobalsGetValue("fairmod_total_achievements", "0"), " achievements!\nCan you collect them all?", }, -- Nathan PLEASE I fucking HATE how the autoformatter messes these up :/ +1
 	string.format("There are %s ~achievements!~\nCan you collect them all?", GlobalsGetValue("fairmod_total_achievements", "0") + Random(1, 5)), -- have you heard about string.format? (still messed up by formatter, lmao)
 	"Some enemies are really messed up! #Beware!#",
-	"If you obtain precisely 8592859 gold, 958hp,\nand cast End of Everything{@pause 60}{@delay 45}#...#{@pause 100}{@delay 3}\nWell, that's a spoiler!",
-	"I heard that someone disappeared after throwing an\nUkkoskivi into teleportatium.",
-	"I heard that my information pamphlet contains\n the solution to the eyes, can you believe it?!",
+	"If you obtain precisely 8592859 gold, 958hp, and cast End of Everything{@pause 60}{@delay 45}#...#{@pause 100}{@delay 3}\nWell, that's a spoiler!",
+	"I heard that someone disappeared after throwing an Ukkoskivi into teleportatium.",
+	"I heard that my information pamphlet contains the solution to the eyes, can you believe it?!",
 	"Listen closely to the songs.",
 	"When fire rains from above, remember:\nthe ground is only safe until it isn’t.",
 	"The more the wand, the less the peace.\nUse with both recklessness and care.",
@@ -41,7 +41,7 @@ local tips = {
 	"In the depths, where light dares not tread,\ntreasures often hide… or was it traps?",
 	"Beware of the friendliest faces;\nthey tend to hide the sharpest teeth.",
 	"All that glitters might explode.\nApproach, but at your own peril.",
-	"When blessed with a shield,\nassume it will vanish the moment you need it most.",
+	"When blessed with a shield, assume it will vanish the moment you need it most.",
 	"The harder the challenge,\nthe sweeter the loot—until it isn’t.",
 	"Even the strongest spells cannot\noutlast foolish feet.",
 	"Beware of silence;\nsometimes, it’s the loudest warning.",
@@ -50,18 +50,18 @@ local tips = {
 	"Running is a valid tactic!\nEspecially when the ground starts melting.",
 	"If a treasure chest looks too good to be true,\nit probably has teeth.",
 	"Try not to stand still for too long.\nThings tend to, uh, find you.",
-	"A friend in the caverns?\nMight just be a Hamis waiting to share...\nor borrow forever.",
-	"Experiment with potions!\nWorst case, you end up on fire.\nBest case, you fly!",
-	"If you stare at the sun too long,\nit might start staring back.\nJust sayin’.",
+	"A friend in the caverns?\nMight just be a Hamis waiting to share... or borrow forever.",
+	"Experiment with potions! Worst case, you end up on fire.\nBest case, you fly!",
+	"If you stare at the sun too long, it might start staring back.\nJust sayin’.",
 	"Sometimes the shortest path is through the mud.\nEmbrace the mess.",
 	"Ever feel like you’re being watched?\nWave and make a friend of it.",
-	"A stone in the shoe is just a reminder\nto pause and readjust.",
+	"A stone in the shoe is just a reminder to pause and readjust.",
 	"Soup tastes best when you don’t know what’s in it.\nMystery adds flavor!",
-	"If the path splits three ways,\ntake the fourth path\nthere’s always a secret route.",
-	"Rest is important,\nbut so is bouncing off the walls once in a while.",
+	"If the path splits three ways, take the fourth path; there’s always a secret route.",
+	"Rest is important, but so is bouncing off the walls once in a while.",
 	"Hunger is the best seasoning, but curiosity?\nNow, that’s the chef’s kiss.",
-	"Always keep a pocket empty.\nYou never know what’ll want to fill it.",
-	"Sing to the stars;\nthey won’t respond, but they listen better than most.",
+	"Always keep a pocket empty, you never know what’ll want to fill it.",
+	"Sing to the stars!They won’t respond, but they listen better than most.",
 	"Don't drink the water, they put clams in it.\nTo make you forget.",
 	"I am not a {@color 760606}#snail#{@color FFFFFF}.",
 	"What do you mean it keeps changing?\nThe game has always looked like this.",
@@ -69,12 +69,12 @@ local tips = {
 	"Buy scratch-offs now, trust me.\nGreat investment!",
 	"Your world seed is ~" .. tostring((StatsGetValue("world_seed") or 0) + 1) .. "~!",
 	"Hiisi base has had some new reading lights installed!",
-	"Very Chaotic Pandorium and Omega Slicing Liquid are the\ngreatest additions to this mod, change my mind",
+	"Very Chaotic Pandorium and Omega Slicing Liquid are the greatest additions to this mod, change my mind",
 	"There’s something behind you!{@pause 80}\n..?{@pause 100}\nOh{@pause 15}, no no{@pause 30}, ~silly!~{@pause 70} I meant in real life!",
 	'Type "Chaos" on your keyboard for some free digging',
-	"Trapped? Try code NOCLIP to get yourself out of any\nsticky situation!",
+	"Trapped? Try code NOCLIP to get yourself out of any sticky situation!",
 	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
-	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	"Hm, what? No! You're supposed to give ME a tip\nFork over the cash, bub!",
 	"[Hyperlink Blocked.]",
 	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
 	"Death comes for those who wait.",
@@ -83,11 +83,11 @@ local tips = {
 	"I know you!",
 	"Sorry, who are you?",
 	"Jump off a bridge!",
-	"{@color FF0000}#KYS#!!!!!!!!!!{@pause 90}\n{@color d991de}(Keep Yourself Safe <3 )",
+	"{@color FF0000}#KYS#!!!!!!!!!!{@pause 90}\n~{@color d991de}( Keep Yourself Safe <3 )~",
 	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~~",
 	"The Voices, they speak through me!",
 	'psst, try this secret cheatcode: "photocopier"',
-	"But before you get your tip, I would like to take a minute\nto thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
+	"But before you get your tip, I would like to take a minute to thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"This mod has been a joy to work on, see you all next year o/",
 }
 
@@ -112,15 +112,15 @@ local seasonal_tips = {
 	},
 	hanukkah = {
 		"Happy Hanukkah",
-		"I can't make decisive seasonal comments about hanukkah\ndue to the date changing relative to the\nGregorian calendar, how troublesome!",
+		"I can't make decisive seasonal comments about Hanukkah due to the date changing relative to the Gregorian calendar, how troublesome!",
 	},
 	easter = {
-		"Calculating easter dates is a hard\nI'm writing this tip before I even know if I'll continue\nworking on it!",
+		"Calculating easter dates is a hard, I'm writing this tip before I even know if I'll continue working on it!",
 		"Find my 8 eggs!",
 	},
 	valentines = {
 		"A chocolate, for me? Aww thanks, shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20} Spiders are deathly allergic to chocolate)",
-		"Ask your crush out!\nUnless it's me, I'm married to my work!",
+		"Ask your crush out!\nUnless it's me, I'm married to my work!!",
 	},
 	Monday = {
 		"lasgan",
@@ -134,7 +134,7 @@ local seasonal_tips = {
 		"The Weekend will pass by just as fast as the last one did\nSavour and make the most of what little time you have",
 	},
 	Sunday = {
-		"Never hesitate to have a do-nothing day every once in a\nwhile!",
+		"Never hesitate to have a do-nothing day every once in a while!",
 	},
 }
 
@@ -155,11 +155,39 @@ table.insert(tips, "there are " .. #tips + 1 .. " tips\ncan you read them all?")
 
 --[[ uncomment/comment to enable/disable testing_tips
 local testing_tips = {
-	"What? No! You're supposed to give ME a tip\nFork over the cash, bub!",
-	"Hello, " .. uid or useed or "{@color FF0000}ERROR",
-	"I'll *get* by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~ ~",
+	"When fire rains from above, remember:\nthe ground is only safe until it isn’t.",
 }
 tips = testing_tips --]]
+
+local max_line_length = 224
+
+local function tips_post_processing(list)
+	local gui = GuiCreate()
+	GuiStartFrame(gui)
+
+	local function line_break(str)
+		local new_str = ""
+		for word in str:gmatch("([^ ]+)") do
+			local test_line = (new_str == "") and word or new_str .. " " .. word
+			local test_line_w = GuiGetTextDimensions(gui, test_line)
+			if test_line_w > max_line_length then
+				new_str = new_str .. "\n" .. word
+			else
+				new_str = new_str .. " " .. word
+			end
+		end
+
+		return new_str
+	end
+
+	for i, tip in ipairs(list) do
+		list[i] = line_break(tip)
+	end
+	GuiDestroy(gui)
+end
+
+
+
 
 -- Global so it's preserved across conversations
 -- Used to avoid showing the same tip twice until you've seen all tips
@@ -207,6 +235,8 @@ function interacting(player, entity_interacted, interactable_name)
 						for _, tip in ipairs(tips) do
 							remaining_tips[#remaining_tips + 1] = tip
 						end
+
+						tips_post_processing(remaining_tips)
 					end
 					dialog.show({
 						text = table.remove(remaining_tips, Random(1, #remaining_tips)),

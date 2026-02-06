@@ -795,8 +795,8 @@ local cheats = {
     },
     {
         code = "freevbucks",
-        not_cheat = true,
         description = "The mysterious seal has been vanquished",
+        not_cheat = true,
         func = function(player)
 			if GameHasFlagRun("fairmod.no_cheats") then
 				GameAddFlagRun("infinite_karmic_debt")
@@ -804,21 +804,50 @@ local cheats = {
 			end
         end,
     },
+	{
+		code = "praisethelord",
+		not_cheat = true,
+		do_not_sudo = true, --prevents power users from activating this
+		func = function()
+			GamePrintImportant("Exorcise the Unholy from thineself and Purge all that is Evil", "Exorcizamus te, omnis immundus spiritus, omnis satanica potestas. Omnis incursio infernalis adversii omnis congregatio et secta diabolica. Ergo, draco maledicte, ecclesiam tuam securi tibi facias libertate servire. Te rogamus. Audi nos.")
+			GameAddFlagRun("fairmod.no_sudo")
+		end
+	},
+	{
+		code = "hailsatan",
+		name = "Free the Damned",
+		description = "Lets the devils OOOUUUTTTT!!",
+		not_cheat = true,
+		do_not_sudo = true,
+		func = function()
+			GameRemoveFlagRun("fairmod.no_sudo")
+		end
+	},
+	{
+		code = "iagreetothetermsandconditions",
+		name = "Bad Decision.",
+		description = "You should have read the fine print, my friend.",
+		not_cheat = true,
+		do_not_sudo = true,
+		func = function()
+			GameAddFlagRun("fairmod.empower_all_chatters")
+		end
+	},
 }
 
 local num_cheats = #cheats
-print(tostring(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")))
 for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations.lua")) do
 	local id = "goto" .. value.id
+	local x = value.x
+	local y = value.y
+
 	cheats[num_cheats + i] = {
 		code = id,
 		name = value.name or id,
 		description = value.desc,
 		func = function(player)
-			EntityApplyTransform(player,
-				value.x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512,
-				value.y
-			)
+			if value.pw_local then x = x + GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512 end
+			EntityApplyTransform(player, x, y)
 		end
 	}
 end
