@@ -331,7 +331,7 @@ for action_type, action_list in pairs(action_info_map) do
 			"\tdescription = ", escape_string(description), ",\n",
 			"\tsprite = \"mods/noita.fairmod/files/content/tmtrainer/files/spell_icons/", tostring(TMTRAINER_INDEX), ".png\",\n",
 			"\ttype = ", tostring(action_type), ",\n",
-			"\tspawn_level = \"0\",\n",
+			"\tspawn_level = \"0,0,0,0,0,0,0,0\",\n",
 			"\tspawn_probability = \"0,0,0,0,0,0,0,0\",\n",
 			"\tprice = ", tostring(price), ",\n",
 			"\tmana = ", tostring(mana), ",\n",

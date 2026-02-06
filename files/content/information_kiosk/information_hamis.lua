@@ -42,7 +42,7 @@ local tips = {
 	"Beware of the friendliest faces;\nthey tend to hide the sharpest teeth.",
 	"All that glitters might explode.\nApproach, but at your own peril.",
 	"When blessed with a shield, assume it will vanish the moment you need it most.",
-	"The harder the challenge,\nthe sweeter the loot—until it isn’t.",
+	"The harder the challenge, the sweeter the loot — until it isn’t.",
 	"Even the strongest spells cannot\noutlast foolish feet.",
 	"Beware of silence;\nsometimes, it’s the loudest warning.",
 	"Big spells are fun, but remember,\nthe explosion cares not who casts it.",
@@ -201,6 +201,32 @@ local function has_scratch_ticket(player)
 	return false
 end
 
+local recursive_tip_option = {}
+recursive_tip_option = {
+	text = "Ask again",
+	enabled = function(stats)
+		return true
+	end,
+	func = function(dialog)
+		if #remaining_tips == 0 then
+			for _, tip in ipairs(tips) do
+				remaining_tips[#remaining_tips + 1] = tip
+			end
+
+			tips_post_processing(remaining_tips)
+		end
+		dialog.show({
+			text = "{@delay 2}" .. table.remove(remaining_tips, Random(1, #remaining_tips)),
+			options = {
+				recursive_tip_option,
+				{
+					text = "Leave",
+				},
+			},
+		})
+	end,
+}
+
 function interacting(player, entity_interacted, interactable_name)
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") or GameHasFlagRun("holding_interactible") then return end
 	if GameHasFlagRun("fairmod_interacted_with_anything_this_frame") then return end
@@ -241,6 +267,7 @@ function interacting(player, entity_interacted, interactable_name)
 					dialog.show({
 						text = table.remove(remaining_tips, Random(1, #remaining_tips)),
 						options = {
+							recursive_tip_option,
 							{
 								text = "Leave",
 							},

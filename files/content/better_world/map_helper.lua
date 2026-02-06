@@ -20,6 +20,7 @@ local ng_markers ={
 	jungle_entrance =			{ x = 192,		y = 6607	},
 	vault_entrance =			{ x = 192,		y = 8655	},
 	tota_entrance =				{ x = 192,		y = 10703	},
+	kantele_spot =				{ x = -1604,	y = -4834	},
 }
 do return ng_markers end
 --[[
