@@ -1,0 +1,8 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/dream/desk.png"
+		offset_x="18"
+		offset_y="38"
+		z_index="1"
+	/>
+</Entity>

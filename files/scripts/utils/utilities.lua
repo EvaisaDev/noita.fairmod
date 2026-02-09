@@ -110,3 +110,21 @@ function EntityDropItem(entity, item_entity)
 		ComponentSetValue2(inventory_comp, "mForceRefresh", true)
 	end
 end
+
+function ReplaceImage(destination, image)
+	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end
+
+	local dest_data = {}
+	local img_data = {}
+	img_data.id,img_data.w,img_data.h = ModImageMakeEditable(image, 0, 0)
+	dest_data.id,dest_data.w,dest_data.h = ModImageMakeEditable(destination, img_data.w, img_data.h)
+
+	local w = math.max(img_data.w, dest_data.w)
+	local h = math.max(img_data.h, dest_data.h)
+
+	for y = 0, h - 1 do
+		for x = 0, w - 1 do
+			ModImageSetPixel(dest_data.id, x, y, ModImageGetPixel(img_data.id, x, y))
+		end
+	end
+end
