@@ -120,7 +120,6 @@ dofile_once("mods/noita.fairmod/files/content/cheese_finish/init.lua")
 dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
 dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
-dofile_once("mods/noita.fairmod/files/content/better_helpers/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_perks/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
