@@ -3,6 +3,8 @@
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
 
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+OverlayImage("data/biome_impl/mountain/hall.png","data/biome_impl/mountain/hall.png")
 if ModSettingGet("fairmod.is_dreaming") then dofile_once("mods/noita.fairmod/files/dream/init.lua") return end
 
 local SetContent = ModTextFileSetContent
@@ -123,6 +125,7 @@ dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
 dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_perks/init.lua")
+dofile_once("mods/noita.fairmod/files/content/data_overrides/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")

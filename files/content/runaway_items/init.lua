@@ -7,7 +7,3 @@ for book in nxml.edit_file("data/entities/items/books/base_book.xml") do
 		execute_every_n_frame = "1",
 	}))
 end
-
-ModTextFileSetContent("data/entities/items/books/base_book.xml", ModTextFileGetContent("data/entities/items/books/base_book.xml")
-	:gsub("data/items_gfx/emerald_tablet.png", "mods/noita.fairmod/files/content/runaway_items/emerald_tablet.png")
-)
