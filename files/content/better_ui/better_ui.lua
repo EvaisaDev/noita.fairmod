@@ -300,7 +300,7 @@ local ui_displays = {
 				-- TODO: add a rare tag to hiisi chef, mimics, santa hiisi
 				local enemy = get_any_nearby_tags("big_friend", "small_friend", "mimic_potion", "boss_dragon", "boss", "miniboss")[1]
 				if enemy ~= nil then
-					local name = EntityGetName(enemy) -- not working??? Kolmi not showing up
+					local name = EntityGetName(enemy) -- not working??? Kolmi not showing up -- it looks like the function returns a list of enemies, like more than one? this is probably why -K
 					if name ~= nil and name ~= "" then return "Rare enemy: " .. GameTextGetTranslatedOrNot(name) end
 				end
 				return "Rare enemy: None"
@@ -644,7 +644,7 @@ local extra_ui = {
 	{
 		text = function()
 			local _, y = GameGetCameraPos()
-			-- Don't show X position. That would spoil the PW!
+			-- Don't show X position. That would spoil the PW! -- modulate relative to PW?
 			local above_or_below = ""
 			if y < 10 then
 				above_or_below = "above surface"
