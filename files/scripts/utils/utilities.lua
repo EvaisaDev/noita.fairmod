@@ -111,6 +111,9 @@ function EntityDropItem(entity, item_entity)
 	end
 end
 
+---Replaces the image at `destination` with `image`
+---@param destination string
+---@param image string
 function ReplaceImage(destination, image)
 	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end
 
@@ -155,6 +158,12 @@ math.clamp = function(val, lower, upper)
 	return math.min(math.max(lower, val), upper)
 end
 
+---Overlays a target `image` over a target `destination`, accounting for alpha and the such
+---@param destination string
+---@param image string
+---@param offset_x int? `0` - x offset for the overlay's location on the destination image
+---@param offset_y int? `0` - y offset for the overlay's location on the destination image
+---@param alpha_multiplier number `1` - multiplier for the alpha value of the overlay image
 function OverlayImage(destination, image, offset_x, offset_y, alpha_multiplier)
 	if not ModDoesFileExist(destination) then print("destination was not valid for image replacement") return end
 	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end
