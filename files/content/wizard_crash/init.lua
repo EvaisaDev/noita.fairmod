@@ -21,3 +21,5 @@ for _, wizfile in ipairs(wizards) do
 	}))
 	ModTextFileSetContent(wizfile, tostring(entity))
 end
+
+ReplaceImage("data/generated/sprite_uv_maps/mods.noita.fairmod.files.content.wizard_crash.gfx.png", "mods/noita.fairmod/files/content/wizard_crash/uvmap.png")

@@ -163,7 +163,7 @@ end
 ---@param image string
 ---@param offset_x int? `0` - x offset for the overlay's location on the destination image
 ---@param offset_y int? `0` - y offset for the overlay's location on the destination image
----@param alpha_multiplier number `1` - multiplier for the alpha value of the overlay image
+---@param alpha_multiplier number? `1` - multiplier for the alpha value of the overlay image
 function OverlayImage(destination, image, offset_x, offset_y, alpha_multiplier)
 	if not ModDoesFileExist(destination) then print("destination was not valid for image replacement") return end
 	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end

@@ -44,4 +44,7 @@ for rootgrower_branch_xml in nxml.edit_file("data/entities/props/root_grower_bra
 	rootgrower_apply_changes(rootgrower_branch_xml:first_of("Base"))
 end
 
-ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_props/material_overrides.xml")
+
+for _,script in ipairs({"root_grower_fruit.lua","root_grower_split.lua"}) do
+	ModTextFileSetContent("data/scripts/props/" .. script, ModTextFileGetContent("mods/noita.fairmod/files/content/better_props/vines/" .. script))
+end

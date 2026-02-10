@@ -25,11 +25,6 @@ for _,bg in ipairs(mountain_halls) do
 	OverlayImage("data/biome_impl/mountain/" .. bg, "mods/noita.fairmod/files/content/data_overrides/hall_overlay.png")
 end
 
-OverlayImage("data/biome_impl/mountain/floating_island_visual.png", "mods/noita.fairmod/files/content/data_overrides/floating_island_glyph.png", 193, 329)
+OverlayImage("data/biome_impl/mountain/floating_island_visual.png", "mods/noita.fairmod/files/content/data_overrides/floating_island_visual.png", 131, 224)
 
---for i = 1, 200 do
---	for k = 1, 200 do
---		OverlayImage("data/biome_impl/mountain/floating_island_visual.png", "mods/noita.fairmod/files/content/data_overrides/floating_island_glyph.png", k, i)
---	end
---end
-OverlayImage("data/biome_impl/mountain/floating_island_visual.png", "mods/noita.fairmod/files/content/data_overrides/floating_island_glyph.png", 131, 224)
+ModTextFileSetContent("data/scripts/buildings/spidernest.lua", "-- blank")
