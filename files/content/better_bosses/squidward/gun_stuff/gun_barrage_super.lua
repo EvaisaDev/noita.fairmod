@@ -1,12 +1,12 @@
 -- CONFIGURE VALUES:
 local offset_y = 0 -- y offset from enemy pos
 local offset_x = 0 -- x offset from enemy pos
-local fire_rate = 6 -- frames between each shot
+local fire_rate = 15 -- frames between each shot
 local wavelength = 30 / 2 -- how long it takes to do one full "sweep"
 local amplitude = 180 -- how many degrees to go left or right
 local offset_angle = -90 -- how offset is this angle
-local shot_vel = math.random(195, 205) -- speed to shoot out at
-local file_path = "data/entities/animals/boss_pit/wand_glock.xml"
+local shot_vel = math.random(200, 600) -- speed to shoot out at
+local file_path = "mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/wand_glock_long.xml"
 
 local entity_id = GetUpdatedEntityID()
 local shooter = EntityGetParent(entity_id)

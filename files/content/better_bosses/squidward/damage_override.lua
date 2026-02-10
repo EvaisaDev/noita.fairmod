@@ -42,7 +42,7 @@ function damage_received( damage, message, entity_thats_responsible )
 		local storages = EntityGetComponentIncludingDisabled( entity_id, "VariableStorageComponent" )[1]
 		ComponentSetValue2( storages, "value_string", "1")
 
-		local cid = EntityLoad( "data/entities/animals/boss_pit/gun_barrage_super_setup.xml", x, y )
+		local cid = EntityLoad( "mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/gun_barrage_super_setup.xml", x, y )
 		EntityAddChild( entity_id, cid )
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "squiwart/americano_super", x, y)
 	end
@@ -77,7 +77,7 @@ function damage_received( damage, message, entity_thats_responsible )
 							entity_thats_responsible = EntityGetClosestWithTag( x, y, "player_unit")
 							local amount = Random(4,7)
 							EntityAddComponent(entity_id, "LuaComponent", {
-								script_source_file="data/entities/animals/boss_pit/wand_plasma_barrage.lua",
+								script_source_file="mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/wand_plasma_barrage.lua",
 								execute_every_n_frame=10,
 								execute_times=amount
 							}) 
