@@ -8,3 +8,5 @@ for xml in nxml.edit_file("data/entities/buildings/teleport_liquid_powered.xml")
 		script_source_file = "mods/noita.fairmod/files/content/hm_portal_mimic/do_i_spawn.lua",
 	}))
 end
+
+ModTextFileSetContent("data/entities/animals/noita.fairmod_hm_portal_mimic.xml", ModTextFileGetContent("mods/noita.fairmod/files/content/hm_portal_mimic/portal_mimic.xml"))

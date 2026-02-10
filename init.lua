@@ -3,8 +3,6 @@
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
 
-dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
-OverlayImage("data/biome_impl/mountain/hall.png","data/biome_impl/mountain/hall.png")
 if ModSettingGet("fairmod.is_dreaming") then dofile_once("mods/noita.fairmod/files/dream/init.lua") return end
 
 local SetContent = ModTextFileSetContent
@@ -13,6 +11,7 @@ dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
+dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --needs to be applied before scenes_in_pws
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -62,7 +61,6 @@ local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
-local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")

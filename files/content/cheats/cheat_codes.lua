@@ -721,6 +721,7 @@ local cheats = {
 		description = "Eat up!",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
+			print(ModTextFileGetContent("data/entities/animals/noita.fairmod_hm_portal_mimic.xml"))
 
 			for i = 1, 8 do
 				for j = 1, 100 do
@@ -737,7 +738,7 @@ local cheats = {
 
 					local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
 					if not hit then
-						EntityLoad("mods/noita.fairmod/data/entities/animals/noita.fairmod_hm_portal_mimic.xml", target_x, target_y)
+						EntityLoad("data/entities/animals/noita.fairmod_hm_portal_mimic.xml", target_x, target_y)
 						break
 					end
 				end

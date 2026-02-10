@@ -1,3 +1,4 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua") --- @type nxml
 
 local new_elem = nxml.new_element("AudioLoopComponent", {
@@ -12,4 +13,8 @@ for i = 1, #list do
 	for xml in nxml.edit_file(list[i]) do
 		xml:add_child(new_elem)
 	end
+end
+
+for _,sprite in ipairs({"necromancer_shop.png", "necromancer_super"}) do
+	ReplaceImage("data/enemies_gfx/" .. sprite, "mods/noita.fairmod/files/content/spooky_skeleton/" .. sprite)
 end
