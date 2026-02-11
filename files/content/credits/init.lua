@@ -18,6 +18,6 @@ for dev, message in pairs(dev_messages) do
     dev_msg_txt = dev_msg_txt .. "~MESSAGES FROM " .. dev .. "~\n" .. message .. "\n \n"
 end
 
-credits = credits .. dev_msg_txt
+credits = credits .. dev_msg_txt .. "\n \n \n \nAdded approximately 95,236,821,904,984 hamisket"
 
 ModTextFileSetContent("data/credits.txt", credits)
