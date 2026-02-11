@@ -16,7 +16,7 @@ local Popups = {
 		"Also try Chemical Curiosities!",
 		"Also try Graham's Things!",
 		"Also try Noita.Fairmod! wait...",
-		"Hello, Geoffrey.",
+		"Hello, Theobald..",
 		"Become a Noitillionaire Today!",
 		"Really_Long_Popup_Name_That_Makes_This_Popup_Take_Up_An_Obscenely_Large_Portion_Of_Your_Screen.exe",
 		"Also try Apotheosis!",
@@ -65,6 +65,7 @@ local Popups = {
 
 	-- if you wish to use more than one of these, they must be in the corret order of the last one being the centre-most one, the order is as listed above
 	-- so something like *|text|* will display as "|text|" in white but without the shake, whereas ||@text@|| will display as "text" in rainbow with double shake
+	-- this system is so horrid i need to make a new version from scratch.
 
 	Random_Ads = {
 		"noita NOITA *Noita* |noita| @Noita@ noita NOITA |@Noita@| *Noita* noita |||*NOITA*||| *noita* Noita @Noita@ noita |*noita*| *Noita* @noita@ noita @Noita@ noita *Noita* |NOITA| @NOITA@ Noita noita ||||@noita@|||| *noita* Noita *noita* *NOITA* noita",
@@ -95,6 +96,7 @@ local Popups = {
 		"Popups so immersive, you'll regret the things you never knew and lament the things that never were!",
         "balls.",
         "Rise and shine, Noita Minä. Rise and shine. newline Not that I wish to imply you have been dying on the job. No one is more deserving of the deaths. And all of the skill issue in the world would have gone to waste until... well, let's just say your hour has come again. newline The right witch in the wrong mod can make all the difference in the world. newline So, wake up, Noita Minä. Wake up and embrace the skill issue.",
+		"why everyone |hates| this mod, i was seeking for @balancing@ mod so noita doesnt feel like \" *u* *die* *from* *some* *CHAOTIC* *unescapable* *situation* *=* *start* *over* *from* *beginning* *and* *get* *NOTHING* *new,* *shouldnt* *have* *bought* *this* *game* *noob* *hahaha* \", im not installing this mod cuz everyone |||hates||| it but i'll keep seeking balancing mod that removes the \" @start@ @over@ @super@ @frequently@ \" aspect of this game that is meant to be @fun@ and not |||||sweaty.|||||",
 	},
 
 	--in functions, the "self" will be the popup itself and info relating to stuff in the prefab,
@@ -141,7 +143,7 @@ local Popups = {
 			OPEN_FUNCTION = function(self)
 				self.MESSAGE = self.MESSAGE:gsub(
 					"steamid",
-					tostring(ModSettingGet("fairmod.user_seed")):sub(9, 20) or string.format("%.0f", math.random(10000000000, 99999999999))
+					tostring(ModSettingGet("fairmod.user_seed")):sub(9, 20) or 99999999999
 				) --generate a random number and gsub it into self.MESSAGE
 			end,
 		}, -- i hope these help, have fun!

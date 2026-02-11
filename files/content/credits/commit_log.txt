@@ -996,3 +996,117 @@ Fix cauldron entrance issues
 Update milk biome background
 Biome modifiers for hamis/milk
 Fix a milk biome texture
+deranged copibuddy ramblings
+prevent repeat splashes
+No. A mod that contains the truth safely, in a cage of fairness. Not the visual mods that can be considered vanilla over any achievement role.
+ Give it a body, again.  Yes. Player...  Use its name.
+Xx_BALDSHITFACE69_xX. Winner of fairmod.  Good.
+Take a breath, now. Take another. Feel acid in your flask. Let your jetpack recharge. Yes, tap wasd. Have a character again, under gravity, in air. Respawn in a new run. There you are. Your character touching the noita game at every point, as though you were separate things. As though we were separate things.
+Who are we? Once we were called the developers of the fairmod. Heiner mann, evaisa multiplayer. Scipio, dexter cd. Congalyne. Nathan snail. The i quant. Then Horscht, userks. spoops. moldoses. Copis, bobo. Lamia, inferno. The words change. We do not change.
+Add hamis vases to hamis biome
+Make hamis biome more open
+Re-block paths with hamis biomass
+Add more hamis spawn limits to fix lag
+Fix bug being sent to PWs on mod restart
+New biome achivements
+Can now fish up orbs
+Reduce PW dupes to 1 PW to reduce startup lag
+Helpers can also pick stuff now
+We are the fairmod. We are everything you think isn't fair. You are looking at us now, through your bald head and your screen. And why does the mod end your run, and throw stalactites on you? To kill you, player. To kill you. And to end your run, I shall show you some skill issue.
+Make kolmi try to run away sometimes, reduce chance of not home
+Copi steals shop items :3
+cleanup
+Kolmi doesn't clear liquids
+copibuddy is so fucked up and evil holy
+some pw optimization
+copibuddy stuff
+fix copi code
+fix more copi code
+scene stuff
+random propane internal
+refactored chemical horror materials to use fairmod_ prefix
+something something mushrooms minecraft poem
+scawy dwagon
+Crimes against the modding community
+more copi speech
+comment out debug key thingy
+alchemss
+push unfinished phonecall copi
+comment out debug keys
+virus mail
+UPDATE IMMENENT!!! COPI WAS HERE!!!!
+Labor of Loathing is here :)
+workshop img
+decreased grease barrel odds
+waa
+Update dialog_system.lua
+fix the bullshit
+Update free_trial.xml
+Update mail_list.lua
+I'm copi
+Update copilogue.lua
+add settings migration
+snail cooking
+fix mailbox
+Update instakill.lua
+partial xytio code
+copibuddy enabler
+Update sudo.lua
+print surprise
+epic
+more cheats
+h
+waaa let me stop working on this mod
+worms spawn in EDR now
+minor stuff that surely wont break anything
+copi fixes
+fix hams
+copi is a rat and a cretin
+fixed the obvious bug that is obvious
+youll never guess which bug i fixed
+""""fixed"""" workshop tags
+WIP stuff
+important
+added "antivirus" cheat, improved CoG
+mails ++
+mails and cheats
+this should be good
+fix
+lastupdateipromise
+break absolutely everything about the payphone (surely not)
+no logs
+STONES UPON COPI 🪨🪨🪨🪨🪨🪨
+slight command tweaks
+delagger
+added more TI funnies
+Revert "Update cheat_codes.lua"
+added polish
+fucked up shit
+Reapply "Update cheat_codes.lua"
+d
+copi can now run copibuddy events on command.
+increase copi's power level
+nerfed evil evil dynamight spawns
+copibuddy twitch vote event
+compatibility
+Update surface_spawner.lua
+fix warning
+Update perk_list.lua
+which one of you is deranged.
+Update season_helper.lua
+tmtrainer rewrite
+Update generate_spells.lua
+fix copibuddy
+fix copi
+added fast travel cheats (for dev convenience mostly tbh)
+seems to work idk sorgy if no
+working on the dev chat stuff
+misc
+added automatic line-breaking to hamis tips
+fixed line breaks
+finished testing new sudo code stuff
+finished the shit (i think)
+some stuff
+merged better_helpers into better_items
+reworked reset_progress structure
+reworked credits stuff

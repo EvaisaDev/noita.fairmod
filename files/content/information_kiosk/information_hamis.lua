@@ -89,6 +89,7 @@ local tips = {
 	'psst, try this secret cheatcode: "photocopier"',
 	"But before you get your tip, I would like to take a minute to thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"This mod has been a joy to work on, see you all next year o/",
+	"May the odds be ~ever~ in your favour~",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
@@ -102,13 +103,13 @@ local seasonal_tips = {
 	},
 	christmas = {
 		"Brrr, it's getting cold out!",
-		"All my competitors are stocking up to hibernate for winter\nNot me! I'm on the grind!",
+		"All my competitors are stocking up to hibernate for winter\n{@pause 45}Not me! {@pause 20}I'm on the grind!",
 		"I hope we get snow!",
 		"Merry Christmas",
 		"Happy Christmas",
 		"For Christmas, I'm going to wish for your happiness!",
 		"Jingle Bells,{@pause 10} Hämis Sells,{@pause 15}\nLots and lots of tips!{@pause 25}\nMinä buys,{@pause 10} and then survives,{@pause 15}\nAnd earns their " .. (player_has_won == 0 and "first" or "next") .. " big win!",
-		"All I want for Christmas, is you{@pause 50}'re wallet!"
+		"All I want for Christmas, is you{@pause 50}'re wallet!",
 	},
 	hanukkah = {
 		"Happy Hanukkah",
@@ -133,8 +134,12 @@ local seasonal_tips = {
 	Friday = {
 		"The Weekend will pass by just as fast as the last one did\nSavour and make the most of what little time you have",
 	},
+	Saturday = {
+		"Have a lovely Thursday!",
+	},
 	Sunday = {
 		"Never hesitate to have a do-nothing day every once in a while!",
+		"There's always a paradise that needs to be built.\nEven if I should melt and fall before reaching it.",
 	},
 }
 
