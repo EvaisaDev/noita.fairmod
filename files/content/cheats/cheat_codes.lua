@@ -867,6 +867,49 @@ local cheats = {
 			GameAddFlagRun("fairmod.empower_all_chatters")
 		end
 	},
+	{
+		code = "ichooseyou",
+		name = "I Choose You!",
+		description = "Wild MISSINGNO. appeared!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+			EntityLoad("data/entities/animals/noita.fairmod_enemy_corrupted_0" .. Random(0, 9) .. ".xml", x, y)
+		end
+	},
+	{
+		code = "gottacatchthemall",
+		name = "I Choose Everyone.",
+		description = "Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!Wild MISSINGNO. appeared!",
+		func = function(player)
+			local x, y = EntityGetTransform(player)
+
+			for _=1,128 do
+				for i=1,8 do --8 attempts per enemy
+					-- get a random angle radian
+					local angle = math.rad(Random(1, 360))
+					-- get a random direction vector
+					local dx = math.cos(angle)
+					local dy = math.sin(angle)
+
+					local distance = Random(10, 250)
+
+					local target_x = x + (dx * distance)
+					local target_y = y + (dy * distance)
+
+					local hit = RaytracePlatforms(target_x, target_y, target_x, target_y - 5)
+
+					if not hit then
+						EntityLoad("data/entities/animals/noita.fairmod_enemy_corrupted_0" .. Random(0, 9) .. ".xml", target_x, target_y)
+						break
+					elseif i == 8 then
+						hit,target_x,target_y = RaytracePlatforms(x, y, target_x, target_y)
+						EntityLoad("data/entities/animals/noita.fairmod_enemy_corrupted_0" .. Random(0, 9) .. ".xml", target_x, target_y)
+						break
+					end
+				end
+			end
+		end
+	},
 }
 
 local num_cheats = #cheats
