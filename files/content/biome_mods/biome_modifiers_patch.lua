@@ -5,6 +5,16 @@ function biome_modifier_applies_to_biome()
 	return true
 end
 
+local new_biomes = {
+	fairmod_cauldron = "mods/noita.fairmod/files/content/cauldron/biome/biome.xml",
+	fairmod_hamis_biome = "mods/noita.fairmod/files/content/hamis_biome/biome/biome.xml",
+	fairmod_milk_biome = "mods/noita.fairmod/files/content/milk_biome/biome.xml",
+}
+
+for biome_name, path in pairs(new_biomes) do
+	ModTextFileSetContent("data/biome/" .. biome_name .. ".xml", ModTextFileGetContent(path))
+end
+
 local added_biomes = {
 	"clouds",
 	"the_sky",
@@ -72,7 +82,7 @@ local added_biomes = {
 }
 
 for _, v in ipairs(added_biomes) do
-	table.insert(biomes, { v })
+	table.insert(new_biomes, { v })
 end
 
 for _, v in ipairs(biome_modifiers) do

@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 ---@type nxml
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
 
@@ -35,4 +37,19 @@ for _, file in ipairs(nuggets) do
 		}))
 		content:first_of("PhysicsImageShapeComponent"):set("material", "gold_invisible_box2d")
 	end
+end
+
+
+local sprites = {
+	"goldnugget_01.png",
+	"goldnugget_6px.png",
+	"goldnugget_9px.png",
+	"goldnugget_12px.png",
+	"goldnugget_20px.png",
+}
+
+--we set opacity to 1 cuz idk the game crashes if its 0, maybe to do with material shader junk with the normal map
+--probably cuz the hitbox is generated from the sprite, so it gets fucky if it creates an invalid hitbox?
+for _,sprite in ipairs(sprites) do
+	ImageSetOpacity("data/items_gfx/" .. sprite, 1)
 end

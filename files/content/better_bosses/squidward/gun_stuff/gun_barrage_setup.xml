@@ -1,0 +1,26 @@
+<Entity >
+
+	<InheritTransformComponent />
+
+	<LifetimeComponent
+		lifetime="62"
+		>
+	</LifetimeComponent>
+
+	<LuaComponent
+		_enabled="1"
+		script_source_file="mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/gun_barrage.lua"
+		execute_every_n_frame="1"
+		execute_times="-1"
+		>
+	</LuaComponent>
+
+	<LuaComponent
+		_enabled="1"
+		script_source_file="mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/gun_barrage_fire.lua"
+		execute_every_n_frame="61"
+		execute_times="-1"
+		>
+	</LuaComponent>
+
+</Entity>

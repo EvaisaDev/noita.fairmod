@@ -12,7 +12,12 @@ ModLuaFileAppend(
 	"data/scripts/biomes/temple_altar_top_shared.lua",
 	"mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/append_pool.lua"
 )
+
 -- Final holy mountain portal (fixed this time)
+local wall_ending_script = "data/scripts/biomes/temple_wall_ending.lua"
+ModTextFileSetContent(wall_ending_script, ModTextFileGetContent(wall_ending_script)
+	:gsub("data/biome_impl/temple/altar_top_ending.png", "mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/altar_top_ending.png")
+)
 ModLuaFileAppend(
 	"data/scripts/biomes/temple_wall_ending.lua",
 	"mods/noita.fairmod/files/content/scene_liquid_randomizer/portal_pools/append_pool.lua"

@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 dofile_once("mods/noita.fairmod/files/content/enemy_reworks/hamis_reworked/hamis_reworked.lua")
 dofile_once("mods/noita.fairmod/files/content/enemy_reworks/firemage/replace_water.lua")
 dofile_once("mods/noita.fairmod/files/content/enemy_reworks/fish/regular_fish.lua")
@@ -15,3 +17,5 @@ for file, append in pairs(append_after) do
 	content = content .. "\n" .. 'dofile_once("' .. append .. '")\n'
 	ModTextFileSetContent(file, content)
 end
+
+ImageReplace("data/enemies_gfx/sniper.png", "mods/noita.fairmod/files/content/enemy_reworks/sniper/sniper.png")

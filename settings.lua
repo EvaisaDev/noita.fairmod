@@ -294,8 +294,23 @@ function ModSettingsUpdate(init_scope)
 	mod_settings = build_settings()
 	mod_settings_update(mod_id, mod_settings, init_scope)
 	if init_scope == 0 or init_scope == 1 then
-		PatchGamesInitlua()
-		PrintHamis()
+		--running code here cuz it runs before game init 'n' stuff
+		if init_scope == 0 then
+			--if more than 40 deaths, has not beaten the lovely dream and an extra .5% check
+			local is_dreaming = (ModSettingGet("fairmod.deaths") or 0) > 40 and not HasFlagPersistent("fairmod_won_lovely_dream") and math.random() < .005
+			is_dreaming = false
+			if is_dreaming then
+				ModSettingSet("fairmod.is_dreaming", true)
+				return
+			else
+				ModSettingRemove("fairmod.is_dreaming")
+			end
+		end
+
+		if not ModSettingGet("fairmod.is_dreaming") then
+			PatchGamesInitlua()
+			PrintHamis()
+		end
 	end
 end
 

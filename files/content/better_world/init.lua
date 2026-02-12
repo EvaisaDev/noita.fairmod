@@ -14,6 +14,7 @@ local nil_pos = {x = 0, y = 0} --default thing so i dont have to keep writing th
 ModTextFileSetContent("data/scripts/newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_enter_override.lua"))
 ModTextFileSetContent("data/biome_impl/biome_map_newgame_plus.lua", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/ngplus_biomes_override.lua"))
 
+ModTextFileSetContent("data/biome_impl/spliced/tree.xml", ModTextFileGetContent("mods/noita.fairmod/files/content/better_world/pixel_scenes/tree.xml"))
 
 
 ModLuaFileAppend("data/scripts/biome_scripts.lua", "mods/noita.fairmod/files/content/better_world/biome_functions_append.lua")

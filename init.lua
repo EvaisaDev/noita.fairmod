@@ -3,12 +3,15 @@
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
 
+if ModSettingGet("fairmod.is_dreaming") then dofile_once("mods/noita.fairmod/files/dream/init.lua") return end
+
 local SetContent = ModTextFileSetContent
 dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
 local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
+dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --needs to be applied before scenes_in_pws
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
@@ -58,7 +61,6 @@ local show_user_id = dofile_once("mods/noita.fairmod/files/content/show_user_id/
 local snail_radar = dofile_once("mods/noita.fairmod/files/content/snail_radar/snail_warning.lua")
 local mailbox = dofile_once("mods/noita.fairmod/files/content/mailbox/init.lua")
 local popups = dofile_once("mods/noita.fairmod/files/content/popups/init.lua")
-local better_world = dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --planned for NG+
 local random_alchemy = dofile_once("mods/noita.fairmod/files/content/random_alchemy/init.lua") --- @type fairmod_random_alchemy
 local pixel_scenes = dofile_once("mods/noita.fairmod/files/content/pixelscenes/init.lua") --- @type pixel_scenes
 local minecraft = dofile_once("mods/noita.fairmod/files/content/minecraft/init.lua")
@@ -68,6 +70,7 @@ local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
 local copibuddy_module = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
 local TTS = dofile_once("mods/noita.fairmod/files/content/copibuddy/tts.lua")
+local data_overrides = dofile_once("mods/noita.fairmod/files/content/data_overrides/init.lua")
 
 -- Table to store multiple copibuddy instances
 local copibuddy_instances = {}
@@ -121,6 +124,7 @@ dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
 dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_perks/init.lua")
+dofile_once("mods/noita.fairmod/files/content/better_bosses/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/better_world/materials.xml")
