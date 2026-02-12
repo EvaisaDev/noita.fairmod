@@ -18,4 +18,4 @@ for file, append in pairs(append_after) do
 	ModTextFileSetContent(file, content)
 end
 
-ReplaceImage("data/enemies_gfx/sniper.png", "mods/noita.fairmod/files/content/enemy_reworks/sniper/sniper.png")
+ImageReplace("data/enemies_gfx/sniper.png", "mods/noita.fairmod/files/content/enemy_reworks/sniper/sniper.png")

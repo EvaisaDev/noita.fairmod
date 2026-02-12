@@ -114,7 +114,7 @@ end
 ---Replaces the image at `destination` with `image`
 ---@param destination string
 ---@param image string
-function ReplaceImage(destination, image)
+function ImageReplace(destination, image)
 	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end
 
 	local dest_data = {}
@@ -164,9 +164,9 @@ end
 ---@param offset_x int? `0` - x offset for the overlay's location on the destination image
 ---@param offset_y int? `0` - y offset for the overlay's location on the destination image
 ---@param alpha_multiplier number? `1` - multiplier for the alpha value of the overlay image
-function OverlayImage(destination, image, offset_x, offset_y, alpha_multiplier)
-	if not ModDoesFileExist(destination) then print("destination was not valid for image replacement") return end
-	if not ModDoesFileExist(image) then print("image was not valid for image replacement") return end
+function ImageOverlay(destination, image, offset_x, offset_y, alpha_multiplier)
+	if not ModDoesFileExist(destination) then print("destination was not valid for image overlay") return end
+	if not ModDoesFileExist(image) then print("image was not valid for image overlay") return end
 
 	offset_x = offset_x or 0
 	offset_y = offset_y or 0
@@ -195,6 +195,23 @@ function OverlayImage(destination, image, offset_x, offset_y, alpha_multiplier)
 			--if logging then print(x + offset_x .. ", " .. y + offset_y) end
 			ModImageSetPixel(dest_data.id, x + offset_x, y + offset_y, abgr_merge(unpack(dest_pixel)))
 			::continue::
+		end
+	end
+end
+
+---Sets the alpha channel of all pixels (except empty ones) to the designated value
+---@param image string
+---@param value int [0-255]
+---@param set_empty bool? if true, will also set empty pixels
+function ImageSetOpacity(image, value, set_empty)
+	local img,w,h = ModImageMakeEditable(image, 0, 0)
+	local a = value
+	for y = 0, h-1 do
+		for x = 0, w-1 do
+			local r,g,b,a2 = abgr_split(ModImageGetPixel(img, x, y))
+			if a2 ~= 0 or set_empty then
+				ModImageSetPixel(img, x, y, abgr_merge(r,g,b,a))
+			end
 		end
 	end
 end

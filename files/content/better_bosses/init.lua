@@ -74,7 +74,7 @@ set_file("data/entities/animals/boss_wizard/statusburst.lua",
 set_file("data/entities/animals/boss_pit/body.xml", get_file("mods/noita.fairmod/files/content/better_bosses/squidward/sprite_override.xml"))
 set_file("data/entities/animals/boss_pit/boss_pit_damage.lua", get_file("mods/noita.fairmod/files/content/better_bosses/squidward/damage_override.lua"))
 
-ReplaceImage("data/entities/animals/boss_pit/boss_pit.png", "mods/noita.fairmod/files/content/better_bosses/squidward/squidward.png")
+ImageReplace("data/entities/animals/boss_pit/boss_pit.png", "mods/noita.fairmod/files/content/better_bosses/squidward/squidward.png")
 
 for xml in nxml.edit_file("data/entities/animals/boss_pit/boss_pit.xml") do
 	xml:add_child(nxml.new_element(

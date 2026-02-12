@@ -307,8 +307,10 @@ function ModSettingsUpdate(init_scope)
 			end
 		end
 
-		PatchGamesInitlua()
-		PrintHamis()
+		if not ModSettingGet("fairmod.is_dreaming") then
+			PatchGamesInitlua()
+			PrintHamis()
+		end
 	end
 end
 
