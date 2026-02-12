@@ -70,6 +70,7 @@ local swapper = dofile_once("mods/noita.fairmod/files/content/swapper/init.lua")
 local logo_splash = dofile_once("mods/noita.fairmod/files/content/logo_splash/module.lua")
 local copibuddy_module = dofile_once("mods/noita.fairmod/files/content/copibuddy/module.lua")
 local TTS = dofile_once("mods/noita.fairmod/files/content/copibuddy/tts.lua")
+local data_overrides = dofile_once("mods/noita.fairmod/files/content/data_overrides/init.lua")
 
 -- Table to store multiple copibuddy instances
 local copibuddy_instances = {}
@@ -123,7 +124,6 @@ dofile_once("mods/noita.fairmod/files/content/more_orbs/init.lua")
 dofile_once("mods/noita.fairmod/files/content/boss_arena_improvements/init.lua")
 dofile_once("mods/noita.fairmod/files/content/no_easy_ti/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_perks/init.lua")
-dofile_once("mods/noita.fairmod/files/content/data_overrides/init.lua")
 dofile_once("mods/noita.fairmod/files/content/better_bosses/init.lua")
 
 ModMaterialsFileAdd("mods/noita.fairmod/files/content/backrooms/materials.xml")

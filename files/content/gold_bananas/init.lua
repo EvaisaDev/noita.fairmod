@@ -1,4 +1,4 @@
-dofile_once("mods/noita.fairmod/files/utils/utilities.lua")
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
 
 ---@type nxml
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")

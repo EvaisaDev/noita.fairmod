@@ -15,6 +15,6 @@ for i = 1, #list do
 	end
 end
 
-for _,sprite in ipairs({"necromancer_shop.png", "necromancer_super"}) do
+for _,sprite in ipairs({"necromancer_shop.png", "necromancer_super.png"}) do
 	ImageReplace("data/enemies_gfx/" .. sprite, "mods/noita.fairmod/files/content/spooky_skeleton/" .. sprite)
 end

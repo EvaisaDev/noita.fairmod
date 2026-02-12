@@ -203,6 +203,19 @@ modify_text_file("data/entities/animals/boss_centipede/boss_centipede.xml",
 modify_text_file("data/entities/animals/boss_centipede/loose_lavaceiling.xml",
 	"data/procedural_gfx/collapse_lavabridge/small_$[0-4].png", "data/procedural_gfx/collapse_lavabridge/$[0-4].png"
 )
+
+for xml in nxml.edit_file("data/entities/animals/boss_centipede/clear_materials.xml") do
+	local remove = {}
+	for child in xml:each_child() do
+		local material_array = child.attr.from_material_array
+		if material_array == "lava,radioactive_liquid,acid,poison" or "blood" then
+			remove[#remove+1] = child
+		end
+	end
+	for _, child in ipairs(remove) do
+		xml:remove_child(child)
+	end
+end
 --#endregion
 
 --this was annoying to write, nor does it look particularly good, i just need to remove all datafiling to do a couple things i wanna do
