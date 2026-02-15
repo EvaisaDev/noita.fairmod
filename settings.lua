@@ -295,19 +295,20 @@ function ModSettingsUpdate(init_scope)
 	mod_settings_update(mod_id, mod_settings, init_scope)
 	if init_scope == 0 or init_scope == 1 then
 		--running code here cuz it runs before game init 'n' stuff
+
 		if init_scope == 0 then
-			--if more than 40 deaths, has not beaten the lovely dream and an extra .5% check
-			local is_dreaming = (ModSettingGet("fairmod.deaths") or 0) > 40 and not HasFlagPersistent("fairmod_won_lovely_dream") and math.random() < .005
+			--if more than 40 deaths, has not beaten the lovely dream and an extra 1% check
+			local is_dreaming = (ModSettingGet("fairmod.deaths") or 0) > 40 and not HasFlagPersistent("fairmod_won_lovely_dream") and math.random() < .01
 			is_dreaming = false
 			if is_dreaming then
-				ModSettingSet("fairmod.is_dreaming", true)
+				ModSettingSet("fairmod.alt_mode", "dream")
 				return
 			else
-				ModSettingRemove("fairmod.is_dreaming")
+				ModSettingRemove("fairmod.alt_mode")
 			end
 		end
 
-		if not ModSettingGet("fairmod.is_dreaming") then
+		if not ModSettingGet("fairmod.alt_mode") then
 			PatchGamesInitlua()
 			PrintHamis()
 		end
@@ -323,5 +324,6 @@ end
 
 -- This function is called to display the settings UI for this mod. your mod's settings wont be visible in the mod settings menu if this function isn't defined correctly.
 function ModSettingsGui(gui, in_main_menu)
+	if ModSettingGet("fairmod.alt_mode") then return end
 	mod_settings_gui(mod_id, mod_settings, gui, in_main_menu)
 end

@@ -1,0 +1,35 @@
+<Entity>
+	<SpriteComponent
+		image_file="mods/noita.fairmod/files/dream/haunted_phone/haunted_phone.png"
+		offset_x="5"
+		offset_y="18"
+		z_index="1"
+	/>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/dream/haunted_phone/haunted_phone.lua"
+		execute_on_added="1"
+		enable_coroutines="1"
+		vm_type="SHARED_BY_MANY_COMPONENTS"
+	/>
+
+	<AudioLoopComponent
+		_tags="disconnected"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="payphone/hungup"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+
+	<AudioLoopComponent
+		_tags="ring"
+		file="mods/noita.fairmod/fairmod.bank"
+		event_name="dream/distant_ring"
+		auto_play="0"
+		auto_play_if_enabled="0"
+		play_on_component_enable="0"
+		>
+	</AudioLoopComponent>	
+</Entity>

@@ -3,7 +3,10 @@
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
 
-if ModSettingGet("fairmod.is_dreaming") then dofile_once("mods/noita.fairmod/files/dream/init.lua") return end
+if ModSettingGet("fairmod.alt_mode") and ModDoesFileExist("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua") then
+	dofile_once("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua")
+	return
+end
 
 local SetContent = ModTextFileSetContent
 dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
