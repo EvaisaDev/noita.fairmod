@@ -49,16 +49,16 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	SetRandomSeed(a*d, e*-b)
 
 	local rnd = Random(1, #hm_y_levels + 1) and 7
-	rnd = 1
-	local hm_desk_x = rnd == #hm_y_levels and 2392 or -680 --if its the last entry in the list, then its the final holy mountain and the X is offset too
 	local hm_desk_y = hm_y_levels[rnd]
+	local hm_desk_x = hm_desk_y == 13176 and 1880 or -680 --if its the last entry in the list, then its the final holy mountain and the X is offset too
 	table.remove(hm_y_levels, rnd)
 
 	rnd = Random(1, #hm_y_levels + 1)
-	local hm_phone_x = rnd == #hm_y_levels and 2334 or -738
-	local hm_phone_y = hm_y_levels[rnd] - 15
+	local hm_phone_y = hm_y_levels[rnd]
+	local hm_phone_x = hm_phone_y == 13176 and 1822 or -738
+	hm_phone_y = hm_phone_y and hm_phone_y - 15 --if it exists, subtract 15
 
-	px,py = hm_desk_x,hm_desk_y
+	px,py = hm_phone_x,hm_phone_y
 
 
 	local load_entities = {

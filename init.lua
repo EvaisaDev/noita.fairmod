@@ -2,6 +2,7 @@
 
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
+ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 if ModSettingGet("fairmod.alt_mode") and ModDoesFileExist("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua") then
 	dofile_once("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua")
@@ -311,7 +312,6 @@ function OnPlayerSpawned(player)
 	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
-ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 local pause_button_pressed = false
 

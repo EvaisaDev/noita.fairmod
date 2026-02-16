@@ -299,7 +299,7 @@ function ModSettingsUpdate(init_scope)
 		if init_scope == 0 then
 			--if more than 40 deaths, has not beaten the lovely dream and an extra 1% check
 			local is_dreaming = (ModSettingGet("fairmod.deaths") or 0) > 40 and not HasFlagPersistent("fairmod_won_lovely_dream") and math.random() < .01
-			is_dreaming = false
+			is_dreaming = true
 			if is_dreaming then
 				ModSettingSet("fairmod.alt_mode", "dream")
 				return

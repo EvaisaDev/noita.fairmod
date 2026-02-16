@@ -17,19 +17,21 @@
 		_tags="disconnected"
 		file="mods/noita.fairmod/fairmod.bank"
 		event_name="payphone/hungup"
-		auto_play="0"
+		auto_play="1"
 		auto_play_if_enabled="0"
 		play_on_component_enable="0"
-		>
-	</AudioLoopComponent>	
+		m_volume="0"
+	/>
 
 	<AudioLoopComponent
 		_tags="ring"
+		_enabled="0"
 		file="mods/noita.fairmod/fairmod.bank"
-		event_name="dream/distant_ring"
+		event_name="payphone/ring"
 		auto_play="0"
-		auto_play_if_enabled="0"
-		play_on_component_enable="0"
-		>
-	</AudioLoopComponent>	
+		auto_play_if_enabled="1"
+		play_on_component_enable="1"
+	/>
+
+	<VariableStorageComponent/>
 </Entity>
