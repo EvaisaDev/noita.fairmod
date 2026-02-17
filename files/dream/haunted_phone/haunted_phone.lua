@@ -1,12 +1,19 @@
-local ring_max_vol = .12
-local ring_max_distance = 200
-local ring_distance_buffer = 25
+local ring_max_vol = .04
+local ring_max_distance = 125
+local ring_distance_buffer = 15
+local tone_vol = .6
 
 local entity_id = GetUpdatedEntityID()
-local disconnected_audio = EntityGetFirstComponentIncludingDisabled(entity_id, "AudioLoopComponent", "disconnected")
 local ringing_audio = EntityGetFirstComponentIncludingDisabled(entity_id, "AudioLoopComponent", "ring")
 local ringing_data = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent")
-if not (disconnected_audio and ringing_audio and ringing_data) then return end
+
+function init()
+	local disconnected_audio = EntityGetFirstComponentIncludingDisabled(entity_id, "AudioLoopComponent", "disconnected")
+	if not disconnected_audio then return end
+	ComponentSetValue2(disconnected_audio, "m_volume", tone_vol)
+end
+
+if not (ringing_audio and ringing_data) then return end
 
 local x,y = EntityGetTransform(entity_id)
 local current_frame = GameGetFrameNum()
@@ -22,8 +29,7 @@ if is_currently_ringing and current_frame > ComponentGetValue2(ringing_data, "va
 end
 
 
-if not is_currently_ringing and current_frame % 60 == 0 and Random(1, 100) == 66 then
-	print("playing ring")
+if not is_currently_ringing and current_frame % 60 == 0 and Random(1, 1000) == 666 then
 	is_currently_ringing = true
 	EntitySetComponentIsEnabled(entity_id, ringing_audio, true)
 	ComponentSetValue2(ringing_audio, "auto_play", true)

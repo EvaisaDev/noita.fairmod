@@ -9,8 +9,7 @@
 	<LuaComponent
 		script_source_file="mods/noita.fairmod/files/dream/haunted_phone/haunted_phone.lua"
 		execute_on_added="1"
-		enable_coroutines="1"
-		vm_type="SHARED_BY_MANY_COMPONENTS"
+		call_init_function="1"
 	/>
 
 	<AudioLoopComponent
@@ -18,9 +17,6 @@
 		file="mods/noita.fairmod/fairmod.bank"
 		event_name="payphone/hungup"
 		auto_play="1"
-		auto_play_if_enabled="0"
-		play_on_component_enable="0"
-		m_volume="0"
 	/>
 
 	<AudioLoopComponent

@@ -26,6 +26,9 @@ for xml in nxml.edit_file("data/entities/animals/longleg.xml") do
 	}))
 end
 
+--disable saving
+ModMagicNumbersFileAdd("mods/noita.fairmod/files/dream/magic_numbers_override.xml")
+
 
 
 local px,py = 0,0
@@ -58,47 +61,54 @@ function OnMagicNumbersAndWorldSeedInitialized()
 	local hm_phone_x = hm_phone_y == 13176 and 1822 or -738
 	hm_phone_y = hm_phone_y and hm_phone_y - 15 --if it exists, subtract 15
 
-	px,py = hm_phone_x,hm_phone_y
+	px,py = 3572,13111
 
 
 	local load_entities = {
 		{ --information_kiosk
+			disabled = true,
 			path = "mods/noita.fairmod/files/dream/kiosk/empty_kiosk.xml",
 			x = 237,
 			y = -74
 		},
 		{ --mask_box
+			disabled = true,
 			path = "mods/noita.fairmod/files/dream/mask_box/abandoned_mask_box.xml",
 			x = 771,
 			y = -88
 		},
-		{ --spawn 3 minecarts at the entrance from entrance_cart module
+		{ --entrance_cart
+			disabled = true,
 			path = "data/entities/props/physics/minecart.xml",
 			x = 1000,
 			y = 114
 		},
-		{ --loanprey
+		{
+			disabled = true,
 			path = "data/entities/props/physics/minecart.xml",
 			x = 1088,
 			y = 113
 		},
 		{
+			disabled = true,
 			path = "data/entities/props/physics/minecart.xml",
 			x = 837,
 			y = -88
 		},
-		{
+		{ --loan_shark
+			disabled = true,
 			path = hm_desk_y and "mods/noita.fairmod/files/dream/empty_desk/empty_desk.xml",
 			x = hm_desk_x,
 			y = hm_desk_y
 		},
-		{
+		{ --payphone
+			disabled = true,
 			path = hm_phone_y and "mods/noita.fairmod/files/dream/haunted_phone/haunted_phone.xml",
 			x = hm_phone_x,
 			y = hm_phone_y
 		},
 		{
-			path = "",
+			path = "mods/noita.fairmod/files/dream/ending/information_hamis.xml",
 			x = 3572,
 			y = 13104
 		},
@@ -113,13 +123,14 @@ function OnMagicNumbersAndWorldSeedInitialized()
 			y = 0
 		},
 	}
+
 	for xml in nxml.edit_file("data/biome/_pixel_scenes.xml") do
 
 		local buffered_pixel_scenes = xml:nth_of("mBufferedPixelScenes", 1)
 		if buffered_pixel_scenes then
 			local entities = {}
 			for _,entity in ipairs(load_entities) do
-				if entity.path then
+				if entity.path and not entity.disabled then
 					if entity.path == "" then break end
 					entities[#entities+1] = nxml.new_element("PixelScene", {
 						just_load_an_entity = entity.path,
