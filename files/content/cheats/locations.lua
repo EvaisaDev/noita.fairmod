@@ -18,8 +18,8 @@ return {
 	},
 	{
 		id = "stage2",
-		name = "Most people don't get here legit!",
-		desc = "You're presumably \"Most peopl\".",
+		name = "Most people don't make it here legit!",
+		desc = "You're presumably \"Most people\".",
 		x = markers.snowcave_entrance.x,
 		y = markers.snowcave_entrance.y,
 		pw_local = true,
@@ -62,5 +62,5 @@ return {
 		desc = "This is a little different from what I remember...",
 		x = markers.kantele_spot.x,
 		y = markers.kantele_spot.y,
-	}
+	},
 }

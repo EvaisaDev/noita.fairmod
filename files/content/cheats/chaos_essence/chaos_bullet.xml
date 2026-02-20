@@ -41,7 +41,7 @@
     explosion_radius="2" 
     explosion_sprite="" 
     explosion_sprite_lifetime="0" 
-	  load_this_entity="mods/noita.fairmod/files/content/cheats/misc/chaos_explosion.xml"
+	  load_this_entity="mods/noita.fairmod/files/content/cheats/chaos_essence/chaos_explosion.xml"
     create_cell_probability="0" 
     hole_destroy_liquid="0"
     explosion_sprite_additive="1"
@@ -101,4 +101,3 @@
   </AudioComponent>
 
 </Entity>
-

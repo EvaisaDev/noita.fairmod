@@ -14,5 +14,5 @@ if parent_id ~= 0 then
 	local vel_x = math.cos(theta) * length
 	local vel_y = math.sin(theta) * length
 
-	shoot_projectile(parent_id, "mods/noita.fairmod/files/content/cheats/misc/chaos_bullet.xml", pos_x, pos_y, vel_x, vel_y)
+	shoot_projectile(parent_id, "mods/noita.fairmod/files/content/cheats/chaos_essence/chaos_bullet.xml", pos_x, pos_y, vel_x, vel_y)
 end

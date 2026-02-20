@@ -56,7 +56,15 @@ function _streaming_on_irc( is_userstate, sender_username, message, raw )
 					if cheat.do_not_sudo then break end
 					valid_cheat_found = true
 					if cheat.name then GamePrintImportant("Cheat activated: " .. cheat.name, cheat.description, cheat.decoration or "") end
-					cheat.func(EntityGetWithTag("player_unit")[1])
+					local player = EntityGetWithTag("player_unit")[1]
+					local pos_x,pos_y
+					if not player then
+						local x, y, w, h = GameGetCameraBounds() --made it so cheatcodes take position so we can execute some after death, just for sillies (may also be useful in the future)
+						pos_x,pos_y = x + (w*.5),y + (h*.5)
+					else
+						pos_x,pos_y = EntityGetTransform(player)
+					end
+					cheat.func(player, pos_x, pos_y)
 				end
 			end
 
