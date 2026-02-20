@@ -1,0 +1,40 @@
+<Entity>
+	<SpriteComponent
+		_tags="hamis_sprite"
+		image_file="data/enemies_gfx/longleg.xml"
+		offset_x="6"
+		offset_y="12"
+		z_index="-3"
+	/>
+
+	<SpriteAnimatorComponent
+		target_sprite_comp_name="hamis_sprite"
+	/>
+
+
+	<InteractableComponent
+		radius="20"
+		ui_text="Press $0 to talk."
+		name="interact"
+	/>
+
+	<LightComponent
+		_tags=""
+		_enabled="1"
+		radius="255"
+		fade_out_time="1.5"
+		r="255"
+		g="255"
+		b="255"
+		offset_y="-16"
+	/>
+
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/dream/ending/information_hamis.lua"
+		script_interacting="mods/noita.fairmod/files/dream/ending/information_hamis.lua"
+		execute_every_n_frame="1"
+		enable_coroutines="1"
+		execute_on_added="1"
+	/>
+</Entity>

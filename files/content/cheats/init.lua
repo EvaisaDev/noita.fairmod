@@ -168,7 +168,8 @@ module.update = function()
 								GamePrintImportant("Cheat activated: " .. v.name, v.description, v.decoration or "")
 							end
 							if not v.not_cheat then GameAddFlagRun("Epic_leet_hacker") print("cheat used, you dirty cheater!") end
-							v.func(player)
+							local x,y = EntityGetTransform(player)
+							v.func(player, x, y)
 							current_input_text = ""
 						end
 					end

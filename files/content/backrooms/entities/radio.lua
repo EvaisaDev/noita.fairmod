@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 local entity_interacted = GetUpdatedEntityID()
 local radio_comp = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on")
 local radio_is_on = radio_comp ~= nil
@@ -112,19 +114,57 @@ else
 	active_event = nil
 end
 
+local secret_songs = {
+	{
+		song = "ill_see_you_when_i_see_you",
+		weight = 1,
+		condition = function(self, data)
+			if data.hour < 5 then
+				self.weight = self.weight * 3
+			end --3x more likely between midnight and 5am
+			return true
+		end
+	},
+	{
+		song = "warm_waters_frozen_in_memory",
+		weight = 1,
+	},
+}
+
+SecretSongsPersistant = {}
+
+
 function interacting(entity_who_interacted, entity_interacted, interactable_name)
 	radio_is_on = EntityGetFirstComponent(entity_interacted, "AudioLoopComponent", "radio_on") ~= nil
 	local entity = GetUpdatedEntityID()
 
 
 	if not radio_is_on then
+		local audiocomp = EntityGetFirstComponentIncludingDisabled(entity, "AudioLoopComponent", "radio_on")
+		if audiocomp == nil then EntityInflictDamage(GetUpdatedEntityID(), 1000, "DAMAGE_ELECTRICITY", "Malfunction", "NONE", 0, 0) return end
+
+		ComponentSetValue2(audiocomp, "m_volume", 1)
+		local year,month,day,hour,minute,second = GameGetDateAndTimeLocal()
+		SetRandomSeed(x + entity, GameGetFrameNum() - y)
+		if audiocomp then
+			local track = "loop"
+			if Random(1, 10) == 9 then
+				local secret_song_data = {
+					year = year,
+					month = month,
+					day = day,
+					hour = hour,
+					minute = minute,
+					second = second,
+				}
+				local secret_song = RandomFromTableConditional(secret_songs, secret_song_data) or {}
+				track = secret_song.song or "loop"
+			end
+			ComponentSetValue2(audiocomp, "event_name", "radio/" .. track)
+		end
+
 		EntitySetComponentsWithTagEnabled(entity, "radio_on", true)
 		EntitySetComponentsWithTagEnabled(entity, "radio_off", false)
-		local audiocomp = EntityGetFirstComponent(entity, "AudioLoopComponent", "radio_on")
-		if audiocomp == nil then EntityInflictDamage(GetUpdatedEntityID(), 1000, "DAMAGE_ELECTRICITY", "Malfunction", "NONE", 0, 0) return end
-		ComponentSetValue2(audiocomp, "m_volume", 1)
-		SetRandomSeed(x, GameGetFrameNum())
-		if audiocomp then ComponentSetValue2(audiocomp, "event_name", "radio/" .. (Random(1, 10) == 9 and "ill_see_you_when_i_see_you" or "loop")) end
 
 		local current_radios = tonumber(GlobalsGetValue("radios_activated", "0")) + 1
 		GlobalsSetValue("radios_activated", tostring(current_radios))

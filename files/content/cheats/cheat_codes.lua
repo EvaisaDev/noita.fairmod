@@ -466,7 +466,7 @@ local cheats = {
 				script_source_file="mods/noita.fairmod/files/content/cheats/london.lua",
 				execute_every_n_frame=30
 			})
-			local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent")
+			local state = EntityGetFirstComponent(GameGetWorldStateEntity(), "WorldStateComponent") --[[@cast state component_id]]
 			ComponentSetValue2(state, "fog_target",		999)
 			ComponentSetValue2(state, "fog",			999)
 			ComponentSetValue2(state, "rain_target",	999)
@@ -517,7 +517,7 @@ local cheats = {
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 			for _,v in ipairs(GetEnemiesInRadius(x, y, 256) or {}) do
-				if EntityGetName(v) == "$animal_longleg" then --check to avoid nuking hammies
+				if EntityGetName(v) == "$animal_longleg" then
 					EntityInflictDamage(v, 4000, "DAMAGE_PHYSICS_BODY_DAMAGED", "", "NONE", 0, 0)
 				end
 			end
@@ -613,6 +613,7 @@ local cheats = {
 	},
 	{
 		code = "superchest",
+		not_cheat = not HasFlagPersistent("fairmod_spawned_superchest"), --its only a cheat if it summons the superchest, for essence of chaos this is the intended method to acquire
 		func = function(player)
 
 			if GameHasFlagRun("chaos_run_active") then return end
@@ -620,8 +621,10 @@ local cheats = {
 			local x,y = EntityGetTransform(player)
 
 			if HasFlagPersistent("fairmod_spawned_superchest") then
-				GamePrintImportant("I said just once.", "May you be punished by torrents of chaos")
-				local cid = EntityLoad( "mods/noita.fairmod/files/content/cheats/misc/essence_of_chaos.xml", x, y)
+				GameScreenshake(40)
+				GamePlaySound("data/audio/Desktop/events.bank", "event_cues/angered_the_gods/create", x, y)
+				GamePrintImportant("I said just once.", "May you be punished by torrents of Chaos")
+				local cid = EntityLoad( "mods/noita.fairmod/files/content/cheats/chaos_essence/essence_of_chaos.xml", x, y)
 				EntityAddChild( player, cid )
 				GameAddFlagRun("chaos_run_active")
 				return
@@ -671,7 +674,7 @@ local cheats = {
 		description = "missing description",
 		func = function(player)
 			local x,y = EntityGetTransform(player)
-			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml", x, y )
+			LoadGameEffectEntityTo(player, "data/scripts/streaming_integration/entities/effect_protection_all.xml")
 		end
 	},
 	{
@@ -859,12 +862,14 @@ local cheats = {
 	},
 	{
 		code = "iagreetothetermsandconditions",
-		name = "Bad Decision.",
+		name = "Poor Choice.",
 		description = "You should have read the fine print, my friend.",
 		not_cheat = true,
 		do_not_sudo = true,
-		func = function()
+		func = function(player, x, y)
+			GameScreenshake(120)
 			GameAddFlagRun("fairmod.empower_all_chatters")
+			GamePlaySound("data/audio/Desktop/events.bank", "event_cues/orb_distant_monster/create", x, y)
 		end
 	},
 	{
@@ -906,6 +911,27 @@ local cheats = {
 						EntityLoad("data/entities/animals/noita.fairmod_enemy_corrupted_0" .. Random(0, 9) .. ".xml", target_x, target_y)
 						break
 					end
+				end
+			end
+		end
+	},
+	{
+		code = "fixperformance",
+		name = "Fix Performance",
+		description = "removed of all those pesky entities!",
+		func = function(p, x, y)
+			local tags = {
+				"player_unit",
+				"world_state",
+			}
+			for _,entity_id in ipairs(EntityGetInRadius(x, y, 1000000)) do
+				local kill = true
+				for _,tag in ipairs(tags) do
+					if EntityHasTag(EntityGetRootEntity(entity_id), tag) then kill = false break end
+				end
+
+				if kill and EntityGetName(entity_id) ~= "$animal_longleg" then
+					EntityKill(entity_id)
 				end
 			end
 		end

@@ -1,0 +1,38 @@
+<Entity tags="hittable">
+	<VelocityComponent />
+
+    <SimplePhysicsComponent/>
+
+	<SpriteComponent
+		z_index="1"
+		image_file="mods/noita.fairmod/files/dream/mask_box/abandoned_mask_box.png"
+		offset_x="24"
+		offset_y="47" >
+	</SpriteComponent>
+
+    <LuaComponent
+		script_damage_received="mods/noita.fairmod/files/dream/mask_box/mask_particles.lua"
+		script_death="mods/noita.fairmod/files/dream/mask_box/mask_particles.lua"
+	/>
+
+	<HitboxComponent
+		is_enemy="0"
+		aabb_min_x="-10.0"
+		aabb_max_x="10.0"
+		aabb_min_y="-5.0"
+		aabb_max_y="5.0"
+	/>
+
+	<DamageModelComponent
+		hp="100"
+		critical_damage_resistance="1"
+		falling_damages="1"
+		falling_damage_damage_min="2"
+		falling_damage_damage_max="2"
+		falling_damage_height_min="70.0"
+		air_needed="0"
+		materials_that_damage="acid,lava"
+		materials_how_much_damage="0.1,0.3"
+		blood_material="air"
+	/>
+</Entity>

@@ -3,19 +3,25 @@
 -- if you need to do a breaking change on persistent data, put it here
 dofile_once("mods/noita.fairmod/files/scripts/migrate_save.lua")
 
-if ModSettingGet("fairmod.is_dreaming") then dofile_once("mods/noita.fairmod/files/dream/init.lua") return end
+-- load libs and other global stuff here
+dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
+ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
+local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
+
+if ModSettingGet("fairmod.alt_mode") and ModDoesFileExist("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua") then
+	dofile_once("mods/noita.fairmod/files/" .. ModSettingGet("fairmod.alt_mode") .. "/init.lua")
+	return
+end
 
 local SetContent = ModTextFileSetContent
 dofile_once("mods/noita.fairmod/files/content/seasonals/season_helper.lua")
 
 dofile_once("mods/noita.fairmod/files/content/data_migration/init.lua")
-local user_seeds = dofile_once("mods/noita.fairmod/files/content/user_seed/init.lua")
 
 dofile_once("mods/noita.fairmod/files/content/better_world/init.lua") --needs to be applied before scenes_in_pws
 dofile_once("mods/noita.fairmod/files/content/scenes_in_pws/init.lua")
 dofile_once("mods/noita.fairmod/files/content/reset_progress/init.lua")
 dofile_once("mods/noita.fairmod/files/translations/append.lua")
-dofile_once("mods/noita.fairmod/files/lib/DialogSystem/init.lua")("mods/noita.fairmod/files/lib/DialogSystem")
 dofile_once("mods/noita.fairmod/files/content/hamis_biome/init.lua")
 dofile_once("mods/noita.fairmod/files/content/music_machine/init.lua")
 
@@ -308,7 +314,6 @@ function OnPlayerSpawned(player)
 	--LoadGameEffectEntityTo(player, "mods/noita.fairmod/data/entities/misc/effect_invisibility.xml")
 end
 
-ModRegisterAudioEventMappings("mods/noita.fairmod/GUIDs.txt")
 
 local pause_button_pressed = false
 

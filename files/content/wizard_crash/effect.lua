@@ -1,106 +1,130 @@
-local ent = EntityGetRootEntity(GetUpdatedEntityID())
-if not EntityHasTag(ent, "player_unit") and not EntityHasTag(ent, "polymorphed_player") then
-	EntityKill(ent)
+local owner = EntityGetRootEntity(GetUpdatedEntityID())
+if not EntityHasTag(owner, "player_unit") and not EntityHasTag(owner, "polymorphed_player") then
+	EntityKill(owner)
 	return
 end
 
-local x, y = EntityGetTransform(ent)
+local x, y = EntityGetTransform(owner)
 SetRandomSeed(x, y + GameGetFrameNum())
 
 local effects = {
-	function()
-		-- This immediately adds a file into the flags folder. Next time you
-		-- start Noita you get the achievement
-		AddFlagPersistent("crashed_by_wizard")
-		print_error("Master of Crashing got you!")
-		EntityKill(GameGetWorldStateEntity())
-	end,
-	function()
-		local world_width = BiomeMapGetSize() * 512
-		if Random(1, 2) == 1 then world_width = -world_width end
-		EntitySetTransform(ent, x + world_width, y)
-	end,
-	function()
-		GameDropAllItems(ent)
-	end,
-	function()
-		dofile("data/scripts/newgame_plus.lua")
-		local current_ngplus = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") or 0
-		if tonumber(current_ngplus) ~= nil and Random(1,2) == 1 then
-			do_newgame_plus(current_ngplus - 1) --50% chance to go back a PW (unless current NG+ is not a numerical value))
-		else
-			do_newgame_plus()
-		end
-	end,
-	function()
-		-- Already-fucked-up root growers
-		EntityLoad("data/entities/props/root_grower.xml", x + 40, y)
-		EntityLoad("data/entities/props/root_grower.xml", x - 40, y)
-		EntityLoad("data/entities/props/root_grower.xml", x, y + 30)
-		EntityLoad("data/entities/props/root_grower.xml", x, y - 55)
-		EntityLoad("data/entities/props/root_grower.xml", x + 20, y + 15)
-		EntityLoad("data/entities/props/root_grower.xml", x + 20, y - 25)
-		EntityLoad("data/entities/props/root_grower.xml", x - 20, y + 15)
-		EntityLoad("data/entities/props/root_grower.xml", x - 20, y - 25)
-	end,
-	function()
-		-- End of Everything
-		EntityLoad("data/entities/projectiles/deck/all_spells_loader.xml", x, y)
-	end,
-	function()
-		-- Curse of greed
-		local cid = EntityLoad("data/entities/misc/greed_curse/greed.xml", x, y)
-		EntityAddComponent(cid, "UIIconComponent", {
-			name = "$log_curse",
-			description = "$itemdesc_essence_greed",
-			icon_sprite_file = "data/ui_gfx/status_indicators/greed_curse.png",
-		})
-		EntityAddChild(ent, cid)
+	{
+		func= function()
+			-- This immediately adds a file into the flags folder. Next time you
+			-- start Noita you get the achievement
+			AddFlagPersistent("crashed_by_wizard")
+			print_error("Master of Crashing got you!")
+			EntityKill(GameGetWorldStateEntity())
+		end,
+		condition = function() return not HasFlagPersistent("crashed_by_wizard") end
+	},
+	{
+		func= function()
+			local world_width = BiomeMapGetSize() * 512
+			if Random(1, 2) == 1 then world_width = -world_width end
+			EntitySetTransform(owner, x + world_width, y)
+		end,
+	},
+	{
+		func= function()
+			GameDropAllItems(owner)
+		end,
+	},
+	{
+		func= function()
+			dofile("data/scripts/newgame_plus.lua")
+			local current_ngplus = SessionNumbersGetValue("NEW_GAME_PLUS_COUNT") or 0
+			if tonumber(current_ngplus) ~= nil and Random(1,2) == 1 then
+				do_newgame_plus(current_ngplus - 1) --50% chance to go back a PW (unless current NG+ is not a numerical value))
+			else
+				do_newgame_plus()
+			end
+		end,
+	},
+	{
+		func= function()
+			-- Already-fucked-up root growers
+			EntityLoad("data/entities/props/root_grower.xml", x + 40, y)
+			EntityLoad("data/entities/props/root_grower.xml", x - 40, y)
+			EntityLoad("data/entities/props/root_grower.xml", x, y + 30)
+			EntityLoad("data/entities/props/root_grower.xml", x, y - 55)
+			EntityLoad("data/entities/props/root_grower.xml", x + 20, y + 15)
+			EntityLoad("data/entities/props/root_grower.xml", x + 20, y - 25)
+			EntityLoad("data/entities/props/root_grower.xml", x - 20, y + 15)
+			EntityLoad("data/entities/props/root_grower.xml", x - 20, y - 25)
+		end,
+	},
+	{
+		func= function()
+			-- End of Everything
+			EntityLoad("data/entities/projectiles/deck/all_spells_loader.xml", x, y)
+		end,
+	},
+	{
+		func= function()
+			-- Curse of greed
+			local cid = EntityLoad("data/entities/misc/greed_curse/greed.xml", x, y)
+			EntityAddComponent2(cid, "UIIconComponent", {
+				name = "$log_curse",
+				description = "$itemdesc_essence_greed",
+				icon_sprite_file = "data/ui_gfx/status_indicators/greed_curse.png",
+			})
+			EntityAddChild(owner, cid)
 
-		GameAddFlagRun("greed_curse")
-		AddFlagPersistent("greed_curse_picked")
+			GameAddFlagRun("greed_curse")
+			AddFlagPersistent("greed_curse_picked")
 
-		GamePrintImportant("$log_curse", "$logdesc_greed_curse")
-	end,
-	function()
-		-- random essence
-		local essences = { "fire", "laser", "air", "water", "alcohol" }
+			GamePrintImportant("$log_curse", "$logdesc_greed_curse")
+		end,
+	},
+	{
+		func= function()
+			-- random essence
+			local essences = { "fire", "laser", "air", "water", "alcohol" }
 
-		local id = essences[Random(1, #essences)]
+			local id = essences[Random(1, #essences)]
 
-		local ui_icon = "data/ui_gfx/essence_icons/" .. id .. ".png"
-		local entity_ui = EntityCreateNew("")
-		local essence_name = "$item_essence_" .. id
-		local essence_desc = "$itemdesc_essence_" .. id
-		EntityAddComponent(entity_ui, "UIIconComponent", {
-			name = essence_name,
-			description = essence_desc,
-			icon_sprite_file = ui_icon,
-		})
-		EntityAddTag(entity_ui, "essence_effect")
-		EntityAddChild(ent, entity_ui)
+			local ui_icon = "data/ui_gfx/essence_icons/" .. id .. ".png"
+			local entity_ui = EntityCreateNew("")
+			local essence_name = "$item_essence_" .. id
+			local essence_desc = "$itemdesc_essence_" .. id
+			EntityAddComponent2(entity_ui, "UIIconComponent", {
+				name = essence_name,
+				description = essence_desc,
+				icon_sprite_file = ui_icon,
+			})
+			EntityAddTag(entity_ui, "essence_effect")
+			EntityAddChild(owner, entity_ui)
 
-		local essence_file = "data/entities/misc/essences/" .. id .. ".xml"
-		local essence_id = EntityLoad(essence_file, x, y)
-		EntityAddChild(ent, essence_id)
+			local essence_file = "data/entities/misc/essences/" .. id .. ".xml"
+			local essence_id = EntityLoad(essence_file, x, y)
+			EntityAddChild(owner, essence_id)
 
-		GameAddFlagRun("essence_" .. id)
-		AddFlagPersistent("essence_" .. id)
+			GameAddFlagRun("essence_" .. id)
+			AddFlagPersistent("essence_" .. id)
 
-		local globalskey = "ESSENCE_" .. string.upper(id) .. "_PICKUP_COUNT"
-		local pickups = tonumber(GlobalsGetValue(globalskey, "0"))
-		GlobalsSetValue(globalskey, tostring(pickups + 1))
+			local globalskey = "ESSENCE_" .. string.upper(id) .. "_PICKUP_COUNT"
+			local pickups = tonumber(GlobalsGetValue(globalskey, "0"))
+			GlobalsSetValue(globalskey, tostring(pickups + 1))
 
-		GamePrintImportant(GameTextGet("$log_pickedup_perk", GameTextGetTranslatedOrNot(essence_name)), essence_desc)
-	end,
-	function()
-		local bsod = EntityLoad("mods/noita.fairmod/files/content/wizard_crash/bsod/bsod.xml")
-		local dummy_gui = GuiCreate()
-		local _, screeny = GuiGetScreenDimensions(dummy_gui)
-		GuiDestroy(dummy_gui)
-		local scale = screeny / 1080
-		EntitySetTransform(bsod, 0, 0, nil, scale, scale)
-		EntityApplyTransform(bsod, 0, 0, nil, scale, scale)
-	end,
+			GamePrintImportant(GameTextGet("$log_pickedup_perk", GameTextGetTranslatedOrNot(essence_name)), essence_desc)
+		end,
+	},
+	{
+		func= function()
+			local bsod = EntityLoad("mods/noita.fairmod/files/content/wizard_crash/bsod/bsod.xml")
+			local dummy_gui = GuiCreate()
+			local _, screeny = GuiGetScreenDimensions(dummy_gui)
+			GuiDestroy(dummy_gui)
+			local scale = screeny / 1080
+			EntitySetTransform(bsod, 0, 0, nil, scale, scale)
+			EntityApplyTransform(bsod, 0, 0, nil, scale, scale)
+		end,
+	},
 }
-effects[Random(1, #effects)]()
+
+for _,effect in ipairs(effects) do
+	effect.probability = effect.probability or 10
+end
+
+RandomFromTableConditional(effects).func()

@@ -11,8 +11,7 @@ if quiz_timer > 0 then
 	if quiz_timer == 0 then
 		local plyrs = EntityGetWithTag("player_unit")
 		for l = 1, #plyrs do
-			EntityInflictDamage(plyrs[l], 9999999999999999999999999999999, "DAMAGE_CURSE", "time's up", "NONE", 0, 0, plyrs[l])
-			EntityInflictDamage(plyrs[l], 9999999999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "time's up", "NONE", 0, 0, plyrs[l])
+			EntityInflictDamage(plyrs[l], 9999999999999999999999999999999, "NONE", "time's up", "NONE", 0, 0, plyrs[l])
 			EntityKill(plyrs[l])
 		end
 		GamePlaySound("mods/noita.fairmod/fairmod.bank", "ending_quiz/millionare_music_stop", x, y)
