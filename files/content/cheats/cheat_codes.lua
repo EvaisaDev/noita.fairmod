@@ -930,7 +930,7 @@ local cheats = {
 					if EntityHasTag(EntityGetRootEntity(entity_id), tag) then kill = false break end
 				end
 
-				if kill and not EntityGetName(entity_id) == "$animal_longleg" then
+				if kill and EntityGetName(entity_id) ~= "$animal_longleg" then
 					EntityKill(entity_id)
 				end
 			end
