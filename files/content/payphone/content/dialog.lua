@@ -1269,7 +1269,7 @@ return {
 			},
 		},
 	{
-		name = "Longest Hamis",
+		name = "Longest Hämis",
 		portrait = "mods/noita.fairmod/files/content/pixelscenes/longest_leg/longest_portrait.xml",
 		text = "...",
 		options = {

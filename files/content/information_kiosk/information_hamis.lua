@@ -23,7 +23,7 @@ local tips = {
 	"Did you know you can fish up all kinds of stuff?",
 	"Perks sometimes have different effects!\nMake sure you inspect them closely!!",
 	"Don't drink and drive.",
-	"Hey, if you combine Whiskey and Berserkium it makes my own patented ~Hamis Bars~!!",
+	"Hey, if you combine Whiskey and Berserkium it makes my own patented ~Hämis Bärs~!!",
 	"Fairmod contains no bugs. If you see anything that may be a bug, ignore it.",
 	"Follow the {@color 6b05a8}purple lights{@color FFFFFF}.",
 	"Always pay off your debts!",
@@ -50,7 +50,7 @@ local tips = {
 	"Running is a valid tactic!\nEspecially when the ground starts melting.",
 	"If a treasure chest looks too good to be true,\nit probably has teeth.",
 	"Try not to stand still for too long.\nThings tend to, uh, find you.",
-	"A friend in the caverns?\nMight just be a Hamis waiting to share... or borrow forever.",
+	"A friend in the caverns?\nMight just be a Hämis waiting to share... or borrow forever.",
 	"Experiment with potions! Worst case, you end up on fire.\nBest case, you fly!",
 	"If you stare at the sun too long, it might start staring back.\nJust sayin’.",
 	"Sometimes the shortest path is through the mud.\nEmbrace the mess.",
@@ -120,8 +120,8 @@ local seasonal_tips = {
 		"Find my 8 eggs!",
 	},
 	valentines = {
-		"A chocolate, for me? Aww thanks, shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20} Spiders are deathly allergic to chocolate)",
-		"Ask your crush out!\nUnless it's me, I'm married to my work!!",
+		"A chocolate,{@pause 15} for me?{@pause 45} Aww thanks,{@pause 10} shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20}Spiders are deathly allergic to chocolate)",
+		"Ask your crush out!{@pause 50}\nUnless it's me,{@pause 15} I'm married to my work!!",
 	},
 	Monday = {
 		"lasgan",

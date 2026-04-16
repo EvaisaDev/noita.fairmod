@@ -5,12 +5,12 @@ mask_list = {
 		weight = 1.0,
 	},
 	{
-		name = "Hamis Mask",
+		name = "Hämis Mask",
 		filepath = "mods/noita.fairmod/files/content/mask_box/mask_gfx/longleg.xml",
 		weight = 1.0,
 	},
 	{
-		name = "Golden Hamis Mask",
+		name = "Golden Hämis Mask",
 		filepath = "mods/noita.fairmod/files/content/mask_box/mask_gfx/longleg_gold.xml",
 		weight = 0.1,
 	},

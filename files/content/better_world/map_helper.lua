@@ -21,6 +21,8 @@ local ng_markers ={
 	vault_entrance =			{ x = 192,		y = 8655	},
 	tota_entrance =				{ x = 192,		y = 10703	},
 	kantele_spot =				{ x = -1604,	y = -4834	},
+	hamis_biome =				{ x = 2693,		y = 8785	},
+	cauldron =					{ x = 3797,		y = 5287	},
 }
 do return ng_markers end
 --[[

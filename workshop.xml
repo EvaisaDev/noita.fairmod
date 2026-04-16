@@ -3,7 +3,7 @@
 	name="Noita Fair Mod"
 	description=""
 	tags="community collab, quality of life, tweaks, gameplay, funny, audio, spells, perks, cheats, creatures, snail, alchemy,community collab,quality of life,tweaks,gameplay,funny,audio,spells,perks,cheats,creatures,snail"
-	dont_upload_folders="instruction-booklet|FMOD-project"
+	dont_upload_folders="instruction-booklet|FMOD-project|do_not_upload"
 	dont_upload_files=""
 > 
 </Mod>	

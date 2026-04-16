@@ -814,7 +814,7 @@ local cheats = {
     },
     {
         code = "drug",
-		name = "Hamis Replacement Therapy",
+		name = "Hämis Replacement Therapy",
         description = ":D",
         func = function(player)
 			local x, y = EntityGetTransform(player)
@@ -934,6 +934,14 @@ local cheats = {
 					EntityKill(entity_id)
 				end
 			end
+		end
+	},
+	{
+		code = "ilovelarpa",
+		name = "I Love Larpa",
+		description = "Everyone does!",
+		func = function()
+			GameAddFlagRun("payphone_larpa")
 		end
 	},
 }

@@ -27,7 +27,7 @@
 	<!-- Hamisium -->
 	<CellData
 		name="fairmod_hamisium"
-		ui_name="Hamisium"
+		ui_name="Hämisium"
 		tags="[liquid],[magic_liquid],[materium_activate]"
 		wang_color="af52316f"
 		convert_to_box2d_material="fairmod_hamisium_active"
