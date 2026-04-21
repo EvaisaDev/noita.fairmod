@@ -90,6 +90,6 @@ function init(entity_id)
 		value(potion, entity_id)
 	end
 
-	print(string.format("Aggressive Potion at [%s, %s] is material [%s]", x, y, potion.material))
+	--print(string.format("Aggressive Potion at [%s, %s] is material [%s]", x, y, potion.material))
 	AddMaterialInventoryMaterial(entity_id, potion.material, potion.amount)
 end
