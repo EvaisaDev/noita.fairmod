@@ -19,7 +19,7 @@ function bullet_circle(which, count, speed, animal_)
 
 		local bid = shoot_projectile(entity_id, which, pos_x + math.cos(theta) * 12, pos_y - math.sin(theta) * 12, vel_x, vel_y)
 
-		if animal then EntityAddComponent(bid, "VariableStorageComponent", {
+		if animal then EntityAddComponent2(bid, "VariableStorageComponent", {
 			_tags = "no_gold_drop",
 		}) end
 
@@ -33,7 +33,7 @@ local rstorage = 0
 local variablestorages = EntityGetComponent(entity_id, "VariableStorageComponent")
 if variablestorages ~= nil then
 	for j, storage_id in ipairs(variablestorages) do
-		local var_name = ComponentGetValue(storage_id, "name")
+		local var_name = ComponentGetValue2(storage_id, "name")
 		if var_name == "rolling" then
 			status = ComponentGetValue2(storage_id, "value_int")
 			rstorage = storage_id

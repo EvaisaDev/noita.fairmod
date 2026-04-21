@@ -183,8 +183,8 @@ if EntityGetVariable(bobber, "rope_entity", "int") == 0 then
 
 	EntityAddChild(bobber_owner, line)
 
-	EntityAddComponent(line, "VerletWorldJointComponent")
-	EntityAddComponent(line, "VerletWorldJointComponent")
+	EntityAddComponent2(line, "VerletWorldJointComponent")
+	EntityAddComponent2(line, "VerletWorldJointComponent")
 
 	local verletphysics_comp_found = false
 	local last_point_index = 0
@@ -198,9 +198,9 @@ if EntityGetVariable(bobber, "rope_entity", "int") == 0 then
 
 		edit_all_components(line, "VerletWorldJointComponent", function(comp, vars)
 			if index == 0 then
-				ComponentSetValueVector2(comp, "world_position", x1, y1)
+				ComponentSetValue2(comp, "world_position", x1, y1)
 			else
-				ComponentSetValueVector2(comp, "world_position", x2, y2)
+				ComponentSetValue2(comp, "world_position", x2, y2)
 				vars.verlet_point_index = last_point_index - 1
 			end
 

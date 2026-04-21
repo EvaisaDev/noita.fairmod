@@ -49,10 +49,10 @@ if ( state == 1 ) then
 
 	local wid = shoot_projectile( entity_id, "mods/noita.fairmod/files/content/fishing/files/events/boss_fish/wand.xml", x, y, vel_x, vel_y )
 
-	EntityAddComponent( wid, "HomingComponent", 
+	EntityAddComponent2( wid, "HomingComponent", 
 	{ 
-		homing_targeting_coeff = "30.0",
-		homing_velocity_multiplier = "0.16",
+		homing_targeting_coeff = 30.0,
+		homing_velocity_multiplier = 0.16,
 		target_tag = "player_unit",
 	} )
 	

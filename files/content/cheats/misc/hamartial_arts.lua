@@ -6,7 +6,7 @@ function kick()
 	local x, y = EntityGetTransform(shooter)
 	local aim_x, aim_y = ComponentGetValue2(controlscomp, "mAimingVectorNormalized")
 	local chardatacomp = EntityGetFirstComponent(shooter, "CharacterDataComponent")
-	local sh_vx, sh_vy = ComponentGetValueVector2(chardatacomp, "mVelocity")
+	local sh_vx, sh_vy = ComponentGetValue2(chardatacomp, "mVelocity")
 	ComponentSetValue2(chardatacomp, "mVelocity", sh_vx + aim_x*1000, sh_vy + aim_y*500)
 	local projectile_id = EntityLoad("mods/noita.fairmod/files/content/cheats/misc/hamartial_arts.xml", x, y-8)
 	local projcomp = EntityGetFirstComponent(projectile_id, "ProjectileComponent") --[[@cast projcomp number]]

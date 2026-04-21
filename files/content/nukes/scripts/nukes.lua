@@ -33,14 +33,14 @@ function nukes.OnWorldPreUpdate()
 
 							if projectilecomponents ~= nil then
 								for j, comp_id in ipairs(projectilecomponents) do
-									ComponentSetValue(comp_id, "on_death_explode", "0")
-									ComponentSetValue(comp_id, "on_lifetime_out_explode", "0")
+									ComponentSetValue2(comp_id, "on_death_explode", false)
+									ComponentSetValue2(comp_id, "on_lifetime_out_explode", false)
 								end
 							end
 
 							if velocitycomponents ~= nil then
 								edit_component(projectile_id, "VelocityComponent", function(comp, vars)
-									vel_x, vel_y = ComponentGetValueVector2(comp, "mVelocity", vel_x, vel_y)
+									vel_x, vel_y = ComponentGetValue2(comp, "mVelocity", vel_x, vel_y)
 								end)
 							end
 
