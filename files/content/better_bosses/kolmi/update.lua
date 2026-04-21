@@ -52,8 +52,8 @@ function init_boss()
 		local boss_hp = 46.0 + ( 2.0 ^ (orbcount + 1.3) ) + (orbcount*15.5)
 		local comp = EntityGetFirstComponent( entity, "DamageModelComponent" )
 		if( comp ~= nil ) then
-			ComponentSetValue2( comp, "max_hp", tostring(boss_hp) )
-			ComponentSetValue2( comp, "hp", tostring(boss_hp) )
+			ComponentSetValue2( comp, "max_hp", boss_hp)
+			ComponentSetValue2( comp, "hp", boss_hp)
 		end
 
 		-- no orbs = weaker shield
@@ -445,8 +445,8 @@ function next_phase()
 			local celleater = EntityGetFirstComponent( GetUpdatedEntityID(), "CellEaterComponent" )
 		
 			if (celleater ~= nil) then
-				ComponentSetValue2( celleater, "eat_probability", tostring(100.0) )
-				ComponentSetValue2( celleater, "radius", tostring(64.0) )
+				ComponentSetValue2( celleater, "eat_probability", 100.0)
+				ComponentSetValue2( celleater, "radius", 64.0)
 			end
 			
 			set_force_coeff_mult(5)
@@ -636,7 +636,7 @@ function chase_start()
 	local celleater = EntityGetFirstComponent( GetUpdatedEntityID(), "CellEaterComponent" )
 	
 	if (celleater ~= nil) then
-		--ComponentSetValue2( celleater, "eat_probability", tostring(100.0) )
+		--ComponentSetValue2( celleater, "eat_probability", 100.0)
 	end
 end
 
@@ -646,7 +646,7 @@ function chase_stop()
 	local celleater = EntityGetFirstComponent( GetUpdatedEntityID(), "CellEaterComponent" )
 	
 	if (celleater ~= nil) then
-		--ComponentSetValue2( celleater, "eat_probability", tostring(0.0) )
+		--ComponentSetValue2( celleater, "eat_probability", 0.0)
 	end
 end
 
@@ -814,7 +814,7 @@ function check_death()
 			-- kill
 			comp = EntityGetFirstComponent( GetUpdatedEntityID(), "DamageModelComponent" )
 			if( comp ~= nil ) then
-				ComponentSetValue2( comp, "kill_now", "1" )
+				ComponentSetValue2( comp, "kill_now", true )
 			end
 
 			GlobalsSetValue( "FINAL_BOSS_ACTIVE", "0" )
@@ -869,7 +869,7 @@ function set_force_coeff_mult( mult )
 		-- use a hardcoded value instead of getting from comp to avoid varying the value across save/load serialization
 		-- remember to update value here if changed in the component
 		local force_coeff_orig = 14.0
-		ComponentSetValue2( physics_ai, "force_coeff", tostring( force_coeff_orig * mult ) )
+		ComponentSetValue2( physics_ai, "force_coeff", force_coeff_orig * mult)
 	end
 end
 

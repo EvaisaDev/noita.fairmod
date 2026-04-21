@@ -16,7 +16,7 @@ local improvements = {
         }
     },
     BLEED_OIL = {
-        probability = .85,
+        probability = .70,
         modifications = {
             ui_name = "$fairmod_perk_bleed_grease",
             ui_description = "$fairmod_perkdesc_bleed_grease",
@@ -29,7 +29,7 @@ local improvements = {
                     for i,damagemodel in ipairs(damagemodels) do
                         ComponentSetValue2( damagemodel, "blood_material", "fairmod_grease" )
                         ComponentSetValue2( damagemodel, "blood_spray_material", "fairmod_grease" )
-                        ComponentSetValue2( damagemodel, "blood_multiplier", "3.0" )
+                        ComponentSetValue2( damagemodel, "blood_multiplier", 3 )
                         ComponentSetValue2( damagemodel, "blood_sprite_directional", "data/particles/bloodsplatters/bloodsplatter_directional_oil_$[1-3].xml" )
                         ComponentSetValue2( damagemodel, "blood_sprite_large", "data/particles/bloodsplatters/bloodsplatter_oil_$[1-3].xml" )
                     end

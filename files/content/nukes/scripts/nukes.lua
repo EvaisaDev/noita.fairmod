@@ -33,8 +33,8 @@ function nukes.OnWorldPreUpdate()
 
 							if projectilecomponents ~= nil then
 								for j, comp_id in ipairs(projectilecomponents) do
-									ComponentSetValue2(comp_id, "on_death_explode", "0")
-									ComponentSetValue2(comp_id, "on_lifetime_out_explode", "0")
+									ComponentSetValue2(comp_id, "on_death_explode", false)
+									ComponentSetValue2(comp_id, "on_lifetime_out_explode", false)
 								end
 							end
 
