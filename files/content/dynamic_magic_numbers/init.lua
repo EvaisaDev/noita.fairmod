@@ -15,7 +15,7 @@ end
 local xml = nxml.new_element("MagicNumbers", {
 	UI_PAUSE_MENU_LAYOUT_TOP_EDGE_PERCENTAGE = math.random(-15, 15),
 	REPORT_DAMAGE_SCALE = 1+math.random(),
-	GUI_HP_MULTIPLIER = hp_mult,
+	GUI_HP_MULTIPLIER = not DebugGetIsDevBuild() and hp_mult, --disable HP shit in _dev to avoid annoying log spam
 	UI_WOBBLE_AMOUNT_DEGREES = math.random(15, 25),
 })
 
