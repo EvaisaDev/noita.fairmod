@@ -43,13 +43,13 @@ EntitySetTransform(entity_id, pos_x, pos_y, 0, 1, 1)
 edit_component(entity_id, "SpriteComponent", function(comp, vars)
 	-- check if changing the animation is needed based on current animation and heading
 	if dist_x < 2 then
-		--ComponentSetValue( comp, "rect_animation", mode.."right")
+		--ComponentSetValue2( comp, "rect_animation", mode.."right")
 
 		x, y, r = EntityGetTransform(entity_id)
 
 		EntitySetTransform(entity_id, x, y, r, -1, 1)
 	elseif dist_x > 2 then
-		--ComponentSetValue( comp, "rect_animation", mode.."left")
+		--ComponentSetValue2( comp, "rect_animation", mode.."left")
 		x, y, r = EntityGetTransform(entity_id)
 		EntitySetTransform(entity_id, x, y, r, 1, 1)
 	end

@@ -208,7 +208,7 @@ if not is_physics then
 
 	local velocity_comp = EntityGetFirstComponentIncludingDisabled(item, "VelocityComponent")
 	if velocity_comp ~= nil then
-		local current_vel_x, current_vel_y = ComponentGetValueVector2(velocity_comp, "mVelocity")
+		local current_vel_x, current_vel_y = ComponentGetValue2(velocity_comp, "mVelocity")
 
 		vel_x = (current_vel_x * 0.8) + vel_x
 		vel_y = (current_vel_y * 0.8) + vel_y

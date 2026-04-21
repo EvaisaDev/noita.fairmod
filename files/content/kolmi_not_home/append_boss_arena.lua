@@ -10,7 +10,7 @@ function spawn_items(x, y)
 			local lua_components = EntityGetComponent(sampo, "LuaComponent")
 			if lua_components ~= nil then
 				for i, component in ipairs(lua_components) do
-					local script = ComponentGetValue(component, "script_item_picked_up")
+					local script = ComponentGetValue2(component, "script_item_picked_up")
 					if script == "data/entities/animals/boss_centipede/sampo_pickup.lua" then
 						ComponentSetValue2(component, "script_item_picked_up", "mods/noita.fairmod/files/content/kolmi_not_home/sampo_pickup.lua")
 					end

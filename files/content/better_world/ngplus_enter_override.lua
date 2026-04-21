@@ -62,7 +62,7 @@ local special_iterations = {
 
 function do_newgame_plus(iteration, force_relative, force_custom)
 	-- GameDoEnding2()
-	-- BiomeMapLoad( "mods/nightmare/files/biome_map.lua" )
+	-- BiomeMapLoad_KeepPlayer( "mods/nightmare/files/biome_map.lua" )
 
 	local input = iteration --save input
 	local newgame_n --newgame value as number
@@ -177,18 +177,18 @@ function do_newgame_plus(iteration, force_relative, force_custom)
 		if( damagemodels ~= nil ) and newgame_n > 0 then
 			for i,damagemodel in ipairs(damagemodels) do
 
-				local melee = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "melee" ) )
-				local projectile = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "projectile" ) )
-				local explosion = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "explosion" ) )
-				local electricity = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "electricity" ) )
-				local fire = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "fire" ) )
-				local drill = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "drill" ) )
-				local slice = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "slice" ) )
-				local ice = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "ice" ) )
-				local healing = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "healing" ) )
-				local physics_hit = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "physics_hit" ) )
-				local radioactive = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "radioactive" ) )
-				local poison = tonumber(ComponentObjectGetValue( damagemodel, "damage_multipliers", "poison" ) )
+				local melee = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "melee" ) )
+				local projectile = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "projectile" ) )
+				local explosion = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "explosion" ) )
+				local electricity = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "electricity" ) )
+				local fire = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "fire" ) )
+				local drill = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "drill" ) )
+				local slice = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "slice" ) )
+				local ice = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "ice" ) )
+				local healing = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "healing" ) )
+				local physics_hit = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "physics_hit" ) )
+				local radioactive = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "radioactive" ) )
+				local poison = tonumber(ComponentObjectGetValue2( damagemodel, "damage_multipliers", "poison" ) )
 
 				melee = melee * 3
 				projectile = projectile * 2
@@ -201,18 +201,18 @@ function do_newgame_plus(iteration, force_relative, force_custom)
 				radioactive = radioactive * 2
 				poison = poison * 3
 
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "melee", tostring(melee) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "projectile", tostring(projectile) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "explosion", tostring(explosion) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "electricity", tostring(electricity) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "fire", tostring(fire) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "drill", tostring(drill) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "slice", tostring(slice) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "ice", tostring(ice) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "healing", tostring(healing) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "physics_hit", tostring(physics_hit) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "radioactive", tostring(radioactive) )
-				ComponentObjectSetValue( damagemodel, "damage_multipliers", "poison", tostring(poison) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "melee", tostring(melee) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "projectile", tostring(projectile) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "explosion", tostring(explosion) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "electricity", tostring(electricity) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "fire", tostring(fire) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "drill", tostring(drill) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "slice", tostring(slice) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "ice", tostring(ice) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "healing", tostring(healing) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "physics_hit", tostring(physics_hit) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "radioactive", tostring(radioactive) )
+				ComponentObjectSetValue2( damagemodel, "damage_multipliers", "poison", tostring(poison) )
 
 			end
 		end
@@ -221,7 +221,7 @@ function do_newgame_plus(iteration, force_relative, force_custom)
 
 	BiomeMapLoad_KeepPlayer( map, _pixel_scenes )
 	SessionNumbersSave()
-	-- BiomeMapLoad( "data/biome_impl/biome_map.png" )
+	-- BiomeMapLoad_KeepPlayer( "data/biome_impl/biome_map.png" )
 
 	-- clean up entrances to biomes
 	if clean_up_biome_entrances then

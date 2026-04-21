@@ -13,7 +13,7 @@ if entity_1 ~= 0 and entity_2 ~= 0 then
 		local last_point_index = 0
 		edit_component(rope, "VerletPhysicsComponent", function(comp, vars)
 			verletphysics_comp_found = true
-			last_point_index = ComponentGetValue(comp, "num_points")
+			last_point_index = ComponentGetValue2(comp, "num_points")
 
 			--positions = ComponentGetValue2(comp, "positions")
 		end)
@@ -36,9 +36,9 @@ if entity_1 ~= 0 and entity_2 ~= 0 then
 			EntitySetTransform(rope, x1, y1)
 			edit_all_components(rope, "VerletWorldJointComponent", function(comp, vars)
 				if index == 0 then
-					ComponentSetValueVector2(comp, "world_position", x1, y1)
+					ComponentSetValue2(comp, "world_position", x1, y1)
 				else
-					ComponentSetValueVector2(comp, "world_position", x2, y2)
+					ComponentSetValue2(comp, "world_position", x2, y2)
 					--vars.verlet_point_index = last_point_index
 				end
 

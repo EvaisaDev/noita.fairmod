@@ -44,7 +44,7 @@ local function swapCardEntity(card, spell_id)
 
 			offsetx = textwidth * 0.5 - 0.5
 
-			EntityAddComponent(action_entity, "SpriteComponent", {
+			EntityAddComponent2(action_entity, "SpriteComponent", {
 				_tags = "shop_cost,enabled_in_world",
 				image_file = "data/fonts/font_pixel_white.xml",
 				is_text_sprite = "1",

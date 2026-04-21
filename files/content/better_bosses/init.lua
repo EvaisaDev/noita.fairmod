@@ -122,7 +122,7 @@ local modify_firerate =
 		end
 		ComponentSetValue2( luacomp, "execute_every_n_frame", fire_rate )
 		
-		EntityAddComponent( wid, "HomingComponent",]]
+		EntityAddComponent2( wid, "HomingComponent",]]
 
 
 local summon_gun_barrage_patt = [[value_float = 1.2,
@@ -143,7 +143,7 @@ set_file("data/entities/animals/boss_pit/boss_pit_logic.lua",
 	get_file("data/entities/animals/boss_pit/boss_pit_logic.lua")
 		:modify("EntitySetComponentsWithTagEnabled( entity_id, \"invincible\", false )", grab_invincibility_entity)
 		:modify("if ( #p > 0 ) then", "if ( #p > 0 ) and ( Random( 1, 5 ) ~= 5 ) then")
-		:modify("EntityAddComponent( wid, \"HomingComponent\",", modify_firerate)
+		:modify("EntityAddComponent2( wid, \"HomingComponent\",", modify_firerate)
 		:modify(summon_gun_barrage_patt, summon_gun_barrage_repl
 	)
 )

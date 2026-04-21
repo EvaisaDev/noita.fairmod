@@ -76,7 +76,7 @@ function damage_received( damage, message, entity_thats_responsible )
 						if EntityGetWithTag("player_unit") ~= nil then
 							entity_thats_responsible = EntityGetClosestWithTag( x, y, "player_unit")
 							local amount = Random(4,7)
-							EntityAddComponent(entity_id, "LuaComponent", {
+							EntityAddComponent2(entity_id, "LuaComponent", {
 								script_source_file="mods/noita.fairmod/files/content/better_bosses/squidward/gun_stuff/wand_plasma_barrage.lua",
 								execute_every_n_frame=10,
 								execute_times=amount
