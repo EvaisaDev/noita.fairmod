@@ -796,10 +796,10 @@ return {
 			local function create_hole_of_size(x, y, r)
 				local hole_maker = EntityCreateNew( "hole" )
 				EntitySetTransform(hole_maker, x, y)
-				EntityAddComponent(hole_maker, "CellEaterComponent", {
+				EntityAddComponent2(hole_maker, "CellEaterComponent", {
 					radius=tostring(r)
 				})
-				EntityAddComponent(hole_maker, "LifetimeComponent", {
+				EntityAddComponent2(hole_maker, "LifetimeComponent", {
 					lifetime="1"
 				})
 			end
@@ -991,7 +991,7 @@ return {
 						set_magic_creation=true,
 						is_emitting=true,
 					});
-					EntityAddComponent(liquid, "LifetimeComponent", {
+					EntityAddComponent2(liquid, "LifetimeComponent", {
 						lifetime="120",
 					});	
 				end

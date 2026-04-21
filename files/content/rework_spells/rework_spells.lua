@@ -32,8 +32,8 @@ local actions_to_edit = {
 			if controls_comp ~= nil then
 				local character_data_comp = EntityGetFirstComponent(entity_id, "CharacterDataComponent")
 				if character_data_comp ~= nil then
-					local velocity_x, velocity_y = ComponentGetValueVector2(character_data_comp, "mVelocity")
-					local aim_dir_x, aim_dir_y = ComponentGetValueVector2(controls_comp, "mAimingVectorNormalized")
+					local velocity_x, velocity_y = ComponentGetValue2(character_data_comp, "mVelocity")
+					local aim_dir_x, aim_dir_y = ComponentGetValue2(controls_comp, "mAimingVectorNormalized")
 					local shooting_start = ComponentGetValue2(controls_comp, "mButtonFrameFire")
 					local shooting_now = ComponentGetValue2(controls_comp, "mButtonDownFire")
 

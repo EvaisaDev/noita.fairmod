@@ -9,7 +9,7 @@ if player ~= nil then
 		local projectile = projectiles[i]
 
 		if EntityGetName(projectile) == "squidward_glock" then
-			EntityAddComponent(projectile, "VariableStorageComponent", {
+			EntityAddComponent2(projectile, "VariableStorageComponent", {
 				name = "mult",
 				value_float = 2.5,
 			})

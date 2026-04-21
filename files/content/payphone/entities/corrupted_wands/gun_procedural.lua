@@ -452,24 +452,24 @@ function SetItemSprite(entity_id, ability_comp, item_file, r)
 	if r < 10 then item_file = item_file .. "0" end
 	item_file = item_file .. r .. ".png"
 
-	if ability_comp ~= nil then ComponentSetValue(ability_comp, "sprite_file", item_file) end
+	if ability_comp ~= nil then ComponentSetValue2(ability_comp, "sprite_file", item_file) end
 
 	local sprite_comp = EntityGetFirstComponent(entity_id, "SpriteComponent", "item")
-	if sprite_comp ~= nil then ComponentSetValue(sprite_comp, "image_file", item_file) end
+	if sprite_comp ~= nil then ComponentSetValue2(sprite_comp, "image_file", item_file) end
 end
 
 function SetWandSprite(entity_id, ability_comp, item_file, offset_x, offset_y, tip_x, tip_y)
-	if ability_comp ~= nil then ComponentSetValue(ability_comp, "sprite_file", item_file) end
+	if ability_comp ~= nil then ComponentSetValue2(ability_comp, "sprite_file", item_file) end
 
 	local sprite_comp = EntityGetFirstComponent(entity_id, "SpriteComponent", "item")
 	if sprite_comp ~= nil then
-		ComponentSetValue(sprite_comp, "image_file", item_file)
-		ComponentSetValue(sprite_comp, "offset_x", offset_x)
-		ComponentSetValue(sprite_comp, "offset_y", offset_y)
+		ComponentSetValue2(sprite_comp, "image_file", item_file)
+		ComponentSetValue2(sprite_comp, "offset_x", offset_x)
+		ComponentSetValue2(sprite_comp, "offset_y", offset_y)
 	end
 
 	local hotspot_comp = EntityGetFirstComponent(entity_id, "HotspotComponent", "shoot_pos")
-	if hotspot_comp ~= nil then ComponentSetValueVector2(hotspot_comp, "offset", tip_x, tip_y) end
+	if hotspot_comp ~= nil then ComponentSetValue2(hotspot_comp, "offset", tip_x, tip_y) end
 end
 
 function RandomFromArray(varray)
@@ -806,7 +806,7 @@ function get_gun_data(cost, level, force_unshuffle)
 	]]
 	--
 
-	-- local name = ComponentGetValue( ability_comp, "ui_name" )
+	-- local name = ComponentGetValue2( ability_comp, "ui_name" )
 	-- if( gun_names ~= nil ) then name = gun_names[Random(1, #gun_names)] .. ' ' .. name end
 
 	-- debug
@@ -986,28 +986,28 @@ function make_wand_from_gun_data(gun, entity_id, level)
 	local ability_comp = EntityGetFirstComponent(entity_id, "AbilityComponent")
 
 	-- SetItemSprite( entity_id, ability_comp, "data/items_gfx/gungen_guns/submachinegun_", Random( 0, 7 ) )
-	-- ComponentSetValue( ability_comp, "ui_name", name )
-	ComponentObjectSetValue(ability_comp, "gun_config", "actions_per_round", gun["actions_per_round"])
-	ComponentObjectSetValue(ability_comp, "gun_config", "reload_time", gun["reload_time"])
-	ComponentObjectSetValue(ability_comp, "gun_config", "deck_capacity", gun["deck_capacity"])
-	ComponentObjectSetValue(ability_comp, "gun_config", "shuffle_deck_when_empty", gun["shuffle_deck_when_empty"])
-	ComponentObjectSetValue(ability_comp, "gunaction_config", "fire_rate_wait", gun["fire_rate_wait"])
-	ComponentObjectSetValue(ability_comp, "gunaction_config", "spread_degrees", gun["spread_degrees"])
-	ComponentObjectSetValue(ability_comp, "gunaction_config", "speed_multiplier", gun["speed_multiplier"])
-	ComponentSetValue(ability_comp, "mana_charge_speed", gun["mana_charge_speed"])
-	ComponentSetValue(ability_comp, "mana_max", gun["mana_max"])
-	ComponentSetValue(ability_comp, "mana", gun["mana_max"])
-	ComponentSetValue(ability_comp, "gun_level", level)
+	-- ComponentSetValue2( ability_comp, "ui_name", name )
+	ComponentObjectSetValue2(ability_comp, "gun_config", "actions_per_round", gun["actions_per_round"])
+	ComponentObjectSetValue2(ability_comp, "gun_config", "reload_time", gun["reload_time"])
+	ComponentObjectSetValue2(ability_comp, "gun_config", "deck_capacity", gun["deck_capacity"])
+	ComponentObjectSetValue2(ability_comp, "gun_config", "shuffle_deck_when_empty", gun["shuffle_deck_when_empty"])
+	ComponentObjectSetValue2(ability_comp, "gunaction_config", "fire_rate_wait", gun["fire_rate_wait"])
+	ComponentObjectSetValue2(ability_comp, "gunaction_config", "spread_degrees", gun["spread_degrees"])
+	ComponentObjectSetValue2(ability_comp, "gunaction_config", "speed_multiplier", gun["speed_multiplier"])
+	ComponentSetValue2(ability_comp, "mana_charge_speed", gun["mana_charge_speed"])
+	ComponentSetValue2(ability_comp, "mana_max", gun["mana_max"])
+	ComponentSetValue2(ability_comp, "mana", gun["mana_max"])
+	ComponentSetValue2(ability_comp, "gun_level", level)
 
-	ComponentSetValue(ability_comp, "item_recoil_recovery_speed", 15.0) -- TODO: implement logic for setting this
+	ComponentSetValue2(ability_comp, "item_recoil_recovery_speed", 15.0) -- TODO: implement logic for setting this
 
 	if is_rare == 1 then
 		local light_comp = EntityGetFirstComponent(entity_id, "LightComponent")
 		if light_comp ~= nil then
-			ComponentSetValue(light_comp, "update_properties", 1)
-			ComponentSetValue(light_comp, "r", 128)
-			ComponentSetValue(light_comp, "g", 0)
-			ComponentSetValue(light_comp, "b", 255)
+			ComponentSetValue2(light_comp, "update_properties", 1)
+			ComponentSetValue2(light_comp, "r", 128)
+			ComponentSetValue2(light_comp, "g", 0)
+			ComponentSetValue2(light_comp, "b", 255)
 		end
 	end
 

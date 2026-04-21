@@ -6,7 +6,7 @@ local owner = EntityGetParent(entity_id)
 local animal_ai_component = EntityGetFirstComponentIncludingDisabled(owner, "AnimalAIComponent")
 local vsc = EntityGetFirstComponentIncludingDisabled(entity_id, "VariableStorageComponent")
 if vsc == nil then return end
-local strength = tonumber(ComponentGetValue(vsc, "value_float"))
+local strength = tonumber(ComponentGetValue2(vsc, "value_float"))
 
 if EntityGetWithName("MethaneStain") ~= 0 then
 	strength = strength + 0.005
