@@ -751,7 +751,7 @@ function check_death()
 			-- enter aggro mode
 			if is_aggro then
 				-- store aggro to entity
-				EntityAddComponent2( entity_id, "VariableStorageComponent", 
+				EntityAddComponent2( entity_id, "VariableStorageComponent",  
 				{ 
 					name = "aggro",
 				})

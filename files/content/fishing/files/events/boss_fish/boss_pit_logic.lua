@@ -51,8 +51,8 @@ if ( state == 1 ) then
 
 	EntityAddComponent2( wid, "HomingComponent", 
 	{ 
-		homing_targeting_coeff = "30.0",
-		homing_velocity_multiplier = "0.16",
+		homing_targeting_coeff = 30.0,
+		homing_velocity_multiplier = 0.16,
 		target_tag = "player_unit",
 	} )
 	

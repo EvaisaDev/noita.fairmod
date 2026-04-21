@@ -10,10 +10,10 @@ local function create_hole_of_size(x, y, r)
 	local hole_maker = EntityCreateNew("hole")
 	EntitySetTransform(hole_maker, x, y)
 	EntityAddComponent2(hole_maker, "CellEaterComponent", {
-		radius = tostring(r),
+		radius = r,
 	})
 	EntityAddComponent2(hole_maker, "LifetimeComponent", {
-		lifetime = "1",
+		lifetime = 1,
 	})
 end
 

@@ -47,13 +47,13 @@ local function swapCardEntity(card, spell_id)
 			EntityAddComponent2(action_entity, "SpriteComponent", {
 				_tags = "shop_cost,enabled_in_world",
 				image_file = "data/fonts/font_pixel_white.xml",
-				is_text_sprite = "1",
-				offset_x = tostring(offsetx),
-				offset_y = "25",
-				update_transform = "1",
-				update_transform_rotation = "0",
+				is_text_sprite = true,
+				offset_x = offsetx,
+				offset_y = 25,
+				update_transform = true,
+				update_transform_rotation = false,
 				text = tostring(price),
-				z_index = "-1",
+				z_index = -1,
 			})
 
 			local cost_comp = EntityAddComponent2(action_entity, "ItemCostComponent", {
