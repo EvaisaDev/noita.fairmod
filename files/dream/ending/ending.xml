@@ -1,0 +1,14 @@
+<Entity>
+	<ParticleEmitterComponent
+		image_animation_file="mods/noita.fairmod/files/dream/ending/particle_emitter/bg.png"
+		image_animation_colors_file="mods/noita.fairmod/files/dream/ending/particle_emitter/bg_gfx.png"
+		image_animation_loop="0"
+		emitted_material_name="spark_red"
+		gravity.y="0.0"
+		image_animation_speed="5"
+		emit_real_particles="0"
+		create_real_particles="0"
+		emit_cosmetic_particles="1"
+		collide_with_grid="0"
+	/>
+</Entity>

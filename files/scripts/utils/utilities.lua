@@ -236,7 +236,7 @@ function RandomFromTable(t)
 			return entry
 		else rnd = rnd - entry.weight end
 	end
-	return t[#t]
+	return t[#t] --Randomf has OOB issue
 end
 
 ---@generic T : Weighted

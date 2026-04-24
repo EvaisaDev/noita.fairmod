@@ -1995,7 +1995,7 @@ return {
 		portrait = "mods/noita.fairmod/files/content/payphone/portrait_copi4.png",
 		typing_sound = "sans",
 		text = [[{@color 608060}{@delay 5}We're making progress. 
-		I see you've spared hamisket.]],
+		I see you've spared hämisket.]],
 		can_call = function() -- optional
 			return HasFlagPersistent("fairmod_evilcopi2") and (tonumber(GlobalsGetValue("FAIRMOD_HAMIS_KILLED", "0")) or 0)==0
 		end,

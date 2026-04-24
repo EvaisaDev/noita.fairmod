@@ -1,7 +1,7 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
-entity = GetUpdatedEntityID()
+local entity = GetUpdatedEntityID()
 
-pos_x, pos_y = GameGetCameraPos()
+local pos_x, pos_y = GameGetCameraPos()
 
 EntitySetTransform(entity, pos_x, pos_y)

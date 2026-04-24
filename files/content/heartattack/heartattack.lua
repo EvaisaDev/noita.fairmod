@@ -6,7 +6,7 @@ local malice = {
 			if ComponentGetValue2(lcs[i], "script_source_file") == "mods/noita.fairmod/files/content/heartattack/heartattack2.lua" then return end
 		end
 		local comp = EntityAddComponent2(player_entity, "LuaComponent", {
-			execute_every_n_frame = 1,
+			execute_every_n_frame = 120,
 			script_source_file = "mods/noita.fairmod/files/content/heartattack/heartattack2.lua",
 		})
 		ComponentAddTag(comp, "glue_NOT")

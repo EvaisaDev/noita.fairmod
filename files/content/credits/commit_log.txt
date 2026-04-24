@@ -1107,6 +1107,41 @@ fixed line breaks
 finished testing new sudo code stuff
 finished the shit (i think)
 some stuff
+Revert "Hämikset now only take damage when directly harmed by the player, among other minor things"
 merged better_helpers into better_items
 reworked reset_progress structure
+im cooking.
+images no longer require datafiling
+slight optimisation
+added types
+more de-datafiling
+geh i think im done with undatafiling for today
+Merge remote-tracking branch 'upstream/main' into un-datafile
+(mostly) DE-DATAFILED ALL THE BOSSES!!!!!!!!
+de-datafiled biomes
 reworked credits stuff
+finished credits stuff
+de-datafiled banana nuggets
+added new cheatcodes to spawn tmt enemies
+finished probably
+added datafiling note
+MOD IS DE-DATAFILED!!! :: Merge pull request #350 from FatalUserK/un-datafile
+working on a lovely dream
+finished haunted phone audio stuff (need to fix sprite)
+added qol to crash wizard
+general stuff and things (hihi person reading the credits! o// )
+refactored essence of chaos, made cheatcodes not require player, and more
+fixed performance (use cheatcode "fixperformance")
+everything looks sane, merge this shit
+Hamis -> Hämis
+No, more shuffle!
+made barebones aseprite ver of instructionbooklet
+Merge remote-tracking branch 'upstream/revert-349-main'
+added fairmod tags
+general stuff
+mass-replaced deprecated functions with up-to-date versions
+fixed all ComponentSetValue2 string params i think?
+fixed all EntityAddComponent2 string params hopefully
+guhhh nathan's not here to verify this, but im sure its fine.
+minor optimisations
+some general optimisations, tweaks and fixes

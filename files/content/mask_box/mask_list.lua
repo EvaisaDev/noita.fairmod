@@ -47,4 +47,5 @@ function ChooseRandomMask(x, y)
 			return mask_list[k].filepath
 		end
 	end
+	return mask_list[#mask_list].filepath --reminder that Randomf can be OOB
 end
