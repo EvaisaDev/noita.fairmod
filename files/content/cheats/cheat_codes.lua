@@ -396,6 +396,7 @@ local cheats = {
 	},
 	{
 		code = "userk",
+		do_not_random = true,
 		not_cheat = true,
 		func = function()
 			print("UserK")
@@ -407,6 +408,7 @@ local cheats = {
 		code = "/kill",
 		name = "Ouch!",
 		description = "Player fell out of the world.",
+		do_not_random = true,
 		func = function(player)
 			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "Fell out of the world", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
@@ -414,6 +416,7 @@ local cheats = {
 	},
 	{
 		code = "boobs",
+		do_not_random = true,
 		func = function(player)
 			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
@@ -421,6 +424,7 @@ local cheats = {
 	},
 	{
 		code = "ariral.boobs",
+		do_not_random = true,
 		func = function(player)
 			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
@@ -428,6 +432,7 @@ local cheats = {
 	},
 	{
 		code = "sex",
+		do_not_random = true,
 		func = function(player)
 			EntityInflictDamage( player, 9999999999999999999999999, "DAMAGE_PHYSICS_BODY_DAMAGED", "yuor a looser", "DISINTEGRATED", 0, 0 )
 			EntityKill(player)
@@ -437,6 +442,7 @@ local cheats = {
 		code = "altf4",
 		name = "oh",
 		description = "okay bye-",
+		do_not_random = true,
 		func = function()
 			EntityKill(GameGetWorldStateEntity()) --lmao
 		end,
@@ -525,7 +531,6 @@ local cheats = {
 	},
 	{
 		code = "ghamis",
-		devmode = true,
 		name = "ghosthamis",
 		description = "AGAIN!!! FOR TESTING!!!!!!",
 		func = function(player)
@@ -654,7 +659,6 @@ local cheats = {
 	},
 	{
 		code = "radio",
-		devmode = true,
 		func = function(player)
 			local x,y = EntityGetTransform(player)
 			EntityLoad( "mods/noita.fairmod/files/content/backrooms/entities/radio.xml", x, y - 20)
@@ -662,7 +666,6 @@ local cheats = {
 	},
 	{
 		code = "blacklight",
-		devmode = true,
 		func = function(player)
 			local x,y = EntityGetTransform(player)
 			EntityLoad( "mods/noita.fairmod/files/content/backrooms/props/ceiling_light_blacklight.xml", x, y - 20)
@@ -694,7 +697,6 @@ local cheats = {
 	},
 	{
 		code = "mainworld",
-		devmode = true,
 		func = function(player)
 			local x,y = EntityGetTransform(player)
 			EntityApplyTransform(player, x - (GetParallelWorldPosition(EntityGetTransform(player)) * BiomeMapGetSize() * 512), y)
@@ -971,16 +973,65 @@ table.insert(cheats, {
 	code = "nullpointerexception",
 })
 
+local r = 0
 cheats[#cheats].func = function(p, x, y) --set up like this so it can call itself
-	SetRandomSeed(GameGetFrameNum() - x, y + p)
-	GamePrintImportant("ERROR")
+	SetRandomSeed(GameGetFrameNum() - x, y + p - r)
+	r = r + 1
+
+	local function corrupt_text(str, prob)
+		local random_symbols = {'', '"', '<', '>', '@', '#', ';', '0', '£', '!', ',', '.', ':', '?', '~', '\'', '%', '*', '&', '$', '(', ')', 'ERROR', '//', '/', '\\', 'null', 'Void', '+', '_', '-', '|', '∅', '∞'}
+		local output = ""
+		for i = 1, #str do
+			if Random() < prob then output = output .. random_symbols[Random(1, #random_symbols)]
+			else output = output .. str:sub(i, i) end
+		end
+
+		return output
+	end
+
+	local targets = {}
+
+	local list_of_cheats = {}
+	local twitch_enabled = StreamingGetIsConnected()
+	for _,cheat in ipairs(cheats) do
+		if (not cheat.twitch or twitch_enabled) and not cheat.do_not_random then
+			list_of_cheats[#list_of_cheats+1] = cheat
+		end
+	end
+	for i = 1, 10 do
+		local target = list_of_cheats[Random(1,#list_of_cheats)]
+		targets[#targets+1] = target
+	end
+
+	local name = corrupt_text("ERROR - Null Pointer Exception encountered...", .1)
+
+	local description = ""
+	for i = 1, 10 do
+		print("Calling cheat:" .. tostring(targets[i].code))
+		local target_desc = tostring(targets[i].description)
+		description = description .. target_desc:sub(Random(0,#target_desc), Random(0,#target_desc))
+	end
+
+	local amounts = {
+		.01,
+		.05,
+		.2,
+		.5,
+		.8,
+	}
+
+	description =  corrupt_text(description, amounts[Random(1, #amounts)])
+
+	print(name)
+	print(description)
+	GamePrintImportant(name, description)
 	local godprint = GamePrintImportant
 	GamePrintImportant = function() end
-	for i = 1, 10 do
-		local target = cheats[Random(1,#cheats)]
-		print("CALLING CHEAT: " .. tostring(target.code))
-		target.func(p, x, y)
+
+	for _,value in ipairs(targets) do
+		value.func(p, x, y)
 	end
+
 	GamePrintImportant = godprint
 end
 
