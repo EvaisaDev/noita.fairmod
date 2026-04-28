@@ -186,13 +186,13 @@ function ImageOverlay(destination, image, offset_x, offset_y, alpha_multiplier)
 		for x = 0, w - 1 do
 			local dest_pixel = {abgr_split(ModImageGetPixel(dest_data.id, x + offset_x, y + offset_y))}
 			local img_pixel = {abgr_split(ModImageGetPixel(img_data.id, x, y))}
-			for i = 1, 4 do
+			if img_pixel[4] == 0 then goto continue end
+
+			for i = 1, 3 do
 				local difference = (img_pixel[i] - dest_pixel[i]) * (img_pixel[4]/255) * alpha_multiplier
-				if difference == 0 then goto continue end
 				dest_pixel[i] = math.clamp(dest_pixel[i] + difference, 0, 255)
 			end
 
-			--if logging then print(x + offset_x .. ", " .. y + offset_y) end
 			ModImageSetPixel(dest_data.id, x + offset_x, y + offset_y, abgr_merge(unpack(dest_pixel)))
 			::continue::
 		end
