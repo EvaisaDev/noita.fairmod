@@ -843,6 +843,7 @@ local cheats = {
     },
 	{
 		code = "praisethelord",
+		twitch = true,
 		not_cheat = true,
 		do_not_sudo = true, --prevents power users from activating this
 		func = function()
@@ -854,6 +855,7 @@ local cheats = {
 		code = "hailsatan",
 		name = "Free the Damned",
 		description = "Lets the devils OOOUUUTTTT!!",
+		twitch = true,
 		not_cheat = true,
 		do_not_sudo = true,
 		func = function()
@@ -864,6 +866,7 @@ local cheats = {
 		code = "iagreetothetermsandconditions",
 		name = "Poor Choice.",
 		description = "You should have read the fine print, my friend.",
+		twitch = true,
 		not_cheat = true,
 		do_not_sudo = true,
 		func = function(player, x, y)
@@ -963,6 +966,25 @@ for i, value in ipairs(dofile("mods/noita.fairmod/files/content/cheats/locations
 	}
 end
 
+
+table.insert(cheats, {
+	code = "nullpointerexception",
+})
+
+cheats[#cheats].func = function(p, x, y) --set up like this so it can call itself
+	SetRandomSeed(GameGetFrameNum() - x, y + p)
+	GamePrintImportant("ERROR")
+	local godprint = GamePrintImportant
+	GamePrintImportant = function() end
+	for i = 1, 10 do
+		local target = cheats[Random(1,#cheats)]
+		print("CALLING CHEAT: " .. tostring(target.code))
+		target.func(p, x, y)
+	end
+	GamePrintImportant = godprint
+end
+
+print("num cheats: " .. #cheats)
 return cheats
 
 --stylua: ignore end
