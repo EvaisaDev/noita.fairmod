@@ -323,6 +323,7 @@ local cheats = {
 	},
 	{
 		code = "blindstreamer",
+		twitch = true,
 		func = function(player)
 			ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "blindstreamer,")
 		end,
@@ -827,6 +828,7 @@ local cheats = {
         code = "anticheat",
 		name = "A mysterious seal",
         description = "A mysterious seal has been enforced",
+		do_not_random = true,
         not_cheat = true,
         func = function(player)
             GameAddFlagRun("fairmod.no_cheats")
@@ -834,7 +836,9 @@ local cheats = {
     },
     {
         code = "freevbucks",
+		name = "The ancient script has been invoked",
         description = "The mysterious seal has been vanquished",
+		do_not_random = true,
         not_cheat = true,
         func = function(player)
 			if GameHasFlagRun("fairmod.no_cheats") then
@@ -949,6 +953,16 @@ local cheats = {
 			GameAddFlagRun("payphone_larpa")
 		end
 	},
+	{
+		code = "neveragain",
+		name = "Never Again :)",
+		description = "Life is simpler in the cube.",
+		func = function(p, x, y)
+			GameScreenshake(70)
+			GamePlaySound("data/audio/Desktop/events.bank", "event_cues/chest/create", x, y)
+			LoadPixelScene("mods/noita.fairmod/files/content/cheats/misc/safety_box.png", "", x-23, y-23, "", true, nil, nil, nil, true)
+		end
+	}
 }
 
 local num_cheats = #cheats
