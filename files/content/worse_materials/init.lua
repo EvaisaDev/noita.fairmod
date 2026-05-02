@@ -33,6 +33,10 @@ for materials in nxml.edit_file("data/materials.xml") do
 			elseif input1 == "magic_liquid_mana_regeneration" then
 				attr.output_cell1 = "lava"
 			end
+		elseif input1 == "mimic_liquid" and input2 == "[any_liquid]" then
+			attr.input_cell2 = "[*]"
+			attr.output_cell1 = "[*]"
+			attr.output_cell2 = "[*]"
 		end
 	end
 end
