@@ -848,6 +848,13 @@ local cheats = {
         end,
     },
 	{
+		code = "photocopier",
+		do_not_random = true,
+		func = function() --counter to track gullible idiots
+			ModSettingSet("fairmod.photocopier_attempts", (ModSettingGet("fairmod.photocopier_attempts") or 0) + 1)
+		end
+	},
+	{
 		code = "praisethelord",
 		twitch = true,
 		not_cheat = true,
@@ -962,7 +969,15 @@ local cheats = {
 			GamePlaySound("data/audio/Desktop/events.bank", "event_cues/chest/create", x, y)
 			LoadPixelScene("mods/noita.fairmod/files/content/cheats/misc/safety_box.png", "", x-23, y-23, "", true, nil, nil, nil, true)
 		end
-	}
+	},
+	{
+		code = "groundbreakingtechnology",
+		name = "Groundbreaking Technology",
+		description = "New leaps made every year!",
+		func = function(p, x, y)
+			EntityLoad("data/entities/projectiles/deck/crumbling_earth_effect.xml", x, y)
+		end
+	},
 }
 
 local num_cheats = #cheats
