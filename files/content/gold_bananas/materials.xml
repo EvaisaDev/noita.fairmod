@@ -9,6 +9,8 @@
 		audio_physics_material_wall="gravel"
 		audio_physics_material_solid="gold"
 		show_in_creative_mode="1"
+		durability="14"
+		hp="30000"
 	>
 		<Graphics
 			normal_mapped="0"
