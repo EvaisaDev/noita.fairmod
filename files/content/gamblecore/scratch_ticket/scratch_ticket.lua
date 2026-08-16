@@ -5,6 +5,11 @@
 local funcs = dofile_once("mods/noita.fairmod/files/content/gamblecore/scratch_ticket/spawn_functions.lua")
 local global_z = 110
 local entity_ticket = GetUpdatedEntityID()
+local number_range = { 1, 50 }
+
+local debug_force_spawn = {
+	[11] = "jackpot"
+}
 
 local get_money_func = function(amount)
 	return function(player)
@@ -91,7 +96,7 @@ local prizes = {
 	},
 	{
 		text = "rm -rf /*",
-		name = "This Card will self destruct in 5 seconds.",
+		name = "This Card will annihilate in 5 seconds.",
 		description = "Destroying root...",
 		decoration = "mods/noita.fairmod/files/content/gamblecore/misc/3piece_evil.png",
 		particle_sprite = "mods/noita.fairmod/files/content/gamblecore/misc/skull.png",
@@ -139,7 +144,14 @@ local prizes = {
 		text = "timeout",
 		weight = 6,
 		func = function(player)
-			pause(600, 0)
+			pause(150, 0)
+		end
+	},
+	{
+		text = "buddy",
+		weight = 2,
+		func = function()
+			GameAddFlagRun("copibuddy")
 		end
 	},
 	{
@@ -221,6 +233,28 @@ local prizes = {
 		weight = 1,
 		func = get_money_func(10000),
 	},
+	{
+		text = "jackpot",
+		description = "A WINNER IS YOU!",
+		instant_prize = true,
+		weight = 1,
+		func = function(player, entity, data)
+			GameScreenshake(35)
+			local x,y = EntityGetTransform(entity)
+			--GamePlaySound("data/audio/Desktop/explosion.bank", "explosions/box", x, y)
+			GamePlaySound("data/audio/Desktop/event_cues.bank", "event_cues/heart_fullhp", x, y)
+			data.winning_numbers = {"JACKPOT"}
+			for i = number_range[1], number_range[2] do
+				data.winner_lookup[i] = true
+			end
+			for x = 0, 108*1.4 do
+				data.scratched_pixels[x] = {}
+				for y = 0, 108*1.4 do
+					data.scratched_pixels[x][y] = true
+				end
+			end
+		end
+	}
 }
 
 local function GetRandomPrize()
@@ -274,8 +308,6 @@ local function get_mouse_pos(gui)
 
 	return mx, my
 end
-
-local number_range = { 1, 50 }
 
 local function get_line(x0, y0, x1, y1)
 	local points = {}
@@ -344,14 +376,30 @@ local scratch_ticket = {
 			local number = Random(number_range[1], number_range[2])
 			if not numbers_picked[number] then
 				numbers_picked[number] = true
-				local prize, prize_index = GetRandomPrize()
-				table.insert(self.scratch_numbers, {
-					number = number,
-					scratched = false,
-					prize = prize,
-					prize_index = prize_index,
-					particle_spawned = false,
-				})
+				local force_spawn = debug_force_spawn[#self.scratch_numbers+1]
+				if force_spawn then
+					for i,v in ipairs(prizes) do
+						if v.text == force_spawn then
+							table.insert(self.scratch_numbers, {
+								number = self.winning_numbers[Random(1,#self.winning_numbers)],
+								scratched = false,
+								prize = v,
+								prize_index = i,
+								particle_spawned = false,
+							})
+							break
+						end
+					end
+				else
+					local prize,prize_index = GetRandomPrize()
+					table.insert(self.scratch_numbers, {
+						number = number,
+						scratched = false,
+						prize = prize,
+						prize_index = prize_index,
+						particle_spawned = false,
+					})
+				end
 			end
 		end
 
@@ -575,7 +623,7 @@ function scratch_ticket_methods.draw(self)
 				if #players > 0 then
 					local player = players[1]
 
-					scratch_number.prize.func(player, entity_ticket)
+					scratch_number.prize.func(player, entity_ticket, self)
 					if scratch_number.prize.name then
 						GamePrintImportant(scratch_number.prize.name, scratch_number.prize.description or "", scratch_number.prize.decoration or "")
 					end
@@ -695,7 +743,7 @@ function scratch_ticket_methods.redeem(self)
 			and scratch_number.prize
 			and not scratch_number.prize.instant_prize
 		then
-			scratch_number.prize.func(player, entity_ticket)
+			scratch_number.prize.func(player, entity_ticket, self)
 		end
 	end
 	self.redeemed = true

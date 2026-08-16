@@ -371,6 +371,7 @@ local cheats = {
 		progress_id = "world_reincarnation",
 		name = "World Reincarnation",
 		description = "The world has been regenerated with a new seed.",
+		do_not_jackpot = true,
 		func = function(player)
 			local x, y = EntityGetTransform(player)
 
@@ -704,7 +705,6 @@ local cheats = {
 		description = "Eat up!",
 		func = function(player)
 			local x, y = EntityGetTransform(player)
-			print(ModTextFileGetContent("data/entities/animals/noita.fairmod_hm_portal_mimic.xml"))
 
 			for i = 1, 8 do
 				for j = 1, 100 do
@@ -1058,7 +1058,7 @@ local cheats = {
 		description = "some meat bringing you all that joy?",
 		func = function(p,x,y)
 			pause(600, 2)
-		end
+		end --might add do_not_random and/or do_not_jackpot, is liable to crashing if you try to do inputs during pausetime
 	},
 	{
 		code = "chosen1",
@@ -1083,14 +1083,7 @@ local cheats = {
 		do_not_random = true,
 		func = function(p,x,y)
 			if not p then return end
-			local d = EntityCreateNew("deer_morph")
-			EntityAddComponent2(d, "GameEffectComponent", {
-				effect = "POLYMORPH",
-				frames = -1,
-				disable_movement = false,
-				polymorph_target = "data/entities/animals/deer.xml",
-			})
-			EntityAddChild(p, d)
+			LoadGameEffectEntityTo(p, "mods/noita.fairmod/files/content/cheats/misc/perma_deer.xml")
 		end
 	},
 	{
@@ -1102,6 +1095,8 @@ local cheats = {
 			local mat_inv = EntityGetFirstComponent(potion, "MaterialInventoryComponent")
 			if not mat_inv then return end
 			ComponentSetValue2(mat_inv, "do_reactions", 0)
+			local dmc = EntityGetFirstComponent(potion, "DamageModelComponent")
+			if dmc then EntityRemoveComponent(potion, dmc) end
 
 			local mat_count = 0
 			while true do
@@ -1109,7 +1104,7 @@ local cheats = {
 				if name == "unknown" then break
 				else
 					mat_count = mat_count + 1
-					AddMaterialInventoryMaterial(potion, name, 2)
+					AddMaterialInventoryMaterial(potion, name, 10)
 				end
 			end
 			GamePickUpInventoryItem(p, potion)
@@ -1198,7 +1193,9 @@ cheats[#cheats].func = function(p, x, y) --set up like this so it can call itsel
 
 	local list_of_cheats = {}
 	for _,cheat in ipairs(cheats) do
-		if condition_met and not (cheat.twitch or cheat.devmode or cheat.do_not_random or cheat.is_alias) then
+		local condition = cheat.condition
+		if type(condition) == "function" then condition = condition() end
+		if condition and not (cheat.twitch or cheat.devmode or cheat.do_not_random or cheat.is_alias) then
 			list_of_cheats[#list_of_cheats+1] = cheat
 		end
 	end
@@ -1251,6 +1248,29 @@ cheats[#cheats].func = function(p, x, y) --set up like this so it can call itsel
 	print(description)
 	print(decoration)
 end
+
+table.insert(cheats, {
+	code = "jackpot",
+	name = "JACKPOT!",
+	description = "A WINNER IS YOU!",
+	do_not_jackpot = true, --right, yeah okay this is kinda important
+	func = function(...)
+		local godprint = GamePrintImportant
+		GamePrintImportant = function(...) end
+		for _,cheat in ipairs(cheats) do
+			local condition = cheat.condition
+			if type(condition) == "function" then condition = condition() end
+			if condition and not (cheat.do_not_random
+			or cheat.do_not_jackpot
+			or cheat.twitch
+			or cheat.devmode
+			or cheat.is_alias) then
+				cheat.func(...)
+			end
+		end
+		GamePrintImportant = godprint
+	end
+})
 
 
 
