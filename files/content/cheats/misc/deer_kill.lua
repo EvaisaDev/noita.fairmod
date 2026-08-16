@@ -1,0 +1,1 @@
+function interacting(source,entity_id,name) EntityKill(entity_id) end

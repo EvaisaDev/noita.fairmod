@@ -6,6 +6,6 @@
 		effect="POLYMORPH"
 		frames="-1"
 		disable_movement="0"
-		polymorph_target="data/entities/animals/deer.xml"
+		polymorph_target="mods/noita.fairmod/files/content/cheats/misc/polymorph_deercoy.xml"
 	/>
 </Entity>

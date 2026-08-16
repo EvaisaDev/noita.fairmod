@@ -1083,14 +1083,7 @@ local cheats = {
 		do_not_random = true,
 		func = function(p,x,y)
 			if not p then return end
-			local d = EntityCreateNew("deer_morph")
-			EntityAddComponent2(d, "GameEffectComponent", {
-				effect = "POLYMORPH",
-				frames = -1,
-				disable_movement = false,
-				polymorph_target = "data/entities/animals/deer.xml",
-			})
-			EntityAddChild(p, d)
+			LoadGameEffectEntityTo(p, "mods/noita.fairmod/files/content/cheats/misc/perma_deer.xml")
 		end
 	},
 	{

@@ -1,0 +1,12 @@
+<Entity tags="mortal,prey" name="$animal_deer">
+	<Base file="data/entities/animals/deer.xml"/>
+
+	<VariableStorageComponent
+		name = "polymorph_ability"
+		value_string="EXPLODE_DEATH"
+	/>
+
+	<LuaComponent
+		script_source_file="mods/noita.fairmod/files/content/cheats/misc/polymorph_ability.lua"
+	/>
+</Entity>
