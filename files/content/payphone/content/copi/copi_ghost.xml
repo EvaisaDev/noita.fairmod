@@ -15,8 +15,6 @@
 
 		<ItemPickUpperComponent
 			is_immune_to_kicks="1"
-			is_wand_ghost="1"
-			is_charmed_wand_ghost="1"
 			pick_up_any_item_buggy="1"
 			is_in_npc="1" >
 		</ItemPickUpperComponent>

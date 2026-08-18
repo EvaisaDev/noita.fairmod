@@ -111,9 +111,6 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				{
 					text = "Empty the mailbox.",
 					func = function(dialog)
-
-						
-
 						-- loop through mail and call the function
 						for i, mail_id in ipairs(mail) do
 							local delay = math.max(20 - i, 1)
@@ -131,7 +128,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 									if(ability_component)then
 										ComponentSetValue2(ability_component, "ui_name", mail_data.letter_title or "Letter")
 									end
-									
+
 									local velocity_comp = EntityGetFirstComponentIncludingDisabled(letter_entity, "VelocityComponent")
 									if(velocity_comp)then
 										local vel_x = math.random(-100, 100)
@@ -152,7 +149,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 											-- trim empty space around lines
 											for i, line in ipairs(lines) do
 												lines[i] = string.gsub(line, "^%s*(.-)%s*$", "%1")
-											end	
+											end
 
 											-- set letter content
 											mail_data.letter_content = table.concat(lines, "\n")
@@ -173,16 +170,17 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 											mail_data.letter_func(letter_entity)
 										end
 									end
-				
+
 								end
 
 								if mail_data.func ~= nil then
 									wait(delay)
+									SetRandomSeed(GameGetFrameNum() + x, y)
 									mail_data.func(x, y - 17, i)
 								end
 
 								if(mail_data.post_func)then
-									table.insert(to_call, function() 
+									table.insert(to_call, function()
 										mail_data.post_func(x, y - 17, i)
 									end)
 								end
@@ -234,7 +232,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 
 						GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
 						GameRemoveFlagRun("fairmod_dialog_interacting")
-					
+
 						dialog.close()
 					end,
 				},
@@ -254,7 +252,7 @@ function interacting(entity_who_interacted, entity_interacted, interactable_name
 				GameRemoveFlagRun("fairmod_dialog_interacting")
 				GameRemoveFlagRun("fairmod_interacted_with_anything_this_frame")
 
-				-- run post_funcs 
+				-- run post_funcs
 				for i, func in ipairs(to_call) do
 					func()
 				end

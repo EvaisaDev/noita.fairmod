@@ -1,4 +1,4 @@
-dofile("data/scripts/lib/coroutines.lua")
+dofile_once("data/scripts/lib/coroutines.lua")
 
 local entity_id = GetUpdatedEntityID()
 local children = EntityGetAllChildren(entity_id)
