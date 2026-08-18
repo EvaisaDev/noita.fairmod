@@ -7,7 +7,7 @@ item_pickup = function(entity_item, entity_who_picked, item_name)
 		local biome_filename = DebugBiomeMapGetFilename(x, y) or ""
 		local is_boss_arena = biome_filename:match("boss_arena") ~= nil
 		if biome_filename:match("temple_altar") ~= nil or is_boss_arena then
-			if ProceduralRandom(x + entity_item, y + GameGetFrameNum(), 1, 100) <= 2 then
+			if ProceduralRandom(x + entity_item, y + GameGetFrameNum(), 1, 100) <= 4 then
 				local x_offset = is_boss_arena and 2585 or 0
 
 				local world_width = BiomeMapGetSize()
