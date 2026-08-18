@@ -2041,4 +2041,19 @@ return {
 			},
 		},
 	},
+	{
+		name = "Unknown Caller",
+		portrait = "mods/noita.fairmod/files/content/payphone/portrait_eyes.png",
+		typing_sound = "breathing",
+
+		text = [[{@delay 15}~I se{@func blinded}e you...~{@func disconnected}]],
+		options = {
+			{
+				text = "...",
+				func = function()
+					hangup()
+				end,
+			},
+		},
+	},
 }
