@@ -63,3 +63,18 @@ for file, needs_controls in pairs(minion_files) do
 		)
 	end
 end
+
+-- Stronger Hearts
+local heart_files = {
+	"data/entities/items/pickup/heart.xml",
+	"data/entities/items/pickup/heart_better.xml",
+}
+for _, f in ipairs(heart_files) do
+	for xml in nxml.edit_file(f) do
+		xml:create_child("LuaComponent", {
+			execute_on_added = 1,
+			remove_after_executed = 1,
+			script_source_file = "mods/noita.fairmod/files/content/better_perks/stronger_hearts/buff_hearts_check.lua",
+		})
+	end
+end
