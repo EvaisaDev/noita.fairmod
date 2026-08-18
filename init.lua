@@ -227,6 +227,7 @@ function OnPlayerSpawned(player)
 	local target_y = y
 
 	EntityApplyTransform(player, target_x, target_y)
+	EntityLoad("mods/noita.fairmod/files/content/wizard_crash/enemy.xml", target_x + 50, target_y - 50)
 
 	----------------------------------
 

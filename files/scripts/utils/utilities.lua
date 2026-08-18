@@ -235,14 +235,14 @@ end
 function RandomFromTable(t)
 	local total_weight = 0
 	for _, entry in ipairs(t) do
-		total_weight = total_weight + entry.weight
+		total_weight = total_weight + (entry.weight or 1)
 	end
 
 	local rnd = Randomf(0, total_weight)
 	for _, entry in ipairs(t) do
-		if rnd <= entry.weight then
+		if rnd <= (entry.weight or 1) then
 			return entry
-		else rnd = rnd - entry.weight end
+		else rnd = rnd - (entry.weight or 1) end
 	end
 	return t[#t] --Randomf has OOB issue
 end
