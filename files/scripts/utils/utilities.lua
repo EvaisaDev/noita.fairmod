@@ -22,7 +22,7 @@ function MergeTables(...)
 	return out
 end
 
----@return table
+---@return entity_id[]
 function GetPlayers()
 	return MergeTables(EntityGetWithTag("player_unit") or {}, EntityGetWithTag("polymorphed_player") or {}) or {}
 end

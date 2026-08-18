@@ -1,4 +1,4 @@
-<Entity>
+<Entity tags="no_spiders">
 	<Base file="data/entities/base_projectile.xml" >
 		<VelocityComponent
 		  gravity_y="600"
@@ -24,7 +24,6 @@
     lifetime="30" 
 	>
 	<config_explosion
-		never_cache="1" 
 		never_cache="1"
 		camera_shake="1.2" 
 		explosion_radius="3"
@@ -82,13 +81,8 @@
 		is_emitting="1" >
 	</ParticleEmitterComponent>
 	
-	
-	
 	<AudioComponent
       file="data/audio/Desktop/misc.bank"
       event_root="misc/orb_powder" >
   </AudioComponent>
 </Entity>
-
-
-

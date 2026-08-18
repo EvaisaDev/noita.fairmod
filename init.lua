@@ -279,7 +279,7 @@ function OnPlayerSpawned(player)
 	user_seeds.OnPlayerSpawned(player)
 
 	achievements:init()
-	
+
 	-- enable physics damage on the player
 	local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 	if damage_model_comp then ComponentSetValue2(damage_model_comp, "physics_objects_damage", true) end
@@ -332,7 +332,9 @@ function OnWorldPreUpdate()
 	nukes.OnWorldPreUpdate()
 	-- trading_cards.update()
 	dofile("mods/noita.fairmod/files/content/streamerluck/update.lua")
-	dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
+	if (frames + 1) % 4 == 0 then
+		dofile("mods/noita.fairmod/files/content/anything_mimics/update.lua")
+	end
 	better_ui:update()
 	loanshark.update()
 	ping_attack.update()
@@ -345,7 +347,7 @@ function OnWorldPreUpdate()
 	achievements:update()
 	gamblecore.Update()
 	logo_splash.update()
-	
+
 	-- Handle reset flag
 	if GameHasFlagRun("reset_copibuddy") then
 		GameRemoveFlagRun("reset_copibuddy")
@@ -356,7 +358,7 @@ function OnWorldPreUpdate()
 		end
 		copibuddy_instances = {}
 	end
-	
+
 	if GameHasFlagRun("copibuddy") and #copibuddy_instances == 0 then
 		GameRemoveFlagRun("copibuddy")
 		print("Spawning copibuddy due to flag")
@@ -364,7 +366,7 @@ function OnWorldPreUpdate()
 		table.insert(copibuddy_instances, new_instance)
 		GameAddFlagRun("is_copibuddied")
 	end
-	
+
 	-- Update all copibuddy instances
 	for i = #copibuddy_instances, 1, -1 do
 		local instance = copibuddy_instances[i]
@@ -385,7 +387,7 @@ function OnWorldPreUpdate()
 		--EntityLoad("data/entities/animals/boss_wizard/boss_wizard.xml", mx, my)
 		--GameAddFlagRun("SPAWN_POPUP")
 		--ModSettingSet("noita.fairmod.popups", (ModSettingGet("noita.fairmod.popups") or "") .. "antivirus,")
-	
+
 		--GameAddFlagRun("copibuddy")
 		--GameAddFlagRun("reset_copibuddy")
 		--[[GameRemoveFlagRun("copibuddy_will_haunt")
@@ -406,7 +408,7 @@ function OnWorldPreUpdate()
 	end
 
 	if(GlobalsGetValue("copi_tts", "") ~= "")then
-		
+
 		local phonemes = TTS.text_to_phonemes(GlobalsGetValue("copi_tts", ""))
 
 		tts_player:speak(phonemes)
@@ -434,8 +436,8 @@ function OnPausePreUpdate()
 		pause_button_pressed = true
 	end
 
-	if not last_pause_was_inventory and pause_button_pressed and time_paused == 5 then 
-		GameAddFlagRun("draw_evil_mode_text") 
+	if not last_pause_was_inventory and pause_button_pressed and time_paused == 5 then
+		GameAddFlagRun("draw_evil_mode_text")
 		GameAddFlagRun("draw_logo_splash")
 		pause_button_pressed = false
 	end
@@ -455,7 +457,7 @@ function OnPausedChanged(is_paused, is_inventory_pause)
 	last_pause_was_inventory = is_inventory_pause
 
 
-	
+
 	if is_paused and not is_inventory_pause then
 		-- regular pause screen
 		funny_settings.OnPausedChanged()
@@ -547,40 +549,40 @@ end
 
 --▓▒░ nabbed from whoever made the one in noita.fairmod/settings.lua
 
---[[                                                       
-                                                                                                                                            
-                                            .....:::::...                                           
-                                           .::^^^^^^^^^:..                                          
-                                         ..:^~!!!!!!~~~^:..                                         
-                                      ..:^~!?JYYJJ?7!~~^:::...                                      
-                                    ..::^~7J5PGGP5J7!~^^^^^^::..                                    
-                                    .::^~!?YPGBBG5J7!~~~~!!!~~^:.                                   
-                                    .:^~~!7?JYYYJ?7!~~!7?JYYJ?!^.                                   
-                                    .:^~~~!!!!!!!~~~~~7JYPGGPY?~:                                   
-                                   ..:^~~~!!!!!!~~~~~~7J5GBBG5?~:                                   
-                                ....:^^~~!7??JJJJ?7!~~!7JY55Y?!^.                                   
-                              ...:::^^^~~!?Y5GGGP5J7!~~~!!77!~^:.                                   
-                              ..:::^^^^^~!7J5GBBG5J7!~^^^^^^^::..                                   
-                              ..::^^:::::^~7?JYYYJ?7!~~^^::..........                               
-                              ..:::::..  .:^~!!!7!!!!~~^:..  ...::::..                              
-                             ...::::..     .:^^^~~~~~^^:..    .:::::..                              
-                         ............      .::^^^^::::..      .:::::..                              
-                        ..:::::..         ..::::::...        ..:::::..                              
-                       ..::::::..         ..:::::..          ..:::::..                              
-                       ..::::::..         ..:::::..          ..:::::..                              
-                       ..::::::..         ..:::::..          ..:::::..                              
-                       ..::::::..         ..::::::..         ...::::...                             
-                       ..::::::..         ..::::::..           .............                        
-                       ..::::::..         ..::::::..               ..:::::..                        
-                       ...:::::..         ..:::::...               ..::::::..                       
-                        ..::::...         ...::::..                ...::::..                        
-                       ...:::::..         ..:::::...               ..:::::...                       
-                       ..:^^^^::.         .::^^^^:..               .::^^^^:..                       
-                       .:^~!!~^:.         .:^~!!~^:.               .:^~!!~^:.                       
-                       .^~!77!~^:.       .:^~!77!~^.              .:^~!77!~^.                       
-                       .:^~~~~^:.         .:^~~~~^:.               .:^~~~~^:.                       
-                        ..::::...         ...::::..                ...::::..                        
-                                                                                                    
+--[[
+
+                                            .....:::::...
+                                           .::^^^^^^^^^:..
+                                         ..:^~!!!!!!~~~^:..
+                                      ..:^~!?JYYJJ?7!~~^:::...
+                                    ..::^~7J5PGGP5J7!~^^^^^^::..
+                                    .::^~!?YPGBBG5J7!~~~~!!!~~^:.
+                                    .:^~~!7?JYYYJ?7!~~!7?JYYJ?!^.
+                                    .:^~~~!!!!!!!~~~~~7JYPGGPY?~:
+                                   ..:^~~~!!!!!!~~~~~~7J5GBBG5?~:
+                                ....:^^~~!7??JJJJ?7!~~!7JY55Y?!^.
+                              ...:::^^^~~!?Y5GGGP5J7!~~~!!77!~^:.
+                              ..:::^^^^^~!7J5GBBG5J7!~^^^^^^^::..
+                              ..::^^:::::^~7?JYYYJ?7!~~^^::..........
+                              ..:::::..  .:^~!!!7!!!!~~^:..  ...::::..
+                             ...::::..     .:^^^~~~~~^^:..    .:::::..
+                         ............      .::^^^^::::..      .:::::..
+                        ..:::::..         ..::::::...        ..:::::..
+                       ..::::::..         ..:::::..          ..:::::..
+                       ..::::::..         ..:::::..          ..:::::..
+                       ..::::::..         ..:::::..          ..:::::..
+                       ..::::::..         ..::::::..         ...::::...
+                       ..::::::..         ..::::::..           .............
+                       ..::::::..         ..::::::..               ..:::::..
+                       ...:::::..         ..:::::...               ..::::::..
+                        ..::::...         ...::::..                ...::::..
+                       ...:::::..         ..:::::...               ..:::::...
+                       ..:^^^^::.         .::^^^^:..               .::^^^^:..
+                       .:^~!!~^:.         .:^~!!~^:.               .:^~!!~^:.
+                       .^~!77!~^:.       .:^~!77!~^.              .:^~!77!~^.
+                       .:^~~~~^:.         .:^~~~~^:.               .:^~~~~^:.
+                        ..::::...         ...::::..                ...::::..
+
 
 --nabbed from Immersive Mimics, absolutely wretch of a mod ]]
 -- best mod of 202X
