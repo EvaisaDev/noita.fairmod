@@ -42,6 +42,17 @@ local improvements = {
             not_in_default_perk_pool = false
         }
     },
+    ATTRACT_ITEMS = {
+        modifications = {
+            func_enemy = function( entity_perk_item, entity_who_picked )
+                EntityAddComponent2( entity_who_picked, "LuaComponent",
+                {
+                    script_source_file = "data/scripts/perks/attract_items.lua",
+                    execute_every_n_frame = "2",
+                })
+            end
+        }
+    },
 }
 
 local userseed = tostring(ModSettingGet("fairmod.user_seed") or "000000000000000000000000000000")

@@ -1,8 +1,11 @@
-ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/better_perks/append.lua")
-
-
 ---@type nxml
 local nxml = dofile_once("mods/noita.fairmod/files/lib/nxml.lua")
+
+
+ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/noita.fairmod/files/content/better_perks/append.lua")
+ModLuaFileAppend("data/scripts/perks/attract_items.lua", "mods/noita.fairmod/files/content/better_perks/extend_attract_items.lua")
+ModLuaFileAppend("data/entities/animals/boss_centipede/rewards/spawn_rewards.lua", "mods/noita.fairmod/files/content/better_perks/extend_spawn_rewards.lua")
+
 
 for xml in nxml.edit_file("data/entities/misc/greed_curse/greed.xml") do
     local remove = {}
@@ -14,7 +17,20 @@ for xml in nxml.edit_file("data/entities/misc/greed_curse/greed.xml") do
     end
 end
 
-
+-- Stuff that Attract Gold should also attract because they are gold
+local goldlike_stuff = {
+	"data/entities/items/pickup/physics_gold_orb.xml",
+	"data/entities/items/pickup/physics_gold_orb_greed.xml",
+	"data/entities/projectiles/bomb_holy.xml",
+	"data/entities/projectiles/bomb_holy_giga.xml",
+}
+for _, filename in ipairs(goldlike_stuff) do
+	for xml in nxml.edit_file(filename) do
+		local tags = xml:get("tags") or ""
+		if tags == "" then tags = tags .. "," end
+		xml:set("tags", tags .. "fair_gold")
+	end
+end
 
 -- Make helpers/minions much more better
 -- So helpful they can carry stuff for you

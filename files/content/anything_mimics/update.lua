@@ -12,15 +12,9 @@ local entities_all = EntityGetInRadius(x, y, 500)
 
 local runner_tag = "mimic"
 
-local function IsRagdollPart(entity)
-	return EntityGetFilename(entity) == "data/entities/props/physics_ragdoll_part.xml"
-end
-
 for _, entity in ipairs(entities_all) do
 	if EntityGetRootEntity(entity) == entity then
 		if not EntityHasTag(entity, runner_tag) and not EntityHasTag(entity, "no_spiders") then
-			if IsRagdollPart(entity) then goto continue end
-
 			local ex, ey = EntityGetTransform(entity)
 			local distance_sq = (ex - x) ^ 2 + (ey - y) ^ 2
 
