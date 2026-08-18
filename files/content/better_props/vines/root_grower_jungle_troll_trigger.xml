@@ -1,0 +1,14 @@
+<Entity>
+  <CollisionTriggerComponent
+    width="250"
+    height="300"
+    radius="280"
+    required_tag="player_unit"
+    destroy_this_entity_when_triggered="1"
+    timer_for_destruction="600"
+    />
+
+  <LuaComponent
+    script_collision_trigger_hit="mods/noita.fairmod/files/content/better_props/vines/root_grower_jungle_troll_trigger.lua"
+    execute_every_n_frame="-1"/>
+</Entity>

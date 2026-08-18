@@ -22,7 +22,8 @@ local persistent_flags = {
 	"fairmod_noitillionare_winner",
 	"crashed_by_wizard",
 	"fairmod_touched_minecart_trigger",
-	"fairmod_won_lovely_dream"
+	"fairmod_won_lovely_dream",
+	"fairmod_saw_jungle_once",
 }
 
 for _,setting in ipairs(settings) do
