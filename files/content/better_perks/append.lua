@@ -37,11 +37,16 @@ local improvements = {
             end
         }
     },
+    LEGGY_FEET = {
+        modifications = {
+            not_in_default_perk_pool = false
+        }
+    },
 }
 
 local userseed = tostring(ModSettingGet("fairmod.user_seed") or "000000000000000000000000000000")
 math.randomseed(tonumber(userseed:sub(7, 12)), tonumber(userseed:sub(15, 19)))
-for index, perk in ipairs(perk_list) do
+for _, perk in ipairs(perk_list) do
     local template = improvements[perk.id]
     if template ~= nil and (not template.probability or math.random() < template.probability) then --if template exists and it doesnt have a probability condition or the probability is met
         for key, value in pairs(improvements[perk.id].modifications) do
