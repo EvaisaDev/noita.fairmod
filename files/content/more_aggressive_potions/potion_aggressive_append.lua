@@ -79,12 +79,25 @@ pa.potions = {
 		cost = 400,
 	},
 	{
-		material = "magic_liquid_teleportation",
+		material = "magic_liquid_unstable_teleportation",
 		amount = 500, --decreased amount in case someone grabs one to open the eye room lmao
 		cost = 500,
 	},
 	{
-		material = "blood_cold",
+		material = "magic_liquid_weakness",
+	},
+	{
+		material = "material_confusion",
+	},
+	{
+		material = "slime",
+	},
+	{
+		material = "magic_liquid_worm_attractor",
+	},
+	{
+		material = "magic_liquid_invisibility",	-- invisibility = bad in fair mod
+		probability = 5,
 	},
 	{
 		material = "fairmod_deceleratium",
@@ -96,11 +109,11 @@ pa.potions = {
 	},
 	{
 		material = "fairmod_stillium",
-		probability = 2,
+		probability = 5,
 	},
 	{
 		material = "fairmod_giga_slicing_liquid",
-		probability = 4,
+		probability = 1,
 		amount = 500,
 	},
 	{
@@ -110,7 +123,7 @@ pa.potions = {
 	},
 	{
 		material = "fairmod_grease",
-		probability = 20,
+		probability = 15,
 		amount = 1000,
 	},
 	{
@@ -123,10 +136,18 @@ pa.potions = {
 	},
 	{
 		material = "fairmod_minecartium",
-		probability = 1,
+		probability = 2,
 	},
 	{
 		material = "fairmod_hamisium",
 		probability = 1,
+	},
+	{
+		material = "void_liquid",
+		probability = 5,
+	},
+	{
+		material = "magic_liquid_random_polymorph",
+		probability = 3,
 	},
 }
