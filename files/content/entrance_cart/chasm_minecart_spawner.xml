@@ -1,23 +1,23 @@
 <Entity>
 	<CollisionTriggerComponent
-		width="120"
-		height="150"
-		radius="200"
+		width="510"
+		height="510"
+		radius="1000"
 		required_tag="player_unit"
 		destroy_this_entity_when_triggered="0"
-		timer_for_destruction="600"
+		timer_for_destruction="300"
 		/>
 
 	<CollisionTriggerComponent
-		width="120"
-		height="150"
-		radius="200"
+		width="510"
+		height="510"
+		radius="1000"
 		required_tag="polymorphed_player"
 		destroy_this_entity_when_triggered="0"
-		timer_for_destruction="600"
+		timer_for_destruction="300"
 		/>
 
 	<LuaComponent
-		script_collision_trigger_hit="mods/noita.fairmod/files/content/entrance_cart/ghost_minecart_trigger.lua"
+		script_collision_trigger_hit="mods/noita.fairmod/files/content/entrance_cart/chasm_minecart_trigger.lua"
 		execute_every_n_frame="-1"/>
 </Entity>
