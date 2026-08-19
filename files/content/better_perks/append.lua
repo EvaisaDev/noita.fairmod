@@ -64,7 +64,7 @@ local improvements = {
                     EntitySetDamageFromMaterial(entity_who_picked, "water_salt", 0.0001)
 
                     local holy = tonumber(ComponentObjectGetValue2(dmg, "damage_multipliers", "holy"))
-                    ComponentObjectSetValue2(dmg, "damage_multipliers", "holy", holy * 1.5)
+                    ComponentObjectSetValue2(dmg, "damage_multipliers", "holy", holy * 1.25)
                 end
 
                 EntityAddComponent2(entity_who_picked, "LuaComponent", {
