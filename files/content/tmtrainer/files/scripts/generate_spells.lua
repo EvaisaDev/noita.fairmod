@@ -64,7 +64,7 @@ local function generate_image(index, original_sprite, was_first)
 	if not ModImageDoesExist(original_sprite) or not ModImageDoesExist(corrupted_sprite) then
 		return
 	end
-	
+
 	if ModImageWhoSetContent(original_sprite) == "" or ModImageWhoSetContent(corrupted_sprite) == "" then
 		return
 	end
@@ -110,7 +110,6 @@ local function generate_image(index, original_sprite, was_first)
 	end
 end
 
-local world_seed = tonumber(StatsGetValue("world_seed")) or 1
 local TMTRAINER_INDEX = 0
 
 SetRandomSeed(TMTRAINER_INDEX, 1)
@@ -180,177 +179,180 @@ local action_func_body = [[
 
 for action_type, action_list in pairs(action_info_map) do
 	for _ = 1, #action_list do
-		local seed_offset = 1
-		
-		local added_action_ids = {}
-		local twitch_event_ids = {}
-		
-		local primary_action = get_random_action(action_type)
-		if primary_action then 
-			table.insert(added_action_ids, primary_action.id)
-		end
+		if Random(1, 100) < 40 then
 
-		SetRandomSeed(TMTRAINER_INDEX, seed_offset)
+			local seed_offset = 1
 
-		local num_additional = Random(1, 3)
-		for _ = 1, num_additional do
-			local mix_types = {
-				ACTION_TYPE_MODIFIER,
-				ACTION_TYPE_DRAW_MANY,
-				ACTION_TYPE_MATERIAL,
-				ACTION_TYPE_UTILITY,
-				ACTION_TYPE_PASSIVE,
-				ACTION_TYPE_OTHER,
-				action_type,
-				"twitch_event",
-			}
+			local added_action_ids = {}
+			local twitch_event_ids = {}
 
-			local mix_type = mix_types[Random(1, #mix_types)]
-			if mix_type == "twitch_event" then
-				if streaming_events and #streaming_events > 0 then
-					local twitch_event = streaming_events[Random(1, #streaming_events)]
-					if twitch_event then table.insert(twitch_event_ids, twitch_event.id) end
-				end
-			else
-				local action_info = get_random_action(mix_type)
-				if action_info then table.insert(added_action_ids, action_info.id) end
+			local primary_action = get_random_action(action_type)
+			if primary_action then
+				table.insert(added_action_ids, primary_action.id)
 			end
-		end
 
-		local name_parts = {}
-		local description_parts = {}
-		local mana = 0
-		local max_uses = -1
-		local price = 0
-		local custom_xml_file = nil
-		local recursive = false
-		local ai_never_uses = false
+			SetRandomSeed(TMTRAINER_INDEX, seed_offset)
 
-		for i, action_id in ipairs(added_action_ids) do
-			local added_action = nil
-			for _, a in ipairs(actions) do
-				if a.id == action_id then
-					added_action = a
-					break
+			local num_additional = Random(1, 3)
+			for _ = 1, num_additional do
+				local mix_types = {
+					ACTION_TYPE_MODIFIER,
+					ACTION_TYPE_DRAW_MANY,
+					ACTION_TYPE_MATERIAL,
+					ACTION_TYPE_UTILITY,
+					ACTION_TYPE_PASSIVE,
+					ACTION_TYPE_OTHER,
+					action_type,
+					"twitch_event",
+				}
+
+				local mix_type = mix_types[Random(1, #mix_types)]
+				if mix_type == "twitch_event" then
+					if streaming_events and #streaming_events > 0 then
+						local twitch_event = streaming_events[Random(1, #streaming_events)]
+						if twitch_event then table.insert(twitch_event_ids, twitch_event.id) end
+					end
+				else
+					local action_info = get_random_action(mix_type)
+					if action_info then table.insert(added_action_ids, action_info.id) end
 				end
 			end
-			
-			if added_action then
-				if string.sub(action_id, 1, 7) ~= "RANDOM_" then
-					if added_action.ai_never_uses then ai_never_uses = true end
-					if added_action.recursive then recursive = true end
 
-					local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
-					local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
+			local name_parts = {}
+			local description_parts = {}
+			local mana = 0
+			local max_uses = -1
+			local price = 0
+			local custom_xml_file = nil
+			local recursive = false
+			local ai_never_uses = false
 
-					local max_iterations = 30
-					local function try_update_name(chars, iteration)
-						iteration = iteration or 0
-						table.insert(name_parts, get_random_chunk(added_name, chars))
-						if filter.contains_slur(table.concat(name_parts)) then
-							table.remove(name_parts)
-							if iteration < max_iterations and (chars - 1 > 0) then try_update_name(chars - 1, iteration + 1) end
-						end
-					end
-
-					local function try_update_description(chars, iteration)
-						iteration = iteration or 0
-						table.insert(description_parts, get_random_chunk(added_description, chars))
-						if filter.contains_slur(table.concat(description_parts)) then
-							table.remove(description_parts)
-							if iteration < max_iterations and (chars - 1 > 0) then try_update_description(chars - 1, iteration + 1) end
-						end
-					end
-
-					try_update_name(Random(4, 8), 0)
-					try_update_description(Random(8, 14), 0)
-
-					mana = mana + (added_action.mana or 0)
-					if i > 1 then mana = mana / 2 end
-
-					if added_action.max_uses and added_action.max_uses ~= -1 then
-						if max_uses == -1 then
-							max_uses = added_action.max_uses
-						else
-							max_uses = max_uses + added_action.max_uses
-						end
-					end
-
-					price = price + (added_action.price or 0)
-					if i > 1 then price = price / 2 end
-
-					if added_action.custom_xml_file and added_action.custom_xml_file ~= "" and (i == 1 or Random(0, 100) > 50 or not custom_xml_file) then
-						custom_xml_file = added_action.custom_xml_file
-					end
-					
-					if added_action.sprite and string.sub(added_action.sprite, -4) == ".png" then
-						generate_image(TMTRAINER_INDEX, added_action.sprite, i == 1)
-					end
-				end
-			end
-		end
-
-		for _, twitch_event_id in ipairs(twitch_event_ids) do
-			if streaming_events then
-				for _, te in ipairs(streaming_events) do
-					if te.id == twitch_event_id then
-						local added_name = GameTextGetTranslatedOrNot(te.ui_name) or ""
-						local added_description = GameTextGetTranslatedOrNot(te.ui_description) or ""
-						table.insert(name_parts, get_random_chunk(added_name, 6))
-						table.insert(description_parts, get_random_chunk(added_description, 10))
+			for i, action_id in ipairs(added_action_ids) do
+				local added_action = nil
+				for _, a in ipairs(actions) do
+					if a.id == action_id then
+						added_action = a
 						break
 					end
 				end
+
+				if added_action then
+					if string.sub(action_id, 1, 7) ~= "RANDOM_" then
+						if added_action.ai_never_uses then ai_never_uses = true end
+						if added_action.recursive then recursive = true end
+
+						local added_name = GameTextGetTranslatedOrNot(added_action.name) or ""
+						local added_description = GameTextGetTranslatedOrNot(added_action.description) or ""
+
+						local max_iterations = 30
+						local function try_update_name(chars, iteration)
+							iteration = iteration or 0
+							table.insert(name_parts, get_random_chunk(added_name, chars))
+							if filter.contains_slur(table.concat(name_parts)) then
+								table.remove(name_parts)
+								if iteration < max_iterations and (chars - 1 > 0) then try_update_name(chars - 1, iteration + 1) end
+							end
+						end
+
+						local function try_update_description(chars, iteration)
+							iteration = iteration or 0
+							table.insert(description_parts, get_random_chunk(added_description, chars))
+							if filter.contains_slur(table.concat(description_parts)) then
+								table.remove(description_parts)
+								if iteration < max_iterations and (chars - 1 > 0) then try_update_description(chars - 1, iteration + 1) end
+							end
+						end
+
+						try_update_name(Random(4, 8), 0)
+						try_update_description(Random(8, 14), 0)
+
+						mana = mana + (added_action.mana or 0)
+						if i > 1 then mana = mana / 2 end
+
+						if added_action.max_uses and added_action.max_uses ~= -1 then
+							if max_uses == -1 then
+								max_uses = added_action.max_uses
+							else
+								max_uses = max_uses + added_action.max_uses
+							end
+						end
+
+						price = price + (added_action.price or 0)
+						if i > 1 then price = price / 2 end
+
+						if added_action.custom_xml_file and added_action.custom_xml_file ~= "" and (i == 1 or Random(0, 100) > 50 or not custom_xml_file) then
+							custom_xml_file = added_action.custom_xml_file
+						end
+
+						if added_action.sprite and string.sub(added_action.sprite, -4) == ".png" then
+							generate_image(TMTRAINER_INDEX, added_action.sprite, i == 1)
+						end
+					end
+				end
 			end
+
+			for _, twitch_event_id in ipairs(twitch_event_ids) do
+				if streaming_events then
+					for _, te in ipairs(streaming_events) do
+						if te.id == twitch_event_id then
+							local added_name = GameTextGetTranslatedOrNot(te.ui_name) or ""
+							local added_description = GameTextGetTranslatedOrNot(te.ui_description) or ""
+							table.insert(name_parts, get_random_chunk(added_name, 6))
+							table.insert(description_parts, get_random_chunk(added_description, 10))
+							break
+						end
+					end
+				end
+			end
+
+			local name = table.concat(name_parts)
+			local description = table.concat(description_parts)
+
+			local action_ids_parts = {"{"}
+			for i, id in ipairs(added_action_ids) do
+				table.insert(action_ids_parts, escape_string(id))
+				if i < #added_action_ids then table.insert(action_ids_parts, ", ") end
+			end
+			table.insert(action_ids_parts, "}")
+			local action_ids_str = table.concat(action_ids_parts)
+
+			local twitch_ids_parts = {"{"}
+			for i, id in ipairs(twitch_event_ids) do
+				table.insert(twitch_ids_parts, escape_string(id))
+				if i < #twitch_event_ids then table.insert(twitch_ids_parts, ", ") end
+			end
+			table.insert(twitch_ids_parts, "}")
+			local twitch_ids_str = table.concat(twitch_ids_parts)
+
+			local spell = {
+				"table.insert(actions, {\n",
+				"\tid = \"TMTRAINER_", tostring(TMTRAINER_INDEX), "\",\n",
+				"\tspawn_requires_flag = \"tmt_do_not_spawn_lmao\",\n",
+				"\tname = ", escape_string(name), ",\n",
+				"\tdescription = ", escape_string(description), ",\n",
+				"\tsprite = \"mods/noita.fairmod/files/content/tmtrainer/files/spell_icons/", tostring(TMTRAINER_INDEX), ".png\",\n",
+				"\ttype = ", tostring(action_type), ",\n",
+				"\tspawn_level = \"0,0,0,0,0,0,0,0\",\n",
+				"\tspawn_probability = \"0,0,0,0,0,0,0,0\",\n",
+				"\tprice = ", tostring(price), ",\n",
+				"\tmana = ", tostring(mana), ",\n",
+				"\tmax_uses = ", tostring(max_uses), ",\n",
+				"\tai_never_uses = ", tostring(ai_never_uses), ",\n",
+				"\trecursive = ", tostring(recursive), ",\n",
+				"\tcustom_xml_file = ", escape_string(custom_xml_file), ",\n",
+				"\ttm_trainer = true,\n",
+				"\taction = function(recursion_level, iteration)\n",
+				"\t\tlocal _action_ids = ", action_ids_str, "\n",
+				"\t\tlocal _twitch_ids = ", twitch_ids_str, "\n",
+				"\t\tlocal _idx = ", tostring(TMTRAINER_INDEX), "\n",
+				action_func_body,
+				"\tend,\n",
+				"})\n\n",
+			}
+			table.insert(output, table.concat(spell))
+
+			TMTRAINER_INDEX = TMTRAINER_INDEX + 1
 		end
-
-		local name = table.concat(name_parts)
-		local description = table.concat(description_parts)
-
-		local action_ids_parts = {"{"}
-		for i, id in ipairs(added_action_ids) do
-			table.insert(action_ids_parts, escape_string(id))
-			if i < #added_action_ids then table.insert(action_ids_parts, ", ") end
-		end
-		table.insert(action_ids_parts, "}")
-		local action_ids_str = table.concat(action_ids_parts)
-
-		local twitch_ids_parts = {"{"}
-		for i, id in ipairs(twitch_event_ids) do
-			table.insert(twitch_ids_parts, escape_string(id))
-			if i < #twitch_event_ids then table.insert(twitch_ids_parts, ", ") end
-		end
-		table.insert(twitch_ids_parts, "}")
-		local twitch_ids_str = table.concat(twitch_ids_parts)
-
-		local spell = {
-			"table.insert(actions, {\n",
-			"\tid = \"TMTRAINER_", tostring(TMTRAINER_INDEX), "\",\n",
-			"\tspawn_requires_flag = \"tmt_do_not_spawn_lmao\",\n",
-			"\tname = ", escape_string(name), ",\n",
-			"\tdescription = ", escape_string(description), ",\n",
-			"\tsprite = \"mods/noita.fairmod/files/content/tmtrainer/files/spell_icons/", tostring(TMTRAINER_INDEX), ".png\",\n",
-			"\ttype = ", tostring(action_type), ",\n",
-			"\tspawn_level = \"0,0,0,0,0,0,0,0\",\n",
-			"\tspawn_probability = \"0,0,0,0,0,0,0,0\",\n",
-			"\tprice = ", tostring(price), ",\n",
-			"\tmana = ", tostring(mana), ",\n",
-			"\tmax_uses = ", tostring(max_uses), ",\n",
-			"\tai_never_uses = ", tostring(ai_never_uses), ",\n",
-			"\trecursive = ", tostring(recursive), ",\n",
-			"\tcustom_xml_file = ", escape_string(custom_xml_file), ",\n",
-			"\ttm_trainer = true,\n",
-			"\taction = function(recursion_level, iteration)\n",
-			"\t\tlocal _action_ids = ", action_ids_str, "\n",
-			"\t\tlocal _twitch_ids = ", twitch_ids_str, "\n",
-			"\t\tlocal _idx = ", tostring(TMTRAINER_INDEX), "\n",
-			action_func_body,
-			"\tend,\n",
-			"})\n\n",
-		}
-		table.insert(output, table.concat(spell))
-
-		TMTRAINER_INDEX = TMTRAINER_INDEX + 1
 	end
 end
 

@@ -12,7 +12,9 @@ local new_biomes = {
 }
 
 for biome_name, path in pairs(new_biomes) do
-	ModTextFileSetContent("data/biome/" .. biome_name .. ".xml", ModTextFileGetContent(path))
+	if ModTextFileSetContent ~= nil then	--- ??? compat with Conjurer
+		ModTextFileSetContent("data/biome/" .. biome_name .. ".xml", ModTextFileGetContent(path))
+	end
 end
 
 local added_biomes = {

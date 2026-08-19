@@ -4,8 +4,8 @@ local filter = dofile_once("mods/noita.fairmod/files/content/tmtrainer/files/scr
 
 local perk_pool = {}
 for _, perk in ipairs(perk_list) do
-	if not perk.not_in_default_perk_pool and not perk.no_tmt then 
-		table.insert(perk_pool, perk) 
+	if not perk.not_in_default_perk_pool and not perk.no_tmt then
+		table.insert(perk_pool, perk)
 	end
 end
 
@@ -43,7 +43,7 @@ local function generate_icon(index, original_icon, is_first, icon_type)
 	if not ModImageDoesExist(original_icon) or not ModImageDoesExist(new_icon_path) then
 		return
 	end
-	
+
 	if ModImageWhoSetContent(original_icon) == "" or ModImageWhoSetContent(new_icon_path) == "" then
 		return
 	end
@@ -111,7 +111,7 @@ end
 
 for i = 1, #perk_pool do
 
-	if Random(1, 100) < 40 then
+	if Random(1, 100) < 20 then
 		local perk_ids = {}
 		local ui_name_parts = {}
 		local ui_description_parts = {}
@@ -124,7 +124,7 @@ for i = 1, #perk_pool do
 			local perk = get_random_perk()
 			if perk then
 				table.insert(perk_ids, perk.id)
-				
+
 				local added_name = GameTextGetTranslatedOrNot(perk.ui_name) or ""
 				local added_description = GameTextGetTranslatedOrNot(perk.ui_description) or ""
 
@@ -155,17 +155,17 @@ for i = 1, #perk_pool do
 
 				SetRandomSeed(TMTRAINER_INDEX, 1)
 				if perk.game_effect and perk.game_effect ~= "" then
-					if game_effect == nil or Random(0, 100) > 50 then 
-						game_effect = perk.game_effect 
+					if game_effect == nil or Random(0, 100) > 50 then
+						game_effect = perk.game_effect
 					end
 				end
 
 				if perk.particle_effect and perk.particle_effect ~= "" then
-					if particle_effect == nil or Random(0, 100) > 50 then 
-						particle_effect = perk.particle_effect 
+					if particle_effect == nil or Random(0, 100) > 50 then
+						particle_effect = perk.particle_effect
 					end
 				end
-				
+
 				if perk.ui_icon then
 					generate_icon(i, perk.ui_icon, j == 1, "ui_icon")
 				end

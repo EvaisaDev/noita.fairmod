@@ -3,7 +3,7 @@ SetRandomSeed(11, -419)
 local improvements = {
     GLASS_CANNON = {
         modifications = {
-            func = function( entity_perk_item, entity_who_picked, item_name )
+            func = function( entity_perk_item, entity_who_picked)
                 local damagemodels = EntityGetComponent( entity_who_picked, "DamageModelComponent" )
                 if( damagemodels ~= nil ) then
                     for i,damagemodel in ipairs(damagemodels) do
@@ -22,7 +22,7 @@ local improvements = {
             ui_description = "$fairmod_perkdesc_bleed_grease",
             ui_icon = "mods/noita.fairmod/files/content/better_perks/grease_blood/ui.png",
             perk_icon = "mods/noita.fairmod/files/content/better_perks/grease_blood/perk.png",
-            func = function( entity_perk_item, entity_who_picked, item_name )
+            func = function( entity_perk_item, entity_who_picked)
 
                 local damagemodels = EntityGetComponent( entity_who_picked, "DamageModelComponent" )
                 if( damagemodels ~= nil ) then
@@ -37,15 +37,59 @@ local improvements = {
             end
         }
     },
+    LEGGY_FEET = {
+        modifications = {
+            not_in_default_perk_pool = false
+        }
+    },
+    ATTRACT_ITEMS = {
+        modifications = {
+            func_enemy = function( entity_perk_item, entity_who_picked )
+                EntityAddComponent2( entity_who_picked, "LuaComponent",
+                {
+                    script_source_file = "data/scripts/perks/attract_items.lua",
+                    execute_every_n_frame = "2",
+                })
+            end
+        }
+    },
+    VAMPIRISM = {
+        modifications = {
+            func_append = function( entity_perk_item, entity_who_picked)
+			    local dmg = EntityGetFirstComponentIncludingDisabled(entity_who_picked, "DamageModelComponent")
+                if dmg ~= nil then
+                    EntitySetDamageFromMaterial(entity_who_picked, "silver", 0.0002)
+                    EntitySetDamageFromMaterial(entity_who_picked, "silver_molten", 0.0004)
+                    EntitySetDamageFromMaterial(entity_who_picked, "salt", 0.0002)
+                    EntitySetDamageFromMaterial(entity_who_picked, "water_salt", 0.0001)
+
+                    local holy = tonumber(ComponentObjectGetValue2(dmg, "damage_multipliers", "holy"))
+                    ComponentObjectSetValue2(dmg, "damage_multipliers", "holy", holy * 1.25)
+                end
+
+                EntityAddComponent2(entity_who_picked, "LuaComponent", {
+                    script_source_file = "mods/noita.fairmod/files/content/better_perks/vampirism/sunlight_checker.lua",
+                    execute_every_n_frame = 2,
+                })
+            end
+        }
+    },
 }
 
 local userseed = tostring(ModSettingGet("fairmod.user_seed") or "000000000000000000000000000000")
 math.randomseed(tonumber(userseed:sub(7, 12)), tonumber(userseed:sub(15, 19)))
-for index, perk in ipairs(perk_list) do
+for _, perk in ipairs(perk_list) do
     local template = improvements[perk.id]
     if template ~= nil and (not template.probability or math.random() < template.probability) then --if template exists and it doesnt have a probability condition or the probability is met
         for key, value in pairs(improvements[perk.id].modifications) do
             perk[key] = value
+            if key == "func_append" then
+                perk.original_func = perk.func
+                perk.func = function(entity_perk_item, entity_who_picked, item_name)
+                    perk.original_func(entity_perk_item, entity_who_picked, item_name)
+                    perk.func_append(entity_perk_item, entity_who_picked, item_name)
+                end
+            end
         end
     end
 end

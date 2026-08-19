@@ -364,8 +364,22 @@ math.randomseed(GameGetFrameNum() * StatsGetValue("world_seed"))
 
 -- 1/400 -> 15% per second with COPI mode, 1/20000 -> .3% per second by default
 local windowProbability = immersive_mimics and 400 or 20000
+local maxWindowProbability = windowProbability * 32
 
-if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbability) == 1) or GameHasFlagRun("SPAWN_POPUP") then
+-- Annoy them less frequently the closer they are to spawn, and more the further they are
+local _, cam_y = GameGetCameraPos()
+cam_y = math.min(math.abs(cam_y), 13000)
+
+-- Change the power on t to change how the percentages scale, lower = ramp up to max more quickly
+-- Spawn: ~0.009%/s
+-- HM before Snowy: ~0.185%/s
+-- HM before Jungle: ~0.238%/s
+-- HM before Temple of the Art: ~0.28%/s
+-- Kolmi: 0.3%/s
+local t = (cam_y / 13000) ^ 0.1
+local windowProbCalc = math.floor(maxWindowProbability * (windowProbability / maxWindowProbability) ^ t)
+
+if (GameGetFrameNum() - LastFrame >= 1) and (math.random(1, windowProbCalc) == 1) or GameHasFlagRun("SPAWN_POPUP") then
     GameRemoveFlagRun("SPAWN_POPUP")
     SeedCount = SeedCount + 1
     Windows[#Windows + 1] = {

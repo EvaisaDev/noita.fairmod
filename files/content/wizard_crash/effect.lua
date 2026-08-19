@@ -1,3 +1,5 @@
+dofile_once("mods/noita.fairmod/files/scripts/utils/utilities.lua")
+
 local owner = EntityGetRootEntity(GetUpdatedEntityID())
 if not EntityHasTag(owner, "player_unit") and not EntityHasTag(owner, "polymorphed_player") then
 	EntityKill(owner)
