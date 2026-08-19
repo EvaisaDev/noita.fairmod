@@ -1,4 +1,4 @@
-<Entity name="$stalactite" tags="" >
+<Entity name="$animal_stalactite_generic_3" tags="" >
 	<Base file="mods/noita.fairmod/files/content/stalactite/entities/triggers/base_stalactite_trigger.xml">
 		<SpriteComponent
 			image_file="mods/noita.fairmod/files/content/stalactite/sprites/generic/stalactite_generic_3.png"

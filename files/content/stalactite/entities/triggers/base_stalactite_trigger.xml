@@ -1,4 +1,4 @@
-<Entity name="$stalactite" >
+<Entity name="stalactite" >
 	<SpriteAnimatorComponent/>
 
 	<SpriteComponent
