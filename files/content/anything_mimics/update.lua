@@ -46,7 +46,7 @@ for _, entity in ipairs(to_clean) do
 	end
 end
 
-local mimic_chance = 5 -- only every 4 frames
+local mimic_chance = 4
 
 if ModSettingGet("noita.fairmod.arachnophilia_mode") then mimic_chance = 50 end
 
