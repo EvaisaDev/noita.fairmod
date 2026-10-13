@@ -1144,7 +1144,23 @@ local cheats = {
 			end
 			GlobalsSetValue("loan_shark_debt", tostring(tonumber(GlobalsGetValue("loan_shark_debt", "0")) + owed))
 		end
-	}
+	},
+	{
+		code = "divineright",
+		name = "Divine Right",
+		description = "Give enemies random perks (WIP)",
+		func = function(p,x,y)
+			for _,entity_id in ipairs(EntityGetInRadius(x,y,math.huge)) do
+				local dmc = EntityGetComponent(entity_id, "DamageModelComponent")
+				if dmc then
+					ComponentSetValue2(dmc, "blood_material", "lava")
+					ComponentSetValue2(dmc, "blood_spray_material", "lava")
+					EntitySetDamageFromMaterial(entity_id, "lava", 0)
+					LoadGameEffectEntityTo(entity_id, "data/entities/misc/effect_protection_fire.xml")
+				end
+			end
+		end
+	},
 }
 
 
