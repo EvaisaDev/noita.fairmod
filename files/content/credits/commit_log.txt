@@ -1169,6 +1169,7 @@ Update hamis_reworked.lua
 oh i cant be bothered, just push everything.
 fixed decor randomiser on nullpointerexception
 added `chosen1` cheatcode
+skimmed, doesnt look like i broke anything, MERGE THAT SHIT #363
 changed workshop image
 Update commit_log.txt
 minor maintenance stuff
@@ -1180,3 +1181,31 @@ added zoom rebind, fixed konami cheat
 fixed zoom key
 Update gui.lua
 added controller support, improved cheat system
+added jackpot to scratchcards and cheatcodes
+gave deer polymorph a polymorph ability (will expand this later)
+Reduce mimic chance and remove bugged candidates
+Fix stalactite death message lookup
+Fix some script errors
+Make popups occur less frequently the closer you are to spawn
+Make root grower troll not happen on the first jungle visit
+Reduce fake perk chance by a lot
+Reduce anything mimic chance
+Increase fake mountain collapse chance
+Tweak and add materials to the alchemist thrower pool
+Update Heiner portrait and make eyes a new caller
+Fix master of crashing (was not working at all), and add missing strings
+Reduce anymimic chance some more
+Remove a debug spawn
+Add leggy to the regular perk pool
+Make Attract Gold attract gold-like things too
+Stronger hearts are buff and have 6packs
+Reduce number of TMTrainer perks and spells by about half
+Vampirism now grants the downsides of being a Vampire
+Add minecart troll to lava lake chasm
+Wiggling egg can spawn any worm
+Make Freeze Field freeze more things
+Reduce anything mimic chance by 1%
+Hide invisibility status
+Allow stalactites to be mimics and increase fake perk chance from 2 to 3%
+Reduce vampire holy damage from 1.5x to 1.25x more
+finished easter calc, added hamis tip exhaustion achievement

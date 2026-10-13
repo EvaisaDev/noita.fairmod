@@ -19,10 +19,12 @@ for k, v in pairs(bait_list) do
 				--print("Bait casted!")
 
 				c.fire_rate_wait = c.fire_rate_wait + 10
-				local player = get_players()[1]
+				if reflecting then return end
+
+				local player = EntityGetWithTag("player_unit")[entity_1]
 				--print("reeeeeeee")
 				if player == GetUpdatedEntityID() then
-					x, y = EntityGetTransform(player)
+					local x, y = EntityGetTransform(player)
 
 					local wand = get_held_item(player)
 

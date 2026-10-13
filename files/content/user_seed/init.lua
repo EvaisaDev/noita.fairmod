@@ -165,5 +165,6 @@ user_seeds.OnWorldInitialized = function() --fairmod.domriaf
 	end
 end
 
+dofile("mods/noita.fairmod/files/content/user_seed/lib.lua")
 return user_seeds
 --stylua: ignore end

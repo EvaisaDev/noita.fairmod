@@ -74,7 +74,7 @@ local tips = {
 	'Type "Chaos" on your keyboard for some free digging',
 	"Trapped? Try code NOCLIP to get yourself out of any sticky situation!",
 	"i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it i didnt mean it",
-	"Hm, what? No! You're supposed to give ME a tip\nFork over the cash, bub!",
+	"Hm, what? No! You're supposed to give ME a tip.\nFork over the cash, bub!",
 	"[Hyperlink Blocked.]",
 	"I'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so\nI'll get so",
 	"Death comes for those who wait.",
@@ -82,14 +82,15 @@ local tips = {
 	"Hello, " .. (uid or useed or "{@color FF0000}ERROR"),
 	"I know you!",
 	"Sorry, who are you?",
-	"Jump off a bridge!",
+	"Go trampolining off a bridge!",
 	"{@color FF0000}#KYS#!!!!!!!!!!{@pause 90}\n~{@color d991de}( Keep Yourself Safe <3 )~",
 	"I'll get by, ~one {@color f0c854}gold{@color FFFFFF} at a time!\\~~",
 	"The Voices, they speak through me!",
 	'psst, try this secret cheatcode: "photocopier"',
-	"But before you get your tip, I would like to take a minute to thank today's Sponsor:{@pause 60}\n{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
+	"But before you get your tip, I would like to take a minute to thank today's Sponsor:\n{@pause 60}{@delay 30}...{@pause 60}{@delay 3}\nWe...{@pause 15} don't have any sponsors...",
 	"This mod has been a joy to work on, see you all next year o/",
 	"May the odds be ~ever~ in your favour\\~",
+	"The forbidden path begins with ice magic.",
 }
 
 if uid then table.insert(tips, "Higher beings, these words are for you alone.") end
@@ -115,12 +116,16 @@ local seasonal_tips = {
 		"Happy Hanukkah",
 		"I can't make decisive seasonal comments about Hanukkah due to the date changing relative to the Gregorian calendar, how troublesome!",
 	},
-	easter = {
+	easter_sunday = {
 		"Calculating easter dates is a hard, I'm writing this tip before I even know if I'll continue working on it!",
 		"Find my 8 eggs!",
+		"Oh hey, I did finish integrating that Easter calculation script after all.{@pause 40}\nI even threw in Shrove Tuesday for fun, Christians better thank me for this one!",
+	},
+	shrove_tuesday = {
+		"I... didn't research this holiday. I just put this here because calculating Easter was hard and this was included as a freebie.",
 	},
 	valentines = {
-		"A chocolate,{@pause 15} for me?{@pause 45} Aww thanks,{@pause 10} shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20}Spiders are deathly allergic to chocolate)",
+		"A chocolate,{@pause 15} for me?{@pause 45} Aww thanks,{@pause 10} you shouldn't have!{@pause 90}{@color 9f9f9f}\n(Note:{@pause 20}Spiders are deathly allergic to chocolate)",
 		"Ask your crush out!{@pause 50}\nUnless it's me,{@pause 15} I'm married to my work!!",
 	},
 	Monday = {
@@ -129,7 +134,7 @@ local seasonal_tips = {
 		"The week only passes as slowly as you let it!",
 	},
 	Wednesday = {
-		"Wait,{@pause 10} how do you spell Wensday again?",
+		"Wait,{@pause 10} how do you spell Wednsday again?",
 	},
 	Friday = {
 		"The Weekend will pass by just as fast as the last one did\nSavour and make the most of what little time you have",
@@ -145,11 +150,11 @@ local seasonal_tips = {
 
 for key, value in pairs(seasonal_tips) do
 	if key == seasonals.weekday then
-		for k, v in ipairs(value) do
+		for _,v in ipairs(value) do
 			table.insert(tips, v)
 		end
 	elseif seasonals[key] then
-		for k, v in ipairs(value) do
+		for _,v in ipairs(value) do
 			table.insert(tips, v)
 		end
 	end
@@ -206,31 +211,34 @@ local function has_scratch_ticket(player)
 	return false
 end
 
-local recursive_tip_option = {}
-recursive_tip_option = {
-	text = "Ask again",
-	enabled = function(stats)
-		return true
-	end,
-	func = function(dialog)
-		if #remaining_tips == 0 then
-			for _, tip in ipairs(tips) do
-				remaining_tips[#remaining_tips + 1] = tip
-			end
-
-			tips_post_processing(remaining_tips)
+local recursive_tip_option
+recursive_tip_option = function(dialog)
+	local num_remaining_tips = #remaining_tips
+	if num_remaining_tips == 0 then
+		for _, tip in ipairs(tips) do
+			remaining_tips[#remaining_tips + 1] = tip
 		end
-		dialog.show({
-			text = "{@delay 2}" .. table.remove(remaining_tips, Random(1, #remaining_tips)),
-			options = {
-				recursive_tip_option,
-				{
-					text = "Leave",
-				},
+
+		tips_post_processing(remaining_tips)
+	elseif num_remaining_tips == 1 then
+		GameAddFlagRun("fairmod_hamis_tips_exhausted")
+	end
+	dialog.show({
+		text = table.remove(remaining_tips, Random(1, #remaining_tips)),
+		options = {
+			{
+				text = "Ask again",
+				enabled = function(stats)
+					return true
+				end,
+				func = recursive_tip_option
 			},
-		})
-	end,
-}
+			{
+				text = "Leave",
+			},
+		},
+	})
+end
 
 function interacting(player, entity_interacted, interactable_name)
 	if EntityHasTag(entity_interacted, "viewing") or GameHasFlagRun("fairmod_dialog_interacting") or GameHasFlagRun("holding_interactible") then return end
@@ -261,24 +269,7 @@ function interacting(player, entity_interacted, interactable_name)
 				enabled = function(stats)
 					return true
 				end,
-				func = function(dialog)
-					if #remaining_tips == 0 then
-						for _, tip in ipairs(tips) do
-							remaining_tips[#remaining_tips + 1] = tip
-						end
-
-						tips_post_processing(remaining_tips)
-					end
-					dialog.show({
-						text = table.remove(remaining_tips, Random(1, #remaining_tips)),
-						options = {
-							recursive_tip_option,
-							{
-								text = "Leave",
-							},
-						},
-					})
-				end,
+				func = recursive_tip_option,
 			},
 			{
 

@@ -7,8 +7,10 @@ local function add_release_break(target, release)
 	credits = credits:gsub(escape(target), target .. " \n--- " .. release .. " ---\n \n")
 end
 
+--i personally pick the final commit made before a major release
+--so everything up to `fixed init` is part of the main development, and `Labor of Loathing is here :)` is up until LOL's release
 add_release_break("fixed init (was in absolute fucking shambles)", " MAIN RELEASE 31/10/24")
-add_release_break("Labor of Loathing is here :)", "LABOR OF LOATHING 1/4/25")
+add_release_break("Labor of Loathing is here :)", "LABOUR OF LOATHING 01/04/25")
 
 local dev_messages = {
 	UserK = "Despite how it may seem, I truly wish that you had fun, player.",

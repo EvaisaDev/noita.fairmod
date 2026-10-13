@@ -301,6 +301,15 @@ achievements = {
 		end,
 	},
 	{
+		name = "Good Listener",
+		description = "Read all of Information Hämis' handy tips",
+		icon = "mods/noita.fairmod/files/content/achievements/icons/hamis_tips_exhausted.png",
+		flag = "hamis_tips_exhausted",
+		unlock = function()
+			return GameHasFlagRun("fairmod_hamis_tips_exhausted")
+		end,
+	},
+	{
 		name = "Snail Eater",
 		description = "You monster",
 		icon = "mods/noita.fairmod/files/content/pixelscenes/snail/effect/snail_eater_icon.png",

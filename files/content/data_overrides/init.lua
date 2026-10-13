@@ -13,7 +13,7 @@ local mountain_hall_bgs = {
 }
 
 for _,bg in ipairs(mountain_hall_bgs) do
-	ImageOverlay("data/biome_impl/mountain/" .. bg, "mods/noita.fairmod/files/content/data_overrides/mountain/hall_bg_overlay.png")
+	ImageOverlay("data/biome_impl/mountain/" .. bg, "mods/noita.fairmod/files/content/data_overrides/mountain/hall_bg_overlay.png", 26, 371)
 end
 
 ImageOverlay("data/biome_impl/mountain/floating_island_visual.png", "mods/noita.fairmod/files/content/data_overrides/mountain/floating_island_visual.png", 131, 224)
